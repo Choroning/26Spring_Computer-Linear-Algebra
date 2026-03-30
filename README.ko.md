@@ -68,23 +68,23 @@
 <br><a name="weekly-schedule"></a>
 ## 📅 주차별 일정
 
-| 주차 | 챕터 | 주제 | 핵심 개념 |
+| 주차 | 강의 자료 | 챕터 | 주제 |
 |:---:|:---|:---|:---|
-| 1 | Chap. 1 | 벡터 소개 | 벡터 |
-| 2 | Chap. 2 | 연립일차방정식 풀기 | Ax=b |
-| 3 | Chap. 3 | 연립일차방정식 풀기 | Ax=b |
-| 4 | Chap. 3.1-3.2 | 네 가지 기본 부분공간 | 열공간 |
-| 5 | Chap. 3.3-3.5 | 네 가지 기본 부분공간 | 영공간 |
-| 6 | Chap. 4.1-4.3 | 직교성 | 직교성 |
-| 7 | Chap. 4.4-4.5 | 직교성 | 직교성 |
+| 1 | Introduction, N1 | Ch. 1 | 소개, 벡터와 행렬 |
+| 2 | — | Ch. 1 | 벡터와 행렬 (계속) |
+| 3 | N2 | Ch. 2 | 연립일차방정식 풀기 |
+| 4 | — | Ch. 2 | 연립일차방정식 풀기 (계속) |
+| 5 | N3 (A) | Ch. 3 | 벡터 공간과 부분공간 |
+| 6 | N3 (B) | Ch. 3 | 벡터 공간과 부분공간 (계속) |
+| 7 | — | — | 복습 |
 | 8 | 중간고사 | — | — |
-| 9 | Chap. 5 | 행렬식 | 행렬식 |
-| 10 | Chap. 6.1-6.3 | 고유값과 고유벡터 | 고유 분해 |
-| 11 | Chap. 6.4-6.5 | 고유값과 고유벡터 | 고유 분해 |
-| 12 | Chap. 7 | 특이값 분해 | SVD |
-| 13 | Chap. 8 | 선형 변환 | 선형 사상 |
-| 14 | Chap. 8 | 선형 변환 | 선형 사상 |
-| 15 | Chap. 9 | 최적화에서의 선형대수 | SGD |
+| 9 | N4-1, N4-2 | Ch. 4 | 직교성, 사영 |
+| 10 | N4-3, N4-4, N4-5 | Ch. 4 | 최소제곱, 직교 기저, 의사역행렬 |
+| 11 | N5-1, N5-2, N5-3 | Ch. 5 | 행렬식 |
+| 12 | N6-1, N6-2 | Ch. 6 | 고유값, 대각화 |
+| 13 | N6-3, N6-5 | Ch. 6 | 대칭 양정치 행렬, 선형 미분방정식 |
+| 14 | N7-1, N7-2, N7-3 | Ch. 7 | SVD, 이미지 처리, PCA |
+| 15 | N8-1, N8-2, N8-3 | Ch. 8 | 선형 변환 |
 | 16 | 기말고사 | — | — |
 
 <br><a name="repository-structure"></a>
@@ -92,6 +92,15 @@
 
 ```plaintext
 26Spring_Computer-Linear-Algebra
+├── Chapter01_Introduction-to-Vectors
+├── Chapter02_Solving-Linear-Equations
+├── Chapter03_Vector-Spaces-and-Subspaces
+├── Chapter04_Orthogonality
+├── Chapter05_Determinants
+├── Chapter06_Eigenvalues-and-Eigenvectors
+├── Chapter07_Singular-Value-Decomposition
+├── Chapter08_Linear-Transformations
+├── docs/
 ├── .gitignore
 ├── LICENSE
 ├── README.ko.md

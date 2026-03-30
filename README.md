@@ -68,23 +68,23 @@ This repository contains bilingual study materials and homework solutions develo
 <br><a name="weekly-schedule"></a>
 ## 📅 Weekly Schedule
 
-| Week | Chapter | Topic | Key Concepts |
+| Week | Lecture Notes | Chapter | Topic |
 |:---:|:---|:---|:---|
-| 1 | Chap. 1 | Introduction to Vectors | Vectors |
-| 2 | Chap. 2 | Solving Linear Equations | Ax=b |
-| 3 | Chap. 3 | Solving Linear Equations | Ax=b |
-| 4 | Chap. 3.1-3.2 | Four Fundamental Subspaces | Column space |
-| 5 | Chap. 3.3-3.5 | Four Fundamental Subspaces | Null space |
-| 6 | Chap. 4.1-4.3 | Orthogonality | Orthogonality |
-| 7 | Chap. 4.4-4.5 | Orthogonality | Orthogonality |
+| 1 | Introduction, N1 | Ch. 1 | Introduction, Vectors and Matrices |
+| 2 | — | Ch. 1 | Vectors and Matrices (continued) |
+| 3 | N2 | Ch. 2 | Solving Linear Equations |
+| 4 | — | Ch. 2 | Solving Linear Equations (continued) |
+| 5 | N3 (A) | Ch. 3 | Vector Spaces and Subspaces |
+| 6 | N3 (B) | Ch. 3 | Vector Spaces and Subspaces (continued) |
+| 7 | — | — | Review |
 | 8 | Midterm | — | — |
-| 9 | Chap. 5 | Determinants | Determinants |
-| 10 | Chap. 6.1-6.3 | Eigenvalues and Eigenvectors | Eigen decomposition |
-| 11 | Chap. 6.4-6.5 | Eigenvalues and Eigenvectors | Eigen decomposition |
-| 12 | Chap. 7 | Singular Value Decomposition | SVD |
-| 13 | Chap. 8 | Linear Transformation | Linear map |
-| 14 | Chap. 8 | Linear Transformation | Linear map |
-| 15 | Chap. 9 | Linear Algebra in Optimization | SGD |
+| 9 | N4-1, N4-2 | Ch. 4 | Orthogonality, Projections |
+| 10 | N4-3, N4-4, N4-5 | Ch. 4 | Least Squares, Orthogonal Basis, Pseudoinverse |
+| 11 | N5-1, N5-2, N5-3 | Ch. 5 | Determinants |
+| 12 | N6-1, N6-2 | Ch. 6 | Eigenvalues, Diagonalization |
+| 13 | N6-3, N6-5 | Ch. 6 | Symmetric Positive Definite Matrices, Linear DE |
+| 14 | N7-1, N7-2, N7-3 | Ch. 7 | SVD, Image Processing, PCA |
+| 15 | N8-1, N8-2, N8-3 | Ch. 8 | Linear Transformations |
 | 16 | Final | — | — |
 
 <br><a name="repository-structure"></a>
@@ -92,6 +92,15 @@ This repository contains bilingual study materials and homework solutions develo
 
 ```plaintext
 26Spring_Computer-Linear-Algebra
+├── Chapter01_Introduction-to-Vectors
+├── Chapter02_Solving-Linear-Equations
+├── Chapter03_Vector-Spaces-and-Subspaces
+├── Chapter04_Orthogonality
+├── Chapter05_Determinants
+├── Chapter06_Eigenvalues-and-Eigenvectors
+├── Chapter07_Singular-Value-Decomposition
+├── Chapter08_Linear-Transformations
+├── docs/
 ├── .gitignore
 ├── LICENSE
 ├── README.ko.md
