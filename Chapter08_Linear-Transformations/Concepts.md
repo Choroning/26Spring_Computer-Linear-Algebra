@@ -1,6 +1,6 @@
-# Chapter 8 Lecture -- Linear Transformations
+# Chapter 8 Lecture — Linear Transformations
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -16,6 +16,9 @@
   - [1.5 Linear Transformation Determined by Basis](#15-linear-transformation-determined-by-basis)
   - [1.6 Geometric Interpretation: Lines to Lines](#16-geometric-interpretation-lines-to-lines)
   - [1.7 Linear Transformations in Calculus (Derivative)](#17-linear-transformations-in-calculus-derivative)
+  - [1.8 Example 5: Integration is Also Linear](#18-example-5-integration-is-also-linear)
+  - [1.9 Example 6: Projection onto z=1 Plane (Non-Linear)](#19-example-6-projection-onto-z1-plane-non-linear)
+  - [1.10 Example 7: Invertible Matrix and Range/Kernel](#110-example-7-invertible-matrix-and-rangekernel)
 - [2. The Matrix of a Linear Transformation (8.2)](#2-the-matrix-of-a-linear-transformation-82)
   - [2.1 Key Ideas Summary](#21-key-ideas-summary)
   - [2.2 Choice of Bases and the Standard Matrix](#22-choice-of-bases-and-the-standard-matrix)
@@ -154,7 +157,7 @@ In computer graphics, affine mapping is used:
 
 ### 1.4 Examples of Linear and Non-Linear Transformations
 
-**Example 1 (Linear -- Dot product):**
+**Example 1 (Linear — Dot product):**
 
 $$\mathbf{a} = \begin{pmatrix} 1 \\ 3 \\ 4 \end{pmatrix}, \quad \mathbf{u} = \begin{pmatrix} u_1 \\ u_2 \\ u_3 \end{pmatrix}$$
 
@@ -164,17 +167,17 @@ $$T(\mathbf{u}) = \mathbf{a} \cdot \mathbf{u} = \mathbf{a}^T\mathbf{u} = (\mathb
 
 ---
 
-**Example 2 (Non-Linear -- Length/Norm):**
+**Example 2 (Non-Linear — Length/Norm):**
 
 $T(\mathbf{u}) = \|\mathbf{u}\|$ is **NOT** linear.
 
-**Check (i) -- Additivity:**
+**Check (i) — Additivity:**
 
 $$T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})$$
 
 $$\|\mathbf{u} + \mathbf{w}\| \neq \|\mathbf{u}\| + \|\mathbf{w}\|$$
 
-**Check (ii) -- Homogeneity:**
+**Check (ii) — Homogeneity:**
 
 $$T(c\mathbf{u}) \stackrel{?}{=} c\,T(\mathbf{u})$$
 
@@ -186,7 +189,7 @@ Fails homogeneity (norm is always non-negative).
 
 ---
 
-**Example 3 (Linear -- Rotation):**
+**Example 3 (Linear — Rotation):**
 
 $T$ is the rotation matrix that rotates every vector by $30°$.
 
@@ -280,6 +283,64 @@ Linear transformation $\dfrac{dy}{dx}$ is connected to $A\mathbf{u}$:
 $$\begin{pmatrix} b \\ 2c \end{pmatrix} = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} a \\ b \\ c \end{pmatrix}$$
 
 The matrix is $A = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$.
+
+---
+
+### 1.8 Example 5: Integration is Also Linear
+
+Integration $T^+$ is also linear:
+
+$$\int_0^x (D + Ex)\,dx = Dx + \frac{1}{2}Ex^2$$
+
+$$T^+: \begin{pmatrix} D \\ E \end{pmatrix} \longrightarrow \begin{pmatrix} 0 \\ D \\ \frac{1}{2}E \end{pmatrix}$$
+
+The input $\mathbf{u} = D + Ex$ and the output is $Dx + \frac{1}{2}Ex^2$.
+
+$$\begin{pmatrix} 0 \\ D \\ \frac{1}{2}E \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \\ 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} D \\ E \end{pmatrix}$$
+
+The integral matrix is $A^+$.
+
+**Products $A^+A$ and $AA^+$:**
+
+$$A^+A = \begin{pmatrix} 0 & 0 \\ 1 & 0 \\ 0 & \frac{1}{2} \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+
+$$AA^+ = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & 0 \\ 1 & 0 \\ 0 & \frac{1}{2} \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$$
+
+---
+
+### 1.9 Example 6: Projection onto z=1 Plane (Non-Linear)
+
+Project a vector $\mathbf{u} \in \mathbb{R}^3$ onto the horizontal plane $z = 1$:
+
+$$T: \begin{pmatrix} x \\ y \\ z \end{pmatrix} \longrightarrow \begin{pmatrix} x \\ y \\ 1 \end{pmatrix}$$
+
+$T(\mathbf{u})$ is **NOT** linear because:
+
+$$T(\mathbf{0}) = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \longrightarrow \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \neq \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
+
+---
+
+### 1.10 Example 7: Invertible Matrix and Range/Kernel
+
+Suppose $A$ is invertible:
+
+$$T(\mathbf{u} + \mathbf{w}) = A\mathbf{u} + A\mathbf{w} = T(\mathbf{u}) + T(\mathbf{w})$$
+
+The inverse transformation: $T^{-1}(\mathbf{u}) = A^{-1}(\mathbf{u})$
+
+$$T^{-1}(T(\mathbf{u})) = A^{-1}(A\mathbf{u}) = \mathbf{u}$$
+
+If $T(\mathbf{u}) = A\mathbf{u}$, $S(\mathbf{u}) = B\mathbf{u}$, then $T \circ S(\mathbf{u})$ corresponds to $AB\mathbf{u}$.
+
+**Q:** Are all linear transformations from $V = \mathbb{R}^n$ to $W = \mathbb{R}^m$ produced by matrices? **Yes.**
+
+$A\mathbf{u}$ is the **column space**.
+
+The **null space** of $A$ contains all the input for which $A\mathbf{u} = \mathbf{0}$.
+
+$$\text{Range of } T = T(\mathbf{u}) \quad \longleftrightarrow \quad \text{column space } A\mathbf{u}$$
+
+$$\text{Kernel of } T = \text{all inputs for which } T(\mathbf{u}) = \mathbf{0} \quad \longleftrightarrow \quad \text{nullspace of } A$$
 
 ---
 
@@ -653,7 +714,7 @@ This has **2** 1x1 blocks and **1** 2x2 block.
 
 $B^{-1}AB = J$ is **nearly diagonal**.
 
-**Jordan Form -- General Statement:**
+**Jordan Form — General Statement:**
 
 For every $A$, we want to choose $B$ such that $B^{-1}AB$ is nearly diagonal as possible.
 
@@ -843,6 +904,9 @@ By using the **Gram-Schmidt process**, we can obtain the **Legendre basis**.
 | Affine transformation | $T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0$ (linear + shift); used in computer graphics |
 | Dot product | $T(\mathbf{u}) = \mathbf{a}^T\mathbf{u}$ is linear |
 | Derivative | $T(u) = du/dt$ is a linear transformation on function space |
+| Integration | $T^+(f) = \int_0^x f(t)\,dt$ is also linear; its matrix $A^+$ satisfies $AA^+ = I$ |
+| Projection onto $z=1$ | NOT linear because $T(\mathbf{0}) \neq \mathbf{0}$ |
+| Range and Kernel | Range of $T$ = column space of $A$; Kernel of $T$ = nullspace of $A$ |
 | Determined by basis | A linear transformation is fully determined by its values on basis vectors |
 | Matrix of $T$ | Column $j$ = $T(\mathbf{u}_j)$ expressed in output basis; $A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))$ |
 | Standard matrix | Uses columns of $I$ as input/output bases: $T(\mathbf{u}) = A\mathbf{u}$ |

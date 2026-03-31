@@ -1,6 +1,6 @@
-# Chapter 6 Lecture -- Eigenvalues and Eigenvectors
+# Chapter 6 Lecture — Eigenvalues and Eigenvectors
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -456,9 +456,9 @@ Repeated eigenvalues $\implies$ $A$ might have too few independent eigenvectors 
 
 ### 2.2 Diagonalization Procedure
 
-When $\mathbf{x}$ is an eigenvector, $A\mathbf{x} = \lambda\mathbf{x}$. Applying $A$ to $\mathbf{x}$ is just a multiplication by $\lambda$ -- **very efficient**.
+When $\mathbf{x}$ is an eigenvector, $A\mathbf{x} = \lambda\mathbf{x}$. Applying $A$ to $\mathbf{x}$ is just a multiplication by $\lambda$ — **very efficient**.
 
-When $A$ is diagonalizable, $A^{100}\mathbf{x} = X\Lambda^{100}X^{-1}\mathbf{x}$ -- **very efficient** as well.
+When $A$ is diagonalizable, $A^{100}\mathbf{x} = X\Lambda^{100}X^{-1}\mathbf{x}$ — **very efficient** as well.
 
 **Diagonalization:** Suppose $A_{n \times n}$ has LI eigenvectors $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n$.
 
@@ -711,7 +711,7 @@ $$S = Q\Lambda Q^{-1} = Q\Lambda Q^T$$
 1. All $n$ eigenvalues $\lambda$ are **real** numbers.
 2. The $n$ eigenvectors $\mathbf{q}$ can be chosen **orthogonal**.
 
-e.g., $I = I^T = \begin{pmatrix} 1 & & \\ & 1 & \\ & & \ddots \end{pmatrix}$, $\lambda = 1, 1, \ldots, 1$. $I\mathbf{x} = 1 \cdot \mathbf{x}$ -- every nonzero vector $\mathbf{x}$ is an eigenvector.
+e.g., $I = I^T = \begin{pmatrix} 1 & & \\ & 1 & \\ & & \ddots \end{pmatrix}$, $\lambda = 1, 1, \ldots, 1$. $I\mathbf{x} = 1 \cdot \mathbf{x}$ — every nonzero vector $\mathbf{x}$ is an eigenvector.
 
 We can choose them to be **orthogonal**, and we can rescale them to be **unit vectors** $\implies$ **orthonormal**.
 
@@ -755,7 +755,7 @@ $$(\alpha - \beta)\mathbf{v} \cdot \mathbf{u} = 0$$
 
 When $\alpha \neq \beta$: $\mathbf{v} \cdot \mathbf{u} = 0$.
 
-$\therefore \mathbf{v} \perp \mathbf{u}$ -- **orthogonal**.
+$\therefore \mathbf{v} \perp \mathbf{u}$ — **orthogonal**.
 
 Rescale $\mathbf{u}, \mathbf{v}$ to $\|\mathbf{u}\| = \|\mathbf{v}\| = 1$. Then $\mathbf{u}, \mathbf{v}$ are **orthonormal** eigenvectors. $\square$
 
@@ -881,13 +881,13 @@ $\therefore (n-1)$ zero eigenvalues.
 
 $$\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\mathbf{x} = \|A\mathbf{x}\|^2$$
 
-e.g., $S = A^T A = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{pmatrix}^T\begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix} \cdot \ldots$
+e.g., $S = A^T A$ where $A = \begin{pmatrix} 1 & 1 & 2 \\ 1 & 2 & 3 \end{pmatrix}$ with columns $\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3$.
 
 Note: $\mathbf{a}_3 = \mathbf{a}_1 + \mathbf{a}_2$, so $\text{rank}(A) = 2 < 3$, $\dim C(A^T) = 2$, $\dim \mathcal{N}(A) = 1$.
 
 Since $\dim \mathcal{N}(A) \neq 0$, $\mathbf{x}^T S\mathbf{x} = \|A\mathbf{x}\|^2 \geq 0$. $S$ is NOT positive definite. $S$ is **positive semidefinite**.
 
-**(4) Determinant test:** Check if $\det(S) > 0$ -- but more precisely, check all **upper-left determinants**.
+**(4) Determinant test:** Check if $\det(S) > 0$ — but more precisely, check all **upper-left determinants**.
 
 $$S = \begin{pmatrix} 2 & -1 & & \\ -1 & 2 & -1 & \\ & -1 & 2 & -1 \\ & & -1 & 2 \end{pmatrix}$$
 
@@ -905,7 +905,7 @@ All upper-left determinants are positive, so $S$ is positive definite.
 
 For $S = \begin{pmatrix} 2 & -1 \\ -1 & 2 & -1 \\ & -1 & 2 \end{pmatrix}$:
 
-After elimination: pivots are $2, \frac{3}{2}, \frac{4}{3}$ -- all positive.
+After elimination: pivots are $2, \frac{3}{2}, \frac{4}{3}$ — all positive.
 
 $S = LU$, $S = LDL^T$, $S = A^T A$.
 
@@ -1074,7 +1074,7 @@ $\mathbf{x}^T S\mathbf{x} \geq 0$
 
 $$S = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$$
 
-$\det(S) = 4 - 4 = 0$ -- singular matrix.
+$\det(S) = 4 - 4 = 0$ — singular matrix.
 
 $\text{trace}(S) = 1 + 4 = 5$. $\lambda^2 - 5\lambda + 0 = \lambda(\lambda - 5) = 0$, so $\lambda_1 = 5, \lambda_2 = 0$.
 
@@ -1132,7 +1132,7 @@ i) $f(x) = x^2 + 4x + 4 \implies f'(x) = 2x + 4$
 
 ii) $x_0 = 10$, $\eta = 0.1$ (learning rate), stop criterion $|f'(x)| < 0.01$
 
-iii) $x_{k+1} = x_k - \eta f'(x_k)$ -- **steepest direction**.
+iii) $x_{k+1} = x_k - \eta f'(x_k)$ — **steepest direction**.
 
 Iterate the approximation until $x_k \to x^*$ (the minimum point).
 
@@ -1140,7 +1140,7 @@ For $f(\mathbf{x})$: $\mathbf{x}_{k+1} = \mathbf{x}_k - \eta \nabla f(\mathbf{x}
 
 If $\mathbf{x}_k \to \mathbf{x}^*$, then $\nabla f$ at $\mathbf{x}^*$ is zero $\implies \mathbf{x}_{k+1} \approx \mathbf{x}_k$.
 
-If $J(\nabla f)^T = S$ is positive definite, then $f$ is **convex** -- easy to find $\mathbf{x}^*$.
+If $J(\nabla f)^T = S$ is positive definite, then $f$ is **convex** — easy to find $\mathbf{x}^*$.
 
 ---
 
@@ -1254,7 +1254,7 @@ $$\boxed{\mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\m
 
 $$\frac{d\mathbf{u}}{dt} = A\mathbf{u} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 0 & 0 & 3 \end{pmatrix}\mathbf{u}, \quad \mathbf{u}_0 = \begin{pmatrix} 9 \\ 7 \\ 4 \end{pmatrix}$$
 
-$\lambda_1 = 1, \lambda_2 = 2, \lambda_3 = 3$ (upper triangular -- eigenvalues on diagonal).
+$\lambda_1 = 1, \lambda_2 = 2, \lambda_3 = 3$ (upper triangular — eigenvalues on diagonal).
 
 i) $(A - I)\mathbf{x}_1 = \begin{pmatrix} 0 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}$
 
@@ -1440,7 +1440,7 @@ When $m = 1, b = 0, k = 1$: $y'' + y = 0 \iff y'' = -y$
 
 $$\frac{d}{dt}\begin{pmatrix} y' \\ y \end{pmatrix} = \begin{pmatrix} -y \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} y' \\ y \end{pmatrix}$$
 
-$|A - \lambda I| = \begin{vmatrix} -\lambda & -1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + 1 = 0$, so $\lambda = \pm i$ -- **oscillation**.
+$|A - \lambda I| = \begin{vmatrix} -\lambda & -1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + 1 = 0$, so $\lambda = \pm i$ — **oscillation**.
 
 ### 4.7 Stability of 2 by 2 Matrices
 
@@ -1476,7 +1476,7 @@ $\implies \lambda^2 + 4\lambda + 3 = 0 \implies (\lambda + 3)(\lambda + 1) = 0$
 
 $\therefore \lambda = -1, -3$
 
-$\implies y(t) = c_1 e^{-t} + c_2 e^{-3t}$ -- decaying solution $\to$ **stable** solution.
+$\implies y(t) = c_1 e^{-t} + c_2 e^{-3t}$ — decaying solution $\to$ **stable** solution.
 
 Introduce $\mathbf{u} = \begin{pmatrix} y' \\ y \end{pmatrix}$: $y'' = -4y' - 3y$, $y' = y'$
 

@@ -1,6 +1,6 @@
-# Chapter 1 Lecture -- Vectors and Matrices
+# Chapter 1 Lecture — Vectors and Matrices
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -49,7 +49,7 @@
 
 ## 0. Course Overview
 
-**Course:** DCS 321 -- Computer Linear Algebra (Shinhoo Kang)
+**Course:** DCSS321 — Computer Linear Algebra (Shinhoo Kang)
 
 **What you will learn in 321:**
 - Vector spaces
@@ -397,7 +397,7 @@ $$\|\mathbf{u}\|^2 = \cos^2\theta + \sin^2\theta = 1$$
 
 **(3)** $\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}$ is perpendicular to $\mathbf{w} = \begin{pmatrix} 4 \\ -4 \\ 4 \end{pmatrix}$:
 
-$$\mathbf{v} \cdot \mathbf{w} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}^T \begin{pmatrix} 4 \\ -4 \\ 4 \end{pmatrix} = 4(1) + (-3)(4) + (2)(4) = 4 - 12 + 8 = 0$$
+$$\mathbf{v} \cdot \mathbf{w} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}^T \begin{pmatrix} 4 \\ -4 \\ 4 \end{pmatrix} = (1)(4) + (3)(-4) + (2)(4) = 4 - 12 + 8 = 0$$
 
 Suppose the angle between $\mathbf{v}$ and $\mathbf{w}$ is $90°$:
 
@@ -459,7 +459,7 @@ $$\cos\theta = \frac{\mathbf{v} \cdot \mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|} 
 
 All vectors have $|\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mathbf{w}\|$ and $\|\mathbf{v} + \mathbf{w}\| \leq \|\mathbf{v}\| + \|\mathbf{w}\|$.
 
-**Example (ex5) -- Application: Total Cost**
+**Example (ex5) — Application: Total Cost**
 
 Price vector $\mathbf{p} = \begin{pmatrix} p_1 \\ p_2 \\ p_3 \end{pmatrix}$, quantity vector $\mathbf{q} = \begin{pmatrix} q_1 \\ q_2 \\ q_3 \end{pmatrix}$
 
@@ -685,7 +685,7 @@ Solving $A_4\mathbf{x} = \mathbf{v}$: From the equations,
 
 $$v_4 = x_4, \quad v_3 = x_4 + x_3, \quad v_2 = x_4 + x_3 + x_2, \quad v_1 = x_4 + x_3 + x_2 + x_1$$
 
-So: $x_4 = v_4$, $x_3 = v_3 - v_4$, $x_2 = v_2 - v_3 + v_4 - v_4$, $x_1 = v_1 - v_2 + v_3 - v_4 + \ldots$
+So: $x_4 = v_4$, $x_3 = v_3 - v_4$, $x_2 = v_2 - v_3$, $x_1 = v_1 - v_2$
 
 $$\therefore \mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ v_3 \\ v_4 \end{pmatrix} = (v_1 - v_2)\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} + (v_2 - v_3)\begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} + (v_3 - v_4)\begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} + v_4\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}$$
 
@@ -725,10 +725,10 @@ The column space $C(A)$ might fill all of $\mathbb{R}^m$ or might not.
 **Example:** Take $m = 3$. $A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}$
 
 $C(A)$ is:
-- The whole space $\mathbb{R}^3$ -- if $A$ has 3 independent columns (I.C.)
-- A plane in $\mathbb{R}^3$ -- if $A$ has 2 I.C.
-- A line in $\mathbb{R}^3$ -- if $A$ has 1 I.C.
-- A single point $\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$ -- if $A$ is a zero matrix
+- The whole space $\mathbb{R}^3$ — if $A$ has 3 independent columns (I.C.)
+- A plane in $\mathbb{R}^3$ — if $A$ has 2 I.C.
+- A line in $\mathbb{R}^3$ — if $A$ has 1 I.C.
+- A single point $\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$ — if $A$ is a zero matrix
 
 **More examples ($3 \times 3$ matrices):**
 

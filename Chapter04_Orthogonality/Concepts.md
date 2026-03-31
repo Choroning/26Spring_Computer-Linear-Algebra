@@ -1,6 +1,6 @@
 # Chapter 4 Lecture — Orthogonality
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -411,7 +411,7 @@ $$\mathbf{a}\mathbf{a}^T = \begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix}(1\;2\;2) = 
 
 $$P = \frac{1}{9}\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatrix}$$
 
-What happens if $\mathbf{a} = \begin{pmatrix} 2 \\ 4 \\ 4 \end{pmatrix}$? Then $\mathbf{a}^T\mathbf{a} = 4(1\;2\;2)\begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix} = 36$, and $\mathbf{a}\mathbf{a}^T = 4\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatrix}$. So $P = \frac{1}{4 \cdot 9} \cdot 4\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatrix} = \frac{1}{9}\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatrix}$ -- **same!**
+What happens if $\mathbf{a} = \begin{pmatrix} 2 \\ 4 \\ 4 \end{pmatrix}$? Then $\mathbf{a}^T\mathbf{a} = 4(1\;2\;2)\begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix} = 36$, and $\mathbf{a}\mathbf{a}^T = 4\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatrix}$. So $P = \frac{1}{4 \cdot 9} \cdot 4\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatrix} = \frac{1}{9}\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatrix}$ — **same!**
 
 **Verification of $P^2 = P$:**
 

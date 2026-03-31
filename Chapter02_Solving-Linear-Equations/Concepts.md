@@ -1,6 +1,6 @@
-# Chapter 2 Lecture -- Solving Linear Equations
+# Chapter 2 Lecture — Solving Linear Equations
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -142,7 +142,7 @@ Consider $A\mathbf{x} = \mathbf{b}$, where $A \in \mathbb{R}^{n \times n}$, $\ma
 
 There are **three cases**:
 
-**Case 1: Unique solution** -- $\exists! \; \mathbf{x}$ s.t. $A\mathbf{x} = \mathbf{b}$
+**Case 1: Unique solution** — $\exists! \; \mathbf{x}$ s.t. $A\mathbf{x} = \mathbf{b}$
 
 - $A$ has **independent columns**
 - The only solution to $A\mathbf{x} = \mathbf{0}$ is $\mathbf{x} = \mathbf{0}$
@@ -317,7 +317,7 @@ $$\begin{pmatrix} 2 & 3 & 4 \\ 4 & 6 & 14 \\ 2 & 8 & 17 \end{pmatrix} \rightarro
 
 $$\begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 2 & 3 & 4 \\ 0 & 0 & 6 \\ 0 & 5 & 13 \end{pmatrix} = \begin{pmatrix} 2 & 3 & 4 \\ 0 & 5 & 13 \\ 0 & 0 & 6 \end{pmatrix}$$
 
-**Example (not fixable -- singular):**
+**Example (not fixable — singular):**
 
 $$A^* = \begin{pmatrix} 2 & 3 & 4 \\ 4 & 6 & 14 \\ 2 & 3 & 17 \end{pmatrix} \rightarrow \begin{pmatrix} 2 & 3 & 4 \\ 0 & 0 & 6 \\ 0 & 0 & 13 \end{pmatrix} = U^*$$
 
@@ -352,17 +352,17 @@ When $U$ has a **zero on its diagonal**:
 
 Each equation represents a line (in 2D), plane (in 3D), or hyperplane. The solution is where they intersect.
 
-**Example 1 -- No solution (parallel lines):**
+**Example 1 — No solution (parallel lines):**
 
 $$x - 2y = -1, \quad x - 2y = 1 \implies \begin{pmatrix} 1 & -2 \\ 1 & -2 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -1 \\ 1 \end{pmatrix}$$
 
-**Example 2 -- Infinitely many solutions (same line):**
+**Example 2 — Infinitely many solutions (same line):**
 
 $$x - 2y = 1, \quad x - 2y = 1 \implies \begin{pmatrix} 1 & -2 \\ 1 & -2 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
 
 A line of solutions.
 
-**Example 3 -- One solution (intersecting lines):**
+**Example 3 — One solution (intersecting lines):**
 
 $$x - 2y = 7, \quad x + y = 2 \implies \begin{pmatrix} 1 & -2 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}$$
 

@@ -1,6 +1,6 @@
-# Chapter 3 Lecture -- Vector Spaces and Subspaces
+# Chapter 3 Lecture — Vector Spaces and Subspaces
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -61,10 +61,10 @@
 
 Chapter 3 covers five major topics:
 
-- **3.1** Vector Spaces and Subspaces -- How do we define a vector space? Key operations are $\mathbf{u} + \mathbf{v}$ and $c\mathbf{u}$. There are 8 rules that vectors $\mathbf{u}$ and scalar $c$ must satisfy.
+- **3.1** Vector Spaces and Subspaces — How do we define a vector space? Key operations are $\mathbf{u} + \mathbf{v}$ and $c\mathbf{u}$. There are 8 rules that vectors $\mathbf{u}$ and scalar $c$ must satisfy.
 - **3.2** The Nullspace of $A$: Solving $A\mathbf{x} = \mathbf{0}$
 - **3.3** The Complete Solution to $A\mathbf{x} = \mathbf{b}$
-- **3.4** Independence, **Basis**, and **Dimension** -- A set of vectors that describes the space. Let $A \in \mathbb{R}^{n \times n}$. $A$ has $r$ independent columns $\Rightarrow$ $C(A)$ has dimension $r$. $(n - r)$ special solutions to $A\mathbf{x} = \mathbf{0}$ are a basis for $N(A)$, the null space of $A$.
+- **3.4** Independence, **Basis**, and **Dimension** — A set of vectors that describes the space. Let $A \in \mathbb{R}^{n \times n}$. $A$ has $r$ independent columns $\Rightarrow$ $C(A)$ has dimension $r$. $(n - r)$ special solutions to $A\mathbf{x} = \mathbf{0}$ are a basis for $N(A)$, the null space of $A$.
 - **3.5** Dimensions of the Four Subspaces:
 
 | Subspace | Dimension |
@@ -108,8 +108,8 @@ Examples:
 **Vector space** (= linear space) $V$ is a set whose elements (vectors) can be added together and multiplied by numbers.
 
 Let $\mathbf{u}, \mathbf{w} \in V$ (vector space):
-1. $\mathbf{u} + \mathbf{w} \in V$ -- vector addition
-2. $\alpha \mathbf{u} \in V \quad \forall \alpha \in \mathbb{F}$ -- scalar multiplication
+1. $\mathbf{u} + \mathbf{w} \in V$ — vector addition
+2. $\alpha \mathbf{u} \in V \quad \forall \alpha \in \mathbb{F}$ — scalar multiplication
 
 **A field** is a set on which addition, subtraction, multiplication, and division are defined.
 
@@ -199,7 +199,7 @@ However:
 - $\mathbf{a} + \mathbf{b} = (t_1 + t_2)\mathbf{d} \in \mathbb{X}$ if $\mathbf{p} = \mathbf{0}$
 - $c\mathbf{a} = ct_1\mathbf{d} \in \mathbb{X}$ if $\mathbf{p} = \mathbf{0}$
 
-**A line passing through the origin is a vector space.** The line through $\mathbf{0}$ in $\mathbb{R}^n$ is a **subspace** of $\mathbb{R}^n$ -- a vector space inside another vector space.
+**A line passing through the origin is a vector space.** The line through $\mathbf{0}$ in $\mathbb{R}^n$ is a **subspace** of $\mathbb{R}^n$ — a vector space inside another vector space.
 
 ### 2.7 Examples of Vector Spaces
 

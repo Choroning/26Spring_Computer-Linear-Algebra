@@ -1,6 +1,6 @@
 # Chapter 7 Lecture — Singular Value Decomposition
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -15,6 +15,10 @@
   - [1.4 The SVD Equation](#14-the-svd-equation)
   - [1.5 Example: Computing SVD](#15-example-computing-svd)
   - [1.6 The Geometry of SVD](#16-the-geometry-of-svd)
+  - [1.7 Full Size Form of SVD](#17-full-size-form-of-svd)
+  - [1.8 Proof of the SVD](#18-proof-of-the-svd)
+  - [1.9 Example: Computing SVD via the Proof Method](#19-example-computing-svd-via-the-proof-method)
+  - [1.10 AB and BA: Equal Nonzero Eigenvalues](#110-ab-and-ba-equal-nonzero-eigenvalues)
 - [2. Image Processing by Linear Algebra](#2-image-processing-by-linear-algebra)
   - [2.1 Images as Matrices](#21-images-as-matrices)
   - [2.2 Image Compression via Correlated Pixels](#22-image-compression-via-correlated-pixels)
@@ -25,6 +29,7 @@
   - [3.3 Norm of a Matrix](#33-norm-of-a-matrix)
   - [3.4 Norm Properties and Inequalities](#34-norm-properties-and-inequalities)
   - [3.5 PCA Example (P 7.3.1)](#35-pca-example-p-731)
+  - [3.6 Perpendicular Least Squares](#36-perpendicular-least-squares)
 - [Summary](#summary)
 
 ---
@@ -142,7 +147,7 @@ $$A\underset{\sim}{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pma
 
 **Verify orthogonality:**
 
-$$(A\underset{\sim}{v}_1) \cdot (A\underset{\sim}{v}_2) = 9 \cdot 1 - 3 \cdot 3 = 0 \quad \checkmark$$
+$$(A\underset{\sim}{v}_1) \cdot (A\underset{\sim}{v}_2) = 9 \cdot (-1) + 3 \cdot 3 = 0 \quad \checkmark$$
 
 **Step 3:** Write in matrix form:
 
@@ -192,9 +197,9 @@ $$A = \frac{1}{\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix} = \frac{1}{
 
 The geometric interpretation of $A = U\Sigma V^T$ acting on a vector:
 
-1. **Rotate by $V^T$** -- first rotation by angle $-\phi$ (aligns input to standard basis)
-2. **Stretch by $\Sigma$** -- scale along each axis by the singular values
-3. **Rotate by $U$** -- second rotation by angle $+\theta$ (rotates to output orientation)
+1. **Rotate by $V^T$** — first rotation by angle $-\phi$ (aligns input to standard basis)
+2. **Stretch by $\Sigma$** — scale along each axis by the singular values
+3. **Rotate by $U$** — second rotation by angle $+\theta$ (rotates to output orientation)
 
 **Geometric picture:**
 
@@ -205,6 +210,167 @@ The geometric interpretation of $A = U\Sigma V^T$ acting on a vector:
 In terms of rotation matrices:
 
 $$A = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \cos(-\phi) & -\sin(-\phi) \\ \sin(-\phi) & \cos(-\phi) \end{pmatrix}$$
+
+### 1.7 Full Size Form of SVD
+
+The full size form includes **basis vectors for the nullspaces** of $A$ and $A^T$.
+
+$$V = \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r & \underset{\sim}{v}_{r+1} & \cdots & \underset{\sim}{v}_n \end{pmatrix}_{n \times n}$$
+
+$$U = \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r & \underset{\sim}{u}_{r+1} & \cdots & \underset{\sim}{u}_m \end{pmatrix}_{m \times m}$$
+
+The full form equation:
+
+$$\underset{m \times n}{A} \underset{n \times n}{V} = \underset{m \times m}{U} \underset{m \times n}{\Sigma}$$
+
+Since $V$ is square orthogonal: $V^T = V^{-1}$. Similarly $U^T = U^{-1}$.
+
+The null space vectors are mapped to zero:
+
+$$A\underset{\sim}{v}_{r+1} = \underset{\sim}{0}, \quad A\underset{\sim}{v}_{r+2} = \underset{\sim}{0}, \quad \dots, \quad A\underset{\sim}{v}_n = \underset{\sim}{0}$$
+
+So $AV$ has the form:
+
+$$AV = A\begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r & \underset{\sim}{v}_{r+1} & \cdots & \underset{\sim}{v}_n \end{pmatrix} = \begin{pmatrix} \sigma_1 \underset{\sim}{u}_1 & \sigma_2 \underset{\sim}{u}_2 & \cdots & \sigma_r \underset{\sim}{u}_r & \underset{\sim}{0} & \cdots & \underset{\sim}{0} \end{pmatrix}_{m \times n}$$
+
+$$= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r & \underset{\sim}{u}_{r+1} & \cdots & \underset{\sim}{u}_m \end{pmatrix}_{m \times m} \begin{pmatrix} \sigma_1 & & & 0 & \cdots & 0 \\ & \sigma_2 & & 0 & \cdots & 0 \\ & & \ddots & \vdots & & \vdots \\ & & & \sigma_r & 0 & \cdots & 0 \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\ \vdots & \vdots & & \vdots & \vdots & & \vdots \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \end{pmatrix}_{m \times n}$$
+
+**Two cases for the shape of $\Sigma$:**
+
+**i) $m < n$ (short and wide):** The $\Sigma$ matrix is $m \times n$ with $\sigma_1, \dots, \sigma_r$ on the diagonal and zeros elsewhere, forming a wide rectangular matrix.
+
+**ii) $m > n$ (thin and tall):** The $\Sigma$ matrix is $m \times n$ with $\sigma_1, \dots, \sigma_r$ on the diagonal and zeros elsewhere, forming a tall rectangular matrix with extra zero rows at the bottom.
+
+**The full form has a lot of zeros**, which contribute nothing to the matrix multiplication. Therefore, we can take only the first $r$ vectors to get the **reduced form**:
+
+$$\underset{m \times n}{A} \underset{n \times r}{V_r} = \underset{m \times r}{U_r} \underset{r \times r}{\Sigma_r}$$
+
+where $V_r$ contains the basis for $C(A^T)$ and $U_r$ contains the basis for $C(A)$.
+
+Note that:
+
+$$V_r^T V_r = I_r \quad \text{and} \quad U_r^T U_r = I_r$$
+
+**But:**
+
+$$V_r V_r^T \neq I \quad \text{and} \quad U_r U_r^T \neq I$$
+
+The reduced SVD:
+
+$$A = U_r \Sigma_r V_r^T = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T$$
+
+### 1.8 Proof of the SVD
+
+**How do we find $U$, $V$ (singular vectors)?**
+
+Given $A = U\Sigma V^T$ (where $U$ is the **left** singular vectors and $V$ is the **right** singular vectors):
+
+**Computing $A^T A$:**
+
+$$A^T A = (U\Sigma V^T)^T (U\Sigma V^T) = V\Sigma^T U^T U \Sigma V^T = V\Sigma^2 V^T$$
+
+(since $U^T U = I$)
+
+**Computing $AA^T$:**
+
+$$AA^T = (U\Sigma V^T)(U\Sigma V^T)^T = U\Sigma V^T V \Sigma^T U^T = U\Sigma^2 U^T$$
+
+(since $V^T V = I$)
+
+Since $A^T A$ is symmetric:
+
+$$A^T A = Q\Lambda Q^T = V\Sigma^2 V^T$$
+
+Since $AA^T$ is symmetric:
+
+$$AA^T = Q\Lambda Q^T = U\Sigma^2 U^T$$
+
+Therefore $\sigma_1^2, \sigma_2^2, \dots, \sigma_r^2$ are **nonzero eigenvalues of both $A^T A$ and $AA^T$**.
+
+- **Choose $V$ from $A^T A$** (eigenvectors of $A^T A$)
+- **Choose $U$ from $AA^T$** (eigenvectors of $AA^T$)
+
+**Steps of the proof:**
+
+**i)** Choose orthonormal eigenvectors $\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r$:
+
+$$A^T A \underset{\sim}{v}_k = \lambda_k \underset{\sim}{v}_k = \sigma_k^2 \underset{\sim}{v}_k$$
+
+$$\therefore \sigma_k = \sqrt{\lambda_k}$$
+
+**ii)** Right singular vector $\underset{\sim}{v}_k$ is connected to left singular vector $\underset{\sim}{u}_k$:
+
+$$A\underset{\sim}{v}_k = \sigma_k \underset{\sim}{u}_k$$
+
+$$\therefore \underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k \quad \forall k = 1, 2, \dots, r$$
+
+**iii)** Sanity check — verify $\underset{\sim}{u}_k$ is an eigenvector of $AA^T$:
+
+$$AA^T \underset{\sim}{u}_k = AA^T \cdot \frac{1}{\sigma_k} A\underset{\sim}{v}_k = \frac{1}{\sigma_k} AA^T A \underset{\sim}{v}_k = \frac{1}{\sigma_k} A \sigma_k^2 \underset{\sim}{v}_k = \sigma_k A\underset{\sim}{v}_k = \sigma_k^2 \underset{\sim}{u}_k \quad \square$$
+
+**iv)** Check if $\underset{\sim}{u}_k$ is orthonormal:
+
+$$\underset{\sim}{u}_j^T \underset{\sim}{u}_k = \left(\frac{1}{\sigma_j} A\underset{\sim}{v}_j\right)^T \left(\frac{1}{\sigma_k} A\underset{\sim}{v}_k\right) = \frac{1}{\sigma_j \sigma_k} \underset{\sim}{v}_j^T A^T A \underset{\sim}{v}_k = \frac{\sigma_k}{\sigma_j} \underset{\sim}{v}_j^T \underset{\sim}{v}_k = \begin{cases} 1 & j = k \\ 0 & j \neq k \end{cases}$$
+
+### 1.9 Example: Computing SVD via the Proof Method
+
+**EX1.** Find $U, \Sigma, V$ for $A = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}$.
+
+$\text{rank}(A) = 2 \implies$ two singular values $\sigma_1, \sigma_2$.
+
+**i) Compute $A^T A$ and find eigenvalues:**
+
+$$A^T A = \begin{pmatrix} 5 & 0 \\ 4 & 3 \end{pmatrix}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} 25 & 20 \\ 20 & 25 \end{pmatrix}$$
+
+Characteristic equation:
+
+$$\lambda^2 - 50\lambda + 225 = 0$$
+
+$$(\lambda - 45)(\lambda - 5) = 0 \implies \lambda_1 = 45, \; \lambda_2 = 5$$
+
+$$\therefore \sigma_1 = \sqrt{45} = 3\sqrt{5}, \quad \sigma_2 = \sqrt{5}$$
+
+**Find eigenvectors of $A^T A$:**
+
+For $\lambda_1 = 45$:
+
+$$(A^T A - \lambda_1 I)\underset{\sim}{x}_1 = \begin{pmatrix} -20 & 20 \\ 20 & -20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \underset{\sim}{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+
+For $\lambda_2 = 5$:
+
+$$(A^T A - \lambda_2 I)\underset{\sim}{x}_2 = \begin{pmatrix} 20 & 20 \\ 20 & 20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \underset{\sim}{x}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}$$
+
+Normalize to get $V$:
+
+$$V = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$$
+
+**ii) Compute $U$ from $A\underset{\sim}{v}_k = \sigma_k \underset{\sim}{u}_k$:**
+
+$$\underset{\sim}{u}_1 = \frac{1}{\sigma_1} A\underset{\sim}{v}_1 = \frac{1}{3\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \frac{1}{3\sqrt{10}}\begin{pmatrix} 9 \\ 3 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix}$$
+
+$$\underset{\sim}{u}_2 = \frac{1}{\sigma_2} A\underset{\sim}{v}_2 = \frac{1}{\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix}$$
+
+$$U = \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 & -1 \\ 1 & 3 \end{pmatrix}$$
+
+### 1.10 AB and BA: Equal Nonzero Eigenvalues
+
+For $A_{m \times n}$ and $B_{n \times m}$:
+
+$$AB_{m \times m} \neq BA_{n \times n}$$
+
+**But $AB$ and $BA$ have the same nonzero eigenvalues.**
+
+**Proof:** Let $\lambda$ be an eigenvalue of $AB$, with $\underset{\sim}{x}$ the corresponding eigenvector:
+
+$$AB\underset{\sim}{x} = \lambda\underset{\sim}{x}$$
+
+$$B(AB\underset{\sim}{x}) = B(\lambda\underset{\sim}{x}) = \lambda(B\underset{\sim}{x})$$
+
+$$BA(B\underset{\sim}{x}) = \lambda(B\underset{\sim}{x})$$
+
+Therefore $\lambda$ is an eigenvalue of $BA$, and $B\underset{\sim}{x}$ is the corresponding eigenvector.
+
+Both $AB$ and $BA$ have the same $\lambda$.
 
 ---
 
@@ -233,7 +399,7 @@ This is a **rank 1 matrix**.
 
 Storage reduction: Replace $N^2$ entries with $2N$ entries (one column vector + one row vector).
 
-> **Q.** Korean flag? (Much higher rank -- more complex structure, harder to compress.)
+> **Q.** Korean flag? (Much higher rank — more complex structure, harder to compress.)
 
 ### 2.3 SVD and Rank-1 Decomposition for Compression
 
@@ -257,7 +423,7 @@ $$= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \unde
 
 $$\approx \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix} = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T$$
 
-> **Example:** Image compression using SVD -- search "timbaumann SVD" for an interactive demonstration.
+> **Example:** Image compression using SVD — search "timbaumann SVD" for an interactive demonstration.
 
 ---
 
@@ -329,7 +495,7 @@ $$\|A\|_2 = \|\Sigma\|_2 = \sigma_1$$
 
 ### 3.4 Norm Properties and Inequalities
 
-**Norm of a Matrix -- extending from vector norms:**
+**Norm of a Matrix — extending from vector norms:**
 
 Length of a vector $\underset{\sim}{v}$:
 
@@ -366,7 +532,7 @@ $$A_0 = \begin{pmatrix} 5 & 4 & 3 & 2 & 1 \\ -1 & 1 & 0 & 1 & -1 \end{pmatrix}$$
 
 $$\text{row 1 avg} = \frac{1}{5}(5 + 4 + 3 + 2 + 1) = 3$$
 
-$$\text{row 2 avg} = \frac{1}{5}(1 + 1 + 0 + 1 - 1) = 0$$
+$$\text{row 2 avg} = \frac{1}{5}(-1 + 1 + 0 + 1 + (-1)) = 0$$
 
 $$A = A_0 - \begin{pmatrix} 3 \\ 0 \end{pmatrix}(1\;1\;1\;1\;1) = \begin{pmatrix} 2 & 1 & 0 & -1 & -2 \\ -1 & 1 & 0 & 1 & -1 \end{pmatrix}$$
 
@@ -382,7 +548,7 @@ $$S = \frac{1}{4}AA^T = \frac{1}{4}\begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix}
 
 $$\lambda_1 = \frac{5}{2}, \quad \lambda_2 = 1$$
 
-$$(S - \lambda I)\underset{\sim}{x}_1 = \begin{pmatrix} 10 - 4\lambda & 0 \\ 0 & 1 - \lambda \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+$$(S - \lambda I)\underset{\sim}{x}_1 = \begin{pmatrix} \frac{5}{2} - \lambda & 0 \\ 0 & 1 - \lambda \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
 
 For $\lambda_1 = \frac{5}{2}$:
 
@@ -402,6 +568,18 @@ Plotting the 5 data points $(2, -1)$, $(1, 1)$, $(0, 0)$, $(-1, 1)$, $(-2, -1)$ 
 
 The first singular vector $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ represents the direction in the data that accounts for the **greatest variability**.
 
+### 3.6 Perpendicular Least Squares
+
+Recall that the **least square solution** to $A\underset{\sim}{x} = \underset{\sim}{b}$ minimizes $\|A\underset{\sim}{\hat{x}} - \underset{\sim}{b}\|^2$, where the errors are defined by:
+
+$$\underset{\sim}{e} = A\underset{\sim}{\hat{x}} - \underset{\sim}{b}$$
+
+An error is the **vertical distance** from each data point to the fitted line.
+
+In contrast, **perpendicular least squares** measures the **perpendicular distances** from data points to the line.
+
+The sum of squared **perpendicular distances** from the data points to the $\underset{\sim}{u}_1$ line is a **minimum**.
+
 ---
 
 <br>
@@ -414,8 +592,12 @@ The first singular vector $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ represents the 
 | Two Sets of Vectors | Input vectors $\{\underset{\sim}{v}_i\}$: basis for $C(A^T)$ and $N(A)$; Output vectors $\{\underset{\sim}{u}_i\}$: basis for $C(A)$ and $N(A^T)$ |
 | SVD vs Eigendecomposition | Eigendecomposition $S = Q\Lambda Q^T$ works for symmetric matrices; SVD $A = U\Sigma V^T$ works for **all** matrices |
 | Fundamental Relationship | $A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i$ maps right singular vectors to scaled left singular vectors |
-| Geometry of SVD | $A = U\Sigma V^T$: rotate by $V^T$, stretch by $\Sigma$, rotate by $U$ -- transforms unit circle to ellipse |
+| Geometry of SVD | $A = U\Sigma V^T$: rotate by $V^T$, stretch by $\Sigma$, rotate by $U$ — transforms unit circle to ellipse |
+| Full vs Reduced SVD | Full form: $A_{m \times n} V_{n \times n} = U_{m \times m} \Sigma_{m \times n}$; Reduced form keeps only $r$ vectors: $A V_r = U_r \Sigma_r$ |
 | Rank-1 Decomposition | $A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T$ (sum of rank-1 matrices) |
+| Finding Singular Vectors | $V$ from eigenvectors of $A^T A$; $U$ from eigenvectors of $AA^T$; $\sigma_k = \sqrt{\lambda_k}$; $\underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k$ |
+| $A^T A$ and $AA^T$ | $A^T A = V\Sigma^2 V^T$; $AA^T = U\Sigma^2 U^T$; both share nonzero eigenvalues $\sigma_1^2, \dots, \sigma_r^2$ |
+| AB and BA Eigenvalues | $AB$ and $BA$ have the same nonzero eigenvalues (different sizes but same $\lambda$'s) |
 | Image as Matrix | An image is a large matrix of grayscale values (e.g., 8-bit: 0--255) |
 | Image Compression | Discard small singular values $\sigma_i$ for compression with minimal quality loss; rank-1 images (e.g., flags) reduce $N^2 \to 2N$ storage |
 | PCA | Uses the largest $\sigma$'s to extract the most important information from data |
@@ -425,5 +607,6 @@ The first singular vector $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ represents the 
 | Nuclear Norm | $\|A\|_N = \sigma_1 + \sigma_2 + \cdots + \sigma_r$ (trace norm, sum of singular values) |
 | Sample Covariance | $S = \frac{AA^T}{n-1}$ where $A$ is the centered data matrix |
 | First Singular Vector | Represents the direction in the data accounting for the greatest variability |
+| Perpendicular Least Squares | PCA minimizes perpendicular distances (not vertical) from data points to the $\underset{\sim}{u}_1$ line |
 
 ---

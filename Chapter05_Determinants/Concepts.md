@@ -1,6 +1,6 @@
 # Chapter 5 Lecture — Determinants
 
-> **Last Updated:** 2026-03-30
+> **Last Updated:** 2026-03-31
 
 ---
 
@@ -380,9 +380,9 @@ $$A = \begin{pmatrix} a & b & c \\ p & q & r \\ x & y & z \end{pmatrix} \Rightar
 
 $$= a(qz - ry) - b(pz - rx) + c(py - qx)$$
 
-$$A^T = \begin{pmatrix} a & p & x \\ b & q & y \\ c & r & z \end{pmatrix} \Rightarrow \det(A^T) = aqz + pyc - pbz + xby - xqc - ayr$$
+$$A^T = \begin{pmatrix} a & p & x \\ b & q & y \\ c & r & z \end{pmatrix} \Rightarrow \det(A^T) = aqz + pyc + xbr - xqc - ayr - pbz$$
 
-$$= a(qz - yr) - b(pz - xy) + c(py - xq)$$
+$$= a(qz - yr) - b(pz - xr) + c(py - xq)$$
 
 Both expressions are the same, confirming $\det(A^T) = \det(A)$.
 
@@ -444,7 +444,7 @@ Therefore: $E_{23}E_{13}S_3E_{12}S_2 \cdot U = I$
 
 $$U = S_2^{-1}E_{12}^{-1}S_3^{-1}E_{13}^{-1}E_{23}^{-1} \cdot I$$
 
-where $S_2^{-1} = \begin{pmatrix} 1 & \\ & 2 \\ & & 1 \end{pmatrix}$, $S_3^{-1} = \begin{pmatrix} 1 & \\ & 1 \\ & & -6 \end{pmatrix}$, $E_{12}^{-1} = \begin{pmatrix} 1 & 1 \\ & 1 \\ & & 1 \end{pmatrix}$, $E_{13}^{-1} = \begin{pmatrix} 1 & & -1/2 \\ & 1 & \\ & & 1 \end{pmatrix}$, $E_{23}^{-1} = \begin{pmatrix} 1 & & \\ & 1 & 3/4 \\ & & 1 \end{pmatrix}$
+where $S_2^{-1} = \begin{pmatrix} 1 & \\ & 2 \\ & & 1 \end{pmatrix}$, $S_3^{-1} = \begin{pmatrix} 1 & \\ & 1 \\ & & -6 \end{pmatrix}$, $E_{12}^{-1} = \begin{pmatrix} 1 & 1 \\ & 1 \\ & & 1 \end{pmatrix}$, $E_{13}^{-1} = \begin{pmatrix} 1 & & -1/2 \\ & 1 & \\ & & 1 \end{pmatrix}$, $E_{23}^{-1} = \begin{pmatrix} 1 & & \\ & 1 & 3/2 \\ & & 1 \end{pmatrix}$
 
 **Computing $\det(U)$:**
 
@@ -831,7 +831,7 @@ $$\text{Volume} = \det\begin{pmatrix} a & & \\ & b & \\ & & c \end{pmatrix} = ab
 
 | Concept | Key Idea |
 |:--------|:---------|
-| Determinant definition | Scalar value associated with a square matrix; $\det(A)$ or $\|A\|$ |
+| Determinant definition | Scalar value associated with a square matrix; $\det(A)$ or $|A|$ |
 | $2 \times 2$ determinant | $\det\begin{pmatrix}a&b\\c&d\end{pmatrix} = ad - bc$ |
 | $3 \times 3$ determinant | 6 terms from $3! = 6$ permutations; $a(qz-ry) - b(pz-rx) + c(py-qx)$ |
 | Row/column exchange | Reverses the sign: $\det \to -\det$ |
