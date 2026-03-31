@@ -3,7 +3,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Choroning/26Spring_Computer-Linear-Algebra)
 ![Languages](https://img.shields.io/github/languages/top/Choroning/26Spring_Computer-Linear-Algebra)
 
-이 레포지토리는 대학 강의 및 과제를 위해 작성된 과제 풀이와 학습 자료를 체계적으로 정리하고 보관합니다.
+이 레포지토리는 대학 강의 및 과제를 위해 작성된 강의 노트와 학습 자료를 체계적으로 정리하고 보관하며, 벡터, 연립일차방정식, 벡터 공간, 직교성, 행렬식, 고유값, SVD, 선형 변환을 다룹니다.
 
 *작성자: 박철원 (고려대학교(세종), 컴퓨터소프트웨어학과) - 2026년 기준 3학년*
 <br><br>
@@ -93,13 +93,29 @@
 ```plaintext
 26Spring_Computer-Linear-Algebra
 ├── Chapter01_Introduction-to-Vectors
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter02_Solving-Linear-Equations
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter03_Vector-Spaces-and-Subspaces
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter04_Orthogonality
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter05_Determinants
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter06_Eigenvalues-and-Eigenvectors
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter07_Singular-Value-Decomposition
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter08_Linear-Transformations
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── docs/
 ├── .gitignore
 ├── LICENSE

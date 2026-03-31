@@ -3,7 +3,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Choroning/26Spring_Computer-Linear-Algebra)
 ![Languages](https://img.shields.io/github/languages/top/Choroning/26Spring_Computer-Linear-Algebra)
 
-This repository organizes and stores homework solutions and study materials written for university lectures and assignments.
+This repository organizes and stores lecture notes and study materials written for university lectures and assignments, covering vectors, linear equations, vector spaces, orthogonality, determinants, eigenvalues, SVD, and linear transformations.
 
 *Author: Cheolwon Park (Korea University Sejong, CSE) – Year 3 (Junior) as of 2026*
 <br><br>
@@ -93,13 +93,29 @@ This repository contains bilingual study materials and homework solutions develo
 ```plaintext
 26Spring_Computer-Linear-Algebra
 ├── Chapter01_Introduction-to-Vectors
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter02_Solving-Linear-Equations
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter03_Vector-Spaces-and-Subspaces
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter04_Orthogonality
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter05_Determinants
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter06_Eigenvalues-and-Eigenvectors
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter07_Singular-Value-Decomposition
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── Chapter08_Linear-Transformations
+│   ├── Concepts.md
+│   └── Concepts.ko.md
 ├── docs/
 ├── .gitignore
 ├── LICENSE
