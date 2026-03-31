@@ -682,7 +682,7 @@ $AA^{-1} = I \in \mathbb{R}^{n \times n}$에서 시작한다.
 
 $$I = \begin{pmatrix} | & | & & | \\ \hat{e}_1 & \hat{e}_2 & \cdots & \hat{e}_n \\ | & | & & | \end{pmatrix}$$
 
-여기서 $\hat{e}_1, \hat{e}_2, \ldots, \hat{e}_n$은 **단위 법선 벡터** (표준 기저 벡터)이다.
+여기서 $\hat{e}_1, \hat{e}_2, \ldots, \hat{e}_n$은 **표준 기저 벡터** (단위 벡터)이다.
 
 $AA^{-1} = I$를 다음과 같이 본다:
 
@@ -1587,7 +1587,7 @@ $\Rightarrow$ $B_3$은 **가역이 될 수 없다.**
 | 전진 차분 (Forward difference) | $\frac{dy}{dx} \approx \frac{y(x+h)-y(x)}{h}$; 1차 정확도 $O(h)$ |
 | 중심 차분 (Centered difference) | $\frac{dy}{dx} \approx \frac{y(x+h)-y(x-h)}{2h}$; 2차 정확도 $O(h^2)$ |
 | 이차 차분 (Second difference) | $\frac{d^2y}{dx^2} \approx \frac{y(x+h)-2y(x)+y(x-h)}{h^2}$; 2차 정확도 |
-| 행렬 $K$ (고정-고정) | 삼중대각 $(2, -1, -1)$; 대칭, 띠, 가역, 양의 정부호 |
+| 행렬 $K$ (고정-고정) | 삼중대각 $(-1, 2, -1)$; 대칭, 띠, 가역, 양의 정부호 |
 | 행렬 $T$ (자유-고정) | 첫 행이 $(1, -1, 0, \ldots)$; $T = LL^T$; 가역 |
 | 행렬 $B$ (자유-자유) | 특이; $B\mathbf{1} = \mathbf{0}$; 상수 벡터가 영공간에 속함 |
 | 양의 정부호 (Positive definite) | $\mathbf{x}^T K\mathbf{x} > 0$, 모든 $\mathbf{x} \neq \mathbf{0}$에 대해; 모든 피벗이 양수 |

@@ -181,7 +181,7 @@ $$\det A = a(qz - ry) - b(pz - rx) + c(py - qx)$$
 
 $$A_1 = (2), \quad \det(A_1) = 2$$
 
-$$A_2 = \begin{pmatrix} 2 & 7 \\ -1 & 2 \end{pmatrix}, \quad \det(A_2) = 4 - (-7) = 3$$
+$$A_2 = \begin{pmatrix} 2 & -1 \\ -1 & 2 \end{pmatrix}, \quad \det(A_2) = 4 - 1 = 3$$
 
 $$A_3 = \begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{pmatrix}, \quad \det(A_3) = 8 - 2 - 2 = 4$$
 
@@ -254,7 +254,7 @@ $$(A^{-1})_{ij} = \frac{(C^T)_{ij}}{\det(A)} = \frac{C_{ji}}{\det(A)}$$
 
 **일반 공식:**
 
-$$AC^T = \begin{pmatrix} \det(A) & & 0 \\ & \det(A) & \\ 0 & & \ddots & \det(A) \end{pmatrix} = \det(A) \cdot I$$
+$$AC^T = \begin{pmatrix} \det(A) & & \\ & \ddots & \\ & & \det(A) \end{pmatrix} = \det(A) \cdot I$$
 
 ### 2.10 예제: 여인수를 이용한 3x3 역행렬
 
@@ -587,7 +587,7 @@ $$\det(A) = (a_1 + a_2)d - c(b_1 + b_2) = (a_1 d - cb_1) + (a_2 d - cb_2)$$
 
 $$= \begin{vmatrix} a_1 & b_1 \\ c & d \end{vmatrix} + \begin{vmatrix} a_2 & b_2 \\ c & d \end{vmatrix}$$
 
-**$2 \times 2$ 경우 — 2열에 대한 선형성 (2행 원소 분리):**
+**$2 \times 2$ 경우 — 2행에 대한 선형성 (2행 원소 분리):**
 
 $$A = \begin{pmatrix} a & b \\ c_1 + c_2 & d_1 + d_2 \end{pmatrix}$$
 

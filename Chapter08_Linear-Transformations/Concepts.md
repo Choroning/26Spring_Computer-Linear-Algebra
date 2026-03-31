@@ -615,7 +615,7 @@ $$TS = T \circ S = I \longrightarrow AB = I$$
 
 $$AB\mathbf{x} = I\mathbf{x} = \mathbf{x}$$
 
-$$AB = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix}\begin{pmatrix} \cos(-\theta) & -\sin(-\theta) \\ \sin(-\theta) & \cos(-\theta) \end{pmatrix} = \begin{pmatrix} \cos^2\theta + \sin^2\theta & 0 \\ 0 & \cos^2\theta + \sin^2\theta \end{pmatrix} = I$$
+$$AB = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix}\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} = \begin{pmatrix} \cos^2\theta + \sin^2\theta & 0 \\ 0 & \cos^2\theta + \sin^2\theta \end{pmatrix} = I$$
 
 ---
 
@@ -653,7 +653,7 @@ where $B_{\text{out}}$ is $m \times m$, $A$ is $m \times n$, $B_{\text{in}}$ is 
 
 **When $B = B_{\text{in}} = B_{\text{out}}$:**
 
-$$B^{-1}AB \quad \text{is \textbf{similar} to } A$$
+$$B^{-1}AB \quad \text{is similar to } A$$
 
 Similar matrices have the **same eigenvalues**.
 
@@ -718,8 +718,8 @@ $B^{-1}AB = J$ is **nearly diagonal**.
 
 For every $A$, we want to choose $B$ such that $B^{-1}AB$ is nearly diagonal as possible.
 
-- When $\text{rank}(A) = n$ (i.e., $n$ independent eigenvectors), then $B = X$ (eigenvectors): $X^{-1}AX = \Lambda$.
-- When $\text{rank}(A) < n$ (i.e., $s < n$ independent eigenvectors):
+- When $A$ is diagonalizable (i.e., $n$ independent eigenvectors), then $B = X$ (eigenvectors): $X^{-1}AX = \Lambda$.
+- When $A$ is not diagonalizable (i.e., $s < n$ independent eigenvectors):
 
 $$B^{-1}AB = J$$
 
@@ -827,7 +827,7 @@ How can we check if a basis is good or not?
 
 $$B = \begin{pmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_n \end{pmatrix} \quad \text{(basis vectors)}$$
 
-$$B^TB = I \quad \text{when the basis is \textbf{orthonormal}. This is the best.}$$
+$$B^TB = I \quad \text{when the basis is orthonormal. This is the best.}$$
 
 **Inner product of two vectors:** $\mathbf{b}_i^T\mathbf{b}_j$
 

@@ -682,7 +682,7 @@ Start by $AA^{-1} = I \in \mathbb{R}^{n \times n}$.
 
 $$I = \begin{pmatrix} | & | & & | \\ \hat{e}_1 & \hat{e}_2 & \cdots & \hat{e}_n \\ | & | & & | \end{pmatrix}$$
 
-where $\hat{e}_1, \hat{e}_2, \ldots, \hat{e}_n$ are **unit normal vectors** (standard basis vectors).
+where $\hat{e}_1, \hat{e}_2, \ldots, \hat{e}_n$ are **standard basis vectors** (unit vectors).
 
 View $AA^{-1} = I$ as:
 
@@ -1587,7 +1587,7 @@ $\Rightarrow$ $B_3$ **cannot be invertible.**
 | Forward difference | $\frac{dy}{dx} \approx \frac{y(x+h)-y(x)}{h}$; 1st order accuracy $O(h)$ |
 | Centered difference | $\frac{dy}{dx} \approx \frac{y(x+h)-y(x-h)}{2h}$; 2nd order accuracy $O(h^2)$ |
 | Second difference | $\frac{d^2y}{dx^2} \approx \frac{y(x+h)-2y(x)+y(x-h)}{h^2}$; 2nd order accuracy |
-| Matrix $K$ (fixed-fixed) | Tridiagonal $(2, -1, -1)$; symmetric, banded, invertible, positive definite |
+| Matrix $K$ (fixed-fixed) | Tridiagonal $(-1, 2, -1)$; symmetric, banded, invertible, positive definite |
 | Matrix $T$ (free-fixed) | First row is $(1, -1, 0, \ldots)$; $T = LL^T$; invertible |
 | Matrix $B$ (free-free) | Singular; $B\mathbf{1} = \mathbf{0}$; constant vector is in the null space |
 | Positive definite | $\mathbf{x}^T K\mathbf{x} > 0$ for all $\mathbf{x} \neq \mathbf{0}$; all pivots are positive |

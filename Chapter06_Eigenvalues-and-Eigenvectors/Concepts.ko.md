@@ -412,7 +412,7 @@ $$\lambda_1 = \cos\theta + i\sin\theta = e^{i\theta}, \quad \lambda_2 = \cos\the
 **회전 행렬 $R$의 두 가지 성질:**
 
 1. $R$은 **직교 행렬**(orthogonal matrix): $R^T R = I$, $|\lambda| = 1$.
-2. $R$은 **반대칭 행렬**(skew-symmetric matrix): $R = -R^T$, $\lambda$는 순허수.
+2. $|\lambda| = 1$: $R$이 직교 행렬이므로 ($R^T = R^{-1}$), 모든 고유값은 $|\lambda| = 1$을 만족한다. 고유값은 $\lambda = e^{\pm i\theta}$이다.
 
 ### 1.9 AB와 A+B의 고유값
 

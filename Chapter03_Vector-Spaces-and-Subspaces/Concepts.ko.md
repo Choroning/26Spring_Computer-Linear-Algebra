@@ -548,11 +548,11 @@ $PAQ = \begin{pmatrix} 1 & 3 & 7 & 35 \\ 2 & 9 & 14 & 97 \\ 2 & 6 & 14 & 70 \end
 
 $W^{-1}H = F \implies H = WF$:
 
-$$\begin{pmatrix} 7 & 35 \\ 14 & 97 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
+$$\begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
 
 **예 2 상기:** 단위 행렬이 $R_0$의 1번째와 3번째 열에 나타나므로, $A$의 1번째와 3번째 열이 독립이다. $A$의 2번째와 4번째 열은 독립 열들의 선형 결합이다:
 
-$$\begin{pmatrix} 7 & 35 \\ 14 & 70 \\ 14 & 97 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 6 \\ 2 & 9 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
+$$\begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
 
 **행렬 분해 $A = CR$과 $N(A)$:**
 
@@ -792,13 +792,13 @@ $\mathbf{v}_1$은 다른 벡터들의 선형 결합이다.
 
 예: $\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, $\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$ $\implies$ $\begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}$. $\hat{i}, \hat{j}$가 공간 $\mathbb{R}^2$를 생성한다.
 
-**(3) 벡터 $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$이 $\mathbb{S}$의 **기저 (Basis)**가 되려면: **선형 독립 (Linearly Independent)**이면서 $\mathbb{S}$를 **생성 (Span)**해야 한다.**
+**(3)** 벡터 $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$이 $\mathbb{S}$의 **기저 (Basis)**가 되려면: **선형 독립 (Linearly Independent)**이면서 $\mathbb{S}$를 **생성 (Span)**해야 한다.
 
 공간의 모든 벡터는 기저 벡터들의 **유일한** 결합이다.
 
 예: $\mathbb{R}^2 \ni \begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}$
 
-**(4) 벡터 공간 $\mathbb{S}$의 **차원 (Dimension)**은 $\mathbb{S}$의 모든 기저에 있는 벡터의 수 $n$이다.**
+**(4)** 벡터 공간 $\mathbb{S}$의 **차원 (Dimension)**은 $\mathbb{S}$의 모든 기저에 있는 벡터의 수 $n$이다.
 
 $A \in \mathbb{R}^{m \times n}$을 고려하자. $n$개의 열 중 $r$개가 독립이고, 나머지 $n - r$개의 열이 종속이다. $C(A)$의 차원은 $r$이며, 이는 $A$의 계수 (Rank)이다.
 

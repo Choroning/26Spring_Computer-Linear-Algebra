@@ -137,7 +137,7 @@ $$r + (n - r) = n \quad \text{그리고} \quad r + (m - r) = m$$
 
 $$A = \begin{pmatrix} 1 & -2 & 1 \\ 1 & 0 & -1 \end{pmatrix}$$
 
-행 축소: $R_2 - R_1$, 그 다음 $R_2 + R_2$, $R_2/2$:
+행 축소: $R_2 - R_1$, 그 다음 $R_2/2$, 그 다음 $R_1 + 2R_2$:
 
 $$R = \begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & -1 \end{pmatrix}$$
 
@@ -1065,7 +1065,7 @@ $\dim C(I) = 2$, $\dim \mathcal{N}(I^T) = 0$, $\dim C(I^T) = 2$, $\dim \mathcal{
 
 $\dim C(I_L) = 2$, $\dim \mathcal{N}(I_L^T) = 0$, $\dim C(I_L^T) = 2$, $\dim \mathcal{N}(I_L) = 1$.
 
-$I_L I_R = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}_{2 \times 2} = I_L$
+$I_L I_R = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I_{2 \times 2}$
 
 $I_L$ = $I_R$의 좌역행렬, $I_R$ = $I_L$의 우역행렬.
 

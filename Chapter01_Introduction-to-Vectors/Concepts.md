@@ -256,7 +256,7 @@ $$\begin{cases} 2c + 2d = 8 \\ c - d = 2 \end{cases}$$
 
 **Solution by elimination:**
 
-From the second equation: add the two equations:
+Divide the first equation by 2 to get $c + d = 4$. Then add the two equations:
 
 $$c + d = 4$$
 

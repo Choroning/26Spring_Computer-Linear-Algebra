@@ -412,7 +412,7 @@ $$\lambda_1 = \cos\theta + i\sin\theta = e^{i\theta}, \quad \lambda_2 = \cos\the
 **Two properties of the rotation matrix $R$:**
 
 1. $R$ is an **orthogonal** matrix: $R^T R = I$, $|\lambda| = 1$.
-2. $R$ is a **skew-symmetric** matrix: $R = -R^T$, $\lambda$ is pure imaginary.
+2. $|\lambda| = 1$: Since $R$ is orthogonal ($R^T = R^{-1}$), all eigenvalues satisfy $|\lambda| = 1$. The eigenvalues are $\lambda = e^{\pm i\theta}$.
 
 ### 1.9 Eigenvalues of AB and A+B
 

@@ -547,11 +547,11 @@ $PAQ = \begin{pmatrix} 1 & 3 & 7 & 35 \\ 2 & 9 & 14 & 97 \\ 2 & 6 & 14 & 70 \end
 
 $W^{-1}H = F \implies H = WF$:
 
-$$\begin{pmatrix} 7 & 35 \\ 14 & 97 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
+$$\begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
 
 **Recall Ex 2:** The identity matrix appears in the 1st and 3rd columns of $R_0$, meaning that the 1st and 3rd columns of $A$ are independent. The 2nd and 4th columns of $A$ are linear combinations of the independent columns:
 
-$$\begin{pmatrix} 7 & 35 \\ 14 & 70 \\ 14 & 97 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 6 \\ 2 & 9 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
+$$\begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}$$
 
 **The Matrix Factorization $A = CR$ and $N(A)$:**
 
@@ -791,13 +791,13 @@ $\mathbf{v}_1$ is a linear combination of other vectors.
 
 e.g., $\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, $\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$ $\implies$ $\begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}$. $\hat{i}, \hat{j}$ span the space $\mathbb{R}^2$.
 
-**(3) The vectors $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$ are a **basis** for $\mathbb{S}$ if they are **linearly independent** and they **span** $\mathbb{S}$.**
+**(3)** The vectors $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$ are a **basis** for $\mathbb{S}$ if they are **linearly independent** and they **span** $\mathbb{S}$.
 
 Every vector in the space is a **unique** combination of the basis vectors.
 
 e.g., $\mathbb{R}^2 \ni \begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}$
 
-**(4) The **dimension** of a vector space $\mathbb{S}$ is the number $n$ of vectors in every basis for $\mathbb{S}$.**
+**(4)** The **dimension** of a vector space $\mathbb{S}$ is the number $n$ of vectors in every basis for $\mathbb{S}$.
 
 Consider $A \in \mathbb{R}^{m \times n}$. There are $n$ columns, of which $r$ are independent, meaning the remaining $n - r$ columns are dependent. The dimension of $C(A)$ is $r$, which is the rank of $A$.
 

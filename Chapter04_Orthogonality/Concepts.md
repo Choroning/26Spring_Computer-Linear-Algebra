@@ -137,7 +137,7 @@ These are **orthogonal complements**.
 
 $$A = \begin{pmatrix} 1 & -2 & 1 \\ 1 & 0 & -1 \end{pmatrix}$$
 
-Row reduction: $R_2 - R_1$, then $R_2 + R_2$, $R_2/2$:
+Row reduction: $R_2 - R_1$, then $R_2/2$, then $R_1 + 2R_2$:
 
 $$R = \begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & -1 \end{pmatrix}$$
 
@@ -1065,7 +1065,7 @@ Every row is LI, but $r = m < n$. Nullspace has nontrivial elements.
 
 $\dim C(I_L) = 2$, $\dim \mathcal{N}(I_L^T) = 0$, $\dim C(I_L^T) = 2$, $\dim \mathcal{N}(I_L) = 1$.
 
-$I_L I_R = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}_{2 \times 2} = I_L$
+$I_L I_R = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I_{2 \times 2}$
 
 $I_L$ = left inverse of $I_R$, $I_R$ = right inverse of $I_L$.
 

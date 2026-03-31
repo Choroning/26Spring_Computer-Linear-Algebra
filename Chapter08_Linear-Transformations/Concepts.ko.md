@@ -615,7 +615,7 @@ $$TS = T \circ S = I \longrightarrow AB = I$$
 
 $$AB\mathbf{x} = I\mathbf{x} = \mathbf{x}$$
 
-$$AB = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix}\begin{pmatrix} \cos(-\theta) & -\sin(-\theta) \\ \sin(-\theta) & \cos(-\theta) \end{pmatrix} = \begin{pmatrix} \cos^2\theta + \sin^2\theta & 0 \\ 0 & \cos^2\theta + \sin^2\theta \end{pmatrix} = I$$
+$$AB = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix}\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} = \begin{pmatrix} \cos^2\theta + \sin^2\theta & 0 \\ 0 & \cos^2\theta + \sin^2\theta \end{pmatrix} = I$$
 
 ---
 
@@ -653,7 +653,7 @@ $$B_{\text{out}}^{-1} \; A \; B_{\text{in}}$$
 
 **$B = B_{\text{in}} = B_{\text{out}}$일 때:**
 
-$$B^{-1}AB \quad \text{는 $A$와 \textbf{닮음}(similar)이다}$$
+$$B^{-1}AB \quad \text{는 } A \text{와 닮음(similar)이다}$$
 
 닮음 행렬은 **같은 고유값**(eigenvalues)을 갖는다.
 
@@ -718,8 +718,8 @@ $B^{-1}AB = J$는 **거의 대각**(nearly diagonal)이다.
 
 모든 $A$에 대해, $B^{-1}AB$가 가능한 한 거의 대각이 되도록 $B$를 선택하고자 한다.
 
-- $\text{rank}(A) = n$ (즉, $n$개의 독립 고유벡터)일 때, $B = X$ (고유벡터): $X^{-1}AX = \Lambda$.
-- $\text{rank}(A) < n$ (즉, $s < n$개의 독립 고유벡터)일 때:
+- $A$가 대각화 가능할 때 (즉, $n$개의 독립 고유벡터), $B = X$ (고유벡터): $X^{-1}AX = \Lambda$.
+- $A$가 대각화 불가능할 때 (즉, $s < n$개의 독립 고유벡터):
 
 $$B^{-1}AB = J$$
 
@@ -827,7 +827,7 @@ $$x^{10} \approx \text{span}\{1, x, x^2, \ldots, x^9\}$$
 
 $$B = \begin{pmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_n \end{pmatrix} \quad \text{(기저 벡터)}$$
 
-$$B^TB = I \quad \text{기저가 \textbf{정규직교}(orthonormal)일 때. 이것이 최적이다.}$$
+$$B^TB = I \quad \text{기저가 정규직교(orthonormal)일 때. 이것이 최적이다.}$$
 
 **두 벡터의 내적:** $\mathbf{b}_i^T\mathbf{b}_j$
 
