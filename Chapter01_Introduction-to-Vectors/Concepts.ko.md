@@ -159,9 +159,9 @@ $$A = \begin{pmatrix} \mathbf{v} & \mathbf{w} \end{pmatrix} = \begin{pmatrix} 2 
 
 $$A \begin{pmatrix} c \\ d \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix} \begin{pmatrix} c \\ d \end{pmatrix} = c\begin{pmatrix} 2 \\ 4 \end{pmatrix} + d\begin{pmatrix} 1 \\ 3 \end{pmatrix}$$
 
-이것은 **$\mathbf{v}$와 $\mathbf{w}$의 선형결합**이다.
+이것은 **$\mathbf{v}$와 $\mathbf{w}$의 선형결합** 이다.
 
-$\mathbf{x} = \begin{pmatrix} c \\ d \end{pmatrix}$로 놓으면, 모든 결합 $A\mathbf{x}$는 행렬 $A$의 **열공간 (Column Space)**을 생성한다. (열공간은 평면이다!)
+$\mathbf{x} = \begin{pmatrix} c \\ d \end{pmatrix}$로 놓으면, 모든 결합 $A\mathbf{x}$는 행렬 $A$의 **열공간 (Column Space)** 을 생성한다. (열공간은 평면이다!)
 
 ### 종속벡터 (Dependent Vectors)
 
@@ -175,7 +175,7 @@ $$B = \begin{pmatrix} \mathbf{v} & \mathbf{w} & \mathbf{z} \end{pmatrix} = \begi
 
 ### 행렬 곱셈 미리보기
 
-행렬 곱셈 $AB$는 **$A$ 곱하기 $B$의 각 열**로 해석할 수 있다.
+행렬 곱셈 $AB$는 **$A$ 곱하기 $B$의 각 열** 로 해석할 수 있다.
 
 ---
 
@@ -193,7 +193,7 @@ $$2\mathbf{v} - 3\mathbf{w} = 2\begin{pmatrix} 4 \\ 1 \end{pmatrix} - 3\begin{pm
 
 **(3)** 모든 결합 $c\begin{pmatrix} 4 \\ 1 \end{pmatrix} + d\begin{pmatrix} 2 \\ 1 \end{pmatrix}$는 $xy$ 평면을 채운다.
 
-**(4)** 벡터 $c\begin{pmatrix} 4 \\ 1 \\ 0 \end{pmatrix} + d\begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix}$는 $xyz$ 공간에서 **평면**을 채운다.
+**(4)** 벡터 $c\begin{pmatrix} 4 \\ 1 \\ 0 \end{pmatrix} + d\begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix}$는 $xyz$ 공간에서 **평면** 을 채운다.
 
 $\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$은 그 평면 위에 있지 **않다**.
 
@@ -210,7 +210,7 @@ $\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$은 그 평면 위에 있지 **않다
 두 가지 질문이 생긴다:
 
 **(1) 기술하라:** 모든 결합 $c\mathbf{v} + d\mathbf{w}$를 기술하라.
-- 결과는 **평면** 또는 **직선**이다.
+- 결과는 **평면** 또는 **직선** 이다.
 
 **(2) 구하라:** $c\mathbf{v} + d\mathbf{w} = \mathbf{x}$를 만족하는 $c$와 $d$를 구하라.
 
@@ -311,8 +311,8 @@ $$\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}\begin{pmatrix} c \\ d \en
 연립방정식 $xv_1 + yw_1 = b_1$과 $xv_2 + yw_2 = b_2$는 두 직선을 나타낸다. 해 $(c, d)$는 교점이다:
 
 - 두 일차방정식은 점 $(c, d)$에서 만난다.
-- $\mathbf{v}$와 $\mathbf{w}$는 **일차독립 (Linearly Independent)**이다.
-- $A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}$는 **가역 (Invertible)**이다.
+- $\mathbf{v}$와 $\mathbf{w}$는 **일차독립 (Linearly Independent)** 이다.
+- $A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}$는 **가역 (Invertible)** 이다.
 
 ### 1.1.5 소거법이 실패할 수 있는가?
 
@@ -336,7 +336,7 @@ $$\mathbf{v} = \begin{pmatrix} 2 \\ 3 \\ 1 \end{pmatrix}, \quad \mathbf{w} = \be
 
 $$c\mathbf{v} + d\mathbf{w} = \begin{pmatrix} 2c + d \\ 3c + d \\ c \end{pmatrix}$$
 
-> $c\mathbf{v} + d\mathbf{w}$는 전체 3차원 공간을 채우지 **못한다**. 최대 **2차원 평면**만 채울 수 있다!
+> $c\mathbf{v} + d\mathbf{w}$는 전체 3차원 공간을 채우지 **못한다**. 최대 **2차원 평면** 만 채울 수 있다!
 
 **3차원 공간을 채우려면 세 개의 독립 벡터가 필요하다.**
 
@@ -384,7 +384,7 @@ $$\mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2$$
 
 $$\mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n = \sum_{i=1}^{n} v_i w_i$$
 
-내적 $\mathbf{v} \cdot \mathbf{v}$는 **길이의 제곱**을 알려준다:
+내적 $\mathbf{v} \cdot \mathbf{v}$는 **길이의 제곱** 을 알려준다:
 
 $$\|\mathbf{v}\|^2 = v_1^2 + v_2^2 + \cdots + v_n^2$$
 
@@ -404,7 +404,7 @@ $$\therefore \|\mathbf{v}\| = \sqrt{14}$$
 
 ### 1.2.3 단위벡터 (Unit Vectors)
 
-- $\mathbf{v}$가 $\|\mathbf{v}\| = 1$일 때 **단위벡터 (Unit Vector)**이다.
+- $\mathbf{v}$가 $\|\mathbf{v}\| = 1$일 때 **단위벡터 (Unit Vector)** 이다.
 - $\mathbf{v} \neq \mathbf{0}$이면, $\frac{\mathbf{v}}{\|\mathbf{v}\|}$는 단위벡터이다.
 
 **예시 (ex1):** $\mathbf{u} = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}$는 단위벡터이다.
@@ -570,7 +570,7 @@ $$\sqrt{18} < \sqrt{20} \quad \checkmark$$
 
 $\mathbf{w} \perp \mathbf{n}$, 즉 $\mathbf{w} \cdot \mathbf{n} = 0$을 만족하는 모든 벡터 $\mathbf{w} \in \mathbb{R}^3$를 살펴보자.
 
-$\mathbf{w} \cdot \mathbf{n} = 0$을 만족하는 벡터 $\mathbf{w}$는 $\mathbb{R}^3$에서 **2차원 평면**을 채운다.
+$\mathbf{w} \cdot \mathbf{n} = 0$을 만족하는 벡터 $\mathbf{w}$는 $\mathbb{R}^3$에서 **2차원 평면** 을 채운다.
 
 $$\mathbf{w} \cdot \mathbf{n} = w_1 n_1 + w_2 n_2 + w_3 n_3 = 0$$
 
@@ -588,7 +588,7 @@ $$\mathbf{w} \cdot \mathbf{n} = w_3 = 0$$
 
 ### 1.3.1 행렬-벡터 곱셈
 
-**(1)** $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}$는 **3 x 2 행렬**이다: 3개의 행과 2개의 열, 랭크 2.
+**(1)** $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}$는 **3 x 2 행렬** 이다: 3개의 행과 2개의 열, 랭크 2.
 
 **(2)** $A\mathbf{x}$의 3개의 성분은 $A$의 3개의 행과 벡터 $\mathbf{x}$의 내적이다.
 
@@ -596,7 +596,7 @@ $$\mathbf{w} \cdot \mathbf{n} = w_3 = 0$$
 
 $$A\mathbf{x} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}\begin{pmatrix} 7 \\ 8 \end{pmatrix} = \begin{pmatrix} 7 + 16 \\ 21 + 32 \\ 35 + 48 \end{pmatrix} = \begin{pmatrix} 23 \\ 53 \\ 83 \end{pmatrix}$$
 
-**(3)** $A\mathbf{x}$는 $A$의 **열들의 결합**이다:
+**(3)** $A\mathbf{x}$는 $A$의 **열들의 결합** 이다:
 
 $$\begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}\begin{pmatrix} 7 \\ 8 \end{pmatrix} = 7\begin{pmatrix} 1 \\ 3 \\ 5 \end{pmatrix} + 8\begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix}$$
 
@@ -663,7 +663,7 @@ $$A\mathbf{x} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2$$
 
 $$A_1 = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 4 & 0 \\ 3 & 5 & 6 \end{pmatrix}$$
 
-각 열이 새로운 방향을 제시한다. 이들의 결합은 **3차원 공간**을 채운다.
+각 열이 새로운 방향을 제시한다. 이들의 결합은 **3차원 공간** 을 채운다.
 
 $$A_1\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = x_1\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} + x_2\begin{pmatrix} 0 \\ 4 \\ 5 \end{pmatrix} + x_3\begin{pmatrix} 0 \\ 0 \\ 6 \end{pmatrix}$$
 
@@ -707,11 +707,11 @@ $$v_4 = x_4, \quad v_3 = x_4 + x_3, \quad v_2 = x_4 + x_3 + x_2, \quad v_1 = x_4
 
 $$\therefore \mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ v_3 \\ v_4 \end{pmatrix} = (v_1 - v_2)\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} + (v_2 - v_3)\begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} + (v_3 - v_4)\begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} + v_4\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}$$
 
-이는 **모든 $\mathbf{v}$가 열공간에 속한다**는 것을 의미한다. 네 개의 방정식 $A_4\mathbf{x} = \mathbf{v}$가 풀렸다.
+이는 **모든 $\mathbf{v}$가 열공간에 속한다** 는 것을 의미한다. 네 개의 방정식 $A_4\mathbf{x} = \mathbf{v}$가 풀렸다.
 
 ### 1.3.4 생성 (Span)
 
-**SPAN (생성)**은 벡터 집합의 모든 선형결합을 기술한다.
+**SPAN (생성)** 은 벡터 집합의 모든 선형결합을 기술한다.
 
 **$A$의 열들의 생성은 열공간이다.**
 
@@ -728,7 +728,7 @@ $$\therefore \mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ v_3 \\ v_4 \end{pmatrix}
 
 $$A_5 = \begin{pmatrix} 1 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 1 \\ 1 & 0 & 0 & 1 \end{pmatrix}$$
 
-$A_5$의 열공간은 $\mathbb{R}^4$ 내의 **3차원 부분공간**이다. 4번째 열은 그 부분공간에 속한다.
+$A_5$의 열공간은 $\mathbb{R}^4$ 내의 **3차원 부분공간** 이다. 4번째 열은 그 부분공간에 속한다.
 
 $A_5\mathbf{x} = \mathbf{v}$는 $\mathbf{v} \in C(A_5)$일 때만 풀 수 있다.
 
@@ -758,11 +758,11 @@ $$A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}: C(A) = 
 
 **핵심 질문:**
 
-- **Q1:** $A$의 몇 개의 열이 독립인가? 그 수 $r$이 $A$의 **"랭크 (Rank)"**이다.
-- **Q2:** 처음 $r$개의 독립 열은 무엇인가? 이것이 열공간의 **"기저 (Basis)"**이다.
+- **Q1:** $A$의 몇 개의 열이 독립인가? 그 수 $r$이 $A$의 **"랭크 (Rank)"** 이다.
+- **Q2:** 처음 $r$개의 독립 열은 무엇인가? 이것이 열공간의 **"기저 (Basis)"** 이다.
 - **Q3:** 그 $r$개의 기저 벡터의 어떤 결합이 나머지 $n - r$개의 열을 만드는가?
 - **Q4:** 임의의 $A$를 $m \times r$ 열 행렬 $C$ 곱하기 $r \times n$ 행렬 $R$로 쓸 수 있다: $A = CR$.
-- **Q5:** $R$의 $r$개의 행은 $A$의 **행공간 (Row space)**의 기저이다. $R$의 행은 $A$에서 직접 오지 않는다.
+- **Q5:** $R$의 $r$개의 행은 $A$의 **행공간 (Row space)** 의 기저이다. $R$의 행은 $A$에서 직접 오지 않는다.
 
 ### 1.3.6 랭크 1인 행렬
 
@@ -828,7 +828,7 @@ $B = \begin{pmatrix} | & | & & | \\ \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \math
 
 $$AB = A\begin{pmatrix} | & | & & | \\ \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_p \\ | & | & & | \end{pmatrix} = \begin{pmatrix} | & | & & | \\ A\mathbf{b}_1 & A\mathbf{b}_2 & \cdots & A\mathbf{b}_p \\ | & | & & | \end{pmatrix}$$
 
-이것은 **$A$의 결합**이다.
+이것은 **$A$의 결합** 이다.
 
 **예시:** $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
 
@@ -985,7 +985,7 @@ $C \in \mathbb{R}^{2 \times 2}$, $R \in \mathbb{R}^{2 \times 4}$. 랭크 $r = 2$
 
 ### R 행렬을 구하는 방법
 
-제3장에서 다룰 **"소거법 (Elimination)"**을 사용할 수 있다.
+제3장에서 다룰 **"소거법 (Elimination)"** 을 사용할 수 있다.
 
 **예시:**
 
@@ -1014,11 +1014,11 @@ $$A = \begin{pmatrix} 1 & 3 \\ 2 & 4 \\ 3 & 7 \end{pmatrix}\begin{pmatrix} 1 & 0
 ### A = CR의 핵심 성질
 
 - $A = CR$
-- $C$의 $r$개의 열은 $A$의 열공간의 **기저**이다.
-- $R$의 $r$개의 행은 $A$의 행공간의 **기저**이다.
+- $C$의 $r$개의 열은 $A$의 열공간의 **기저** 이다.
+- $R$의 $r$개의 행은 $A$의 행공간의 **기저** 이다.
 - $\Rightarrow$ $r$ 차원.
 
-> $A = CR$에서, "$R$"은 **기약행사다리꼴 (Reduced Row Echelon Form)**이다.
+> $A = CR$에서, "$R$"은 **기약행사다리꼴 (Reduced Row Echelon Form)** 이다.
 
 **예시 (ex5):**
 
@@ -1036,7 +1036,7 @@ $$= \mathbf{a}_1\mathbf{b}_1^* + \mathbf{a}_2\mathbf{b}_2^* + \cdots + \mathbf{a
 
 여기서 $\mathbf{a}_k\mathbf{b}_k^* = \begin{pmatrix} | \\ \mathbf{a}_k \\ | \end{pmatrix}_{m \times 1}(- \ \mathbf{b}_k^* \ -)_{1 \times p}$
 
-이것은 **열 곱하기 행 = 랭크 1 행렬**이며, $mp$개의 원소를 가진다.
+이것은 **열 곱하기 행 = 랭크 1 행렬** 이며, $mp$개의 원소를 가진다.
 
 $$AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*$$
 

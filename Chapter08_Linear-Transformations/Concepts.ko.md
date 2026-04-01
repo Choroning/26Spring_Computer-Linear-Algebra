@@ -259,7 +259,7 @@ $$T(u) = \frac{d}{dt}u = 0$$
 
 $$dc \in \mathcal{N}(T), \quad d \in \mathbb{R}$$
 
-영공간은 함수 공간에서의 **직선**이다.
+영공간은 함수 공간에서의 **직선** 이다.
 
 **$T$의 열공간 (column space):**
 
@@ -359,9 +359,9 @@ $$\text{$T$의 핵 (Kernel)} = T(\mathbf{u}) = \mathbf{0}\text{인 모든 입력
 
 ### 2.1 핵심 아이디어 요약
 
-1. **선형성**은 입력 기저 $\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n$에 대해 $T(\mathbf{u}_1), \ldots, T(\mathbf{u}_n)$을 알면 모든 $T(\mathbf{u})$를 알 수 있게 한다.
+1. **선형성** 은 입력 기저 $\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n$에 대해 $T(\mathbf{u}_1), \ldots, T(\mathbf{u}_n)$을 알면 모든 $T(\mathbf{u})$를 알 수 있게 한다.
 
-2. $T$의 행렬에서 **열 $j$**는 입력 기저 벡터 $\mathbf{u}_j$에 $T$를 적용하여 얻는다.
+2. $T$의 행렬에서 **열 $j$** 는 입력 기저 벡터 $\mathbf{u}_j$에 $T$를 적용하여 얻는다.
 
 3. $T(\mathbf{u}_j) = a_{1j}\,\mathbf{w}_1 + \cdots + a_{mj}\,\mathbf{w}_m = \displaystyle\sum_{i=1}^{m} a_{ij}\,\mathbf{w}_i$를 출력 기저 $\mathbf{w}$로 표현한다. 그 $a_{ij}$가 열 $j$에 들어간다.
 
@@ -390,7 +390,7 @@ $\mathbb{R}^n$과 $\mathbb{R}^m$의 표준 기저 벡터는 $I$의 열이다.
 $V$와 $W$에 대해 다른 기저를 선택할 수 있다.
 $\Rightarrow$ 같은 변환 $T$가 다른 행렬로 표현된다.
 
-**질문.** $T$에 대해 **최적의 행렬**을 주는 기저를 어떻게 선택해야 하는가?
+**질문.** $T$에 대해 **최적의 행렬** 을 주는 기저를 어떻게 선택해야 하는가?
 
 ---
 
@@ -406,7 +406,7 @@ $$\mathbf{u}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \longrightarrow T(\mathbf{
 
 $$A = \begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 3 & 5 \\ 4 & 5 \end{pmatrix}$$
 
-출력이 **$A$의 열**로 들어간다. 그러면 $T(\mathbf{u}) = A\mathbf{u}$.
+출력이 **$A$의 열** 로 들어간다. 그러면 $T(\mathbf{u}) = A\mathbf{u}$.
 
 **검증:**
 
@@ -701,7 +701,7 @@ $$B^{-1}AB = \text{Jordan 형식 } J$$
 $A$는 정사각 행렬이지만, "$s$개의 독립 고유벡터"만 가질 수 있다:
 
 - $s = n$이면: $B = X$ (고유벡터), $J = \Lambda$
-- $s < n$이면: "$n - s$"개의 종속 열이 있다 $\to$ "$n - s$"개의 추가 **일반화 고유벡터**를 구성한다
+- $s < n$이면: "$n - s$"개의 종속 열이 있다 $\to$ "$n - s$"개의 추가 **일반화 고유벡터** 를 구성한다
 
 Jordan 형식의 성질:
 - (i) $J$의 대각선을 따라 $s$개의 정사각 블록이 있다
@@ -719,7 +719,7 @@ $$J = \Lambda = \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots & \
 
 $$J = \begin{pmatrix} \boxed{2} & & & \\ & \boxed{2} & & \\ & & \boxed{3} & 1 \\ & & & \boxed{3} \end{pmatrix}$$
 
-이것은 **2**개의 1x1 블록과 **1**개의 2x2 블록을 갖는다.
+이것은 **2** 개의 1x1 블록과 **1** 개의 2x2 블록을 갖는다.
 
 $B^{-1}AB = J$는 **거의 대각**(nearly diagonal)이다.
 
@@ -890,14 +890,14 @@ $x^2$은 $1$의 영이 아닌 성분을 갖는다.
 
 $$(x, x^2) = \int_{-1}^{1} x^3\,dx = 0 \quad \text{(직교)}$$
 
-**Gram-Schmidt 과정**으로 직교 기저를 구성하면:
+**Gram-Schmidt 과정** 으로 직교 기저를 구성하면:
 
 $$b_1 = 1$$
 $$b_2 = x \quad \perp\; b_1$$
 $$b_3 = x^2 - \frac{1}{3} \quad \perp\; b_1,\; b_2$$
 $$\vdots$$
 
-**Gram-Schmidt 과정**을 사용하여 **Legendre 기저**를 얻을 수 있다.
+**Gram-Schmidt 과정** 을 사용하여 **Legendre 기저** 를 얻을 수 있다.
 
 ---
 

@@ -125,7 +125,7 @@ $$SQ = Q\Lambda$$
 
 $$S = Q\Lambda Q^T$$
 
-**목표:** 대칭 행렬을 넘어 **모든 행렬**로 확장하고자 한다.
+**목표:** 대칭 행렬을 넘어 **모든 행렬** 로 확장하고자 한다.
 
 $$S\underset{\sim}{x} = \lambda\underset{\sim}{x} \quad \Longrightarrow \quad A\underset{\sim}{v} = \sigma\underset{\sim}{u}$$
 
@@ -231,7 +231,7 @@ $$A = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{p
 
 ### 1.7 SVD의 전체 크기 형태
 
-전체 크기 형태는 $A$와 $A^T$의 **영공간(nullspace)에 대한 기저 벡터**를 포함한다.
+전체 크기 형태는 $A$와 $A^T$의 **영공간(nullspace)에 대한 기저 벡터** 를 포함한다.
 
 $$V = \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r & \underset{\sim}{v}_{r+1} & \cdots & \underset{\sim}{v}_n \end{pmatrix}_{n \times n}$$
 
@@ -303,7 +303,7 @@ $AA^T$는 대칭이므로:
 
 $$AA^T = Q\Lambda Q^T = U\Sigma^2 U^T$$
 
-따라서 $\sigma_1^2, \sigma_2^2, \dots, \sigma_r^2$은 **$A^T A$와 $AA^T$ 모두의 0이 아닌 고유값**이다.
+따라서 $\sigma_1^2, \sigma_2^2, \dots, \sigma_r^2$은 **$A^T A$와 $AA^T$ 모두의 0이 아닌 고유값** 이다.
 
 - **$A^T A$로부터 $V$를 선택** ($A^T A$의 고유벡터)
 - **$AA^T$로부터 $U$를 선택** ($AA^T$의 고유벡터)
@@ -398,14 +398,14 @@ $AB$와 $BA$는 동일한 $\lambda$를 가진다.
 
 ### 2.1 행렬로서의 이미지
 
-이미지는 **회색조 값의 큰 행렬**이다.
+이미지는 **회색조 값의 큰 행렬** 이다.
 
 - 각 픽셀은 하나의 값을 가진다. 예: **8비트** ($0$에서 $255$까지의 값).
 - 행렬 원소는 각 픽셀 위치에서의 밝기를 나타낸다.
 
 ### 2.2 상관된 픽셀을 이용한 이미지 압축
 
-**인접 픽셀이 상관**되어 있으면, 이미지를 **압축**할 수 있다.
+**인접 픽셀이 상관** 되어 있으면, 이미지를 **압축** 할 수 있다.
 
 **예제: 프랑스 국기.**
 
@@ -413,7 +413,7 @@ $AB$와 $BA$는 동일한 $\lambda$를 가진다.
 
 $$\begin{pmatrix} b & b & w & w & r & r \\ b & b & w & w & r & r \\ b & b & w & w & r & r \\ b & b & w & w & r & r \\ b & b & w & w & r & r \\ b & b & w & w & r & r \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \\ 1 \\ 1 \end{pmatrix} \begin{pmatrix} b & b & w & w & r & r \end{pmatrix}$$
 
-이것은 **랭크 1 행렬**이다.
+이것은 **랭크 1 행렬** 이다.
 
 저장 공간 절감: $N^2$개의 원소를 $2N$개의 원소로 대체 (하나의 열 벡터 + 하나의 행 벡터).
 
@@ -431,7 +431,7 @@ $$= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \unde
 
 $$= \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T$$
 
-이것은 **랭크-1 행렬의 합**이다.
+이것은 **랭크-1 행렬의 합** 이다.
 
 **압축 원리:** 압축에서, **작은 $\sigma$는 버릴 수 있으며** **이미지 품질에 심각한 손실 없이** 가능하다.
 
@@ -453,7 +453,7 @@ $$\approx \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatr
 
 $$A = U\Sigma V^T$$
 
-**PCA**는 데이터 행렬에서 정보를 이해하기 위해 처음 $\underset{\sim}{u}$와 $\underset{\sim}{v}$에 연결된 **가장 큰 $\sigma$**를 사용한다.
+**PCA** 는 데이터 행렬에서 정보를 이해하기 위해 처음 $\underset{\sim}{u}$와 $\underset{\sim}{v}$에 연결된 **가장 큰 $\sigma$** 를 사용한다.
 
 ### 3.2 저랭크 근사
 
@@ -466,7 +466,7 @@ $$\text{rank}(A_k) = k$$
 $$A \approx A_k$$
 
 - $A_k$는 데이터에서 **가장 큰 분산**(variance)을 포착한다.
-- $A_k$는 $A$에 **가장 가까운 랭크-$k$ 행렬**이다.
+- $A_k$는 $A$에 **가장 가까운 랭크-$k$ 행렬** 이다.
 - $B$가 랭크 $k$를 가지면:
 
 $$\|A - A_k\| \leq \|A - B\|$$
@@ -542,7 +542,7 @@ $$\|A + B\|_F \leq \|A\|_F + \|B\|_F$$
 
 ### 3.5 PCA 예제 (P 7.3.1)
 
-$A_0$는 **5개 샘플**에 대한 **2개 측정값**을 담고 있다:
+$A_0$는 **5개 샘플** 에 대한 **2개 측정값** 을 담고 있다:
 
 $$A_0 = \begin{pmatrix} 5 & 4 & 3 & 2 & 1 \\ -1 & 1 & 0 & 1 & -1 \end{pmatrix}$$
 
@@ -596,7 +596,7 @@ $$\underset{\sim}{e} = A\underset{\sim}{\hat{x}} - \underset{\sim}{b}$$
 
 이에 비해, **수직 최소제곱법**(perpendicular least squares)은 데이터 점에서 직선까지의 **수선 거리**(perpendicular distances)를 측정한다.
 
-데이터 점에서 $\underset{\sim}{u}_1$ 직선까지의 **수선 거리의 제곱합**이 **최소**가 된다.
+데이터 점에서 $\underset{\sim}{u}_1$ 직선까지의 **수선 거리의 제곱합** 이 **최소** 가 된다.
 
 ---
 
