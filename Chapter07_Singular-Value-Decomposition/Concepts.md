@@ -1,6 +1,15 @@
 # Chapter 7 Lecture — Singular Value Decomposition
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 7
+
+> **Prerequisites**: [Linear Algebra] Eigenvalues, orthogonality (Ch 1-6).
+>
+> **Learning Objectives**:
+> 1. Derive and compute the Singular Value Decomposition (SVD)
+> 2. Interpret SVD geometrically in terms of the four fundamental subspaces
+> 3. Apply SVD to low-rank approximation and data analysis
 
 ---
 

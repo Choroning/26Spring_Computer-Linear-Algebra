@@ -1,6 +1,15 @@
 # Chapter 3 Lecture — Vector Spaces and Subspaces
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 3
+
+> **Prerequisites**: [Linear Algebra] Elimination and matrix operations (Ch 1-2).
+>
+> **Learning Objectives**:
+> 1. Define vector spaces, subspaces, and verify closure properties
+> 2. Compute column space, null space, row space, and left null space
+> 3. Determine basis, dimension, and rank of a matrix
 
 ---
 

@@ -1,6 +1,15 @@
 # Chapter 8 Lecture — Linear Transformations
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 8
+
+> **Prerequisites**: [Linear Algebra] Vector spaces, matrix operations, eigenvalues (Ch 1-7).
+>
+> **Learning Objectives**:
+> 1. Define linear transformations and verify linearity
+> 2. Construct matrix representations of linear transformations
+> 3. Analyze kernel and range of transformations
 
 ---
 

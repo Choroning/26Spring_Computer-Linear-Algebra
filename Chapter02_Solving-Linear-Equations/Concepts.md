@@ -1,6 +1,15 @@
 # Chapter 2 Lecture — Solving Linear Equations
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 2
+
+> **Prerequisites**: [Linear Algebra] Vectors and linear combinations (Ch 1).
+>
+> **Learning Objectives**:
+> 1. Apply Gaussian elimination to solve linear systems
+> 2. Express elimination using matrix factorization (A = LU)
+> 3. Identify when systems have no solution, one solution, or infinitely many solutions
 
 ---
 
