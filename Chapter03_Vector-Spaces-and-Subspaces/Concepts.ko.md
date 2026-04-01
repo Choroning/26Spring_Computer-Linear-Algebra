@@ -1,6 +1,15 @@
 # 제3장 강의 — 벡터 공간과 부분공간
 
 > **최종 수정일:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 3
+
+> **선수 지식**: [선형대수학] 소거법과 행렬 연산 (제1-2장).
+>
+> **학습 목표**:
+> 1. 벡터 공간과 부분공간을 정의하고 닫힘 성질을 검증할 수 있다
+> 2. 열 공간, 영 공간, 행 공간, 좌영 공간을 구할 수 있다
+> 3. 기저, 차원, 행렬의 랭크를 결정할 수 있다
 
 ---
 
@@ -83,8 +92,8 @@
 ### 2.1 벡터 공간의 요건
 
 1. **요건:** 모든 선형 결합 $c\mathbf{u} + d\mathbf{w}$가 벡터 공간 안에 머물러야 한다.
-2. $A$의 **행공간 (Row Space)**은 $A$의 행들에 의해 "생성"된다. $A$의 열들은 열공간 $C(A)$를 생성한다.
-3. **행렬 (Matrix)** $M_1$부터 $M_n$까지와 **함수 (Function)** $f_1$부터 $f_n$까지가 **행렬 공간 (Matrix Space)**과 **함수 공간 (Function Space)**을 생성한다.
+2. $A$의 **행공간 (Row Space)** 은 $A$의 행들에 의해 "생성"된다. $A$의 열들은 열공간 $C(A)$를 생성한다.
+3. **행렬 (Matrix)** $M_1$부터 $M_n$까지와 **함수 (Function)** $f_1$부터 $f_n$까지가 **행렬 공간 (Matrix Space)** 과 **함수 공간 (Function Space)** 을 생성한다.
 
 ### 2.2 공간 R^n
 
@@ -111,7 +120,7 @@ $\mathbf{u}, \mathbf{w} \in V$ (벡터 공간)일 때:
 1. $\mathbf{u} + \mathbf{w} \in V$ — 벡터 덧셈 (Vector Addition)
 2. $\alpha \mathbf{u} \in V \quad \forall \alpha \in \mathbb{F}$ — 스칼라 곱 (Scalar Multiplication)
 
-**체 (Field)**는 덧셈, 뺄셈, 곱셈, 나눗셈이 정의된 집합이다.
+**체 (Field)** 는 덧셈, 뺄셈, 곱셈, 나눗셈이 정의된 집합이다.
 
 체의 예: $\mathbb{R}$ (실수), $\mathbb{C}$ (복소수).
 
@@ -199,7 +208,7 @@ $$\mathbf{a} + \mathbf{b} = 2\mathbf{p} + (t_1 + t_2)\mathbf{d} \notin \mathbb{X
 - $\mathbf{a} + \mathbf{b} = (t_1 + t_2)\mathbf{d} \in \mathbb{X}$ (만약 $\mathbf{p} = \mathbf{0}$)
 - $c\mathbf{a} = ct_1\mathbf{d} \in \mathbb{X}$ (만약 $\mathbf{p} = \mathbf{0}$)
 
-**원점을 지나는 직선은 벡터 공간이다.** $\mathbb{R}^n$에서 $\mathbf{0}$을 지나는 직선은 $\mathbb{R}^n$의 **부분공간 (Subspace)**이다 — 다른 벡터 공간 안의 벡터 공간.
+**원점을 지나는 직선은 벡터 공간이다.** $\mathbb{R}^n$에서 $\mathbf{0}$을 지나는 직선은 $\mathbb{R}^n$의 **부분공간 (Subspace)** 이다 — 다른 벡터 공간 안의 벡터 공간.
 
 ### 2.7 벡터 공간의 예시
 
@@ -208,7 +217,7 @@ $$\mathbf{a} + \mathbf{b} = 2\mathbf{p} + (t_1 + t_2)\mathbf{d} \notin \mathbb{X
   - i) $\mathbf{0} + \mathbf{0} = \mathbf{0} \in \mathbb{Z}$
   - ii) $c\mathbf{0} = \mathbf{0} \in \mathbb{Z}$
 
-$\mathbb{Z}$는 **가역 행렬의 영공간 (Null Space)**이다. $A\mathbf{x} = \mathbf{0}$의 유일한 해가 영벡터 $\mathbf{x} = \mathbf{0}$이면, $A$의 열들은 선형 독립 (LI)이고 $A$의 영공간은 $\mathbb{Z}$이다.
+$\mathbb{Z}$는 **가역 행렬의 영공간 (Null Space)** 이다. $A\mathbf{x} = \mathbf{0}$의 유일한 해가 영벡터 $\mathbf{x} = \mathbf{0}$이면, $A$의 열들은 선형 독립 (LI)이고 $A$의 영공간은 $\mathbb{Z}$이다.
 
 ### 2.8 일반화된 벡터 공간
 
@@ -246,21 +255,21 @@ $(f + g)(x) = f(x) + g(x) = e^x + 2e^x = 3e^x \in \mathbb{F}$
 
 $(cf)(x) = c(f(x)) = ce^x \in \mathbb{F}$
 
-**비고:** **집합 (Set)**은 추가적인 구조 없이 원소들의 모임에 불과하다. **공간 (Space)**은 추가적인 구조가 정의된 집합이다. 예: 벡터 공간은 벡터 덧셈과 스칼라 곱이 정의된 벡터들의 집합이다. 벡터 공간은 8가지 규칙을 만족해야 한다.
+**비고:** **집합 (Set)** 은 추가적인 구조 없이 원소들의 모임에 불과하다. **공간 (Space)** 은 추가적인 구조가 정의된 집합이다. 예: 벡터 공간은 벡터 덧셈과 스칼라 곱이 정의된 벡터들의 집합이다. 벡터 공간은 8가지 규칙을 만족해야 한다.
 
 ### 2.9 벡터 공간의 부분공간
 
 벡터 공간 $\mathbb{R}^n$을 고려하자. 여기서 $\mathbf{v} \in \mathbb{R}^n$은 $n$개의 성분을 가진 열벡터이다.
 
-$\mathbb{R}^n$ 안에 중요한 벡터 공간들이 있다. 이들이 $\mathbb{R}^n$의 **부분공간 (Subspace)**이다.
+$\mathbb{R}^n$ 안에 중요한 벡터 공간들이 있다. 이들이 $\mathbb{R}^n$의 **부분공간 (Subspace)** 이다.
 
 평면은 벡터 공간이다. $\mathbf{v}, \mathbf{w} \in \mathbb{R}^2$이면, $c\mathbf{v} + d\mathbf{w} \in \mathbb{R}^2$이다.
 
-$\mathbb{R}^3$에서 원점 $\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$을 지나는 평면은 벡터 공간이다. 이 평면은 $\mathbb{R}^2$가 아닌데, $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$이기 때문이다. 이 평면은 $\mathbb{R}^3$ 안의 벡터 공간이다. 이것은 전체 벡터 공간 $\mathbb{R}^3$의 **부분공간**이다.
+$\mathbb{R}^3$에서 원점 $\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$을 지나는 평면은 벡터 공간이다. 이 평면은 $\mathbb{R}^2$가 아닌데, $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$이기 때문이다. 이 평면은 $\mathbb{R}^3$ 안의 벡터 공간이다. 이것은 전체 벡터 공간 $\mathbb{R}^3$의 **부분공간** 이다.
 
 ### 2.10 부분공간의 정의
 
-**정의.** 벡터 공간의 **부분공간 (Subspace)**은 다음을 만족하는 벡터들의 집합($\mathbf{0}$ 포함)이다:
+**정의.** 벡터 공간의 **부분공간 (Subspace)** 은 다음을 만족하는 벡터들의 집합($\mathbf{0}$ 포함)이다:
 
 > i) $\mathbf{u} + \mathbf{w}$가 부분공간에 속한다
 >
@@ -339,7 +348,7 @@ $$\begin{pmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \end{pmatr
 
 $$= x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n$$
 
-**$A$의 열공간**은 열벡터들로 구성된 벡터 공간이다.
+**$A$의 열공간** 은 열벡터들로 구성된 벡터 공간이다.
 
 $A\mathbf{x} = \mathbf{b}$를 푸는 것은 $\mathbf{b}$를 열들의 선형 결합으로 표현하는 것이다. 우변 벡터 $\mathbf{b}$는 $A$의 열공간에 속해야 한다.
 
@@ -580,11 +589,11 @@ $s_2 = 0, s_4 = 1$로 취하면: $\Rightarrow s_1 = -8, s_3 = -9$. $\therefore \
 
 $$\mathbf{x} = \text{하나의 특수해 } \mathbf{x}_p + \text{영공간의 임의의 } \mathbf{x}_n$$
 
-2. $A\mathbf{x} = \mathbf{b}$에 **소거**를 적용하면 $R_0 \mathbf{x} = \mathbf{d}$가 된다. $R_0$의 영행에 대응하는 $\mathbf{d}$의 성분이 0일 때 풀 수 있다.
+2. $A\mathbf{x} = \mathbf{b}$에 **소거** 를 적용하면 $R_0 \mathbf{x} = \mathbf{d}$가 된다. $R_0$의 영행에 대응하는 $\mathbf{d}$의 성분이 0일 때 풀 수 있다.
 
 $$\begin{pmatrix} R \\ 0 \; 0 \; \cdots \; 0 \\ 0 \; 0 \; \cdots \; 0 \end{pmatrix} \mathbf{x} = \begin{pmatrix} \vdots \\ 0 \\ 0 \end{pmatrix}$$
 
-3. $R_0 \mathbf{x} = \mathbf{d}$가 풀릴 때, 하나의 특수해 $\mathbf{x}_p$는 **모든 자유 변수가 0**인 해이다.
+3. $R_0 \mathbf{x} = \mathbf{d}$가 풀릴 때, 하나의 특수해 $\mathbf{x}_p$는 **모든 자유 변수가 0** 인 해이다.
 
 4. $A$가 **열 완전 계수 (Full Column Rank)** $r = n$일 때 영공간 $N(A) = \{\text{영벡터}\}$. 자유 변수가 없다.
 
@@ -636,7 +645,7 @@ $\therefore \mathbf{x} = \begin{pmatrix} -3 \\ 0 \\ -2 \\ 2 \end{pmatrix}$
 
 ### 4.3 완전해 분해
 
-해는 **특수해 (Particular Solution)**와 영공간의 **특수해들 (Special Solutions)**로 분해할 수 있다.
+해는 **특수해 (Particular Solution)** 와 영공간의 **특수해들 (Special Solutions)** 로 분해할 수 있다.
 
 $$R_0 \mathbf{x} = \begin{pmatrix} 1 & 3 & 0 & 2 \\ 0 & 0 & 1 & 4 \\ 0 & 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
 
@@ -714,7 +723,7 @@ $$R_0 \mathbf{x} = \begin{pmatrix} I_{n \times n} \\ O_{(m-n) \times n} \end{pma
 
 $A \in \mathbb{R}^{m \times n}$, $m \leq n$ (짧고 넓은 행렬).
 
-행렬이 **행 완전 계수 (Full Row Rank)**를 가지려면 $r = m$.
+행렬이 **행 완전 계수 (Full Row Rank)** 를 가지려면 $r = m$.
 
 **예 2.** $A\mathbf{x} = \mathbf{b}$가 $n = 3$개의 미지수를 갖지만 $m = 2$개의 방정식만 있을 때:
 
@@ -744,7 +753,7 @@ $\therefore \mathbf{x}_n = \begin{pmatrix} -3 \\ 2 \\ 1 \end{pmatrix}$
 
 $$\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n = \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix} + \alpha \begin{pmatrix} -3 \\ 2 \\ 1 \end{pmatrix}$$
 
-이것은 $\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$을 지나는 방향의 **직선**이며 ($A\mathbf{x}_n = \mathbf{0}$), $\mathbf{x}_p$만큼 이동한 것이다 ($A\mathbf{x} = \mathbf{b}$).
+이것은 $\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$을 지나는 방향의 **직선** 이며 ($A\mathbf{x}_n = \mathbf{0}$), $\mathbf{x}_p$만큼 이동한 것이다 ($A\mathbf{x} = \mathbf{b}$).
 
 **행 완전 계수 ($r = m$)인 모든 행렬 $A$는 다음 성질을 가진다:**
 1. 모든 행에 피벗이 있고, $R_0$에 영행이 없다. $R_0 = R$.
@@ -753,7 +762,7 @@ $$\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n = \begin{pmatrix} 2 \\ 1 \\ 0 \end{pm
 
 $A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}$이고, $R = (I_{m \times m} \quad F_{m \times (n-m)})$.
 
-4. $m < n$이면, $A\mathbf{x} = \mathbf{b}$는 **부정 (Underdetermined)**이다 (많은 해).
+4. $m < n$이면, $A\mathbf{x} = \mathbf{b}$는 **부정 (Underdetermined)** 이다 (많은 해).
 
 행 완전 계수 ($r = m$)일 때, $m$개의 행이 선형 독립이다. $A^T$의 열들이 LI이다. $A^T$의 영공간은 $\mathbb{Z} = \{\mathbf{0}\}$이다.
 
@@ -792,13 +801,13 @@ $\mathbf{v}_1$은 다른 벡터들의 선형 결합이다.
 
 예: $\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, $\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$ $\implies$ $\begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}$. $\hat{i}, \hat{j}$가 공간 $\mathbb{R}^2$를 생성한다.
 
-**(3)** 벡터 $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$이 $\mathbb{S}$의 **기저 (Basis)**가 되려면: **선형 독립 (Linearly Independent)**이면서 $\mathbb{S}$를 **생성 (Span)**해야 한다.
+**(3)** 벡터 $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$이 $\mathbb{S}$의 **기저 (Basis)** 가 되려면: **선형 독립 (Linearly Independent)** 이면서 $\mathbb{S}$를 **생성 (Span)** 해야 한다.
 
 공간의 모든 벡터는 기저 벡터들의 **유일한** 결합이다.
 
 예: $\mathbb{R}^2 \ni \begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}$
 
-**(4)** 벡터 공간 $\mathbb{S}$의 **차원 (Dimension)**은 $\mathbb{S}$의 모든 기저에 있는 벡터의 수 $n$이다.
+**(4)** 벡터 공간 $\mathbb{S}$의 **차원 (Dimension)** 은 $\mathbb{S}$의 모든 기저에 있는 벡터의 수 $n$이다.
 
 $A \in \mathbb{R}^{m \times n}$을 고려하자. $n$개의 열 중 $r$개가 독립이고, 나머지 $n - r$개의 열이 종속이다. $C(A)$의 차원은 $r$이며, 이는 $A$의 계수 (Rank)이다.
 
@@ -810,7 +819,7 @@ $A \in \mathbb{R}^{m \times n}$을 고려하자. $n$개의 열 중 $r$개가 독
 
 ### 5.2 영공간을 통한 선형 독립
 
-**정의.** $A$의 열들이 **선형 독립 (Linearly Independent)**이려면 $A\mathbf{x} = \mathbf{0}$의 유일한 해가 $\mathbf{x} = \mathbf{0}$이어야 한다.
+**정의.** $A$의 열들이 **선형 독립 (Linearly Independent)** 이려면 $A\mathbf{x} = \mathbf{0}$의 유일한 해가 $\mathbf{x} = \mathbf{0}$이어야 한다.
 
 $$\begin{pmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n = \mathbf{0}$$
 
@@ -865,9 +874,9 @@ $A \in \mathbb{R}^{m \times n}$에 대해: 행벡터는 $\mathbb{R}^n$에, 열�
 
 ### 5.4 벡터 공간의 기저
 
-**정의.** 벡터 공간의 **기저 (Basis)**는 두 가지 성질을 가진 벡터 수열이다:
-> i) 기저 벡터들이 **선형 독립**이다.
-> ii) 그들이 공간을 **생성**한다.
+**정의.** 벡터 공간의 **기저 (Basis)** 는 두 가지 성질을 가진 벡터 수열이다:
+> i) 기저 벡터들이 **선형 독립** 이다.
+> ii) 그들이 공간을 **생성** 한다.
 
 **예:** $\begin{pmatrix} x \\ y \end{pmatrix} = x\begin{pmatrix} 1 \\ 0 \end{pmatrix} + y\begin{pmatrix} 0 \\ 1 \end{pmatrix}$이고, $\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, $\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$.
 
@@ -921,12 +930,12 @@ $$B = \begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 2 \\ 1 & 1 & 2 \end{pmatrix} \xrighta
 
 $C(A) \neq \mathbb{R}^3$. $\text{rank}(A) = 2 < 3$.
 
-열들이 종속이면, **피벗 열 (Pivot Column)**만 취한다.
+열들이 종속이면, **피벗 열 (Pivot Column)** 만 취한다.
 
 예: $B$의 1번째, 2번째 열.
 
-- 모든 독립 벡터 집합은 기저로 **확장**할 수 있다. (예: $B$의 1, 2번째 열이 $\mathbb{R}^3$에서 평면을 생성.)
-- 모든 생성 벡터 집합은 기저로 **축소**할 수 있다.
+- 모든 독립 벡터 집합은 기저로 **확장** 할 수 있다. (예: $B$의 1, 2번째 열이 $\mathbb{R}^3$에서 평면을 생성.)
+- 모든 생성 벡터 집합은 기저로 **축소** 할 수 있다.
 
 ---
 
@@ -977,7 +986,7 @@ $\mathbf{x}$가 0이 아닌 벡터이므로, $\mathbf{w}_1, \mathbf{w}_2, \ldots
 
 ---
 
-**정의.** 공간의 **차원 (Dimension)**은 모든 기저에 있는 벡터의 수이다.
+**정의.** 공간의 **차원 (Dimension)** 은 모든 기저에 있는 벡터의 수이다.
 
 **예:** $\mathbf{u} = \begin{pmatrix} 1 \\ 5 \\ 2 \end{pmatrix}$를 지나는 직선은 1차원이다.
 
@@ -1054,7 +1063,7 @@ $$\frac{d^2y}{dx^2} = 0, \quad \frac{d^2y}{dx^2} = -y, \quad \frac{d^2y}{dx^2} =
 | $y'' = -y$ | $y = c\sin x + d\cos x$ | $\{\sin x, \cos x\}$ | 2 |
 | $y'' = y$ | $y = ce^x + de^{-x}$ | $\{e^x, e^{-x}\}$ | 2 |
 
-기저 벡터들은 2계 도함수의 **영공간 (Nullspace)**에 속한다.
+기저 벡터들은 2계 도함수의 **영공간 (Nullspace)** 에 속한다.
 
 $y'' = 2$는 특수해 $y_p = x^2$을 가진다: $\frac{dy_p}{dx} = 2x$, $\frac{d^2 y_p}{dx^2} = 2$.
 
@@ -1078,8 +1087,8 @@ $$y(x) = y_p(x) + y_n(x) = x^2 + cx + d$$
 ### 6.2 부분공간의 직교성
 
 "**계수 (Rank)**"와 "**차원 (Dimension)**"을 연결하려 한다:
-- **계수**는 독립 열의 수를 센다.
-- **차원**은 기저에 있는 벡터의 수이다.
+- **계수** 는 독립 열의 수를 센다.
+- **차원** 은 기저에 있는 벡터의 수이다.
 
 $A \in \mathbb{R}^{m \times n}$의 계수는 네 가지 기본 부분공간 모두의 차원을 알려준다:
 
@@ -1191,11 +1200,11 @@ $C(R_0)$의 기저: $\left\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pm
 
 **핵심 관계:**
 
-1. $A$는 $R_0$, $R$과 **같은 행공간**을 가진다: $C(A^T) = C(R_0^T) = C(R^T)$, 차원 $r$.
+1. $A$는 $R_0$, $R$과 **같은 행공간** 을 가진다: $C(A^T) = C(R_0^T) = C(R^T)$, 차원 $r$.
 
 2. $A$의 열공간은 차원 $r$을 가진다: $\dim C(A) = \dim C(A^T)$. $C(A) \neq C(R_0)$이지만, $\dim C(A) = \dim C(R_0) = r$.
 
-3. $A$는 $R_0$와 **같은 영공간**을 가진다: $A\mathbf{x} = \mathbf{0} \iff R_0 \mathbf{x} = \mathbf{0}$. **소거는 해를 바꾸지 않는다.** 특수해가 기저를 형성한다. $n - r$개의 자유 변수 $\implies$ $\dim N(A) = n - r$.
+3. $A$는 $R_0$와 **같은 영공간** 을 가진다: $A\mathbf{x} = \mathbf{0} \iff R_0 \mathbf{x} = \mathbf{0}$. **소거는 해를 바꾸지 않는다.** 특수해가 기저를 형성한다. $n - r$개의 자유 변수 $\implies$ $\dim N(A) = n - r$.
 
 $$\dim C(A) + \dim N(A) = r + (n - r) = n$$
 

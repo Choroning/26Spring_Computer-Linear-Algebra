@@ -1,6 +1,15 @@
 # Chapter 1 Lecture — Vectors and Matrices
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 1
+
+> **Prerequisites**: [Linear Algebra] Basic high school algebra (equations, graphs).
+>
+> **Learning Objectives**:
+> 1. Define vectors and perform linear combinations
+> 2. Compute dot products and understand geometric meaning of orthogonality
+> 3. Perform basic matrix-vector multiplication
 
 ---
 

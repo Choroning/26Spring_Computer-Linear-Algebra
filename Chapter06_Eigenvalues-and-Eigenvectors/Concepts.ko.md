@@ -1,6 +1,24 @@
 # 제6장 강의 — 고유값과 고유벡터
 
-> **Last Updated:** 2026-03-31
+> **최종 수정일:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 6
+
+> **선수 지식**: [선형대수학] 행렬식, 행렬 연산 (제1-5장).
+>
+> **학습 목표**:
+> 1. 고유값과 고유벡터를 정의하고 계산할 수 있다
+> 2. 고유분해를 사용하여 행렬을 대각화할 수 있다
+> 3. 고유값을 이용하여 안정성과 동적 특성을 분석할 수 있다
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 6
+
+> **선수 지식**: [선형대수학] 행렬식, 행렬 연산 (제1-5장).
+>
+> **학습 목표**:
+> 1. 고유값과 고유벡터를 정의하고 계산할 수 있다
+> 2. 고유분해를 사용하여 행렬을 대각화할 수 있다
+> 3. 고유값을 이용하여 안정성과 동적 특성을 분석할 수 있다
 
 ---
 
@@ -64,7 +82,7 @@ $A$가 $\mathbf{x}$에 작용할 때, 방향을 바꾸지 않고 벡터 $\mathbf
 
 $$A\mathbf{x} = \lambda \mathbf{x}$$
 
-- $\mathbf{x}$는 **영이 아닌 벡터**이며, **고유벡터**(eigenvector)라 한다.
+- $\mathbf{x}$는 **영이 아닌 벡터** 이며, **고유벡터**(eigenvector)라 한다.
 - $\lambda$는 $\mathbf{x}$에 대응하는 **고유값**(eigenvalue)이다.
 
 **공식 표현:**
@@ -99,9 +117,9 @@ $$\boxed{A^k \mathbf{x} = \lambda^k \mathbf{x}}$$
 
 **$A^k$의 거동:**
 
-- $i = 1, 2, \ldots, n$에 대해 $|\lambda_i| < 1$이면, $A^k$는 결국 **영**에 수렴한다.
-- 어떤 $|\lambda_i| > 1$이면, $A^k$는 결국 **증가**한다.
-- $\lambda = 1$이면, 시스템 상태는 시간에 따라 증가하거나 감쇠하지 않고 **일정**하게 유지된다.
+- $i = 1, 2, \ldots, n$에 대해 $|\lambda_i| < 1$이면, $A^k$는 결국 **영** 에 수렴한다.
+- 어떤 $|\lambda_i| > 1$이면, $A^k$는 결국 **증가** 한다.
+- $\lambda = 1$이면, 시스템 상태는 시간에 따라 증가하거나 감쇠하지 않고 **일정** 하게 유지된다.
 
 $A\mathbf{x} = \mathbf{x}$이면, $\mathbf{x}$는 시스템의 **고정점**(fixed point) 또는 **평형점**(equilibrium point)이다. 즉, 시스템이 $\mathbf{x}$ 방향에서 정상 상태를 유지한다. 시스템은 **정상 상태**(steady state)에 도달한다: $A^k \mathbf{x} = \mathbf{x}$.
 
@@ -113,27 +131,27 @@ $$\det(A - \lambda I) = 0$$
 
 **행렬의 성질은 고유값에 큰 영향을 미친다:**
 
-**(1)** 행렬 $A$의 **대각합**(trace)은 고유값의 **합**과 같다.
+**(1)** 행렬 $A$의 **대각합**(trace)은 고유값의 **합** 과 같다.
 
 예: $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$, $\text{trace}(A) = 1 + 4 = 5$
 
 $\det(A - \lambda I) = 0 \implies \lambda_1 = 0, \lambda_2 = 5$이고, $\lambda_1 + \lambda_2 = 5$.
 
-**(2)** $A$의 **행렬식**(determinant)은 고유값의 **곱**과 같다.
+**(2)** $A$의 **행렬식**(determinant)은 고유값의 **곱** 과 같다.
 
 예: $\det(A) = 1 \cdot 4 - 2 \cdot 2 = 0$이고, $\lambda_1 \cdot \lambda_2 = 0 \cdot 5 = 0$.
 
-**(3)** **대칭 행렬** (즉, $A = A^T$)은 **실수 고유값**만 갖는다.
+**(3)** **대칭 행렬** (즉, $A = A^T$)은 **실수 고유값** 만 갖는다.
 
 예: $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $\det(A - \lambda I) = \begin{vmatrix} -\lambda & 1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 - 1 = 0$이므로, $\lambda = \pm 1$.
 
-**(4)** **대칭 양정치**(SPD) 행렬은 **실수이고 양수인** 고유값을 갖는다. SPD 행렬은 이차 형식(quadratic form) $f(\mathbf{x}) = \frac{1}{2}\mathbf{x}^T A\mathbf{x}$가 **유일한 최솟값**을 가짐을 보장하므로, 최적화(optimization)에서 매우 중요하다. (6.3절 참고)
+**(4)** **대칭 양정치**(SPD) 행렬은 **실수이고 양수인** 고유값을 갖는다. SPD 행렬은 이차 형식(quadratic form) $f(\mathbf{x}) = \frac{1}{2}\mathbf{x}^T A\mathbf{x}$가 **유일한 최솟값** 을 가짐을 보장하므로, 최적화(optimization)에서 매우 중요하다. (6.3절 참고)
 
-**(5)** **대각 행렬**(diagonal matrix)의 경우, 고유값은 **대각 원소**이다.
+**(5)** **대각 행렬**(diagonal matrix)의 경우, 고유값은 **대각 원소** 이다.
 
 예: $A = \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}$, $\det(A - \lambda I) = \begin{vmatrix} a - \lambda & 0 \\ 0 & b - \lambda \end{vmatrix} = (a - \lambda)(b - \lambda) = 0$이므로, $\lambda_1 = a, \lambda_2 = b$.
 
-**삼각 행렬**(triangular matrix)의 경우에도 고유값은 **대각 원소**이다.
+**삼각 행렬**(triangular matrix)의 경우에도 고유값은 **대각 원소** 이다.
 
 예: $A = \begin{pmatrix} a & b \\ 0 & c \end{pmatrix}$, $\det(A - \lambda I) = \begin{vmatrix} a - \lambda & b \\ 0 & c - \lambda \end{vmatrix} = (a - \lambda)(c - \lambda) = 0$이므로, $\lambda_1 = a, \lambda_2 = c$.
 
@@ -196,7 +214,7 @@ $$= \underbrace{a'd - b'c} + \underbrace{ad' - bc'}$$
 
 $$\begin{vmatrix} a & b \\ c & d \end{vmatrix}' = \begin{vmatrix} a' & b' \\ c & d \end{vmatrix} + \begin{vmatrix} a & b \\ c' & d' \end{vmatrix}$$
 
-행렬식을 미분할 때, 나머지 행은 그대로 두고 **한 행(또는 열)만 미분**한다.
+행렬식을 미분할 때, 나머지 행은 그대로 두고 **한 행(또는 열)만 미분** 한다.
 
 $n \times n$ 행렬의 경우: 행을 $\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_n$으로 쓰면:
 
@@ -219,7 +237,7 @@ $A = \begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix}$에 대해:
 - $\lambda_1 \lambda_2 = 7 \cdot 0 = 0 = \det(A) = 6 - 6 = 0$
 - $\lambda_1 + \lambda_2 = 7 + 0 = 7 = \text{trace}(A) = 1 + 6 = 7$
 
-$n$개 고유값의 곱 $\lambda_1 \lambda_2 \cdots \lambda_n$은 $A$의 **행렬식**과 같다.
+$n$개 고유값의 곱 $\lambda_1 \lambda_2 \cdots \lambda_n$은 $A$의 **행렬식** 과 같다.
 
 합 $\lambda_1 + \lambda_2 + \cdots + \lambda_n$은 $n$개 대각 원소의 합 = $A$의 **대각합**(trace)과 같다.
 
@@ -233,7 +251,7 @@ $$\det(A - \lambda I) = \begin{vmatrix} 0.8 - \lambda & 0.3 \\ 0.2 & 0.7 - \lamb
 
 $$\therefore \lambda_1 = 1, \quad \lambda_2 = \frac{1}{2}$$
 
-이는 $A - \lambda_1 I = A - I$와 $A - \lambda_2 I = A - \frac{1}{2}I$가 **역행렬이 존재하지 않음**을 의미한다.
+이는 $A - \lambda_1 I = A - I$와 $A - \lambda_2 I = A - \frac{1}{2}I$가 **역행렬이 존재하지 않음** 을 의미한다.
 
 고유벡터 $\mathbf{x}_1$, $\mathbf{x}_2$는 $(A - I)\mathbf{x}_1 = \mathbf{0}$과 $(A - \frac{1}{2}I)\mathbf{x}_2 = \mathbf{0}$을 만족한다.
 
@@ -279,7 +297,7 @@ $$A^{100}\begin{pmatrix} 1 \\ 0 \end{pmatrix} \approx \begin{pmatrix} 0.6 \\ 0.4
 
 $$A^{100}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \approx \begin{pmatrix} 0.6 & 0.6 \\ 0.4 & 0.4 \end{pmatrix} = (\mathbf{x}_1 \; \mathbf{x}_1)$$
 
-$A$의 거듭제곱이 높을수록, 열들이 **정상 상태**에 더 가까워진다.
+$A$의 거듭제곱이 높을수록, 열들이 **정상 상태** 에 더 가까워진다.
 
 **예제 2:** 사영 행렬(projection matrix)
 
@@ -307,7 +325,7 @@ iv) $\mathbf{w} = \begin{pmatrix} 1 \\ -1 \end{pmatrix} + \begin{pmatrix} 2 \\ 2
 
 $P\mathbf{w} = P\begin{pmatrix} 1 \\ -1 \end{pmatrix} + P\begin{pmatrix} 2 \\ 2 \end{pmatrix} = \mathbf{0} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \end{pmatrix}$
 
-사영 행렬의 고유값은 오직 **0과 1**뿐이다.
+사영 행렬의 고유값은 오직 **0과 1** 뿐이다.
 
 **예제 3:** 교환 행렬(exchange matrix)
 
@@ -365,7 +383,7 @@ $$\begin{pmatrix} a & b \\ ka & kb \end{pmatrix}\begin{pmatrix} b \\ -a \end{pma
 
 **비고 3:** 이 예제는 두 개의 서로 다른 고유값을 가지며, $\mathbb{R}^2$를 생성한다. $2 \times 2$ 행렬이 하나의 고유값만 가지면 $\mathbb{R}^2$를 생성할 수 없다.
 
-예: $A = \begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}$, $\det(A - \lambda I) = (3 - \lambda)^2 = 0$이므로, $\lambda = 3$. 기하적 중복도(geometric multiplicity) = 1, 대수적 중복도(algebraic multiplicity) = 2. 행렬 $A$는 **결함**(defective)이 있으며 **대각화 불가능**하다.
+예: $A = \begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}$, $\det(A - \lambda I) = (3 - \lambda)^2 = 0$이므로, $\lambda = 3$. 기하적 중복도(geometric multiplicity) = 1, 대수적 중복도(algebraic multiplicity) = 2. 행렬 $A$는 **결함**(defective)이 있으며 **대각화 불가능** 하다.
 
 ### 1.7 허수 고유값
 
@@ -422,7 +440,7 @@ $A\mathbf{x} = \lambda\mathbf{x}$, $B\mathbf{x} = \beta\mathbf{x}$를 고려하�
 
 $$AB\mathbf{x} = A(\beta\mathbf{x}) = \beta A\mathbf{x} = \beta\lambda\mathbf{x}$$
 
-**이것은 일반적으로 참이 아니다.** 왜? 일반적으로, $\mathbf{x}$는 $A$와 $B$ **모두**의 고유벡터가 아니기 때문이다.
+**이것은 일반적으로 참이 아니다.** 왜? 일반적으로, $\mathbf{x}$는 $A$와 $B$ **모두** 의 고유벡터가 아니기 때문이다.
 
 마찬가지로, $(A + B)\mathbf{x} \neq (\lambda + \beta)\mathbf{x}$.
 
@@ -456,9 +474,9 @@ $$\boxed{A^k = X\Lambda^k X^{-1}}$$
 
 ### 2.2 대각화 절차
 
-$\mathbf{x}$가 고유벡터이면, $A\mathbf{x} = \lambda\mathbf{x}$이다. $A$를 $\mathbf{x}$에 적용하는 것은 단지 $\lambda$를 곱하는 것이다 — **매우 효율적**이다.
+$\mathbf{x}$가 고유벡터이면, $A\mathbf{x} = \lambda\mathbf{x}$이다. $A$를 $\mathbf{x}$에 적용하는 것은 단지 $\lambda$를 곱하는 것이다 — **매우 효율적** 이다.
 
-$A$가 대각화 가능하면, $A^{100}\mathbf{x} = X\Lambda^{100}X^{-1}\mathbf{x}$—역시 **매우 효율적**이다.
+$A$가 대각화 가능하면, $A^{100}\mathbf{x} = X\Lambda^{100}X^{-1}\mathbf{x}$—역시 **매우 효율적** 이다.
 
 **대각화:** $A_{n \times n}$이 일차독립 고유벡터 $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n$을 갖는다고 하자.
 
@@ -528,7 +546,7 @@ $\therefore \lambda_1 = \lambda_2 = 0$ ($\lambda$의 중복).
 
 $(A - 0I)\mathbf{x} = A\mathbf{x} = \mathbf{0}$: $\begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$, $x_1 = x_2$, $x_1 = 1$: $\mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$
 
-고유벡터가 **하나**뿐이다. $A$는 **대각화할 수 없다**.
+고유벡터가 **하나** 뿐이다. $A$는 **대각화할 수 없다**.
 
 **비고:** 가역성(invertibility)은 **영이 아닌** 고유값과 관련된다. $\lambda_i = 0$이면, $\det(A) = \lambda_1\lambda_2\cdots\lambda_n = 0$이므로 $A$는 **특이**(singular)하다.
 
@@ -562,7 +580,7 @@ $$c_1 = c_2 = \cdots = c_p = 0$$
 
 이는 $\mathbf{x}_{p+1} = \mathbf{0}$임을 의미한다. 이는 가정에 모순이다.
 
-따라서 $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n$은 **일차독립**이다. $\square$
+따라서 $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n$은 **일차독립** 이다. $\square$
 
 ### 2.6 A의 거듭제곱 (마르코프 행렬 예제)
 
@@ -684,7 +702,7 @@ AM = 2, GM = 1 (고유벡터 1개).
 
 $A\mathbf{x} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$이므로, $x_2 = 0$: $\mathbf{x} = \begin{pmatrix} c \\ 0 \end{pmatrix}$.
 
-**GM < AM**이면, $A$는 **대각화 불가능**하다.
+**GM < AM** 이면, $A$는 **대각화 불가능** 하다.
 
 ---
 
@@ -708,12 +726,12 @@ $$S = Q\Lambda Q^{-1} = Q\Lambda Q^T$$
 
 **대칭 행렬 ($S = S^T$)은 특별하다:**
 
-1. 모든 $n$개의 고유값 $\lambda$는 **실수**이다.
-2. $n$개의 고유벡터 $\mathbf{q}$는 **직교**하도록 선택할 수 있다.
+1. 모든 $n$개의 고유값 $\lambda$는 **실수** 이다.
+2. $n$개의 고유벡터 $\mathbf{q}$는 **직교** 하도록 선택할 수 있다.
 
 예: $I = I^T = \begin{pmatrix} 1 & & \\ & 1 & \\ & & \ddots \end{pmatrix}$, $\lambda = 1, 1, \ldots, 1$. $I\mathbf{x} = 1 \cdot \mathbf{x}$—모든 영이 아닌 벡터 $\mathbf{x}$가 고유벡터이다.
 
-직교하도록 선택할 수 있고, **단위 벡터**로 재조정(rescale)할 수 있다 $\implies$ **정규직교**(orthonormal).
+직교하도록 선택할 수 있고, **단위 벡터** 로 재조정(rescale)할 수 있다 $\implies$ **정규직교**(orthonormal).
 
 ### 3.2 스펙트럼 정리
 
@@ -781,7 +799,7 @@ $$\mathbf{x}^T S\mathbf{x} \leq 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n$$
 
 ### 3.5 양정치 행렬의 성질
 
-**성질 1.** 양정치 행렬 $S$는 **모든 양의 고유값**을 갖는다.
+**성질 1.** 양정치 행렬 $S$는 **모든 양의 고유값** 을 갖는다.
 
 **증명:** $S$는 대칭 $\implies S = Q\Lambda Q^T$, $S\mathbf{x} = Q\Lambda Q^T\mathbf{x}$.
 
@@ -801,7 +819,7 @@ $\mathbf{x} = Q\mathbf{e}_i$로 선택하면 ($\mathbf{e}_i$는 $I$의 $i$번째
 
 예: $A = \begin{pmatrix} 1 & -3 \\ 0 & 1 \end{pmatrix} \to \lambda_1 = \lambda_2 = 1 > 0$이지만, $\mathbf{x}^T A\mathbf{x} = (x_1, x_2)\begin{pmatrix} x_1 - 3x_2 \\ x_2 \end{pmatrix} = x_1^2 - 3x_1 x_2 + x_2^2 < 0$ ($x_1 = x_2 = 1$일 때).
 
-(동치 관계가 성립하려면 행렬이 **대칭**이어야 한다.)
+(동치 관계가 성립하려면 행렬이 **대칭** 이어야 한다.)
 
 **양의 에너지는 양의 고유값 ($\lambda > 0$)과 밀접한 관련이 있다:**
 
@@ -821,7 +839,7 @@ $$= c_1^2\lambda_1\mathbf{q}_1^T\mathbf{q}_1 + c_2^2\lambda_2\mathbf{q}_2^T\math
 
 $\lambda_1, \lambda_2, \ldots, \lambda_n > 0$이면 성립. $\square$
 
-**성질 2.** $S$가 양정치이면, **가역**이고, $\det(S) > 0$이며, $S^{-1}$도 양정치이다.
+**성질 2.** $S$가 양정치이면, **가역** 이고, $\det(S) > 0$이며, $S^{-1}$도 양정치이다.
 
 **증명:**
 
@@ -833,13 +851,13 @@ $\implies \mathcal{N}(S) = \{\mathbf{0}\}$
 
 $\implies S$는 full rank $\iff \dim C(S) = n$
 
-$\therefore S$는 **가역**이다.
+$\therefore S$는 **가역** 이다.
 
 ii) $S$가 양정치이므로, $S$는 모든 양의 고유값을 갖는다.
 
 따라서 $0 < \lambda_1\lambda_2\cdots\lambda_n = \det(S)$.
 
-iii) $(S^{-1})^T = (S^T)^{-1} = S^{-1}$이므로, $S^{-1}$은 **대칭**이다.
+iii) $(S^{-1})^T = (S^T)^{-1} = S^{-1}$이므로, $S^{-1}$은 **대칭** 이다.
 
 $\mathbf{x}^T S^{-1}\mathbf{x} = \mathbf{x}^T S^{-1}SS^{-1}\mathbf{x} = (S^{-T}\mathbf{x})^T S(S^{-1}\mathbf{x}) = (S^{-1}\mathbf{x})^T S(S^{-1}\mathbf{x})$
 
@@ -885,7 +903,7 @@ $$\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\ma
 
 참고: $\mathbf{a}_3 = \mathbf{a}_1 + \mathbf{a}_2$이므로, $\text{rank}(A) = 2 < 3$, $\dim C(A^T) = 2$, $\dim \mathcal{N}(A) = 1$.
 
-$\dim \mathcal{N}(A) \neq 0$이므로, $\mathbf{x}^T S\mathbf{x} = \|A\mathbf{x}\|^2 \geq 0$. $S$는 양정치가 아니다. $S$는 **양반정치**이다.
+$\dim \mathcal{N}(A) \neq 0$이므로, $\mathbf{x}^T S\mathbf{x} = \|A\mathbf{x}\|^2 \geq 0$. $S$는 양정치가 아니다. $S$는 **양반정치** 이다.
 
 **(4) 행렬식 판정법:** $\det(S) > 0$인지 확인 — 더 정확하게는, 모든 **왼쪽 상단 행렬식**(leading determinant)을 확인한다.
 
@@ -901,7 +919,7 @@ $D_4 = |S| = 2D_3 + \begin{vmatrix} 2 & -1 & 0 \\ -1 & 2 & 0 \\ 0 & -1 & -1 \end
 
 모든 왼쪽 상단 행렬식이 양수이므로, $S$는 양정치이다.
 
-**(5) 피벗 판정법:** **피벗**이 양수인지 확인한다.
+**(5) 피벗 판정법:** **피벗** 이 양수인지 확인한다.
 
 $S = \begin{pmatrix} 2 & -1 \\ -1 & 2 & -1 \\ & -1 & 2 \end{pmatrix}$의 경우:
 
@@ -1016,7 +1034,7 @@ $E(x,y) = 1$은 띠(band)이다: $3x + y = \pm 1$. 에너지 $E(x,y)$의 그래�
 
 (그릇 모양, **볼록**(convex))
 
-$E(x,y) = 0$일 때 $x = y = 0$이다. 이는 **최솟값 문제**와 연결된다.
+$E(x,y) = 0$일 때 $x = y = 0$이다. 이는 **최솟값 문제** 와 연결된다.
 
 이계 도함수의 행렬은 모든 점에서 양정치이다.
 
@@ -1100,7 +1118,7 @@ $$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T
 
 여기서 $\mathbf{y} = A\mathbf{x}$. $\square$
 
-$\mathbf{x}^T S\mathbf{x} > 0$이고, 모든 $\mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$에 대해 $A\mathbf{x} \neq \mathbf{0}$이면, $A^T SA$는 **양정치**이다.
+$\mathbf{x}^T S\mathbf{x} > 0$이고, 모든 $\mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$에 대해 $A\mathbf{x} \neq \mathbf{0}$이면, $A^T SA$는 **양정치** 이다.
 
 $$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T S\mathbf{y} > 0 \quad \forall \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\} \quad \square$$
 
@@ -1122,7 +1140,7 @@ $(\lambda + \bar{\lambda})\bar{\mathbf{x}}^T\mathbf{x} = 0$
 
 $\therefore \lambda + \bar{\lambda} = (r + is) + (r - is) = 2r = 0$
 
-$\lambda$의 실수 부분은 **영**이다. 반대칭 행렬은 영 또는 **순허수** 고유값을 갖는다.
+$\lambda$의 실수 부분은 **영** 이다. 반대칭 행렬은 영 또는 **순허수** 고유값을 갖는다.
 
 ### 3.12 최적화와 머신 러닝
 
@@ -1158,7 +1176,7 @@ $$\mathbf{u}(t) = e^{At}\mathbf{u}(0) = Xe^{\Lambda t}X^{-1}\mathbf{u}(0) = c_1 
 
 **(3)** 행렬 지수 함수: $e^{At} = I + At + \cdots + \frac{(At)^n}{n!} + \cdots = Xe^{\Lambda t}X^{-1}$ ($A = X\Lambda X^{-1}$인 경우).
 
-**(4)** $A$의 모든 고유값의 **실수 부분이 $< 0$**이면, $A$는 **안정**(stable)이고 $\mathbf{u}(t) \to \mathbf{0}$이며 $e^{At} \to 0$.
+**(4)** $A$의 모든 고유값의 **실수 부분이 $< 0$** 이면, $A$는 **안정**(stable)이고 $\mathbf{u}(t) \to \mathbf{0}$이며 $e^{At} \to 0$.
 
 **(5)** $\frac{d^2\mathbf{u}}{dt^2} + B\frac{d\mathbf{u}}{dt} + C\mathbf{u} = 0$은 $\frac{d}{dt}\begin{pmatrix} \mathbf{u} \\ \mathbf{v} \end{pmatrix} = \begin{pmatrix} 0 & I \\ -C & -B \end{pmatrix}\begin{pmatrix} \mathbf{u} \\ \mathbf{v} \end{pmatrix}$를 의미한다 ($\mathbf{v} = \frac{d\mathbf{u}}{dt}$).
 
@@ -1188,7 +1206,7 @@ $e^{\lambda t} = e^{-t + 2it} = e^{-t}e^{2it}$
 
 $|e^{\lambda t}| = |e^{-t}||e^{2it}| = e^{-t} \cdot \underbrace{1}_{|e^{i\theta}| = 1}$
 
-**관찰:** 안정성은 $\lambda$의 **실수 부분**에 의존한다.
+**관찰:** 안정성은 $\lambda$의 **실수 부분** 에 의존한다.
 
 - $\text{Re}(\lambda) > 0$: 불안정
 - $\text{Re}(\lambda) = 0$: 정상 (진동)
@@ -1316,7 +1334,7 @@ $$= X\left(I + t\Lambda + \frac{t^2}{2}\Lambda^2 + \frac{t^3}{6}\Lambda^3 + \cdo
 
 $$\therefore e^{At} = Xe^{\Lambda t}X^{-1}$$
 
-**관찰:** $A = X\Lambda X^{-1}$이고 $e^{At} = Xe^{\Lambda t}X^{-1}$ $\implies$ $e^{At}$와 $A$는 **동일한 고유벡터**를 공유한다.
+**관찰:** $A = X\Lambda X^{-1}$이고 $e^{At} = Xe^{\Lambda t}X^{-1}$ $\implies$ $e^{At}$와 $A$는 **동일한 고유벡터** 를 공유한다.
 
 **해:**
 
@@ -1346,7 +1364,7 @@ $e^{A(s+t)} = e^{As} \cdot e^{At}$에서, $s = -t$로 놓으면:
 
 $$e^{A(-t+t)} = e^0 = I = e^{-At} \cdot e^{At}$$
 
-이는 $e^{-At}$가 $e^{At}$의 **역행렬**임을 의미한다.
+이는 $e^{-At}$가 $e^{At}$의 **역행렬** 임을 의미한다.
 
 **예제 4:** $A = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$, $e^{At} = ?$
 
@@ -1456,7 +1474,7 @@ $e^{\lambda t} = e^{rt}e^{ist}$
 
 $|e^{\lambda t}| = |e^{rt}|$
 
-$\lambda$의 **실수 부분**이 증가 ($r > 0$) 또는 감쇠 ($r < 0$)를 제어한다.
+$\lambda$의 **실수 부분** 이 증가 ($r > 0$) 또는 감쇠 ($r < 0$)를 제어한다.
 
 임의의 $2 \times 2$ 행렬 $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$에 대해:
 
@@ -1514,7 +1532,7 @@ $|A - \lambda I| = \begin{vmatrix} 2 - \lambda & -1 \\ 1 & -\lambda \end{vmatrix
 
 $(A - I)\mathbf{x}_1 = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$
 
-고유벡터의 수가 2보다 적으므로, 대각화는 **불가능**하다.
+고유벡터의 수가 2보다 적으므로, 대각화는 **불가능** 하다.
 
 따라서, 급수의 정의로부터 $e^{At}$를 계산한다:
 

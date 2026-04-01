@@ -1,6 +1,16 @@
 # 제4장 강의 — 직교성
 
 > **최종 수정일:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 4
+
+> **선수 지식**: [선형대수학] 벡터 공간, 기저, 차원 (제1-3장).
+>
+> **학습 목표**:
+> 1. 벡터와 부분공간의 직교성을 정의할 수 있다
+> 2. 직선과 부분공간으로의 사영을 계산할 수 있다
+> 3. 그람-슈미트 과정을 적용하여 직교 기저를 구성할 수 있다
+> 4. 사영을 이용하여 최소자승 문제를 풀 수 있다
 
 ---
 
@@ -97,7 +107,7 @@ $$\min \|A\hat{\mathbf{x}} - \mathbf{b}\|^2$$
 
 ### 1.4 직교 부분공간 (Orthogonal Subspaces)
 
-**정의:** 부분공간 $V$와 $W$가 다음을 만족할 때 **직교**한다:
+**정의:** 부분공간 $V$와 $W$가 다음을 만족할 때 **직교** 한다:
 
 $$\mathbf{v}^T \mathbf{w} = 0 \quad \forall \, \mathbf{v} \in V, \, \mathbf{w} \in W$$
 
@@ -213,7 +223,7 @@ $$= \|\mathbf{x}_r\|^2 + \|\mathbf{x}_n\|^2$$
 
 ($\mathbf{x}_r \perp \mathbf{x}_n$이므로 교차항이 0이다.)
 
-따라서 $A\mathbf{x} = \mathbf{b}$의 **최소 노름 해**는 $\mathbf{x} = \mathbf{x}_r$이고 $\mathbf{x}_n = \mathbf{0}$이다.
+따라서 $A\mathbf{x} = \mathbf{b}$의 **최소 노름 해** 는 $\mathbf{x} = \mathbf{x}_r$이고 $\mathbf{x}_n = \mathbf{0}$이다.
 
 **유일성:** 모든 벡터 $\mathbf{b} \in C(A)$는 행 공간의 정확히 **하나의** 벡터 $\mathbf{x}_r$에서 온다.
 
@@ -612,7 +622,7 @@ $A\mathbf{x} = \mathbf{b}$에 해가 없는 경우가 자주 발생한다. 행�
 
 $\mathbf{b}$는 $C(A)$ 밖에 있을 수 있다. 이 경우에도 $A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}$를 풀어 $A\mathbf{x} = \mathbf{b}$의 근사를 찾을 수 있다.
 
-$\hat{\boldsymbol{\alpha}}$는 다음을 최소화하므로 **최소제곱 해**이다:
+$\hat{\boldsymbol{\alpha}}$는 다음을 최소화하므로 **최소제곱 해** 이다:
 
 $$E = \|A\hat{\boldsymbol{\alpha}} - \mathbf{b}\|^2$$
 
@@ -747,7 +757,7 @@ $$A\mathbf{x} = \mathbf{b}: \quad \begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{p
 
 $$\mathbf{p} = \begin{pmatrix} 2 \\ 2 \\ 2 \end{pmatrix} \in C(A)$$
 
-$A\hat{\boldsymbol{\alpha}} = \mathbf{p}$는 **많은 해**를 갖는다: $\begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \\ 2 \end{pmatrix}$.
+$A\hat{\boldsymbol{\alpha}} = \mathbf{p}$는 **많은 해** 를 갖는다: $\begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \\ 2 \end{pmatrix}$.
 
 문제는 $A$가 종속 열을 가지고 $\mathcal{N}(A) \ni \begin{pmatrix} 1 \\ -1 \end{pmatrix}$이라는 것이다.
 
@@ -821,13 +831,13 @@ $$\mathbf{a}_1^T\mathbf{a}_2 = 0, \quad \ldots, \quad \mathbf{a}_1^T\mathbf{a}_n
 
 $$A^T A = \begin{pmatrix} \mathbf{a}_1^T\mathbf{a}_1 & 0 & \cdots & 0 \\ 0 & \mathbf{a}_2^T\mathbf{a}_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \mathbf{a}_n^T\mathbf{a}_n \end{pmatrix}$$
 
-이는 **대각 행렬**이다.
+이는 **대각 행렬** 이다.
 
 **ii)** 그람-슈미트 과정을 통해 직교 벡터 $\mathbf{q}_i$를 구성한다.
 
 ### 4.3 정규직교 벡터와 행렬 (Orthonormal Vectors and Matrices)
 
-**정의:** $n$개의 벡터가 **정규직교**일 조건:
+**정의:** $n$개의 벡터가 **정규직교** 일 조건:
 
 $$\mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & i \neq j\text{일 때} \\ 1 & i = j\text{일 때} \end{cases}$$
 
@@ -887,7 +897,7 @@ $$= I - 4\mathbf{n}\mathbf{n}^T + 4(\mathbf{n}\mathbf{n}^T)(\mathbf{n}\mathbf{n}
 
 ($\mathbf{n}^T\mathbf{n} = \|\mathbf{n}\|^2 = 1$이므로.)
 
-**핵심 성질:** 회전, 순열, 반사 행렬은 모든 벡터의 **길이와 각도를 보존**한다:
+**핵심 성질:** 회전, 순열, 반사 행렬은 모든 벡터의 **길이와 각도를 보존** 한다:
 
 $$\|Q\mathbf{x}\|^2 = (Q\mathbf{x})^T(Q\mathbf{x}) = \mathbf{x}^T Q^T Q\mathbf{x} = \mathbf{x}^T I\mathbf{x} = \|\mathbf{x}\|^2$$
 
@@ -1003,7 +1013,7 @@ $$A = QR$$
 
 $Q^T A = Q^T Q R = IR = R$.
 
-LI인 $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$으로부터 그람-슈미트가 정규직교 벡터 $\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n$을 만든다. 이들로 구성된 행렬은 $A = QR$을 만족한다. $R = Q^T A$는 나중의 $\mathbf{q}$들이 이전의 $\mathbf{a}$들에 직교하므로 **상삼각 행렬**이다.
+LI인 $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$으로부터 그람-슈미트가 정규직교 벡터 $\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n$을 만든다. 이들로 구성된 행렬은 $A = QR$을 만족한다. $R = Q^T A$는 나중의 $\mathbf{q}$들이 이전의 $\mathbf{a}$들에 직교하므로 **상삼각 행렬** 이다.
 
 **예제로부터:**
 
@@ -1013,7 +1023,7 @@ $$= \frac{1}{\sqrt{6}}\begin{pmatrix} \sqrt{3} & 1 & \sqrt{2} \\ -\sqrt{3} & 1 &
 
 $$Q \qquad \qquad R$$
 
-$\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$의 **길이**는 $R$의 대각선이며, 양수이다.
+$\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$의 **길이** 는 $R$의 대각선이며, 양수이다.
 
 독립 열을 가진 임의의 $m \times n$ 행렬 $A$는 $A = QR$로 분해할 수 있다. $Q \in \mathbb{R}^{m \times n}$은 직교 열을 갖고, $R \in \mathbb{R}^{n \times n}$은 양의 대각선을 가진 상삼각 행렬이다.
 

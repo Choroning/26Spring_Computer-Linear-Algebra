@@ -1,6 +1,15 @@
 # Chapter 5 Lecture — Determinants
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 5
+
+> **Prerequisites**: [Linear Algebra] Matrix operations, vector spaces (Ch 1-4).
+>
+> **Learning Objectives**:
+> 1. Compute determinants using cofactor expansion and properties
+> 2. Apply the three key properties of determinants
+> 3. Use Cramer's Rule to solve linear systems
 
 ---
 

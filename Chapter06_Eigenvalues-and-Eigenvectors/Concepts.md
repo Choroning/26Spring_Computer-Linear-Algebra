@@ -1,6 +1,15 @@
 # Chapter 6 Lecture — Eigenvalues and Eigenvectors
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 6
+
+> **Prerequisites**: [Linear Algebra] Determinants, matrix operations (Ch 1-5).
+>
+> **Learning Objectives**:
+> 1. Define eigenvalues and eigenvectors and compute them
+> 2. Diagonalize matrices using eigendecomposition
+> 3. Analyze stability and dynamics using eigenvalues
 
 ---
 

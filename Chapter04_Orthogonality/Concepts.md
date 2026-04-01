@@ -1,6 +1,16 @@
 # Chapter 4 Lecture — Orthogonality
 
 > **Last Updated:** 2026-03-31
+>
+> Strang, Introduction to Linear Algebra 6th Ed. Ch 4
+
+> **Prerequisites**: [Linear Algebra] Vector spaces, basis, and dimension (Ch 1-3).
+>
+> **Learning Objectives**:
+> 1. Define orthogonality of vectors and subspaces
+> 2. Compute projections onto lines and subspaces
+> 3. Apply Gram-Schmidt process to construct orthogonal bases
+> 4. Solve least squares problems using projections
 
 ---
 
