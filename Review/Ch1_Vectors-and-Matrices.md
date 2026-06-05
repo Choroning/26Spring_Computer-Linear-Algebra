@@ -176,7 +176,7 @@ $A \in \mathbb{R}^{m\times n}$, $B \in \mathbb{R}^{n\times p}$일 때:
 | | 내적 (inner) | 외적 (outer) |
 |:---|:---|:---|
 | 기호 | $\mathbf{u}^T\mathbf{v}$ (T가 **안쪽**) | $\mathbf{u}\mathbf{v}^T$ (T가 **바깥쪽**) |
-| 크기 | $(1\times n)(n\times 1) = $ 스칼라 | $(m\times 1)(1\times n) = m\times n$ 행렬 |
+| 크기 | $(1\times n)(n\times 1) =$ 스칼라 | $(m\times 1)(1\times n) = m\times n$ 행렬 |
 | 차원 변화 | 축소 (압축) | 확장 |
 | 결과의 성질 | 수 하나 | **항상 랭크 1 행렬** |
 

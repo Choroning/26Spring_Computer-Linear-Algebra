@@ -71,7 +71,7 @@ $$\|\mathbf{v}\|^2 + \|\mathbf{w}\|^2 = \|\mathbf{v} + \mathbf{w}\|^2$$
 
 $$A\mathbf{x} = \mathbf{0}$$
 
-$$\begin{pmatrix} \text{--- row}_1 \text{ of } A \text{ ---} \\ \text{--- row}_2 \text{ of } A \text{ ---} \\ \vdots \\ \text{--- row}_m \text{ of } A \text{ ---} \end{pmatrix} \begin{pmatrix} \\ \mathbf{x} \\ \phantom{x} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$$
+$$\begin{pmatrix} \text{--- row}_1 \text{ of } A \text{ ---} \\ \text{--- row}_2 \text{ of } A \text{ ---} \\ \vdots \\ \text{--- row}_m \text{ of } A \text{ ---} \end{pmatrix} \begin{pmatrix} \\ \mathbf{x} \\ {} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$$
 
 $\mathbf{x}$ is orthogonal to each row of $A$. Every row has zero dot product with $\mathbf{x}$.
 

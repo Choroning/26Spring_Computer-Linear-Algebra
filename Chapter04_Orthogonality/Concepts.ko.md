@@ -71,7 +71,7 @@ $$\|\mathbf{v}\|^2 + \|\mathbf{w}\|^2 = \|\mathbf{v} + \mathbf{w}\|^2$$
 
 $$A\mathbf{x} = \mathbf{0}$$
 
-$$\begin{pmatrix} \text{--- } A\text{의 행}_1 \text{ ---} \\ \text{--- } A\text{의 행}_2 \text{ ---} \\ \vdots \\ \text{--- } A\text{의 행}_m \text{ ---} \end{pmatrix} \begin{pmatrix} \\ \mathbf{x} \\ \phantom{x} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$$
+$$\begin{pmatrix} \text{--- } A\text{의 행}_1 \text{ ---} \\ \text{--- } A\text{의 행}_2 \text{ ---} \\ \vdots \\ \text{--- } A\text{의 행}_m \text{ ---} \end{pmatrix} \begin{pmatrix} \\ \mathbf{x} \\ {} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$$
 
 $\mathbf{x}$는 $A$의 각 행에 직교한다. 모든 행은 $\mathbf{x}$와의 내적이 0이다.
 
