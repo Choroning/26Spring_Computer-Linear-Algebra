@@ -62,14 +62,14 @@ SVD는 **두 집합의 정규직교 벡터**(orthonormal vectors)를 찾는 것�
 
 **입력 벡터** (정의역 $\mathbb{R}^n$에 대해):
 
-$$\{\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r, \dots, \underset{\sim}{v}_n\}$$
+$$\lbrace\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r, \dots, \underset{\sim}{v}_n\rbrace$$
 
 - $\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r$은 **$C(A^T)$의 기저** (행 공간)를 형성
 - $\underset{\sim}{v}_{r+1}, \dots, \underset{\sim}{v}_n$은 **$N(A)$의 기저** (영공간)를 형성
 
 **출력 벡터** (공역 $\mathbb{R}^m$에 대해):
 
-$$\{\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r, \dots, \underset{\sim}{u}_m\}$$
+$$\lbrace\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r, \dots, \underset{\sim}{u}_m\rbrace$$
 
 - $\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r$은 **$C(A)$의 기저** (열 공간)를 형성
 - $\underset{\sim}{u}_{r+1}, \dots, \underset{\sim}{u}_m$은 **$N(A^T)$의 기저** (좌영공간)를 형성
@@ -607,7 +607,7 @@ $$\underset{\sim}{e} = A\underset{\sim}{\hat{x}} - \underset{\sim}{b}$$
 | 개념 | 핵심 아이디어 |
 |:-----|:------------|
 | SVD 분해 | $A = U\Sigma V^T$, 여기서 $U, V$는 정규직교이고 $\Sigma$는 특이값 $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$을 가진 대각 행렬 |
-| 두 집합의 벡터 | 입력 벡터 $\{\underset{\sim}{v}_i\}$: $C(A^T)$와 $N(A)$의 기저; 출력 벡터 $\{\underset{\sim}{u}_i\}$: $C(A)$와 $N(A^T)$의 기저 |
+| 두 집합의 벡터 | 입력 벡터 $\lbrace\underset{\sim}{v}_i\rbrace$: $C(A^T)$와 $N(A)$의 기저; 출력 벡터 $\lbrace\underset{\sim}{u}_i\rbrace$: $C(A)$와 $N(A^T)$의 기저 |
 | SVD vs 고유값 분해 | 고유값 분해 $S = Q\Lambda Q^T$는 대칭 행렬에 적용; SVD $A = U\Sigma V^T$는 **모든** 행렬에 적용 |
 | 기본 관계식 | $A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i$: 우특이벡터를 스케일된 좌특이벡터로 사상 |
 | SVD의 기하학 | $A = U\Sigma V^T$: $V^T$로 회전, $\Sigma$로 신축, $U$로 회전 — 단위원을 타원으로 변환 |

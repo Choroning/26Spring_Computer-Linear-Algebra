@@ -123,7 +123,7 @@ $$\det\begin{pmatrix} a & b \\ 2a & 2b \end{pmatrix} = 2ab - 2ab = 0$$
 
 $ax + by = e$의 기울기가 $-a/b$이고 $2ax + 2by = f$의 기울기도 $-a/b$ (같은 기울기)이면, 두 직선은 평행하다.
 
-$\det A = 0$은 $A$의 열들이 **선형독립이 아님** (NOT linearly independent)을 의미하며, 즉 $N(A) \neq \{\mathbf{0}\}$이다.
+$\det A = 0$은 $A$의 열들이 **선형독립이 아님** (NOT linearly independent)을 의미하며, 즉 $N(A) \neq \lbrace\mathbf{0}\rbrace$이다.
 
 **특이행렬 예제:**
 

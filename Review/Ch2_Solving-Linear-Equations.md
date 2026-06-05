@@ -206,7 +206,7 @@ $A \cdot A^{-1} = I$ 인지 곱해봐서 확인. 1분이면 됨. 실수 잡는 �
 - $A$ **가역 (invertible)** = 정칙 (nonsingular)
 - $\mathrm{rank}(A) = n$ (full rank)
 - 열이 **선형독립 (linearly independent)** / 행이 LI
-- $N(A) = \{\mathbf{0}\}$ (trivial null space)
+- $N(A) = \lbrace\mathbf{0}\rbrace$ (trivial null space)
 - $A\mathbf{x}=\mathbf{0}$의 유일 해가 $\mathbf{x}=\mathbf{0}$ (unique trivial solution)
 - 모든 $\mathbf{b}$에 대해 $A\mathbf{x}=\mathbf{b}$가 **유일 해 (unique solution)**
 - $A$가 $n$개의 0이 아닌 피벗 (nonzero pivots)을 가짐

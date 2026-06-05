@@ -783,7 +783,7 @@ $\mathbf{u}, \mathbf{v}$를 $\|\mathbf{u}\| = \|\mathbf{v}\| = 1$로 재조정�
 
 $$\mathbf{x}^T S\mathbf{x} > 0 \quad \forall \; \mathbf{x} \neq \mathbf{0}, \; \mathbf{x} \in \mathbb{R}^n$$
 
-(동치: $\forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$)
+(동치: $\forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$)
 
 **정의.** $n \times n$ 대칭 실수 행렬 $S$가 **양반정치**(positive semidefinite, = 비음정치)라 함은
 
@@ -791,7 +791,7 @@ $$\mathbf{x}^T S\mathbf{x} \geq 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n$$
 
 **정의.** $n \times n$ 대칭 실수 행렬 $S$가 **음정치**(negative definite)라 함은
 
-$$\mathbf{x}^T S\mathbf{x} < 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$$
+$$\mathbf{x}^T S\mathbf{x} < 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$$
 
 **정의.** $n \times n$ 대칭 실수 행렬 $S$가 **음반정치**(negative semidefinite)라 함은
 
@@ -809,7 +809,7 @@ $\mathbf{y} = Q^T\mathbf{x}$로 놓으면:
 
 $$= \mathbf{y}^T \Lambda \mathbf{y} = \mathbf{y}^T\begin{pmatrix} \lambda_1 y_1 \\ \lambda_2 y_2 \\ \vdots \\ \lambda_n y_n \end{pmatrix} = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2$$
 
-$S$가 양정치이므로, $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$.
+$S$가 양정치이므로, $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$.
 
 $\mathbf{x} = Q\mathbf{e}_i$로 선택하면 ($\mathbf{e}_i$는 $I$의 $i$번째 열), $\mathbf{y} = Q^T\mathbf{x} = Q^T Q\mathbf{e}_i = \mathbf{e}_i$이므로, $\mathbf{x}^T S\mathbf{x} = \lambda_i > 0$.
 
@@ -843,11 +843,11 @@ $\lambda_1, \lambda_2, \ldots, \lambda_n > 0$이면 성립. $\square$
 
 **증명:**
 
-i) $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$
+i) $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$
 
-$\implies S\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$
+$\implies S\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$
 
-$\implies \mathcal{N}(S) = \{\mathbf{0}\}$
+$\implies \mathcal{N}(S) = \lbrace\mathbf{0}\rbrace$
 
 $\implies S$는 full rank $\iff \dim C(S) = n$
 
@@ -875,7 +875,7 @@ $$A^T A = (Q\sqrt{\Lambda}Q^T)(Q\sqrt{\Lambda}Q^T) = Q\sqrt{\Lambda}\underbrace{
 
 **비고:** 에너지 $= \mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\mathbf{x} = \|A\mathbf{x}\|^2$.
 
-$\|A\mathbf{x}\| > 0$ ($A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$인 경우) $\iff$ $A$가 full rank.
+$\|A\mathbf{x}\| > 0$ ($A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$인 경우) $\iff$ $A$가 full rank.
 
 ### 3.6 양정치 행렬 판별법
 
@@ -893,7 +893,7 @@ $\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_{n-1}$를 $\mathcal{N}(A)$의 �
 
 $\therefore (n-1)$개의 영 고유값.
 
-**(2) 양의 에너지 판정법:** $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$.
+**(2) 양의 에너지 판정법:** $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$.
 
 **(3) $S = A^T A$에 대한 양의 에너지 판정법:**
 
@@ -1118,9 +1118,9 @@ $$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T
 
 여기서 $\mathbf{y} = A\mathbf{x}$. $\square$
 
-$\mathbf{x}^T S\mathbf{x} > 0$이고, 모든 $\mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$에 대해 $A\mathbf{x} \neq \mathbf{0}$이면, $A^T SA$는 **양정치** 이다.
+$\mathbf{x}^T S\mathbf{x} > 0$이고, 모든 $\mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$에 대해 $A\mathbf{x} \neq \mathbf{0}$이면, $A^T SA$는 **양정치** 이다.
 
-$$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T S\mathbf{y} > 0 \quad \forall \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\} \quad \square$$
+$$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T S\mathbf{y} > 0 \quad \forall \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace \quad \square$$
 
 행렬 $A^T SA$를 $S$에 **"합동"**(congruent)이라 한다.
 

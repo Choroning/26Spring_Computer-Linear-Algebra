@@ -774,7 +774,7 @@ Rescale $\mathbf{u}, \mathbf{v}$ to $\|\mathbf{u}\| = \|\mathbf{v}\| = 1$. Then 
 
 $$\mathbf{x}^T S\mathbf{x} > 0 \quad \forall \; \mathbf{x} \neq \mathbf{0}, \; \mathbf{x} \in \mathbb{R}^n$$
 
-(equivalently, $\forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$)
+(equivalently, $\forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$)
 
 **Def.** $n \times n$ symmetric real matrix $S$ is **positive semidefinite** (= non-negative definite) if
 
@@ -782,7 +782,7 @@ $$\mathbf{x}^T S\mathbf{x} \geq 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n$$
 
 **Def.** $n \times n$ symmetric real matrix $S$ is **negative definite** if
 
-$$\mathbf{x}^T S\mathbf{x} < 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$$
+$$\mathbf{x}^T S\mathbf{x} < 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$$
 
 **Def.** $n \times n$ symmetric real matrix $S$ is **negative semidefinite** if
 
@@ -800,7 +800,7 @@ Let $\mathbf{y} = Q^T\mathbf{x}$:
 
 $$= \mathbf{y}^T \Lambda \mathbf{y} = \mathbf{y}^T\begin{pmatrix} \lambda_1 y_1 \\ \lambda_2 y_2 \\ \vdots \\ \lambda_n y_n \end{pmatrix} = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2$$
 
-Since $S$ is positive definite, $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$.
+Since $S$ is positive definite, $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$.
 
 Choose $\mathbf{x} = Q\mathbf{e}_i$ where $\mathbf{e}_i$ is the $i$-th column of $I$. Then $\mathbf{y} = Q^T\mathbf{x} = Q^T Q\mathbf{e}_i = \mathbf{e}_i$, which leads to $\mathbf{x}^T S\mathbf{x} = \lambda_i > 0$.
 
@@ -834,11 +834,11 @@ if $\lambda_1, \lambda_2, \ldots, \lambda_n > 0$. $\square$
 
 **Proof:**
 
-i) $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$
+i) $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$
 
-$\implies S\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$
+$\implies S\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$
 
-$\implies \mathcal{N}(S) = \{\mathbf{0}\}$
+$\implies \mathcal{N}(S) = \lbrace\mathbf{0}\rbrace$
 
 $\implies S$ has full rank $\iff \dim C(S) = n$
 
@@ -866,7 +866,7 @@ $$A^T A = (Q\sqrt{\Lambda}Q^T)(Q\sqrt{\Lambda}Q^T) = Q\sqrt{\Lambda}\underbrace{
 
 **Remark:** Energy $= \mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\mathbf{x} = \|A\mathbf{x}\|^2$.
 
-$\|A\mathbf{x}\| > 0$ if $A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$ $\iff$ $A$ has full rank.
+$\|A\mathbf{x}\| > 0$ if $A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$ $\iff$ $A$ has full rank.
 
 ### 3.6 How to Check if a Matrix is Positive Definite
 
@@ -884,7 +884,7 @@ Let $\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_{n-1}$ be basis vectors of $
 
 $\therefore (n-1)$ zero eigenvalues.
 
-**(2) Positive energy test:** $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$.
+**(2) Positive energy test:** $\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$.
 
 **(3) Positive energy test for $S = A^T A$:**
 
@@ -1109,9 +1109,9 @@ $$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T
 
 where $\mathbf{y} = A\mathbf{x}$. $\square$
 
-Suppose $\mathbf{x}^T S\mathbf{x} > 0$ and $A\mathbf{x} \neq \mathbf{0}$ for all $\mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$. Then $A^T SA$ is **positive definite**.
+Suppose $\mathbf{x}^T S\mathbf{x} > 0$ and $A\mathbf{x} \neq \mathbf{0}$ for all $\mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace$. Then $A^T SA$ is **positive definite**.
 
-$$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T S\mathbf{y} > 0 \quad \forall \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\} \quad \square$$
+$$\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T S\mathbf{y} > 0 \quad \forall \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace \quad \square$$
 
 The matrix $A^T SA$ is called **"congruent"** to $S$.
 

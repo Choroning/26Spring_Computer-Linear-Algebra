@@ -53,14 +53,14 @@ The SVD involves finding **two sets of orthonormal vectors**:
 
 **Input vectors** (for the domain, $\mathbb{R}^n$):
 
-$$\{\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r, \dots, \underset{\sim}{v}_n\}$$
+$$\lbrace\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r, \dots, \underset{\sim}{v}_n\rbrace$$
 
 - $\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r$ form a **basis for $C(A^T)$** (row space)
 - $\underset{\sim}{v}_{r+1}, \dots, \underset{\sim}{v}_n$ form a **basis for $N(A)$** (null space)
 
 **Output vectors** (for the codomain, $\mathbb{R}^m$):
 
-$$\{\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r, \dots, \underset{\sim}{u}_m\}$$
+$$\lbrace\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r, \dots, \underset{\sim}{u}_m\rbrace$$
 
 - $\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r$ form a **basis for $C(A)$** (column space)
 - $\underset{\sim}{u}_{r+1}, \dots, \underset{\sim}{u}_m$ form a **basis for $N(A^T)$** (left null space)
@@ -598,7 +598,7 @@ The sum of squared **perpendicular distances** from the data points to the $\und
 | Concept | Key Idea |
 |:--------|:---------|
 | SVD Decomposition | $A = U\Sigma V^T$ where $U, V$ are orthonormal and $\Sigma$ is diagonal with singular values $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$ |
-| Two Sets of Vectors | Input vectors $\{\underset{\sim}{v}_i\}$: basis for $C(A^T)$ and $N(A)$; Output vectors $\{\underset{\sim}{u}_i\}$: basis for $C(A)$ and $N(A^T)$ |
+| Two Sets of Vectors | Input vectors $\lbrace\underset{\sim}{v}_i\rbrace$: basis for $C(A^T)$ and $N(A)$; Output vectors $\lbrace\underset{\sim}{u}_i\rbrace$: basis for $C(A)$ and $N(A^T)$ |
 | SVD vs Eigendecomposition | Eigendecomposition $S = Q\Lambda Q^T$ works for symmetric matrices; SVD $A = U\Sigma V^T$ works for **all** matrices |
 | Fundamental Relationship | $A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i$ maps right singular vectors to scaled left singular vectors |
 | Geometry of SVD | $A = U\Sigma V^T$: rotate by $V^T$, stretch by $\Sigma$, rotate by $U$ — transforms unit circle to ellipse |

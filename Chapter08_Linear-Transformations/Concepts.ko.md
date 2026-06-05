@@ -500,9 +500,9 @@ $$\mathbf{d} = W^{-1}\begin{pmatrix} x \\ y \end{pmatrix}$$
 
 $T(u) = \dfrac{du}{dx}$
 
-입력 공간: $V = \text{span}\{1, x, x^2, x^3\}$, 기저 $\mathbf{u}_1 = 1,\; \mathbf{u}_2 = x,\; \mathbf{u}_3 = x^2,\; \mathbf{u}_4 = x^3$.
+입력 공간: $V = \text{span}\lbrace1, x, x^2, x^3\rbrace$, 기저 $\mathbf{u}_1 = 1,\; \mathbf{u}_2 = x,\; \mathbf{u}_3 = x^2,\; \mathbf{u}_4 = x^3$.
 
-출력 공간: $W = \text{span}\{1, x, x^2\}$, 기저 $\mathbf{w}_1 = 1,\; \mathbf{w}_2 = x,\; \mathbf{w}_3 = x^2$.
+출력 공간: $W = \text{span}\lbrace1, x, x^2\rbrace$, 기저 $\mathbf{w}_1 = 1,\; \mathbf{w}_2 = x,\; \mathbf{w}_3 = x^2$.
 
 각 기저 벡터에 $T$를 적용하면:
 
@@ -828,7 +828,7 @@ $$= \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmat
 
 표준 다항식 기저를 생각하자: $1, x, x^2, x^3, \ldots$
 
-$$x^{10} \approx \text{span}\{1, x, x^2, \ldots, x^9\}$$
+$$x^{10} \approx \text{span}\lbrace1, x, x^2, \ldots, x^9\rbrace$$
 
 이것은 **나쁜 조건수의 기저**(ill-conditioned basis)이다.
 
@@ -920,7 +920,7 @@ $$\vdots$$
 | $T$의 행렬 | 열 $j$ = $T(\mathbf{u}_j)$를 출력 기저로 표현; $A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))$ |
 | 표준 행렬 (Standard matrix) | $I$의 열을 입출력 기저로 사용: $T(\mathbf{u}) = A\mathbf{u}$ |
 | 기저 변환 (Change of basis) | 새 행렬 = $B_{\text{out}}^{-1} A B_{\text{in}}$; 항등 변환은 $B = W^{-1}V$ |
-| 미분 행렬 $D$ | $\{1, x, x^2, x^3\} \to \{1, x, x^2\}$: $D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}$ |
+| 미분 행렬 $D$ | $\lbrace1, x, x^2, x^3\rbrace \to \lbrace1, x, x^2\rbrace$: $D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}$ |
 | 적분 행렬 $D^+$ | $D$의 유사역행렬; $DD^+ = I$이지만 $D^+D \neq I$ ($D$의 영공간) |
 | 합성 $TS$ | 행렬곱 $AB$는 $TS$를 표현; $(m \times n)(n \times p) = (m \times p)$ |
 | 회전 합성 | $\theta$만큼 회전 두 번 $= A^2 =$ $2\theta$만큼 회전 |

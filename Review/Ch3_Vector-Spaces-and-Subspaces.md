@@ -62,7 +62,7 @@ $V$가 **벡터 공간 (vector space)** 이려면, $\mathbf{u},\mathbf{v},\mathb
 
 **부분공간인 것 / 아닌 것 예시**:
 - ✅ 원점 지나는 직선/평면
-- ✅ $\{\mathbf{0}\}$, $\mathbb{R}^n$ 자체
+- ✅ $\lbrace\mathbf{0}\rbrace$, $\mathbb{R}^n$ 자체
 - ❌ $\mathbb{R}^3$의 평면 $z=5$ (원점 미포함)
 - ❌ 제1사분면 (스칼라곱 $c<0$에서 닫히지 않음)
 - ❌ 양수 벡터의 집합 (덧셈 역원 없음)
@@ -71,7 +71,7 @@ $V$가 **벡터 공간 (vector space)** 이려면, $\mathbf{u},\mathbf{v},\mathb
 
 **$\mathbb{R}^n$ 외의 벡터공간 예**:
 - **행렬 공간 (matrix space)**: 모든 $n\times n$ 행렬 → 차원 $n^2$
-- **함수 공간 (function space)**: 예) $y''=0$의 해공간, 기저 $\{1, x\}$, 차원 2
+- **함수 공간 (function space)**: 예) $y''=0$의 해공간, 기저 $\lbrace1, x\rbrace$, 차원 2
 
 ### $C(A)$, $N(A)$가 어디 사는지 — 절대 헷갈리지 말 것
 
@@ -151,7 +151,7 @@ $$\boxed{\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n,\qquad A\mathbf{x}_p=\mathbf{b
 | 질문 | 무엇으로 판단? |
 |:---|:---|
 | 해가 **존재**하는가? | $\mathbf{b} \in C(A)$ 인가? |
-| 해가 **유일**한가? | $N(A) = \{\mathbf{0}\}$ 인가? |
+| 해가 **유일**한가? | $N(A) = \lbrace\mathbf{0}\rbrace$ 인가? |
 | 해 집합의 **차원**? | $\dim N(A) = n - r$ |
 
 - **Full column rank** ($r = n$) → 해 있을 때 유일
@@ -169,7 +169,7 @@ $$\boxed{\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n,\qquad A\mathbf{x}_p=\mathbf{b
 ## 3-E. 선형독립·생성·기저·차원 (independence · span · basis · dimension)
 
 - **선형독립 (linearly independent, LI)**: $c_1\mathbf{v}_1+\cdots+c_n\mathbf{v}_n=\mathbf{0}$의 유일 해가 모든 $c_i=0$
-  → 동치: $A\mathbf{x}=\mathbf{0}$의 유일 해가 $\mathbf{x}=\mathbf{0}$, 즉 $N(A)=\{\mathbf{0}\}$
+  → 동치: $A\mathbf{x}=\mathbf{0}$의 유일 해가 $\mathbf{x}=\mathbf{0}$, 즉 $N(A)=\lbrace\mathbf{0}\rbrace$
 - **생성 (span)**: 주어진 벡터들의 모든 선형결합의 집합
 - **기저 (basis)**: 독립 + 생성 → 모든 벡터가 **유일하게** 표현됨
 - **차원 (dimension)**: 기저의 크기 (어떤 기저를 뽑든 불변)
@@ -184,8 +184,8 @@ $A \in \mathbb{R}^{m\times n}$, 랭크 $r$일 때:
 
 | 부분공간 (subspace) | 정의 | 사는 곳 | 차원 (dimension) |
 |:---|:---|:---|:---:|
-| **열공간 (column space) $C(A)$** | $\{A\mathbf{x}\}$ | $\mathbb{R}^m$ | $r$ |
-| **행공간 (row space) $C(A^T)$** | $\{A^T\mathbf{y}\}$ | $\mathbb{R}^n$ | $r$ |
+| **열공간 (column space) $C(A)$** | $\lbraceA\mathbf{x}\rbrace$ | $\mathbb{R}^m$ | $r$ |
+| **행공간 (row space) $C(A^T)$** | $\lbraceA^T\mathbf{y}\rbrace$ | $\mathbb{R}^n$ | $r$ |
 | **영공간 (null space) $N(A)$** | $A\mathbf{x}=\mathbf{0}$ | $\mathbb{R}^n$ | $n-r$ |
 | **좌영공간 (left null space) $N(A^T)$** | $A^T\mathbf{y}=\mathbf{0}$ | $\mathbb{R}^m$ | $m-r$ |
 

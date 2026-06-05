@@ -500,9 +500,9 @@ $$\mathbf{d} = W^{-1}\begin{pmatrix} x \\ y \end{pmatrix}$$
 
 $T(u) = \dfrac{du}{dx}$
 
-Input space: $V = \text{span}\{1, x, x^2, x^3\}$ with basis $\mathbf{u}_1 = 1,\; \mathbf{u}_2 = x,\; \mathbf{u}_3 = x^2,\; \mathbf{u}_4 = x^3$.
+Input space: $V = \text{span}\lbrace1, x, x^2, x^3\rbrace$ with basis $\mathbf{u}_1 = 1,\; \mathbf{u}_2 = x,\; \mathbf{u}_3 = x^2,\; \mathbf{u}_4 = x^3$.
 
-Output space: $W = \text{span}\{1, x, x^2\}$ with basis $\mathbf{w}_1 = 1,\; \mathbf{w}_2 = x,\; \mathbf{w}_3 = x^2$.
+Output space: $W = \text{span}\lbrace1, x, x^2\rbrace$ with basis $\mathbf{w}_1 = 1,\; \mathbf{w}_2 = x,\; \mathbf{w}_3 = x^2$.
 
 Apply $T$ to each basis vector:
 
@@ -828,7 +828,7 @@ This is **1 Jordan block** (3x3) with eigenvalue $\lambda = 0$.
 
 Consider the standard polynomial basis: $1, x, x^2, x^3, \ldots$
 
-$$x^{10} \approx \text{span}\{1, x, x^2, \ldots, x^9\}$$
+$$x^{10} \approx \text{span}\lbrace1, x, x^2, \ldots, x^9\rbrace$$
 
 This is an **ill-conditioned basis**.
 
@@ -920,7 +920,7 @@ By using the **Gram-Schmidt process**, we can obtain the **Legendre basis**.
 | Matrix of $T$ | Column $j$ = $T(\mathbf{u}_j)$ expressed in output basis; $A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))$ |
 | Standard matrix | Uses columns of $I$ as input/output bases: $T(\mathbf{u}) = A\mathbf{u}$ |
 | Change of basis | New matrix = $B_{\text{out}}^{-1} A B_{\text{in}}$; identity transformation gives $B = W^{-1}V$ |
-| Derivative matrix $D$ | For $\{1, x, x^2, x^3\} \to \{1, x, x^2\}$: $D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}$ |
+| Derivative matrix $D$ | For $\lbrace1, x, x^2, x^3\rbrace \to \lbrace1, x, x^2\rbrace$: $D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}$ |
 | Integral matrix $D^+$ | Pseudoinverse of $D$; $DD^+ = I$ but $D^+D \neq I$ (nullspace of $D$) |
 | Composition $TS$ | Matrix product $AB$ represents $TS$; $(m \times n)(n \times p) = (m \times p)$ |
 | Rotation composition | Rotation by $\theta$ twice $= A^2 =$ rotation by $2\theta$ |

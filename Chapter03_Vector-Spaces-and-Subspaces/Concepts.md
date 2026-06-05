@@ -196,7 +196,7 @@ $$\mathbf{q} = \mathbf{p} + t\mathbf{d}, \quad t \in \mathbb{R}$$
 
 $\mathbf{p}$ and $\mathbf{d}$ are fixed. $t$ varies from $-\infty$ to $\infty$.
 
-Let $\mathbb{X}$ be the set of all vectors $\mathbf{q}$: $\mathbb{X} = \{\mathbf{q} : \mathbf{p} + t\mathbf{d} \;\forall\; t \in \mathbb{R}\}$.
+Let $\mathbb{X}$ be the set of all vectors $\mathbf{q}$: $\mathbb{X} = \lbrace\mathbf{q} : \mathbf{p} + t\mathbf{d} \;\forall\; t \in \mathbb{R}\rbrace$.
 
 Take $\mathbf{a}, \mathbf{b} \in \mathbb{X}$. Does $\mathbf{a} + \mathbf{b}$ belong to $\mathbb{X}$?
 
@@ -213,7 +213,7 @@ However:
 ### 2.7 Examples of Vector Spaces
 
 - $\mathbb{R}^n$ is a vector space.
-- $\mathbb{Z} = \{\mathbf{0}\}$ is a vector space (the smallest vector space):
+- $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$ is a vector space (the smallest vector space):
   - i) $\mathbf{0} + \mathbf{0} = \mathbf{0} \in \mathbb{Z}$
   - ii) $c\mathbf{0} = \mathbf{0} \in \mathbb{Z}$
 
@@ -237,7 +237,7 @@ The set of all matrices of a fixed size forms a vector space. (Check if they sat
 
 Let $\mathbb{F}$ be a set of functions that take elements from $\mathbb{R}$ and map them to a real number:
 
-$$\mathbb{F} = \{f \mid f: \mathbb{R} \to \mathbb{R}\}$$
+$$\mathbb{F} = \lbracef \mid f: \mathbb{R} \to \mathbb{R}\rbrace$$
 
 Let $f, g \in \mathbb{F}$, $c, d \in \mathbb{R}$. Then $cf + dg \in \mathbb{F}$.
 
@@ -247,7 +247,7 @@ Define:
 
 **Example:** $\mathbb{F}$ = the line of functions $y = ce^x$.
 
-$\mathbb{F} = \{f \mid f: \mathbb{R} \ni x \to ce^x \in \mathbb{R}, \;\forall c \in \mathbb{R}\}$
+$\mathbb{F} = \lbracef \mid f: \mathbb{R} \ni x \to ce^x \in \mathbb{R}, \;\forall c \in \mathbb{R}\rbrace$
 
 $f(x) = e^x$, $g(x) = 2e^x$.
 
@@ -291,13 +291,13 @@ Lines through the origin are subspaces.
 
 $\mathbb{R}^3$ is a subspace of itself.
 
-The single vector $\mathbb{Z} = \{\mathbf{0}\}$ is a subspace of $\mathbb{R}^3$.
+The single vector $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$ is a subspace of $\mathbb{R}^3$.
 
 ---
 
 **Ex 1.** $\mathbb{R}^2$ is a vector space. Is the 1st quadrant a subspace?
 
-$$\mathcal{U} = \left\{\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0, y \geq 0 \right\}$$
+$$\mathcal{U} = \left\lbrace\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0, y \geq 0 \right\rbrace$$
 
 Take $\mathbf{u} = \begin{pmatrix} 2 \\ 3 \end{pmatrix} \in \mathcal{U}$, $c = -1$.
 
@@ -307,7 +307,7 @@ This violates rule ii). $\mathcal{U}$ is **not** a subspace of $\mathbb{R}^2$.
 
 ---
 
-**Ex 2.** $\mathcal{U} = \left\{\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0 \text{ and } y \geq 0, \text{ or } x \leq 0 \text{ and } y \leq 0 \right\}$
+**Ex 2.** $\mathcal{U} = \left\lbrace\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0 \text{ and } y \geq 0, \text{ or } x \leq 0 \text{ and } y \leq 0 \right\rbrace$
 
 Is $\mathcal{U}$ a subspace?
 
@@ -380,7 +380,7 @@ $C(A^T)$ is the line of all column vectors of $A^T$: $c\mathbf{v}$.
 
 **The Columns of $A$ Span the Vector Space $C(A)$.**
 
-Let $\mathbb{S}$ be a set of vectors in $\mathbb{R}^m$. If $\mathbb{S} = \left\{ \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_m \end{pmatrix}, \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_m \end{pmatrix} \right\}$, then $\mathbb{S}$ is **not** a subspace of $\mathbb{R}^m$ because $\mathbf{u} + \mathbf{v} \notin \mathbb{S}$.
+Let $\mathbb{S}$ be a set of vectors in $\mathbb{R}^m$. If $\mathbb{S} = \left\lbrace \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_m \end{pmatrix}, \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_m \end{pmatrix} \right\rbrace$, then $\mathbb{S}$ is **not** a subspace of $\mathbb{R}^m$ because $\mathbf{u} + \mathbf{v} \notin \mathbb{S}$.
 
 If we include all combinations of the vectors in $\mathbb{S}$, then we have a vector space $V$.
 
@@ -411,7 +411,7 @@ $$A = CR$$
 
 We would like to find all solutions to $A\mathbf{x} = \mathbf{0}$.
 
-If $A \in \mathbb{R}^{n \times n}$ is invertible ($\text{rank}(A) = n$), then the only solution is $\mathbf{x} = \mathbf{0}$. The nullspace of $A$ only contains the zero vector: $N(A) = \{\mathbf{0}\}$.
+If $A \in \mathbb{R}^{n \times n}$ is invertible ($\text{rank}(A) = n$), then the only solution is $\mathbf{x} = \mathbf{0}$. The nullspace of $A$ only contains the zero vector: $N(A) = \lbrace\mathbf{0}\rbrace$.
 
 In general, however, $\text{rank}(A) = r$. That is, $A$ has $r$ independent columns. The other $n - r$ dependent columns of $A$ are combinations of those independent columns. We will find $n - r$ vectors in $N(A)$ which are special solutions to $A\mathbf{x} = \mathbf{0}$.
 
@@ -594,7 +594,7 @@ $$\begin{pmatrix} R \\ 0 \; 0 \; \cdots \; 0 \\ 0 \; 0 \; \cdots \; 0 \end{pmatr
 
 3. When $R_0 \mathbf{x} = \mathbf{d}$ is solvable, one particular solution $\mathbf{x}_p$ has **all free variables equal to zero**.
 
-4. $A$ has **full column rank** $r = n$ when its nullspace $N(A) = \{\text{zero vector}\}$. No free variables.
+4. $A$ has **full column rank** $r = n$ when its nullspace $N(A) = \lbrace\text{zero vector}\rbrace$. No free variables.
 
 5. $A$ has **full row rank** $r = m$ when its column space $C(A)$ is $\mathbb{R}^m$: $A\mathbf{x} = \mathbf{b}$ is always solvable.
 
@@ -698,7 +698,7 @@ $$\begin{pmatrix} 1 & 1 & | & b_1 \\ 0 & 1 & | & b_2 - b_1 \\ 0 & 0 & | & b_3 + 
 
 If $b_3 + b_2 + b_1 = 0$, then $A\mathbf{x} = \mathbf{b}$ is solvable. i.e., $b_3 + b_2 + b_1 = 0$ is the condition to put $\mathbf{b}$ in the column space of $A$.
 
-$\text{rank}(A) = 2$, $n = 2$, $n - r = 0$. No free variables. $N(A) = \{\mathbf{0}\}$, $\mathbf{x}_n = \mathbf{0}$.
+$\text{rank}(A) = 2$, $n = 2$, $n - r = 0$. No free variables. $N(A) = \lbrace\mathbf{0}\rbrace$, $\mathbf{x}_n = \mathbf{0}$.
 
 $$\mathbf{x}_p = \begin{pmatrix} 2b_1 - b_2 \\ b_2 - b_1 \end{pmatrix}$$
 
@@ -711,7 +711,7 @@ If $b_3 + b_2 + b_1 \neq 0$, then there is no solution to $A\mathbf{x} = \mathbf
 $$R_0 = \begin{pmatrix} I_{n \times n} \\ O_{(m-n) \times n} \end{pmatrix}$$
 
 1. The matrix $A$ has $n$ independent columns.
-2. The null space of $A$ is $\mathbb{Z} = \{\mathbf{0}\}$.
+2. The null space of $A$ is $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$.
 3. If $A\mathbf{x} = \mathbf{b}$ has a solution, it has only **one** solution.
 
 $$R_0 \mathbf{x} = \begin{pmatrix} I_{n \times n} \\ O_{(m-n) \times n} \end{pmatrix} \mathbf{x} = \begin{pmatrix} \vdots \\ O_{(m-n) \times 1} \end{pmatrix}$$
@@ -763,7 +763,7 @@ $A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}$ where $R = (I_{m \times 
 
 4. If $m < n$, $A\mathbf{x} = \mathbf{b}$ is **underdetermined** (many solutions).
 
-With full row rank ($r = m$), $m$ rows are linearly independent. The columns of $A^T$ are LI. The nullspace of $A^T$ is $\mathbb{Z} = \{\mathbf{0}\}$.
+With full row rank ($r = m$), $m$ rows are linearly independent. The columns of $A^T$ are LI. The nullspace of $A^T$ is $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$.
 
 ### 4.7 Four Possibilities for Linear Equations
 
@@ -851,7 +851,7 @@ The nonzero coefficients result in the zero vector:
 
 $$-3\begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} + 1\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + 1\begin{pmatrix} 3 \\ 5 \\ 3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
 
-If the columns of $A$ are independent, then $\text{rank}(A) = r = n$ and the nullspace of $A$ has only the zero vector: $N(A) = \{\mathbf{0}\}$.
+If the columns of $A$ are independent, then $\text{rank}(A) = r = n$ and the nullspace of $A$ has only the zero vector: $N(A) = \lbrace\mathbf{0}\rbrace$.
 
 **Any set of $n$ vectors in $\mathbb{R}^m$ must be linearly dependent if $n > m$.**
 
@@ -915,7 +915,7 @@ $\therefore \hat{i}, \hat{j}$ are basis vectors in $\mathbb{R}^2$.
 
 $$A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix} \xrightarrow{R_2 - R_1, \; R_3 - R_1} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \xrightarrow{R_3 - R_2} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = R$$
 
-3 LI column vectors. $C(A) = \mathbb{R}^3$. 3 nonzero pivots. $\text{rank}(A) = 3$. $N(A) = \{\mathbf{0}\}$.
+3 LI column vectors. $C(A) = \mathbb{R}^3$. 3 nonzero pivots. $\text{rank}(A) = 3$. $N(A) = \lbrace\mathbf{0}\rbrace$.
 
 **Note that the basis is NOT unique.**
 
@@ -1058,9 +1058,9 @@ These involve the 2nd derivative. In calculus, we find the solution $y(x)$:
 
 | ODE | Solution | Basis | Dimension |
 |:----|:---------|:------|:----------|
-| $y'' = 0$ | $y = cx + d$ | $\{1, x\}$ | 2 |
-| $y'' = -y$ | $y = c\sin x + d\cos x$ | $\{\sin x, \cos x\}$ | 2 |
-| $y'' = y$ | $y = ce^x + de^{-x}$ | $\{e^x, e^{-x}\}$ | 2 |
+| $y'' = 0$ | $y = cx + d$ | $\lbrace1, x\rbrace$ | 2 |
+| $y'' = -y$ | $y = c\sin x + d\cos x$ | $\lbrace\sin x, \cos x\rbrace$ | 2 |
+| $y'' = y$ | $y = ce^x + de^{-x}$ | $\lbracee^x, e^{-x}\rbrace$ | 2 |
 
 The basis vectors are in the **nullspace** of the 2nd derivative.
 
@@ -1110,7 +1110,7 @@ $$N(A^T) \subset \mathbb{R}^m, \quad N(A) \subset \mathbb{R}^n$$
 
 e.g., $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$
 
-The row vectors $\{(1, 2), (3, 4)\}$ span the row space of $A$. The solutions to $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$ are in the nullspace of $A$, $N(A)$.
+The row vectors $\lbrace(1, 2), (3, 4)\rbrace$ span the row space of $A$. The solutions to $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$ are in the nullspace of $A$, $N(A)$.
 
 $N(A) \ni \mathbf{x}$ is perpendicular to any vector in the row space of $A$ in the sense of inner product.
 
@@ -1120,7 +1120,7 @@ That is, take $\mathbf{y} \in C(A^T)$, $\mathbf{x} \in N(A)$: $\mathbf{y} \cdot 
 
 e.g., $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$
 
-The column vectors $\{\begin{pmatrix} 1 \\ 3 \end{pmatrix}, \begin{pmatrix} 2 \\ 4 \end{pmatrix}\}$ span the column space of $A$.
+The column vectors $\lbrace\begin{pmatrix} 1 \\ 3 \end{pmatrix}, \begin{pmatrix} 2 \\ 4 \end{pmatrix}\rbrace$ span the column space of $A$.
 
 $N(A^T) \ni \mathbf{y}$ implies that $A^T\mathbf{y} = \mathbf{0}$:
 
@@ -1140,9 +1140,9 @@ $$R_0 = \begin{pmatrix} 1 & 3 & 5 & 0 & 7 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 
 
 Pivot rows: 1 and 2. Pivot columns: 1 and 4. $\text{rank}(R_0) = r = 2$.
 
-**Row space:** Spanned by basis vectors $\{(1, 3, 5, 0, 7), \;(0, 0, 0, 1, 2)\}$. $\dim C(R_0^T) = 2 = r$.
+**Row space:** Spanned by basis vectors $\lbrace(1, 3, 5, 0, 7), \;(0, 0, 0, 1, 2)\rbrace$. $\dim C(R_0^T) = 2 = r$.
 
-**Column space:** The 1st and 4th column vectors form $\left\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\}$, a basis for $C(R_0)$. $\dim C(R_0) = 2 = r$.
+**Column space:** The 1st and 4th column vectors form $\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\rbrace$, a basis for $C(R_0)$. $\dim C(R_0) = 2 = r$.
 
 **Nullspace:** $R_0 \mathbf{x} = \mathbf{0}$:
 
@@ -1156,7 +1156,7 @@ ii) Take $x_2 = 0, x_3 = 1, x_5 = 0$: $x_1 + 5 = 0 \Rightarrow x_1 = -5$, $x_4 =
 
 iii) Take $x_2 = 0, x_3 = 0, x_5 = 1$: $x_1 + 7 = 0 \Rightarrow x_1 = -7$, $x_4 + 2 = 0 \Rightarrow x_4 = -2$. $\mathbf{x} = \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}$
 
-The 3 special solutions form a basis $\left\{\begin{pmatrix} -3 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -5 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}\right\}$ for $N(R_0)$.
+The 3 special solutions form a basis $\left\lbrace\begin{pmatrix} -3 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -5 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}\right\rbrace$ for $N(R_0)$.
 
 $\dim N(R_0) = 3 = 5 - 2 = n - r$.
 
@@ -1168,7 +1168,7 @@ $m - r = 3 - 2 = 1$, 1 free variable.
 
 Take $y_3 = 1$: $\Rightarrow y_1 = y_2 = 0$. $\therefore \mathbf{y} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$
 
-$\left\{\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\}$ forms a basis for $N(R_0^T)$.
+$\left\lbrace\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\rbrace$ forms a basis for $N(R_0^T)$.
 
 $\dim N(R_0^T) = 1 = m - r = 3 - 2$.
 
@@ -1191,9 +1191,9 @@ $$A = \begin{pmatrix} 1 & 3 & 5 & 0 & 7 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 3 & 5 & 1 & 
 
 $A$ has the same row space as $R_0$, but its column space differs from that of $R_0$.
 
-A basis for $C(A)$: $\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\}$ (pivot columns of $A$, **not** $R_0$)
+A basis for $C(A)$: $\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\rbrace$ (pivot columns of $A$, **not** $R_0$)
 
-A basis for $C(R_0)$: $\left\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\}$
+A basis for $C(R_0)$: $\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\rbrace$
 
 (Different planes in $\mathbb{R}^3$, but same dimension.)
 
@@ -1246,7 +1246,7 @@ In $\mathbb{R}^m$: $C(A)$ (dim $r$) and $N(A^T)$ (dim $m - r$) are orthogonal co
 | Special Solutions | Columns of $\begin{pmatrix} -F \\ I \end{pmatrix}$; form a basis for $N(A)$ |
 | Complete Solution | $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n$ (particular + nullspace) |
 | Particular Solution $\mathbf{x}_p$ | Set all free variables to 0, solve $R_0\mathbf{x} = \mathbf{d}$ |
-| Full Column Rank ($r = n$) | $N(A) = \{\mathbf{0}\}$; at most 1 solution to $A\mathbf{x} = \mathbf{b}$; $R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}$ |
+| Full Column Rank ($r = n$) | $N(A) = \lbrace\mathbf{0}\rbrace$; at most 1 solution to $A\mathbf{x} = \mathbf{b}$; $R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}$ |
 | Full Row Rank ($r = m$) | $A\mathbf{x} = \mathbf{b}$ always solvable; $C(A) = \mathbb{R}^m$; $R = (I \; F)$ |
 | Linear Independence | $c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0}$ only when all $c_i = 0$ |
 | Spanning | Vectors span $\mathbb{S}$ if $\mathbb{S}$ = all combinations of those vectors |
@@ -1259,7 +1259,7 @@ In $\mathbb{R}^m$: $C(A)$ (dim $r$) and $N(A^T)$ (dim $m - r$) are orthogonal co
 | $r + (m - r) = m$ | Column space + left nullspace fill $\mathbb{R}^m$ |
 | Orthogonality | $N(A) \perp C(A^T)$ in $\mathbb{R}^n$; $N(A^T) \perp C(A)$ in $\mathbb{R}^m$ |
 | Matrix Space dim | $n \times n$: $n^2$; diagonal: $n$; upper triangular: $\frac{n^2+n}{2}$; symmetric: $\frac{n^2+n}{2}$ |
-| Function Space | Solutions to $y'' = 0, -y, y$ form 2-dim spaces with bases $\{1,x\}$, $\{\sin x, \cos x\}$, $\{e^x, e^{-x}\}$ |
+| Function Space | Solutions to $y'' = 0, -y, y$ form 2-dim spaces with bases $\lbrace1,x\rbrace$, $\lbrace\sin x, \cos x\rbrace$, $\lbracee^x, e^{-x}\rbrace$ |
 | Fundamental Theorem | $\dim C(A) = \dim C(A^T) = r$; $\dim N(A) = n-r$; $\dim N(A^T) = m-r$ |
 
 ---

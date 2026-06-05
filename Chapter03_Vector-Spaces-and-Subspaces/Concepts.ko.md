@@ -196,7 +196,7 @@ $$\mathbf{q} = \mathbf{p} + t\mathbf{d}, \quad t \in \mathbb{R}$$
 
 $\mathbf{p}$와 $\mathbf{d}$는 고정되어 있고, $t$는 $-\infty$에서 $\infty$까지 변한다.
 
-$\mathbb{X}$를 모든 벡터 $\mathbf{q}$의 집합이라 하자: $\mathbb{X} = \{\mathbf{q} : \mathbf{p} + t\mathbf{d} \;\forall\; t \in \mathbb{R}\}$.
+$\mathbb{X}$를 모든 벡터 $\mathbf{q}$의 집합이라 하자: $\mathbb{X} = \lbrace\mathbf{q} : \mathbf{p} + t\mathbf{d} \;\forall\; t \in \mathbb{R}\rbrace$.
 
 $\mathbf{a}, \mathbf{b} \in \mathbb{X}$를 취하자. $\mathbf{a} + \mathbf{b}$가 $\mathbb{X}$에 속하는가?
 
@@ -213,7 +213,7 @@ $$\mathbf{a} + \mathbf{b} = 2\mathbf{p} + (t_1 + t_2)\mathbf{d} \notin \mathbb{X
 ### 2.7 벡터 공간의 예시
 
 - $\mathbb{R}^n$은 벡터 공간이다.
-- $\mathbb{Z} = \{\mathbf{0}\}$은 벡터 공간이다 (가장 작은 벡터 공간):
+- $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$은 벡터 공간이다 (가장 작은 벡터 공간):
   - i) $\mathbf{0} + \mathbf{0} = \mathbf{0} \in \mathbb{Z}$
   - ii) $c\mathbf{0} = \mathbf{0} \in \mathbb{Z}$
 
@@ -237,7 +237,7 @@ $A, B \in \mathbb{R}^{m \times n} \implies cA + dB \in \mathbb{R}^{m \times n}$
 
 $\mathbb{F}$를 $\mathbb{R}$에서 원소를 취하여 실수로 사상하는 함수들의 집합이라 하자:
 
-$$\mathbb{F} = \{f \mid f: \mathbb{R} \to \mathbb{R}\}$$
+$$\mathbb{F} = \lbracef \mid f: \mathbb{R} \to \mathbb{R}\rbrace$$
 
 $f, g \in \mathbb{F}$이고 $c, d \in \mathbb{R}$이면, $cf + dg \in \mathbb{F}$이다.
 
@@ -247,7 +247,7 @@ $f, g \in \mathbb{F}$이고 $c, d \in \mathbb{R}$이면, $cf + dg \in \mathbb{F}
 
 **예:** $\mathbb{F}$ = 함수 $y = ce^x$의 직선.
 
-$\mathbb{F} = \{f \mid f: \mathbb{R} \ni x \to ce^x \in \mathbb{R}, \;\forall c \in \mathbb{R}\}$
+$\mathbb{F} = \lbracef \mid f: \mathbb{R} \ni x \to ce^x \in \mathbb{R}, \;\forall c \in \mathbb{R}\rbrace$
 
 $f(x) = e^x$, $g(x) = 2e^x$.
 
@@ -291,13 +291,13 @@ $\mathbf{u}, \mathbf{w} \in$ 부분공간이고 $c \in \mathbb{R}$ (또는 $\mat
 
 $\mathbb{R}^3$은 자기 자신의 부분공간이다.
 
-단일 벡터 $\mathbb{Z} = \{\mathbf{0}\}$은 $\mathbb{R}^3$의 부분공간이다.
+단일 벡터 $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$은 $\mathbb{R}^3$의 부분공간이다.
 
 ---
 
 **예 1.** $\mathbb{R}^2$는 벡터 공간이다. 제1사분면은 부분공간인가?
 
-$$\mathcal{U} = \left\{\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0, y \geq 0 \right\}$$
+$$\mathcal{U} = \left\lbrace\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0, y \geq 0 \right\rbrace$$
 
 $\mathbf{u} = \begin{pmatrix} 2 \\ 3 \end{pmatrix} \in \mathcal{U}$, $c = -1$을 취하자.
 
@@ -307,7 +307,7 @@ $\mathbf{u} = \begin{pmatrix} 2 \\ 3 \end{pmatrix} \in \mathcal{U}$, $c = -1$을
 
 ---
 
-**예 2.** $\mathcal{U} = \left\{\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0 \text{ 이고 } y \geq 0, \text{ 또는 } x \leq 0 \text{ 이고 } y \leq 0 \right\}$
+**예 2.** $\mathcal{U} = \left\lbrace\begin{pmatrix} x \\ y \end{pmatrix} \;\middle|\; x \geq 0 \text{ 이고 } y \geq 0, \text{ 또는 } x \leq 0 \text{ 이고 } y \leq 0 \right\rbrace$
 
 $\mathcal{U}$는 부분공간인가?
 
@@ -380,7 +380,7 @@ $C(A^T)$는 $A^T$의 모든 열벡터의 직선: $c\mathbf{v}$.
 
 **$A$의 열들이 벡터 공간 $C(A)$를 생성 (Span)한다.**
 
-$\mathbb{S}$를 $\mathbb{R}^m$의 벡터 집합이라 하자. $\mathbb{S} = \left\{ \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_m \end{pmatrix}, \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_m \end{pmatrix} \right\}$이면, $\mathbb{S}$는 $\mathbb{R}^m$의 부분공간이 **아니다**. 왜냐하면 $\mathbf{u} + \mathbf{v} \notin \mathbb{S}$이기 때문이다.
+$\mathbb{S}$를 $\mathbb{R}^m$의 벡터 집합이라 하자. $\mathbb{S} = \left\lbrace \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_m \end{pmatrix}, \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_m \end{pmatrix} \right\rbrace$이면, $\mathbb{S}$는 $\mathbb{R}^m$의 부분공간이 **아니다**. 왜냐하면 $\mathbf{u} + \mathbf{v} \notin \mathbb{S}$이기 때문이다.
 
 $\mathbb{S}$에 속한 벡터들의 모든 결합을 포함하면, 벡터 공간 $V$를 얻는다.
 
@@ -411,7 +411,7 @@ $$A = CR$$
 
 $A\mathbf{x} = \mathbf{0}$의 모든 해를 구하고 싶다.
 
-$A \in \mathbb{R}^{n \times n}$이 가역이면 ($\text{rank}(A) = n$), 유일한 해는 $\mathbf{x} = \mathbf{0}$이다. $A$의 영공간은 영벡터만 포함한다: $N(A) = \{\mathbf{0}\}$.
+$A \in \mathbb{R}^{n \times n}$이 가역이면 ($\text{rank}(A) = n$), 유일한 해는 $\mathbf{x} = \mathbf{0}$이다. $A$의 영공간은 영벡터만 포함한다: $N(A) = \lbrace\mathbf{0}\rbrace$.
 
 일반적으로는 $\text{rank}(A) = r$이다. 즉, $A$는 $r$개의 독립 열을 가진다. 나머지 $n - r$개의 종속 열은 독립 열들의 결합이다. $N(A)$에서 $n - r$개의 벡터를 찾을 것인데, 이들이 $A\mathbf{x} = \mathbf{0}$의 특수해이다.
 
@@ -595,7 +595,7 @@ $$\begin{pmatrix} R \\ 0 \; 0 \; \cdots \; 0 \\ 0 \; 0 \; \cdots \; 0 \end{pmatr
 
 3. $R_0 \mathbf{x} = \mathbf{d}$가 풀릴 때, 하나의 특수해 $\mathbf{x}_p$는 **모든 자유 변수가 0** 인 해이다.
 
-4. $A$가 **열 완전 계수 (Full Column Rank)** $r = n$일 때 영공간 $N(A) = \{\text{영벡터}\}$. 자유 변수가 없다.
+4. $A$가 **열 완전 계수 (Full Column Rank)** $r = n$일 때 영공간 $N(A) = \lbrace\text{영벡터}\rbrace$. 자유 변수가 없다.
 
 5. $A$가 **행 완전 계수 (Full Row Rank)** $r = m$일 때 열공간 $C(A)$가 $\mathbb{R}^m$이다: $A\mathbf{x} = \mathbf{b}$는 항상 풀린다.
 
@@ -699,7 +699,7 @@ $$\begin{pmatrix} 1 & 1 & | & b_1 \\ 0 & 1 & | & b_2 - b_1 \\ 0 & 0 & | & b_3 + 
 
 $b_3 + b_2 + b_1 = 0$이면, $A\mathbf{x} = \mathbf{b}$가 풀린다. 즉, $b_3 + b_2 + b_1 = 0$이 $\mathbf{b}$를 $A$의 열공간에 넣기 위한 조건이다.
 
-$\text{rank}(A) = 2$, $n = 2$, $n - r = 0$. 자유 변수 없음. $N(A) = \{\mathbf{0}\}$, $\mathbf{x}_n = \mathbf{0}$.
+$\text{rank}(A) = 2$, $n = 2$, $n - r = 0$. 자유 변수 없음. $N(A) = \lbrace\mathbf{0}\rbrace$, $\mathbf{x}_n = \mathbf{0}$.
 
 $$\mathbf{x}_p = \begin{pmatrix} 2b_1 - b_2 \\ b_2 - b_1 \end{pmatrix}$$
 
@@ -712,7 +712,7 @@ $b_3 + b_2 + b_1 \neq 0$이면, $A\mathbf{x} = \mathbf{b}$의 해가 없다.
 $$R_0 = \begin{pmatrix} I_{n \times n} \\ O_{(m-n) \times n} \end{pmatrix}$$
 
 1. 행렬 $A$는 $n$개의 독립 열을 가진다.
-2. $A$의 영공간은 $\mathbb{Z} = \{\mathbf{0}\}$이다.
+2. $A$의 영공간은 $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$이다.
 3. $A\mathbf{x} = \mathbf{b}$에 해가 있으면, **유일한** 해를 가진다.
 
 $$R_0 \mathbf{x} = \begin{pmatrix} I_{n \times n} \\ O_{(m-n) \times n} \end{pmatrix} \mathbf{x} = \begin{pmatrix} \vdots \\ O_{(m-n) \times 1} \end{pmatrix}$$
@@ -764,7 +764,7 @@ $A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}$이고, $R = (I_{m \times
 
 4. $m < n$이면, $A\mathbf{x} = \mathbf{b}$는 **부정 (Underdetermined)** 이다 (많은 해).
 
-행 완전 계수 ($r = m$)일 때, $m$개의 행이 선형 독립이다. $A^T$의 열들이 LI이다. $A^T$의 영공간은 $\mathbb{Z} = \{\mathbf{0}\}$이다.
+행 완전 계수 ($r = m$)일 때, $m$개의 행이 선형 독립이다. $A^T$의 열들이 LI이다. $A^T$의 영공간은 $\mathbb{Z} = \lbrace\mathbf{0}\rbrace$이다.
 
 ### 4.7 선형 방정식의 네 가지 경우
 
@@ -852,7 +852,7 @@ $x_3 = 1$로 취하면: $x_1 + 3 = 0 \Rightarrow x_1 = -3$, $x_2 - 1 = 0 \Righta
 
 $$-3\begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} + 1\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + 1\begin{pmatrix} 3 \\ 5 \\ 3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
 
-$A$의 열들이 독립이면, $\text{rank}(A) = r = n$이고 $A$의 영공간은 영벡터만 포함한다: $N(A) = \{\mathbf{0}\}$.
+$A$의 열들이 독립이면, $\text{rank}(A) = r = n$이고 $A$의 영공간은 영벡터만 포함한다: $N(A) = \lbrace\mathbf{0}\rbrace$.
 
 **$\mathbb{R}^m$에서 $n > m$이면 $n$개의 벡터는 반드시 선형 종속이다.**
 
@@ -916,7 +916,7 @@ $\therefore \hat{i}, \hat{j}$는 $\mathbb{R}^2$의 기저 벡터이다.
 
 $$A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix} \xrightarrow{R_2 - R_1, \; R_3 - R_1} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \xrightarrow{R_3 - R_2} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = R$$
 
-3개의 LI 열벡터. $C(A) = \mathbb{R}^3$. 3개의 0이 아닌 피벗. $\text{rank}(A) = 3$. $N(A) = \{\mathbf{0}\}$.
+3개의 LI 열벡터. $C(A) = \mathbb{R}^3$. 3개의 0이 아닌 피벗. $\text{rank}(A) = 3$. $N(A) = \lbrace\mathbf{0}\rbrace$.
 
 **기저는 유일하지 않다.**
 
@@ -1059,9 +1059,9 @@ $$\frac{d^2y}{dx^2} = 0, \quad \frac{d^2y}{dx^2} = -y, \quad \frac{d^2y}{dx^2} =
 
 | 상미분방정식 (ODE) | 해 | 기저 | 차원 |
 |:----|:---------|:------|:----------|
-| $y'' = 0$ | $y = cx + d$ | $\{1, x\}$ | 2 |
-| $y'' = -y$ | $y = c\sin x + d\cos x$ | $\{\sin x, \cos x\}$ | 2 |
-| $y'' = y$ | $y = ce^x + de^{-x}$ | $\{e^x, e^{-x}\}$ | 2 |
+| $y'' = 0$ | $y = cx + d$ | $\lbrace1, x\rbrace$ | 2 |
+| $y'' = -y$ | $y = c\sin x + d\cos x$ | $\lbrace\sin x, \cos x\rbrace$ | 2 |
+| $y'' = y$ | $y = ce^x + de^{-x}$ | $\lbracee^x, e^{-x}\rbrace$ | 2 |
 
 기저 벡터들은 2계 도함수의 **영공간 (Nullspace)** 에 속한다.
 
@@ -1111,7 +1111,7 @@ $$N(A^T) \subset \mathbb{R}^m, \quad N(A) \subset \mathbb{R}^n$$
 
 예: $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$
 
-행벡터 $\{(1, 2), (3, 4)\}$가 $A$의 행공간을 생성한다. $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$의 해는 $A$의 영공간 $N(A)$에 속한다.
+행벡터 $\lbrace(1, 2), (3, 4)\rbrace$가 $A$의 행공간을 생성한다. $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$의 해는 $A$의 영공간 $N(A)$에 속한다.
 
 $N(A) \ni \mathbf{x}$는 내적 (Inner Product)의 의미에서 $A$의 행공간의 모든 벡터에 수직이다.
 
@@ -1121,7 +1121,7 @@ $N(A) \ni \mathbf{x}$는 내적 (Inner Product)의 의미에서 $A$의 행공간
 
 예: $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$
 
-열벡터 $\{\begin{pmatrix} 1 \\ 3 \end{pmatrix}, \begin{pmatrix} 2 \\ 4 \end{pmatrix}\}$가 $A$의 열공간을 생성한다.
+열벡터 $\lbrace\begin{pmatrix} 1 \\ 3 \end{pmatrix}, \begin{pmatrix} 2 \\ 4 \end{pmatrix}\rbrace$가 $A$의 열공간을 생성한다.
 
 $N(A^T) \ni \mathbf{y}$이면 $A^T\mathbf{y} = \mathbf{0}$:
 
@@ -1141,9 +1141,9 @@ $$R_0 = \begin{pmatrix} 1 & 3 & 5 & 0 & 7 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 
 
 피벗 행: 1과 2. 피벗 열: 1과 4. $\text{rank}(R_0) = r = 2$.
 
-**행공간:** 기저 벡터 $\{(1, 3, 5, 0, 7), \;(0, 0, 0, 1, 2)\}$로 생성된다. $\dim C(R_0^T) = 2 = r$.
+**행공간:** 기저 벡터 $\lbrace(1, 3, 5, 0, 7), \;(0, 0, 0, 1, 2)\rbrace$로 생성된다. $\dim C(R_0^T) = 2 = r$.
 
-**열공간:** 1번째와 4번째 열벡터 $\left\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\}$가 $C(R_0)$의 기저이다. $\dim C(R_0) = 2 = r$.
+**열공간:** 1번째와 4번째 열벡터 $\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\rbrace$가 $C(R_0)$의 기저이다. $\dim C(R_0) = 2 = r$.
 
 **영공간:** $R_0 \mathbf{x} = \mathbf{0}$:
 
@@ -1157,7 +1157,7 @@ ii) $x_2 = 0, x_3 = 1, x_5 = 0$으로 취하면: $x_1 + 5 = 0 \Rightarrow x_1 = 
 
 iii) $x_2 = 0, x_3 = 0, x_5 = 1$로 취하면: $x_1 + 7 = 0 \Rightarrow x_1 = -7$, $x_4 + 2 = 0 \Rightarrow x_4 = -2$. $\mathbf{x} = \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}$
 
-3개의 특수해가 $N(R_0)$의 기저 $\left\{\begin{pmatrix} -3 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -5 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}\right\}$를 형성한다.
+3개의 특수해가 $N(R_0)$의 기저 $\left\lbrace\begin{pmatrix} -3 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -5 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}\right\rbrace$를 형성한다.
 
 $\dim N(R_0) = 3 = 5 - 2 = n - r$.
 
@@ -1169,7 +1169,7 @@ $m - r = 3 - 2 = 1$, 1개의 자유 변수.
 
 $y_3 = 1$로 취하면: $\Rightarrow y_1 = y_2 = 0$. $\therefore \mathbf{y} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$
 
-$\left\{\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\}$이 $N(R_0^T)$의 기저이다.
+$\left\lbrace\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\rbrace$이 $N(R_0^T)$의 기저이다.
 
 $\dim N(R_0^T) = 1 = m - r = 3 - 2$.
 
@@ -1192,9 +1192,9 @@ $$A = \begin{pmatrix} 1 & 3 & 5 & 0 & 7 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 3 & 5 & 1 & 
 
 $A$는 $R_0$와 같은 행공간을 가지지만, 열공간은 $R_0$와 다르다.
 
-$C(A)$의 기저: $\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\}$ ($R_0$가 아닌 $A$의 피벗 열)
+$C(A)$의 기저: $\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\rbrace$ ($R_0$가 아닌 $A$의 피벗 열)
 
-$C(R_0)$의 기저: $\left\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\}$
+$C(R_0)$의 기저: $\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\rbrace$
 
 ($\mathbb{R}^3$에서 서로 다른 평면이지만, 같은 차원.)
 
@@ -1247,7 +1247,7 @@ $\mathbb{R}^m$에서: $C(A)$ (차원 $r$)과 $N(A^T)$ (차원 $m - r$)는 직교
 | 특수해 (Special Solutions) | $\begin{pmatrix} -F \\ I \end{pmatrix}$의 열들; $N(A)$의 기저를 형성 |
 | 완전해 (Complete Solution) | $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n$ (특수해 + 영공간) |
 | 특수해 $\mathbf{x}_p$ (Particular Solution) | 모든 자유 변수를 0으로 놓고 $R_0\mathbf{x} = \mathbf{d}$ 풀기 |
-| 열 완전 계수 ($r = n$) | $N(A) = \{\mathbf{0}\}$; $A\mathbf{x} = \mathbf{b}$의 해가 최대 1개; $R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}$ |
+| 열 완전 계수 ($r = n$) | $N(A) = \lbrace\mathbf{0}\rbrace$; $A\mathbf{x} = \mathbf{b}$의 해가 최대 1개; $R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}$ |
 | 행 완전 계수 ($r = m$) | $A\mathbf{x} = \mathbf{b}$가 항상 풀림; $C(A) = \mathbb{R}^m$; $R = (I \; F)$ |
 | 선형 독립 (Linear Independence) | $c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0}$이 모든 $c_i = 0$일 때만 성립 |
 | 생성 (Spanning) | 벡터들이 $\mathbb{S}$를 생성: $\mathbb{S}$ = 그 벡터들의 모든 결합 |
@@ -1260,7 +1260,7 @@ $\mathbb{R}^m$에서: $C(A)$ (차원 $r$)과 $N(A^T)$ (차원 $m - r$)는 직교
 | $r + (m - r) = m$ | 열공간 + 좌영공간이 $\mathbb{R}^m$을 채움 |
 | 직교성 (Orthogonality) | $N(A) \perp C(A^T)$ ($\mathbb{R}^n$); $N(A^T) \perp C(A)$ ($\mathbb{R}^m$) |
 | 행렬 공간 차원 | $n \times n$: $n^2$; 대각: $n$; 상삼각: $\frac{n^2+n}{2}$; 대칭: $\frac{n^2+n}{2}$ |
-| 함수 공간 (Function Space) | $y'' = 0, -y, y$의 해가 기저 $\{1,x\}$, $\{\sin x, \cos x\}$, $\{e^x, e^{-x}\}$인 2차원 공간 형성 |
+| 함수 공간 (Function Space) | $y'' = 0, -y, y$의 해가 기저 $\lbrace1,x\rbrace$, $\lbrace\sin x, \cos x\rbrace$, $\lbracee^x, e^{-x}\rbrace$인 2차원 공간 형성 |
 | 기본 정리 (Fundamental Theorem) | $\dim C(A) = \dim C(A^T) = r$; $\dim N(A) = n-r$; $\dim N(A^T) = m-r$ |
 
 ---

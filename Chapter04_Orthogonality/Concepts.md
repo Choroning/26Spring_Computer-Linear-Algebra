@@ -153,7 +153,7 @@ $$R = \begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & -1 \end{pmatrix}$$
 
 $\text{rank}(A) = \text{rank}(R) = 2$, $n - r = 3 - 2 = 1$ (1 free variable).
 
-$$\mathcal{N}(A) = \left\{ c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} \right\}, \quad C(A) = \mathbb{R}^2$$
+$$\mathcal{N}(A) = \left\lbrace c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} \right\rbrace, \quad C(A) = \mathbb{R}^2$$
 
 For $A^T$:
 
@@ -165,7 +165,7 @@ $$R_0 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{pmatrix}$$
 
 $\text{rank}(A^T) = \text{rank}(R_0) = 2$, $m - r = 2 - 2 = 0$ (no free variable).
 
-$$\mathcal{N}(A^T) = \left\{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} \right\}, \quad C(A^T) \text{ is a plane in } \mathbb{R}^3$$
+$$\mathcal{N}(A^T) = \left\lbrace \begin{pmatrix} 0 \\ 0 \end{pmatrix} \right\rbrace, \quad C(A^T) \text{ is a plane in } \mathbb{R}^3$$
 
 Verification:
 
@@ -253,33 +253,33 @@ $A$ contains the $2 \times 2$ invertible submatrix $\begin{pmatrix} 1 & 3 \\ 1 &
 
 A **basis** contains linearly independent vectors that span the space.
 
-**Standard basis** of $\mathbb{R}^n$ is $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$ where:
+**Standard basis** of $\mathbb{R}^n$ is $\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace$ where:
 
 $$\mathbb{R}^n \ni \mathbf{e}_i = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix} \leftarrow i\text{th row}$$
 
 is the vector in $\mathbb{R}^n$ which has a one in the $i$th entry and zeros elsewhere. That is the $i$th column of $I \in \mathbb{R}^{n \times n}$.
 
-The dimension of $\mathbb{R}^n$ is $n$ because the number of basis vectors of $\mathbb{R}^n$ is $n$, e.g., $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$.
+The dimension of $\mathbb{R}^n$ is $n$ because the number of basis vectors of $\mathbb{R}^n$ is $n$, e.g., $\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace$.
 
 ### 1.10 Two Properties in $\mathbb{R}^n$
 
-**i)** Suppose $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ is LI. Then $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ is a basis for $\mathbb{R}^n$.
+**i)** Suppose $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ is LI. Then $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ is a basis for $\mathbb{R}^n$.
 
-**ii)** Suppose $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\}$ spans $\mathbb{R}^n$. Then $m \geq n$. If $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ spans $\mathbb{R}^n$, then $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ is LI.
+**ii)** Suppose $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\rbrace$ spans $\mathbb{R}^n$. Then $m \geq n$. If $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ spans $\mathbb{R}^n$, then $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ is LI.
 
-$$\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\} \text{ is LI} \iff \{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\} \text{ spans } \mathbb{R}^n$$
+$$\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace \text{ is LI} \iff \lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace \text{ spans } \mathbb{R}^n$$
 
-Therefore $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ is a basis for $\mathbb{R}^n$.
+Therefore $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ is a basis for $\mathbb{R}^n$.
 
 **Proof:**
 
-**i)** $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ is LI. Need to show the set spans $\mathbb{R}^n$.
+**i)** $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ is LI. Need to show the set spans $\mathbb{R}^n$.
 
 Define $A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_n) \in \mathbb{R}^{n \times n}$. Our goal is to find a unique $\mathbf{x}$ such that $A\mathbf{x} = \mathbf{v}$. Since the square matrix $A$ has full rank, it has an inverse: $A^{-1}A\mathbf{x} = A^{-1}\mathbf{v}$, so $\mathbf{x} = A^{-1}\mathbf{v}$. Therefore $\mathbf{v} = A\mathbf{x}$ is a linear combination of $\mathbf{u}_i$.
 
-**ii)** Since $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\}$ spans $\mathbb{R}^n$: $\mathbf{v} \in \mathbb{R}^n = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_m\mathbf{u}_m$. Let $A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_m)$ which is $n \times m$. The reduced echelon form of $A$ reveals $r \leq m$ independent column vectors. $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\}$ would be a basis for $\mathbb{R}^n$, but this is contrary to $\dim \mathbb{R}^n = n$. Therefore $m \geq n$.
+**ii)** Since $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\rbrace$ spans $\mathbb{R}^n$: $\mathbf{v} \in \mathbb{R}^n = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_m\mathbf{u}_m$. Let $A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_m)$ which is $n \times m$. The reduced echelon form of $A$ reveals $r \leq m$ independent column vectors. $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace$ would be a basis for $\mathbb{R}^n$, but this is contrary to $\dim \mathbb{R}^n = n$. Therefore $m \geq n$.
 
-Finally suppose $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ is NOT LI. Then $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\}$ would form a basis for $\mathbb{R}^n$ with $r < n$, which contradicts $\dim \mathbb{R}^n = n$. Therefore $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$ is LI. $\square$
+Finally suppose $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ is NOT LI. Then $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace$ would form a basis for $\mathbb{R}^n$ with $r < n$, which contradicts $\dim \mathbb{R}^n = n$. Therefore $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$ is LI. $\square$
 
 ### 1.11 Properties of $A \in \mathbb{R}^{n \times n}$
 
@@ -305,15 +305,15 @@ $$\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix} = R_0, \quad \text{rank}(A) = \te
 
 $n = 2$, $n - r = 2 - 1 = 1$ (1 free variable).
 
-$$C(A^T) = \text{span}\{(1, 2)\}, \quad C(A) = \text{span}\left\{\begin{pmatrix} 1 \\ 3 \end{pmatrix}\right\}$$
+$$C(A^T) = \text{span}\lbrace(1, 2)\rbrace, \quad C(A) = \text{span}\left\lbrace\begin{pmatrix} 1 \\ 3 \end{pmatrix}\right\rbrace$$
 
 $A\mathbf{x} = \mathbf{0}$: choose $x_2 = 1$, $x_1 + 2 = 0$, $x_1 = -2$.
 
-$$\mathcal{N}(A) = \text{span}\left\{\begin{pmatrix} -2 \\ 1 \end{pmatrix}\right\}$$
+$$\mathcal{N}(A) = \text{span}\left\lbrace\begin{pmatrix} -2 \\ 1 \end{pmatrix}\right\rbrace$$
 
 $A^T\mathbf{y} = \mathbf{0}$: $\begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$. After reduction: $\begin{pmatrix} 1 & 3 \\ 0 & 0 \end{pmatrix}$. Take $y_2 = 1$, $y_1 = -3$.
 
-$$\mathcal{N}(A^T) = \text{span}\left\{\begin{pmatrix} -3 \\ 1 \end{pmatrix}\right\}$$
+$$\mathcal{N}(A^T) = \text{span}\left\lbrace\begin{pmatrix} -3 \\ 1 \end{pmatrix}\right\rbrace$$
 
 Suppose $\mathbf{b} = \begin{pmatrix} 10 \\ 30 \end{pmatrix}$. The solution $\mathbf{x}$ to $A\mathbf{x} = \mathbf{b}$ is:
 
@@ -556,7 +556,7 @@ $$(A\mathbf{x})^T(A\mathbf{x}) = 0 \iff \|A\mathbf{x}\|^2 = 0$$
 
 $$\therefore A\mathbf{x} = \mathbf{0} \longrightarrow \mathbf{x} \in \mathcal{N}(A)$$
 
-Therefore $\mathcal{N}(A) = \{\mathbf{0}\} \iff \mathcal{N}(A^T A) = \{\mathbf{0}\}$.
+Therefore $\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace \iff \mathcal{N}(A^T A) = \lbrace\mathbf{0}\rbrace$.
 
 $\iff$ $A$ is invertible $\iff$ $A^T A$ is invertible. $\square$
 
@@ -1092,7 +1092,7 @@ $\dim C(I_R) = 2$, $\dim \mathcal{N}(I_R^T) = 1$, $\dim C(I_R^T) = 2$, $\dim \ma
 | **Condition** | Full column rank: $r = n < m$ | Full row rank: $r = m < n$ |
 | **Interpretation** | # unknowns < # equations | # equations < # unknowns |
 | **Solution to $A\mathbf{x} = \mathbf{b}$** | 0 or 1 solution | Infinitely many solutions |
-| **Nullspace** | $\mathcal{N}(A) = \{\mathbf{0}\}$ | $\mathcal{N}(A^T) = \{\mathbf{0}\}$ |
+| **Nullspace** | $\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace$ | $\mathcal{N}(A^T) = \lbrace\mathbf{0}\rbrace$ |
 | **$A^T A$ or $AA^T$** | $A^T A$ is $n \times n$ and invertible | $AA^T$ is $m \times m$ and invertible |
 | **Formula** | $A^+ = (A^T A)^{-1}A^T$ | $A^+ = A^T(AA^T)^{-1}$ |
 
@@ -1221,7 +1221,7 @@ The mapping through $A = CR$:
 
 $$C(A^T) \ni \mathbf{x} \xrightarrow{R} R\mathbf{x} \xrightarrow{C} CR\mathbf{x} = A\mathbf{x} \in C(A)$$
 
-$R$ has full row rank: $\mathcal{N}(R^T) = \{\mathbf{0}\}$. $C$ has full column rank: $\mathcal{N}(C) = \{\mathbf{0}\}$.
+$R$ has full row rank: $\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace$. $C$ has full column rank: $\mathcal{N}(C) = \lbrace\mathbf{0}\rbrace$.
 
 ---
 
@@ -1236,7 +1236,7 @@ $R$ has full row rank: $\mathcal{N}(R^T) = \{\mathbf{0}\}$. $C$ has full column 
 | Orthogonal complement | $\dim V + \dim V^\perp = n$; every $\mathbf{x} = \mathbf{x}_r + \mathbf{x}_n$ |
 | Projection onto a line | $\mathbf{p} = \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a}$; projection matrix $P = \frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}$ |
 | Projection onto a subspace | $\mathbf{p} = A(A^T A)^{-1}A^T\mathbf{b}$; $P = A(A^T A)^{-1}A^T$; $P^2 = P = P^T$ |
-| $A^T A$ invertibility | $A^T A$ is invertible $\iff$ $A$ has LI columns $\iff$ $\mathcal{N}(A) = \{\mathbf{0}\}$ |
+| $A^T A$ invertibility | $A^T A$ is invertible $\iff$ $A$ has LI columns $\iff$ $\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace$ |
 | Least squares solution | $\hat{\boldsymbol{\alpha}} = (A^T A)^{-1}A^T\mathbf{b}$ minimizes $E = \|A\mathbf{x} - \mathbf{b}\|^2$ |
 | Normal equations | $A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}$ (geometry, algebra, or calculus derivation) |
 | Line fitting | $A = \begin{pmatrix} x_1 & 1 \\ \vdots & \vdots \\ x_m & 1 \end{pmatrix}$; $A^T A = \begin{pmatrix} \sum x_i^2 & \sum x_i \\ \sum x_i & m \end{pmatrix}$ |

@@ -132,7 +132,7 @@ $$\boxed{\det(A) \ne 0 \iff A \text{ 가역} \iff \text{rank}(A) = n \iff \text{
 - $C(A) = \mathbb{R}^3$ (독립 열 3개)
 - $C(A)$ = 평면 (독립 열 2개)
 - $C(A)$ = 직선 (독립 열 1개)
-- $C(A) = \{\mathbf{0}\}$ ($A = O$)
+- $C(A) = \lbrace\mathbf{0}\rbrace$ ($A = O$)
 
 ## 1-E. 랭크 1 행렬 (rank-1 matrix)
 

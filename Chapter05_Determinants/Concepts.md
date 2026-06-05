@@ -123,7 +123,7 @@ $$\det\begin{pmatrix} a & b \\ 2a & 2b \end{pmatrix} = 2ab - 2ab = 0$$
 
 If $ax + by = e$ has slope $-a/b$ and $2ax + 2by = f$ has slope $-a/b$ (same slope), the lines are parallel.
 
-$\det A = 0$ means that the columns of $A$ are **NOT** linearly independent, i.e., $N(A) \neq \{\mathbf{0}\}$.
+$\det A = 0$ means that the columns of $A$ are **NOT** linearly independent, i.e., $N(A) \neq \lbrace\mathbf{0}\rbrace$.
 
 **Singular matrix example:**
 

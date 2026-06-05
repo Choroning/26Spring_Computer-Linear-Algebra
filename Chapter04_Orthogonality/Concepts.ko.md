@@ -153,7 +153,7 @@ $$R = \begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & -1 \end{pmatrix}$$
 
 $\text{rank}(A) = \text{rank}(R) = 2$, $n - r = 3 - 2 = 1$ (자유 변수 1개).
 
-$$\mathcal{N}(A) = \left\{ c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} \right\}, \quad C(A) = \mathbb{R}^2$$
+$$\mathcal{N}(A) = \left\lbrace c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} \right\rbrace, \quad C(A) = \mathbb{R}^2$$
 
 $A^T$에 대해:
 
@@ -165,7 +165,7 @@ $$R_0 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{pmatrix}$$
 
 $\text{rank}(A^T) = \text{rank}(R_0) = 2$, $m - r = 2 - 2 = 0$ (자유 변수 없음).
 
-$$\mathcal{N}(A^T) = \left\{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} \right\}, \quad C(A^T) \text{는 } \mathbb{R}^3\text{의 평면}$$
+$$\mathcal{N}(A^T) = \left\lbrace \begin{pmatrix} 0 \\ 0 \end{pmatrix} \right\rbrace, \quad C(A^T) \text{는 } \mathbb{R}^3\text{의 평면}$$
 
 검증:
 
@@ -253,33 +253,33 @@ $A$는 피벗 열 1과 3에서 $2 \times 2$ 가역 부분행렬 $\begin{pmatrix}
 
 **기저** (basis)는 공간을 생성하는 선형독립 벡터들을 포함한다.
 
-$\mathbb{R}^n$의 **표준 기저** (standard basis)는 $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$이며:
+$\mathbb{R}^n$의 **표준 기저** (standard basis)는 $\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace$이며:
 
 $$\mathbb{R}^n \ni \mathbf{e}_i = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix} \leftarrow i\text{번째 행}$$
 
 이는 $i$번째 성분이 1이고 나머지가 0인 $\mathbb{R}^n$의 벡터이다. 즉 $I \in \mathbb{R}^{n \times n}$의 $i$번째 열이다.
 
-$\mathbb{R}^n$의 차원은 $n$이다. 이는 $\mathbb{R}^n$의 기저 벡터 수가 $n$개이기 때문이다, 예를 들어 $\{\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\}$.
+$\mathbb{R}^n$의 차원은 $n$이다. 이는 $\mathbb{R}^n$의 기저 벡터 수가 $n$개이기 때문이다, 예를 들어 $\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace$.
 
 ### 1.10 $\mathbb{R}^n$에서의 두 성질 (Two Properties in $\mathbb{R}^n$)
 
-**i)** $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$이 선형독립(LI)이라고 가정하자. 그러면 $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$은 $\mathbb{R}^n$의 기저이다.
+**i)** $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$이 선형독립(LI)이라고 가정하자. 그러면 $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$은 $\mathbb{R}^n$의 기저이다.
 
-**ii)** $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\}$이 $\mathbb{R}^n$을 생성한다고 가정하자. 그러면 $m \geq n$. 만약 $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$이 $\mathbb{R}^n$을 생성하면, $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$은 LI이다.
+**ii)** $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\rbrace$이 $\mathbb{R}^n$을 생성한다고 가정하자. 그러면 $m \geq n$. 만약 $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$이 $\mathbb{R}^n$을 생성하면, $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$은 LI이다.
 
-$$\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\} \text{이 LI} \iff \{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\} \text{이 } \mathbb{R}^n\text{을 생성}$$
+$$\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace \text{이 LI} \iff \lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace \text{이 } \mathbb{R}^n\text{을 생성}$$
 
-따라서 $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$은 $\mathbb{R}^n$의 기저이다.
+따라서 $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$은 $\mathbb{R}^n$의 기저이다.
 
 **증명:**
 
-**i)** $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$은 LI이다. 이 집합이 $\mathbb{R}^n$을 생성함을 보여야 한다.
+**i)** $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$은 LI이다. 이 집합이 $\mathbb{R}^n$을 생성함을 보여야 한다.
 
 $A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_n) \in \mathbb{R}^{n \times n}$으로 정의하자. 목표는 $A\mathbf{x} = \mathbf{v}$를 만족하는 유일한 $\mathbf{x}$를 찾는 것이다. 정사각 행렬 $A$가 풀 랭크이므로, 역행렬이 존재한다: $A^{-1}A\mathbf{x} = A^{-1}\mathbf{v}$, 따라서 $\mathbf{x} = A^{-1}\mathbf{v}$. 그러므로 $\mathbf{v} = A\mathbf{x}$는 $\mathbf{u}_i$의 선형결합이다.
 
-**ii)** $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\}$이 $\mathbb{R}^n$을 생성하므로: $\mathbf{v} \in \mathbb{R}^n = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_m\mathbf{u}_m$. $A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_m)$이라 하면 이는 $n \times m$ 행렬이다. $A$의 기약 행 사다리꼴은 $r \leq m$개의 독립 열 벡터를 보여준다. $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\}$이 $\mathbb{R}^n$의 기저가 되지만, 이는 $\dim \mathbb{R}^n = n$에 모순이다. 따라서 $m \geq n$.
+**ii)** $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\rbrace$이 $\mathbb{R}^n$을 생성하므로: $\mathbf{v} \in \mathbb{R}^n = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_m\mathbf{u}_m$. $A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_m)$이라 하면 이는 $n \times m$ 행렬이다. $A$의 기약 행 사다리꼴은 $r \leq m$개의 독립 열 벡터를 보여준다. $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace$이 $\mathbb{R}^n$의 기저가 되지만, 이는 $\dim \mathbb{R}^n = n$에 모순이다. 따라서 $m \geq n$.
 
-마지막으로 $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$이 LI가 아니라고 가정하자. 그러면 $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\}$이 $r < n$으로 $\mathbb{R}^n$의 기저가 되는데, 이는 $\dim \mathbb{R}^n = n$에 모순이다. 따라서 $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$은 LI이다. $\square$
+마지막으로 $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$이 LI가 아니라고 가정하자. 그러면 $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace$이 $r < n$으로 $\mathbb{R}^n$의 기저가 되는데, 이는 $\dim \mathbb{R}^n = n$에 모순이다. 따라서 $\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace$은 LI이다. $\square$
 
 ### 1.11 $A \in \mathbb{R}^{n \times n}$의 성질 (Properties of $A \in \mathbb{R}^{n \times n}$)
 
@@ -305,15 +305,15 @@ $$\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix} = R_0, \quad \text{rank}(A) = \te
 
 $n = 2$, $n - r = 2 - 1 = 1$ (자유 변수 1개).
 
-$$C(A^T) = \text{span}\{(1, 2)\}, \quad C(A) = \text{span}\left\{\begin{pmatrix} 1 \\ 3 \end{pmatrix}\right\}$$
+$$C(A^T) = \text{span}\lbrace(1, 2)\rbrace, \quad C(A) = \text{span}\left\lbrace\begin{pmatrix} 1 \\ 3 \end{pmatrix}\right\rbrace$$
 
 $A\mathbf{x} = \mathbf{0}$: $x_2 = 1$로 선택, $x_1 + 2 = 0$, $x_1 = -2$.
 
-$$\mathcal{N}(A) = \text{span}\left\{\begin{pmatrix} -2 \\ 1 \end{pmatrix}\right\}$$
+$$\mathcal{N}(A) = \text{span}\left\lbrace\begin{pmatrix} -2 \\ 1 \end{pmatrix}\right\rbrace$$
 
 $A^T\mathbf{y} = \mathbf{0}$: $\begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$. 축소 후: $\begin{pmatrix} 1 & 3 \\ 0 & 0 \end{pmatrix}$. $y_2 = 1$로 취하면, $y_1 = -3$.
 
-$$\mathcal{N}(A^T) = \text{span}\left\{\begin{pmatrix} -3 \\ 1 \end{pmatrix}\right\}$$
+$$\mathcal{N}(A^T) = \text{span}\left\lbrace\begin{pmatrix} -3 \\ 1 \end{pmatrix}\right\rbrace$$
 
 $\mathbf{b} = \begin{pmatrix} 10 \\ 30 \end{pmatrix}$라 하자. $A\mathbf{x} = \mathbf{b}$의 해 $\mathbf{x}$는:
 
@@ -556,7 +556,7 @@ $$(A\mathbf{x})^T(A\mathbf{x}) = 0 \iff \|A\mathbf{x}\|^2 = 0$$
 
 $$\therefore A\mathbf{x} = \mathbf{0} \longrightarrow \mathbf{x} \in \mathcal{N}(A)$$
 
-따라서 $\mathcal{N}(A) = \{\mathbf{0}\} \iff \mathcal{N}(A^T A) = \{\mathbf{0}\}$.
+따라서 $\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace \iff \mathcal{N}(A^T A) = \lbrace\mathbf{0}\rbrace$.
 
 $\iff$ $A$가 가역 $\iff$ $A^T A$가 가역. $\square$
 
@@ -1092,7 +1092,7 @@ $\dim C(I_R) = 2$, $\dim \mathcal{N}(I_R^T) = 1$, $\dim C(I_R^T) = 2$, $\dim \ma
 | **조건** | 풀 열 랭크: $r = n < m$ | 풀 행 랭크: $r = m < n$ |
 | **해석** | 미지수 수 < 방정식 수 | 방정식 수 < 미지수 수 |
 | **$A\mathbf{x} = \mathbf{b}$의 해** | 0개 또는 1개 | 무한히 많은 해 |
-| **영공간** | $\mathcal{N}(A) = \{\mathbf{0}\}$ | $\mathcal{N}(A^T) = \{\mathbf{0}\}$ |
+| **영공간** | $\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace$ | $\mathcal{N}(A^T) = \lbrace\mathbf{0}\rbrace$ |
 | **$A^T A$ 또는 $AA^T$** | $A^T A$는 $n \times n$이고 가역 | $AA^T$는 $m \times m$이고 가역 |
 | **공식** | $A^+ = (A^T A)^{-1}A^T$ | $A^+ = A^T(AA^T)^{-1}$ |
 
@@ -1221,7 +1221,7 @@ $A = CR$를 통한 사상:
 
 $$C(A^T) \ni \mathbf{x} \xrightarrow{R} R\mathbf{x} \xrightarrow{C} CR\mathbf{x} = A\mathbf{x} \in C(A)$$
 
-$R$은 풀 행 랭크: $\mathcal{N}(R^T) = \{\mathbf{0}\}$. $C$는 풀 열 랭크: $\mathcal{N}(C) = \{\mathbf{0}\}$.
+$R$은 풀 행 랭크: $\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace$. $C$는 풀 열 랭크: $\mathcal{N}(C) = \lbrace\mathbf{0}\rbrace$.
 
 ---
 
@@ -1236,7 +1236,7 @@ $R$은 풀 행 랭크: $\mathcal{N}(R^T) = \{\mathbf{0}\}$. $C$는 풀 열 랭�
 | 직교 여공간 (orthogonal complement) | $\dim V + \dim V^\perp = n$; 모든 $\mathbf{x} = \mathbf{x}_r + \mathbf{x}_n$ |
 | 직선으로의 사영 | $\mathbf{p} = \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\mathbf{a}$; 사영 행렬 $P = \frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}$ |
 | 부분공간으로의 사영 | $\mathbf{p} = A(A^T A)^{-1}A^T\mathbf{b}$; $P = A(A^T A)^{-1}A^T$; $P^2 = P = P^T$ |
-| $A^T A$ 가역성 | $A^T A$ 가역 $\iff$ $A$가 LI 열 $\iff$ $\mathcal{N}(A) = \{\mathbf{0}\}$ |
+| $A^T A$ 가역성 | $A^T A$ 가역 $\iff$ $A$가 LI 열 $\iff$ $\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace$ |
 | 최소제곱 해 | $\hat{\boldsymbol{\alpha}} = (A^T A)^{-1}A^T\mathbf{b}$는 $E = \|A\mathbf{x} - \mathbf{b}\|^2$를 최소화 |
 | 정규방정식 (normal equations) | $A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}$ (기하, 대수, 미적분 유도) |
 | 직선 적합 (line fitting) | $A = \begin{pmatrix} x_1 & 1 \\ \vdots & \vdots \\ x_m & 1 \end{pmatrix}$; $A^T A = \begin{pmatrix} \sum x_i^2 & \sum x_i \\ \sum x_i & m \end{pmatrix}$ |
