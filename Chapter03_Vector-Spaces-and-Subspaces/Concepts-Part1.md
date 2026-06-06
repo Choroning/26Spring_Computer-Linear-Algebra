@@ -13,7 +13,7 @@
 
 > **📑 This document is split into 2 parts.**
 >
-> **Part 1** · [Part 2](Concepts-2.md)
+> **Part 1** · [Part 2](Concepts-Part2.md)
 
 ---
 
@@ -51,20 +51,20 @@
   - [4.5 Solvability Conditions](#45-solvability-conditions)
   - [4.6 Full Row Rank and the Complete Solution](#46-full-row-rank-and-the-complete-solution)
   - [4.7 Four Possibilities for Linear Equations](#47-four-possibilities-for-linear-equations)
-- [5. Independence, Basis, and Dimension (3.4)](Concepts-2.md#5-independence-basis-and-dimension-34)
-  - [5.1 Independent Vectors](Concepts-2.md#51-independent-vectors)
-  - [5.2 Linear Independence via the Nullspace](Concepts-2.md#52-linear-independence-via-the-nullspace)
-  - [5.3 Vectors that Span a Subspace](Concepts-2.md#53-vectors-that-span-a-subspace)
-  - [5.4 Basis for a Vector Space](Concepts-2.md#54-basis-for-a-vector-space)
-  - [5.5 Dimension of a Vector Space](Concepts-2.md#55-dimension-of-a-vector-space)
-  - [5.6 Bases for Matrix Spaces and Function Spaces](Concepts-2.md#56-bases-for-matrix-spaces-and-function-spaces)
-- [6. Dimensions of the Four Subspaces (3.5)](Concepts-2.md#6-dimensions-of-the-four-subspaces-35)
-  - [6.1 Dimension Summary](Concepts-2.md#61-dimension-summary)
-  - [6.2 Orthogonality of the Subspaces](Concepts-2.md#62-orthogonality-of-the-subspaces)
-  - [6.3 The Four Subspaces for R_0](Concepts-2.md#63-the-four-subspaces-for-r_0)
-  - [6.4 Relationship Between A and R_0](Concepts-2.md#64-relationship-between-a-and-r_0)
-  - [6.5 The Fundamental Theorem of Linear Algebra](Concepts-2.md#65-the-fundamental-theorem-of-linear-algebra)
-- [Summary](Concepts-2.md#summary)
+- [5. Independence, Basis, and Dimension (3.4)](Concepts-Part2.md#5-independence-basis-and-dimension-34)
+  - [5.1 Independent Vectors](Concepts-Part2.md#51-independent-vectors)
+  - [5.2 Linear Independence via the Nullspace](Concepts-Part2.md#52-linear-independence-via-the-nullspace)
+  - [5.3 Vectors that Span a Subspace](Concepts-Part2.md#53-vectors-that-span-a-subspace)
+  - [5.4 Basis for a Vector Space](Concepts-Part2.md#54-basis-for-a-vector-space)
+  - [5.5 Dimension of a Vector Space](Concepts-Part2.md#55-dimension-of-a-vector-space)
+  - [5.6 Bases for Matrix Spaces and Function Spaces](Concepts-Part2.md#56-bases-for-matrix-spaces-and-function-spaces)
+- [6. Dimensions of the Four Subspaces (3.5)](Concepts-Part2.md#6-dimensions-of-the-four-subspaces-35)
+  - [6.1 Dimension Summary](Concepts-Part2.md#61-dimension-summary)
+  - [6.2 Orthogonality of the Subspaces](Concepts-Part2.md#62-orthogonality-of-the-subspaces)
+  - [6.3 The Four Subspaces for R_0](Concepts-Part2.md#63-the-four-subspaces-for-r_0)
+  - [6.4 Relationship Between A and R_0](Concepts-Part2.md#64-relationship-between-a-and-r_0)
+  - [6.5 The Fundamental Theorem of Linear Algebra](Concepts-Part2.md#65-the-fundamental-theorem-of-linear-algebra)
+- [Summary](Concepts-Part2.md#summary)
 
 ---
 

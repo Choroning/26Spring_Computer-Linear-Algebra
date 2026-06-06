@@ -22,7 +22,7 @@
 
 > **📑 이 문서는 2개 파트로 나뉘어 있습니다.**
 >
-> **Part 1** · [Part 2](Concepts-2.ko.md)
+> **Part 1** · [Part 2](Concepts-Part2.ko.md)
 
 ---
 
@@ -48,22 +48,22 @@
   - [1.2.6 슈바르츠 부등식 (Schwarz Inequality)](#126-슈바르츠-부등식-schwarz-inequality)
   - [1.2.7 삼각 부등식 (Triangle Inequality)](#127-삼각-부등식-triangle-inequality)
   - [1.2.8 3차원에서의 평면](#128-3차원에서의-평면)
-- [1.3 행렬과 열공간 (Column Spaces)](Concepts-2.ko.md#13-행렬과-열공간-column-spaces)
-  - [1.3.1 행렬-벡터 곱셈](Concepts-2.ko.md#131-행렬-벡터-곱셈)
-  - [1.3.2 열공간 (Column Space)](Concepts-2.ko.md#132-열공간-column-space)
-  - [1.3.3 독립, 종속, 그리고 열공간](Concepts-2.ko.md#133-독립-종속-그리고-열공간)
-  - [1.3.4 생성 (Span)](Concepts-2.ko.md#134-생성-span)
-  - [1.3.5 랭크와 기저 (Rank and Basis)](Concepts-2.ko.md#135-랭크와-기저-rank-and-basis)
-  - [1.3.6 랭크 1인 행렬](Concepts-2.ko.md#136-랭크-1인-행렬)
-- [1.4 행렬 곱셈 AB와 CR](Concepts-2.ko.md#14-행렬-곱셈-ab와-cr)
-  - [1.4.1 행렬 곱셈의 규칙](Concepts-2.ko.md#141-행렬-곱셈의-규칙)
-  - [1.4.2 AB의 열 해석](Concepts-2.ko.md#142-ab의-열-해석)
-  - [1.4.3 계산 비용](Concepts-2.ko.md#143-계산-비용)
-  - [1.4.4 행렬 곱셈의 성질](Concepts-2.ko.md#144-행렬-곱셈의-성질)
-  - [1.4.5 랭크 1 행렬과 A = CR](Concepts-2.ko.md#145-랭크-1-행렬과-a--cr)
-  - [1.4.6 C와 R 구하기](Concepts-2.ko.md#146-c와-r-구하기)
-  - [1.4.7 A의 열 곱하기 B의 행 (외적, Outer Product)](Concepts-2.ko.md#147-a의-열-곱하기-b의-행-외적-outer-product)
-- [요약](Concepts-2.ko.md#요약)
+- [1.3 행렬과 열공간 (Column Spaces)](Concepts-Part2.ko.md#13-행렬과-열공간-column-spaces)
+  - [1.3.1 행렬-벡터 곱셈](Concepts-Part2.ko.md#131-행렬-벡터-곱셈)
+  - [1.3.2 열공간 (Column Space)](Concepts-Part2.ko.md#132-열공간-column-space)
+  - [1.3.3 독립, 종속, 그리고 열공간](Concepts-Part2.ko.md#133-독립-종속-그리고-열공간)
+  - [1.3.4 생성 (Span)](Concepts-Part2.ko.md#134-생성-span)
+  - [1.3.5 랭크와 기저 (Rank and Basis)](Concepts-Part2.ko.md#135-랭크와-기저-rank-and-basis)
+  - [1.3.6 랭크 1인 행렬](Concepts-Part2.ko.md#136-랭크-1인-행렬)
+- [1.4 행렬 곱셈 AB와 CR](Concepts-Part2.ko.md#14-행렬-곱셈-ab와-cr)
+  - [1.4.1 행렬 곱셈의 규칙](Concepts-Part2.ko.md#141-행렬-곱셈의-규칙)
+  - [1.4.2 AB의 열 해석](Concepts-Part2.ko.md#142-ab의-열-해석)
+  - [1.4.3 계산 비용](Concepts-Part2.ko.md#143-계산-비용)
+  - [1.4.4 행렬 곱셈의 성질](Concepts-Part2.ko.md#144-행렬-곱셈의-성질)
+  - [1.4.5 랭크 1 행렬과 A = CR](Concepts-Part2.ko.md#145-랭크-1-행렬과-a--cr)
+  - [1.4.6 C와 R 구하기](Concepts-Part2.ko.md#146-c와-r-구하기)
+  - [1.4.7 A의 열 곱하기 B의 행 (외적, Outer Product)](Concepts-Part2.ko.md#147-a의-열-곱하기-b의-행-외적-outer-product)
+- [요약](Concepts-Part2.ko.md#요약)
 
 ---
 

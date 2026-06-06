@@ -13,7 +13,7 @@
 
 > **📑 This document is split into 2 parts.**
 >
-> **Part 1** · [Part 2](Concepts-2.md)
+> **Part 1** · [Part 2](Concepts-Part2.md)
 
 ---
 
@@ -39,22 +39,22 @@
   - [1.2.6 Schwarz Inequality](#126-schwarz-inequality)
   - [1.2.7 Triangle Inequality](#127-triangle-inequality)
   - [1.2.8 Planes in 3D](#128-planes-in-3d)
-- [1.3 Matrices and Their Column Spaces](Concepts-2.md#13-matrices-and-their-column-spaces)
-  - [1.3.1 Matrix-Vector Multiplication](Concepts-2.md#131-matrix-vector-multiplication)
-  - [1.3.2 Column Space](Concepts-2.md#132-column-space)
-  - [1.3.3 Independent, Dependent, and Column Space](Concepts-2.md#133-independent-dependent-and-column-space)
-  - [1.3.4 Span](Concepts-2.md#134-span)
-  - [1.3.5 Rank and Basis](Concepts-2.md#135-rank-and-basis)
-  - [1.3.6 Matrices of Rank One](Concepts-2.md#136-matrices-of-rank-one)
-- [1.4 Matrix Multiplication AB and CR](Concepts-2.md#14-matrix-multiplication-ab-and-cr)
-  - [1.4.1 Rules for Matrix Multiplication](Concepts-2.md#141-rules-for-matrix-multiplication)
-  - [1.4.2 Column Interpretation of AB](Concepts-2.md#142-column-interpretation-of-ab)
-  - [1.4.3 Computational Cost](Concepts-2.md#143-computational-cost)
-  - [1.4.4 Properties of Matrix Multiplication](Concepts-2.md#144-properties-of-matrix-multiplication)
-  - [1.4.5 Rank One Matrices and A = CR](Concepts-2.md#145-rank-one-matrices-and-a--cr)
-  - [1.4.6 Finding C and R](Concepts-2.md#146-finding-c-and-r)
-  - [1.4.7 Columns of A times Rows of B (Outer Product)](Concepts-2.md#147-columns-of-a-times-rows-of-b-outer-product)
-- [Summary](Concepts-2.md#summary)
+- [1.3 Matrices and Their Column Spaces](Concepts-Part2.md#13-matrices-and-their-column-spaces)
+  - [1.3.1 Matrix-Vector Multiplication](Concepts-Part2.md#131-matrix-vector-multiplication)
+  - [1.3.2 Column Space](Concepts-Part2.md#132-column-space)
+  - [1.3.3 Independent, Dependent, and Column Space](Concepts-Part2.md#133-independent-dependent-and-column-space)
+  - [1.3.4 Span](Concepts-Part2.md#134-span)
+  - [1.3.5 Rank and Basis](Concepts-Part2.md#135-rank-and-basis)
+  - [1.3.6 Matrices of Rank One](Concepts-Part2.md#136-matrices-of-rank-one)
+- [1.4 Matrix Multiplication AB and CR](Concepts-Part2.md#14-matrix-multiplication-ab-and-cr)
+  - [1.4.1 Rules for Matrix Multiplication](Concepts-Part2.md#141-rules-for-matrix-multiplication)
+  - [1.4.2 Column Interpretation of AB](Concepts-Part2.md#142-column-interpretation-of-ab)
+  - [1.4.3 Computational Cost](Concepts-Part2.md#143-computational-cost)
+  - [1.4.4 Properties of Matrix Multiplication](Concepts-Part2.md#144-properties-of-matrix-multiplication)
+  - [1.4.5 Rank One Matrices and A = CR](Concepts-Part2.md#145-rank-one-matrices-and-a--cr)
+  - [1.4.6 Finding C and R](Concepts-Part2.md#146-finding-c-and-r)
+  - [1.4.7 Columns of A times Rows of B (Outer Product)](Concepts-Part2.md#147-columns-of-a-times-rows-of-b-outer-product)
+- [Summary](Concepts-Part2.md#summary)
 
 ---
 

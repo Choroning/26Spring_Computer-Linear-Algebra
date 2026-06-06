@@ -13,7 +13,7 @@
 
 > **📑 This document is split into 2 parts.**
 >
-> **Part 1** · [Part 2](Concepts-2.md)
+> **Part 1** · [Part 2](Concepts-Part2.md)
 
 ---
 
@@ -47,24 +47,24 @@
   - [4.5 The Great Factorization A = LU](#45-the-great-factorization-a--lu)
   - [4.6 Second Proof of A = LU](#46-second-proof-of-a--lu)
   - [4.7 Elimination without Row Exchanges](#47-elimination-without-row-exchanges)
-- [5. Permutations and Transpose (2.4)](Concepts-2.md#5-permutations-and-transpose-24)
-  - [5.1 Permutation Matrices](Concepts-2.md#51-permutation-matrices)
-  - [5.2 Properties of Permutation Matrices](Concepts-2.md#52-properties-of-permutation-matrices)
-  - [5.3 The PA = LU Factorization](Concepts-2.md#53-the-pa--lu-factorization)
-  - [5.4 Partial Pivoting](Concepts-2.md#54-partial-pivoting)
-  - [5.5 PAQ: Row and Column Permutations](Concepts-2.md#55-paq-row-and-column-permutations)
-  - [5.6 The Transpose of A](Concepts-2.md#56-the-transpose-of-a)
-  - [5.7 Inner Products and the Transpose](Concepts-2.md#57-inner-products-and-the-transpose)
-  - [5.8 Symmetric Matrices](Concepts-2.md#58-symmetric-matrices)
-  - [5.9 Symmetric Products and LDL^T](Concepts-2.md#59-symmetric-products-and-ldlt)
-- [6. Derivatives and Finite Difference Matrices (2.5)](Concepts-2.md#6-derivatives-and-finite-difference-matrices-25)
-  - [6.1 Taylor Series and Approximations](Concepts-2.md#61-taylor-series-and-approximations)
-  - [6.2 Derivatives from Differences](Concepts-2.md#62-derivatives-from-differences)
-  - [6.3 Second Difference Matrices K, T, B](Concepts-2.md#63-second-difference-matrices-k-t-b)
-  - [6.4 Properties of K](Concepts-2.md#64-properties-of-k)
-  - [6.5 Free-Fixed Matrices T](Concepts-2.md#65-free-fixed-matrices-t)
-  - [6.6 Free-Free Matrices B](Concepts-2.md#66-free-free-matrices-b)
-- [Summary](Concepts-2.md#summary)
+- [5. Permutations and Transpose (2.4)](Concepts-Part2.md#5-permutations-and-transpose-24)
+  - [5.1 Permutation Matrices](Concepts-Part2.md#51-permutation-matrices)
+  - [5.2 Properties of Permutation Matrices](Concepts-Part2.md#52-properties-of-permutation-matrices)
+  - [5.3 The PA = LU Factorization](Concepts-Part2.md#53-the-pa--lu-factorization)
+  - [5.4 Partial Pivoting](Concepts-Part2.md#54-partial-pivoting)
+  - [5.5 PAQ: Row and Column Permutations](Concepts-Part2.md#55-paq-row-and-column-permutations)
+  - [5.6 The Transpose of A](Concepts-Part2.md#56-the-transpose-of-a)
+  - [5.7 Inner Products and the Transpose](Concepts-Part2.md#57-inner-products-and-the-transpose)
+  - [5.8 Symmetric Matrices](Concepts-Part2.md#58-symmetric-matrices)
+  - [5.9 Symmetric Products and LDL^T](Concepts-Part2.md#59-symmetric-products-and-ldlt)
+- [6. Derivatives and Finite Difference Matrices (2.5)](Concepts-Part2.md#6-derivatives-and-finite-difference-matrices-25)
+  - [6.1 Taylor Series and Approximations](Concepts-Part2.md#61-taylor-series-and-approximations)
+  - [6.2 Derivatives from Differences](Concepts-Part2.md#62-derivatives-from-differences)
+  - [6.3 Second Difference Matrices K, T, B](Concepts-Part2.md#63-second-difference-matrices-k-t-b)
+  - [6.4 Properties of K](Concepts-Part2.md#64-properties-of-k)
+  - [6.5 Free-Fixed Matrices T](Concepts-Part2.md#65-free-fixed-matrices-t)
+  - [6.6 Free-Free Matrices B](Concepts-Part2.md#66-free-free-matrices-b)
+- [Summary](Concepts-Part2.md#summary)
 
 ---
 

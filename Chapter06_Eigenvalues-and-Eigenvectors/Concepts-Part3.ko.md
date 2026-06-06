@@ -2,7 +2,7 @@
 
 > **📑 이 문서는 3개 파트로 나뉘어 있습니다.**
 >
-> [Part 1](Concepts.ko.md) · [Part 2](Concepts-2.ko.md) · **Part 3**
+> [Part 1](Concepts-Part1.ko.md) · [Part 2](Concepts-Part2.ko.md) · **Part 3**
 
 ---
 

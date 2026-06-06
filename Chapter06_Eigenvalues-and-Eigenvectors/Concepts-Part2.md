@@ -2,7 +2,7 @@
 
 > **📑 This document is split into 3 parts.**
 >
-> [Part 1](Concepts.md) · **Part 2** · [Part 3](Concepts-3.md)
+> [Part 1](Concepts-Part1.md) · **Part 2** · [Part 3](Concepts-Part3.md)
 
 ---
 

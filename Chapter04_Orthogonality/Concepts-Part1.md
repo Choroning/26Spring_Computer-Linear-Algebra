@@ -14,7 +14,7 @@
 
 > **📑 This document is split into 2 parts.**
 >
-> **Part 1** · [Part 2](Concepts-2.md)
+> **Part 1** · [Part 2](Concepts-Part2.md)
 
 ---
 
@@ -24,10 +24,10 @@
 
 - [1. Orthogonality of Vectors and Subspaces (4.1)](#1-orthogonality-of-vectors-and-subspaces-41)
 - [2. Projections onto Lines and Subspaces (4.2)](#2-projections-onto-lines-and-subspaces-42)
-- [3. Least Square Approximations (4.3)](Concepts-2.md#3-least-square-approximations-43)
-- [4. Orthogonal Bases and Gram-Schmidt (4.4)](Concepts-2.md#4-orthogonal-bases-and-gram-schmidt-44)
-- [5. The Pseudoinverse of a Matrix (4.5)](Concepts-2.md#5-the-pseudoinverse-of-a-matrix-45)
-- [Summary](Concepts-2.md#summary)
+- [3. Least Square Approximations (4.3)](Concepts-Part2.md#3-least-square-approximations-43)
+- [4. Orthogonal Bases and Gram-Schmidt (4.4)](Concepts-Part2.md#4-orthogonal-bases-and-gram-schmidt-44)
+- [5. The Pseudoinverse of a Matrix (4.5)](Concepts-Part2.md#5-the-pseudoinverse-of-a-matrix-45)
+- [Summary](Concepts-Part2.md#summary)
 
 ---
 

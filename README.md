@@ -93,35 +93,35 @@ This repository contains bilingual study materials and homework solutions develo
 ```plaintext
 26Spring_Computer-Linear-Algebra
 ├── Chapter01_Introduction-to-Vectors
-│   ├── Concepts.md
-│   ├── Concepts-2.md
-│   ├── Concepts.ko.md
-│   └── Concepts-2.ko.md
+│   ├── Concepts-Part1.md
+│   ├── Concepts-Part2.md
+│   ├── Concepts-Part1.ko.md
+│   └── Concepts-Part2.ko.md
 ├── Chapter02_Solving-Linear-Equations
-│   ├── Concepts.md
-│   ├── Concepts-2.md
-│   ├── Concepts.ko.md
-│   └── Concepts-2.ko.md
+│   ├── Concepts-Part1.md
+│   ├── Concepts-Part2.md
+│   ├── Concepts-Part1.ko.md
+│   └── Concepts-Part2.ko.md
 ├── Chapter03_Vector-Spaces-and-Subspaces
-│   ├── Concepts.md
-│   ├── Concepts-2.md
-│   ├── Concepts.ko.md
-│   └── Concepts-2.ko.md
+│   ├── Concepts-Part1.md
+│   ├── Concepts-Part2.md
+│   ├── Concepts-Part1.ko.md
+│   └── Concepts-Part2.ko.md
 ├── Chapter04_Orthogonality
-│   ├── Concepts.md
-│   ├── Concepts-2.md
-│   ├── Concepts.ko.md
-│   └── Concepts-2.ko.md
+│   ├── Concepts-Part1.md
+│   ├── Concepts-Part2.md
+│   ├── Concepts-Part1.ko.md
+│   └── Concepts-Part2.ko.md
 ├── Chapter05_Determinants
 │   ├── Concepts.md
 │   └── Concepts.ko.md
 ├── Chapter06_Eigenvalues-and-Eigenvectors
-│   ├── Concepts.md
-│   ├── Concepts-2.md
-│   ├── Concepts-3.md
-│   ├── Concepts.ko.md
-│   ├── Concepts-2.ko.md
-│   └── Concepts-3.ko.md
+│   ├── Concepts-Part1.md
+│   ├── Concepts-Part2.md
+│   ├── Concepts-Part3.md
+│   ├── Concepts-Part1.ko.md
+│   ├── Concepts-Part2.ko.md
+│   └── Concepts-Part3.ko.md
 ├── Chapter07_Singular-Value-Decomposition
 │   ├── Concepts.md
 │   └── Concepts.ko.md
