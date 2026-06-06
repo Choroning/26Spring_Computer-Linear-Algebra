@@ -1,6 +1,6 @@
 # 제2장 강의 — 연립일차방정식 풀기
 
-> **최종 수정일:** 2026-03-31
+> **최종 수정일:** 2026-06-06
 >
 > Strang, Introduction to Linear Algebra 6th Ed. Ch 2
 
@@ -20,9 +20,9 @@
 > 2. 소거법을 행렬 분해(A = LU)로 표현할 수 있다
 > 3. 시스템의 해가 없는 경우, 유일한 경우, 무한히 많은 경우를 판별할 수 있다
 
-> **📑 이 문서는 2개 파트로 나뉘어 있습니다.** GitHub은 파일 하나당 렌더되는 수식 개수에 한도가 있어, 모든 수식이 제대로 보이도록 절 단위로 나눴습니다.
+> **📑 이 문서는 2개 파트로 나뉘어 있습니다.**
 >
-> **Part 1** · [Part 2](Concepts-2.ko.md)
+> **Part 1** · [Part 2](Concepts-Part2.ko.md)
 
 ---
 
@@ -56,24 +56,24 @@
   - [4.5 위대한 분해 A = LU](#45-위대한-분해-a--lu)
   - [4.6 A = LU의 두 번째 증명](#46-a--lu의-두-번째-증명)
   - [4.7 행 교환 없는 소거](#47-행-교환-없는-소거)
-- [5. 치환과 전치 (2.4)](Concepts-2.ko.md#5-치환과-전치-24)
-  - [5.1 치환 행렬](Concepts-2.ko.md#51-치환-행렬)
-  - [5.2 치환 행렬의 성질](Concepts-2.ko.md#52-치환-행렬의-성질)
-  - [5.3 PA = LU 분해](Concepts-2.ko.md#53-pa--lu-분해)
-  - [5.4 부분 피벗팅](Concepts-2.ko.md#54-부분-피벗팅)
-  - [5.5 PAQ: 행과 열 치환](Concepts-2.ko.md#55-paq-행과-열-치환)
-  - [5.6 A의 전치](Concepts-2.ko.md#56-a의-전치)
-  - [5.7 내적과 전치](Concepts-2.ko.md#57-내적과-전치)
-  - [5.8 대칭 행렬](Concepts-2.ko.md#58-대칭-행렬)
-  - [5.9 대칭 곱과 LDL^T](Concepts-2.ko.md#59-대칭-곱과-ldlt)
-- [6. 도함수와 유한 차분 행렬 (2.5)](Concepts-2.ko.md#6-도함수와-유한-차분-행렬-25)
-  - [6.1 테일러 급수와 근사](Concepts-2.ko.md#61-테일러-급수와-근사)
-  - [6.2 차분으로부터의 도함수](Concepts-2.ko.md#62-차분으로부터의-도함수)
-  - [6.3 이차 차분 행렬 K, T, B](Concepts-2.ko.md#63-이차-차분-행렬-k-t-b)
-  - [6.4 K의 성질](Concepts-2.ko.md#64-k의-성질)
-  - [6.5 자유-고정 행렬 T](Concepts-2.ko.md#65-자유-고정-행렬-t)
-  - [6.6 자유-자유 행렬 B](Concepts-2.ko.md#66-자유-자유-행렬-b)
-- [요약](Concepts-2.ko.md#요약)
+- [5. 치환과 전치 (2.4)](Concepts-Part2.ko.md#5-치환과-전치-24)
+  - [5.1 치환 행렬](Concepts-Part2.ko.md#51-치환-행렬)
+  - [5.2 치환 행렬의 성질](Concepts-Part2.ko.md#52-치환-행렬의-성질)
+  - [5.3 PA = LU 분해](Concepts-Part2.ko.md#53-pa--lu-분해)
+  - [5.4 부분 피벗팅](Concepts-Part2.ko.md#54-부분-피벗팅)
+  - [5.5 PAQ: 행과 열 치환](Concepts-Part2.ko.md#55-paq-행과-열-치환)
+  - [5.6 A의 전치](Concepts-Part2.ko.md#56-a의-전치)
+  - [5.7 내적과 전치](Concepts-Part2.ko.md#57-내적과-전치)
+  - [5.8 대칭 행렬](Concepts-Part2.ko.md#58-대칭-행렬)
+  - [5.9 대칭 곱과 LDL^T](Concepts-Part2.ko.md#59-대칭-곱과-ldlt)
+- [6. 도함수와 유한 차분 행렬 (2.5)](Concepts-Part2.ko.md#6-도함수와-유한-차분-행렬-25)
+  - [6.1 테일러 급수와 근사](Concepts-Part2.ko.md#61-테일러-급수와-근사)
+  - [6.2 차분으로부터의 도함수](Concepts-Part2.ko.md#62-차분으로부터의-도함수)
+  - [6.3 이차 차분 행렬 K, T, B](Concepts-Part2.ko.md#63-이차-차분-행렬-k-t-b)
+  - [6.4 K의 성질](Concepts-Part2.ko.md#64-k의-성질)
+  - [6.5 자유-고정 행렬 T](Concepts-Part2.ko.md#65-자유-고정-행렬-t)
+  - [6.6 자유-자유 행렬 B](Concepts-Part2.ko.md#66-자유-자유-행렬-b)
+- [요약](Concepts-Part2.ko.md#요약)
 
 ---
 

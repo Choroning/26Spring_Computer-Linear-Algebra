@@ -1,6 +1,6 @@
 # 제5장 강의 — 행렬식
 
-> **최종 수정일:** 2026-03-31
+> **최종 수정일:** 2026-06-06
 >
 > Strang, Introduction to Linear Algebra 6th Ed. Ch 5
 
