@@ -259,7 +259,7 @@ e^{At} = I + At + \frac{1}{2}(At)^2 + \cdots
 \mathbf{u}(t) = e^{At}\mathbf{u}_0 = Xe^{\Lambda t}X^{-1}\mathbf{u}_0
 ```
 
-$`\mathbf{u}_0 = X\mathbf{c}`$ (고유벡터의 일차결합)이므로:
+$`\mathbf{u}_0 = X\mathbf{c}`$ (고유벡터의 선형결합)이므로:
 
 ```math
 = Xe^{\Lambda t}\underbrace{X^{-1}X}_{I}\mathbf{c} = Xe^{\Lambda t}\mathbf{c} = X\begin{pmatrix} e^{\lambda_1 t} & & \\ & e^{\lambda_2 t} & \\ & & \ddots \\ & & & e^{\lambda_n t} \end{pmatrix}\begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix} = X\begin{pmatrix} c_1 e^{\lambda_1 t} \\ c_2 e^{\lambda_2 t} \\ \vdots \\ c_n e^{\lambda_n t} \end{pmatrix}
@@ -547,9 +547,9 @@ e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \
 | 반대칭 행렬 | 순허수 또는 영 고유값 |
 | 회전 행렬 | $`\lambda = e^{\pm i\theta}`$ |
 | 사영 행렬 | $`\lambda = 0`$ 또는 $`1`$만 가능 |
-| 대각화 | $`n`$개 일차독립 고유벡터가 존재하면 $`A = X\Lambda X^{-1}`$ |
+| 대각화 | $`n`$개 선형독립 고유벡터가 존재하면 $`A = X\Lambda X^{-1}`$ |
 | 대각화를 통한 행렬 거듭제곱 | $`A^k = X\Lambda^k X^{-1}`$ |
-| 서로 다른 고유값 | 고유벡터가 일차독립 $`\implies`$ 대각화 가능 |
+| 서로 다른 고유값 | 고유벡터가 선형독립 $`\implies`$ 대각화 가능 |
 | 닮은 행렬 | $`C = B^{-1}AB`$는 $`A`$와 같은 고유값을 가짐 |
 | GM vs AM | GM $`\leq`$ AM; GM $`<`$ AM이면 대각화 불가능 |
 | 스펙트럼 정리 | 대칭 $`S`$에 대해 $`S = Q\Lambda Q^T`$ |

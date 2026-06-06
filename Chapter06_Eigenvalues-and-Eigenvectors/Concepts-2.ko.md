@@ -241,7 +241,7 @@ $`\|A\mathbf{x}\| > 0`$ ($`A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} 
 
 $`A = \begin{pmatrix} a \\ b \end{pmatrix}(1 \; k) = \begin{pmatrix} a & ka \\ b & kb \end{pmatrix}`$
 
-랭크 1 행렬 $`\to`$ 1개 일차독립 벡터 $`\to`$ $`(n-1)`$개 종속 벡터.
+랭크 1 행렬 $`\to`$ 1개 선형독립 벡터 $`\to`$ $`(n-1)`$개 종속 벡터.
 
 $`A\mathbf{u} = \mathbf{u}\mathbf{v}^T\mathbf{u} = (\mathbf{v}^T\mathbf{u})\mathbf{u}`$이므로, $`\lambda = \mathbf{v}^T\mathbf{u} = (1, k)\begin{pmatrix} a \\ b \end{pmatrix} = a + kb`$.
 

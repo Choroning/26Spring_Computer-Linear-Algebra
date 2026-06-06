@@ -45,7 +45,7 @@
   - [2.2 대각화 절차](#22-대각화-절차)
   - [2.3 풀이 예제: 대각화](#23-풀이-예제-대각화)
   - [2.4 대각화에 대한 비고](#24-대각화에-대한-비고)
-  - [2.5 증명: 서로 다른 고유값의 고유벡터는 일차독립](#25-증명-서로-다른-고유값의-고유벡터는-일차독립)
+  - [2.5 증명: 서로 다른 고유값의 고유벡터는 선형독립](#25-증명-서로-다른-고유값의-고유벡터는-선형독립)
   - [2.6 A의 거듭제곱 (마르코프 행렬 예제)](#26-a의-거듭제곱-마르코프-행렬-예제)
   - [2.7 닮은 행렬](#27-닮은-행렬)
   - [2.8 행렬의 거듭제곱과 피보나치 수](#28-행렬의-거듭제곱과-피보나치-수)
@@ -327,7 +327,7 @@ $`A`$의 고유벡터 $`\mathbf{x}`$는 $`A^n\mathbf{x} = \lambda^n\mathbf{x}`$�
 
 고유벡터 $`\mathbf{x}_1`$과 $`\mathbf{x}_2`$는 $`\mathbb{R}^2`$를 생성(span)한다.
 
-임의의 벡터 $`\mathbf{x}`$는 $`\mathbf{x}_1`$과 $`\mathbf{x}_2`$의 일차결합이다: $`\mathbf{x} = c\mathbf{x}_1 + d\mathbf{x}_2 = (\mathbf{x}_1 \; \mathbf{x}_2)\begin{pmatrix} c \\ d \end{pmatrix}`$.
+임의의 벡터 $`\mathbf{x}`$는 $`\mathbf{x}_1`$과 $`\mathbf{x}_2`$의 선형결합이다: $`\mathbf{x} = c\mathbf{x}_1 + d\mathbf{x}_2 = (\mathbf{x}_1 \; \mathbf{x}_2)\begin{pmatrix} c \\ d \end{pmatrix}`$.
 
 ```math
 A\mathbf{x} = cA\mathbf{x}_1 + dA\mathbf{x}_2 = c\mathbf{x}_1 + d\tfrac{1}{2}\mathbf{x}_2
@@ -554,7 +554,7 @@ AB\mathbf{x} = A(\beta\mathbf{x}) = \beta A\mathbf{x} = \beta\lambda\mathbf{x}
 
 마찬가지로, $`(A + B)\mathbf{x} \neq (\lambda + \beta)\mathbf{x}`$.
 
-**비고:** $`A`$와 $`B`$가 동일한 $`n`$개의 일차독립 고유벡터를 공유하는 것은 $`AB = BA`$일 때 그리고 그때에만 성립한다.
+**비고:** $`A`$와 $`B`$가 동일한 $`n`$개의 선형독립 고유벡터를 공유하는 것은 $`AB = BA`$일 때 그리고 그때에만 성립한다.
 
 ---
 
@@ -566,7 +566,7 @@ AB\mathbf{x} = A(\beta\mathbf{x}) = \beta A\mathbf{x} = \beta\lambda\mathbf{x}
 
 **(1)** $`AX = X\Lambda`$의 열은 $`A\mathbf{x}_k = \lambda_k\mathbf{x}_k`$이다. 고유값 행렬 $`\Lambda`$는 대각 행렬이다.
 
-**(2)** $`X`$에 있는 $`n`$개의 일차독립 고유벡터가 $`A`$를 대각화한다:
+**(2)** $`X`$에 있는 $`n`$개의 선형독립 고유벡터가 $`A`$를 대각화한다:
 
 ```math
 A = X\Lambda X^{-1}
@@ -584,7 +584,7 @@ AA = X\Lambda X^{-1} X\Lambda X^{-1} = X\Lambda^2 X^{-1}
 
 **(4)** 동일한 고유값이 없으면 $`\implies`$ 고유벡터 $`X`$가 가역 $`\implies`$ $`A`$를 대각화할 수 있다.
 
-중복 고유값 $`\implies`$ $`A`$가 일차독립 고유벡터가 너무 적을 수 있다 $`\implies`$ $`X^{-1}`$이 실패한다.
+중복 고유값 $`\implies`$ $`A`$가 선형독립 고유벡터가 너무 적을 수 있다 $`\implies`$ $`X^{-1}`$이 실패한다.
 
 **(5)** 모든 행렬 $`C = B^{-1}AB`$는 $`A`$와 동일한 고유값을 갖는다. 이러한 $`C`$들은 $`A`$에 **닮은**(similar) 행렬이다.
 
@@ -594,7 +594,7 @@ $`\mathbf{x}`$가 고유벡터이면, $`A\mathbf{x} = \lambda\mathbf{x}`$이다.
 
 $`A`$가 대각화 가능하면, $`A^{100}\mathbf{x} = X\Lambda^{100}X^{-1}\mathbf{x}`$—역시 **매우 효율적** 이다.
 
-**대각화:** $`A_{n \times n}`$이 일차독립 고유벡터 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$을 갖는다고 하자.
+**대각화:** $`A_{n \times n}`$이 선형독립 고유벡터 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$을 갖는다고 하자.
 
 $`X = (\mathbf{x}_1 \; \mathbf{x}_2 \; \cdots \; \mathbf{x}_n)`$으로 놓으면:
 
@@ -658,9 +658,9 @@ $`A^2`$는 $`X`$에 있는 동일한 고유벡터를 가지며, $`\Lambda^2`$에
 
 ### 2.4 대각화에 대한 비고
 
-**비고:** 행렬 $`X`$는 고유벡터가 **일차독립**(LI)이므로 역행렬이 존재한다.
+**비고:** 행렬 $`X`$는 고유벡터가 **선형독립**(LI)이므로 역행렬이 존재한다.
 
-**비고:** 고유값이 $`n`$개의 서로 다른 수라고 하자. 이는 $`n`$개의 고유벡터가 일차독립임을 의미한다. $`X^{-1}`$이 존재한다. 중복 고유값이 없는 행렬은 대각화할 수 있다.
+**비고:** 고유값이 $`n`$개의 서로 다른 수라고 하자. 이는 $`n`$개의 고유벡터가 선형독립임을 의미한다. $`X^{-1}`$이 존재한다. 중복 고유값이 없는 행렬은 대각화할 수 있다.
 
 **비고:** 고유벡터에 영이 아닌 임의의 상수를 곱할 수 있다: $`\alpha A\mathbf{x} = \alpha\lambda\mathbf{x} = A(\alpha\mathbf{x})`$.
 
@@ -684,13 +684,13 @@ $`(A - 0I)\mathbf{x} = A\mathbf{x} = \mathbf{0}`$: $`\begin{pmatrix} 1 & -1 \\ 1
 
 **비고:** 가역성(invertibility)은 **영이 아닌** 고유값과 관련된다. $`\lambda_i = 0`$이면, $`\det(A) = \lambda_1\lambda_2\cdots\lambda_n = 0`$이므로 $`A`$는 **특이**(singular)하다.
 
-### 2.5 증명: 서로 다른 고유값의 고유벡터는 일차독립
+### 2.5 증명: 서로 다른 고유값의 고유벡터는 선형독립
 
-**명제:** $`A`$가 $`n`$개의 서로 다른 고유값을 갖는 $`n \times n`$ 행렬이면, 대응하는 고유벡터는 **일차독립**(LI)이다.
+**명제:** $`A`$가 $`n`$개의 서로 다른 고유값을 갖는 $`n \times n`$ 행렬이면, 대응하는 고유벡터는 **선형독립**(LI)이다.
 
-**증명:** 고유벡터 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$이 **일차종속**(LD, linearly dependent)이라 가정하자.
+**증명:** 고유벡터 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$이 **선형종속**(LD, linearly dependent)이라 가정하자.
 
-$`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$가 일차독립이고, $`\mathbf{x}_{p+1}, \mathbf{x}_{p+2}, \ldots, \mathbf{x}_n`$이 일차종속이라 하자.
+$`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$가 선형독립이고, $`\mathbf{x}_{p+1}, \mathbf{x}_{p+2}, \ldots, \mathbf{x}_n`$이 선형종속이라 하자.
 
 즉, **모두 영이 아닌** 상수가 존재하여:
 
@@ -698,13 +698,13 @@ $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$가 일차독립이고, $`\m
 \mathbf{x}_{p+1} = c_1\mathbf{x}_1 + c_2\mathbf{x}_2 + \cdots + c_p\mathbf{x}_p
 ```
 
-일차결합에 $`A`$를 곱하면:
+선형결합에 $`A`$를 곱하면:
 
 ```math
 A\mathbf{x}_{p+1} = \lambda_{p+1}\mathbf{x}_{p+1} = c_1 A\mathbf{x}_1 + c_2 A\mathbf{x}_2 + \cdots + c_p A\mathbf{x}_p = c_1\lambda_1\mathbf{x}_1 + c_2\lambda_2\mathbf{x}_2 + \cdots + c_p\lambda_p\mathbf{x}_p \quad \text{--- (1)}
 ```
 
-일차결합에 $`\lambda_{p+1}`$을 곱하면:
+선형결합에 $`\lambda_{p+1}`$을 곱하면:
 
 ```math
 \lambda_{p+1}\mathbf{x}_{p+1} = c_1\lambda_{p+1}\mathbf{x}_1 + c_2\lambda_{p+1}\mathbf{x}_2 + \cdots + c_p\lambda_{p+1}\mathbf{x}_p \quad \text{--- (2)}
@@ -716,7 +716,7 @@ A\mathbf{x}_{p+1} = \lambda_{p+1}\mathbf{x}_{p+1} = c_1 A\mathbf{x}_1 + c_2 A\ma
 \mathbf{0} = c_1(\lambda_1 - \lambda_{p+1})\mathbf{x}_1 + \cdots + c_p(\lambda_p - \lambda_{p+1})\mathbf{x}_p
 ```
 
-$`\lambda`$가 서로 다르고 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$가 일차독립이므로:
+$`\lambda`$가 서로 다르고 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$가 선형독립이므로:
 
 ```math
 c_1 = c_2 = \cdots = c_p = 0
@@ -724,7 +724,7 @@ c_1 = c_2 = \cdots = c_p = 0
 
 이는 $`\mathbf{x}_{p+1} = \mathbf{0}`$임을 의미한다. 이는 가정에 모순이다.
 
-따라서 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$은 **일차독립** 이다. $`\square`$
+따라서 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$은 **선형독립** 이다. $`\square`$
 
 ### 2.6 A의 거듭제곱 (마르코프 행렬 예제)
 
@@ -828,13 +828,13 @@ $`A = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}`$, $`\det(A - \lambda I) = \b
 \therefore \lambda = \frac{1 \pm \sqrt{1 + 4}}{2} = \frac{1}{2} \pm \frac{\sqrt{5}}{2}
 ```
 
-두 개의 서로 다른 고유값 $`\implies`$ 두 개의 일차독립 고유벡터 $`\implies`$ $`X^{-1}`$ 존재 $`\implies`$ $`A = X\Lambda X^{-1}`$.
+두 개의 서로 다른 고유값 $`\implies`$ 두 개의 선형독립 고유벡터 $`\implies`$ $`X^{-1}`$ 존재 $`\implies`$ $`A = X\Lambda X^{-1}`$.
 
 ```math
 \mathbf{u}_k = A^k \mathbf{u}_0 = X\Lambda^k X^{-1}\mathbf{u}_0
 ```
 
-i) $`\mathbf{u}_0`$을 일차결합 $`X\mathbf{c}`$로 쓰면:
+i) $`\mathbf{u}_0`$을 선형결합 $`X\mathbf{c}`$로 쓰면:
 
 ```math
 \mathbf{u}_0 = c_1\mathbf{x}_1 + c_2\mathbf{x}_2 = X\mathbf{c} \implies \mathbf{c} = X^{-1}\mathbf{u}_0

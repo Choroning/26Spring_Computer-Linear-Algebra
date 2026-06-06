@@ -116,7 +116,7 @@ A\mathbf{x} = x_1\begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix} + x_2\begin{pmatrix}
 
 ### 1.3.2 열공간 (Column Space)
 
-$`A = (\mathbf{a}_1 \ \mathbf{a}_2)`$이고 $`\mathbf{a}_1`$과 $`\mathbf{a}_2`$가 일차독립일 때:
+$`A = (\mathbf{a}_1 \ \mathbf{a}_2)`$이고 $`\mathbf{a}_1`$과 $`\mathbf{a}_2`$가 선형독립일 때:
 
 ```math
 A\mathbf{x} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2
