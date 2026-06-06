@@ -1,6 +1,6 @@
 # Chapter 6 Lecture — Eigenvalues and Eigenvectors — Part 2/3
 
-> **📑 This document is split into 3 parts.** GitHub renders only a limited number of math expressions per file, so it is split by section so that all math displays correctly.
+> **📑 This document is split into 3 parts.**
 >
 > [Part 1](Concepts.md) · **Part 2** · [Part 3](Concepts-3.md)
 

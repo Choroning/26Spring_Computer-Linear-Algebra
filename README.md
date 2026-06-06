@@ -128,7 +128,7 @@ This repository contains bilingual study materials and homework solutions develo
 ├── Chapter08_Linear-Transformations
 │   ├── Concepts.md
 │   └── Concepts.ko.md
-├── docs/
+├── .gitkeep
 ├── .gitignore
 ├── LICENSE
 ├── README.ko.md

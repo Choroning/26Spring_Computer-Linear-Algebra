@@ -1,6 +1,6 @@
 # Chapter 1 Lecture — Vectors and Matrices
 
-> **Last Updated:** 2026-03-31
+> **Last Updated:** 2026-06-06
 >
 > Strang, Introduction to Linear Algebra 6th Ed. Ch 1
 
@@ -11,7 +11,7 @@
 > 2. Compute dot products and understand geometric meaning of orthogonality
 > 3. Perform basic matrix-vector multiplication
 
-> **📑 This document is split into 2 parts.** GitHub renders only a limited number of math expressions per file, so it is split by section so that all math displays correctly.
+> **📑 This document is split into 2 parts.**
 >
 > **Part 1** · [Part 2](Concepts-2.md)
 

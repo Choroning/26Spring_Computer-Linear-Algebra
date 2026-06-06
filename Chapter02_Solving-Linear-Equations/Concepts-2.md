@@ -1,6 +1,6 @@
 # Chapter 2 Lecture — Solving Linear Equations — Part 2/2
 
-> **📑 This document is split into 2 parts.** GitHub renders only a limited number of math expressions per file, so it is split by section so that all math displays correctly.
+> **📑 This document is split into 2 parts.**
 >
 > [Part 1](Concepts.md) · **Part 2**
 

@@ -1,6 +1,6 @@
 # Chapter 2 Lecture — Solving Linear Equations
 
-> **Last Updated:** 2026-03-31
+> **Last Updated:** 2026-06-06
 >
 > Strang, Introduction to Linear Algebra 6th Ed. Ch 2
 
@@ -11,7 +11,7 @@
 > 2. Express elimination using matrix factorization (A = LU)
 > 3. Identify when systems have no solution, one solution, or infinitely many solutions
 
-> **📑 This document is split into 2 parts.** GitHub renders only a limited number of math expressions per file, so it is split by section so that all math displays correctly.
+> **📑 This document is split into 2 parts.**
 >
 > **Part 1** · [Part 2](Concepts-2.md)
 

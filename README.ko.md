@@ -128,7 +128,7 @@
 ├── Chapter08_Linear-Transformations
 │   ├── Concepts.md
 │   └── Concepts.ko.md
-├── docs/
+├── .gitkeep
 ├── .gitignore
 ├── LICENSE
 ├── README.ko.md

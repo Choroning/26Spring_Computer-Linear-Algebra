@@ -1,6 +1,6 @@
 # 제8장 강의 — 선형 변환
 
-> **최종 수정일:** 2026-03-31
+> **최종 수정일:** 2026-06-06
 >
 > Strang, Introduction to Linear Algebra 6th Ed. Ch 8
 

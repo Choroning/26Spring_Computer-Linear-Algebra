@@ -1,6 +1,6 @@
 # Chapter 7 Lecture — Singular Value Decomposition
 
-> **Last Updated:** 2026-03-31
+> **Last Updated:** 2026-06-06
 >
 > Strang, Introduction to Linear Algebra 6th Ed. Ch 7
 
