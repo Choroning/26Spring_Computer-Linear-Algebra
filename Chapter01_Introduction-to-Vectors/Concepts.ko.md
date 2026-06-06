@@ -369,7 +369,7 @@ cv_2 + dw_2 = b_2
 연립방정식 $`xv_1 + yw_1 = b_1`$과 $`xv_2 + yw_2 = b_2`$는 두 직선을 나타낸다. 해 $`(c, d)`$는 교점이다:
 
 - 두 일차방정식은 점 $`(c, d)`$에서 만난다.
-- $`\mathbf{v}`$와 $`\mathbf{w}`$는 **일차독립 (Linearly Independent)** 이다.
+- $`\mathbf{v}`$와 $`\mathbf{w}`$는 **선형독립 (Linearly Independent)** 이다.
 - $`A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}`$는 **가역 (Invertible)** 이다.
 
 ### 1.1.5 소거법이 실패할 수 있는가?

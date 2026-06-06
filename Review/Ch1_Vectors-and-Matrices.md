@@ -46,7 +46,7 @@
 ## 1-A. 벡터의 기본 연산
 
 - **선형결합 (linear combination)**: $`c\mathbf{v} + d\mathbf{w}`$ — 스칼라곱 + 벡터 덧셈
-- $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^2`$가 일차독립 → 모든 $`c\mathbf{v}+d\mathbf{w}`$는 **평면 전체를 채움**
+- $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^2`$가 선형독립 → 모든 $`c\mathbf{v}+d\mathbf{w}`$는 **평면 전체를 채움**
 - $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^3`$가 독립 → 결합은 **3차원 속의 2D 평면**까지만 (3차원을 채우려면 독립 벡터 3개 필요)
 
 ### ⭐ 핵심 관념: "벡터는 위치가 없다" (vectors have no position)
@@ -68,7 +68,7 @@
 - $`\mathbf{0}\cdot\mathbf{v}=0`$은 기하학적 "각도 90°"가 아니라 $`|\mathbf{0}|=0`$이라서 자동 0
 - 엄밀히 영벡터는 방향이 없어 "각도" 자체가 정의 안 됨
 - 그래도 "**내적 = 0 ⟺ 직교**" 로 정의를 통일 (이론을 깔끔하게 만들기 위한 약속)
-- **영벡터를 포함한 집합은 항상 일차종속**: $`1\cdot\mathbf{0} + 0\cdot\mathbf{v} = \mathbf{0}`$
+- **영벡터를 포함한 집합은 항상 선형종속**: $`1\cdot\mathbf{0} + 0\cdot\mathbf{v} = \mathbf{0}`$
 
 ## 1-B. 내적·길이·각도 (dot product, length, angle)
 
@@ -124,7 +124,7 @@ A\mathbf{x} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + \cdots + x_n\mathbf{a}_n
 $`n \times n`$ 정방 행렬 $`A`$에 대해 **다음은 모두 동치**:
 
 ```math
-\boxed{\det(A) \ne 0 \iff A \text{ 가역} \iff \text{rank}(A) = n \iff \text{열 일차독립} \iff A\mathbf{x}=\mathbf{b} \text{ 해 유일}}
+\boxed{\det(A) \ne 0 \iff A \text{ 가역} \iff \text{rank}(A) = n \iff \text{열 선형독립} \iff A\mathbf{x}=\mathbf{b} \text{ 해 유일}}
 ```
 
 하나 확인되면 나머지 다 성립. 반대로 $`\det = 0`$이면 **전부** 부정됨.

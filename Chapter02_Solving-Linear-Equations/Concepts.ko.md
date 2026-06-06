@@ -195,7 +195,7 @@ $`A\mathbf{x} = \mathbf{b}`$를 고려하자. 여기서 $`A \in \mathbb{R}^{n \t
 **경우 2: 해 없음** — $`A\mathbf{x} = \mathbf{b}`$에 대해
 
 - $`\mathbf{b}`$가 $`A`$의 열공간(column space)에 **속하지 않는다**
-- $`\mathbf{b}`$가 $`A`$의 열들의 일차결합이 아니다
+- $`\mathbf{b}`$가 $`A`$의 열들의 선형결합이 아니다
 
 **경우 3: 무한히 많은 해** — $`A\mathbf{x} = \mathbf{b}`$에 대해
 
@@ -486,7 +486,7 @@ A = \begin{pmatrix} 1 & -2 \\ 1 & 1 \end{pmatrix}, \quad \mathbf{b} = \begin{pma
 x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 = \mathbf{b}
 ```
 
-$`\mathbf{b}`$는 $`\mathbf{a}_1`$과 $`\mathbf{a}_2`$의 **일차결합** (linear combination)이다.
+$`\mathbf{b}`$는 $`\mathbf{a}_1`$과 $`\mathbf{a}_2`$의 **선형결합** (linear combination)이다.
 
 $`\Leftrightarrow`$ $`\mathbf{b}`$는 $`A`$의 **열공간** (column space)에 속한다.
 

@@ -626,7 +626,7 @@ ES = \begin{pmatrix} I & A \\ 0 & -A^T A \end{pmatrix} = U
 S = \begin{pmatrix} I & 0 \\ A^T & I \end{pmatrix}\begin{pmatrix} I & 0 \\ 0 & -A^T A \end{pmatrix}\begin{pmatrix} I & A \\ 0 & I \end{pmatrix} = LDL^T
 ```
 
-$`S`$가 가역 $`\iff`$ $`A^T A`$가 가역 $`\iff`$ $`\text{rank}(A^T A) = n`$ $`\iff`$ $`\mathbf{x} \neq \mathbf{0}`$일 때 $`A\mathbf{x} \neq \mathbf{0}`$ $`\iff`$ $`A`$의 열들이 일차독립.
+$`S`$가 가역 $`\iff`$ $`A^T A`$가 가역 $`\iff`$ $`\text{rank}(A^T A) = n`$ $`\iff`$ $`\mathbf{x} \neq \mathbf{0}`$일 때 $`A\mathbf{x} \neq \mathbf{0}`$ $`\iff`$ $`A`$의 열들이 선형독립.
 
 ---
 
