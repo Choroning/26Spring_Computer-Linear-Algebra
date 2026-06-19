@@ -1,8 +1,8 @@
 # Chapter 3 Lecture — Vector Spaces and Subspaces
 
-> **Last Updated:** 2026-06-06
+> **Last Updated:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 3
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 3
 
 > **Prerequisites**: [Linear Algebra] Elimination and matrix operations (Ch 1-2).
 >

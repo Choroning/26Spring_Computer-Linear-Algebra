@@ -1,8 +1,8 @@
 # 제7장 강의 — 특이값 분해
 
-> **최종 수정일:** 2026-06-06
+> **최종 수정일:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 7
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 7
 
 > **선수 지식**: [선형대수학] 고유값, 직교성 (제1-6장).
 >
@@ -11,7 +11,7 @@
 > 2. SVD를 네 가지 기본 부분공간 관점에서 기하학적으로 해석할 수 있다
 > 3. SVD를 저랭크 근사와 데이터 분석에 적용할 수 있다
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 7
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 7
 
 > **선수 지식**: [선형대수학] 고유값, 직교성 (제1-6장).
 >

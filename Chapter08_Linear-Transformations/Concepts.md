@@ -1,8 +1,8 @@
 # Chapter 8 Lecture — Linear Transformations
 
-> **Last Updated:** 2026-06-06
+> **Last Updated:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 8
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 8
 
 > **Prerequisites**: [Linear Algebra] Vector spaces, matrix operations, eigenvalues (Ch 1-7).
 >

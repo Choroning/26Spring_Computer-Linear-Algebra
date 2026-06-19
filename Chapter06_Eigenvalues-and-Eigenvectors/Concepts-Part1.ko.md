@@ -1,8 +1,8 @@
 # 제6장 강의 — 고유값과 고유벡터
 
-> **최종 수정일:** 2026-06-06
+> **최종 수정일:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 6
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 6
 
 > **선수 지식**: [선형대수학] 행렬식, 행렬 연산 (제1-5장).
 >
@@ -11,7 +11,7 @@
 > 2. 고유분해를 사용하여 행렬을 대각화할 수 있다
 > 3. 고유값을 이용하여 안정성과 동적 특성을 분석할 수 있다
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 6
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 6
 
 > **선수 지식**: [선형대수학] 행렬식, 행렬 연산 (제1-5장).
 >

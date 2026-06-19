@@ -1,8 +1,8 @@
 # Chapter 4 Lecture — Orthogonality
 
-> **Last Updated:** 2026-06-06
+> **Last Updated:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 4
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 4
 
 > **Prerequisites**: [Linear Algebra] Vector spaces, basis, and dimension (Ch 1-3).
 >

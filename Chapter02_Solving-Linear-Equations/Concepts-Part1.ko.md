@@ -1,8 +1,8 @@
 # 제2장 강의 — 연립일차방정식 풀기
 
-> **최종 수정일:** 2026-06-06
+> **최종 수정일:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 2
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 2
 
 > **선수 지식**: [선형대수학] 벡터와 선형 결합 (제1장).
 >
@@ -11,7 +11,7 @@
 > 2. 소거법을 행렬 분해(A = LU)로 표현할 수 있다
 > 3. 시스템의 해가 없는 경우, 유일한 경우, 무한히 많은 경우를 판별할 수 있다
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 2
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 2
 
 > **선수 지식**: [선형대수학] 벡터와 선형 결합 (제1장).
 >

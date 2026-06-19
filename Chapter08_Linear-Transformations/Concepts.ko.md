@@ -1,8 +1,8 @@
 # 제8장 강의 — 선형 변환
 
-> **최종 수정일:** 2026-06-06
+> **최종 수정일:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 8
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 8
 
 > **선수 지식**: [선형대수학] 벡터 공간, 행렬 연산, 고유값 (제1-7장).
 >
