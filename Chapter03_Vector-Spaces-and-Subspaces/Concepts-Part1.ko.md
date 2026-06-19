@@ -1,8 +1,8 @@
 # 제3장 강의 — 벡터 공간과 부분공간
 
-> **최종 수정일:** 2026-06-06
+> **최종 수정일:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 3
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 3
 
 > **선수 지식**: [선형대수학] 소거법과 행렬 연산 (제1-2장).
 >

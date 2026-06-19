@@ -1,8 +1,8 @@
 # Chapter 6 Lecture — Eigenvalues and Eigenvectors
 
-> **Last Updated:** 2026-06-06
+> **Last Updated:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 6
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 6
 
 > **Prerequisites**: [Linear Algebra] Determinants, matrix operations (Ch 1-5).
 >

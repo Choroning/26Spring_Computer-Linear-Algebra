@@ -1,8 +1,8 @@
 # 제1장 강의 — 벡터와 행렬
 
-> **최종 수정일:** 2026-06-06
+> **최종 수정일:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 1
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 1
 
 > **선수 지식**: [선형대수학] 고등학교 수준의 기본 대수학 (방정식, 그래프).
 >
@@ -11,7 +11,7 @@
 > 2. 내적을 계산하고 직교성의 기하학적 의미를 이해할 수 있다
 > 3. 기본적인 행렬-벡터 곱셈을 수행할 수 있다
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 1
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 1
 
 > **선수 지식**: [선형대수학] 고등학교 수준의 기본 대수학 (방정식, 그래프).
 >

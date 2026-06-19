@@ -1,8 +1,8 @@
 # Chapter 7 Lecture — Singular Value Decomposition
 
-> **Last Updated:** 2026-06-06
+> **Last Updated:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 7
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 7
 
 > **Prerequisites**: [Linear Algebra] Eigenvalues, orthogonality (Ch 1-6).
 >

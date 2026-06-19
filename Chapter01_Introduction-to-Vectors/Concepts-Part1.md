@@ -1,8 +1,8 @@
 # Chapter 1 Lecture — Vectors and Matrices
 
-> **Last Updated:** 2026-06-06
+> **Last Updated:** 2026-06-19
 >
-> Strang, Introduction to Linear Algebra 6th Ed. Ch 1
+> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 1
 
 > **Prerequisites**: [Linear Algebra] Basic high school algebra (equations, graphs).
 >
