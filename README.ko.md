@@ -3,7 +3,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Choroning/26Spring_Computer-Linear-Algebra)
 ![Languages](https://img.shields.io/github/languages/top/Choroning/26Spring_Computer-Linear-Algebra)
 
-이 레포지토리는 대학 강의 및 과제를 위해 작성된 강의 노트와 학습 자료를 체계적으로 정리하고 보관하며, 벡터, 연립일차방정식, 벡터 공간, 직교성, 행렬식, 고유값, SVD, 선형 변환을 다룹니다.
+이 레포지토리는 전산선형대수학 과목의 이중 언어 강의 노트와 수업 결과물을 정리한 아카이브입니다.
 
 *작성자: 박철원 (고려대학교(세종), 컴퓨터소프트웨어학과) - 2026년 기준 3학년*
 <br><br>
@@ -13,7 +13,6 @@
 - [레포지토리 소개](#about-this-repository)
 - [강의 정보](#course-information)
 - [사전 요구사항](#prerequisites)
-- [주차별 일정](#weekly-schedule)
 - [레포지토리 구조](#repository-structure)
 - [라이선스](#license)
 
@@ -23,15 +22,15 @@
 <br><a name="about-this-repository"></a>
 ## 📝 레포지토리 소개
 
-이 레포지토리에는 대학 수준의 전산선형대수학 과목을 위해 작성된 이중 언어 학습 자료와 과제 풀이가 포함되어 있습니다:
+이 레포지토리에는 Gilbert Strang의 *Introduction to Linear Algebra*를 따라 벡터, 연립일차방정식, 벡터 공간, 직교성, 행렬식, 고유값, SVD, 선형 변환을 다루는 대학 수준의 전산선형대수학 과목의 이중 언어 강의 노트가 담겨 있습니다.
 
-- 매 강의 주제별 이중 언어 개념 정리 노트 (한국어 `.ko.md` + 영어 `.md`)
-- 주간 과제 풀이
-- Gilbert Strang 교재 기반 Chapter 디렉토리 구조
+- `Lecture-Notes/`에는 강의 주제마다 개념을 정리한 강의 노트가 있습니다. 강의자료의 번호(N1\~N8)가 교재의 장 번호와 같아 단원도 교재의 장 번호(`Ch##`)로 나눴으며, 1\~8장을 다룹니다.
+- 모든 강의 노트는 영어 파일(`.md`)과 한국어 파일(`.ko.md`)이 같은 구성으로 짝을 이룹니다.
+- 매주 나온 과제의 풀이는 올리지 않았으므로 `Coursework/` 폴더는 없습니다.
 
 > **🤖 AI 에이전트 활용**
-> 본 과목은 AI 에이전트 사용을 권장합니다.
-> 수업 전반에 걸쳐 [Claude Code](https://claude.ai/download)와 [Gemini CLI](https://github.com/google-gemini/gemini-cli)를 코딩 어시스턴트로 활용하였습니다.
+> 이 과목은 AI 에이전트 사용을 권장합니다.
+> 수업 전반에 걸쳐 [Claude Code](https://claude.ai/download)와 [Gemini CLI](https://github.com/google-gemini/gemini-cli)를 코딩 어시스턴트로 활용했고, 강의 노트의 정리와 번역, 레포지토리 구조 정리에도 Claude Code를 활용했습니다.
 
 <br><a name="course-information"></a>
 ## 📚 강의 정보
@@ -43,18 +42,16 @@
 |:----------:|:-------|:----:|:------:|:----------------|
 |`DCSS321-01`|전산선형대수학(영강)|전공선택|강신후 교수|컴퓨터소프트웨어학과|
 
-- **📖 참고 자료**
+### 과목 개요
 
-| 유형 | 내용 |
-|:----:|:---------|
-|교재|"Introduction to Linear Algebra" by Gilbert Strang (6th Edition, Wellesley-Cambridge Press, 2023)|
+벡터 공간, 선형 변환, 행렬, 연립일차방정식, 고유값 같은 선형대수학의 기본 개념을 다루는 영어 강의 과목이다. Gilbert Strang의 교재를 따라 벡터와 행렬, 연립일차방정식, 벡터 공간과 부분공간, 직교성, 행렬식, 고유값과 고유벡터, 특이값 분해(SVD), 선형 변환을 차례로 다루며, 추상적인 이론을 행렬 분해와 고유값 분해 같은 계산 기법과 연결해 과학, 공학, 데이터 분석의 문제를 푸는 능력을 기르는 것을 목표로 한다. 교수자, 수업 일정과 형식, 평가, 수업 운영 규정, 주차별 계획 및 진도, 참고 자료는 [강의 정보 문서](Course-Information.ko.md)에 정리했다.
 
 <br><a name="prerequisites"></a>
 ## ✅ 사전 요구사항
 
-- 이산수학에 대한 이해
-- Python 인터프리터 설치
-- 과학 계산 라이브러리 숙지
+- 이산수학을 이해하고 있어야 합니다.
+- Python 인터프리터가 설치되어 있어야 합니다.
+- 과학 계산 라이브러리에 익숙해야 합니다.
 
 - **💻 개발 환경**
 
@@ -65,79 +62,25 @@
 |Matplotlib|NumFOCUS|macOS|시각화|
 |JupyterLab|Project Jupyter|macOS|대화형 노트북|
 
-<br><a name="weekly-schedule"></a>
-## 📅 주차별 일정
-
-| 주차 | 강의 자료 | 챕터 | 주제 |
-|:---:|:---|:---|:---|
-| 1 | Introduction, N1 | Ch. 1 | 소개, 벡터와 행렬 |
-| 2 | — | Ch. 1 | 벡터와 행렬 (계속) |
-| 3 | N2 | Ch. 2 | 연립일차방정식 풀기 |
-| 4 | — | Ch. 2 | 연립일차방정식 풀기 (계속) |
-| 5 | N3 (A) | Ch. 3 | 벡터 공간과 부분공간 |
-| 6 | N3 (B) | Ch. 3 | 벡터 공간과 부분공간 (계속) |
-| 7 | — | — | 복습 |
-| 8 | 중간고사 | — | — |
-| 9 | N4-1, N4-2 | Ch. 4 | 직교성, 사영 |
-| 10 | N4-3, N4-4, N4-5 | Ch. 4 | 최소제곱, 직교 기저, 의사역행렬 |
-| 11 | N5-1, N5-2, N5-3 | Ch. 5 | 행렬식 |
-| 12 | N6-1, N6-2 | Ch. 6 | 고유값, 대각화 |
-| 13 | N6-3, N6-5 | Ch. 6 | 대칭 양정치 행렬, 선형 미분방정식 |
-| 14 | N7-1, N7-2, N7-3 | Ch. 7 | SVD, 이미지 처리, PCA |
-| 15 | N8-1, N8-2, N8-3 | Ch. 8 | 선형 변환 |
-| 16 | 기말고사 | — | — |
-
 <br><a name="repository-structure"></a>
 ## 🗂 레포지토리 구조
 
 ```plaintext
 26Spring_Computer-Linear-Algebra
-├── Chapter01_Introduction-to-Vectors
-│   ├── Concepts-Part1.md
-│   ├── Concepts-Part2.md
-│   ├── Concepts-Part1.ko.md
-│   └── Concepts-Part2.ko.md
-├── Chapter02_Solving-Linear-Equations
-│   ├── Concepts-Part1.md
-│   ├── Concepts-Part2.md
-│   ├── Concepts-Part1.ko.md
-│   └── Concepts-Part2.ko.md
-├── Chapter03_Vector-Spaces-and-Subspaces
-│   ├── Concepts-Part1.md
-│   ├── Concepts-Part2.md
-│   ├── Concepts-Part1.ko.md
-│   └── Concepts-Part2.ko.md
-├── Chapter04_Orthogonality
-│   ├── Concepts-Part1.md
-│   ├── Concepts-Part2.md
-│   ├── Concepts-Part1.ko.md
-│   └── Concepts-Part2.ko.md
-├── Chapter05_Determinants
-│   ├── Concepts.md
-│   └── Concepts.ko.md
-├── Chapter06_Eigenvalues-and-Eigenvectors
-│   ├── Concepts-Part1.md
-│   ├── Concepts-Part2.md
-│   ├── Concepts-Part3.md
-│   ├── Concepts-Part1.ko.md
-│   ├── Concepts-Part2.ko.md
-│   └── Concepts-Part3.ko.md
-├── Chapter07_Singular-Value-Decomposition
-│   ├── Concepts.md
-│   └── Concepts.ko.md
-├── Chapter08_Linear-Transformations
-│   ├── Concepts.md
-│   └── Concepts.ko.md
-├── .gitkeep
-├── .gitignore
-├── LICENSE
+├── Lecture-Notes               교재 장별 강의 노트
+├── Course-Information.ko.md    수업 운영 정보
+├── Course-Information.md
+├── LICENSE                     문서 라이선스 (CC BY-NC-SA 4.0)
+├── LICENSE-CODE                코드 라이선스 (PolyForm Noncommercial 1.0.0)
 ├── README.ko.md
 └── README.md
 ```
 
+단원 목록은 [`Lecture-Notes` 색인](Lecture-Notes/README.ko.md)에 있습니다.
+
 <br><a name="license"></a>
 ## 🤝 라이선스
 
-이 레포지토리는 [MIT License](LICENSE) 하에 배포됩니다.
+이 레포지토리의 문서(강의 노트, 해설, 요약지)는 [CC BY-NC-SA 4.0](LICENSE), 코드는 [PolyForm Noncommercial 1.0.0](LICENSE-CODE)에 따라 배포됩니다. 강의자료와 교재에서 가져온 그림과 예제 코드, 강의가 배포한 과제 원본과 템플릿 코드는 원저작자에게 권리가 있으며 이 라이선스의 대상이 아닙니다.
 
 ---
