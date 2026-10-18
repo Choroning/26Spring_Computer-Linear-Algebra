@@ -1,23 +1,19 @@
-# Chapter 6 Lecture — Eigenvalues and Eigenvectors
+# Chapter 6 — Eigenvalues and Eigenvectors
 
-> **Last Updated:** 2026-06-19
->
-> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 6
+[Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Prerequisites**: [Linear Algebra] Determinants, matrix operations (Ch 1-5).
+> **Last Updated:** 2026-10-18
 >
-> **Learning Objectives**:
+> Introduction to Linear Algebra, Strang, Ch 6
+
+> **Learning Objectives:**
 > 1. Define eigenvalues and eigenvectors and compute them
 > 2. Diagonalize matrices using eigendecomposition
-> 3. Analyze stability and dynamics using eigenvalues
-
-> **📑 This document is split into 3 parts.**
->
-> **Part 1** · [Part 2](Concepts-Part2.md) · [Part 3](Concepts-Part3.md)
+> 3. Orthogonally diagonalize symmetric matrices and test them for positive definiteness
+> 4. Solve linear differential equations using the matrix exponential
+> 5. Analyze stability and dynamics using eigenvalues
 
 ---
-
-<br>
 
 ## Table of Contents
 
@@ -41,29 +37,30 @@
   - [2.7 Similar Matrices](#27-similar-matrices)
   - [2.8 Matrix Powers and Fibonacci Numbers](#28-matrix-powers-and-fibonacci-numbers)
   - [2.9 Nondiagonalizable Matrices and Multiplicity](#29-nondiagonalizable-matrices-and-multiplicity)
-- [3. Symmetric Positive Definite Matrices (6.3)](Concepts-Part2.md#3-symmetric-positive-definite-matrices-63)
-  - [3.1 Symmetric Matrices: Key Properties](Concepts-Part2.md#31-symmetric-matrices-key-properties)
-  - [3.2 Spectral Theorem](Concepts-Part2.md#32-spectral-theorem)
-  - [3.3 Proof: Symmetric Matrices Have Orthonormal Eigenbasis](Concepts-Part2.md#33-proof-symmetric-matrices-have-orthonormal-eigenbasis)
-  - [3.4 Positive Definite Matrices: Definitions](Concepts-Part2.md#34-positive-definite-matrices-definitions)
-  - [3.5 Properties of Positive Definite Matrices](Concepts-Part2.md#35-properties-of-positive-definite-matrices)
-  - [3.6 How to Check if a Matrix is Positive Definite](Concepts-Part2.md#36-how-to-check-if-a-matrix-is-positive-definite)
-  - [3.7 Worked Examples: Positive Definite and Semidefinite](Concepts-Part2.md#37-worked-examples-positive-definite-and-semidefinite)
-  - [3.8 The Ellipse and Quadratic Forms](Concepts-Part2.md#38-the-ellipse-and-quadratic-forms)
-  - [3.9 Positive Definite Matrices and Minimum Problems](Concepts-Part2.md#39-positive-definite-matrices-and-minimum-problems)
-  - [3.10 Positive Semidefinite Matrices](Concepts-Part2.md#310-positive-semidefinite-matrices)
-  - [3.11 Congruent Matrices](Concepts-Part2.md#311-congruent-matrices)
-  - [3.12 Optimization and Machine Learning](Concepts-Part2.md#312-optimization-and-machine-learning)
-- [4. Solving Linear Differential Equations (6.5)](Concepts-Part3.md#4-solving-linear-differential-equations-65)
-  - [4.1 Key Facts](Concepts-Part3.md#41-key-facts)
-  - [4.2 Scalar ODE Review](Concepts-Part3.md#42-scalar-ode-review)
-  - [4.3 Solution of du/dt = Au](Concepts-Part3.md#43-solution-of-dudt--au)
-  - [4.4 General n x n Solution Procedure](Concepts-Part3.md#44-general-n-x-n-solution-procedure)
-  - [4.5 Exponential of a Matrix](Concepts-Part3.md#45-exponential-of-a-matrix)
-  - [4.6 Second Order Equations](Concepts-Part3.md#46-second-order-equations)
-  - [4.7 Stability of 2 by 2 Matrices](Concepts-Part3.md#47-stability-of-2-by-2-matrices)
-  - [4.8 Worked Examples](Concepts-Part3.md#48-worked-examples)
-- [Summary](Concepts-Part3.md#summary)
+- [3. Symmetric Positive Definite Matrices (6.3)](#3-symmetric-positive-definite-matrices-63)
+  - [3.1 Symmetric Matrices: Key Properties](#31-symmetric-matrices-key-properties)
+  - [3.2 Spectral Theorem](#32-spectral-theorem)
+  - [3.3 Proof: Symmetric Matrices Have Orthonormal Eigenbasis](#33-proof-symmetric-matrices-have-orthonormal-eigenbasis)
+  - [3.4 Positive Definite Matrices: Definitions](#34-positive-definite-matrices-definitions)
+  - [3.5 Properties of Positive Definite Matrices](#35-properties-of-positive-definite-matrices)
+  - [3.6 How to Check if a Matrix is Positive Definite](#36-how-to-check-if-a-matrix-is-positive-definite)
+  - [3.7 Worked Examples: Positive Definite and Semidefinite](#37-worked-examples-positive-definite-and-semidefinite)
+  - [3.8 The Ellipse and Quadratic Forms](#38-the-ellipse-and-quadratic-forms)
+  - [3.9 Positive Definite Matrices and Minimum Problems](#39-positive-definite-matrices-and-minimum-problems)
+  - [3.10 Positive Semidefinite Matrices](#310-positive-semidefinite-matrices)
+  - [3.11 Congruent Matrices](#311-congruent-matrices)
+  - [3.12 Optimization and Machine Learning](#312-optimization-and-machine-learning)
+- [4. Solving Linear Differential Equations (6.5)](#4-solving-linear-differential-equations-65)
+  - [4.1 Key Facts](#41-key-facts)
+  - [4.2 Scalar ODE Review](#42-scalar-ode-review)
+  - [4.3 Solution of du/dt = Au](#43-solution-of-dudt--au)
+  - [4.4 General n x n Solution Procedure](#44-general-n-x-n-solution-procedure)
+  - [4.5 Exponential of a Matrix](#45-exponential-of-a-matrix)
+  - [4.6 Second Order Equations](#46-second-order-equations)
+  - [4.7 Stability of 2 by 2 Matrices](#47-stability-of-2-by-2-matrices)
+  - [4.8 Worked Examples](#48-worked-examples)
+- [Summary](#summary)
+- [Self-Check Questions](#self-check-questions)
 
 ---
 
@@ -102,7 +99,7 @@ A\mathbf{x} = \lambda\mathbf{x} \implies \mathbf{x} = A^{-1}(A\mathbf{x}) = A^{-
 \det(A) = \lambda_1 \lambda_2 \cdots \lambda_n; \quad \text{trace}(A) = \lambda_1 + \lambda_2 + \cdots + \lambda_n
 ```
 
-5. **Projection matrix** $`P`$ has $`\lambda = 1`$ or $`\lambda = 0`$. A square matrix $`P`$ is called a "projection matrix" if $`P^2 = P`$.
+5. **Projection matrix** $`P`$ has $`\lambda = 1`$ or $`\lambda = 0`$. A square matrix $`P`$ is called a projection matrix if $`P^2 = P`$.
 
 ### 1.2 Powers of A and Eigenvalues
 
@@ -126,7 +123,7 @@ A^3\mathbf{x} = \lambda^3\mathbf{x}, \quad A^k\mathbf{x} = \lambda^k\mathbf{x}, 
 
 - If $`|\lambda_i| < 1`$ for $`i = 1, 2, \ldots, n`$, then $`A^k`$ will eventually approach **zero**.
 - If any $`|\lambda_i| > 1`$, then $`A^k`$ will eventually **grow**.
-- If $`\lambda = 1`$, then the system state does not grow or decay over time, but rather stays **constant**.
+- If $`\lambda = 1`$, then the component along that eigenvector does not grow or decay over time, but rather stays **constant**.
 
 When $`A\mathbf{x} = \mathbf{x}`$, then $`\mathbf{x}`$ is a **fixed point** or **equilibrium point** of a system, i.e., the system remains steady in $`\mathbf{x}`$ direction. The system reaches a **steady state**: $`A^k \mathbf{x} = \mathbf{x}`$.
 
@@ -154,7 +151,7 @@ e.g., $`\det(A) = 1 \cdot 4 - 2 \cdot 2 = 0`$, and $`\lambda_1 \cdot \lambda_2 =
 
 e.g., $`A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}`$, $`\det(A - \lambda I) = \begin{vmatrix} -\lambda & 1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 - 1 = 0`$, so $`\lambda = \pm 1`$.
 
-**(4)** A **symmetric positive definite (SPD)** matrix has **real and positive** eigenvalues. SPD matrix is crucial in optimization because it guarantees that a quadratic form $`f(\mathbf{x}) = \frac{1}{2}\mathbf{x}^T A\mathbf{x}`$ has a **unique minimum**. (See Section 6.3)
+**(4)** A **symmetric positive definite (SPD)** matrix has **real and positive** eigenvalues. SPD matrix is crucial in optimization because it guarantees that a quadratic form $`f(\mathbf{x}) = \frac{1}{2}\mathbf{x}^T A\mathbf{x}`$ has a **unique minimum**. (See Section 3.)
 
 **(5)** For a **diagonal** matrix, the eigenvalues are the **diagonal elements**.
 
@@ -224,10 +221,10 @@ Take $`\lambda = 0`$:
 Also, from expanding $`(\lambda - \lambda_1)(\lambda - \lambda_2)\cdots(\lambda - \lambda_n)`$:
 
 ```math
-= \lambda^n - (\lambda_1 + \lambda_2 + \cdots + \lambda_n)\lambda^{n-1} + \cdots + \det(A) = 0
+= \lambda^n - (\lambda_1 + \lambda_2 + \cdots + \lambda_n)\lambda^{n-1} + \cdots + (-1)^n\det(A) = 0
 ```
 
-The coefficient of $`\lambda^{n-1}`$ equals $`\text{trace}(A) = a_{11} + a_{22} + \cdots + a_{nn}`$ (skip proof).
+Expanding $`\det(\lambda I - A)`$ gives the coefficient $`-(a_{11} + a_{22} + \cdots + a_{nn})`$ for $`\lambda^{n-1}`$ (proof omitted), so comparing the $`\lambda^{n-1}`$ coefficients of the two expressions gives $`\lambda_1 + \lambda_2 + \cdots + \lambda_n = \text{trace}(A) = a_{11} + a_{22} + \cdots + a_{nn}`$.
 
 **Derivative of a determinant of a matrix:**
 
@@ -265,7 +262,7 @@ A = \begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix} \longrightarrow R_0 = \begin{pm
 
 $`\det(A - \lambda I) = \begin{vmatrix} 1 - \lambda & 3 \\ 2 & 6 - \lambda \end{vmatrix} = \lambda^2 - 7\lambda = 0`$, so $`\lambda_1 = 7, \lambda_2 = 0`$.
 
-$`\det(A_0 - \lambda I) = \begin{vmatrix} 1 - \lambda & 3 \\ 0 & -\lambda \end{vmatrix} = \lambda^2 - \lambda = 0`$, so $`\lambda_1 = 1, \lambda_2 = 0`$. (Different!)
+$`\det(R_0 - \lambda I) = \begin{vmatrix} 1 - \lambda & 3 \\ 0 & -\lambda \end{vmatrix} = \lambda^2 - \lambda = 0`$, so $`\lambda_1 = 1, \lambda_2 = 0`$. These differ from the eigenvalues of $`A`$.
 
 **Observation 2:** The product $`\lambda_1 \cdot \lambda_2`$ and the sum $`\lambda_1 + \lambda_2`$ can be found from the matrix.
 
@@ -294,7 +291,7 @@ A = \begin{pmatrix} 0.8 & 0.3 \\ 0.2 & 0.7 \end{pmatrix}
 \therefore \lambda_1 = 1, \quad \lambda_2 = \frac{1}{2}
 ```
 
-This tells us that $`A - \lambda_1 I = A - I`$ and $`A - \lambda_2 I = A - \frac{1}{2}I`$ are **NOT invertible**.
+This tells us that $`A - \lambda_1 I = A - I`$ and $`A - \lambda_2 I = A - \frac{1}{2}I`$ are **not invertible**.
 
 The eigenvectors $`\mathbf{x}_1`$ and $`\mathbf{x}_2`$ satisfy $`(A - I)\mathbf{x}_1 = \mathbf{0}`$ and $`(A - \frac{1}{2}I)\mathbf{x}_2 = \mathbf{0}`$.
 
@@ -353,10 +350,10 @@ A^{100}\begin{pmatrix} 1 \\ 0 \end{pmatrix} \approx \begin{pmatrix} 0.6 \\ 0.4 \
 Similarly for $`\mathbf{x} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$: $`A^{100}\begin{pmatrix} 0 \\ 1 \end{pmatrix} \approx \begin{pmatrix} 0.6 \\ 0.4 \end{pmatrix}`$.
 
 ```math
-A^{100}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \approx \begin{pmatrix} 0.6 & 0.6 \\ 0.4 & 0.4 \end{pmatrix} = (\mathbf{x}_1 \; \mathbf{x}_1)
+A^{100}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \approx \begin{pmatrix} 0.6 & 0.6 \\ 0.4 & 0.4 \end{pmatrix} = 0.2(\mathbf{x}_1 \; \mathbf{x}_1)
 ```
 
-The higher the power of $`A`$, the more closely its columns approach the **steady state**.
+The higher the power of $`A`$, the more closely its columns approach the **steady state** $`0.2\mathbf{x}_1 = (0.6, 0.4)`$.
 
 **Example 2:** Projection Matrix
 
@@ -450,7 +447,7 @@ $`x_1 + 2x_2 = 0 \implies x_1 = -2x_2`$. Pick $`x_2 = 1 \implies x_1 = -2`$: $`\
 
 **Remark 1:** $`\mathbf{x}_1`$ and $`\mathbf{x}_2`$ are in the nullspace of $`(A - \lambda I)`$.
 
-In this example, $`\lambda_2 = 0`$ is an eigenvalue because $`A`$ is singular. If $`A`$ is invertible, then "zero" is NOT an eigenvalue: $`A\mathbf{x} = \mathbf{0} \implies \mathbf{x} = \mathbf{0}`$.
+In this example, $`\lambda_2 = 0`$ is an eigenvalue because $`A`$ is singular. If $`A`$ is invertible, then zero is not an eigenvalue: $`A\mathbf{x} = \mathbf{0} \implies \mathbf{x} = \mathbf{0}`$.
 
 **Remark 2:** For $`A \in \mathbb{R}^{2 \times 2}`$, when $`A - \lambda I`$ is singular, both rows are multiples of a vector $`(a, b)`$:
 
@@ -464,7 +461,7 @@ The eigenvector is any multiple of $`(b, -a)`$:
 \begin{pmatrix} a & b \\ ka & kb \end{pmatrix}\begin{pmatrix} b \\ -a \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 ```
 
-**Remark 3:** This example has two distinct eigenvalues, which span $`\mathbb{R}^2`$. If a $`2 \times 2`$ matrix has only one eigenvalue, then it cannot span $`\mathbb{R}^2`$.
+**Remark 3:** This example has two distinct eigenvalues, so its two eigenvectors span $`\mathbb{R}^2`$. If a $`2 \times 2`$ matrix has only one (repeated) eigenvalue, its eigenvectors may fail to span $`\mathbb{R}^2`$. For instance, $`3I`$ has the single eigenvalue 3, but every nonzero vector is an eigenvector, so its eigenvectors do span $`\mathbb{R}^2`$.
 
 e.g., $`A = \begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}`$, $`\det(A - \lambda I) = (3 - \lambda)^2 = 0`$, so $`\lambda = 3`$. Geometric multiplicity = 1, algebraic multiplicity = 2. The matrix $`A`$ is **defective** and is **not diagonalizable**.
 
@@ -541,11 +538,11 @@ That is, $`\lambda`$ and $`\beta`$ are eigenvalues of $`A`$ and $`B`$.
 AB\mathbf{x} = A(\beta\mathbf{x}) = \beta A\mathbf{x} = \beta\lambda\mathbf{x}
 ```
 
-**This is NOT true.** Why? In general, $`\mathbf{x}`$ is NOT the eigenvector of both $`A`$ and $`B`$.
+**This is not true in general**, since $`\mathbf{x}`$ is usually not an eigenvector of both $`A`$ and $`B`$.
 
 Similarly, $`(A + B)\mathbf{x} \neq (\lambda + \beta)\mathbf{x}`$.
 
-**Remark:** $`A`$ and $`B`$ share the same $`n`$ independent eigenvectors **if and only if** $`AB = BA`$.
+**Remark:** Diagonalizable $`A`$ and $`B`$ share the same $`n`$ independent eigenvectors **if and only if** $`AB = BA`$. In that case the eigenvalues of $`AB`$ are $`\lambda\beta`$ and those of $`A + B`$ are $`\lambda + \beta`$.
 
 ---
 
@@ -573,17 +570,17 @@ AA = X\Lambda X^{-1} X\Lambda X^{-1} = X\Lambda^2 X^{-1}
 
 **(3)** Solve $`\mathbf{u}_{k+1} = A\mathbf{u}_k`$ by $`\mathbf{u}_k = A^k \mathbf{u}_0 = X\Lambda^k X^{-1}\mathbf{u}_0`$.
 
-**(4)** No equal eigenvalues $`\implies`$ eigenvector $`X`$ is invertible $`\implies`$ $`A`$ can be diagonalized.
+**(4)** No equal eigenvalues $`\implies`$ eigenvector matrix $`X`$ is invertible $`\implies`$ $`A`$ can be diagonalized.
 
 Repeated eigenvalues $`\implies`$ $`A`$ might have too few independent eigenvectors $`\implies`$ $`X^{-1}`$ fails.
 
-**(5)** Every matrix $`C = B^{-1}AB`$ has the same eigenvalues as $`A`$. These $`C`$'s are **similar** to $`A`$.
+**(5)** For invertible $`B`$, every matrix $`C = B^{-1}AB`$ has the same eigenvalues as $`A`$. These $`C`$'s are **similar** to $`A`$.
 
 ### 2.2 Diagonalization Procedure
 
-When $`\mathbf{x}`$ is an eigenvector, $`A\mathbf{x} = \lambda\mathbf{x}`$. Applying $`A`$ to $`\mathbf{x}`$ is just a multiplication by $`\lambda`$ — **very efficient**.
+When $`\mathbf{x}`$ is an eigenvector, $`A\mathbf{x} = \lambda\mathbf{x}`$. Applying $`A`$ to $`\mathbf{x}`$ is just a multiplication by $`\lambda`$, which is **very efficient**.
 
-When $`A`$ is diagonalizable, $`A^{100}\mathbf{x} = X\Lambda^{100}X^{-1}\mathbf{x}`$ — **very efficient** as well.
+When $`A`$ is diagonalizable, $`A^{100}\mathbf{x} = X\Lambda^{100}X^{-1}\mathbf{x}`$, which is **very efficient** as well.
 
 **Diagonalization:** Suppose $`A_{n \times n}`$ has LI eigenvectors $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$.
 
@@ -635,13 +632,13 @@ A(\mathbf{x}_1 \; \mathbf{x}_2) = (\mathbf{x}_1 \; \mathbf{x}_2)\begin{pmatrix} 
 \begin{pmatrix} 2 & 4 \\ 0 & 6 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 6 & \\ & 2 \end{pmatrix}
 ```
 
-Multiply: $`X^{-1} = -\begin{pmatrix} 0 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & -1 \end{pmatrix}`$
+Since $`\det(X) = -1`$, $`X^{-1} = -\begin{pmatrix} 0 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & -1 \end{pmatrix}`$.
 
 $`X^{-1}AX = X^{-1}X\Lambda = \Lambda = \begin{pmatrix} 6 & \\ & 2 \end{pmatrix}`$
 
 $`AXX^{-1} = X\Lambda X^{-1}`$
 
-**Watch:** $`A^2 = (X\Lambda X^{-1})(X\Lambda X^{-1}) = X\Lambda^2 X^{-1}`$
+**Observation:** $`A^2 = (X\Lambda X^{-1})(X\Lambda X^{-1}) = X\Lambda^2 X^{-1}`$
 
 $`\implies X^{-1}A^2 X = \Lambda^2`$
 
@@ -681,7 +678,7 @@ Only **one** eigenvector. $`A`$ **cannot be diagonalized**.
 
 **Proof:** Suppose the eigenvectors $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$ are **LD** (linearly dependent).
 
-Let $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$ are LI, and $`\mathbf{x}_{p+1}, \mathbf{x}_{p+2}, \ldots, \mathbf{x}_n`$ are LD.
+Take the largest $`p`$ ($`p < n`$) such that $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$ are LI. Then adding $`\mathbf{x}_{p+1}`$ gives the LD set $`\mathbf{x}_1, \ldots, \mathbf{x}_p, \mathbf{x}_{p+1}`$.
 
 That is, there exist constants, **not all zero**, such that:
 
@@ -713,7 +710,7 @@ Since $`\lambda`$ are distinct and $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf
 c_1 = c_2 = \cdots = c_p = 0
 ```
 
-This implies that $`\mathbf{x}_{p+1} = \mathbf{0}`$. This contradicts our assumption.
+This implies that $`\mathbf{x}_{p+1} = \mathbf{0}`$, which is a contradiction because an eigenvector is nonzero.
 
 Therefore $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$ are **LI**. $`\square`$
 
@@ -759,9 +756,9 @@ A_1 = X_1 \Lambda X_1^{-1}, \quad A_2 = X_2 \Lambda X_2^{-1}, \quad \ldots
 
 These are **similar matrices**: $`\Lambda, A_1, A_2, \ldots`$
 
-All $`A_1, A_2, \ldots`$ are similar to $`C`$. They all share the eigenvalues of $`C`$.
+All $`A_1, A_2, \ldots`$ are similar to $`\Lambda`$. They all share the eigenvalues of $`\Lambda`$.
 
-Extend this idea to non-diagonalizable matrices. Choose a constant matrix $`C`$ and an invertible matrix $`B`$. We construct $`A = BCB^{-1}`$. $`A`$ and $`C`$ are **similar**.
+Extend this idea to non-diagonalizable matrices. Choose a fixed matrix $`C`$ and an invertible matrix $`B`$. We construct $`A = BCB^{-1}`$. $`A`$ and $`C`$ are **similar**.
 
 $`A`$ and $`C`$ have the same $`n`$ eigenvalues.
 
@@ -873,8 +870,1119 @@ AM = 2, GM = 1 (1 eigenvector).
 
 $`A\mathbf{x} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, so $`x_2 = 0`$: $`\mathbf{x} = \begin{pmatrix} c \\ 0 \end{pmatrix}`$.
 
-When **GM < AM**, $`A`$ is **NOT diagonalizable**.
+When **GM < AM** for some eigenvalue, $`A`$ is **not diagonalizable**.
 
 ---
 
 <br>
+
+## 3. Symmetric Positive Definite Matrices (6.3)
+
+### 3.1 Symmetric Matrices: Key Properties
+
+**(1)** A symmetric matrix $`S`$ has $`n`$ **real** eigenvalues $`\lambda_i`$, and $`n`$ **orthonormal** eigenvectors $`\mathbf{q}_i`$.
+
+**(2)** $`S`$ is diagonalized by an orthogonal eigenvector matrix $`Q`$:
+
+```math
+S = Q\Lambda Q^{-1} = Q\Lambda Q^T
+```
+
+**(3a)** **Positive definite:** all $`\lambda_i > 0`$ and all pivots $`> 0`$ and all upper-left determinants $`> 0`$.
+
+**(3b)** The energy test is $`\mathbf{x}^T S\mathbf{x} > 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$. Then $`S = A^T A`$ with independent columns in $`A`$.
+
+**(4)** **Positive semidefinite** allows $`\lambda = 0`$, pivot = 0, determinant = 0, energy $`\mathbf{x}^T S\mathbf{x} = 0`$, any $`A`$.
+
+**Symmetric matrices ($`S = S^T`$) are special:**
+
+1. All $`n`$ eigenvalues $`\lambda`$ are **real** numbers.
+2. The $`n`$ eigenvectors $`\mathbf{q}`$ can be chosen **orthogonal**.
+
+e.g., $`I = I^T = \begin{pmatrix} 1 & & \\ & 1 & \\ & & \ddots \end{pmatrix}`$, $`\lambda = 1, 1, \ldots, 1`$. $`I\mathbf{x} = 1 \cdot \mathbf{x}`$, so every nonzero vector $`\mathbf{x}`$ is an eigenvector.
+
+We can choose them to be **orthogonal**, and we can rescale them to be **unit vectors** $`\implies`$ **orthonormal**.
+
+### 3.2 Spectral Theorem
+
+Let $`Q = (\mathbf{q}_1 \; \mathbf{q}_2 \; \cdots \; \mathbf{q}_n)`$ where $`\|\mathbf{q}_i\| = 1`$, and $`\mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 1 & i = j \\ 0 & i \neq j \end{cases}`$
+
+```math
+Q^T Q = \begin{pmatrix} - \mathbf{q}_1^T - \\ - \mathbf{q}_2^T - \\ \vdots \\ - \mathbf{q}_n^T - \end{pmatrix}\begin{pmatrix} | & | & & | \\ \mathbf{q}_1 & \mathbf{q}_2 & \cdots & \mathbf{q}_n \\ | & | & & | \end{pmatrix} = I
+```
+
+For a square matrix $`Q`$: $`Q^T Q = I \implies Q^T = Q^{-1}`$.
+
+Recall from Section 2.2 that $`AX = X\Lambda`$. For a symmetric matrix $`S`$, we use orthonormal $`Q`$ instead of $`X`$:
+
+```math
+SQ = Q\Lambda
+```
+
+```math
+\boxed{SQQ^T = Q\Lambda Q^{-1} = Q\Lambda Q^T}
+```
+
+**Spectral Theorem:** Every real symmetric matrix $`S`$ has the form
+
+```math
+S = Q\Lambda Q^T
+```
+
+Proof of symmetry: $`S^T = (Q\Lambda Q^T)^T = Q\Lambda^T Q^T = Q\Lambda Q^T = S`$.
+
+If $`S`$ has orthonormal eigenvectors, then $`S`$ is symmetric.
+
+### 3.3 Proof: Symmetric Matrices Have Orthonormal Eigenbasis
+
+**Statement:** If $`S = S^T`$, then $`S`$ has an orthonormal eigenbasis.
+
+**Proof:** Consider two eigenvectors $`\mathbf{u}, \mathbf{v}`$.
+
+i) $`\mathbf{v} \cdot (S\mathbf{u}) = \mathbf{v}^T S\mathbf{u} = \mathbf{v}^T S^T\mathbf{u}`$ (by symmetry) $`= (S\mathbf{v})^T\mathbf{u} = (S\mathbf{v}) \cdot \mathbf{u}`$
+
+ii) Let $`\alpha, \beta`$ be the corresponding eigenvalues: $`S\mathbf{u} = \alpha\mathbf{u}`$, $`S\mathbf{v} = \beta\mathbf{v}`$.
+
+From $`\mathbf{v} \cdot (S\mathbf{u}) = (S\mathbf{v}) \cdot \mathbf{u}`$, we have:
+
+```math
+\mathbf{v} \cdot (\alpha\mathbf{u}) = (\beta\mathbf{v}) \cdot \mathbf{u}
+```
+
+```math
+(\alpha - \beta)\mathbf{v} \cdot \mathbf{u} = 0
+```
+
+When $`\alpha \neq \beta`$: $`\mathbf{v} \cdot \mathbf{u} = 0`$.
+
+$`\therefore \mathbf{v} \perp \mathbf{u}`$, that is, the two eigenvectors are **orthogonal**.
+
+Rescale $`\mathbf{u}, \mathbf{v}`$ to $`\|\mathbf{u}\| = \|\mathbf{v}\| = 1`$. Then $`\mathbf{u}, \mathbf{v}`$ are **orthonormal** eigenvectors. $`\square`$
+
+> **Note:** This proof shows that eigenvectors for distinct eigenvalues are orthogonal. When an eigenvalue is repeated, the Gram-Schmidt process gives an orthonormal basis inside its eigenspace. The fact that each eigenspace of a symmetric matrix has dimension equal to the algebraic multiplicity, so that there are $`n`$ eigenvectors in total, needs a separate argument (for example, the Schur decomposition).
+
+### 3.4 Positive Definite Matrices: Definitions
+
+**Def.** $`n \times n`$ symmetric real matrix $`S`$ is **positive definite** if
+
+```math
+\mathbf{x}^T S\mathbf{x} > 0 \quad \forall \; \mathbf{x} \neq \mathbf{0}, \; \mathbf{x} \in \mathbb{R}^n
+```
+
+(equivalently, $`\forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$)
+
+**Def.** $`n \times n`$ symmetric real matrix $`S`$ is **positive semidefinite** (= non-negative definite) if
+
+```math
+\mathbf{x}^T S\mathbf{x} \geq 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n
+```
+
+**Def.** $`n \times n`$ symmetric real matrix $`S`$ is **negative definite** if
+
+```math
+\mathbf{x}^T S\mathbf{x} < 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace
+```
+
+**Def.** $`n \times n`$ symmetric real matrix $`S`$ is **negative semidefinite** if
+
+```math
+\mathbf{x}^T S\mathbf{x} \leq 0 \quad \forall \; \mathbf{x} \in \mathbb{R}^n
+```
+
+### 3.5 Properties of Positive Definite Matrices
+
+**Property 1.** Positive definite matrix $`S`$ has **all positive eigenvalues**.
+
+**Proof:** $`S`$ is symmetric $`\implies S = Q\Lambda Q^T`$, $`S\mathbf{x} = Q\Lambda Q^T\mathbf{x}`$.
+
+```math
+\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T Q\Lambda Q^T\mathbf{x} = (Q^T\mathbf{x})^T \Lambda (Q^T\mathbf{x})
+```
+
+Let $`\mathbf{y} = Q^T\mathbf{x}`$:
+
+```math
+= \mathbf{y}^T \Lambda \mathbf{y} = \mathbf{y}^T\begin{pmatrix} \lambda_1 y_1 \\ \lambda_2 y_2 \\ \vdots \\ \lambda_n y_n \end{pmatrix} = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2
+```
+
+Since $`S`$ is positive definite, $`\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$.
+
+Choose $`\mathbf{x} = Q\mathbf{e}_i`$ where $`\mathbf{e}_i`$ is the $`i`$-th column of $`I`$. Then $`\mathbf{y} = Q^T\mathbf{x} = Q^T Q\mathbf{e}_i = \mathbf{e}_i`$, which leads to $`\mathbf{x}^T S\mathbf{x} = \lambda_i > 0`$.
+
+Therefore all $`\lambda_1, \lambda_2, \ldots, \lambda_n > 0`$. $`\square`$
+
+**Remark:** Having all positive eigenvalues does not imply that the matrix is positive definite.
+
+e.g., $`A = \begin{pmatrix} 1 & -3 \\ 0 & 1 \end{pmatrix} \to \lambda_1 = \lambda_2 = 1 > 0`$, but $`\mathbf{x}^T A\mathbf{x} = (x_1, x_2)\begin{pmatrix} x_1 - 3x_2 \\ x_2 \end{pmatrix} = x_1^2 - 3x_1 x_2 + x_2^2 < 0`$ when $`x_1 = x_2 = 1`$.
+
+(The matrix must be **symmetric** for the equivalence to hold.)
+
+**Positive energy is closely connected to positive eigenvalues ($`\lambda > 0`$):**
+
+If $`S\mathbf{x} = \lambda\mathbf{x}`$, then $`\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T\lambda\mathbf{x} = \lambda\mathbf{x}^T\mathbf{x} = \lambda\|\mathbf{x}\|^2`$.
+
+So $`\lambda > 0 \implies \mathbf{x}^T S\mathbf{x} > 0`$ for $`\mathbf{x} \neq \mathbf{0}`$.
+
+**Statement:** If $`\mathbf{x}^T S\mathbf{x} > 0`$ for the eigenvectors of $`S`$, then $`\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$.
+
+**Proof:** Let $`\mathbf{x} = Q\mathbf{c} = c_1\mathbf{q}_1 + c_2\mathbf{q}_2 + \cdots + c_n\mathbf{q}_n`$ where $`\mathbf{q}_i`$ is the $`i`$-th eigenvector of $`S`$ and an orthonormal vector.
+
+```math
+\mathbf{x}^T S\mathbf{x} = (c_1\mathbf{q}_1 + c_2\mathbf{q}_2 + \cdots + c_n\mathbf{q}_n)^T S(c_1\mathbf{q}_1 + c_2\mathbf{q}_2 + \cdots + c_n\mathbf{q}_n)
+```
+
+```math
+= (c_1\mathbf{q}_1 + c_2\mathbf{q}_2 + \cdots + c_n\mathbf{q}_n)^T(c_1\lambda_1\mathbf{q}_1 + c_2\lambda_2\mathbf{q}_2 + \cdots + c_n\lambda_n\mathbf{q}_n)
+```
+
+```math
+= c_1^2\lambda_1\mathbf{q}_1^T\mathbf{q}_1 + c_2^2\lambda_2\mathbf{q}_2^T\mathbf{q}_2 + \cdots + c_n^2\lambda_n\mathbf{q}_n^T\mathbf{q}_n > 0
+```
+
+if $`\lambda_1, \lambda_2, \ldots, \lambda_n > 0`$. $`\square`$
+
+**Property 2.** If $`S`$ is positive definite, then it is **invertible**, $`\det(S) > 0`$, and $`S^{-1}`$ is positive definite.
+
+**Proof:**
+
+i) $`\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$
+
+$`\implies S\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$
+
+$`\implies \mathcal{N}(S) = \lbrace\mathbf{0}\rbrace`$
+
+$`\implies S`$ has full rank $`\iff \dim C(S) = n`$
+
+$`\therefore S`$ is **invertible**.
+
+ii) Since $`S`$ is positive definite, $`S`$ has all positive eigenvalues.
+
+Therefore $`0 < \lambda_1\lambda_2\cdots\lambda_n = \det(S)`$.
+
+iii) $`(S^{-1})^T = (S^T)^{-1} = S^{-1}`$, so $`S^{-1}`$ is **symmetric**.
+
+$`\mathbf{x}^T S^{-1}\mathbf{x} = \mathbf{x}^T S^{-1}SS^{-1}\mathbf{x} = (S^{-T}\mathbf{x})^T S(S^{-1}\mathbf{x}) = (S^{-1}\mathbf{x})^T S(S^{-1}\mathbf{x})`$
+
+Let $`\mathbf{z} = S^{-1}\mathbf{x}`$: $`= \mathbf{z}^T S\mathbf{z} > 0`$. $`\square`$
+
+**Property 3.** If $`S`$ is positive definite, then $`S = A^T A`$ with independent columns of $`A`$.
+
+**Proof:** Symmetric matrix $`S = Q\Lambda Q^T`$. Since $`S`$ is positive definite, all eigenvalues are positive. The diagonal matrix $`\Lambda`$ has a square root $`\sqrt{\Lambda}`$:
+
+```math
+\Lambda = \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots \\ & & & \lambda_n \end{pmatrix} = \begin{pmatrix} \sqrt{\lambda_1} & & \\ & \sqrt{\lambda_2} & \\ & & \ddots \\ & & & \sqrt{\lambda_n} \end{pmatrix}\begin{pmatrix} \sqrt{\lambda_1} & & \\ & \sqrt{\lambda_2} & \\ & & \ddots \\ & & & \sqrt{\lambda_n} \end{pmatrix} = \sqrt{\Lambda}\sqrt{\Lambda}
+```
+
+Let $`A = Q\sqrt{\Lambda}Q^T`$. Then:
+
+```math
+A^T A = (Q\sqrt{\Lambda}Q^T)(Q\sqrt{\Lambda}Q^T) = Q\sqrt{\Lambda}\underbrace{Q^T Q}_{I}\sqrt{\Lambda}Q^T = Q\sqrt{\Lambda}\sqrt{\Lambda}Q^T = Q\Lambda Q^T = S
+```
+
+**Remark:** Energy $`= \mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\mathbf{x} = \|A\mathbf{x}\|^2`$.
+
+$`\|A\mathbf{x}\| > 0`$ if $`A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$ $`\iff`$ $`A`$ has independent columns (full column rank).
+
+### 3.6 How to Check if a Matrix is Positive Definite
+
+**(1) Positive eigenvalues:** A positive definite matrix $`S`$ has all positive eigenvalues.
+
+e.g., for $`n \geq 2`$, the rank 1 matrix $`S = \mathbf{u}\mathbf{v}^T`$ is not positive definite.
+
+$`A = \begin{pmatrix} a \\ b \end{pmatrix}(1 \; k) = \begin{pmatrix} a & ka \\ b & kb \end{pmatrix}`$
+
+Rank 1 matrix $`\to`$ 1 LI vector $`\to`$ $`(n-1)`$ dependent vectors.
+
+$`A\mathbf{u} = \mathbf{u}\mathbf{v}^T\mathbf{u} = (\mathbf{v}^T\mathbf{u})\mathbf{u}`$, so $`\lambda = \mathbf{v}^T\mathbf{u} = (1, k)\begin{pmatrix} a \\ b \end{pmatrix} = a + kb`$.
+
+Let $`\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_{n-1}`$ be basis vectors of $`\mathcal{N}(A)`$. $`A\mathbf{w}_i = \mathbf{0} = 0 \cdot \mathbf{w}_i`$, so $`\lambda = 0`$ for $`i = 1, 2, \ldots, n-1`$.
+
+$`\therefore (n-1)`$ zero eigenvalues, so the matrix is not positive definite.
+
+**(2) Positive energy test:** $`\mathbf{x}^T S\mathbf{x} > 0 \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$.
+
+**(3) Positive energy test for $`S = A^T A`$:**
+
+```math
+\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\mathbf{x} = \|A\mathbf{x}\|^2
+```
+
+e.g., $`S = A^T A`$ where $`A = \begin{pmatrix} 1 & 1 & 2 \\ 1 & 2 & 3 \end{pmatrix}`$ with columns $`\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3`$.
+
+Note: $`\mathbf{a}_3 = \mathbf{a}_1 + \mathbf{a}_2`$, so $`\text{rank}(A) = 2 < 3`$, $`\dim C(A^T) = 2`$, $`\dim \mathcal{N}(A) = 1`$.
+
+We have $`\mathbf{x}^T S\mathbf{x} = \|A\mathbf{x}\|^2 \geq 0`$, and since $`\dim \mathcal{N}(A) \neq 0`$, a nonzero $`\mathbf{x}`$ in the nullspace gives $`\mathbf{x}^T S\mathbf{x} = 0`$. So $`S`$ is not positive definite; $`S`$ is **positive semidefinite**.
+
+**(4) Determinant test:** Check if $`\det(S) > 0`$, but more precisely, check all **upper-left determinants**.
+
+```math
+S = \begin{pmatrix} 2 & -1 & & \\ -1 & 2 & -1 & \\ & -1 & 2 & -1 \\ & & -1 & 2 \end{pmatrix}
+```
+
+$`D_1 = |2| = 2 > 0`$
+
+$`D_2 = \begin{vmatrix} 2 & -1 \\ -1 & 2 \end{vmatrix} = 3 > 0`$
+
+$`D_3 = \begin{vmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{vmatrix} = 8 - 4 = 4 > 0`$
+
+$`D_4 = |S| = 2D_3 + \begin{vmatrix} 2 & -1 & 0 \\ -1 & 2 & 0 \\ 0 & -1 & -1 \end{vmatrix} = 8 - 4 + 1 = 5 > 0`$
+
+All upper-left determinants are positive, so $`S`$ is positive definite.
+
+**(5) Pivot test:** Check if the **pivots** are positive.
+
+For $`S = \begin{pmatrix} 2 & -1 \\ -1 & 2 & -1 \\ & -1 & 2 \end{pmatrix}`$:
+
+After elimination, the pivots are $`2, \frac{3}{2}, \frac{4}{3}`$, all positive.
+
+$`S = LU`$, $`S = LDL^T`$, $`S = A^T A`$.
+
+Upper-left determinants are closely related to pivots. The $`k`$-th pivot is $`D_k/D_{k-1}`$ (with $`D_0 = 1`$), so the pivots are $`D_1`$, $`D_2/D_1`$, $`D_3/D_2`$, and so on.
+
+**For a $`2 \times 2`$ SPD matrix** $`S = \begin{pmatrix} a & b \\ b & d \end{pmatrix}`$:
+
+- Determinant test: $`D_1 = a > 0`$, $`D_2 = ad - b^2 > 0`$.
+- Pivot test: $`d_1 = a > 0`$, $`d_2 = \frac{ad - b^2}{a} > 0`$.
+- Eigenvalues: $`\lambda_1 > 0`$, $`\lambda_2 > 0`$.
+- Energy: $`(x \; y)\begin{pmatrix} a & b \\ b & d \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = ax^2 + bxy + byx + dy^2 = ax^2 + 2bxy + dy^2 > 0`$.
+
+### 3.7 Worked Examples: Positive Definite and Semidefinite
+
+**Example:** $`S = \begin{pmatrix} 2 & 0 \\ 0 & 6 \end{pmatrix} \implies \lambda_1 = 2 > 0, \lambda_2 = 6 > 0`$
+
+$`S\mathbf{x} = \begin{pmatrix} 2 & 0 \\ 0 & 6 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 2x_1 \\ 6x_2 \end{pmatrix}`$
+
+$`\mathbf{x}^T S\mathbf{x} = (x_1, x_2)\begin{pmatrix} 2x_1 \\ 6x_2 \end{pmatrix} = 2x_1^2 + 6x_2^2 > 0`$. $`\therefore S`$ is positive definite.
+
+**Example:** $`S = \begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix}`$
+
+$`|S - \lambda I| = \begin{vmatrix} 5 - \lambda & 4 \\ 4 & 5 - \lambda \end{vmatrix} = \lambda^2 - 10\lambda + 25 - 16 = (\lambda - 9)(\lambda - 1) = 0`$
+
+$`\therefore \lambda_1 = 9 > 0`$, $`\lambda_2 = 1 > 0`$.
+
+i) $`(S - 9I)\mathbf{x}_1 = \begin{pmatrix} -4 & 4 \\ 4 & -4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, $`x_1 = x_2`$: $`\mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix} \to \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}`$
+
+ii) $`(S - I)\mathbf{x}_2 = \begin{pmatrix} 4 & 4 \\ 4 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, $`x_1 + x_2 = 0`$: $`\mathbf{x}_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix} \to \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}`$
+
+iii) $`Q = (\mathbf{x}_1 \; \mathbf{x}_2) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}`$, $`Q^{-1} = Q = Q^T`$
+
+iv) $`\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T(Q\Lambda Q^T)\mathbf{x}`$, let $`\mathbf{y} = Q^T\mathbf{x}`$:
+
+$`= \lambda_1 y_1^2 + \lambda_2 y_2^2 = 9y_1^2 + y_2^2 > 0`$
+
+$`\therefore S`$ is positive definite.
+
+**Alternative approach (energy test):**
+
+$`\mathbf{x}^T S\mathbf{x} = (x_1, x_2)\begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = (x_1, x_2)\begin{pmatrix} 5x_1 + 4x_2 \\ 4x_1 + 5x_2 \end{pmatrix}`$
+
+$`= 5x_1^2 + 4x_1x_2 + 4x_1x_2 + 5x_2^2 = x_1^2 + 4x_1^2 + 8x_1x_2 + 4x_2^2 + x_2^2`$
+
+$`= x_1^2 + \underbrace{4(x_1^2 + 2x_1x_2 + x_2^2)}_{4(x_1 + x_2)^2} + x_2^2 > 0`$
+
+**Example:** $`S = \begin{pmatrix} 4 & 5 \\ 5 & 4 \end{pmatrix}`$
+
+$`|S - \lambda I| = \lambda^2 - 8\lambda + 16 - 25 = \lambda^2 - 8\lambda - 9 = (\lambda - 9)(\lambda + 1) = 0`$
+
+$`\therefore \lambda_1 = 9`$ and $`\lambda_2 = -1`$.
+
+Since $`\lambda_2 < 0`$, $`S`$ is **not** positive definite.
+
+### 3.8 The Ellipse and Quadratic Forms
+
+An **ellipse** is given by an equation of the form $`ax^2 + 2bxy + dy^2 = 1`$ (when $`\begin{pmatrix} a & b \\ b & d \end{pmatrix}`$ is positive definite).
+
+**Example 1:** Consider an ellipse $`5x^2 + 8xy + 5y^2 = 1`$.
+
+```math
+(x \; y)\begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = 1 \implies \mathbf{x}^T S\mathbf{x} = 1
+```
+
+$`S = \begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix}`$, $`\lambda^2 - 10\lambda + 9 = (\lambda - 9)(\lambda - 1) = 0`$, so $`\lambda = 9, 1`$.
+
+i) $`(S - 9I)\mathbf{x}_1 = \begin{pmatrix} -4 & 4 \\ 4 & -4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}`$
+
+ii) $`(S - I)\mathbf{x}_2 = \begin{pmatrix} 4 & 4 \\ 4 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$
+
+iii) $`\mathbf{q}_1 = \frac{1}{\sqrt{2}}\mathbf{x}_1`$, $`\mathbf{q}_2 = \frac{1}{\sqrt{2}}\mathbf{x}_2`$
+
+$`Q = (\mathbf{q}_1 \; \mathbf{q}_2) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}`$, $`Q^{-1} = Q^T = Q`$
+
+$`S = Q\begin{pmatrix} 9 & \\ & 1 \end{pmatrix}Q^T`$
+
+iv) $`\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T Q\begin{pmatrix} 9 & \\ & 1 \end{pmatrix}Q^T\mathbf{x}`$
+
+Let $`\mathbf{z} = Q^T\mathbf{x}`$: $`= \mathbf{z}^T\begin{pmatrix} 9 & \\ & 1 \end{pmatrix}\mathbf{z} = (z_1, z_2)\begin{pmatrix} 9z_1 \\ z_2 \end{pmatrix} = 9z_1^2 + z_2^2`$
+
+$`\mathbf{z} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} x_1 + x_2 \\ x_1 - x_2 \end{pmatrix}`$
+
+$`\therefore z_1 = \frac{x_1 + x_2}{\sqrt{2}}, \; z_2 = \frac{x_1 - x_2}{\sqrt{2}}`$
+
+$`\mathbf{x}^T S\mathbf{x} = 9z_1^2 + z_2^2 = 1`$
+
+When $`z_2 = 0`$: $`z_1^2 = \frac{1}{9}`$, so $`z_1 = \pm \frac{1}{3}`$ (semi-axis along $`\mathbf{q}_1`$).
+
+When $`z_1 = 0`$: $`z_2^2 = 1`$, so $`z_2 = \pm 1`$ (semi-axis along $`\mathbf{q}_2`$). Thus each semi-axis has length $`1/\sqrt{\lambda}`$.
+
+**Example 2:** Positive semidefinite
+
+```math
+T = \begin{pmatrix} 9 & 3 \\ 3 & 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \end{pmatrix}\begin{pmatrix} 3 & 1 \end{pmatrix} = A^T A
+```
+
+Determinants: $`D_1 = 9 > 0`$, $`D_2 = 9 - 9 = 0 \to`$ No inverse.
+
+$`\lambda^2 - \text{trace}(T)\lambda + \det(T) = \lambda^2 - 10\lambda = 0`$, so $`\lambda_1 = 10, \lambda_2 = 0`$.
+
+$`(T - 10I)\mathbf{x}_1 = \begin{pmatrix} -1 & 3 \\ 3 & -9 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} 3 \\ 1 \end{pmatrix}`$
+
+$`(T - 0I)\mathbf{x}_2 = \begin{pmatrix} 9 & 3 \\ 3 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_2 = \begin{pmatrix} 1 \\ -3 \end{pmatrix}`$
+
+Energy: $`ax^2 + 2bxy + dy^2 = 9x^2 + 6xy + y^2 = (3x + y)^2 \geq 0`$.
+
+$`E(x,y) = 1`$ is the pair of parallel lines $`3x + y = \pm 1`$, and the region between them is the band $`E(x,y) \leq 1`$. The graph of energy $`E(x,y)`$ is a valley. The axes of the band lie along the eigenvectors of $`T`$, and the two lines run along the eigenvector $`(1, -3)`$ for $`\lambda = 0`$.
+
+### 3.9 Positive Definite Matrices and Minimum Problems
+
+Consider energy $`E = \mathbf{x}^T S\mathbf{x} = \begin{pmatrix} x \\ y \end{pmatrix}^T\begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = 5x^2 + 8xy + 5y^2 > 0`$
+
+(Bowl shape, **convex**)
+
+$`E(x,y) = 0`$ when $`x = y = 0`$. This connects to **minimum problems**.
+
+The matrix of second derivatives is positive definite at all points.
+
+1st derivatives: $`\frac{\partial E}{\partial x} = 10x + 8y`$, $`\frac{\partial E}{\partial y} = 8x + 10y`$.
+
+2nd derivatives: $`\frac{\partial^2 E}{\partial x^2} = 10 > 0`$, $`\frac{\partial^2 E}{\partial x \partial y} = 8 > 0`$, $`\frac{\partial^2 E}{\partial y^2} = 10 > 0`$.
+
+```math
+\nabla E = \left(\frac{\partial E}{\partial x}, \frac{\partial E}{\partial y}\right) \quad \xrightarrow{(x,y) = (0,0)} \quad \nabla E = (0, 0)
+```
+
+```math
+J(\nabla E^T) = \begin{pmatrix} \frac{\partial^2 E}{\partial x^2} & \frac{\partial^2 E}{\partial y \partial x} \\ \frac{\partial^2 E}{\partial x \partial y} & \frac{\partial^2 E}{\partial y^2} \end{pmatrix} = H \quad \text{(Hessian matrix)}
+```
+
+$`H_{ij} = \frac{\partial^2 E}{\partial x_i \partial x_j}`$
+
+If we define the energy by $`\frac{1}{2}\mathbf{x}^T S\mathbf{x}`$, then $`H = \begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix} = S`$.
+
+e.g., $`E = x^2 + y^2`$ has minimum at $`x = y = 0`$.
+
+What about $`f = e^{x^2 + y^2}`$?
+
+$`\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right)`$ where $`\frac{\partial f}{\partial x} = e^{x^2+y^2} \cdot 2x`$, $`\frac{\partial f}{\partial y} = e^{x^2+y^2} \cdot 2y`$.
+
+$`J(\nabla f)^T = \begin{pmatrix} (2 + 4x^2)e^{x^2+y^2} & 4xy \, e^{x^2+y^2} \\ 4xy \, e^{x^2+y^2} & (2 + 4y^2)e^{x^2+y^2} \end{pmatrix} = S`$
+
+At every point $`D_1 = (2 + 4x^2)e^{x^2+y^2} > 0`$ and $`D_2 = (4 + 8x^2 + 8y^2)e^{2(x^2+y^2)} > 0`$, so $`S`$ is positive definite, and therefore $`f`$ is **strictly convex**.
+
+**Example 1 (Positive Definite):**
+
+$`S = \begin{pmatrix} 9 & 3 \\ 3 & 3 \end{pmatrix}`$
+
+Determinants: $`D_1 = 9 > 0`$, $`D_2 = 27 - 9 = 18 > 0`$.
+
+Pivots: $`\begin{pmatrix} 9 & 3 \\ 3 & 3 \end{pmatrix} \xrightarrow{R_2 - \frac{1}{3}R_1} \begin{pmatrix} 9 & 3 \\ 0 & 2 \end{pmatrix}`$. Pivots: 9, 2 (both positive).
+
+Energy: $`E(x,y) = 9x^2 + 6xy + 3y^2 = (3x + y)^2 + 2y^2 > 0`$. (Strictly convex function.)
+
+Trace and determinant: $`\text{trace}(S) = 12`$, $`\det(S) = 18`$.
+
+$`\lambda^2 - 12\lambda + 18 = 0 \implies \lambda = 6 \pm \sqrt{36 - 18} = 6 \pm 3\sqrt{2}`$
+
+i) $`\lambda_1 = 6 + 3\sqrt{2}`$: $`(S - \lambda_1 I)\mathbf{x} = \begin{pmatrix} 3 - 3\sqrt{2} & 3 \\ 3 & -3 - 3\sqrt{2} \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$
+
+$`x_2 = (-1 + \sqrt{2})x_1`$, choose $`x_1 = 1`$: $`\mathbf{x}_1 = \begin{pmatrix} 1 \\ -1 + \sqrt{2} \end{pmatrix}`$
+
+ii) $`\lambda_2 = 6 - 3\sqrt{2}`$: $`\mathbf{x}_2 = \begin{pmatrix} 1 \\ -1 - \sqrt{2} \end{pmatrix}`$
+
+**Decomposition:**
+
+$`S = \begin{pmatrix} 9 & 3 \\ 3 & 3 \end{pmatrix} = LU = \begin{pmatrix} 1 & 0 \\ \frac{1}{3} & 1 \end{pmatrix}\begin{pmatrix} 9 & 3 \\ 0 & 2 \end{pmatrix} = LDL^T = \begin{pmatrix} 1 & 0 \\ \frac{1}{3} & 1 \end{pmatrix}\begin{pmatrix} 9 & \\ & 2 \end{pmatrix}\begin{pmatrix} 1 & \frac{1}{3} \\ 0 & 1 \end{pmatrix}`$
+
+$`= (L\sqrt{D})(\sqrt{D}L^T) = A^T A`$ where $`A = \begin{pmatrix} 3 & 1 \\ 0 & \sqrt{2} \end{pmatrix}`$
+
+### 3.10 Positive Semidefinite Matrices
+
+$`\mathbf{x}^T S\mathbf{x} \geq 0`$
+
+```math
+S = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}
+```
+
+$`\det(S) = 4 - 4 = 0`$, so $`S`$ is singular.
+
+$`\text{trace}(S) = 1 + 4 = 5`$. $`\lambda^2 - 5\lambda + 0 = \lambda(\lambda - 5) = 0`$, so $`\lambda_1 = 5, \lambda_2 = 0`$.
+
+i) $`(S - 5I)\mathbf{x}_1 = \begin{pmatrix} -4 & 2 \\ 2 & -1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, $`x_2 = 2x_1`$: $`\mathbf{x}_1 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}`$
+
+ii) $`S\mathbf{x}_2 = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, $`x_1 + 2x_2 = 0`$: $`\mathbf{x}_2 = \begin{pmatrix} -2 \\ 1 \end{pmatrix}`$
+
+$`E_{21}S = U`$: $`S = E_{21}^{-1}U = LU = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix} = LDL^T`$
+
+$`= \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}`$
+
+$`= \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 2 & 0 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}`$
+
+$`S`$ is decomposed into $`A^T A`$ with **dependent** columns in $`A`$.
+
+$`\mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\mathbf{x} = \|A\mathbf{x}\|^2 \geq 0`$
+
+### 3.11 Congruent Matrices
+
+If $`S`$ is positive semidefinite, so is every matrix $`A^T SA`$:
+
+```math
+\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T S\mathbf{y} \geq 0 \quad \forall \mathbf{x}
+```
+
+where $`\mathbf{y} = A\mathbf{x}`$. $`\square`$
+
+Suppose $`\mathbf{x}^T S\mathbf{x} > 0`$ and $`A\mathbf{x} \neq \mathbf{0}`$ for all $`\mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$. Then $`A^T SA`$ is **positive definite**.
+
+```math
+\mathbf{x}^T(A^T SA)\mathbf{x} = (A\mathbf{x})^T S(A\mathbf{x}) = \mathbf{y}^T S\mathbf{y} > 0 \quad \forall \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace \quad \square
+```
+
+For invertible $`A`$, the matrix $`A^T SA`$ is called **congruent** to $`S`$.
+
+If $`S^T = S`$ has $`P`$ positive eigenvalues, $`N`$ negative eigenvalues, and $`Z`$ zero eigenvalues, then the same is true for $`A^T SA`$ provided $`A`$ is invertible.
+
+**Proof of skew-symmetric eigenvalue property:**
+
+A real skew-symmetric matrix has $`\bar{A} = A`$, so $`A = -\bar{A}^T`$. $`A\mathbf{x} = \lambda\mathbf{x}`$, $`\overline{A\mathbf{x}} = \bar{\lambda}\bar{\mathbf{x}}`$.
+
+$`\bar{\mathbf{x}}^T A\mathbf{x} = \bar{\mathbf{x}}^T(-\bar{A}^T)\mathbf{x} = -(\bar{A}\bar{\mathbf{x}})^T\mathbf{x}`$
+
+$`= \bar{\mathbf{x}}^T\lambda\mathbf{x}`$ and $`= -(\bar{\lambda}\bar{\mathbf{x}})^T\mathbf{x} = -\bar{\lambda}\bar{\mathbf{x}}^T\mathbf{x}`$
+
+$`\lambda\bar{\mathbf{x}}^T\mathbf{x} = -\bar{\lambda}\bar{\mathbf{x}}^T\mathbf{x}`$
+
+$`(\lambda + \bar{\lambda})\bar{\mathbf{x}}^T\mathbf{x} = 0`$
+
+Since $`\bar{\mathbf{x}}^T\mathbf{x} = \|\mathbf{x}\|^2 > 0`$, writing $`\lambda = r + is`$ gives $`\lambda + \bar{\lambda} = (r + is) + (r - is) = 2r = 0`$.
+
+The real part of $`\lambda`$ is **zero**. A skew-symmetric matrix has zero or **pure imaginary** eigenvalues.
+
+### 3.12 Optimization and Machine Learning
+
+**Gradient descent** to minimize $`f(x)`$.
+
+i) $`f(x) = x^2 + 4x + 4 \implies f'(x) = 2x + 4`$
+
+ii) $`x_0 = 10`$, $`\eta = 0.1`$ (learning rate), stop criterion $`|f'(x)| < 0.01`$
+
+iii) Update $`x_{k+1} = x_k - \eta f'(x_k)`$. The direction $`-f'(x_k)`$ is the **steepest descent direction**.
+
+Iterate the approximation until $`x_k \to x^*`$ (the minimum point). In this example, $`f'(x) = 0`$ gives $`x^* = -2`$.
+
+For $`f(\mathbf{x})`$: $`\mathbf{x}_{k+1} = \mathbf{x}_k - \eta \nabla f(\mathbf{x}_k)`$
+
+If $`\mathbf{x}_k \to \mathbf{x}^*`$, then $`\nabla f`$ at $`\mathbf{x}^*`$ is zero $`\implies \mathbf{x}_{k+1} \approx \mathbf{x}_k`$.
+
+If $`J(\nabla f)^T = S`$ is positive definite at every point, then $`f`$ is **convex**, so $`\mathbf{x}^*`$ is easy to find.
+
+---
+
+<br>
+
+## 4. Solving Linear Differential Equations (6.5)
+
+### 4.1 Key Facts
+
+**(1)** If $`A\mathbf{x} = \lambda\mathbf{x}`$, then $`\mathbf{u}(t) = e^{\lambda t}\mathbf{x}`$ will solve $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$. Each $`\lambda`$ and $`\mathbf{x}`$ give a solution $`e^{\lambda t}\mathbf{x}`$.
+
+**(2)** If $`A = X\Lambda X^{-1}`$, then
+
+```math
+\mathbf{u}(t) = e^{At}\mathbf{u}(0) = Xe^{\Lambda t}X^{-1}\mathbf{u}(0) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2 + \cdots + c_n e^{\lambda_n t}\mathbf{x}_n
+```
+
+**(3)** Matrix exponential: $`e^{At} = I + At + \cdots + \frac{(At)^n}{n!} + \cdots = Xe^{\Lambda t}X^{-1}`$ if $`A = X\Lambda X^{-1}`$.
+
+**(4)** $`A`$ is **stable** and $`\mathbf{u}(t) \to \mathbf{0}`$ and $`e^{At} \to 0`$ when all eigenvalues of $`A`$ have **real part $`< 0`$**.
+
+**(5)** $`\frac{d^2\mathbf{u}}{dt^2} + B\frac{d\mathbf{u}}{dt} + C\mathbf{u} = 0`$ means $`\frac{d}{dt}\begin{pmatrix} \mathbf{u} \\ \mathbf{v} \end{pmatrix} = \begin{pmatrix} 0 & I \\ -C & -B \end{pmatrix}\begin{pmatrix} \mathbf{u} \\ \mathbf{v} \end{pmatrix}`$ where $`\mathbf{v} = \frac{d\mathbf{u}}{dt}`$.
+
+### 4.2 Scalar ODE Review
+
+Consider ordinary differential equations:
+
+```math
+\frac{du}{dt} = u \implies u(t) = Ce^t
+```
+
+```math
+\boxed{\frac{du}{dt} = \lambda u} \implies \boxed{u(t) = Ce^{\lambda t}}
+```
+
+Check: $`\frac{du}{dt} = \lambda Ce^{\lambda t} = \lambda u`$.
+
+At $`t = 0`$: $`u(0) = Ce^{\lambda \cdot 0} = C \cdot 1 = C`$. The initial value is $`C`$.
+
+$`\therefore u(t) = u(0)e^{\lambda t} = u_0 e^{\lambda t}`$
+
+**Behavior:**
+
+- $`\lambda > 0`$: **unstable** (growing)
+- $`\lambda = 0`$: **steady state** (constant)
+- $`\lambda < 0`$: **stable** (decaying)
+
+**What if $`\lambda \in \mathbb{C}`$?** e.g., $`\lambda = -1 + 2i`$
+
+$`e^{\lambda t} = e^{-t + 2it} = e^{-t}e^{2it}`$
+
+$`|e^{\lambda t}| = |e^{-t}||e^{2it}| = e^{-t} \cdot \underbrace{1}_{|e^{i\theta}| = 1}`$
+
+**Observation:** Stability depends on the **real part** of $`\lambda`$.
+
+- $`\text{Re}(\lambda) > 0`$: unstable
+- $`\text{Re}(\lambda) = 0`$: steady (oscillation)
+- $`\text{Re}(\lambda) < 0`$: stable
+
+### 4.3 Solution of du/dt = Au
+
+**Example 1:** Consider a coupled ODE:
+
+```math
+\frac{dy}{dt} = z, \quad \frac{dz}{dt} = y
+```
+
+```math
+\implies \frac{d}{dt}\begin{pmatrix} y \\ z \end{pmatrix} = \begin{pmatrix} z \\ y \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} y \\ z \end{pmatrix}
+```
+
+```math
+\frac{d\mathbf{u}}{dt} = A\mathbf{u}
+```
+
+Given an initial condition $`\mathbf{u}_0 = \begin{pmatrix} y(0) \\ z(0) \end{pmatrix}`$, what is $`\mathbf{u}(t) = ?`$
+
+Let $`\lambda`$ be an eigenvalue of $`A`$ and $`\mathbf{x}`$ be the corresponding eigenvector.
+
+Choose $`\mathbf{u} = e^{\lambda t}\mathbf{x}`$ and plug into the coupled ODE:
+
+```math
+\frac{d\mathbf{u}}{dt} = A\mathbf{u} = e^{\lambda t}A\mathbf{x} = e^{\lambda t}\lambda\mathbf{x} = \lambda e^{\lambda t}\mathbf{x}
+```
+
+Since $`\mathbf{u} = e^{\lambda t}\mathbf{x}`$ satisfies the coupled ODE, $`e^{\lambda t}\mathbf{x}`$ is a solution to $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$.
+
+```math
+\implies \mathbf{u} = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2
+```
+
+What are the eigenvalues of $`A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}`$?
+
+$`|A - \lambda I| = \begin{vmatrix} -\lambda & 1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 - 1 = 0`$, so $`\lambda = \pm 1`$.
+
+i) $`\lambda_1 = 1`$: $`(A - I)\mathbf{x}_1 = \begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, so $`\mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}`$
+
+ii) $`\lambda_2 = -1`$: $`(A + I)\mathbf{x}_2 = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, so $`\mathbf{x}_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$
+
+iii) The complete solution: $`\mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2`$
+
+iv) The constants $`c_1`$ and $`c_2`$ can be determined by the initial condition $`\mathbf{u}_0 = \begin{pmatrix} 4 \\ 2 \end{pmatrix}`$:
+
+```math
+\mathbf{u}(t=0) = c_1\mathbf{x}_1 + c_2\mathbf{x}_2 = \begin{pmatrix} 4 \\ 2 \end{pmatrix}
+```
+
+Write $`\mathbf{u}_0`$ as a combination of the eigenvectors of $`A`$:
+
+```math
+= (\mathbf{x}_1 \; \mathbf{x}_2)\begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = \begin{pmatrix} 4 \\ 2 \end{pmatrix}
+```
+
+```math
+\begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}^{-1}\begin{pmatrix} 4 \\ 2 \end{pmatrix} = -\frac{1}{2}\begin{pmatrix} -1 & -1 \\ -1 & 1 \end{pmatrix}\begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \end{pmatrix}
+```
+
+Therefore $`\mathbf{u}(t) = 3e^{t}\begin{pmatrix} 1 \\ 1 \end{pmatrix} + e^{-t}\begin{pmatrix} 1 \\ -1 \end{pmatrix}`$.
+
+### 4.4 General n x n Solution Procedure
+
+Generalize the idea to $`n \times n`$ matrix $`A`$:
+
+```math
+\frac{d\mathbf{u}}{dt} = A\mathbf{u}
+```
+
+Suppose $`A`$ has $`n`$ eigenvalues and $`n`$ independent eigenvectors ($`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$), that is, $`A`$ is diagonalizable.
+
+1. Write $`\mathbf{u}_0`$ as $`\mathbf{u}_0 = c_1\mathbf{x}_1 + c_2\mathbf{x}_2 + \cdots + c_n\mathbf{x}_n`$.
+2. Multiply eigenvector $`\mathbf{x}_i`$ by $`e^{\lambda_i t}`$.
+3. The solution to $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$ is:
+
+```math
+\boxed{\mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2 + \cdots + c_n e^{\lambda_n t}\mathbf{x}_n}
+```
+
+**Example 2:**
+
+```math
+\frac{d\mathbf{u}}{dt} = A\mathbf{u} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 0 & 0 & 3 \end{pmatrix}\mathbf{u}, \quad \mathbf{u}_0 = \begin{pmatrix} 9 \\ 7 \\ 4 \end{pmatrix}
+```
+
+$`\lambda_1 = 1, \lambda_2 = 2, \lambda_3 = 3`$ (upper triangular, so the eigenvalues are on the diagonal).
+
+i) $`(A - I)\mathbf{x}_1 = \begin{pmatrix} 0 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}`$
+
+ii) $`(A - 2I)\mathbf{x}_2 = \begin{pmatrix} -1 & 1 & 1 \\ 0 & 0 & 1 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \to \mathbf{x}_2 = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}`$
+
+iii) $`(A - 3I)\mathbf{x}_3 = \begin{pmatrix} -2 & 1 & 1 \\ 0 & -1 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} \to \mathbf{x}_3 = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$
+
+iv) $`\mathbf{u}_0 = \begin{pmatrix} 9 \\ 7 \\ 4 \end{pmatrix} = (\mathbf{x}_1 \; \mathbf{x}_2 \; \mathbf{x}_3)\begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix}`$
+
+```math
+\begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}^{-1}\begin{pmatrix} 9 \\ 7 \\ 4 \end{pmatrix}
+```
+
+$`|X| = 1`$, $`X^{-1} = \frac{1}{|X|}C^T = \begin{pmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}^T = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}`$
+
+```math
+\begin{pmatrix} c_1 \\ c_2 \\ c_3 \end{pmatrix} = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} 9 \\ 7 \\ 4 \end{pmatrix} = \begin{pmatrix} 2 \\ 3 \\ 4 \end{pmatrix}
+```
+
+v) $`\therefore \mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2 + c_3 e^{\lambda_3 t}\mathbf{x}_3`$
+
+```math
+= 2e^t\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + 3e^{2t}\begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} + 4e^{3t}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}
+```
+
+### 4.5 Exponential of a Matrix
+
+Recall: $`e^x = 1 + x + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \cdots + \frac{x^n}{n!} + \cdots = \sum_{i=0}^{\infty}\frac{x^i}{i!}`$
+
+$`\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots + x^n + \cdots = \sum_{i=0}^{\infty}x^i`$ (geometric series, $`|x| < 1`$)
+
+**Matrix exponential:**
+
+```math
+e^{At} = I + At + \frac{1}{2}(At)^2 + \frac{1}{6}(At)^3 + \cdots + \frac{1}{n!}(At)^n + \cdots
+```
+
+$`(I - At)^{-1} = I + At + (At)^2 + (At)^3 + \cdots + (At)^n + \cdots`$ (when every eigenvalue of $`At`$ has absolute value less than 1)
+
+Let $`\mathbf{u}(t) = e^{At}\mathbf{u}(0) = e^{At}\mathbf{u}_0`$.
+
+Check if $`\mathbf{u}`$ is the solution to $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$:
+
+```math
+\frac{d\mathbf{u}}{dt} = \frac{d}{dt}(e^{At}\mathbf{u}_0) = \frac{de^{At}}{dt}\mathbf{u}_0 = \left(A + \frac{1}{2} \cdot 2 \cdot (At)A + \frac{3}{6}(At)^2 A + \cdots + \frac{n}{n!}(At)^{n-1}A + \cdots\right)\mathbf{u}_0
+```
+
+```math
+= A\left(I + At + \frac{1}{2}(At)^2 + \cdots + \frac{1}{(n-1)!}(At)^{n-1} + \cdots\right)\mathbf{u}_0 = Ae^{At}\mathbf{u}_0 = A\mathbf{u}
+```
+
+**If $`A`$ is diagonalizable,** $`A = X\Lambda X^{-1}`$, then:
+
+```math
+e^{At} = Xe^{\Lambda t}X^{-1}
+```
+
+where
+
+```math
+e^{\Lambda t} = I + \Lambda t + \frac{1}{2}(\Lambda t)^2 + \frac{1}{6}(\Lambda t)^3 + \cdots = \begin{pmatrix} e^{\lambda_1 t} & & \\ & e^{\lambda_2 t} & \\ & & \ddots \\ & & & e^{\lambda_n t} \end{pmatrix}
+```
+
+**Proof:**
+
+```math
+e^{At} = I + At + \frac{1}{2}(At)^2 + \cdots
+```
+
+```math
+= I + X\Lambda X^{-1}t + \frac{1}{2}t^2(X\Lambda X^{-1})(X\Lambda X^{-1}) + \frac{1}{6}t^3(X\Lambda X^{-1})(X\Lambda X^{-1})(X\Lambda X^{-1}) + \cdots
+```
+
+```math
+= I + t(X\Lambda X^{-1}) + \frac{1}{2}t^2(X\Lambda^2 X^{-1}) + \frac{1}{6}t^3(X\Lambda^3 X^{-1}) + \cdots
+```
+
+```math
+= (XIX^{-1}) + (Xt\Lambda X^{-1}) + (X\frac{t^2}{2}\Lambda^2 X^{-1}) + (X\frac{t^3}{6}\Lambda^3 X^{-1}) + \cdots
+```
+
+```math
+= X\left(I + t\Lambda + \frac{t^2}{2}\Lambda^2 + \frac{t^3}{6}\Lambda^3 + \cdots\right)X^{-1}
+```
+
+```math
+\therefore e^{At} = Xe^{\Lambda t}X^{-1}
+```
+
+**Observation:** $`A = X\Lambda X^{-1}`$ and $`e^{At} = Xe^{\Lambda t}X^{-1}`$ $`\implies`$ $`e^{At}`$ and $`A`$ share the **same eigenvectors**.
+
+**The solution:**
+
+```math
+\mathbf{u}(t) = e^{At}\mathbf{u}_0 = Xe^{\Lambda t}X^{-1}\mathbf{u}_0
+```
+
+Since $`\mathbf{u}_0 = X\mathbf{c}`$ (linear combination of eigenvectors):
+
+```math
+= Xe^{\Lambda t}\underbrace{X^{-1}X}_{I}\mathbf{c} = Xe^{\Lambda t}\mathbf{c} = X\begin{pmatrix} e^{\lambda_1 t} & & \\ & e^{\lambda_2 t} & \\ & & \ddots \\ & & & e^{\lambda_n t} \end{pmatrix}\begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix} = X\begin{pmatrix} c_1 e^{\lambda_1 t} \\ c_2 e^{\lambda_2 t} \\ \vdots \\ c_n e^{\lambda_n t} \end{pmatrix}
+```
+
+```math
+= (\mathbf{x}_1 \; \mathbf{x}_2 \; \cdots \; \mathbf{x}_n)\begin{pmatrix} c_1 e^{\lambda_1 t} \\ c_2 e^{\lambda_2 t} \\ \vdots \\ c_n e^{\lambda_n t} \end{pmatrix}
+```
+
+```math
+\boxed{\mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2 + \cdots + c_n e^{\lambda_n t}\mathbf{x}_n}
+```
+
+**Property:** $`e^{A(s+t)} = e^{As} \cdot e^{At}`$
+
+**Proof:** (Detailed computation using double series and binomial theorem)
+
+```math
+e^{As} \cdot e^{At} = \left(\sum_{j=0}^{\infty}\frac{(As)^j}{j!}\right)\left(\sum_{k=0}^{\infty}\frac{(At)^k}{k!}\right) = \sum_{j=0}^{\infty}\sum_{k=0}^{\infty}\frac{A^{j+k}s^j t^k}{j!\,k!}
+```
+
+Let $`n = j + k`$, $`k = n - j`$:
+
+```math
+= \sum_{n=0}^{\infty}\frac{A^n}{n!}\sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^j t^{n-j} = \sum_{n=0}^{\infty}\frac{A^n}{n!}(s+t)^n = \sum_{n=0}^{\infty}\frac{(A(s+t))^n}{n!} = e^{A(s+t)} \quad \square
+```
+
+Using the binomial theorem: $`(s + t)^n = \sum_{j=0}^{n}\binom{n}{j}s^{n-j}t^j = \sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^{n-j}t^j`$.
+
+From $`e^{A(s+t)} = e^{As} \cdot e^{At}`$, take $`s = -t`$:
+
+```math
+e^{A(-t+t)} = e^0 = I = e^{-At} \cdot e^{At}
+```
+
+This implies that $`e^{-At}`$ is the **inverse** of $`e^{At}`$.
+
+**Example 3:** Let $`A = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}`$, what is $`e^{At} = ?`$
+
+$`|A - \lambda I| = \lambda^2 + 1 = 0`$, so $`\lambda = \pm i`$ (skew-symmetric matrix).
+
+$`A^2 = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}`$
+
+$`A^3 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}`$
+
+$`A^4 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I`$
+
+```math
+e^{At} = I + At + \frac{1}{2}(At)^2 + \frac{1}{6}(At)^3 + \cdots
+```
+
+```math
+= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}t + \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}\frac{t^2}{2} + \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\frac{t^3}{6} + \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\frac{t^4}{24} + \cdots
+```
+
+```math
+= \begin{pmatrix} 1 - \frac{t^2}{2} + \frac{t^4}{4!} - \cdots & t - \frac{t^3}{6} + \cdots \\ -t + \frac{t^3}{6} - \cdots & 1 - \frac{t^2}{2} + \frac{t^4}{4!} - \cdots \end{pmatrix}
+```
+
+```math
+e^{At} = \begin{pmatrix} \cos(t) & \sin(t) \\ -\sin(t) & \cos(t) \end{pmatrix} \quad \text{(skew-symmetric matrix gives rotation)}
+```
+
+**Example 4:** Solve $`\frac{d\mathbf{u}}{dt} = A\mathbf{u} = \begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix}\mathbf{u}`$ with $`\mathbf{u}_0 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}`$ at $`t = 0`$.
+
+Upper triangular matrix: $`\lambda_1 = 1, \lambda_2 = 2`$.
+
+i) $`(A - I)\mathbf{x}_1 = \begin{pmatrix} 0 & 1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$
+
+ii) $`(A - 2I)\mathbf{x}_2 = \begin{pmatrix} -1 & 1 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}`$
+
+iii) $`X = (\mathbf{x}_1 \; \mathbf{x}_2) = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \to X^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}`$
+
+$`A = X\Lambda X^{-1} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & \\ & 2 \end{pmatrix}\begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}`$
+
+$`e^{At} = Xe^{\Lambda t}X^{-1} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} e^t & \\ & e^{2t} \end{pmatrix}\begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}`$
+
+iv) $`\mathbf{u}(t) = e^{At}\mathbf{u}_0 = Xe^{\Lambda t}X^{-1}\begin{pmatrix} 2 \\ 1 \end{pmatrix}`$
+
+$`= Xe^{\Lambda t}\begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 2 \\ 1 \end{pmatrix} = Xe^{\Lambda t}\begin{pmatrix} 1 \\ 1 \end{pmatrix}`$
+
+$`= e^t\begin{pmatrix} 1 \\ 0 \end{pmatrix} + e^{2t}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} e^t + e^{2t} \\ e^{2t} \end{pmatrix}`$
+
+### 4.6 Second Order Equations
+
+Consider $`my'' + by' + ky = 0`$ (mass-spring-damper system).
+
+Take $`y = e^{\lambda t}`$: $`y' = \lambda e^{\lambda t} = \lambda y`$, $`y'' = (y')' = \lambda^2 y`$.
+
+The spring equation becomes: $`m\lambda^2 y + b\lambda y + ky = (m\lambda^2 + b\lambda + k)e^{\lambda t} = 0`$
+
+```math
+\implies m\lambda^2 + b\lambda + k = 0
+```
+
+```math
+\iff \lambda^2 + \frac{b}{m}\lambda + \frac{k}{m} = 0 \quad \text{---(*)}
+```
+
+$`\lambda_1 + \lambda_2 = -\frac{b}{m}`$, $`\lambda_1\lambda_2 = \frac{k}{m}`$
+
+$`\lambda = \frac{1}{2}\left(-\frac{b}{m} \pm \sqrt{\frac{b^2}{m^2} - \frac{4k}{m}}\right)`$
+
+Let $`y_1 = e^{\lambda_1 t}`$, $`y_2 = e^{\lambda_2 t}`$. Complete solution becomes:
+
+```math
+y(t) = c_1 y_1 + c_2 y_2 \quad \text{if } \lambda_1 \neq \lambda_2 \quad \text{---(**)}
+```
+
+**Convert 2nd order ODE to 1st order ODEs:**
+
+$`my'' + by' + ky = 0 \iff y'' + \tilde{b}y' + \tilde{k}y = 0`$ where $`\tilde{b} = \frac{b}{m}`$, $`\tilde{k} = \frac{k}{m}`$.
+
+Let $`\mathbf{y} = \begin{pmatrix} y' \\ y \end{pmatrix}`$:
+
+$`y'' = -\tilde{b}y' - \tilde{k}y = (-\tilde{b} \; -\tilde{k})\begin{pmatrix} y' \\ y \end{pmatrix}`$
+
+$`y' = y' = (1 \; 0)\begin{pmatrix} y' \\ y \end{pmatrix}`$
+
+```math
+\implies \frac{d}{dt}\begin{pmatrix} y' \\ y \end{pmatrix} = \begin{pmatrix} -\tilde{b} & -\tilde{k} \\ 1 & 0 \end{pmatrix}\begin{pmatrix} y' \\ y \end{pmatrix} \implies \frac{d\mathbf{y}}{dt} = A\mathbf{y}
+```
+
+i) Eigenvalues of $`A`$:
+
+$`|A - \lambda I| = \begin{vmatrix} -\tilde{b} - \lambda & -\tilde{k} \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + \tilde{b}\lambda + \tilde{k} = 0`$
+
+The equation for the $`\lambda`$'s is the same as (*).
+
+ii) Let $`\lambda_1, \lambda_2`$ be the eigenvalues of $`A`$:
+
+$`(A - \lambda_1 I)\mathbf{x}_1 = \begin{pmatrix} -\tilde{b} - \lambda_1 & -\tilde{k} \\ 1 & -\lambda_1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, $`x_1 - \lambda_1 x_2 = 0`$: $`\mathbf{x}_1 = \begin{pmatrix} \lambda_1 \\ 1 \end{pmatrix}`$
+
+$`(A - \lambda_2 I)\mathbf{x}_2`$: $`x_1 - \lambda_2 x_2 = 0`$: $`\mathbf{x}_2 = \begin{pmatrix} \lambda_2 \\ 1 \end{pmatrix}`$
+
+iii) $`\mathbf{y}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda_2 t}\mathbf{x}_2`$
+
+```math
+\begin{pmatrix} y'(t) \\ y(t) \end{pmatrix} = c_1 e^{\lambda_1 t}\begin{pmatrix} \lambda_1 \\ 1 \end{pmatrix} + c_2 e^{\lambda_2 t}\begin{pmatrix} \lambda_2 \\ 1 \end{pmatrix}
+```
+
+```math
+\therefore y(t) = c_1 e^{\lambda_1 t} + c_2 e^{\lambda_2 t} \quad \text{like (**)}
+```
+
+When $`m = 1, b = 0, k = 1`$: $`y'' + y = 0 \iff y'' = -y`$
+
+```math
+\frac{d}{dt}\begin{pmatrix} y' \\ y \end{pmatrix} = \begin{pmatrix} -y \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} y' \\ y \end{pmatrix}
+```
+
+$`|A - \lambda I| = \begin{vmatrix} -\lambda & -1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + 1 = 0`$, so $`\lambda = \pm i`$ and the solution shows **oscillation**.
+
+### 4.7 Stability of 2 by 2 Matrices
+
+For the solution to $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$, there is a fundamental question:
+
+Does the solution approach $`\mathbf{u} = \mathbf{0}`$ as $`t \to \infty`$?
+
+Since the complete solution $`\mathbf{u}(t)`$ is built from pure solutions $`e^{\lambda t}\mathbf{x}`$, the stability depends on the eigenvalues of $`A`$.
+
+$`\lambda = r + is`$
+
+$`e^{\lambda t} = e^{rt}e^{ist}`$
+
+$`|e^{\lambda t}| = |e^{rt}|`$
+
+The **real part** of $`\lambda`$ controls the growth ($`r > 0`$) or the decay ($`r < 0`$).
+
+For any $`2 \times 2`$ matrix $`A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}`$:
+
+Both $`\lambda_1`$ and $`\lambda_2`$ have negative real parts (the system is stable) if and only if:
+
+i) $`\lambda_1 + \lambda_2 = a + d < 0`$ (trace negative)
+
+ii) $`\lambda_1 \lambda_2 = ad - bc > 0`$ (determinant positive)
+
+### 4.8 Worked Examples
+
+**Example 5:** Solve $`y'' + 4y' + 3y = 0`$
+
+Substitute $`y`$ with $`e^{\lambda t}`$: $`(\lambda^2 + 4\lambda + 3)e^{\lambda t} = 0`$
+
+$`\implies \lambda^2 + 4\lambda + 3 = 0 \implies (\lambda + 3)(\lambda + 1) = 0`$
+
+$`\therefore \lambda = -1, -3`$
+
+$`\implies y(t) = c_1 e^{-t} + c_2 e^{-3t}`$, a decaying solution and hence a **stable** solution.
+
+Introduce $`\mathbf{u} = \begin{pmatrix} y' \\ y \end{pmatrix}`$: $`y'' = -4y' - 3y`$, $`y' = y'`$
+
+```math
+\frac{d}{dt}\begin{pmatrix} y' \\ y \end{pmatrix} = \begin{pmatrix} -4 & -3 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} y' \\ y \end{pmatrix}, \quad \frac{d\mathbf{u}}{dt} = A\mathbf{u}
+```
+
+$`|A - \lambda I| = \begin{vmatrix} -4 - \lambda & -3 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + 4\lambda + 3 = 0`$, so $`\lambda = -1, -3`$.
+
+Corresponding eigenvectors:
+
+$`\begin{pmatrix} -4+1 & -3 \\ 1 & +1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}`$
+
+$`\begin{pmatrix} -4+3 & -3 \\ 1 & +3 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_2 = \begin{pmatrix} -3 \\ 1 \end{pmatrix}`$
+
+The complete solution is:
+
+```math
+\begin{pmatrix} y' \\ y \end{pmatrix} = \mathbf{u}(t) = c_1 e^{-t}\begin{pmatrix} -1 \\ 1 \end{pmatrix} + c_2 e^{-3t}\begin{pmatrix} -3 \\ 1 \end{pmatrix}
+```
+
+This leads to $`y(t) = c_1 e^{-t} + c_2 e^{-3t}`$.
+
+**Example 6:** $`y'' - 2y' + y = 0`$
+
+Substitute $`y`$ with $`e^{\lambda t}`$: $`(\lambda^2 - 2\lambda + 1) = (\lambda - 1)^2 = 0`$, so $`\lambda = 1, 1`$ (repeated root).
+
+$`\implies y(t) = c_1 e^t + ?`$
+
+Since the root is repeated, the second solution is $`c_2 \cdot t e^t`$.
+
+```math
+y(t) = c_1 e^t + c_2 t e^t
+```
+
+Introduce $`\mathbf{u} = \begin{pmatrix} y' \\ y \end{pmatrix}`$: $`y'' = 2y' - y`$, $`y' = y'`$
+
+```math
+\frac{d}{dt}\begin{pmatrix} y' \\ y \end{pmatrix} = \begin{pmatrix} 2 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} y' \\ y \end{pmatrix}, \quad A = \begin{pmatrix} 2 & -1 \\ 1 & 0 \end{pmatrix}
+```
+
+$`|A - \lambda I| = \begin{vmatrix} 2 - \lambda & -1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 - 2\lambda + 1 = 0`$, so $`\lambda = 1, 1`$.
+
+$`(A - I)\mathbf{x}_1 = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \to \mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}`$
+
+Since the number of eigenvectors is smaller than 2, diagonalization is **not possible**.
+
+So, we compute $`e^{At}`$ from the definition of a series:
+
+```math
+e^{At} = I + (At) + \frac{1}{2}(At)^2 + \frac{1}{6}(At)^3 + \cdots
+```
+
+Write $`A = I + (A - I)`$. Since $`It`$ and $`(A - I)t`$ commute:
+
+```math
+e^{At} = e^{It + (A-I)t} = e^{It} \cdot e^{(A-I)t}
+```
+
+Note that $`(A - I)^2 = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}^2 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}`$, so $`(A - I)^k = 0`$ for $`k \geq 2`$.
+
+```math
+e^{(A-I)t} = I + (A-I)t = I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t
+```
+
+```math
+e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \begin{pmatrix} e^t + te^t & -te^t \\ te^t & e^t - te^t \end{pmatrix}
+```
+
+```math
+\mathbf{u}(t) = e^{At}\mathbf{u}_0
+```
+
+```math
+\begin{pmatrix} y' \\ y \end{pmatrix} = \begin{pmatrix} e^t + te^t & -te^t \\ te^t & e^t - te^t \end{pmatrix}\begin{pmatrix} y_0' \\ y_0 \end{pmatrix}
+```
+
+```math
+\therefore y(t) = (e^t - te^t)y_0 + te^t y_0'
+```
+
+---
+
+<br>
+
+## Summary
+
+| Concept | Key Summary |
+|:--------|:---------|
+| Eigenvalue equation | A nonzero vector $`\mathbf{x}`$ with $`A\mathbf{x} = \lambda\mathbf{x}`$ is an eigenvector, and $`\lambda`$ is its eigenvalue. |
+| Characteristic polynomial | Solving $`\det(A - \lambda I) = 0`$ gives $`n`$ eigenvalues. |
+| Trace and determinant | The trace and determinant satisfy $`\text{trace}(A) = \sum \lambda_i`$ and $`\det(A) = \prod \lambda_i`$. |
+| Powers of eigenvalues | Since $`A^k\mathbf{x} = \lambda^k\mathbf{x}`$, the eigenvalues of $`A^k`$ are $`\lambda^k`$. |
+| Inverse eigenvalue | If $`\lambda \neq 0`$, then $`A^{-1}\mathbf{x} = \lambda^{-1}\mathbf{x}`$. |
+| Shift rule | Since $`(A + cI)\mathbf{x} = (\lambda + c)\mathbf{x}`$, each eigenvalue shifts by $`c`$. |
+| Symmetric matrix | It has real eigenvalues, and its eigenvectors can be chosen orthogonal. |
+| Skew-symmetric matrix | Its eigenvalues are pure imaginary or zero. |
+| Rotation matrix | Its eigenvalues are $`\lambda = e^{\pm i\theta}`$. |
+| Projection matrix | Its eigenvalues can only be 0 or 1. |
+| Diagonalization | When $`n`$ LI eigenvectors exist, the matrix is diagonalized as $`A = X\Lambda X^{-1}`$. |
+| Matrix powers via diag. | Powers of a diagonalizable matrix are computed as $`A^k = X\Lambda^k X^{-1}`$. |
+| Distinct eigenvalues | Distinct eigenvalues give LI eigenvectors, so the matrix is diagonalizable. |
+| Similar matrices | For invertible $`B`$, $`C = B^{-1}AB`$ has the same eigenvalues as $`A`$. |
+| GM vs AM | Always GM $`\leq`$ AM, and if GM $`<`$ AM for some eigenvalue, the matrix is not diagonalizable. |
+| Spectral theorem | A real symmetric matrix $`S`$ factors as $`S = Q\Lambda Q^T`$. |
+| Positive definite | It satisfies $`\mathbf{x}^T S\mathbf{x} > 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$, which is equivalent to all $`\lambda_i > 0`$, all pivots $`> 0`$, and all upper-left determinants $`> 0`$. |
+| Positive semidefinite | It satisfies $`\mathbf{x}^T S\mathbf{x} \geq 0`$ and allows $`\lambda = 0`$. |
+| Energy test for $`A^T A`$ | The energy is $`\mathbf{x}^T A^T A\mathbf{x} = \Vert A\mathbf{x}\Vert^2 \geq 0`$. |
+| PD $`\implies`$ invertible | A PD matrix has $`\det(S) > 0`$, and $`S^{-1}`$ is also PD. |
+| PD $`\implies S = A^T A`$ | A PD matrix can be written as $`S = A^T A`$ with independent columns in $`A`$. |
+| Congruent matrices | For invertible $`A`$, $`A^T SA`$ preserves the numbers of positive, negative, and zero eigenvalues, that is, the definiteness type. |
+| Ellipse equation | For PD $`S`$, $`\mathbf{x}^T S\mathbf{x} = 1`$ is an ellipse whose axes lie along the eigenvectors with semi-axis lengths $`1/\sqrt{\lambda}`$. |
+| Hessian and convexity | If the Hessian $`H`$ is positive definite at every point, then $`f`$ is strictly convex. |
+| Gradient descent | Iterating $`\mathbf{x}_{k+1} = \mathbf{x}_k - \eta\nabla f(\mathbf{x}_k)`$ approaches the minimum point. |
+| ODE solution | The solution of $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$ is $`\mathbf{u}(t) = \sum c_i e^{\lambda_i t}\mathbf{x}_i`$. |
+| Matrix exponential | It is $`e^{At} = I + At + \frac{(At)^2}{2!} + \cdots`$, and $`e^{At} = Xe^{\Lambda t}X^{-1}`$ when $`A`$ is diagonalizable. |
+| Stability (continuous) | The system $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$ is stable iff all $`\text{Re}(\lambda_i) < 0`$. |
+| Stability (discrete) | The powers satisfy $`A^k \to 0`$ iff all $`\vert\lambda_i\vert < 1`$. |
+| $`e^{A(s+t)} = e^{As}e^{At}`$ | The matrix exponential satisfies this additive property. |
+| $`(e^{At})^{-1} = e^{-At}`$ | The inverse of the matrix exponential is $`e^{-At}`$. |
+| 2nd order ODE | The equation $`my'' + by' + ky = 0`$ is equivalent to the 1st order system $`\frac{d\mathbf{y}}{dt} = A\mathbf{y}`$. |
+| Repeated eigenvalue ODE | A non-diagonalizable $`2 \times 2`$ matrix with repeated eigenvalue $`\lambda`$ satisfies $`(A - \lambda I)^2 = 0`$, so $`e^{At} = e^{\lambda t}e^{(A - \lambda I)t} = e^{\lambda t}(I + (A - \lambda I)t)`$, and the example in Section 4.8 is the case $`\lambda = 1`$. |
+
+---
+
+<br>
+
+## Self-Check Questions
+
+1. **Eigenvalues and eigenvectors:** Find the eigenvalues and eigenvectors of $`A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}`$, and check the eigenvalues with the trace and determinant.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`\det(A - \lambda I) = (4 - \lambda)(3 - \lambda) - 2 = \lambda^2 - 7\lambda + 10 = (\lambda - 5)(\lambda - 2)`$, so $`\lambda_1 = 5`$ and $`\lambda_2 = 2`$. From $`A - 5I = \begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}`$ we get $`x_1 = x_2`$, so $`\mathbf{x}_1 = (1, 1)`$, and from $`A - 2I = \begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}`$ we get $`2x_1 + x_2 = 0`$, so $`\mathbf{x}_2 = (1, -2)`$. As a check, $`\lambda_1 + \lambda_2 = 7 = 4 + 3 = \text{trace}(A)`$ and $`\lambda_1\lambda_2 = 10 = 12 - 2 = \det(A)`$.
+
+   </details>
+
+2. **Diagonalizability:** For the eigenvalue $`\lambda = 2`$ of $`B = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}`$ and $`C = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}`$, find the algebraic multiplicity (AM) and geometric multiplicity (GM), and decide whether each matrix is diagonalizable.
+
+   <details>
+   <summary>Answer</summary>
+
+   Both matrices are triangular, so their eigenvalues are the diagonal entries 2, 2, and AM = 2. The nullspace of $`B - 2I = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}`$ contains only the vectors $`(c, 0)`$ with $`x_2 = 0`$, so GM = 1, and since GM < AM, $`B`$ is not diagonalizable. $`C - 2I`$ is the zero matrix, so its nullspace is all of $`\mathbb{R}^2`$ and GM = 2. Since GM = AM, $`C`$ is diagonalizable, and it is already diagonal. Matrices with the same eigenvalues can have different numbers of independent eigenvectors.
+
+   </details>
+
+3. **Steady state of a Markov matrix:** Find the eigenvalues and eigenvectors of $`A = \begin{pmatrix} 0.9 & 0.2 \\ 0.1 & 0.8 \end{pmatrix}`$, and find the limit of $`A^k\mathbf{u}_0`$ for $`\mathbf{u}_0 = (1, 0)`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`\text{trace}(A) = 1.7`$ and $`\det(A) = 0.72 - 0.02 = 0.7`$, so $`\lambda^2 - 1.7\lambda + 0.7 = (\lambda - 1)(\lambda - 0.7) = 0`$ and $`\lambda_1 = 1`$, $`\lambda_2 = 0.7`$. From $`A - I = \begin{pmatrix} -0.1 & 0.2 \\ 0.1 & -0.2 \end{pmatrix}`$ we get $`x_1 = 2x_2`$, so $`\mathbf{x}_1 = (2, 1)`$, and from $`A - 0.7I = \begin{pmatrix} 0.2 & 0.2 \\ 0.1 & 0.1 \end{pmatrix}`$ we get $`\mathbf{x}_2 = (1, -1)`$. Since $`\mathbf{u}_0 = \frac{1}{3}\mathbf{x}_1 + \frac{1}{3}\mathbf{x}_2`$, $`A^k\mathbf{u}_0 = \frac{1}{3}\mathbf{x}_1 + \frac{1}{3}(0.7)^k\mathbf{x}_2`$. As $`k \to \infty`$, $`(0.7)^k \to 0`$, so the limit is $`\frac{1}{3}\mathbf{x}_1 = (\frac{2}{3}, \frac{1}{3})`$.
+
+   </details>
+
+4. **Positive definiteness test:** Find the range of $`b`$ for which $`S = \begin{pmatrix} 2 & b \\ b & 8 \end{pmatrix}`$ is positive definite. What kind of matrix is $`S`$ when $`b = 4`$?
+
+   <details>
+   <summary>Answer</summary>
+
+   By the upper-left determinant test, $`D_1 = 2 > 0`$ and $`D_2 = 16 - b^2 > 0`$ are required, so $`-4 < b < 4`$. The pivots $`2`$ and $`8 - \frac{b^2}{2}`$ give the same range. When $`b = 4`$, $`D_2 = 0`$, $`\text{trace}(S) = 10`$, and $`\det(S) = 0`$, so the eigenvalues are 10 and 0. The energy is $`2x^2 + 8xy + 8y^2 = 2(x + 2y)^2 \geq 0`$, so $`S`$ is positive semidefinite but not positive definite.
+
+   </details>
+
+5. **Linear differential equation and stability:** Solve $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$ with $`A = \begin{pmatrix} -2 & 1 \\ 1 & -2 \end{pmatrix}`$ and $`\mathbf{u}(0) = (3, 1)`$, and decide whether the solution is stable.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`\det(A - \lambda I) = (-2 - \lambda)^2 - 1 = (\lambda + 1)(\lambda + 3) = 0`$, so $`\lambda_1 = -1`$ and $`\lambda_2 = -3`$. From $`A + I = \begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}`$ we get $`\mathbf{x}_1 = (1, 1)`$, and from $`A + 3I = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}`$ we get $`\mathbf{x}_2 = (1, -1)`$. From $`c_1 + c_2 = 3`$ and $`c_1 - c_2 = 1`$, $`c_1 = 2`$ and $`c_2 = 1`$, so $`\mathbf{u}(t) = 2e^{-t}(1, 1) + e^{-3t}(1, -1) = (2e^{-t} + e^{-3t}, \; 2e^{-t} - e^{-3t})`$. Both eigenvalues are negative (trace $`-4 < 0`$, determinant $`3 > 0`$), so $`\mathbf{u}(t) \to \mathbf{0}`$ as $`t \to \infty`$, and the solution is stable.
+
+   </details>

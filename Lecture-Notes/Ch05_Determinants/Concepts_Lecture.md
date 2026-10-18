@@ -1,12 +1,12 @@
-# Chapter 5 Lecture — Determinants
+# Chapter 5 — Determinants
 
-> **Last Updated:** 2026-06-19
->
-> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 5
+[Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Prerequisites**: [Linear Algebra] Matrix operations, vector spaces (Ch 1-4).
+> **Last Updated:** 2026-10-18
 >
-> **Learning Objectives**:
+> Introduction to Linear Algebra, Strang, Ch 5
+
+> **Learning Objectives:**
 > 1. Compute determinants using cofactor expansion and properties
 > 2. Apply the three key properties of determinants
 > 3. Use Cramer's Rule to solve linear systems
@@ -18,7 +18,10 @@
 ## Table of Contents
 
 - [1. Determinants (Overview)](#1-determinants-overview)
-- [2. 3x3 Determinants and Cofactors (N5-1)](#2-3x3-determinants-and-cofactors-n5-1)
+  - [1.1 Chapter Structure](#11-chapter-structure)
+  - [1.2 Key Idea](#12-key-idea)
+  - [1.3 Useful Formulas (Preview)](#13-useful-formulas-preview)
+- [2. 3x3 Determinants and Cofactors](#2-3x3-determinants-and-cofactors)
   - [2.1 Definition of Determinant](#21-definition-of-determinant)
   - [2.2 2x2 Determinants](#22-2x2-determinants)
   - [2.3 Row Exchange Reverses Sign](#23-row-exchange-reverses-sign)
@@ -31,7 +34,7 @@
   - [2.10 Example: 3x3 Inverse via Cofactors](#210-example-3x3-inverse-via-cofactors)
   - [2.11 4x4 Determinants](#211-4x4-determinants)
   - [2.12 Scalar Multiplication and Determinant](#212-scalar-multiplication-and-determinant)
-- [3. Computing and Using Determinants (N5-2)](#3-computing-and-using-determinants-n5-2)
+- [3. Computing and Using Determinants](#3-computing-and-using-determinants)
   - [3.1 Useful Facts](#31-useful-facts)
   - [3.2 Determinant of Triangular and Diagonal Matrices](#32-determinant-of-triangular-and-diagonal-matrices)
   - [3.3 det(A^T) = det(A)](#33-detat--deta)
@@ -42,11 +45,11 @@
   - [3.8 Orthogonal Matrices](#38-orthogonal-matrices)
   - [3.9 Determinant via Pivots](#39-determinant-via-pivots)
   - [3.10 Determinant of Inverse](#310-determinant-of-inverse)
-  - [3.11 det(A+B) is NOT det(A) + det(B)](#311-detab-is-not-deta--detb)
+  - [3.11 det(A+B) is not det(A) + det(B)](#311-detab-is-not-deta--detb)
   - [3.12 Linearity in a Single Row](#312-linearity-in-a-single-row)
   - [3.13 Proof of det(A) = det(A^T)](#313-proof-of-deta--detat)
   - [3.14 Cramer's Rule](#314-cramers-rule)
-- [4. Areas and Volumes by Determinants (N5-3)](#4-areas-and-volumes-by-determinants-n5-3)
+- [4. Areas and Volumes by Determinants](#4-areas-and-volumes-by-determinants)
   - [4.1 Parallelogram in 2D](#41-parallelogram-in-2d)
   - [4.2 Area of a Parallelogram](#42-area-of-a-parallelogram)
   - [4.3 Tilted Box in 3D](#43-tilted-box-in-3d)
@@ -56,6 +59,7 @@
   - [4.7 Volume of a Box](#47-volume-of-a-box)
   - [4.8 Examples: Unit Cube and Axis-Aligned Box](#48-examples-unit-cube-and-axis-aligned-box)
 - [Summary](#summary)
+- [Self-Check Questions](#self-check-questions)
 
 ---
 
@@ -63,21 +67,21 @@
 
 ## 1. Determinants (Overview)
 
-### Chapter Structure
+### 1.1 Chapter Structure
 
-- **5.1** &mdash; $`3 \times 3`$ determinants and cofactors
-- **5.2** &mdash; Computing and using determinants
-- **5.3** &mdash; Areas and volumes by determinants (connect geometry to linear algebra)
+- Textbook Section 5.1, $`3 \times 3`$ determinants and cofactors, is covered in Section 2.
+- Textbook Section 5.2, computing and using determinants, is covered in Section 3.
+- Textbook Section 5.3, areas and volumes by determinants, is covered in Section 4 and connects geometry to linear algebra.
 
-### Key Idea
+### 1.2 Key Idea
 
 Let $`A`$ be a square matrix.
 
-- If $`\det(A) = 0`$, then $`A`$ is **NOT invertible**
-  - $`\Longleftrightarrow`$ $`A`$ is **singular**
-  - $`\Longleftrightarrow`$ $`A`$ has **dependent columns**
+- If $`\det(A) = 0`$, then $`A`$ is **not invertible**, and the converse also holds.
+  - $`\Longleftrightarrow`$ $`A`$ is **singular**.
+  - $`\Longleftrightarrow`$ $`A`$ has **dependent columns**.
 
-### Useful Formulas (Preview)
+### 1.3 Useful Formulas (Preview)
 
 1. $`PA = LU`$
 
@@ -92,14 +96,14 @@ Let $`A`$ be a square matrix.
 2. Inverse formula via cofactors:
 
 ```math
-(A^{-1})_{ij} = \frac{1}{\det(A)}\bigl(\text{cofactor of } A_{ij}\bigr)^T
+A^{-1} = \frac{1}{\det(A)}\,C^T, \qquad (A^{-1})_{ij} = \frac{C_{ji}}{\det(A)} \quad (C_{ji} \text{ is the cofactor of } A_{ji})
 ```
 
 ---
 
 <br>
 
-## 2. 3x3 Determinants and Cofactors (N5-1)
+## 2. 3x3 Determinants and Cofactors
 
 ### 2.1 Definition of Determinant
 
@@ -139,9 +143,9 @@ A **determinant** is a scalar value associated with a square matrix, denoted as 
 \det\begin{pmatrix} a & b \\ 2a & 2b \end{pmatrix} = 2ab - 2ab = 0
 ```
 
-If $`ax + by = e`$ has slope $`-a/b`$ and $`2ax + 2by = f`$ has slope $`-a/b`$ (same slope), the lines are parallel.
+If $`b \neq 0`$, the lines $`ax + by = e`$ and $`2ax + 2by = f`$ both have slope $`-a/b`$ (if $`b = 0`$, both are vertical). So the two lines are parallel ($`f \neq 2e`$) or coincide ($`f = 2e`$).
 
-$`\det A = 0`$ means that the columns of $`A`$ are **NOT** linearly independent, i.e., $`N(A) \neq \lbrace\mathbf{0}\rbrace`$.
+$`\det A = 0`$ means that the columns of $`A`$ are **not** linearly independent, i.e., $`N(A) \neq \lbrace\mathbf{0}\rbrace`$.
 
 **Singular matrix example:**
 
@@ -171,11 +175,13 @@ d(xa + ye) - c(xb + yf) = x(ad - bc) + y(de - cf)
 
 This shows linearity in the first row.
 
-**Remark:** $`3 \times 3`$ determinants have $`3! = 6`$ terms, which are separated into 3 terms (cofactors). Dividing those cofactors by $`\det(A)`$ produces $`A^{-1}`$.
+> **Note:** The $`3! = 6`$ terms of a $`3 \times 3`$ determinant fall into 3 groups by row 1 entry, and each group is a row 1 entry times its cofactor (Section 2.7). Transposing the matrix of all cofactors and dividing by $`\det(A)`$ produces $`A^{-1}`$ (Section 2.9).
+
+> **Key Point:** The three key properties of the determinant are $`\det(I) = 1`$, sign reversal under a row exchange (Section 2.3), and linearity in each row (this section and Section 3.12). All other properties of the determinant follow from these three.
 
 ### 2.5 3x3 Determinants
 
-For $`3 \times 3`$ matrices, the determinant has $`3! = 6`$ terms, with one entry from each row (and each column), producing $`3 \times 2 = 6`$ terms.
+For $`3 \times 3`$ matrices, the determinant has $`3! = 6`$ terms. Each term is a product with one entry from each row (and each column); there are 3 choices in row 1, 2 in row 2, and 1 in row 3, producing $`3 \times 2 \times 1 = 6`$ terms.
 
 **Permutation matrices and their determinants:**
 
@@ -190,7 +196,7 @@ Starting from $`I_{3 \times 3}`$:
 ```
 
 ```math
-\xrightarrow{R_1 \leftrightarrow R_2} \det\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = 1 \xrightarrow{R_1 \leftrightarrow R_2} \det\begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix} = -1
+\xrightarrow{R_2 \leftrightarrow R_3} \det\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = 1 \xrightarrow{R_1 \leftrightarrow R_2} \det\begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix} = -1
 ```
 
 **Key property:** Row (column) exchange multiplies $`\det(A)`$ by $`-1`$.
@@ -208,7 +214,9 @@ For $`A = \begin{pmatrix} a & b & c \\ p & q & r \\ x & y & z \end{pmatrix}`$, e
 | $`\begin{pmatrix} 0&0&1\\1&0&0\\0&1&0 \end{pmatrix}`$ | $`+1`$ | $`c, p, y`$ | $`+cpy`$ |
 | $`\begin{pmatrix} 1&0&0\\0&0&1\\0&1&0 \end{pmatrix}`$ | $`-1`$ | $`a, r, y`$ | $`-ary`$ |
 
-**Diagonal trick (Sarrus' Rule):** Write the matrix with the first two columns repeated to the right, then take products along diagonals (down = positive, up = negative).
+*Table 1. Entries picked by the six permutation matrices and the resulting determinant terms*
+
+**Diagonal trick (Sarrus' Rule):** Write the matrix with the first two columns repeated to the right, then take products along diagonals (down = positive, up = negative). This trick works only for $`3 \times 3`$ matrices and does not extend to $`4 \times 4`$ or larger.
 
 **Combining the 6 terms:**
 
@@ -216,13 +224,13 @@ For $`A = \begin{pmatrix} a & b & c \\ p & q & r \\ x & y & z \end{pmatrix}`$, e
 \det A = aqz - bpz + brx - cqx + cpy - ary
 ```
 
-**Collecting by first-row entries** $`a, b, c`$:
+**Collecting by first-row entries $`a, b, c`$:**
 
 ```math
 \det A = a(qz - ry) - b(pz - rx) + c(py - qx)
 ```
 
-**Submatrix determinants used in the formula:**
+**Submatrix determinants (used in the $`4 \times 4`$ example of Section 2.11):**
 
 ```math
 A_1 = (2), \quad \det(A_1) = 2
@@ -256,7 +264,7 @@ So the determinant can be written as:
 \det(A) = a \det\begin{pmatrix} q & r \\ y & z \end{pmatrix} + b\left(-\det\begin{pmatrix} p & r \\ x & z \end{pmatrix}\right) + c \det\begin{pmatrix} p & q \\ x & y \end{pmatrix}
 ```
 
-Here, $`a, b, c`$ are **factors** (entries in row 1), and the $`2 \times 2`$ determinants are the **cofactors** for $`a, b, c`$:
+Here, $`a, b, c`$ are **factors** (entries in row 1), and the signed $`2 \times 2`$ determinants are the **cofactors** for $`a, b, c`$:
 
 | Entry | Cofactor |
 |:------|:---------|
@@ -264,9 +272,11 @@ Here, $`a, b, c`$ are **factors** (entries in row 1), and the $`2 \times 2`$ det
 | $`A_{12} = b`$ | $`C_{12} = -\det\begin{pmatrix} p & r \\ x & z \end{pmatrix}`$ |
 | $`A_{13} = c`$ | $`C_{13} = +\det\begin{pmatrix} p & q \\ x & y \end{pmatrix}`$ |
 
+*Table 2. Row 1 entries and their cofactors*
+
 ### 2.8 Cofactor Formula Along Row i
 
-For the $`(i,j)`$ cofactor $`C_{ij}`$: **remove row $`i`$ and column $`j`$ from $`A`$**.
+To find the $`(i,j)`$ cofactor $`C_{ij}`$, **remove row $`i`$ and column $`j`$ from $`A`$** and multiply the determinant of the remaining matrix by the sign $`(-1)^{i+j}`$:
 
 ```math
 C_{ij} = (-1)^{i+j} \det\bigl(\text{remaining } (n{-}1) \times (n{-}1) \text{ matrix}\bigr)
@@ -278,7 +288,7 @@ C_{ij} = (-1)^{i+j} \det\bigl(\text{remaining } (n{-}1) \times (n{-}1) \text{ ma
 \det A = A_{i1}C_{i1} + A_{i2}C_{i2} + \cdots + A_{in}C_{in}
 ```
 
-$`C_{ij}`$ is a collection of all the terms in $`\det(A)`$ that are multiplied by $`A_{ij}`$.
+$`C_{ij}`$ is the coefficient left after collecting all the terms in $`\det(A)`$ that contain $`A_{ij}`$ and factoring out $`A_{ij}`$.
 
 **Example: Cofactors of a $`2 \times 2`$ matrix**
 
@@ -342,7 +352,7 @@ A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}, \quad \de
 **Using row reduction** $`(A | I) \to (I | A^{-1})`$:
 
 ```math
-\begin{pmatrix} 1 & 1 & 1 & | & 1 & 0 & 0 \\ 0 & 1 & 1 & | & 0 & 1 & 0 \\ 0 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{R_1 - R_2,\; R_1 - R_3} \begin{pmatrix} 1 & 0 & 0 & | & 1 & -1 & 0 \\ 0 & 1 & 0 & | & 0 & 1 & -1 \\ 0 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix}
+\begin{pmatrix} 1 & 1 & 1 & | & 1 & 0 & 0 \\ 0 & 1 & 1 & | & 0 & 1 & 0 \\ 0 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{R_1 - R_2,\; R_2 - R_3} \begin{pmatrix} 1 & 0 & 0 & | & 1 & -1 & 0 \\ 0 & 1 & 0 & | & 0 & 1 & -1 \\ 0 & 0 & 1 & | & 0 & 0 & 1 \end{pmatrix}
 ```
 
 ```math
@@ -371,7 +381,7 @@ C_{31} = \det\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} = 0, \quad C_{32} = -\
 
 ### 2.11 4x4 Determinants
 
-$`A_4 \in \mathbb{R}^{4 \times 4}`$ has $`4! = 4 \cdot 3 \cdot 2 \cdot 1 = 24`$ terms.
+The determinant of $`A_4 \in \mathbb{R}^{4 \times 4}`$ has $`4! = 4 \cdot 3 \cdot 2 \cdot 1 = 24`$ terms.
 
 **Example:**
 
@@ -389,10 +399,10 @@ Using cofactor expansion along row 1:
 = 2 \cdot 4 + 1 \cdot (-3) = 5
 ```
 
-- The value $`2`$ comes from $`(A_4)_{11}`$
-- The value $`-1`$ comes from $`(A_4)_{12}`$
+- The value $`2`$ in the first term comes from $`(A_4)_{11}`$.
+- In the second term, the first $`-1`$ comes from $`(A_4)_{12}`$ and the second $`-1`$ is the sign $`(-1)^{1+2}`$.
 
-**Sign rule:** Multiply by $`(-1)^{i+j}`$: the minus sign appears when $`i + j`$ is an odd number for entry $`A_{ij}`$.
+**Sign rule:** A cofactor is multiplied by $`(-1)^{i+j}`$, so the minus sign appears when $`i + j`$ is odd for entry $`A_{ij}`$.
 
 **For $`2 \times 2`$:**
 
@@ -444,26 +454,26 @@ A = \begin{pmatrix} a & b & c \\ p & q & r \\ x & y & z \end{pmatrix}, \quad \de
 
 <br>
 
-## 3. Computing and Using Determinants (N5-2)
+## 3. Computing and Using Determinants
 
 ### 3.1 Useful Facts
 
-1. $`\det(A^T) = \det(A)`$
-2. $`\det(AB) = \det(A)\det(B)`$
-3. $`|\det(Q)| = 1`$ for orthogonal matrices $`Q`$
-4. Elimination matrices have $`\det(E) = 1`$, so $`\det(EA) = \det(E)\det(A) = \det(A)`$
+1. $`\det(A^T) = \det(A)`$.
+2. $`\det(AB) = \det(A)\det(B)`$.
+3. Orthogonal matrices $`Q`$ have $`|\det(Q)| = 1`$.
+4. Elimination matrices have $`\det(E) = 1`$, so $`\det(EA) = \det(E)\det(A) = \det(A)`$.
 
-   e.g., $`E = \begin{pmatrix} 1 & & \\ a & 1 & \\ b & c & 1 \end{pmatrix}`$, $`|E| = 1`$
+   For example, $`E = \begin{pmatrix} 1 & & \\ a & 1 & \\ b & c & 1 \end{pmatrix}`$ has $`|E| = 1`$.
 
-5. **Cramer's Rule** finds $`\mathbf{x} = A^{-1}\mathbf{b}`$ from ratios of determinants (a slow way)
-6. $`\det(A) = \pm`$ product of the pivots in $`A = LU`$
-7. **The big formula** for $`\det(A)`$ has $`n!`$ terms from $`n!`$ permutations (very slow if $`n > 3`$)
+5. **Cramer's Rule** finds $`\mathbf{x} = A^{-1}\mathbf{b}`$ from ratios of determinants, which is a slow way.
+6. $`\det(A) = \pm(\text{product of the pivots})`$, where the pivots come from $`U`$ in $`PA = LU`$.
+7. **The big formula** for $`\det(A)`$ has $`n!`$ terms from $`n!`$ permutations and is very slow if $`n > 3`$.
 
-### What the determinant tells us
+#### What the Determinant Tells Us
 
-1. An invertible matrix has $`\det(A) \neq 0`$
-2. A singular matrix has $`\det(A) = 0`$
-3. Let $`\lambda`$ be eigenvalues, $`\mathbf{x}`$ eigenvectors, such that $`A\mathbf{x} = \lambda \mathbf{x}`$
+1. An invertible matrix has $`\det(A) \neq 0`$.
+2. A singular matrix has $`\det(A) = 0`$.
+3. Let $`\lambda`$ be an eigenvalue and $`\mathbf{x}`$ an eigenvector, so that $`A\mathbf{x} = \lambda \mathbf{x}`$. Then:
 
 ```math
 \Rightarrow (A - \lambda I)\mathbf{x} = \mathbf{0}
@@ -612,13 +622,13 @@ where $`S_2^{-1} = \begin{pmatrix} 1 & \\ & 2 \\ & & 1 \end{pmatrix}`$, $`S_3^{-
 **Computing $`\det(U)`$:**
 
 ```math
-\det(U) = \det(S_2^{-1}E_{12}^{-1}S_3^{-1}E_{13}^{-1}E_{23}^{-1}) = 2 \cdot (-6) \det(E_{32}E_{21} I E_{12}^{-1} I E_{13}^{-1}E_{23}^{-1}) = -12
+\det(U) = \det(S_2^{-1})\det(E_{12}^{-1})\det(S_3^{-1})\det(E_{13}^{-1})\det(E_{23}^{-1}) = 2 \cdot 1 \cdot (-6) \cdot 1 \cdot 1 = -12
 ```
 
 **Key result:**
 
 ```math
-\det(A) = \det(E_{32}^{-1}E_{21}^{-1} U) = \det(E_{32}^{-1}E_{21}^{-1} \cdot S_2^{-1}E_{12}^{-1}S_3^{-1}E_{13}^{-1}E_{23}^{-1} I)
+\det(A) = \det(E_{21}^{-1}E_{32}^{-1} U) = \det(E_{21}^{-1}E_{32}^{-1} \cdot S_2^{-1}E_{12}^{-1}S_3^{-1}E_{13}^{-1}E_{23}^{-1} I)
 ```
 
 ```math
@@ -665,7 +675,7 @@ S = \begin{pmatrix} a & & \\ & b & \\ & & c \end{pmatrix} \Rightarrow \det(S) = 
 
 When $`A`$ has $`A^{-1}`$, $`A`$ can be decomposed into **elementary matrices** (elimination matrices, permutation matrices, and scaling matrices).
 
-**Definition:** An **elementary matrix** is a square matrix obtained from performing a single elementary row operation on an identity matrix. Examples include elimination, permutation, and scaling matrices.
+> **Definition:** An **elementary matrix** is a square matrix obtained from performing a single elementary row operation on an identity matrix. Examples include elimination, permutation, and scaling matrices.
 
 ### 3.7 Product Rule: det(AB) = det(A) det(B)
 
@@ -675,12 +685,13 @@ When $`A`$ has $`A^{-1}`$, $`A`$ can be decomposed into **elementary matrices** 
 
 **Proof.** Let $`A, B \in \mathbb{R}^{n \times n}`$.
 
-**Case i)** $`A`$ or $`B`$ is NOT invertible.
+**Case i)** $`A`$ or $`B`$ is not invertible.
 
-- Suppose $`B`$ is NOT invertible. Then there exists a nontrivial vector $`\mathbf{x}`$ such that $`B\mathbf{x} = \mathbf{0}`$.
-- Multiply $`A`$ on both sides: $`AB\mathbf{x} = \mathbf{0}`$.
-- This means $`AB`$ is NOT invertible.
-- Therefore: $`\det(AB) = 0`$ and $`\det(A)\det(B) = 0`$.
+- Suppose $`B`$ is not invertible. Then there exists a nontrivial vector $`\mathbf{x}`$ such that $`B\mathbf{x} = \mathbf{0}`$.
+- Multiplying both sides by $`A`$ gives $`AB\mathbf{x} = \mathbf{0}`$.
+- This means $`AB`$ is not invertible.
+- If $`B`$ is invertible and $`A`$ is not, there is a nonzero vector $`\mathbf{y}`$ with $`A\mathbf{y} = \mathbf{0}`$. Setting $`\mathbf{x} = B^{-1}\mathbf{y} \neq \mathbf{0}`$ gives $`AB\mathbf{x} = A\mathbf{y} = \mathbf{0}`$, so $`AB`$ is again not invertible.
+- Therefore, in either case $`\det(AB) = 0`$ and $`\det(A)\det(B) = 0`$, so the two sides are equal.
 
 **Case ii)** $`A, B`$ are both invertible.
 
@@ -786,7 +797,7 @@ Also note:
 \det(AB) = \det(A)\det(B) = \det(B)\det(A) = \det(BA)
 ```
 
-### 3.11 det(A+B) is NOT det(A) + det(B)
+### 3.11 det(A+B) is not det(A) + det(B)
 
 ```math
 \det(A + B) \stackrel{?}{=} \det(A) + \det(B) \quad \text{(FALSE in general!)}
@@ -814,7 +825,7 @@ A + B = \begin{pmatrix} 2 & -6 \\ 1 & -3 \end{pmatrix}
 
 The determinant **is** linear in a single row (while the other rows are fixed).
 
-**$`2 \times 2`$ case — linearity in row 1:**
+**$`2 \times 2`$ case, linearity in row 1:**
 
 ```math
 A = \begin{pmatrix} a_1 + a_2 & b_1 + b_2 \\ c & d \end{pmatrix}
@@ -828,7 +839,7 @@ A = \begin{pmatrix} a_1 + a_2 & b_1 + b_2 \\ c & d \end{pmatrix}
 = \begin{vmatrix} a_1 & b_1 \\ c & d \end{vmatrix} + \begin{vmatrix} a_2 & b_2 \\ c & d \end{vmatrix}
 ```
 
-**$`2 \times 2`$ case — linearity in row 2 (row 2 entries split):**
+**$`2 \times 2`$ case, linearity in row 2 (row 2 entries split):**
 
 ```math
 A = \begin{pmatrix} a & b \\ c_1 + c_2 & d_1 + d_2 \end{pmatrix}
@@ -868,20 +879,20 @@ where $`A_\alpha`$ has row $`i`$ replaced by $`(\alpha_{i1}, \ldots, \alpha_{in}
 \det(A) = \det(A^T)
 ```
 
-**Proof.** Let $`R_0 = \text{rref}(A)`$ ("reduced row-echelon form").
+**Proof.** Let $`R = \text{rref}(A)`$ be the **reduced row-echelon form** of $`A`$.
 
-Denote $`A = E_p E_{p-1} \cdots E_2 E_1 R`$ where $`E_i`$ are elementary matrices.
+Then we can write $`A = E_p E_{p-1} \cdots E_2 E_1 R`$, where $`E_i`$ are elementary matrices.
 
-Transpose: $`A^T = R^T E_1^T E_2^T \cdots E_{p-1}^T E_p^T`$
+Transposing gives $`A^T = R^T E_1^T E_2^T \cdots E_{p-1}^T E_p^T`$.
 
 ```math
 \det(A^T) = \det(R^T)\det(E_1^T) \cdots \det(E_p^T)
 ```
 
 **Considering $`R`$:**
-- If $`A`$ is invertible, $`R = I`$, so $`\det(R) = 1 = \det(R^T)`$
-- Otherwise, $`R`$ has rows of zeros, so $`\det(R) = 0 = \det(R^T)`$
-- Therefore in all cases: $`\det(R) = \det(R^T)`$
+- If $`A`$ is invertible, $`R = I`$, so $`\det(R) = 1 = \det(R^T)`$.
+- Otherwise, $`R`$ has a row of zeros, so $`\det(R) = 0 = \det(R^T)`$.
+- Therefore, in all cases $`\det(R) = \det(R^T)`$.
 
 Since $`\det(E_i^T) = \det(E_i)`$ for any elementary matrix:
 
@@ -1013,13 +1024,13 @@ A\begin{pmatrix} 1 & x_1 \\ 0 & x_2 \end{pmatrix} = \bigl(A\begin{pmatrix}1\\0\e
 x_2 = \frac{\det(B_2)}{\det(A)} = \frac{-c}{ad - bc}
 ```
 
-This recovers the standard inverse formula.
+In the same way, **ii)** solving $`A\mathbf{y} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$ gives $`y_1 = \frac{-b}{ad - bc}`$ and $`y_2 = \frac{a}{ad - bc}`$. Putting the two columns together recovers the standard inverse formula $`A^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}`$.
 
 ---
 
 <br>
 
-## 4. Areas and Volumes by Determinants (N5-3)
+## 4. Areas and Volumes by Determinants
 
 ### 4.1 Parallelogram in 2D
 
@@ -1038,7 +1049,7 @@ The four vertices are $`(0,0)`$, $`(a,b)`$, $`(c,d)`$, and $`(a+c, b+d)`$.
 ```
 
 ```math
-= \left|\begin{array}{cc} a & b \\ c & d \end{array}\right| = \left|\det\begin{pmatrix} a & b \\ c & d \end{pmatrix}\right| = \left|\det\begin{pmatrix} a & c \\ b & d \end{pmatrix}\right| = |\det(\mathbf{e}_1 \;\; \mathbf{e}_2)|
+= \left|\,\begin{vmatrix} a & b \\ c & d \end{vmatrix}\,\right| = \left|\det\begin{pmatrix} a & b \\ c & d \end{pmatrix}\right| = \left|\det\begin{pmatrix} a & c \\ b & d \end{pmatrix}\right| = |\det(\mathbf{e}_1 \;\; \mathbf{e}_2)|
 ```
 
 ### 4.3 Tilted Box in 3D
@@ -1055,7 +1066,7 @@ A tilted box in 3D starts with three edges $`\mathbf{e}_1, \mathbf{e}_2, \mathbf
 \text{Area of a triangle} = \triangle = \frac{1}{2} b \cdot h
 ```
 
-where $`b = \|\mathbf{a}\|`$ is the base and $`h = \|\mathbf{b}\| \sin\theta`$ is the height.
+where $`b = \|\mathbf{a}\|`$ is the base, $`h = \|\mathbf{b}\| \sin\theta`$ is the height, and $`\theta`$ is the angle between $`\mathbf{a}`$ and $`\mathbf{b}`$.
 
 ```math
 \triangle = \frac{1}{2}\|\mathbf{a}\| \|\mathbf{b}\| \sin\theta
@@ -1067,6 +1078,8 @@ where $`b = \|\mathbf{a}\|`$ is the base and $`h = \|\mathbf{b}\| \sin\theta`$ i
 \triangle = \frac{1}{2}\|\mathbf{a} \times \mathbf{b}\|
 ```
 
+**Method ii)** For 2D vectors $`\mathbf{a} = (x_1, y_1)`$ and $`\mathbf{b} = (x_2, y_2)`$, use the determinant: $`\triangle = \frac{1}{2}|x_1 y_2 - x_2 y_1|`$ (Section 4.5).
+
 ### 4.5 Cross Product
 
 In 3D, the **cross product** is:
@@ -1075,7 +1088,7 @@ In 3D, the **cross product** is:
 \mathbf{a} \times \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \sin\theta \; \hat{n}
 ```
 
-where $`\hat{n}`$ is the unit normal vector perpendicular to both $`\mathbf{a}`$ and $`\mathbf{b}`$ (i.e., $`\hat{n} \cdot \mathbf{a} = 0`$ and $`\hat{n} \cdot \mathbf{b} = 0`$).
+where $`\hat{n}`$ is the unit normal vector perpendicular to both $`\mathbf{a}`$ and $`\mathbf{b}`$ (i.e., $`\hat{n} \cdot \mathbf{a} = 0`$ and $`\hat{n} \cdot \mathbf{b} = 0`$), with its direction chosen by the right-hand rule.
 
 **For vectors in 2D (embedded in 3D with $`z = 0`$):**
 
@@ -1093,6 +1106,8 @@ Unit vectors: $`\hat{i} = \begin{pmatrix}1\\0\\0\end{pmatrix}`$, $`\hat{j} = \be
 \|\mathbf{a} \times \mathbf{b}\| = |x_1 y_2 - x_2 y_1|
 ```
 
+The choice $`\hat{n} = (0, 0, 1)`$ above holds when $`x_1 y_2 - x_2 y_1 > 0`$; if this value is negative, $`\mathbf{a} \times \mathbf{b}`$ points in the $`-\hat{k}`$ direction.
+
 **For edge vectors:**
 
 Let $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ 0 \end{pmatrix}`$, $`\mathbf{e}_2 = \begin{pmatrix} c \\ d \\ 0 \end{pmatrix}`$:
@@ -1107,24 +1122,44 @@ Let $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ 0 \end{pmatrix}`$, $`\mathbf{e}_2
 
 ### 4.6 Geometric Proof of Parallelogram Area
 
-Consider the parallelogram with vertices $`(0,0)`$, $`(a,b)`$, $`(c,d)`$, $`(a+c, b+d)`$.
+Consider the parallelogram with vertices $`O = (0,0)`$, $`P = (a,b)`$, $`Q = (c,d)`$, $`R = (a+c, b+d)`$. The figure below shows the case $`a, b, c, d > 0`$ and $`ad > bc`$.
 
-Enclose it in a rectangle of dimensions $`(a+c) \times (b+d)`$:
+Enclosing it in a rectangle of dimensions $`(a+c) \times (b+d)`$ splits the part of the rectangle outside the parallelogram into six corner regions.
+
+```text
++--------+----------------------....R
+|  bc    |  ab/2       .........   /|
+|        |    .........           / |
++--------Q....                   /  |
+|       /                       /   |
+|      /                       /    |
+|cd/2 /      ad - bc          /     |
+|    /                       / cd/2 |
+|   /                       /       |
+|  /                   ....P--------+
+| /           .........    |        |
+|/   .........   ab/2      |  bc    |
+O....----------------------+--------+
+```
+
+*Figure 1. Parallelogram inside the enclosing rectangle and the six corner regions*
+
+The rectangle area is:
 
 ```math
 \text{Rectangle area} = (a+c)(b+d) = ab + ad + bc + cd
 ```
 
 Subtract the corner regions:
-- Two yellow triangles: $`2 \times \frac{1}{2}ab = ab`$
-- Two green rectangles: $`2 \times bc = 2bc`$
-- Two pink triangles: $`2 \times \frac{1}{2}cd = cd`$
+- Two triangles at the bottom and top (legs $`a`$ and $`b`$): $`2 \times \frac{1}{2}ab = ab`$
+- Two rectangles at the upper left and lower right (width $`c`$, height $`b`$): $`2 \times bc = 2bc`$
+- Two triangles at the left and right (legs $`c`$ and $`d`$): $`2 \times \frac{1}{2}cd = cd`$
 
 ```math
 \text{Parallelogram area} = (ab + ad + bc + cd) - ab - 2bc - cd = ad - bc
 ```
 
-Taking absolute value: $`\text{Area} = |ad - bc|`$
+When $`ad < bc`$ (the two edges swap positions), the same computation gives $`bc - ad`$, so in general $`\text{Area} = |ad - bc|`$.
 
 ### 4.7 Volume of a Box
 
@@ -1135,11 +1170,11 @@ Taking absolute value: $`\text{Area} = |ad - bc|`$
 ```
 
 ```math
-h = \|\mathbf{e}_3 \cdot \hat{n}\| = \text{height (projection onto normal)}
+h = |\mathbf{e}_3 \cdot \hat{n}| = \text{height (projection onto normal)}
 ```
 
 ```math
-\text{Volume} = h \cdot \|\mathbf{e}_1 \times \mathbf{e}_2\| = \|\mathbf{e}_3 \cdot (\mathbf{e}_1 \times \mathbf{e}_2)\|
+\text{Volume} = h \cdot \|\mathbf{e}_1 \times \mathbf{e}_2\| = |\mathbf{e}_3 \cdot (\mathbf{e}_1 \times \mathbf{e}_2)|
 ```
 
 **Computing $`\mathbf{e}_1 \times \mathbf{e}_2`$:**
@@ -1168,7 +1203,7 @@ Therefore:
 
 ### 4.8 Examples: Unit Cube and Axis-Aligned Box
 
-**Unit cube:** edges along the standard basis vectors.
+**Unit cube:** the edges lie along the standard basis vectors.
 
 ```math
 \text{Volume} = \det\begin{pmatrix} 1 & & \\ & 1 & \\ & & 1 \end{pmatrix} = 1
@@ -1186,31 +1221,80 @@ Therefore:
 
 ## Summary
 
-| Concept | Key Idea |
+| Concept | Key Summary |
 |:--------|:---------|
-| Determinant definition | Scalar value associated with a square matrix; $`\det(A)`$ or $`|A|`$ |
-| $`2 \times 2`$ determinant | $`\det\begin{pmatrix}a&b\\c&d\end{pmatrix} = ad - bc`$ |
-| $`3 \times 3`$ determinant | 6 terms from $`3! = 6`$ permutations; $`a(qz-ry) - b(pz-rx) + c(py-qx)`$ |
-| Row/column exchange | Reverses the sign: $`\det \to -\det`$ |
-| Singular matrix | $`\det(A) = 0`$ iff $`A`$ is not invertible iff columns are dependent |
-| Cofactor $`C_{ij}`$ | $`(-1)^{i+j}\det(\text{matrix with row } i, \text{col } j \text{ removed})`$ |
-| Cofactor expansion | $`\det A = \sum_j A_{ij}C_{ij}`$ along any row $`i`$ |
-| Inverse via cofactors | $`A^{-1} = \frac{1}{\det(A)}C^T`$ where $`C^T = \text{adj}(A)`$ |
-| Scalar multiplication | $`\det(\alpha A) = \alpha^n \det(A)`$ for $`A \in \mathbb{R}^{n \times n}`$ |
-| Transpose | $`\det(A^T) = \det(A)`$ |
-| Product rule | $`\det(AB) = \det(A)\det(B)`$ |
-| Elimination matrices | $`\det(E) = 1`$, so $`\det(EA) = \det(A)`$ |
-| Orthogonal matrices | $`\det(Q) = \pm 1`$ |
-| Triangular/diagonal | Determinant = product of diagonal entries |
-| Pivots formula | $`\det(A) = \pm(\text{product of pivots})`$ via $`PA = LU`$ |
-| Inverse determinant | $`\det(A^{-1}) = 1/\det(A)`$ |
-| $`\det(A+B)`$ | $`\neq \det(A) + \det(B)`$ in general |
-| Row linearity | Determinant is linear in each row separately |
-| Elementary matrices | $`A`$ decomposes into elimination, permutation, scaling matrices |
-| Cramer's Rule | $`x_j = \det(B_j)/\det(A)`$ where $`B_j`$ has column $`j`$ replaced by $`\mathbf{b}`$ |
-| Parallelogram area (2D) | $`\|ad - bc\| = \|\det(\mathbf{e}_1\;\mathbf{e}_2)\|`$ |
-| Triangle area | $`\frac{1}{2}\|\mathbf{a} \times \mathbf{b}\|`$ |
-| Cross product | $`\mathbf{a} \times \mathbf{b} = \|\mathbf{a}\|\|\mathbf{b}\|\sin\theta\;\hat{n}`$; computed via $`3 \times 3`$ determinant |
-| Box volume (3D) | $`\|\mathbf{e}_3 \cdot (\mathbf{e}_1 \times \mathbf{e}_2)\| = \|\det(\mathbf{e}_1\;\mathbf{e}_2\;\mathbf{e}_3)\|`$ (triple scalar product) |
+| Determinant definition | The determinant is a scalar value associated with a square matrix, written $`\det(A)`$ or $`\vert A \vert`$. |
+| $`2 \times 2`$ determinant | The determinant of $`\begin{pmatrix}a&b\\c&d\end{pmatrix}`$ is $`ad - bc`$. |
+| $`3 \times 3`$ determinant | It consists of 6 terms from the $`3! = 6`$ permutations and equals $`a(qz-ry) - b(pz-rx) + c(py-qx)`$. |
+| Row/column exchange | Exchanging two rows or two columns reverses the sign of the determinant ($`\det \to -\det`$). |
+| Singular matrix | $`\det(A) = 0`$ holds if and only if $`A`$ is not invertible, which holds if and only if its columns are dependent. |
+| Cofactor $`C_{ij}`$ | It is $`(-1)^{i+j}`$ times the determinant of the matrix with row $`i`$ and column $`j`$ removed. |
+| Cofactor expansion | The determinant expands along any row $`i`$ as $`\det A = \sum_j A_{ij}C_{ij}`$. |
+| Inverse via cofactors | $`A^{-1} = \frac{1}{\det(A)}C^T`$, where $`C^T = \text{adj}(A)`$ is the adjugate matrix. |
+| Scalar multiplication | For $`A \in \mathbb{R}^{n \times n}`$, $`\det(\alpha A) = \alpha^n \det(A)`$. |
+| Transpose | Transposing does not change the determinant, since $`\det(A^T) = \det(A)`$. |
+| Product rule | The determinant of a product is the product of the determinants, $`\det(AB) = \det(A)\det(B)`$. |
+| Elimination matrices | Since $`\det(E) = 1`$, $`\det(EA) = \det(A)`$. |
+| Orthogonal matrices | An orthogonal matrix $`Q`$ has $`\det(Q) = \pm 1`$. |
+| Triangular/diagonal | The determinant of a triangular or diagonal matrix is the product of its diagonal entries. |
+| Pivots formula | Using $`PA = LU`$, $`\det(A) = \pm(\text{product of pivots})`$. |
+| Inverse determinant | For an invertible $`A`$, $`\det(A^{-1}) = 1/\det(A)`$. |
+| $`\det(A+B)`$ | In general, $`\det(A+B)`$ is not equal to $`\det(A) + \det(B)`$. |
+| Row linearity | The determinant is linear in each row separately while the other rows are fixed. |
+| Elementary matrices | An invertible matrix $`A`$ decomposes into a product of elimination, permutation, and scaling matrices. |
+| Cramer's Rule | If $`\det(A) \neq 0`$, then $`x_j = \det(B_j)/\det(A)`$, where $`B_j`$ has column $`j`$ of $`A`$ replaced by $`\mathbf{b}`$. |
+| Parallelogram area (2D) | The area is $`\vert ad - bc \vert = \vert \det(\mathbf{e}_1\;\mathbf{e}_2) \vert`$. |
+| Triangle area | The area is $`\frac{1}{2}\Vert\mathbf{a} \times \mathbf{b}\Vert`$. |
+| Cross product | The cross product is $`\mathbf{a} \times \mathbf{b} = \Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert\sin\theta\;\hat{n}`$ and is computed with a $`3 \times 3`$ determinant. |
+| Box volume (3D) | The volume is the absolute value of the triple scalar product, $`\vert\mathbf{e}_3 \cdot (\mathbf{e}_1 \times \mathbf{e}_2)\vert = \vert\det(\mathbf{e}_1\;\mathbf{e}_2\;\mathbf{e}_3)\vert`$. |
 
 ---
+
+<br>
+
+## Self-Check Questions
+
+1. **Cofactor expansion:** Compute the determinant of $`A = \begin{pmatrix} 2 & 1 & 0 \\ 1 & 3 & 1 \\ 0 & 1 & 2 \end{pmatrix}`$ by cofactor expansion along row 1, and decide whether $`A`$ is invertible.
+
+   <details>
+   <summary>Answer</summary>
+
+   The row 1 cofactors are $`C_{11} = +\det\begin{pmatrix} 3 & 1 \\ 1 & 2 \end{pmatrix} = 5`$, $`C_{12} = -\det\begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix} = -2`$, and $`C_{13} = +\det\begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix} = 1`$. So $`\det A = 2 \cdot 5 + 1 \cdot (-2) + 0 \cdot 1 = 8`$, and since $`\det A \neq 0`$, $`A`$ is invertible.
+
+   </details>
+
+2. **Properties of determinants:** Let $`A`$ be a $`3 \times 3`$ matrix with $`\det(A) = 2`$. Find $`\det(3A)`$, $`\det(A^{-1})`$, $`\det(A^T A)`$, and the determinant of the matrix obtained by exchanging two rows of $`A`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`\det(3A) = 3^3 \det(A) = 54`$. $`\det(A^{-1}) = 1/\det(A) = 1/2`$. $`\det(A^T A) = \det(A^T)\det(A) = 2 \cdot 2 = 4`$. Exchanging two rows reverses the sign, so that determinant is $`-2`$.
+
+   </details>
+
+3. **Cramer's Rule:** Solve the system $`2x_1 + x_2 = 5`$, $`x_1 + 3x_2 = 5`$ by Cramer's Rule.
+
+   <details>
+   <summary>Answer</summary>
+
+   With $`A = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}`$, $`\det A = 6 - 1 = 5`$. $`B_1 = \begin{pmatrix} 5 & 1 \\ 5 & 3 \end{pmatrix}`$ has determinant $`15 - 5 = 10`$, and $`B_2 = \begin{pmatrix} 2 & 5 \\ 1 & 5 \end{pmatrix}`$ has determinant $`10 - 5 = 5`$. So $`x_1 = 10/5 = 2`$ and $`x_2 = 5/5 = 1`$, which checks out: $`2 \cdot 2 + 1 = 5`$ and $`2 + 3 \cdot 1 = 5`$.
+
+   </details>
+
+4. **Determinant via pivots:** Elimination with one row exchange gives $`PA = LU`$, and the diagonal entries of $`U`$ are $`1, 2, -6`$. Find $`\det(A)`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   One row exchange gives $`\det(P) = -1`$, and $`\det(L) = 1`$, $`\det(U) = 1 \cdot 2 \cdot (-6) = -12`$. From $`\det(P)\det(A) = \det(L)\det(U)`$, $`-\det(A) = -12`$, so $`\det(A) = 12`$.
+
+   </details>
+
+5. **Area and volume:** Find the area of the parallelogram with edge vectors $`\mathbf{e}_1 = (3, 1)`$ and $`\mathbf{e}_2 = (1, 2)`$, and the area of the triangle formed by the two vectors. Also find the volume of the box with edges $`(1, 0, 0)`$, $`(1, 2, 0)`$, and $`(1, 1, 3)`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   The parallelogram area is $`|3 \cdot 2 - 1 \cdot 1| = 5`$, and the triangle area is half of it, $`5/2`$. The box volume is the absolute value of the determinant of the matrix $`\begin{pmatrix} 1 & 0 & 0 \\ 1 & 2 & 0 \\ 1 & 1 & 3 \end{pmatrix}`$ with the edges as rows; this matrix is lower triangular, so the volume is $`1 \cdot 2 \cdot 3 = 6`$.
+
+   </details>

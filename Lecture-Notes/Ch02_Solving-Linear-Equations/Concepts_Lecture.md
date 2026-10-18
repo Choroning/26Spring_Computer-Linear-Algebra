@@ -1,19 +1,17 @@
-# Chapter 2 Lecture — Solving Linear Equations
+# Chapter 2 — Solving Linear Equations
 
-> **Last Updated:** 2026-06-19
->
-> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 2
+[Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Prerequisites**: [Linear Algebra] Vectors and linear combinations (Ch 1).
+> **Last Updated:** 2026-10-18
 >
-> **Learning Objectives**:
+> Introduction to Linear Algebra, Strang, Ch 2
+
+> **Learning Objectives:**
 > 1. Apply Gaussian elimination to solve linear systems
-> 2. Express elimination using matrix factorization (A = LU)
+> 2. Express elimination using matrix factorization ($`A = LU`$)
 > 3. Identify when systems have no solution, one solution, or infinitely many solutions
-
-> **📑 This document is split into 2 parts.**
->
-> **Part 1** · [Part 2](Concepts-Part2.md)
+> 4. Use the properties of permutation matrices and transposes to find the $`PA = LU`$ and $`LDL^T`$ factorizations
+> 5. Approximate derivatives with finite differences and explain the properties of the second difference matrices $`K`$, $`T`$, $`B`$
 
 ---
 
@@ -47,24 +45,25 @@
   - [4.5 The Great Factorization A = LU](#45-the-great-factorization-a--lu)
   - [4.6 Second Proof of A = LU](#46-second-proof-of-a--lu)
   - [4.7 Elimination without Row Exchanges](#47-elimination-without-row-exchanges)
-- [5. Permutations and Transpose (2.4)](Concepts-Part2.md#5-permutations-and-transpose-24)
-  - [5.1 Permutation Matrices](Concepts-Part2.md#51-permutation-matrices)
-  - [5.2 Properties of Permutation Matrices](Concepts-Part2.md#52-properties-of-permutation-matrices)
-  - [5.3 The PA = LU Factorization](Concepts-Part2.md#53-the-pa--lu-factorization)
-  - [5.4 Partial Pivoting](Concepts-Part2.md#54-partial-pivoting)
-  - [5.5 PAQ: Row and Column Permutations](Concepts-Part2.md#55-paq-row-and-column-permutations)
-  - [5.6 The Transpose of A](Concepts-Part2.md#56-the-transpose-of-a)
-  - [5.7 Inner Products and the Transpose](Concepts-Part2.md#57-inner-products-and-the-transpose)
-  - [5.8 Symmetric Matrices](Concepts-Part2.md#58-symmetric-matrices)
-  - [5.9 Symmetric Products and LDL^T](Concepts-Part2.md#59-symmetric-products-and-ldlt)
-- [6. Derivatives and Finite Difference Matrices (2.5)](Concepts-Part2.md#6-derivatives-and-finite-difference-matrices-25)
-  - [6.1 Taylor Series and Approximations](Concepts-Part2.md#61-taylor-series-and-approximations)
-  - [6.2 Derivatives from Differences](Concepts-Part2.md#62-derivatives-from-differences)
-  - [6.3 Second Difference Matrices K, T, B](Concepts-Part2.md#63-second-difference-matrices-k-t-b)
-  - [6.4 Properties of K](Concepts-Part2.md#64-properties-of-k)
-  - [6.5 Free-Fixed Matrices T](Concepts-Part2.md#65-free-fixed-matrices-t)
-  - [6.6 Free-Free Matrices B](Concepts-Part2.md#66-free-free-matrices-b)
-- [Summary](Concepts-Part2.md#summary)
+- [5. Permutations and Transpose (2.4)](#5-permutations-and-transpose-24)
+  - [5.1 Permutation Matrices](#51-permutation-matrices)
+  - [5.2 Properties of Permutation Matrices](#52-properties-of-permutation-matrices)
+  - [5.3 The PA = LU Factorization](#53-the-pa--lu-factorization)
+  - [5.4 Partial Pivoting](#54-partial-pivoting)
+  - [5.5 PAQ: Row and Column Permutations](#55-paq-row-and-column-permutations)
+  - [5.6 The Transpose of A](#56-the-transpose-of-a)
+  - [5.7 Inner Products and the Transpose](#57-inner-products-and-the-transpose)
+  - [5.8 Symmetric Matrices](#58-symmetric-matrices)
+  - [5.9 Symmetric Products and LDL^T](#59-symmetric-products-and-ldlt)
+- [6. Derivatives and Finite Difference Matrices (2.5)](#6-derivatives-and-finite-difference-matrices-25)
+  - [6.1 Taylor Series and Approximations](#61-taylor-series-and-approximations)
+  - [6.2 Derivatives from Differences](#62-derivatives-from-differences)
+  - [6.3 Second Difference Matrices K, T, B](#63-second-difference-matrices-k-t-b)
+  - [6.4 Properties of K](#64-properties-of-k)
+  - [6.5 Free-Fixed Matrices T](#65-free-fixed-matrices-t)
+  - [6.6 Free-Free Matrices B](#66-free-free-matrices-b)
+- [Summary](#summary)
+- [Self-Check Questions](#self-check-questions)
 
 ---
 
@@ -72,7 +71,7 @@
 
 ## 1. Introduction
 
-Chapter 2 focuses on solving the system of linear equations:
+This chapter focuses on solving the system of linear equations:
 
 ```math
 A\mathbf{x} = \mathbf{b}
@@ -90,7 +89,7 @@ We focus on **square matrices** $`A \in \mathbb{R}^{n \times n}`$.
 
 $`A\mathbf{x} = \mathbf{b}`$ gives $`n`$ equations.
 
-**Example (2x2 system):**
+**Example ($`2 \times 2`$ system):**
 
 ```math
 a_{11}x_1 + a_{12}x_2 = b_1
@@ -177,22 +176,35 @@ Consider $`A\mathbf{x} = \mathbf{b}`$, where $`A \in \mathbb{R}^{n \times n}`$, 
 
 There are **three cases**:
 
-**Case 1: Unique solution** — $`\exists! \; \mathbf{x}`$ s.t. $`A\mathbf{x} = \mathbf{b}`$
+**Case 1: Unique solution.** Exactly one $`\mathbf{x}`$ satisfies $`A\mathbf{x} = \mathbf{b}`$ ($`\exists! \; \mathbf{x}`$).
 
-- $`A`$ has **independent columns**
-- The only solution to $`A\mathbf{x} = \mathbf{0}`$ is $`\mathbf{x} = \mathbf{0}`$
-- $`A`$ has an inverse matrix $`A^{-1}`$
+- $`A`$ has **independent columns**.
+- The only solution to $`A\mathbf{x} = \mathbf{0}`$ is $`\mathbf{x} = \mathbf{0}`$.
+- $`A`$ has an inverse matrix $`A^{-1}`$.
 
-**Case 2: No solution** to $`A\mathbf{x} = \mathbf{b}`$
+**Case 2: No solution.** No $`\mathbf{x}`$ satisfies $`A\mathbf{x} = \mathbf{b}`$.
 
-- $`\mathbf{b}`$ is **not** in the column space of $`A`$
-- $`\mathbf{b}`$ is not a combination of the columns of $`A`$
+- $`\mathbf{b}`$ is **not** in the column space of $`A`$.
+- $`\mathbf{b}`$ is not a linear combination of the columns of $`A`$.
 
-**Case 3: Infinitely many solutions** to $`A\mathbf{x} = \mathbf{b}`$
+**Case 3: Infinitely many solutions.** Infinitely many $`\mathbf{x}`$ satisfy $`A\mathbf{x} = \mathbf{b}`$.
 
-- The columns of $`A`$ are **not independent**
-- $`\mathbf{b}`$ is in the column space of $`A`$
+- The columns of $`A`$ are **not independent**.
+- $`\mathbf{b}`$ is in the column space of $`A`$.
 - $`n > \text{rank}(A) = \text{rank}(A|\mathbf{b})`$
+
+The three cases can be told apart by comparing the rank of $`A`$ with the rank of the augmented matrix $`(A|\mathbf{b})`$.
+
+```mermaid
+flowchart TD
+    S["Apply elimination to Ax = b"] --> Q1{"Is rank(A) equal to the rank of the augmented matrix?"}
+    Q1 -->|No| N["No solution"]
+    Q1 -->|Yes| Q2{"Is rank(A) = n?"}
+    Q2 -->|Yes| U["Unique solution"]
+    Q2 -->|No| I["Infinitely many solutions"]
+```
+
+*Figure 1. Three cases of solutions by rank comparison*
 
 ---
 
@@ -254,7 +266,7 @@ $`\Rightarrow`$ **No solution exists.**
 
 $`\text{rank}(A) = 1`$, $`\text{rank}(A|\mathbf{b}) = 1`$, number of unknowns is 2.
 
-$`\Rightarrow`$ **Infinitely many solutions.** One equation but two unknowns, 1 free parameter.
+$`\Rightarrow`$ **Infinitely many solutions.** There is effectively one equation in two unknowns, so there is 1 free parameter.
 
 ---
 
@@ -290,7 +302,7 @@ A(\mathbf{x} + \alpha X) = A\mathbf{x} + \alpha AX = \mathbf{b} + \mathbf{0} = \
 
 $`\text{rank}(A) = 1`$, $`\text{rank}(A|\mathbf{b}) = 1 < n = 2`$. $`\Rightarrow`$ Infinitely many solutions.
 
-Pick a particular solution: $`\mathbf{x} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}`$
+Pick a particular solution $`\mathbf{x} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}`$.
 
 Pick a nontrivial homogeneous solution to $`\begin{pmatrix} 2 & 3 \\ 4 & 6 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$:
 
@@ -406,7 +418,7 @@ This happens when **zero appears in a pivot position**.
 \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 2 & 3 & 4 \\ 0 & 0 & 6 \\ 0 & 5 & 13 \end{pmatrix} = \begin{pmatrix} 2 & 3 & 4 \\ 0 & 5 & 13 \\ 0 & 0 & 6 \end{pmatrix}
 ```
 
-**Example (not fixable — singular):**
+**Example (not fixable, singular matrix):**
 
 ```math
 A^* = \begin{pmatrix} 2 & 3 & 4 \\ 4 & 6 & 14 \\ 2 & 3 & 17 \end{pmatrix} \rightarrow \begin{pmatrix} 2 & 3 & 4 \\ 0 & 0 & 6 \\ 0 & 0 & 13 \end{pmatrix} = U^*
@@ -414,8 +426,8 @@ A^* = \begin{pmatrix} 2 & 3 & 4 \\ 4 & 6 & 14 \\ 2 & 3 & 17 \end{pmatrix} \right
 
 No pivot is available in the second column.
 
-- $`A^*`$ does **NOT** have full rank.
-- $`A^*`$ and $`U^*`$ are **NOT** invertible.
+- $`A^*`$ does **not** have full rank.
+- $`A^*`$ and $`U^*`$ are **not** invertible.
 - The 1st and 2nd columns are in the same direction.
 - $`A^* X = \mathbf{0}`$ has nonzero solution $`X`$.
 
@@ -423,7 +435,7 @@ No pivot is available in the second column.
 
 ### 2.8 Dependent or Independent Columns
 
-A triangular matrix $`U`$ has **full rank** exactly when its main diagonal has **no zeros**.
+A square triangular matrix $`U`$ has **full rank** exactly when its main diagonal has **no zeros**.
 
 For full rank $`A`$:
 - The columns of $`U`$ are independent.
@@ -443,27 +455,27 @@ When $`U`$ has a **zero on its diagonal**:
 
 Each equation represents a line (in 2D), plane (in 3D), or hyperplane. The solution is where they intersect.
 
-**Example 1 — No solution (parallel lines):**
+**Example 1 (no solution, parallel lines):**
 
 ```math
 x - 2y = -1, \quad x - 2y = 1 \implies \begin{pmatrix} 1 & -2 \\ 1 & -2 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
 ```
 
-**Example 2 — Infinitely many solutions (same line):**
+**Example 2 (infinitely many solutions, same line):**
 
 ```math
 x - 2y = 1, \quad x - 2y = 1 \implies \begin{pmatrix} 1 & -2 \\ 1 & -2 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
 ```
 
-A line of solutions.
+The solutions form a line.
 
-**Example 3 — One solution (intersecting lines):**
+**Example 3 (one solution, intersecting lines):**
 
 ```math
 x - 2y = 7, \quad x + y = 2 \implies \begin{pmatrix} 1 & -2 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}
 ```
 
-One solution at the intersection point.
+There is one solution at the intersection point.
 
 **The Column Picture:**
 
@@ -539,7 +551,7 @@ A = \begin{pmatrix} 1 & 1 & 1 \\ 2 & 2 & 3 \\ 0 & 4 & 5 \end{pmatrix}
 E_{21}: R_2 - 2R_1 \implies \begin{pmatrix} 1 & 1 & 1 \\ 0 & 0 & 1 \\ 0 & 4 & 5 \end{pmatrix}
 ```
 
-Zero pivot! Swap rows using $`P = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}`$:
+A zero appears in the pivot position, so swap rows using $`P = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}`$:
 
 ```math
 \begin{pmatrix} 1 & 1 & 1 \\ 0 & 4 & 5 \\ 0 & 0 & 1 \end{pmatrix} = U
@@ -661,9 +673,9 @@ A\mathbf{x} = \mathbf{b} \implies A^{-1}A\mathbf{x} = A^{-1}\mathbf{b} \implies 
 
 **Note 4:** Suppose there exists a nonzero vector $`\mathbf{x}`$ s.t. $`A\mathbf{x} = \mathbf{0}`$. Then:
 
-- $`A`$ has **dependent columns**
-- $`A`$ cannot have an inverse
-- No matrix can bring $`\mathbf{0}`$ back to $`\mathbf{x}`$
+- $`A`$ has **dependent columns**.
+- $`A`$ cannot have an inverse.
+- No matrix can bring $`\mathbf{0}`$ back to $`\mathbf{x}`$.
 
 **Example:**
 
@@ -715,7 +727,7 @@ D = \begin{pmatrix} 6 & 6 \\ 6 & 6 \end{pmatrix} \quad \text{rank}(D) = 1 < 2 \q
 S = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix} \xrightarrow{R_2 - R_1, R_3 - R_1} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \xrightarrow{R_3' - R_2'} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}
 ```
 
-3 pivots. Invertible.
+There are 3 pivots, so $`S`$ is invertible.
 
 Computing $`E = E_{32}E_{31}E_{21} = S^{-1}`$:
 
@@ -732,10 +744,10 @@ E_{32}(E_{31}E_{21}) = \begin{pmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \en
 ```
 
 ```math
-T = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix} \xrightarrow{R_3 - R_2} \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+T = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix} \xrightarrow{R_3 - R_1} \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}
 ```
 
-$`\text{Rank}(T) = 2 < 3`$. **Not invertible.**
+$`\text{rank}(T) = 2 < 3`$. **Not invertible.**
 
 ---
 
@@ -769,7 +781,7 @@ But: $`ab = -9 \implies (ab)^{-1} = -1/9 = a^{-1}b^{-1}`$.
 \therefore (AB)^{-1} = B^{-1}A^{-1} \quad \square
 ```
 
-**Inverses come in reverse order!**
+**Inverses come in reverse order.**
 
 For three matrices:
 
@@ -827,7 +839,7 @@ Computing the product $`FE`$:
 FE = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -4 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 & 0 \\ -5 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ -5 & 1 & 0 \\ 20 & -4 & 1 \end{pmatrix}
 ```
 
-The "20" comes from row 1 (through the chain of operations):
+The (3,1) entry 20 comes from row 1 through the chain of operations:
 
 ```math
 R_3'' = R_3' - 4R_2' = R_3 - 4(R_2 - 5R_1) = R_3 - 4R_2 + 20R_1
@@ -845,7 +857,7 @@ The multipliers 5 and 4 fall into place below the diagonal of $`L = (FE)^{-1}`$.
 
 **L is the inverse of E.**
 
-Recall Example 1: $`A = \begin{pmatrix} 3 & 1 & 0 \\ -3 & 1 & 1 \\ 6 & 8 & 4 \end{pmatrix}`$
+Recall the example in Section 3.2: $`A = \begin{pmatrix} 3 & 1 & 0 \\ -3 & 1 & 1 \\ 6 & 8 & 4 \end{pmatrix}`$
 
 ```math
 E = E_{32}E_{31}E_{21} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -3 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ -2 & 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}
@@ -855,7 +867,7 @@ E = E_{32}E_{31}E_{21} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -3 & 1 \e
 EA = \begin{pmatrix} 3 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 1 \end{pmatrix} = U
 ```
 
-**General formula for E and L (3x3 case):**
+**General formula for E and L ($`3 \times 3`$ case):**
 
 Let $`l_{32} = 3`$, $`l_{31} = 2`$, $`l_{21} = -1`$. Then:
 
@@ -867,13 +879,13 @@ E = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -l_{32} & 1 \end{pmatrix}\begi
 = \begin{pmatrix} 1 & 0 & 0 \\ -l_{21} & 1 & 0 \\ l_{32}l_{21} - l_{31} & -l_{32} & 1 \end{pmatrix}
 ```
 
-Note the cross-product term $`l_{32}l_{21} - l_{31}`$ in position (3,1).
+A cross-product term $`l_{32}l_{21} - l_{31}`$ appears in position (3,1).
 
 ```math
 E^{-1} = \begin{pmatrix} 1 & 0 & 0 \\ l_{21} & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ l_{31} & 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & l_{32} & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ l_{21} & 1 & 0 \\ l_{31} & l_{32} & 1 \end{pmatrix} = L
 ```
 
-**The inverse matrix $`E^{-1}`$ becomes beautiful!** We see the factors $`l_{21}, l_{31}, l_{32}`$.
+**The inverse matrix $`E^{-1}`$ takes a clean form.** The factors $`l_{21}, l_{31}, l_{32}`$ appear as they are.
 
 **All multipliers $`l_{ij}`$ appear in their correct position in $`L`$.**
 
@@ -887,13 +899,13 @@ E^{-1} = \begin{pmatrix} 1 & 0 & 0 \\ l_{21} & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\
 
 1. The elimination steps from $`A`$ to $`U`$ cost $`\frac{1}{3}n^3`$ multiplications and subtractions.
 2. Each right side $`\mathbf{b}`$ costs only $`n^2`$:
-   - Forward to $`U\mathbf{x} = \mathbf{c}`$
-   - Then back substitution for $`\mathbf{x}`$
+   - Forward elimination gives $`U\mathbf{x} = \mathbf{c}`$.
+   - Back substitution then gives $`\mathbf{x}`$.
 3. Elimination without row exchanges factors $`A`$ into $`LU`$.
 
 The solution to $`A\mathbf{x} = \mathbf{b}`$ is given by $`\mathbf{x} = A^{-1}\mathbf{b}`$.
 
-**Q:** Do we need to know $`A^{-1}`$ explicitly? Computing $`A^{-1}`$ and multiplying $`A^{-1}\mathbf{b}`$ is a very **SLOW** way to find $`\mathbf{x}`$.
+**Q:** Do we need to know $`A^{-1}`$ explicitly? Computing $`A^{-1}`$ and multiplying $`A^{-1}\mathbf{b}`$ is a very **slow** way to find $`\mathbf{x}`$.
 
 ---
 
@@ -947,7 +959,7 @@ Solve the $`n`$ equations together by using **Gauss-Jordan elimination**:
 \xrightarrow{R_3 + R_2} \begin{pmatrix} 1 & 0 & 0 & | & 1 & 0 & 0 \\ 0 & 1 & 0 & | & 1 & 1 & 0 \\ 0 & 0 & 1 & | & 1 & 1 & 1 \end{pmatrix} = (I|A^{-1})
 ```
 
-The elimination steps on $`A`$ only have to be done **once**!
+The elimination steps on $`A`$ only have to be done **once**.
 
 ---
 
@@ -970,7 +982,7 @@ Step $`(n-1)`$ (eliminate column $`n-1`$): 1 row, 2 columns $`\implies 1 \cdot 2
 ```
 
 ```math
-= \frac{n(n+1)(2n+1)}{6} - n^2 + \frac{n^2}{2} - \frac{n}{2} + \frac{(n-1)n}{2}
+= \frac{n(n+1)(2n+1)}{6} - n^2 + \frac{(n-1)n}{2}
 ```
 
 ```math
@@ -1013,15 +1025,28 @@ x_{n-1} = (c_{n-1} - u_{(n-1)n}x_n) / u_{(n-1)(n-1)}
 x_1 = (c_1 - u_{12}x_2 - u_{13}x_3 - \cdots - u_{1n}x_n) / u_{11}
 ```
 
-$`n`$ divisions, $`1 + 2 + \cdots + (n-1)`$ multiplications, $`1 + 2 + \cdots + (n-1)`$ subtractions.
+Back substitution needs $`n`$ divisions, $`1 + 2 + \cdots + (n-1)`$ multiplications, and $`1 + 2 + \cdots + (n-1)`$ subtractions.
+
+Adding the $`n + \frac{(n-1)n}{2} = \frac{(n+1)n}{2}`$ divisions and multiplications of back substitution to the $`\frac{(n-1)n}{2}`$ multiplications for reducing $`\mathbf{b}`$ to $`\mathbf{c}`$ gives:
 
 ```math
-n + \frac{(n+1)n}{2} + \frac{(n-1)n}{2} = n^2
+\frac{(n+1)n}{2} + \frac{(n-1)n}{2} = n^2
 ```
 
-**The total count on the right side from $`\mathbf{b}`$ to $`\mathbf{c}`$ to $`\mathbf{x}`$ is $`n^2`$:**
-- $`n^2`$ multiplications
-- $`n^2`$ subtractions
+**The total count on the right side from $`\mathbf{b}`$ to $`\mathbf{c}`$ to $`\mathbf{x}`$ is about $`n^2`$:**
+- $`n^2`$ multiplications (divisions included)
+- $`(n-1)n = n^2 - n \approx n^2`$ subtractions
+
+The operation counts of each stage are summarized below.
+
+| Stage | Multiplications (divisions included) | Subtractions |
+|:-----|:-----|:-----|
+| Reducing $`A`$ to $`U`$ | $`\frac{1}{3}n^3 - \frac{n}{3}`$ | $`\frac{1}{3}n^3 - \frac{n}{3}`$ |
+| Reducing $`\mathbf{b}`$ to $`\mathbf{c}`$ | $`\frac{(n-1)n}{2}`$ | $`\frac{(n-1)n}{2}`$ |
+| Back substitution | $`\frac{(n+1)n}{2}`$ | $`\frac{(n-1)n}{2}`$ |
+| Right side total ($`\mathbf{b} \to \mathbf{c} \to \mathbf{x}`$) | $`n^2`$ | $`n^2 - n`$ |
+
+*Table 1. Operation counts of elimination and back substitution*
 
 ---
 
@@ -1049,7 +1074,7 @@ E_{31}: R_3 - 2R_1 \implies \begin{pmatrix} 3 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 6 & 4 
 E_{32}: R_3' - 3R_2' \implies \begin{pmatrix} 3 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 1 \end{pmatrix} = U
 ```
 
-Note that row 1 of $`U`$ = row 1 of $`A`$. Row 2 of $`U`$ remains unchanged after the application of $`E_{31}`$ and $`E_{32}`$.
+Row 1 of $`U`$ equals row 1 of $`A`$. Row 2 of $`U`$ remains unchanged after the application of $`E_{31}`$ and $`E_{32}`$.
 
 **Relationship between rows of $`A`$ and $`U`$:**
 
@@ -1105,6 +1130,8 @@ The subtracted part is a **rank 1 matrix**:
 = \begin{pmatrix} 1 \cdot a_{11} & 1 \cdot a_{12} & 1 \cdot a_{13} \\ l_{21}a_{11} & l_{21}a_{12} & l_{21}a_{13} \\ l_{31}a_{11} & l_{31}a_{12} & l_{31}a_{13} \end{pmatrix}
 ```
 
+Subtracting $`\mathbf{l}_1\mathbf{u}_1`$ from $`A`$ leaves the remaining part $`A_2`$, whose first row is also zero.
+
 **Step 2:** Take the second row of $`A_2`$ (the remaining part) as pivot row.
 
 ```math
@@ -1114,16 +1141,16 @@ A_2 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & a'_{22} & a'_{23} \\ 0 & a'_{32} & a'_{33
 Apply $`R_3' - l_{32}R_2'`$:
 
 ```math
-A'' = \begin{pmatrix} 0 & 0 & 0 \\ 0 & a'_{22} & a'_{23} \\ 0 & 0 & a''_{33} \end{pmatrix} = A_2 - \begin{pmatrix} 0 \\ 1 \\ l_{32} \end{pmatrix}(R_2')
+A'' = \begin{pmatrix} 0 & 0 & 0 \\ 0 & a'_{22} & a'_{23} \\ 0 & 0 & a''_{33} \end{pmatrix} = A_2 - \begin{pmatrix} 0 \\ 0 \\ l_{32} \end{pmatrix}(R_2')
 ```
 
-This produces another rank 1 matrix:
+Taking row 2 out as well gives another rank 1 matrix:
 
 ```math
 \begin{pmatrix} 0 \\ 1 \\ l_{32} \end{pmatrix}\begin{pmatrix} 0 & a'_{22} & a'_{23} \end{pmatrix} = \mathbf{l}_2 \mathbf{u}_2
 ```
 
-Note that $`\mathbf{u}_2`$ is row 2 of $`U`$.
+$`\mathbf{u}_2`$ is row 2 of $`U`$.
 
 The remaining part:
 
@@ -1145,7 +1172,7 @@ A = \mathbf{l}_1 \mathbf{u}_1 + \mathbf{l}_2 \mathbf{u}_2 + \mathbf{l}_3 \mathbf
 = \begin{pmatrix} 1 & 0 & 0 \\ l_{21} & 1 & 0 \\ l_{31} & l_{32} & 1 \end{pmatrix}\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ 0 & a'_{22} & a'_{23} \\ 0 & 0 & a''_{33} \end{pmatrix} = LU
 ```
 
-**General extension** for $`A \in \mathbb{R}^{n \times n}`$:
+**General extension:** for $`A \in \mathbb{R}^{n \times n}`$, the following holds:
 
 ```math
 A = \mathbf{l}_1\mathbf{u}_1 + \mathbf{l}_2\mathbf{u}_2 + \cdots + \mathbf{l}_n\mathbf{u}_n
@@ -1165,11 +1192,1065 @@ $`\mathbf{l}_k`$ begins with $`(k-1)`$ zeros. $`\mathbf{u}_k`$ begins with $`(k-
 
 **A:** All upper left $`k`$ by $`k`$ submatrices of $`A`$ must be invertible.
 
-For a 3x3 matrix $`A`$:
-- $`A_1 = (a_{11})`$: $`A_1 = L_1 U_1`$ (1x1 submatrix must be invertible)
-- $`A_2 = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}`$: $`A_2 = L_2 U_2`$ (2x2 submatrix must be invertible)
+For a $`3 \times 3`$ matrix $`A`$:
+- $`A_1 = (a_{11})`$: $`A_1 = L_1 U_1`$ ($`1 \times 1`$ submatrix must be invertible)
+- $`A_2 = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}`$: $`A_2 = L_2 U_2`$ ($`2 \times 2`$ submatrix must be invertible)
 - $`A_3 = A`$ (full matrix): $`A_3 = L_3 U_3`$
 
 ---
 
 <br>
+
+## 5. Permutations and Transpose (2.4)
+
+### 5.1 Permutation Matrices
+
+A **permutation matrix** $`P`$ has the same rows as $`I \in \mathbb{R}^{n \times n}`$, in some order.
+
+There are $`n!`$ different orders.
+
+**Example:** $`P \in \mathbb{R}^{3 \times 3}`$ has 3 rows. There are 3 cases for the 1st row, 2 for the 2nd row, and 1 for the 3rd row, so there are $`3! = 6`$ orders.
+
+$`P`$ times $`\mathbf{x}`$ puts the components $`x_1`$ to $`x_n`$ in that new order.
+
+And $`P^T`$ equals $`P^{-1}`$.
+
+**Example:**
+
+```math
+P\mathbf{x} = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} x_3 \\ x_1 \\ x_2 \end{pmatrix}
+```
+
+```math
+P^T = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}
+```
+
+$`P^{-1}`$ is found by the Gauss-Jordan method $`(A|I) \Rightarrow (I|A^{-1})`$:
+
+```math
+\begin{pmatrix} 0 & 0 & 1 & | & 1 & 0 & 0 \\ 1 & 0 & 0 & | & 0 & 1 & 0 \\ 0 & 1 & 0 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{row exchange}} \begin{pmatrix} 1 & 0 & 0 & | & 0 & 1 & 0 \\ 0 & 1 & 0 & | & 0 & 0 & 1 \\ 0 & 0 & 1 & | & 1 & 0 & 0 \end{pmatrix}
+```
+
+```math
+P^{-1} = P^T
+```
+
+**Transpose properties:**
+
+- Columns of $`A`$ are rows of $`A^T`$.
+- The transposes of $`A\mathbf{x}`$ and $`AB`$ are $`\mathbf{x}^T A^T`$ and $`B^T A^T`$.
+
+**Inner product property:**
+
+```math
+A\mathbf{x} \cdot \mathbf{y} = \mathbf{x} \cdot A^T\mathbf{y}
+```
+
+This holds because $`(A\mathbf{x})^T\mathbf{y} = \mathbf{x}^T A^T \mathbf{y} = \mathbf{x}^T(A^T\mathbf{y})`$.
+
+**Symmetric matrix:** $`S^T = S`$. The products $`A^T A`$ and $`AA^T`$ are always symmetric.
+
+---
+
+### 5.2 Properties of Permutation Matrices
+
+Permutation matrices have exactly one 1 in every row and exactly one 1 in every column.
+
+When we multiply $`P`$ with a vector $`\mathbf{x}`$, it changes the order of its components:
+
+```math
+P\mathbf{x} = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} x_3 \\ x_1 \\ x_2 \end{pmatrix}
+```
+
+$`P`$ shifts $`x_1`$ to the second position.
+
+```math
+PP\mathbf{x} = P^2\mathbf{x} = \begin{pmatrix} x_2 \\ x_3 \\ x_1 \end{pmatrix}
+```
+
+$`P^2`$ shifts $`x_1`$ to the third position.
+
+```math
+PPP\mathbf{x} = P^3\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = I\mathbf{x}
+```
+
+$`P^3`$ returns $`x_1`$ to its original position. $`P^3 = I`$.
+
+**Examples of $`4 \times 4`$ permutation matrices:**
+
+**(a)** $`P`$ reverses the order of $`\mathbf{x}`$:
+
+```math
+\begin{pmatrix} 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} x_4 \\ x_3 \\ x_2 \\ x_1 \end{pmatrix}
+```
+
+$`P(P\mathbf{x}) = \mathbf{x} \implies P^2 = I`$
+
+**(b)** $`P`$ does not change $`x_4`$ position:
+
+```math
+\begin{pmatrix} 0 & 0 & 1 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} x_3 \\ x_1 \\ x_2 \\ x_4 \end{pmatrix}
+```
+
+$`P(P(P\mathbf{x})) = \mathbf{x} \implies P^3 = I`$
+
+**(c)** $`P`$ cyclically shifts the elements:
+
+```math
+\begin{pmatrix} 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} x_4 \\ x_1 \\ x_2 \\ x_3 \end{pmatrix}
+```
+
+$`PPPP\mathbf{x} = P^4\mathbf{x} = I\mathbf{x} \implies P^4 = I`$
+
+**(d)** Even-odd separation:
+
+```math
+\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} x_0 \\ x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} x_0 \\ x_2 \\ x_1 \\ x_3 \end{pmatrix} \quad \text{(even, odd separation)}
+```
+
+$`P^2 = I`$
+
+This extends to $`\mathbf{x} \in \mathbb{R}^8`$ vectors using an $`8 \times 8`$ permutation matrix that separates even-indexed and odd-indexed entries.
+
+**Proof that $`P^T P = I`$:**
+
+The rows of any $`P`$ are the columns of $`P^{-1} = P^T`$. Let $`\mathbf{h}_i`$ be row $`i`$ of $`P`$ written as a column vector; then column $`i`$ of $`P^T`$ is $`\mathbf{h}_i`$.
+
+```math
+P^T P = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}
+```
+
+```math
+= \mathbf{h}_1\mathbf{h}_1^T + \mathbf{h}_2\mathbf{h}_2^T + \mathbf{h}_3\mathbf{h}_3^T
+```
+
+Since the $`\mathbf{h}_i`$ are distinct standard basis vectors (canonical unit vectors):
+
+```math
+= \begin{pmatrix} 1 & & \\ & 1 & \\ & & 1 \end{pmatrix} = I
+```
+
+**Properties of Permutation Matrices:**
+
+1. A permutation matrix $`P`$ has exactly a 1 in each row and exactly a 1 in each column.
+
+2. The columns of $`P`$ are **orthogonal**. (Dot products between columns are all zero.)
+
+3. The product $`P_1 P_2`$ of permutations is a permutation. So is the inverse of $`P`$.
+
+4. If $`A`$ is invertible, then there exists a permutation $`P`$ to order its rows in advance, so that elimination on $`PA`$ meets no zeros in the pivot positions:
+
+```math
+PA = LU
+```
+
+---
+
+### 5.3 The PA = LU Factorization
+
+**Row exchanges from $`P`$:**
+
+Consider a matrix $`A`$:
+
+```math
+A = \begin{pmatrix} 1 & 2 & a \\ 2 & 4 & b \\ 3 & 7 & c \end{pmatrix}
+```
+
+Take 1 as pivot in row 1:
+
+```math
+R_2 - 2R_1, \quad R_3 - 3R_1
+```
+
+```math
+EA = \begin{pmatrix} 1 & 2 & a \\ 0 & 0 & b - 2a \\ 0 & 1 & c - 3a \end{pmatrix}
+```
+
+Because a zero appears in the pivot position, swap row 2 and row 3:
+
+```math
+PEA = \begin{pmatrix} 1 & 2 & a \\ 0 & 1 & c - 3a \\ 0 & 0 & b - 2a \end{pmatrix} = U
+```
+
+$`A`$ is invertible iff $`b - 2a \neq 0`$. When $`b = 2a`$, $`\text{rank}(A) = 2 < 3`$ and $`A`$ is not invertible.
+
+**We can exchange rows 2 and 3 first:**
+
+```math
+PA = \begin{pmatrix} 1 & 2 & a \\ 3 & 7 & c \\ 2 & 4 & b \end{pmatrix}
+```
+
+```math
+\xrightarrow{R_2 - 3R_1, R_3 - 2R_1}
+```
+
+```math
+EPA = \begin{pmatrix} 1 & 2 & a \\ 0 & 1 & c - 3a \\ 0 & 0 & b - 2a \end{pmatrix} = U
+```
+
+```math
+\therefore PA = E^{-1}U = LU
+```
+
+**Daniel Drucker's method for tracking $`P`$:**
+
+Augment the matrix with a column tracking row indices:
+
+```math
+\begin{pmatrix} 1 & 2 & a & | & 1 \\ 2 & 4 & b & | & 2 \\ 3 & 7 & c & | & 3 \end{pmatrix} \xrightarrow{\text{elimination}} \begin{pmatrix} 1 & 2 & a & | & 1 \\ 0 & 0 & b-2a & | & 2 \\ 0 & 1 & c-3a & | & 3 \end{pmatrix} \xrightarrow{\text{swap}} \begin{pmatrix} 1 & 2 & a & | & 1 \\ 0 & 1 & c-3a & | & 3 \\ 0 & 0 & b-2a & | & 2 \end{pmatrix}
+```
+
+The final column gives $`P_{132}`$:
+
+```math
+P_{132} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}
+```
+
+---
+
+### 5.4 Partial Pivoting
+
+**Partial pivoting** is a method to reduce roundoff errors.
+
+The computation is more stable if we exchange rows so that the number with the **largest absolute value** becomes the pivot.
+
+**Example:** The last column records the original row numbers as in Section 5.3 and is not affected by the elimination steps.
+
+```math
+\begin{pmatrix} 1 & 2 & a & | & 1 \\ 2 & 4 & b & | & 2 \\ 3 & 7 & c & | & 3 \end{pmatrix}
+```
+
+```math
+\xrightarrow{R_3 \leftrightarrow R_1} \begin{pmatrix} 3 & 7 & c & | & 3 \\ 2 & 4 & b & | & 2 \\ 1 & 2 & a & | & 1 \end{pmatrix}
+```
+
+```math
+\xrightarrow{R_2 - \frac{2}{3}R_1, R_3 - \frac{1}{3}R_1} \begin{pmatrix} 3 & 7 & c & | & 3 \\ 0 & -\frac{2}{3} & b - \frac{2}{3}c & | & 2 \\ 0 & -\frac{1}{3} & a - \frac{1}{3}c & | & 1 \end{pmatrix}
+```
+
+```math
+\xrightarrow{R_3' - R_2'(\frac{1}{2})} \begin{pmatrix} 3 & 7 & c & | & 3 \\ 0 & -\frac{2}{3} & b - \frac{2}{3}c & | & 2 \\ 0 & 0 & a - \frac{1}{2}b & | & 1 \end{pmatrix} = U
+```
+
+All entries of $`L`$ satisfy $`|l_{ij}| \leq 1`$ when each pivot is at least as large in absolute value as all numbers below it:
+
+```math
+L = \begin{pmatrix} 1 & 0 & 0 \\ 2/3 & 1 & 0 \\ 1/3 & 1/2 & 1 \end{pmatrix}
+```
+
+```math
+P_{321} = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}
+```
+
+---
+
+### 5.5 PAQ: Row and Column Permutations
+
+$`PAQ`$ has row permutation $`P`$ and column permutation $`Q`$.
+
+Start with $`A \in \mathbb{R}^{3 \times 3}`$. Reorder its rows by $`P \in \mathbb{R}^{3 \times 3}`$.
+
+```math
+P = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}, \quad PA = \begin{pmatrix} a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \\ a_{11} & a_{12} & a_{13} \end{pmatrix}
+```
+
+Multiply $`Q = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}`$ from the right:
+
+```math
+(PA)Q = \begin{pmatrix} a_{23} & a_{22} & a_{21} \\ a_{33} & a_{32} & a_{31} \\ a_{13} & a_{12} & a_{11} \end{pmatrix}
+```
+
+Column permutation $`Q`$ reorders those columns.
+
+Is the column space of $`A`$ equal to the column space of $`PA`$?
+
+```math
+C(A) \stackrel{?}{=} C(PA)
+```
+
+**In general, no.** $`P`$ reorders the components of every column, so $`C(PA) = \{P\mathbf{v} : \mathbf{v} \in C(A)\}`$. For example, if $`A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}`$ and $`P`$ exchanges the two rows, $`C(A)`$ is the $`x`$-axis and $`C(PA)`$ is the $`y`$-axis. What $`P`$ does not change is the linear relationships among the columns: $`PA\mathbf{x} = \mathbf{0} \iff A\mathbf{x} = \mathbf{0}`$, so the null space and the rank stay the same. A column permutation $`Q`$ only reorders the columns, so $`C(AQ) = C(A)`$. If $`A`$ is invertible, $`C(A) = C(PA) = \mathbb{R}^3`$.
+
+**Q:** A matrix $`A`$ has 9 numbers. How many different ways can you arrange the 9 numbers in $`A`$? **A:** $`9!`$
+
+$`P, Q`$ can arrange the numbers $`6 \times 6 = 36`$ ways for $`PAQ`$. These arrangements are very special, all satisfying $`\text{rank}(PAQ) = \text{rank}(A)`$.
+
+---
+
+### 5.6 The Transpose of A
+
+The **transpose** of $`A`$ is denoted by $`A^T`$. The columns of $`A^T`$ are the rows of $`A`$.
+
+```math
+A^T = \begin{pmatrix} a_{11} & a_{21} & \cdots & a_{m1} \\ a_{12} & a_{22} & \cdots & a_{m2} \\ \vdots & \vdots & \ddots & \vdots \\ a_{1n} & a_{2n} & \cdots & a_{mn} \end{pmatrix}_{n \times m}
+```
+
+```math
+A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}_{m \times n}
+```
+
+**Example:**
+
+```math
+A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 0 & 4 \end{pmatrix}, \quad A^T = \begin{pmatrix} 1 & 0 \\ 2 & 0 \\ 3 & 4 \end{pmatrix}
+```
+
+Transposing flips the matrix over its main diagonal.
+
+```math
+(A^T)_{ij} = A_{ji}
+```
+
+**Rules for transpose:**
+
+- **Sum:** $`(A + B)^T = A^T + B^T`$
+- **Product:** $`(AB)^T = B^T A^T`$ (reverse order)
+- **Inverse:** $`(A^{-1})^T = (A^T)^{-1}`$
+
+**Proof of $`(A\mathbf{x})^T = \mathbf{x}^T A^T`$:**
+
+```math
+A\mathbf{x} = \begin{pmatrix} \sum_{j=1}^n a_{1j}x_j \\ \sum_{j=1}^n a_{2j}x_j \\ \vdots \\ \sum_{j=1}^n a_{mj}x_j \end{pmatrix}
+```
+
+```math
+(A\mathbf{x})^T = \left(\sum_{j=1}^n a_{1j}x_j \quad \sum_{j=1}^n a_{2j}x_j \quad \cdots \quad \sum_{j=1}^n a_{mj}x_j\right)
+```
+
+```math
+= (x_1, x_2, \ldots, x_n)\begin{pmatrix} a_{11} & a_{21} & \cdots & a_{m1} \\ a_{12} & a_{22} & \cdots & a_{m2} \\ \vdots & & & \vdots \\ a_{1n} & a_{2n} & \cdots & a_{mn} \end{pmatrix}_{n \times m}
+```
+
+```math
+= \mathbf{x}^T A^T
+```
+
+**Proof of $`(AB)^T = B^T A^T`$:**
+
+Interpret $`B = \begin{pmatrix} | & | & & | \\ \mathbf{x}_1 & \mathbf{x}_2 & \cdots & \mathbf{x}_p \\ | & | & & | \end{pmatrix}_{n \times p}`$
+
+```math
+(AB)^T = (A\mathbf{x}_1 \quad A\mathbf{x}_2 \quad \cdots \quad A\mathbf{x}_p)^T = \begin{pmatrix} \mathbf{x}_1^T A^T \\ \mathbf{x}_2^T A^T \\ \vdots \\ \mathbf{x}_p^T A^T \end{pmatrix} = \begin{pmatrix} \mathbf{x}_1^T \\ \mathbf{x}_2^T \\ \vdots \\ \mathbf{x}_p^T \end{pmatrix} A^T = B^T A^T
+```
+
+**Example:**
+
+```math
+AB = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 5 & 0 \\ 4 & 1 \end{pmatrix} = \begin{pmatrix} 5 & 0 \\ 9 & 1 \end{pmatrix}
+```
+
+```math
+B^T A^T = \begin{pmatrix} 5 & 4 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 5 & 9 \\ 0 & 1 \end{pmatrix} = (AB)^T
+```
+
+Also: $`(ABC)^T = (AB \cdot C)^T = C^T(AB)^T = C^T B^T A^T`$. The reverse order rule still holds true.
+
+**Proof of $`(A^{-1})^T = (A^T)^{-1}`$:**
+
+Consider $`A^{-1}A = I`$:
+
+```math
+\Rightarrow (A^{-1}A)^T = I^T = I
+```
+```math
+\Leftrightarrow A^T(A^{-1})^T = I
+```
+
+$`\therefore (A^{-1})^T`$ is the inverse of $`A^T`$:
+
+```math
+(A^{-1})^T = (A^T)^{-1}
+```
+
+This implies that $`A^T`$ is invertible exactly when $`A`$ is invertible.
+
+**Example:**
+
+```math
+A = \begin{pmatrix} 1 & 0 \\ 6 & 1 \end{pmatrix}, \quad A^{-1} = \begin{pmatrix} 1 & 0 \\ -6 & 1 \end{pmatrix} \implies (A^{-1})^T = \begin{pmatrix} 1 & -6 \\ 0 & 1 \end{pmatrix}
+```
+
+```math
+A^T = \begin{pmatrix} 1 & 6 \\ 0 & 1 \end{pmatrix} \implies (A^T)^{-1} = \begin{pmatrix} 1 & -6 \\ 0 & 1 \end{pmatrix}
+```
+
+They agree: $`(A^{-1})^T = (A^T)^{-1}`$.
+
+---
+
+### 5.7 Inner Products and the Transpose
+
+**The meaning of inner products.**
+
+The dot product of $`\mathbf{x}`$ and $`\mathbf{y}`$ (inner product) is the sum of numbers $`x_i y_i`$:
+
+```math
+\mathbf{x} \cdot \mathbf{y} = \sum x_i y_i
+```
+
+Let $`\mathbf{x}, \mathbf{y} \in \mathbb{R}^n`$:
+
+```math
+\mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^n x_i y_i = \mathbf{x}^T \mathbf{y} \quad (1 \times n)(n \times 1) = (1 \times 1)
+```
+
+```math
+\mathbf{x}\mathbf{y}^T = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}(y_1, y_2, \ldots, y_n) = \mathbf{x} \otimes \mathbf{y} \quad (n \times 1)(1 \times n) = (n \times n)
+```
+
+This is the **outer product** (rank one product, rank one matrix).
+
+**Examples of dot products:**
+
+```math
+\text{work} = \text{force} \cdot \text{distance} = \mathbf{f}^T \mathbf{d} \quad [J] = [N] \cdot [m]
+```
+
+```math
+\text{income} = \text{quantities} \cdot \text{prices} = \mathbf{q}^T \mathbf{p}
+```
+
+**A better definition of $`A^T`$:**
+
+We define $`A^T`$ by flipping the matrix $`A`$ across its main diagonal, but a better definition of $`A^T`$ is that $`A^T`$ is the matrix that makes the following inner products equal:
+
+```math
+(A\mathbf{x}) \cdot \mathbf{y} = \mathbf{x} \cdot (A^T\mathbf{y})
+```
+
+i.e.,
+
+```math
+(A\mathbf{x})^T\mathbf{y} = \mathbf{x}^T A^T \mathbf{y}
+```
+
+**Example 1:**
+
+```math
+A = \begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}, \quad \mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix}, \quad \mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \end{pmatrix}
+```
+
+```math
+A\mathbf{x} = \begin{pmatrix} x_2 - x_1 \\ x_3 - x_2 \end{pmatrix}
+```
+
+```math
+(A\mathbf{x})^T\mathbf{y} = (x_2 - x_1)y_1 + (x_3 - x_2)y_2
+```
+
+```math
+A^T\mathbf{y} = \begin{pmatrix} -1 & 0 \\ 1 & -1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = \begin{pmatrix} -y_1 \\ y_1 - y_2 \\ y_2 \end{pmatrix}
+```
+
+```math
+\mathbf{x}^T(A^T\mathbf{y}) = (x_1, x_2, x_3)\begin{pmatrix} -y_1 \\ y_1 - y_2 \\ y_2 \end{pmatrix} = -x_1y_1 + x_2(y_1 - y_2) + x_3y_2
+```
+
+Both are equal. $`\checkmark`$
+
+**Example 2: Inner product of functions.**
+
+```math
+\mathbf{x}^T\mathbf{y} = x_1 y_1 + x_2 y_2 + \cdots + x_n y_n
+```
+
+In the continuous world:
+
+```math
+(x, y) := \int_{-\infty}^{\infty} x(t) \, y(t) \, dt
+```
+
+Similarly, $`(A\mathbf{x})^T\mathbf{y} = \mathbf{x}^T(A^T\mathbf{y})`$:
+
+```math
+(Ax, y) = (x, A^T y)
+```
+
+Let $`A = \frac{d}{dt}`$, $`A^T = -\frac{d}{dt} = -A`$.
+
+```math
+\left(\frac{dx}{dt}, y\right) = \left(x, -\frac{dy}{dt}\right)
+```
+
+```math
+\int_{-\infty}^{\infty} \frac{dx}{dt} y \, dt = \int_{-\infty}^{\infty} x \left(-\frac{dy}{dt}\right) dt
+```
+
+**Proof via integration by parts (IBP):**
+
+```math
+(f(t)g(t))' = f'(t)g(t) + f(t)g'(t)
+```
+
+```math
+\int f'g \, dt = \int (fg)' \, dt - \int fg' \, dt = (fg)\Big|_{-\infty}^{\infty} - \int fg' \, dt
+```
+
+Assuming $`f(\infty) = f(-\infty) = 0`$:
+
+```math
+\boxed{\int_{-\infty}^{\infty} f'g \, dt = -\int_{-\infty}^{\infty} fg' \, dt}
+```
+
+The derivative is **anti-symmetric**: $`A^T = -A`$.
+
+Symmetric matrices have $`A^T = A`$.
+
+---
+
+### 5.8 Symmetric Matrices
+
+A **symmetric matrix** has $`S^T = S`$:
+
+```math
+\implies (S^T)_{ij} = S_{ij} = S_{ji}
+```
+
+**Examples:**
+
+```math
+S = \begin{pmatrix} 1 & 2 \\ 2 & 5 \end{pmatrix} = S^T, \quad D = \begin{pmatrix} 1 & 0 \\ 0 & 10 \end{pmatrix} = D^T
+```
+
+**The inverse of a symmetric matrix is a symmetric matrix:**
+
+```math
+(S^{-1})^T = (S^T)^{-1} = S^{-1}
+```
+
+$`\Rightarrow`$ When $`S`$ is invertible, $`S^{-1}`$ is symmetric.
+
+**Example:**
+
+```math
+S = \begin{pmatrix} 1 & 2 \\ 2 & 5 \end{pmatrix}, \quad S^{-1} = \begin{pmatrix} 5 & -2 \\ -2 & 1 \end{pmatrix} = (S^{-1})^T
+```
+
+---
+
+### 5.9 Symmetric Products and LDL^T
+
+**Symmetric Products $`A^T A`$, $`AA^T`$, $`LDL^T`$:**
+
+For $`A \in \mathbb{R}^{m \times n}`$:
+
+- $`A^T A \in \mathbb{R}^{n \times n}`$: $`(A^T A)^T = A^T A \implies`$ **symmetric**
+- $`AA^T \in \mathbb{R}^{m \times m}`$: $`(AA^T)^T = AA^T \implies`$ **symmetric**
+
+**Example 3:**
+
+```math
+A = \begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}
+```
+
+```math
+AA^T = \begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}\begin{pmatrix} -1 & 0 \\ 1 & -1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 2 & -1 \\ -1 & 2 \end{pmatrix}
+```
+
+```math
+A^T A = \begin{pmatrix} -1 & 0 \\ 1 & -1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix} = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}
+```
+
+**Symmetric matrices in elimination:** $`S^T = S`$ makes elimination **twice as fast**.
+
+```math
+S = \begin{pmatrix} 1 & 2 \\ 2 & 7 \end{pmatrix} \xrightarrow{R_2 - 2R_1} \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix} = U
+```
+
+```math
+L = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}
+```
+
+```math
+S = LU = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}
+```
+
+We do not see the symmetry of $`S`$ in $`LU`$ decomposition. For symmetric matrix $`S`$, we can further decompose $`U`$ into $`D`$ and $`L^T`$:
+
+```math
+U = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} d_1 & \\ & d_2 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & \\ & 3 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}
+```
+
+```math
+S = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & \\ & 3 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} = LDL^T
+```
+
+**Example 4: Saddle-point matrix.**
+
+For a rectangular $`A \in \mathbb{R}^{m \times n}`$, the **saddle-point matrix** $`S`$ is symmetric and important:
+
+```math
+S = \begin{pmatrix} I_{m \times m} & A_{m \times n} \\ A^T_{n \times m} & 0_{n \times n} \end{pmatrix} = S^T \quad (m+n) \times (m+n)
+```
+
+Block elimination: $`R_2 - A^T R_1`$:
+
+```math
+ES = \begin{pmatrix} I & A \\ 0 & -A^T A \end{pmatrix} = U
+```
+
+**Block factorization:**
+
+```math
+S = \begin{pmatrix} I & 0 \\ A^T & I \end{pmatrix}\begin{pmatrix} I & 0 \\ 0 & -A^T A \end{pmatrix}\begin{pmatrix} I & A \\ 0 & I \end{pmatrix} = LDL^T
+```
+
+$`S`$ is invertible $`\iff`$ $`A^T A`$ is invertible $`\iff`$ $`\text{rank}(A^T A) = n`$ $`\iff`$ $`A\mathbf{x} \neq \mathbf{0}`$ whenever $`\mathbf{x} \neq \mathbf{0}`$ $`\iff`$ columns of $`A`$ are linearly independent.
+
+---
+
+<br>
+
+## 6. Derivatives and Finite Difference Matrices (2.5)
+
+### 6.1 Taylor Series and Approximations
+
+The matrices imitate **derivatives**. Derivatives tell us what is happening at one point $`x`$ of space or at one moment $`t`$ in time.
+
+**Example:** $`y = x^2 + 2`$
+
+```math
+\frac{dy}{dx} = 2x \xrightarrow{x=1} 2 > 0
+```
+
+```math
+\frac{d^2y}{dx^2} = 2 > 0
+```
+
+The graph of $`y`$ bends upward (slope is increasing).
+
+**Approximating** $`\Delta y = y(x+h) - y(x)`$:
+
+1. The difference is approximately: $`\Delta y \approx h \cdot \frac{dy}{dx}\Big|_{x=x_1}`$
+
+2. For better approximation: $`\Delta y \approx h \cdot \frac{dy}{dx}\Big|_{x=x_1} + \frac{h^2}{2}\frac{d^2y}{dx^2}\Big|_{x=x_1}`$ (tangent line + parabola)
+
+3. The exact $`\Delta y`$ is the integral: $`\Delta y = y(x+h) - y(x) = \int_x^{x+h} \frac{dy}{dx} \, dx`$
+
+The accuracy of $`\Delta y`$ increases by adding the derivative terms.
+
+**Taylor Series:**
+
+```math
+y(x+h) = y(x) + h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2} + \cdots + \frac{h^n}{n!}\frac{d^{(n)}y}{dx^n} + \cdots
+```
+
+**Example:** $`e^x`$ (entire analytic function):
+
+```math
+e^{x+h} = e^x + h \cdot e^x + \frac{h^2}{2} \cdot e^x + \cdots + \frac{h^n}{n!} e^x + \cdots
+```
+
+```math
+= e^x\left(1 + h + \frac{h^2}{2} + \cdots + \frac{h^n}{n!} + \cdots\right)
+```
+
+```math
+\therefore e^h = 1 + h + \frac{h^2}{2} + \cdots + \frac{h^n}{n!} + \cdots
+```
+
+---
+
+### 6.2 Derivatives from Differences
+
+**Turning the Formulas Around: Derivatives from Differences**
+
+Start with a tangent parabola:
+
+```math
+y(x+h) \approx y(x) + h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2}
+```
+
+**Q:** If we know $`y(x)`$ and $`y(x+h)`$, then how do we estimate $`\frac{dy}{dx}`$?
+
+**Q:** If we know $`y(x-h)`$, then can we have an estimation of $`\frac{dy}{dx}`$, $`\frac{d^2y}{dx^2}`$?
+
+Using **Finite difference method**, we can approximate the derivatives.
+
+**Forward Difference:**
+
+```math
+y(x+h) \approx y(x) + h\frac{dy}{dx}
+```
+
+```math
+\implies \frac{dy}{dx} \approx \frac{y(x+h) - y(x)}{h} \quad \text{(Forward Difference)}
+```
+
+This is the **first order** approximation:
+
+```math
+y(x+h) = y(x) + h\frac{dy}{dx} + O(h^2)
+```
+
+```math
+\implies \frac{dy}{dx} = \frac{y(x+h) - y(x)}{h} + O(h) \quad \text{(truncation error)}
+```
+
+**Backward Difference:**
+
+```math
+y(x-h) \approx y(x) - h\frac{dy}{dx}
+```
+
+```math
+\implies \frac{dy}{dx} \approx \frac{y(x) - y(x-h)}{h}
+```
+
+**Q:** Can we increase the accuracy of the approximation to $`\frac{dy}{dx}`$?
+
+**Centered Difference (2nd order accuracy):**
+
+```math
+y(x+h) = y(x) + h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2} + O(h^3)
+```
+
+```math
+y(x-h) = y(x) - h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2} + O(h^3)
+```
+
+Subtracting:
+
+```math
+y(x+h) - y(x-h) = 2h\frac{dy}{dx} + O(h^3)
+```
+
+```math
+\implies \frac{dy}{dx} = \frac{y(x+h) - y(x-h)}{2h} + O(h^2) \approx \frac{y(x+h) - y(x-h)}{2h}
+```
+
+This centered difference formula has the **2nd order accuracy**.
+
+**Second Difference (approximation to $`\frac{d^2y}{dx^2}`$):**
+
+Adding the two Taylor expansions:
+
+```math
+y(x+h) + y(x-h) = 2y(x) + h^2\frac{d^2y}{dx^2} + O(h^4)
+```
+
+```math
+\implies \frac{d^2y}{dx^2} = \frac{y(x+h) - 2y(x) + y(x-h)}{h^2} + O(h^2)
+```
+
+```math
+\approx \frac{y(x+h) - 2y(x) + y(x-h)}{h^2} \quad \text{(Second difference)}
+```
+
+```math
+\frac{d^2y}{dx^2} \approx \frac{1}{h^2}(1 \quad -2 \quad 1)\begin{pmatrix} y(x-h) \\ y(x) \\ y(x+h) \end{pmatrix}
+```
+
+---
+
+### 6.3 Second Difference Matrices K, T, B
+
+**A 1D domain:**
+
+```math
+x_0, x_1, x_2, \ldots, x_{N-1}, x_N, x_{N+1}
+```
+
+We decompose the whole domain into $`N+1`$ non-overlapping elements with uniform spacing $`h`$.
+
+Here $`x_0 = 0`$, $`x_{N+1} = 1`$ are boundary points.
+
+```math
+h = \frac{1}{N+1} \implies x_i = ih = \frac{i}{N+1}
+```
+
+```text
+x_0 = 0     x_1       x_2                x_N   x_{N+1} = 1
+   ●─────────○─────────○─── ... ──────────○─────────●
+   |<── h ──>|<── h ──>|                  |<── h ──>|
+
+● boundary points (x_0, x_{N+1})
+○ interior points (x_1, ..., x_N)
+```
+
+*Figure 2. Uniform grid on the interval [0, 1] with spacing h*
+
+**Discretize** the equation $`-\frac{d^2u}{dx^2} = f(x)`$ with $`u(0) = u(1) = 0`$ (boundary conditions).
+
+From BC: $`u_0 = u_{N+1} = 0`$.
+
+**Q:** What are $`u_1, u_2, \ldots, u_N`$?
+
+```math
+\left.\frac{d^2u}{dx^2}\right|_{x=x_1} \approx \frac{u_0 - 2u_1 + u_2}{h^2} = -f(x_1)
+```
+
+```math
+\left.\frac{d^2u}{dx^2}\right|_{x=x_2} \approx \frac{u_1 - 2u_2 + u_3}{h^2} = -f(x_2)
+```
+
+```math
+\vdots
+```
+
+```math
+\left.\frac{d^2u}{dx^2}\right|_{x=x_N} \approx \frac{u_{N-1} - 2u_N + u_{N+1}}{h^2} = -f(x_N)
+```
+
+In matrix form:
+
+```math
+\frac{1}{h^2}\begin{pmatrix} 2 & -1 & 0 & \cdots & 0 \\ -1 & 2 & -1 & \cdots & 0 \\ 0 & -1 & 2 & \cdots & 0 \\ \vdots & & \ddots & & \vdots \\ 0 & 0 & \cdots & -1 & 2 & -1 \\ 0 & 0 & \cdots & 0 & -1 & 2 \end{pmatrix}\begin{pmatrix} u_1 \\ u_2 \\ u_3 \\ \vdots \\ u_{N-1} \\ u_N \end{pmatrix} = \begin{pmatrix} f_1 \\ f_2 \\ f_3 \\ \vdots \\ f_{N-1} \\ f_N \end{pmatrix}
+```
+
+where $`f_i := f(x_i)`$.
+
+```math
+\boxed{\frac{1}{h^2}K\mathbf{u} = \mathbf{f}}
+```
+
+The matrix $`K`$ gives a natural approximation to $`-\frac{d^2u}{dx^2}`$ with **fixed-fixed BC**: $`u_0 = 0`$ and $`u_{N+1} = 0`$.
+
+---
+
+### 6.4 Properties of K
+
+Let $`N = 4`$:
+
+```math
+K_4 = \begin{pmatrix} 2 & -1 & 0 & 0 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ 0 & 0 & -1 & 2 \end{pmatrix}
+```
+
+**Properties:**
+
+**1. $`K`$ is symmetric.** $`K^T = K`$.
+
+**2. $`K`$ is banded.** All the nonzeros in $`K`$ lie in a band around the main diagonal. A matrix with a narrow band is **sparse** (mostly zeros). It is a **tridiagonal matrix**.
+
+Example: $`N = 100`$:
+- Number of 2's: 100
+- Number of $`-1`$'s: $`99 + 99 = 198`$
+- Number of nonzeros $`\approx 300`$. Out of $`10000`$ entries: $`\frac{300}{10000} = 3\%`$.
+
+**3. $`K`$ has constant diagonals,** which is related to Fourier transforms, filters, convolution matrices, and Toeplitz matrices. $`K`$ is **shift-invariant** because $`(-1, 2, -1)`$ pattern appears in each row.
+
+**4. $`K`$ is invertible.** We can check it by elimination. If the resulting upper triangular matrix $`U`$ has no zero pivot, then $`K`$ is invertible.
+
+**5. The symmetric matrices $`K_n`$ are positive definite:**
+
+```math
+\mathbf{x}^T K \mathbf{x} > 0 \quad \forall \; \mathbf{x} \neq \mathbf{0}
+```
+
+**Example:** $`K = \begin{pmatrix} 2 & -1 \\ -1 & 2 \end{pmatrix}`$
+
+```math
+K\mathbf{x} = \begin{pmatrix} 2x - y \\ -x + 2y \end{pmatrix}
+```
+
+```math
+\mathbf{x}^T(K\mathbf{x}) = 2x^2 - 2xy + 2y^2 = x^2 + (x-y)^2 + y^2 > 0
+```
+
+When $`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$, we say $`K`$ is **positive semi-definite**.
+
+**Pivots:**
+- An invertible matrix has $`n`$ nonzero pivots (with row exchanges allowed).
+- A positive definite symmetric matrix has $`n`$ **positive** pivots.
+- A positive semi-definite symmetric matrix has $`n`$ **nonnegative** pivots when elimination needs no row exchanges.
+
+---
+
+### 6.5 Free-Fixed Matrices T
+
+```math
+-\frac{d^2u}{dx^2} = f(x), \quad \text{with } \frac{du}{dx} = 0 \text{ at } x = 0, \quad u(1) = 0
+```
+
+The Neumann BC at $`x = 0`$: $`\frac{u_1 - u_0}{h} = 0 \implies \frac{1}{h^2}(u_0 - u_1) = 0`$. Here $`u_0`$ is **unknown**.
+
+This gives the matrix $`T`$:
+
+```math
+\frac{1}{h^2}\begin{pmatrix} 1 & -1 & 0 & 0 & \cdots & 0 \\ -1 & 2 & -1 & 0 & \cdots & 0 \\ 0 & -1 & 2 & -1 & \cdots & 0 \\ \vdots & & & \ddots & & \vdots \\ 0 & 0 & \cdots & -1 & 2 & -1 \\ 0 & 0 & \cdots & 0 & -1 & 2 \end{pmatrix}\begin{pmatrix} u_0 \\ u_1 \\ u_2 \\ \vdots \\ u_{N-1} \\ u_N \end{pmatrix} = \begin{pmatrix} 0 \\ f_1 \\ f_2 \\ \vdots \\ f_{N-1} \\ f_N \end{pmatrix}
+```
+
+For $`N = 4`$:
+
+```math
+T_4 = \begin{pmatrix} 1 & -1 & 0 & 0 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ 0 & 0 & -1 & 2 \end{pmatrix}
+```
+
+**Elimination of $`T_4`$:**
+
+```math
+\xrightarrow{R_2 + R_1} \begin{pmatrix} 1 & -1 & 0 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ 0 & 0 & -1 & 2 \end{pmatrix} \xrightarrow{R_3' + R_2'} \begin{pmatrix} 1 & -1 & 0 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 1 & -1 \\ 0 & 0 & -1 & 2 \end{pmatrix} \xrightarrow{R_4'' + R_3''} \begin{pmatrix} 1 & -1 & 0 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 1 & -1 \\ 0 & 0 & 0 & 1 \end{pmatrix} = U = L^T
+```
+
+```math
+\therefore T_4 = LL^T
+```
+
+```math
+L = \begin{pmatrix} 1 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 \\ 0 & -1 & 1 & 0 \\ 0 & 0 & -1 & 1 \end{pmatrix}
+```
+
+**What is $`L^{-1}`$?** Use the Gauss-Jordan method $`(L|I) \Rightarrow (I|L^{-1})`$.
+
+```math
+\begin{pmatrix} 1 & 0 & 0 & 0 & | & 1 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 & | & 0 & 1 & 0 & 0 \\ 0 & -1 & 1 & 0 & | & 0 & 0 & 1 & 0 \\ 0 & 0 & -1 & 1 & | & 0 & 0 & 0 & 1 \end{pmatrix} \implies \begin{pmatrix} 1 & 0 & 0 & 0 & | & 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & | & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 & | & 1 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & | & 1 & 1 & 1 & 1 \end{pmatrix}
+```
+
+```math
+L^{-1} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0 \\ 1 & 1 & 1 & 1 \end{pmatrix}
+```
+
+```math
+T_4^{-1} = (LL^T)^{-1} = L^{-T}L^{-1} = \begin{pmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0 \\ 1 & 1 & 1 & 1 \end{pmatrix} = \begin{pmatrix} 4 & 3 & 2 & 1 \\ 3 & 3 & 2 & 1 \\ 2 & 2 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{pmatrix}
+```
+
+---
+
+### 6.6 Free-Free Matrices B
+
+**Free-Free matrices $`B`$ are singular.**
+
+- Not invertible.
+- There exists a nonzero $`\mathbf{x}`$ with $`B\mathbf{x} = \mathbf{0}`$.
+
+For the equation $`-\frac{d^2u}{dx^2} = f(x)`$ with:
+
+```math
+\frac{du}{dx} = 0 \text{ at } x = 0, \quad \frac{du}{dx} = 0 \text{ at } x = 1
+```
+
+```math
+\frac{u_1 - u_0}{h} = 0 \implies \frac{1}{h^2}(u_0 - u_1) = 0 \quad (u_0 \text{ is unknown})
+```
+
+```math
+\frac{u_{N+1} - u_N}{h} = 0 \implies \frac{1}{h^2}(-u_N + u_{N+1}) = 0 \quad (u_{N+1} \text{ is unknown})
+```
+
+```math
+\frac{1}{h^2}\begin{pmatrix} 1 & -1 & 0 & 0 & \cdots & 0 & 0 \\ -1 & 2 & -1 & 0 & \cdots & 0 & 0 \\ 0 & -1 & 2 & -1 & \cdots & 0 & 0 \\ \vdots & & & \ddots & & & \vdots \\ 0 & 0 & \cdots & -1 & 2 & -1 & 0 \\ 0 & 0 & \cdots & 0 & -1 & 2 & -1 \\ 0 & 0 & \cdots & 0 & 0 & -1 & 1 \end{pmatrix}\begin{pmatrix} u_0 \\ u_1 \\ u_2 \\ \vdots \\ u_{N-1} \\ u_N \\ u_{N+1} \end{pmatrix} = \begin{pmatrix} 0 \\ f_1 \\ f_2 \\ \vdots \\ f_{N-1} \\ f_N \\ 0 \end{pmatrix}
+```
+
+**The case $`B_3`$:**
+
+```math
+B_3 = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}
+```
+
+```math
+B_3 \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+```
+
+$`\mathbf{x} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ is in the **null space** of $`B_3`$.
+
+$`\mathbf{x} = c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ vectors are in the null space of $`B_3`$.
+
+$`\Rightarrow`$ $`B_3`$ **cannot be invertible.**
+
+The three second difference matrices compare as follows by boundary condition.
+
+| Matrix | Boundary conditions | First row | Last row | Properties |
+|:-----|:-----|:-----|:-----|:-----|
+| $`K`$ (fixed-fixed) | $`u(0) = 0`$, $`u(1) = 0`$ | $`(2, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 2)`$ | Symmetric, invertible, positive definite |
+| $`T`$ (free-fixed) | $`u'(0) = 0`$, $`u(1) = 0`$ | $`(1, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 2)`$ | Symmetric, invertible, $`T = LL^T`$ |
+| $`B`$ (free-free) | $`u'(0) = 0`$, $`u'(1) = 0`$ | $`(1, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 1)`$ | Symmetric, singular, constant vectors in the null space |
+
+*Table 2. Second difference matrices K, T, B by boundary condition*
+
+---
+
+<br>
+
+## Summary
+
+| Concept | Key Summary |
+|:-----|:-----|
+| $`A\mathbf{x} = \mathbf{b}`$ | It is a system of $`n`$ linear equations with $`n`$ unknowns written in matrix form. |
+| Elimination | It subtracts $`l_{ij}`$ times row $`j`$ from row $`i`$ to produce zeros below the pivots. |
+| Back substitution | It solves $`U\mathbf{x} = \mathbf{c}`$ from the bottom row upward. |
+| Three cases | A system has a unique solution ($`\text{rank} = n`$), no solution, or infinitely many solutions. |
+| Augmented matrix | $`(A \mid \mathbf{b})`$ tracks both sides during elimination. |
+| Homogeneous system | $`A\mathbf{x} = \mathbf{0}`$ has nontrivial solutions when $`\text{rank}(A) < n`$. |
+| Pivots | They are the diagonal entries of $`U`$ and must all be nonzero for invertibility. |
+| Row exchange | Rows are swapped when a zero appears in a pivot position. |
+| Elimination matrix $`E_{ij}`$ | It is the identity matrix with $`-l_{ij}`$ in position $`(i,j)`$. |
+| $`EA = U`$ | The product of all elimination matrices transforms $`A`$ into the upper triangular $`U`$. |
+| $`A = LU`$ | $`L = E^{-1}`$ is lower triangular with the multipliers $`l_{ij}`$ in their correct positions. |
+| Inverse $`A^{-1}`$ | It exists iff $`A`$ has $`n`$ independent columns ($`\text{rank}(A) = n`$). |
+| Uniqueness of inverse | The left inverse equals the right inverse: $`BA = I`$ and $`AC = I`$ imply $`B = C`$. |
+| $`(AB)^{-1} = B^{-1}A^{-1}`$ | The inverse of a product is the product of the inverses in reverse order. |
+| $`2 \times 2`$ inverse | $`A^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}`$, which exists only if $`\det(A) \neq 0`$. |
+| Gauss-Jordan | $`(A \mid I) \Rightarrow (I \mid A^{-1})`$ finds the inverse explicitly. |
+| Cost of elimination | $`A \to U`$ needs about $`\frac{1}{3}n^3`$ multiplications, and $`\mathbf{b} \to \mathbf{c} \to \mathbf{x}`$ needs about $`n^2`$. |
+| Second proof of $`A = LU`$ | Columns times rows give $`A = \sum \mathbf{l}_k \mathbf{u}_k`$. |
+| $`A = LU`$ without row exchange | All upper-left $`k \times k`$ submatrices must be invertible. |
+| Permutation matrix $`P`$ | It has the rows of $`I`$ in a different order, $`P^{-1} = P^T`$, and $`n!`$ of them are possible. |
+| $`PA = LU`$ | It is the general factorization with the row exchanges recorded in $`P`$. |
+| Partial pivoting | It exchanges rows so that the entry with the largest absolute value becomes the pivot, which reduces roundoff errors. |
+| $`PAQ`$ | It applies a row permutation $`P`$ and a column permutation $`Q`$, with $`C(AQ) = C(A)`$ and $`\text{rank}(PAQ) = \text{rank}(A)`$. |
+| Transpose $`A^T`$ | $`(A^T)_{ij} = A_{ji}`$, so the columns of $`A^T`$ are the rows of $`A`$. |
+| Transpose rules | $`(A+B)^T = A^T + B^T`$, $`(AB)^T = B^T A^T`$, and $`(A^{-1})^T = (A^T)^{-1}`$ hold. |
+| Inner product | $`\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^T\mathbf{y}`$, and $`(A\mathbf{x}) \cdot \mathbf{y} = \mathbf{x} \cdot (A^T\mathbf{y})`$ holds. |
+| Outer product | For nonzero vectors, $`\mathbf{x}\mathbf{y}^T`$ is a rank-one $`n \times n`$ matrix. |
+| Symmetric matrix $`S`$ | $`S^T = S`$, and $`S^{-1}`$ is also symmetric when it exists. |
+| $`A^T A`$ and $`AA^T`$ | They are always symmetric, and $`A^T A`$ is invertible iff the columns of $`A`$ are independent. |
+| $`S = LDL^T`$ | It is a symmetric factorization that reveals the symmetry that $`LU`$ does not show. |
+| IBP and transpose | $`A = d/dt`$ gives $`A^T = -d/dt`$ (anti-symmetric), and $`(Ax, y) = (x, A^T y)`$ holds. |
+| Forward difference | $`\frac{dy}{dx} \approx \frac{y(x+h)-y(x)}{h}`$ has 1st order accuracy $`O(h)`$. |
+| Centered difference | $`\frac{dy}{dx} \approx \frac{y(x+h)-y(x-h)}{2h}`$ has 2nd order accuracy $`O(h^2)`$. |
+| Second difference | $`\frac{d^2y}{dx^2} \approx \frac{y(x+h)-2y(x)+y(x-h)}{h^2}`$ has 2nd order accuracy. |
+| Matrix $`K`$ (fixed-fixed) | It is the tridiagonal $`(-1, 2, -1)`$ matrix, which is symmetric, banded, invertible, and positive definite. |
+| Matrix $`T`$ (free-fixed) | Its first row is $`(1, -1, 0, \ldots)`$, it factors as $`T = LL^T`$, and it is invertible. |
+| Matrix $`B`$ (free-free) | It is singular because $`B\mathbf{1} = \mathbf{0}`$, so the constant vector is in the null space. |
+| Positive definite | $`\mathbf{x}^T K\mathbf{x} > 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$, and all pivots are positive. |
+| Positive semi-definite | $`\mathbf{x}^T K\mathbf{x} \geq 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$, and all pivots are nonnegative when elimination needs no row exchanges. |
+
+---
+
+<br>
+
+## Self-Check Questions
+
+1. **Elimination and LU factorization:** Apply elimination to $`A = \begin{pmatrix} 1 & 2 & 1 \\ 3 & 8 & 1 \\ 0 & 4 & 1 \end{pmatrix}`$, $`\mathbf{b} = \begin{pmatrix} 2 \\ 12 \\ 2 \end{pmatrix}`$. Find the multipliers $`l_{21}, l_{31}, l_{32}`$ and the pivots, then find $`L`$ and $`U`$ in $`A = LU`$ and the solution $`\mathbf{x}`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   Applying $`R_2 - 3R_1`$ turns row 2 into $`(0, 2, -2 \mid 6)`$. Row 3 already has 0 in column 1, so $`l_{31} = 0`$. Then $`R_3 - 2R_2`$ turns row 3 into $`(0, 0, 5 \mid -10)`$. Hence $`l_{21} = 3`$, $`l_{31} = 0`$, $`l_{32} = 2`$, the pivots are 1, 2, 5, and $`L = \begin{pmatrix} 1 & 0 & 0 \\ 3 & 1 & 0 \\ 0 & 2 & 1 \end{pmatrix}`$, $`U = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 2 & -2 \\ 0 & 0 & 5 \end{pmatrix}`$. Back substitution gives $`x_3 = -2`$ from $`5x_3 = -10`$, $`x_2 = 1`$ from $`2x_2 - 2x_3 = 6`$, and $`x_1 = 2`$ from $`x_1 + 2x_2 + x_3 = 2`$. Therefore $`\mathbf{x} = (2, 1, -2)`$.
+
+   </details>
+
+2. **Three cases of solutions:** For the system $`x + 2y = 3`$, $`2x + 4y = c`$, find the values of $`c`$ that give no solution and those that give infinitely many solutions. In the second case, write all solutions as a particular solution plus homogeneous solutions, and explain whether any $`c`$ gives a unique solution.
+
+   <details>
+   <summary>Answer</summary>
+
+   Applying $`R_2 - 2R_1`$ turns row 2 into $`0 = c - 6`$. If $`c \neq 6`$, then $`\text{rank}(A) = 1`$ and $`\text{rank}(A|\mathbf{b}) = 2`$, so there is no solution. If $`c = 6`$, then $`\text{rank}(A) = \text{rank}(A|\mathbf{b}) = 1 < 2`$, so there are infinitely many solutions. With the particular solution $`(3, 0)`$ and the solution $`X = (-2, 1)`$ of $`AX = \mathbf{0}`$, all solutions are $`(3, 0) + \alpha(-2, 1)`$. The determinant of the coefficient matrix is $`1 \cdot 4 - 2 \cdot 2 = 0`$, so no value of $`c`$ gives a unique solution.
+
+   </details>
+
+3. **Elimination matrices and L:** $`E_{21}`$ subtracts 2 times row 1 from row 2, and $`E_{32}`$ subtracts 3 times row 2 from row 3. Find $`E = E_{32}E_{21}`$ and $`L = E^{-1}`$, and explain why their (3,1) entries differ.
+
+   <details>
+   <summary>Answer</summary>
+
+   Since $`E_{21} = \begin{pmatrix} 1 & 0 & 0 \\ -2 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}`$ and $`E_{32} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -3 & 1 \end{pmatrix}`$, we get $`E = E_{32}E_{21} = \begin{pmatrix} 1 & 0 & 0 \\ -2 & 1 & 0 \\ 6 & -3 & 1 \end{pmatrix}`$. Inverses multiply in reverse order, so $`L = E_{21}^{-1}E_{32}^{-1} = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 0 & 3 & 1 \end{pmatrix}`$. The (3,1) entry 6 of $`E`$ is a cross term that appears because the new row 3 is $`R_3 - 3(R_2 - 2R_1) = R_3 - 3R_2 + 6R_1`$. In $`L`$ no such cross term appears, and the multipliers 2 and 3 stay in their places.
+
+   </details>
+
+4. **PA = LU factorization:** For $`A = \begin{pmatrix} 0 & 1 & 2 \\ 1 & 1 & 1 \\ 2 & 3 & 6 \end{pmatrix}`$, explain why elimination cannot start directly, and find $`P`$, $`L`$, $`U`$ with $`PA = LU`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   The (1,1) entry is 0, so there is no first pivot. Multiplying first by $`P = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}`$, which exchanges rows 1 and 2, gives $`PA = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 2 & 3 & 6 \end{pmatrix}`$. $`R_3 - 2R_1`$ turns row 3 into $`(0, 1, 4)`$, and $`R_3 - R_2`$ turns it into $`(0, 0, 2)`$. Row 2 already has 0 in column 1, so $`l_{21} = 0`$. Hence $`L = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 2 & 1 & 1 \end{pmatrix}`$ and $`U = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 2 \end{pmatrix}`$. The pivots 1, 1, 2 are all nonzero, so $`A`$ is invertible.
+
+   </details>
+
+5. **Second difference matrices:** Find the pivots of $`K_3 = \begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{pmatrix}`$ by elimination, and use them to explain why $`K_3`$ is invertible and positive definite. Also explain why $`B_3`$ is not invertible.
+
+   <details>
+   <summary>Answer</summary>
+
+   Applying $`R_2 + \frac{1}{2}R_1`$ turns row 2 into $`(0, \frac{3}{2}, -1)`$, and applying $`R_3 + \frac{2}{3}R_2`$ turns row 3 into $`(0, 0, \frac{4}{3})`$. The pivots $`2, \frac{3}{2}, \frac{4}{3}`$ are all nonzero, so $`K_3`$ is invertible. Since the symmetric matrix $`K_3`$ has all positive pivots, $`K_3`$ is positive definite. In contrast, $`B_3`$ sends a nonzero vector to the zero vector, as in $`B_3(1, 1, 1)^T = \mathbf{0}`$, so it cannot have an inverse.
+
+   </details>

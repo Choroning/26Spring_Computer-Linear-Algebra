@@ -1,15 +1,16 @@
-# 제8장 강의 — 선형 변환
+# 8장 — 선형 변환
 
-> **최종 수정일:** 2026-06-19
->
-> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 8
+[레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **선수 지식**: [선형대수학] 벡터 공간, 행렬 연산, 고유값 (제1-7장).
+> **최종 수정일:** 2026-10-18
 >
-> **학습 목표**:
+> Introduction to Linear Algebra, Strang, Ch 8
+
+> **학습 목표:**
 > 1. 선형 변환을 정의하고 선형성을 검증할 수 있다
 > 2. 선형 변환의 행렬 표현을 구성할 수 있다
 > 3. 변환의 핵(kernel)과 치역(range)을 분석할 수 있다
+> 4. 기저 변환과 Jordan 형식을 이용해 변환의 좋은 기저를 찾을 수 있다
 
 ---
 
@@ -52,6 +53,7 @@
   - [3.10 함수 공간의 직교 기저](#310-함수-공간의-직교-기저)
   - [3.11 Gram-Schmidt를 이용한 Legendre 기저 구성](#311-gram-schmidt를-이용한-legendre-기저-구성)
 - [요약](#요약)
+- [점검 문제](#점검-문제)
 
 ---
 
@@ -79,9 +81,9 @@ T: \mathbf{u} \longrightarrow T(\mathbf{u})
 T(c\mathbf{u} + d\mathbf{w}) = c\,T(\mathbf{u}) + d\,T(\mathbf{w})
 ```
 
-**참고:** $`T(\mathbf{0}) = \mathbf{0}`$.
+선형 변환은 항상 $`T(\mathbf{0}) = \mathbf{0}`$을 만족한다.
 
-따라서 $`T(\mathbf{u}) = \mathbf{u} + \mathbf{u}_0`$은 선형이 **아니다** ($`T(\mathbf{0}) = \mathbf{u}_0 \neq \mathbf{0}`$이므로).
+따라서 $`\mathbf{u}_0 \neq \mathbf{0}`$이면 $`T(\mathbf{u}) = \mathbf{u} + \mathbf{u}_0`$은 선형이 **아니다** ($`T(\mathbf{0}) = \mathbf{u}_0 \neq \mathbf{0}`$이므로).
 
 입력 벡터 $`\mathbf{u}`$와 출력 $`T(\mathbf{u})`$는 $`\mathbb{R}^n`$ 또는 행렬 공간(matrix space) 또는 함수 공간(function space)에 속할 수 있다.
 
@@ -134,9 +136,9 @@ A\mathbf{y} = A(\mathbf{u} + \mathbf{w}) = A\mathbf{u} + A\mathbf{w}
 
 **(a)** $`T(\mathbf{u} + \mathbf{w}) = T(\mathbf{u}) + T(\mathbf{w})`$
 
-**(b)** $`T(c\mathbf{u}) = c\,T(\mathbf{u}) \quad \forall\, c \in \mathbb{C}`$
+**(b)** 모든 스칼라 $`c`$에 대해 $`T(c\mathbf{u}) = c\,T(\mathbf{u})`$ (실수 벡터 공간이면 $`c \in \mathbb{R}`$, 복소 벡터 공간이면 $`c \in \mathbb{C}`$)
 
-$`T`$가 **가산적**(additive)이고 **동차적**(homogeneous)이라고 말한다.
+이때 $`T`$는 **가산적**(additive)이고 **동차적**(homogeneous)이라고 한다.
 
 ```math
 T(\mathbf{0}) = T(0\mathbf{u}) = 0\,T(\mathbf{u}) = \mathbf{0}
@@ -158,7 +160,7 @@ T(c_1\mathbf{x}_1 + c_2\mathbf{x}_2 + \cdots + c_n\mathbf{x}_n) = c_1\,T(\mathbf
 
 ### 1.3 비선형 예제: 이동 변환과 아핀 사상
 
-**예제.** 벡터 $`\mathbf{u} \in V`$를 받아 $`\mathbf{u}_0 \in V`$를 더하는 $`T`$를 정의하자:
+**예제.** 벡터 $`\mathbf{u} \in V`$를 받아 고정된 벡터 $`\mathbf{u}_0 \in V`$($`\mathbf{u}_0 \neq \mathbf{0}`$)를 더하는 $`T`$를 다음과 같이 정의한다:
 
 ```math
 T: \mathbf{u} \longrightarrow \mathbf{u} + \mathbf{u}_0
@@ -185,18 +187,26 @@ T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})
 T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0
 ```
 
-이를 **"아핀"**(affine)이라고 부른다.
+이를 **아핀**(affine) 변환이라고 부른다.
 
 컴퓨터 그래픽스에서 아핀 사상(affine mapping)이 사용된다:
-- 도형 $`\mathbf{x}`$로 시작
-- 회전: $`\mathbf{y} = R\mathbf{x}`$ (선형)
-- 이동: $`\mathbf{z} = \mathbf{y} + \begin{pmatrix} 0 \\ u_0 \end{pmatrix}`$ (이동)
+- 도형 $`\mathbf{x}`$에서 시작한다.
+- 회전: $`\mathbf{y} = R\mathbf{x}`$. 이 단계는 선형이다.
+- 이동: $`\mathbf{z} = \mathbf{y} + \begin{pmatrix} 0 \\ u_0 \end{pmatrix}`$. 이 단계는 이동 변환이다.
+
+```mermaid
+flowchart LR
+    X["도형 x"] -->|"회전 R (선형)"| Y["y = Rx"]
+    Y -->|"(0, u₀) 더하기 (이동)"| Z["z = Rx + (0, u₀)"]
+```
+
+*그림 1. 컴퓨터 그래픽스의 아핀 사상: 회전 뒤 이동*
 
 ---
 
 ### 1.4 선형 및 비선형 변환의 예제들
 
-**예제 1 (선형 — 내적):**
+**예제 1 (선형): 내적**
 
 ```math
 \mathbf{a} = \begin{pmatrix} 1 \\ 3 \\ 4 \end{pmatrix}, \quad \mathbf{u} = \begin{pmatrix} u_1 \\ u_2 \\ u_3 \end{pmatrix}
@@ -210,11 +220,11 @@ T(\mathbf{u}) = \mathbf{a} \cdot \mathbf{u} = \mathbf{a}^T\mathbf{u} = (\mathbf{
 
 ---
 
-**예제 2 (비선형 — 길이/노름):**
+**예제 2 (비선형): 길이(노름)**
 
 $`T(\mathbf{u}) = \|\mathbf{u}\|`$는 선형이 **아니다**.
 
-**검사 (i) — 가산성:**
+**검사 (i) 가산성:**
 
 ```math
 T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})
@@ -224,7 +234,9 @@ T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})
 \|\mathbf{u} + \mathbf{w}\| \neq \|\mathbf{u}\| + \|\mathbf{w}\|
 ```
 
-**검사 (ii) — 동차성:**
+등호는 한 벡터가 다른 벡터의 음이 아닌 상수배일 때만 성립하므로 일반적으로 가산성은 성립하지 않는다. 예를 들어 $`\mathbf{w} = -\mathbf{u} \neq \mathbf{0}`$이면 좌변은 $`0`$이고 우변은 $`2\|\mathbf{u}\|`$이다.
+
+**검사 (ii) 동차성:**
 
 ```math
 T(c\mathbf{u}) \stackrel{?}{=} c\,T(\mathbf{u})
@@ -238,11 +250,11 @@ T(-\mathbf{u}) \stackrel{?}{=} -T(\mathbf{u})
 \|-\mathbf{u}\| = \|\mathbf{u}\| \neq -\|\mathbf{u}\|
 ```
 
-동차성에 실패한다 (노름은 항상 비음수).
+노름은 항상 음이 아니므로 동차성도 성립하지 않는다.
 
 ---
 
-**예제 3 (선형 — 회전):**
+**예제 3 (선형): 회전**
 
 $`T`$는 모든 벡터를 $`30°`$만큼 회전시키는 회전 행렬이다.
 
@@ -276,20 +288,22 @@ T(c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_n\mathbf{u}_n) = c_1\,T(\mathbf
 
 기저(basis)에 속하는 모든 벡터 $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$에 대해 $`T(\mathbf{u})`$를 안다고 하자.
 
-$`\mathbf{y} = c_1\mathbf{u}_1 + \cdots + c_n\mathbf{u}_n`$으로 놓으면,
+공간의 임의의 벡터를 $`\mathbf{y} = c_1\mathbf{u}_1 + \cdots + c_n\mathbf{u}_n`$으로 쓴다.
 
-공간의 모든 $`\mathbf{y}`$에 대해 $`T(\mathbf{y})`$를 알 수 있다.
+선형성에 의해 $`T(\mathbf{y}) = c_1T(\mathbf{u}_1) + \cdots + c_nT(\mathbf{u}_n)`$이므로, 공간의 모든 $`\mathbf{y}`$에 대해 $`T(\mathbf{y})`$를 알 수 있다.
 
-> 선형 변환은 기저에 대한 작용에 의해 완전히 결정된다.
+> **핵심:** 선형 변환은 기저에 대한 작용에 의해 완전히 결정된다.
 
 ---
 
 ### 1.6 기하학적 해석: 직선을 직선으로
 
 선형 변환은 다음을 보존한다:
-- **직선을 직선으로** (lines to lines)
-- **삼각형을 삼각형으로** (triangles to triangles)
-- **등간격 점들은 등간격 점들로** (equally spaced points go to equally spaced points)
+- **직선을 직선으로** 보낸다 (lines to lines).
+- **삼각형을 삼각형으로** 보낸다 (triangles to triangles).
+- **등간격 점들을 등간격 점들로** 보낸다 (equally spaced points go to equally spaced points).
+
+> **주의:** 가역이 아닌 선형 변환에서는 직선이 한 점으로, 삼각형이 선분이나 한 점으로 찌그러질 수 있다. 위 성질은 가역인 선형 변환에서 그대로 성립한다.
 
 ---
 
@@ -303,7 +317,7 @@ $`\mathbf{y} = c_1\mathbf{u}_1 + \cdots + c_n\mathbf{u}_n`$으로 놓으면,
 T(cu + dw) = \frac{d}{dt}(cu + dw) = c\frac{du}{dt} + d\frac{dw}{dt} = c\,T(u) + d\,T(w) \quad \text{선형}
 ```
 
-여기서 $`c, d \in \mathbb{R}`$.
+여기서 $`c, d \in \mathbb{R}`$이다.
 
 **$`T`$의 영공간 (nullspace):**
 
@@ -317,7 +331,7 @@ T(u) = \frac{d}{dt}u = 0
 dc \in \mathcal{N}(T), \quad d \in \mathbb{R}
 ```
 
-영공간은 함수 공간에서의 **직선** 이다.
+영공간은 함수 공간에서의 **직선**이다.
 
 **$`T`$의 열공간 (column space):**
 
@@ -327,7 +341,7 @@ $`u = a + bt + ct^2`$이면:
 T(u) = b + 2ct, \quad \text{일차 함수이다.}
 ```
 
-**차원:**
+**차원:** 두 차원의 합은 정의역인 2차 이하 다항식 공간의 차원과 같다.
 
 ```math
 \dim C(T) + \dim \mathcal{N}(T) = 2 + 1 = 3
@@ -335,7 +349,7 @@ T(u) = b + 2ct, \quad \text{일차 함수이다.}
 
 **미분 $`T = \dfrac{d}{dt}`$에 대한 행렬:**
 
-$`u = (1 \;\; t \;\; t^2) \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$로 보자.
+$`u = (1 \;\; t \;\; t^2) \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$로 나타낸다.
 
 $`\mathbf{u}_1 = 1`$, $`\mathbf{u}_2 = t`$, $`\mathbf{u}_3 = t^2`$로 놓으면:
 
@@ -403,7 +417,7 @@ AA^+ = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & 0
 
 ### 1.9 예제 6: z=1 평면으로의 사영 (비선형)
 
-벡터 $`\mathbf{u} \in \mathbb{R}^3`$를 수평면 $`z = 1`$로 사영(projection)하자:
+벡터 $`\mathbf{u} \in \mathbb{R}^3`$를 수평면 $`z = 1`$로 사영(projection)하는 변환을 생각한다:
 
 ```math
 T: \begin{pmatrix} x \\ y \\ z \end{pmatrix} \longrightarrow \begin{pmatrix} x \\ y \\ 1 \end{pmatrix}
@@ -425,7 +439,7 @@ $`A`$가 가역(invertible)이라고 하자:
 T(\mathbf{u} + \mathbf{w}) = A\mathbf{u} + A\mathbf{w} = T(\mathbf{u}) + T(\mathbf{w})
 ```
 
-역변환: $`T^{-1}(\mathbf{u}) = A^{-1}(\mathbf{u})`$
+역변환은 $`T^{-1}(\mathbf{u}) = A^{-1}(\mathbf{u})`$이다:
 
 ```math
 T^{-1}(T(\mathbf{u})) = A^{-1}(A\mathbf{u}) = \mathbf{u}
@@ -435,7 +449,7 @@ $`T(\mathbf{u}) = A\mathbf{u}`$, $`S(\mathbf{u}) = B\mathbf{u}`$이면, $`T \cir
 
 **질문:** $`V = \mathbb{R}^n`$에서 $`W = \mathbb{R}^m`$으로의 모든 선형 변환은 행렬에 의해 생성되는가? **그렇다.**
 
-$`A\mathbf{u}`$는 **열공간**(column space)이다.
+모든 $`A\mathbf{u}`$의 집합이 **열공간**(column space)이다.
 
 $`A`$의 **영공간**(null space)은 $`A\mathbf{u} = \mathbf{0}`$이 되는 모든 입력을 포함한다.
 
@@ -455,17 +469,17 @@ T\text{의 핵 (Kernel)} = T(\mathbf{u}) = \mathbf{0}\text{인 모든 입력} \q
 
 ### 2.1 핵심 아이디어 요약
 
-1. **선형성** 은 입력 기저 $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$에 대해 $`T(\mathbf{u}_1), \ldots, T(\mathbf{u}_n)`$을 알면 모든 $`T(\mathbf{u})`$를 알 수 있게 한다.
+1. **선형성**은 입력 기저 $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$에 대해 $`T(\mathbf{u}_1), \ldots, T(\mathbf{u}_n)`$을 알면 모든 $`T(\mathbf{u})`$를 알 수 있게 한다.
 
 2. $`T`$의 행렬에서 **열 $`j`$** 는 입력 기저 벡터 $`\mathbf{u}_j`$에 $`T`$를 적용하여 얻는다.
 
 3. $`T(\mathbf{u}_j) = a_{1j}\,\mathbf{w}_1 + \cdots + a_{mj}\,\mathbf{w}_m = \displaystyle\sum_{i=1}^{m} a_{ij}\,\mathbf{w}_i`$를 출력 기저 $`\mathbf{w}`$로 표현한다. 그 $`a_{ij}`$가 열 $`j`$에 들어간다.
 
-4. 입력과 출력 기저가 $`I_{n \times n}`$과 $`I_{m \times m}`$의 열이면, 행렬 $`T(\mathbf{x}) = A\mathbf{x}`$는 $`A`$이다.
+4. 입력과 출력 기저가 $`I_{n \times n}`$과 $`I_{m \times m}`$의 열이면, $`T(\mathbf{x}) = A\mathbf{x}`$의 행렬은 $`A`$ 자신이다.
 
 5. 기저가 $`\mathbf{v}`$와 $`\mathbf{w}`$로 바뀌면, 같은 $`T`$에 대한 행렬이 $`A`$에서 $`W^{-1}AV`$로 변한다.
 
-6. **최적 기저:** $`V = W`$ = 고유벡터(eigenvectors)와 $`V, W`$ = 특이벡터(singular vectors): $`A \to \Lambda`$ 그리고 $`\Sigma`$.
+6. **최적 기저:** $`V = W`$를 고유벡터(eigenvectors)로 택하면 $`A`$는 $`\Lambda`$가 되고(대각화 가능한 경우), $`V, W`$를 특이벡터(singular vectors)로 택하면 $`A`$는 $`\Sigma`$가 된다.
 
 ---
 
@@ -488,7 +502,7 @@ $`\mathbb{R}^n`$과 $`\mathbb{R}^m`$의 표준 기저 벡터는 $`I`$의 열이�
 $`V`$와 $`W`$에 대해 다른 기저를 선택할 수 있다.
 $`\Rightarrow`$ 같은 변환 $`T`$가 다른 행렬로 표현된다.
 
-**질문.** $`T`$에 대해 **최적의 행렬** 을 주는 기저를 어떻게 선택해야 하는가?
+**질문.** $`T`$에 대해 **최적의 행렬**을 주는 기저를 어떻게 선택해야 하는가?
 
 ---
 
@@ -510,7 +524,7 @@ $`T: \mathbb{R}^2 \to \mathbb{R}^3`$
 A = \begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 3 & 5 \\ 4 & 5 \end{pmatrix}
 ```
 
-출력이 **$`A`$의 열** 로 들어간다. 그러면 $`T(\mathbf{u}) = A\mathbf{u}`$.
+출력이 **$`A`$의 열**로 들어간다. 그러면 $`T(\mathbf{u}) = A\mathbf{u}`$이다.
 
 **검증:**
 
@@ -568,9 +582,9 @@ T(\mathbf{u}_n) = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)
 = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)\begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
 ```
 
-> **$`A`$의 $`j`$번째 열은 $`j`$번째 기저 벡터 $`\mathbf{u}_j`$에 $`T`$를 적용하여 얻으며, 이는 출력 기저 벡터의 선형 결합이다.**
+> **핵심:** $`A`$의 $`j`$번째 열은 $`j`$번째 기저 벡터 $`\mathbf{u}_j`$에 $`T`$를 적용한 결과 $`T(\mathbf{u}_j)`$를 출력 기저 벡터의 선형 결합으로 썼을 때의 계수이다.
 
-입력 기저 벡터 $`\mathbf{u}_1`$부터 $`\mathbf{u}_n`$에 대해 출력 $`T(\mathbf{u})`$를 안다고 하면:
+출력 기저가 표준 기저일 때, 입력 기저 벡터 $`\mathbf{u}_1`$부터 $`\mathbf{u}_n`$에 대한 출력 $`T(\mathbf{u})`$를 안다고 하면 다음과 같다:
 
 ```math
 T(\mathbf{u}_1),\; T(\mathbf{u}_2),\; \ldots,\; T(\mathbf{u}_n)
@@ -723,15 +737,15 @@ DD^+ = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmat
 D^+D = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & \frac{1}{2} & 0 \\ 0 & 0 & \frac{1}{3} \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}
 ```
 
-미분 $`T`$는 **핵**(kernel)을 갖는다 (상수 함수): $`T(1) = 0`$.
+미분 $`T`$의 **핵**(kernel)은 상수 함수로 이루어진다: $`T(1) = 0`$.
 
-그 행렬 $`D`$는 **영공간**(nullspace)을 갖는다.
+그 행렬 $`D`$의 **영공간**(nullspace)은 상수 함수 $`1`$의 계수 벡터 $`(1, 0, 0, 0)^T`$로 생성된다. 이 때문에 $`D^+D \neq I`$이다.
 
 ---
 
 ### 2.8 행렬곱 AB는 변환 TS에 대응
 
-$`TS`$를 생각하자:
+합성 $`TS`$와 행렬곱 $`AB`$를 다음과 같이 정의한다:
 
 ```math
 (TS)(\mathbf{u}) := T \circ S(\mathbf{u}) = T(S(\mathbf{u}))
@@ -755,15 +769,24 @@ U \xrightarrow{S} V \xrightarrow{T} W
 B: n \times p, \quad A: m \times n
 ```
 
-선형 변환 $`TS`$:
-- $`U`$의 임의의 벡터 $`\mathbf{u}`$로 시작
-- $`V`$의 $`S(\mathbf{u})`$로 이동
-- 그런 다음 $`W`$의 $`T(S(\mathbf{u}))`$로 이동
+선형 변환 $`TS`$는 다음과 같이 작용한다:
+- $`U`$의 임의의 벡터 $`\mathbf{u}`$에서 시작한다.
+- $`V`$의 $`S(\mathbf{u})`$로 이동한다.
+- 그런 다음 $`W`$의 $`T(S(\mathbf{u}))`$로 이동한다.
 
-행렬 $`AB`$:
-- $`\mathbb{R}^p`$의 임의의 $`\mathbf{x}`$로 시작
-- $`\mathbb{R}^n`$의 $`B\mathbf{x}`$로 이동
-- 그런 다음 $`\mathbb{R}^m`$의 $`AB\mathbf{x}`$로 이동
+행렬 $`AB`$는 다음과 같이 작용한다:
+- $`\mathbb{R}^p`$의 임의의 $`\mathbf{x}`$에서 시작한다.
+- $`\mathbb{R}^n`$의 $`B\mathbf{x}`$로 이동한다.
+- 그런 다음 $`\mathbb{R}^m`$의 $`AB\mathbf{x}`$로 이동한다.
+
+```mermaid
+flowchart LR
+    U["U (차원 p)"] -->|"S, 행렬 B (n×p)"| V["V (차원 n)"]
+    V -->|"T, 행렬 A (m×n)"| W["W (차원 m)"]
+    U -.->|"TS, 행렬 AB (m×p)"| W
+```
+
+*그림 2. 변환의 합성 TS와 행렬곱 AB의 대응*
 
 행렬 $`AB`$는 $`TS`$를 올바르게 표현한다:
 
@@ -784,7 +807,7 @@ $`T`$도 $`\theta`$만큼 회전시킨다.
 
 그러면 $`TS`$는 $`2\theta`$만큼 회전시킨다.
 
-이 변환 $`T^2`$는 $`2\theta`$를 통한 회전 행렬 $`A^2`$에 대응된다:
+이 변환 $`T^2`$는 $`2\theta`$만큼의 회전 행렬 $`A^2`$에 대응된다:
 
 ```math
 T = S, \quad A = B, \quad T^2 = 2\theta\text{만큼 회전}
@@ -876,13 +899,13 @@ B^{-1}AB \quad \text{는 } A \text{와 닮음(similar)이다}
 
 ### 3.3 최적 기저 1: 고유벡터 (대각화)
 
-$`B_{\text{in}} = B_{\text{out}}`$ = 고유벡터 행렬(eigenvector matrix) $`X`$.
+$`B_{\text{in}} = B_{\text{out}}`$ = 6장의 고유벡터 행렬(eigenvector matrix) $`X`$.
 
 ```math
 A = X\Lambda X^{-1} \quad \Longleftrightarrow \quad X^{-1}AX = \Lambda
 ```
 
-$`A`$는 $`n`$개의 독립 고유벡터를 갖는 정사각 행렬이다. $`A`$는 **대각화 가능**(diagonalizable)해야 한다.
+이 기저를 쓰려면 $`A`$는 $`n`$개의 독립 고유벡터를 갖는 정사각 행렬, 즉 **대각화 가능**(diagonalizable)한 행렬이어야 한다.
 
 $`\Lambda`$는 $`B_{\text{in}} = B_{\text{out}} = X`$ (고유벡터)일 때 얻어진다.
 
@@ -890,7 +913,7 @@ $`\Lambda`$는 $`B_{\text{in}} = B_{\text{out}} = X`$ (고유벡터)일 때 얻�
 
 ### 3.4 최적 기저 2: 특이벡터 (SVD)
 
-$`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$: $`A`$의 특이벡터(singular vectors).
+$`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$: 7장에서 다룬 $`A`$의 특이벡터(singular vectors).
 
 ```math
 A = U\Sigma V^T
@@ -900,7 +923,7 @@ A = U\Sigma V^T
 U^{-1}AV = \Sigma \quad \text{(특이값, singular values)}
 ```
 
-$`U, V`$는 $`A^TA`$와 $`AA^T`$의 **정규직교 고유벡터**(orthonormal eigenvectors)이다.
+$`V`$의 열은 $`A^TA`$의, $`U`$의 열은 $`AA^T`$의 **정규직교 고유벡터**(orthonormal eigenvectors)이다.
 
 ---
 
@@ -912,14 +935,14 @@ $`B_{\text{in}} = B_{\text{out}}`$ = $`A`$의 일반화 고유벡터(generalized
 B^{-1}AB = \text{Jordan 형식 } J
 ```
 
-$`A`$는 정사각 행렬이지만, "$`s`$개의 독립 고유벡터"만 가질 수 있다:
+$`A`$는 정사각 행렬이지만 독립 고유벡터를 $`s`$개만 가질 수 있다:
 
-- $`s = n`$이면: $`B = X`$ (고유벡터), $`J = \Lambda`$
-- $`s < n`$이면: "$`n - s`$"개의 종속 열이 있다 $`\to`$ "$`n - s`$"개의 추가 **일반화 고유벡터** 를 구성한다
+- $`s = n`$이면 $`B = X`$(고유벡터 행렬)이고 $`J = \Lambda`$이다.
+- $`s < n`$이면 고유벡터로 채운 행렬에 $`n - s`$개의 종속 열이 생기므로, 대신 $`n - s`$개의 **일반화 고유벡터**를 추가로 구성한다.
 
 Jordan 형식의 성질:
-- (i) $`J`$의 대각선을 따라 $`s`$개의 정사각 블록이 있다
-- (ii) 각 블록은 하나의 고유값 $`\lambda`$, 하나의 고유벡터, 그리고 대각선 위에 1을 갖는다
+- (i) $`J`$의 대각선을 따라 $`s`$개의 정사각 블록이 있다.
+- (ii) 각 블록은 하나의 고유값 $`\lambda`$와 하나의 고유벡터에 대응하며, 크기가 2 이상이면 대각선 바로 위에 1을 갖는다.
 
 ---
 
@@ -937,16 +960,16 @@ J = \Lambda = \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots & \\ 
 J = \begin{pmatrix} \boxed{2} & & & \\ & \boxed{2} & & \\ & & \boxed{3} & 1 \\ & & & \boxed{3} \end{pmatrix}
 ```
 
-이것은 **2** 개의 1x1 블록과 **1** 개의 2x2 블록을 갖는다.
+이것은 **2**개의 1x1 블록과 **1**개의 2x2 블록을 갖는다.
 
 $`B^{-1}AB = J`$는 **거의 대각**(nearly diagonal)이다.
 
-**Jordan 형식 — 일반적 진술:**
+**Jordan 형식의 일반적 진술:**
 
-모든 $`A`$에 대해, $`B^{-1}AB`$가 가능한 한 거의 대각이 되도록 $`B`$를 선택하고자 한다.
+모든 $`A`$에 대해, $`B^{-1}AB`$가 가능한 한 대각에 가깝도록 $`B`$를 선택하고자 한다.
 
-- $`A`$가 대각화 가능할 때 (즉, $`n`$개의 독립 고유벡터), $`B = X`$ (고유벡터): $`X^{-1}AX = \Lambda`$.
-- $`A`$가 대각화 불가능할 때 (즉, $`s < n`$개의 독립 고유벡터):
+- $`A`$가 대각화 가능하면(즉, $`n`$개의 독립 고유벡터를 가지면) $`B = X`$(고유벡터 행렬)로 택하여 $`X^{-1}AX = \Lambda`$를 얻는다.
+- $`A`$가 대각화 가능하지 않으면(즉, 독립 고유벡터가 $`s < n`$개이면) 다음과 같이 Jordan 형식을 얻는다:
 
 ```math
 B^{-1}AB = J
@@ -964,7 +987,7 @@ J = \begin{pmatrix} J_1 & & \\ & J_2 & \\ & & \ddots & \\ & & & J_s \end{pmatrix
 J_i = \begin{pmatrix} \lambda_i & 1 & 0 & \cdots & 0 \\ 0 & \lambda_i & 1 & \cdots & 0 \\ \vdots & & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & \lambda_i & 1 \\ 0 & \cdots & 0 & 0 & \lambda_i \end{pmatrix}
 ```
 
-> **최적 기저 $`B`$는 $`B^{-1}AB = J`$를 준다.**
+> **핵심:** 최적 기저 $`B`$는 $`B^{-1}AB = J`$를 준다.
 
 ---
 
@@ -980,7 +1003,7 @@ A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}, \quad \lambda^2 - 2\lambda + 1
 (A - \lambda I)\mathbf{x} = \begin{pmatrix} 0 & 2 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 ```
 
-$`x_2 = 0`$, 자유 변수 $`x_1 \Rightarrow \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$
+$`x_2 = 0`$이고 $`x_1`$은 자유 변수이므로 $`\mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$이다.
 
 **(ii)** 일반화 고유벡터를 구할 수 있는가?
 
@@ -998,7 +1021,7 @@ $`x_2 = 0`$, 자유 변수 $`x_1 \Rightarrow \mathbf{x}_1 = \begin{pmatrix} 1 \\
 2x_2 = 1 \quad \Rightarrow \quad x_2 = \frac{1}{2}
 ```
 
-자유 변수 $`x_1 \to x_1 = 0`$
+자유 변수 $`x_1`$은 $`x_1 = 0`$으로 택한다.
 
 ```math
 \therefore \mathbf{x}_2 = \begin{pmatrix} 0 \\ \frac{1}{2} \end{pmatrix} \perp \mathbf{x}_1
@@ -1030,7 +1053,7 @@ A = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}, \quad \la
 (A - 0 \cdot I)\mathbf{x} = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`x_3 = 0`$, $`x_2 + 2x_3 = 0 \Rightarrow x_2 = 0`$, 자유 변수 $`x_1`$
+$`x_3 = 0`$이고 $`x_2 + 2x_3 = 0`$에서 $`x_2 = 0`$이며, $`x_1`$은 자유 변수이다.
 
 ```math
 \Rightarrow \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
@@ -1042,7 +1065,7 @@ $`x_3 = 0`$, $`x_2 + 2x_3 = 0 \Rightarrow x_2 = 0`$, 자유 변수 $`x_1`$
 \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`x_3 = 0`$, $`x_2 + 2x_3 = 1 \Rightarrow x_2 = 1`$, $`x_1`$은 자유 $`\to x_1 = 0`$
+$`x_3 = 0`$이고 $`x_2 + 2x_3 = 1`$에서 $`x_2 = 1`$이며, 자유 변수 $`x_1`$은 $`x_1 = 0`$으로 택한다.
 
 ```math
 \Rightarrow \mathbf{x}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
@@ -1054,7 +1077,7 @@ $`x_3 = 0`$, $`x_2 + 2x_3 = 1 \Rightarrow x_2 = 1`$, $`x_1`$은 자유 $`\to x_1
 \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
 ```
 
-$`x_3 = 1`$, $`x_2 + 2x_3 = 0 \Rightarrow x_2 = -2`$, $`x_1 = 0`$ 선택
+$`x_3 = 1`$이고 $`x_2 + 2x_3 = 0`$에서 $`x_2 = -2`$이며, $`x_1 = 0`$으로 택한다.
 
 ```math
 \Rightarrow \mathbf{x}_3 = \begin{pmatrix} 0 \\ -2 \\ 1 \end{pmatrix}
@@ -1092,13 +1115,13 @@ B^{-1}AB = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{pmatrix}\beg
 
 ### 3.9 함수 공간의 기저
 
-표준 다항식 기저를 생각하자: $`1, x, x^2, x^3, \ldots`$
+표준 다항식 기저 $`1, x, x^2, x^3, \ldots`$을 생각한다.
 
 ```math
 x^{10} \approx \text{span}\lbrace1, x, x^2, \ldots, x^9\rbrace
 ```
 
-이것은 **나쁜 조건수의 기저**(ill-conditioned basis)이다.
+$`[0, 1]`$에서 $`x^{10}`$은 낮은 거듭제곱들의 결합으로 매우 가깝게 근사되므로, 이 기저는 **나쁜 조건수의 기저**(ill-conditioned basis)이다.
 
 기저가 좋은지 아닌지 어떻게 확인할 수 있는가?
 
@@ -1178,13 +1201,13 @@ $`[-1, 1]`$에서의 내적을 계산하면:
 (1, x^2) = \int_{-1}^{1} 1 \cdot x^2\,dx = 2\int_0^1 x^2\,dx = \frac{2}{3}
 ```
 
-$`x^2`$은 $`1`$의 영이 아닌 성분을 갖는다.
+$`x^2`$은 $`1`$ 방향으로 영이 아닌 성분을 가지므로 $`1`$과 직교하지 않는다.
 
 ```math
 (x, x^2) = \int_{-1}^{1} x^3\,dx = 0 \quad \text{(직교)}
 ```
 
-**Gram-Schmidt 과정** 으로 직교 기저를 구성하면:
+4장의 **Gram-Schmidt 과정**으로 직교 기저를 구성하면:
 
 ```math
 b_1 = 1
@@ -1199,7 +1222,9 @@ b_3 = x^2 - \frac{1}{3} \quad \perp\; b_1,\; b_2
 \vdots
 ```
 
-**Gram-Schmidt 과정** 을 사용하여 **Legendre 기저** 를 얻을 수 있다.
+$`b_3`$은 $`x^2`$에서 $`1`$ 방향 성분을 빼서 얻는다: $`b_3 = x^2 - \frac{(1, x^2)}{(1, 1)} \cdot 1 = x^2 - \frac{2/3}{2} = x^2 - \frac{1}{3}`$. $`x^2`$은 $`x`$와 이미 직교하므로 $`x`$ 방향 성분은 빼지 않아도 된다.
+
+**Gram-Schmidt 과정**을 사용하여 **Legendre 기저**를 얻을 수 있다.
 
 ---
 
@@ -1207,33 +1232,82 @@ b_3 = x^2 - \frac{1}{3} \quad \perp\; b_1,\; b_2
 
 ## 요약
 
-| 개념 | 핵심 아이디어 |
-|:-----|:-----------|
-| 선형 변환 (Linear Transformation) | $`T(c\mathbf{u} + d\mathbf{w}) = cT(\mathbf{u}) + dT(\mathbf{w})`$; 가산성과 동차성을 만족해야 함 |
-| $`T(\mathbf{0}) = \mathbf{0}`$ | 모든 선형 변환은 영벡터를 영벡터로 보냄 |
-| 비선형 예제 | 노름 $`\|\mathbf{u}\|`$, 이동 $`\mathbf{u} + \mathbf{u}_0`$은 선형이 아님 |
-| 아핀 변환 (Affine) | $`T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0`$ (선형 + 이동); 컴퓨터 그래픽스에서 사용 |
-| 내적 (Dot product) | $`T(\mathbf{u}) = \mathbf{a}^T\mathbf{u}`$는 선형 |
-| 미분 (Derivative) | $`T(u) = du/dt`$는 함수 공간에서의 선형 변환 |
-| 적분 (Integration) | $`T^+(f) = \int_0^x f(t)\,dt`$도 선형; 행렬 $`A^+`$은 $`AA^+ = I`$를 만족 |
-| $`z=1`$으로의 사영 | $`T(\mathbf{0}) \neq \mathbf{0}`$이므로 선형이 아님 |
-| 치역과 핵 (Range and Kernel) | $`T`$의 치역 = $`A`$의 열공간; $`T`$의 핵 = $`A`$의 영공간 |
-| 기저에 의한 결정 | 선형 변환은 기저 벡터에 대한 값에 의해 완전히 결정됨 |
-| $`T`$의 행렬 | 열 $`j`$ = $`T(\mathbf{u}_j)`$를 출력 기저로 표현; $`A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))`$ |
-| 표준 행렬 (Standard matrix) | $`I`$의 열을 입출력 기저로 사용: $`T(\mathbf{u}) = A\mathbf{u}`$ |
-| 기저 변환 (Change of basis) | 새 행렬 = $`B_{\text{out}}^{-1} A B_{\text{in}}`$; 항등 변환은 $`B = W^{-1}V`$ |
-| 미분 행렬 $`D`$ | $`\lbrace1, x, x^2, x^3\rbrace \to \lbrace1, x, x^2\rbrace`$: $`D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}`$ |
-| 적분 행렬 $`D^+`$ | $`D`$의 유사역행렬; $`DD^+ = I`$이지만 $`D^+D \neq I`$ ($`D`$의 영공간) |
-| 합성 $`TS`$ | 행렬곱 $`AB`$는 $`TS`$를 표현; $`(m \times n)(n \times p) = (m \times p)`$ |
-| 회전 합성 | $`\theta`$만큼 회전 두 번 $`= A^2 =`$ $`2\theta`$만큼 회전 |
-| 최적 기저: 고유벡터 | $`B = X`$ (고유벡터) $`\Rightarrow`$ $`X^{-1}AX = \Lambda`$ (대각) |
-| 최적 기저: 특이벡터 | $`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$ $`\Rightarrow`$ $`U^{-1}AV = \Sigma`$ |
-| 최적 기저: 일반화 고유벡터 | $`B^{-1}AB = J`$ (Jordan 형식); $`A`$의 독립 고유벡터가 $`n`$개 미만일 때 사용 |
-| Jordan 블록 $`J_i`$ | 대각에 $`\lambda_i`$, 상대각에 1; 독립 고유벡터 $`s`$개에 대해 $`s`$개 블록 |
-| Jordan 연쇄 (chains) | $`\mathbf{x}_1`$: 고유벡터; $`(A - \lambda I)\mathbf{x}_2 = \mathbf{x}_1`$; $`(A - \lambda I)\mathbf{x}_3 = \mathbf{x}_2`$; 등 |
-| Fourier 행렬 | 모든 순환 행렬(circulant matrix)을 대각화 |
-| 함수 공간 기저 | Fourier ($`1, \sin x, \cos x, \ldots`$), Legendre ($`1, x, x^2 - 1/3, \ldots`$), Chebyshev ($`1, x, 2x^2-1, \ldots`$) |
-| 함수의 Gram-Schmidt | 내적 $`(f,g) = \int f\,g\,dx`$; $`1, x, x^2, \ldots`$로부터 Legendre 다항식 생성 |
-| 정규직교 기저 (Orthonormal) | $`B^TB = I`$; 계산에 가장 좋은 조건수의 기저 |
+| 개념 | 핵심 요약 |
+|:-----|:-----|
+| 선형 변환 (Linear Transformation) | $`T(c\mathbf{u} + d\mathbf{w}) = cT(\mathbf{u}) + dT(\mathbf{w})`$를 만족하며, 가산성과 동차성을 모두 만족해야 한다. |
+| $`T(\mathbf{0}) = \mathbf{0}`$ | 모든 선형 변환은 영벡터를 영벡터로 보낸다. |
+| 비선형 예제 | 노름 $`\Vert\mathbf{u}\Vert`$과 이동 $`\mathbf{u} + \mathbf{u}_0`$($`\mathbf{u}_0 \neq \mathbf{0}`$)은 선형이 아니다. |
+| 아핀 변환 (Affine) | $`T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0`$는 선형 변환에 이동을 더한 것으로, 컴퓨터 그래픽스에서 사용된다. |
+| 내적 (Dot product) | $`T(\mathbf{u}) = \mathbf{a}^T\mathbf{u}`$는 선형이다. |
+| 미분 (Derivative) | $`T(u) = du/dt`$는 함수 공간에서의 선형 변환이다. |
+| 적분 (Integration) | $`T^+(f) = \int_0^x f(t)\,dt`$도 선형이며, 그 행렬 $`A^+`$은 $`AA^+ = I`$를 만족한다. |
+| $`z=1`$으로의 사영 | $`T(\mathbf{0}) \neq \mathbf{0}`$이므로 선형이 아니다. |
+| 치역과 핵 (Range and Kernel) | $`T`$의 치역은 $`A`$의 열공간이고, $`T`$의 핵은 $`A`$의 영공간이다. |
+| 기저에 의한 결정 | 선형 변환은 기저 벡터에서의 값에 의해 완전히 결정된다. |
+| $`T`$의 행렬 | 열 $`j`$는 $`T(\mathbf{u}_j)`$를 출력 기저로 표현한 계수이며, 출력 기저가 표준 기저이면 $`A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))`$이다. |
+| 표준 행렬 (Standard matrix) | $`I`$의 열을 입출력 기저로 사용하면 $`T(\mathbf{u}) = A\mathbf{u}`$이다. |
+| 기저 변환 (Change of basis) | 새 행렬은 $`B_{\text{out}}^{-1} A B_{\text{in}}`$이며, 항등 변환에서는 $`B = W^{-1}V`$이다. |
+| 미분 행렬 $`D`$ | $`\lbrace1, x, x^2, x^3\rbrace \to \lbrace1, x, x^2\rbrace`$에 대해 $`D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}`$이다. |
+| 적분 행렬 $`D^+`$ | $`D`$의 유사역행렬이며, $`DD^+ = I`$이지만 $`D`$의 영공간 때문에 $`D^+D \neq I`$이다. |
+| 합성 $`TS`$ | 행렬곱 $`AB`$가 $`TS`$를 표현하며, 크기는 $`(m \times n)(n \times p) = (m \times p)`$이다. |
+| 회전 합성 | $`\theta`$만큼 두 번 회전하는 $`A^2`$은 $`2\theta`$만큼의 회전이다. |
+| 최적 기저: 고유벡터 | $`B = X`$(고유벡터)로 택하면 $`X^{-1}AX = \Lambda`$(대각)이다. |
+| 최적 기저: 특이벡터 | $`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$로 택하면 $`U^{-1}AV = \Sigma`$이다. |
+| 최적 기저: 일반화 고유벡터 | $`B^{-1}AB = J`$(Jordan 형식)를 주며, $`A`$의 독립 고유벡터가 $`n`$개 미만일 때 사용한다. |
+| Jordan 블록 $`J_i`$ | 대각에 $`\lambda_i`$, 상대각에 1이 있으며, 독립 고유벡터 $`s`$개에 대해 블록이 $`s`$개이다. |
+| Jordan 연쇄 (chains) | $`\mathbf{x}_1`$은 고유벡터이고, $`(A - \lambda I)\mathbf{x}_2 = \mathbf{x}_1`$, $`(A - \lambda I)\mathbf{x}_3 = \mathbf{x}_2`$와 같이 이어진다. |
+| Fourier 행렬 | 모든 순환 행렬(circulant matrix)을 대각화한다. |
+| 함수 공간 기저 | 함수 공간의 좋은 기저로 Fourier($`1, \sin x, \cos x, \ldots`$), Legendre($`1, x, x^2 - 1/3, \ldots`$), Chebyshev($`1, x, 2x^2-1, \ldots`$) 기저가 있다. |
+| 함수의 Gram-Schmidt | 내적 $`(f,g) = \int f\,g\,dx`$를 사용하여 $`1, x, x^2, \ldots`$로부터 Legendre 다항식을 만든다. |
+| 정규직교 기저 (Orthonormal) | $`B^TB = I`$이며, 계산에 가장 좋은 조건수의 기저이다. |
 
 ---
+
+<br>
+
+## 점검 문제
+
+1. **선형성 판정:** $`T(x, y) = (x + y, 2x)`$와 $`S(x, y) = (x + 1, y)`$가 $`\mathbb{R}^2`$에서 $`\mathbb{R}^2`$로의 선형 변환인지 판정하라.
+
+   <details>
+   <summary>정답</summary>
+
+   $`T`$는 $`T(\mathbf{u}) = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix}\mathbf{u}`$로 쓸 수 있으므로 선형이다. $`S`$는 $`S(0, 0) = (1, 0) \neq \mathbf{0}`$이므로 선형이 아니며, 항등 변환에 이동 $`(1, 0)`$을 더한 아핀 변환이다.
+
+   </details>
+
+2. **표준 행렬:** $`T: \mathbb{R}^2 \to \mathbb{R}^3`$이 $`T(1, 0) = (1, 0, 2)`$, $`T(0, 1) = (3, 1, 0)`$을 만족할 때 표준 행렬 $`A`$와 $`T(2, 1)`$을 구하라.
+
+   <details>
+   <summary>정답</summary>
+
+   출력이 $`A`$의 열이 되므로 $`A = \begin{pmatrix} 1 & 3 \\ 0 & 1 \\ 2 & 0 \end{pmatrix}`$이다. 선형성에 의해 $`T(2, 1) = 2T(1, 0) + T(0, 1) = (2, 0, 4) + (3, 1, 0) = (5, 1, 4)`$이다.
+
+   </details>
+
+3. **2계 미분의 행렬:** 입력 기저 $`1, x, x^2, x^3`$과 출력 기저 $`1, x`$에 대해 변환 $`T(u) = \dfrac{d^2u}{dx^2}`$의 행렬을 구하고, 핵의 차원을 구하라.
+
+   <details>
+   <summary>정답</summary>
+
+   $`T(1) = 0`$, $`T(x) = 0`$, $`T(x^2) = 2`$, $`T(x^3) = 6x`$이므로 행렬은 $`\begin{pmatrix} 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 6 \end{pmatrix}`$이다. 핵은 $`1`$과 $`x`$로 생성되는 1차 이하 다항식의 공간이므로 차원은 2이다. 열공간의 차원 2와 더하면 정의역의 차원 4가 된다.
+
+   </details>
+
+4. **닮음과 고유값:** $`B`$가 가역일 때 $`B^{-1}AB`$와 $`A`$의 고유값이 같은 이유를 설명하라.
+
+   <details>
+   <summary>정답</summary>
+
+   $`\det(B^{-1}AB - \lambda I) = \det(B^{-1}(A - \lambda I)B) = \det(B^{-1})\det(A - \lambda I)\det(B) = \det(A - \lambda I)`$이므로 두 행렬의 특성 다항식이 같고, 따라서 고유값도 같다. $`B^{-1}AB`$는 같은 변환을 다른 기저로 나타낸 행렬이므로, 기저를 바꾸어도 고유값은 변하지 않는다.
+
+   </details>
+
+5. **Jordan 형식:** $`A = \begin{pmatrix} 1 & 1 \\ -1 & 3 \end{pmatrix}`$의 Jordan 형식 $`J`$와 $`B^{-1}AB = J`$를 만족하는 $`B`$를 구하라.
+
+   <details>
+   <summary>정답</summary>
+
+   특성 방정식은 $`(1 - \lambda)(3 - \lambda) + 1 = \lambda^2 - 4\lambda + 4 = (\lambda - 2)^2 = 0`$이므로 $`\lambda = 2`$(중근)이다. $`A - 2I = \begin{pmatrix} -1 & 1 \\ -1 & 1 \end{pmatrix}`$의 랭크가 1이므로 독립 고유벡터는 $`\mathbf{x}_1 = (1, 1)^T`$ 하나뿐이다. $`(A - 2I)\mathbf{x}_2 = \mathbf{x}_1`$에서 $`\mathbf{x}_2 = (a, b)^T`$라 하면 $`-a + b = 1`$이므로 $`\mathbf{x}_2 = (0, 1)^T`$로 택할 수 있다. $`B = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}`$로 두면 $`B^{-1}AB = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix} = J`$이다.
+
+   </details>

@@ -1,19 +1,16 @@
-# Chapter 3 Lecture — Vector Spaces and Subspaces
+# Chapter 3 — Vector Spaces and Subspaces
 
-> **Last Updated:** 2026-06-19
->
-> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 3
+[Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Prerequisites**: [Linear Algebra] Elimination and matrix operations (Ch 1-2).
+> **Last Updated:** 2026-10-18
 >
-> **Learning Objectives**:
-> 1. Define vector spaces, subspaces, and verify closure properties
-> 2. Compute column space, null space, row space, and left null space
-> 3. Determine basis, dimension, and rank of a matrix
+> Introduction to Linear Algebra, Strang, Ch 3
 
-> **📑 This document is split into 2 parts.**
->
-> **Part 1** · [Part 2](Concepts-Part2.md)
+> **Learning Objectives:**
+> 1. Define vector spaces and subspaces and verify closure properties
+> 2. Compute the column space, nullspace, row space, and left nullspace
+> 3. Determine bases, dimensions, and the rank of a matrix
+> 4. Find the complete solution to $`A\mathbf{x} = \mathbf{b}`$ by elimination as a particular solution plus nullspace vectors
 
 ---
 
@@ -41,7 +38,7 @@
   - [3.2 Finding All Solutions to Ax = 0](#32-finding-all-solutions-to-ax--0)
   - [3.3 Reduced Row Echelon Form](#33-reduced-row-echelon-form)
   - [3.4 Special Solutions and the Nullspace Basis](#34-special-solutions-and-the-nullspace-basis)
-  - [3.5 The Nullspace Matrix: Columns of (-F; I)](#35-the-nullspace-matrix-columns-of--fi)
+  - [3.5 The Nullspace Matrix: Columns of (-F; I)](#35-the-nullspace-matrix-columns-of--f-i)
   - [3.6 The Matrix Factorization A = CR and N(A)](#36-the-matrix-factorization-a--cr-and-na)
 - [4. The Complete Solution to Ax = b (3.3)](#4-the-complete-solution-to-ax--b-33)
   - [4.1 Structure of the Complete Solution](#41-structure-of-the-complete-solution)
@@ -51,20 +48,21 @@
   - [4.5 Solvability Conditions](#45-solvability-conditions)
   - [4.6 Full Row Rank and the Complete Solution](#46-full-row-rank-and-the-complete-solution)
   - [4.7 Four Possibilities for Linear Equations](#47-four-possibilities-for-linear-equations)
-- [5. Independence, Basis, and Dimension (3.4)](Concepts-Part2.md#5-independence-basis-and-dimension-34)
-  - [5.1 Independent Vectors](Concepts-Part2.md#51-independent-vectors)
-  - [5.2 Linear Independence via the Nullspace](Concepts-Part2.md#52-linear-independence-via-the-nullspace)
-  - [5.3 Vectors that Span a Subspace](Concepts-Part2.md#53-vectors-that-span-a-subspace)
-  - [5.4 Basis for a Vector Space](Concepts-Part2.md#54-basis-for-a-vector-space)
-  - [5.5 Dimension of a Vector Space](Concepts-Part2.md#55-dimension-of-a-vector-space)
-  - [5.6 Bases for Matrix Spaces and Function Spaces](Concepts-Part2.md#56-bases-for-matrix-spaces-and-function-spaces)
-- [6. Dimensions of the Four Subspaces (3.5)](Concepts-Part2.md#6-dimensions-of-the-four-subspaces-35)
-  - [6.1 Dimension Summary](Concepts-Part2.md#61-dimension-summary)
-  - [6.2 Orthogonality of the Subspaces](Concepts-Part2.md#62-orthogonality-of-the-subspaces)
-  - [6.3 The Four Subspaces for R_0](Concepts-Part2.md#63-the-four-subspaces-for-r_0)
-  - [6.4 Relationship Between A and R_0](Concepts-Part2.md#64-relationship-between-a-and-r_0)
-  - [6.5 The Fundamental Theorem of Linear Algebra](Concepts-Part2.md#65-the-fundamental-theorem-of-linear-algebra)
-- [Summary](Concepts-Part2.md#summary)
+- [5. Independence, Basis, and Dimension (3.4)](#5-independence-basis-and-dimension-34)
+  - [5.1 Independent Vectors](#51-independent-vectors)
+  - [5.2 Linear Independence via the Nullspace](#52-linear-independence-via-the-nullspace)
+  - [5.3 Vectors that Span a Subspace](#53-vectors-that-span-a-subspace)
+  - [5.4 Basis for a Vector Space](#54-basis-for-a-vector-space)
+  - [5.5 Dimension of a Vector Space](#55-dimension-of-a-vector-space)
+  - [5.6 Bases for Matrix Spaces and Function Spaces](#56-bases-for-matrix-spaces-and-function-spaces)
+- [6. Dimensions of the Four Subspaces (3.5)](#6-dimensions-of-the-four-subspaces-35)
+  - [6.1 Dimension Summary](#61-dimension-summary)
+  - [6.2 Orthogonality of the Subspaces](#62-orthogonality-of-the-subspaces)
+  - [6.3 The Four Subspaces for R_0](#63-the-four-subspaces-for-r_0)
+  - [6.4 Relationship Between A and R_0](#64-relationship-between-a-and-r_0)
+  - [6.5 The Fundamental Theorem of Linear Algebra](#65-the-fundamental-theorem-of-linear-algebra)
+- [Summary](#summary)
+- [Self-Check Questions](#self-check-questions)
 
 ---
 
@@ -74,18 +72,20 @@
 
 Chapter 3 covers five major topics:
 
-- **3.1** Vector Spaces and Subspaces — How do we define a vector space? Key operations are $`\mathbf{u} + \mathbf{v}`$ and $`c\mathbf{u}`$. There are 8 rules that vectors $`\mathbf{u}`$ and scalar $`c`$ must satisfy.
+- **3.1** Vector Spaces and Subspaces: how a vector space is defined. The key operations are $`\mathbf{u} + \mathbf{v}`$ and $`c\mathbf{u}`$, and there are 8 rules that vectors $`\mathbf{u}`$ and scalars $`c`$ must satisfy.
 - **3.2** The Nullspace of $`A`$: Solving $`A\mathbf{x} = \mathbf{0}`$
 - **3.3** The Complete Solution to $`A\mathbf{x} = \mathbf{b}`$
-- **3.4** Independence, **Basis**, and **Dimension** — A set of vectors that describes the space. Let $`A \in \mathbb{R}^{n \times n}`$. $`A`$ has $`r`$ independent columns $`\Rightarrow`$ $`C(A)`$ has dimension $`r`$. $`(n - r)`$ special solutions to $`A\mathbf{x} = \mathbf{0}`$ are a basis for $`N(A)`$, the null space of $`A`$.
+- **3.4** Independence, **Basis**, and **Dimension**: sets of vectors that describe a space. Let $`A \in \mathbb{R}^{m \times n}`$. $`A`$ has $`r`$ independent columns $`\Rightarrow`$ $`C(A)`$ has dimension $`r`$. $`(n - r)`$ special solutions to $`A\mathbf{x} = \mathbf{0}`$ are a basis for $`N(A)`$, the nullspace of $`A`$.
 - **3.5** Dimensions of the Four Subspaces:
 
 | Subspace | Dimension |
 |:---------|:----------|
 | Column space of $`A`$ | $`r`$ |
 | Row space of $`A`$ | $`r`$ |
-| Null space of $`A`$ | $`n - r`$ |
-| Null space of $`A^T`$ (left nullspace) | $`m - r`$ |
+| Nullspace of $`A`$ | $`n - r`$ |
+| Nullspace of $`A^T`$ (left nullspace) | $`m - r`$ |
+
+*Table 1. Dimensions of the four fundamental subspaces*
 
 ---
 
@@ -96,7 +96,7 @@ Chapter 3 covers five major topics:
 ### 2.1 Requirements for a Vector Space
 
 1. **Requirement:** All the linear combinations $`c\mathbf{u} + d\mathbf{w}`$ must stay in the vector space.
-2. The **row space** of $`A`$ is "spanned" by the rows of $`A`$. The columns of $`A`$ span the column space $`C(A)`$.
+2. The **row space** of $`A`$ is spanned by the rows of $`A`$. The columns of $`A`$ span the column space $`C(A)`$.
 3. **Matrices** $`M_1`$ to $`M_n`$ and **functions** $`f_1`$ to $`f_n`$ span **matrix spaces** and **function spaces**.
 
 ### 2.2 The Space R^n
@@ -112,19 +112,19 @@ Examples:
 - $`\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \in \mathbb{R}^2`$
 - $`\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} \in \mathbb{R}^3`$
 
-**Note:** When $`x_1, x_2, \ldots, x_n \in \mathbb{C}`$ (complex numbers), the space becomes $`\mathbb{C}^n`$.
+> **Note:** When $`x_1, x_2, \ldots, x_n \in \mathbb{C}`$ (complex numbers), the space becomes $`\mathbb{C}^n`$.
 
-**Note:** If $`c, d \in \mathbb{R}`$ and $`\mathbf{u}, \mathbf{w} \in \mathbb{R}^n`$, then $`c\mathbf{u} + d\mathbf{w} \in \mathbb{R}^n`$. The linear combinations stay in the vector space $`\mathbb{R}^n`$.
+> **Note:** If $`c, d \in \mathbb{R}`$ and $`\mathbf{u}, \mathbf{w} \in \mathbb{R}^n`$, then $`c\mathbf{u} + d\mathbf{w} \in \mathbb{R}^n`$. The linear combinations stay in the vector space $`\mathbb{R}^n`$.
 
 ### 2.3 Definition of a Vector Space
 
 **Vector space** (= linear space) $`V`$ is a set whose elements (vectors) can be added together and multiplied by numbers.
 
 Let $`\mathbf{u}, \mathbf{w} \in V`$ (vector space):
-1. $`\mathbf{u} + \mathbf{w} \in V`$ — vector addition
-2. $`\alpha \mathbf{u} \in V \quad \forall \alpha \in \mathbb{F}`$ — scalar multiplication
+1. Vector addition: $`\mathbf{u} + \mathbf{w} \in V`$
+2. Scalar multiplication: $`\alpha \mathbf{u} \in V \quad \forall \alpha \in \mathbb{F}`$
 
-**A field** is a set on which addition, subtraction, multiplication, and division are defined.
+**A field** is a set on which addition, subtraction, multiplication, and division by nonzero elements are defined and obey the usual arithmetic laws.
 
 Examples of fields: $`\mathbb{R}`$ (real numbers), $`\mathbb{C}`$ (complex numbers).
 
@@ -156,7 +156,7 @@ Let $`\mathbf{u}, \mathbf{v}, \mathbf{w} \in V`$ and $`c, d \in \mathbb{F}`$. A 
 \forall \mathbf{v} \in V, \; \exists!\; -\mathbf{v} \in V \text{ s.t. } \mathbf{v} + (-\mathbf{v}) = \mathbf{0}
 ```
 
-($`-\mathbf{v}`$ is the additive inverse of $`\mathbf{v}`$)
+Here $`-\mathbf{v}`$ is the **additive inverse** of $`\mathbf{v}`$.
 
 **(5) Compatibility of scalar multiplication with field multiplication:**
 
@@ -206,7 +206,7 @@ c\mathbf{v} = \mathbf{0} \implies c = 0 \text{ or } \mathbf{v} = \mathbf{0}
 
 **Q.** Is the set of all positive vectors $`\mathbb{X}`$, where $`\mathbb{X} \ni \mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix}`$ with every $`v_i > 0`$, a vector space?
 
-**A.** No. $`-\mathbf{v} \notin \mathbb{X}`$.
+**A.** No. Even if $`\mathbf{v} \in \mathbb{X}`$, $`-\mathbf{v} \notin \mathbb{X}`$, so $`\mathbb{X}`$ is not closed under scalar multiplication ($`c = -1`$).
 
 ---
 
@@ -226,7 +226,7 @@ A line is a collection of points. $`\mathbf{q}`$ represents a position on the li
 
 $`\mathbf{p}`$ and $`\mathbf{d}`$ are fixed. $`t`$ varies from $`-\infty`$ to $`\infty`$.
 
-Let $`\mathbb{X}`$ be the set of all vectors $`\mathbf{q}`$: $`\mathbb{X} = \lbrace\mathbf{q} : \mathbf{p} + t\mathbf{d} \;\forall\; t \in \mathbb{R}\rbrace`$.
+Let $`\mathbb{X}`$ be the set of all vectors $`\mathbf{q}`$: $`\mathbb{X} = \lbrace\mathbf{q} = \mathbf{p} + t\mathbf{d} : t \in \mathbb{R}\rbrace`$.
 
 Take $`\mathbf{a}, \mathbf{b} \in \mathbb{X}`$. Does $`\mathbf{a} + \mathbf{b}`$ belong to $`\mathbb{X}`$?
 
@@ -240,11 +240,13 @@ Take $`\mathbf{a}, \mathbf{b} \in \mathbb{X}`$. Does $`\mathbf{a} + \mathbf{b}`$
 \mathbf{a} + \mathbf{b} = 2\mathbf{p} + (t_1 + t_2)\mathbf{d} \notin \mathbb{X} \quad \text{if } \mathbf{p} \neq \mathbf{0}
 ```
 
-However:
-- $`\mathbf{a} + \mathbf{b} = (t_1 + t_2)\mathbf{d} \in \mathbb{X}`$ if $`\mathbf{p} = \mathbf{0}`$
-- $`c\mathbf{a} = ct_1\mathbf{d} \in \mathbb{X}`$ if $`\mathbf{p} = \mathbf{0}`$
+However, if $`\mathbf{p} = \mathbf{0}`$, the following hold.
+- $`\mathbf{a} + \mathbf{b} = (t_1 + t_2)\mathbf{d} \in \mathbb{X}`$.
+- $`c\mathbf{a} = ct_1\mathbf{d} \in \mathbb{X}`$.
 
-**A line passing through the origin is a vector space.** The line through $`\mathbf{0}`$ in $`\mathbb{R}^n`$ is a **subspace** of $`\mathbb{R}^n`$ — a vector space inside another vector space.
+**A line passing through the origin is a vector space.** The line through $`\mathbf{0}`$ in $`\mathbb{R}^n`$ is a **subspace** of $`\mathbb{R}^n`$, that is, a vector space inside another vector space.
+
+> **Caution:** The condition $`\mathbf{p} \neq \mathbf{0}`$ above should be read as meaning that the line does not pass through the origin. If $`\mathbf{p}`$ is a multiple of $`\mathbf{d}`$ ($`\mathbf{p} = s\mathbf{d}`$), the line passes through the origin at $`t = -s`$ even though $`\mathbf{p} \neq \mathbf{0}`$. In that case $`\mathbf{p}`$ can be replaced by $`\mathbf{0}`$ to describe the same line, so this line is also a vector space.
 
 ### 2.7 Examples of Vector Spaces
 
@@ -253,11 +255,11 @@ However:
   - i) $`\mathbf{0} + \mathbf{0} = \mathbf{0} \in \mathbb{Z}`$
   - ii) $`c\mathbf{0} = \mathbf{0} \in \mathbb{Z}`$
 
-$`\mathbb{Z}`$ is the **null space of an invertible matrix**. If the only solution to $`A\mathbf{x} = \mathbf{0}`$ is the zero vector $`\mathbf{x} = \mathbf{0}`$, then the columns of $`A`$ are linearly independent (LI) and the nullspace of $`A`$ is $`\mathbb{Z}`$.
+$`\mathbb{Z}`$ is the **nullspace of an invertible matrix**. If the only solution to $`A\mathbf{x} = \mathbf{0}`$ is the zero vector $`\mathbf{x} = \mathbf{0}`$, then the columns of $`A`$ are linearly independent (LI) and the nullspace of $`A`$ is $`\mathbb{Z}`$.
 
 ### 2.8 Generalized Vector Spaces
 
-**Note:** A vector space (= a linear space) is a set whose elements can be added together and multiplied by numbers.
+> **Note:** A vector space (= a linear space) is a set whose elements can be added together and multiplied by numbers.
 
 i.e., $`\mathbf{u}, \mathbf{w} \in V \implies c\mathbf{u} + d\mathbf{w} \in V`$.
 
@@ -271,29 +273,29 @@ The set of all matrices of a fixed size forms a vector space. (Check if they sat
 
 **Vector space of functions:**
 
-Let $`\mathbb{F}`$ be a set of functions that take elements from $`\mathbb{R}`$ and map them to a real number:
+Let $`\mathcal{F}`$ be the set of functions that take elements from $`\mathbb{R}`$ and map them to a real number:
 
 ```math
-\mathbb{F} = \lbracef \mid f: \mathbb{R} \to \mathbb{R}\rbrace
+\mathcal{F} = \lbrace f \mid f: \mathbb{R} \to \mathbb{R}\rbrace
 ```
 
-Let $`f, g \in \mathbb{F}`$, $`c, d \in \mathbb{R}`$. Then $`cf + dg \in \mathbb{F}`$.
+Let $`f, g \in \mathcal{F}`$, $`c, d \in \mathbb{R}`$. Then $`cf + dg \in \mathcal{F}`$.
 
 Define:
 - $`(f + g)(x) = f(x) + g(x)`$
 - $`(cf)(x) = c(f(x))`$
 
-**Example:** $`\mathbb{F}`$ = the line of functions $`y = ce^x`$.
+**Example:** Let $`\mathcal{L}`$ be the line of functions $`y = ce^x`$.
 
-$`\mathbb{F} = \lbracef \mid f: \mathbb{R} \ni x \to ce^x \in \mathbb{R}, \;\forall c \in \mathbb{R}\rbrace`$
+$`\mathcal{L} = \lbrace f \mid f(x) = ce^x, \; c \in \mathbb{R}\rbrace`$
 
 $`f(x) = e^x`$, $`g(x) = 2e^x`$.
 
-$`(f + g)(x) = f(x) + g(x) = e^x + 2e^x = 3e^x \in \mathbb{F}`$
+$`(f + g)(x) = f(x) + g(x) = e^x + 2e^x = 3e^x \in \mathcal{L}`$
 
-$`(cf)(x) = c(f(x)) = ce^x \in \mathbb{F}`$
+$`(cf)(x) = c(f(x)) = ce^x \in \mathcal{L}`$
 
-**Remark:** A **set** is just a collection of elements without any additional structure. A **space** is a set along with additional structures defined on it. Example: a vector space is a set of vectors where vector addition and scalar multiplication is defined. A vector space should satisfy the 8 rules.
+> **Note:** A **set** is just a collection of elements without any additional structure. A **space** is a set along with additional structures defined on it. Example: a vector space is a set of vectors where vector addition and scalar multiplication are defined. A vector space should satisfy the 8 rules.
 
 ### 2.9 Subspaces of Vector Spaces
 
@@ -301,25 +303,25 @@ Consider a vector space $`\mathbb{R}^n`$, where $`\mathbf{v} \in \mathbb{R}^n`$ 
 
 There are important vector spaces inside $`\mathbb{R}^n`$. Those are **subspaces** of $`\mathbb{R}^n`$.
 
-A plane is a vector space. If $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^2`$, then $`c\mathbf{v} + d\mathbf{w} \in \mathbb{R}^2`$.
+The plane $`\mathbb{R}^2`$ is a vector space. If $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^2`$, then $`c\mathbf{v} + d\mathbf{w} \in \mathbb{R}^2`$.
 
-A plane through the origin $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$ in $`\mathbb{R}^3`$ is a vector space. This plane is not $`\mathbb{R}^2`$ because $`\mathbf{u}, \mathbf{v} \in \mathbb{R}^3`$. The plane is a vector space inside $`\mathbb{R}^3`$. This is a **subspace** of the full vector space $`\mathbb{R}^3`$.
+A plane through the origin $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$ in $`\mathbb{R}^3`$ is a vector space. This plane is not $`\mathbb{R}^2`$, because its vectors $`\mathbf{u}, \mathbf{v}`$ have three components and belong to $`\mathbb{R}^3`$. The plane is a vector space inside $`\mathbb{R}^3`$, that is, a **subspace** of the full vector space $`\mathbb{R}^3`$.
 
 ### 2.10 Definition of a Subspace
 
-**Def.** A **subspace** of a vector space is a set of vectors (including $`\mathbf{0}`$) that satisfies:
-
-> i) $`\mathbf{u} + \mathbf{w}`$ is in the subspace
+> **Definition:** A **subspace** of a vector space is a set of vectors that contains $`\mathbf{0}`$ and satisfies the following two conditions.
 >
-> ii) $`c\mathbf{u}`$ is in the subspace
+> i) $`\mathbf{u} + \mathbf{w}`$ is in the subspace.
+>
+> ii) $`c\mathbf{u}`$ is in the subspace.
+>
+> Here $`\mathbf{u}, \mathbf{w}`$ are any vectors in the subspace and $`c \in \mathbb{R}`$ (or $`\mathbb{F}`$) is any scalar.
 
-if $`\mathbf{u}, \mathbf{w} \in`$ subspace and $`c \in \mathbb{R}`$ (or $`\mathbb{F}`$).
-
-The set of vectors is "**closed**" under addition $`\mathbf{u} + \mathbf{w}`$ and multiplication $`c\mathbf{u}`$.
+That is, the set of vectors is **closed** under addition $`\mathbf{u} + \mathbf{w}`$ and multiplication $`c\mathbf{u}`$.
 
 Conditions i) and ii) mean: **all linear combinations stay in the subspace.**
 
-**Note:** Every subspace contains the zero vector. From ii), $`c = 0`$ implies that $`0\mathbf{u} = \mathbf{0}`$ is in the subspace.
+> **Note:** Every subspace contains the zero vector. From ii), $`c = 0`$ implies that $`0\mathbf{u} = \mathbf{0}`$ is in the subspace.
 
 ### 2.11 Examples of Subspaces and Non-Subspaces
 
@@ -329,7 +331,7 @@ Lines through the origin are subspaces.
 
 $`\mathbb{R}^3`$ is a subspace of itself.
 
-The single vector $`\mathbb{Z} = \lbrace\mathbf{0}\rbrace`$ is a subspace of $`\mathbb{R}^3`$.
+The set $`\mathbb{Z} = \lbrace\mathbf{0}\rbrace`$ containing only the zero vector is a subspace of $`\mathbb{R}^3`$.
 
 ---
 
@@ -370,7 +372,7 @@ $`\mathbb{D}`$ is a set of all diagonal matrices $`\begin{pmatrix} a & 0 \\ 0 & 
 - $`A, B \in \mathcal{U} \implies cA + dB \in \mathcal{U}`$
 - $`A, B \in \mathbb{D} \implies cA + dB \in \mathbb{D}`$
 
-Note that:
+These matrices decompose into combinations of basic matrices as follows:
 
 ```math
 \begin{pmatrix} a & b \\ c & d \end{pmatrix} = a\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + b\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} + c\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} + d\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}
@@ -400,11 +402,11 @@ A\mathbf{x} = \mathbf{b}
 = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n
 ```
 
-The **column space of $`A`$** is a vector space made up of column vectors.
+The **column space of $`A`$** is the vector space of all linear combinations of the columns of $`A`$.
 
 To solve $`A\mathbf{x} = \mathbf{b}`$ is to express $`\mathbf{b}`$ as a linear combination of the columns. The right side vector $`\mathbf{b}`$ has to be in the column space of $`A`$.
 
-> **The equations $`A\mathbf{x} = \mathbf{b}`$ are solvable iff $`\mathbf{b}`$ is in the column space of $`A`$.**
+> **Key Point:** The equations $`A\mathbf{x} = \mathbf{b}`$ are solvable iff $`\mathbf{b}`$ is in the column space of $`A`$.
 
 **The Row Space of $`A`$:**
 
@@ -418,9 +420,9 @@ $`A^T`$ has $`m`$ column vectors.
 
 **The row space of $`A`$ is the column space of $`A^T`$.**
 
-The equations $`A^T \mathbf{y} = \mathbf{c}`$ are solvable iff $`\mathbf{c}`$ is in the column space of $`A^T`$ ($`= \mathbf{c}`$ is in the row space of $`A`$).
+The equations $`A^T \mathbf{y} = \mathbf{c}`$ are solvable iff $`\mathbf{c}`$ is in the column space of $`A^T`$, that is, in the row space of $`A`$.
 
-**Example:** Consider a rank 1 matrix $`A = \mathbf{u}\mathbf{v}^T`$:
+**Example:** Consider a rank 1 matrix $`A = \mathbf{u}\mathbf{v}^T`$ with $`\mathbf{u} \neq \mathbf{0}`$ and $`\mathbf{v} \neq \mathbf{0}`$:
 
 ```math
 A = \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_m \end{pmatrix} \begin{pmatrix} v_1 & v_2 & \cdots & v_n \end{pmatrix} = \begin{pmatrix} v_1\mathbf{u} & v_2\mathbf{u} & \cdots & v_n\mathbf{u} \end{pmatrix}
@@ -436,15 +438,15 @@ $`C(A^T)`$ is the line of all column vectors of $`A^T`$: $`c\mathbf{v}`$.
 
 **The Columns of $`A`$ Span the Vector Space $`C(A)`$.**
 
-Let $`\mathbb{S}`$ be a set of vectors in $`\mathbb{R}^m`$. If $`\mathbb{S} = \left\lbrace \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_m \end{pmatrix}, \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_m \end{pmatrix} \right\rbrace`$, then $`\mathbb{S}`$ is **not** a subspace of $`\mathbb{R}^m`$ because $`\mathbf{u} + \mathbf{v} \notin \mathbb{S}`$.
+Let $`\mathbb{S}`$ be a set of vectors in $`\mathbb{R}^m`$. If $`\mathbb{S} = \left\lbrace \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_m \end{pmatrix}, \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_m \end{pmatrix} \right\rbrace`$ with $`\mathbf{u}, \mathbf{v} \neq \mathbf{0}`$, then $`\mathbb{S}`$ is **not** a subspace of $`\mathbb{R}^m`$ because $`\mathbf{u} + \mathbf{v} \notin \mathbb{S}`$.
 
 If we include all combinations of the vectors in $`\mathbb{S}`$, then we have a vector space $`V`$.
 
 **The set $`\mathbb{S}`$ spans $`V`$.** $`V`$ is the smallest vector space containing $`\mathbb{S}`$.
 
-Consider a matrix $`A \in \mathbb{R}^{m \times n}`$:
-- $`n`$ columns span the column space $`C(A)`$
-- $`m`$ columns of $`A^T`$ span the row space $`C(A^T)`$
+For a matrix $`A \in \mathbb{R}^{m \times n}`$, the following hold.
+- The $`n`$ columns span the column space $`C(A)`$.
+- The $`m`$ columns of $`A^T`$ span the row space $`C(A^T)`$.
 
 ---
 
@@ -461,7 +463,7 @@ A = CR
 1. The nullspace $`N(A)`$ in $`\mathbb{R}^n`$ contains all solutions $`\mathbf{x}`$ to $`A\mathbf{x} = \mathbf{0}`$. This includes $`\mathbf{x} = \mathbf{0}`$.
 2. Elimination from $`A`$ to $`R_0`$ to $`R`$ does **not** change the nullspace.
 3. The reduced row echelon form $`R_0 = \text{rref}(A)`$ has $`I`$ in $`r`$ columns and $`F`$ in $`n - r`$ columns.
-4. If column $`j`$ is dependent on previous columns, $`A\mathbf{x} = \mathbf{0}`$ has a "special solution" with $`x_j = 1`$.
+4. If column $`j`$ is dependent on previous columns, $`A\mathbf{x} = \mathbf{0}`$ has a **special solution** with $`x_j = 1`$.
 5. The $`n - r`$ special solutions to $`A\mathbf{x} = \mathbf{0}`$ contain $`-F`$ and $`I`$.
 6. Every short wide matrix with $`m < n`$ has nonzero solutions to $`A\mathbf{x} = \mathbf{0}`$ in its nullspace.
 
@@ -489,7 +491,7 @@ $`\text{rank}(R) = 2`$, $`n = 4`$, $`n - r = 2`$ dependent columns.
 R\mathbf{x} = \begin{pmatrix} 1 & 0 & 3 & 5 \\ 0 & 1 & 4 & 6 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} x_1 + 3x_3 + 5x_4 \\ x_2 + 4x_3 + 6x_4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} = \mathbf{0}
 ```
 
-How do we find the special solutions? Fix two variables and use $`R\mathbf{x} = \mathbf{0}`$:
+How do we find the special solutions? Fix the values of the two free variables $`x_3, x_4`$ and use $`R\mathbf{x} = \mathbf{0}`$:
 
 Take $`x_3 = 1, x_4 = 0`$: $`\Rightarrow x_1 + 3 = 0, \; x_2 + 4 = 0`$. $`\therefore \mathbf{s}_1 = \begin{pmatrix} -3 \\ -4 \\ 1 \\ 0 \end{pmatrix}`$
 
@@ -511,7 +513,7 @@ R\mathbf{s}_1 = \mathbf{0}, \quad R\mathbf{s}_2 = \mathbf{0}
 \Rightarrow R(c_1 \mathbf{s}_1 + c_2 \mathbf{s}_2) = \mathbf{0}
 ```
 
-Linear combinations of $`\mathbf{s}_1`$ and $`\mathbf{s}_2`$ are in the nullspace of $`R`$. **The special solutions $`\mathbf{s}_1`$ and $`\mathbf{s}_2`$ are a basis for the nullspace.**
+Linear combinations of $`\mathbf{s}_1`$ and $`\mathbf{s}_2`$ are in the nullspace of $`R`$. **The special solutions $`\mathbf{s}_1`$ and $`\mathbf{s}_2`$ are a basis for the nullspace.** Their free-variable components are $`(1, 0)`$ and $`(0, 1)`$, so they are independent, and every solution in the nullspace is determined by its free variables $`x_3, x_4`$, so it equals $`x_3\mathbf{s}_1 + x_4\mathbf{s}_2`$.
 
 ---
 
@@ -521,7 +523,7 @@ Linear combinations of $`\mathbf{s}_1`$ and $`\mathbf{s}_2`$ are in the nullspac
 R_0 \mathbf{x} = \begin{pmatrix} x_1 + 7x_2 + 8x_4 \\ x_3 + 9x_4 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`\text{rank}(R_0) = 2`$, $`n = 4`$, $`n - r = 2`$. Find two special solutions.
+$`\text{rank}(R_0) = 2`$, $`n = 4`$, $`n - r = 2`$. Find two solutions that form a basis for the nullspace.
 
 Take $`x_1 = 0, x_2 = 1`$:
 
@@ -535,7 +537,9 @@ $`1 + 8x_4 = 0 \Rightarrow x_4 = -1/8`$, $`x_3 = +9/8`$
 
 $`\Rightarrow \mathbf{x} = \begin{pmatrix} 1 \\ 0 \\ 9/8 \\ -1/8 \end{pmatrix} \Rightarrow \mathbf{s}_2 = \begin{pmatrix} 8 \\ 0 \\ 9 \\ -1 \end{pmatrix}`$
 
-We can also take $`x_2 = 1, x_4 = 0`$ and $`x_2 = 0, x_4 = 1`$ to find $`x_1`$ and $`x_3`$.
+We can also take $`x_2 = 1, x_4 = 0`$ and $`x_2 = 0, x_4 = 1`$ to find $`x_1`$ and $`x_3`$. Since $`x_2, x_4`$ are the free variables, these solutions are the special solutions, found in Section 3.6.
+
+> **Note:** The variable $`x_1`$ fixed above is a pivot variable. The two vectors obtained this way are also in the nullspace and independent, so they form a basis for $`N(R_0)`$, but they differ from the special solutions, which set one free variable to 1 and the other free variables to 0.
 
 ### 3.5 The Nullspace Matrix: Columns of (-F; I)
 
@@ -549,7 +553,7 @@ R = (I \quad F)Q
 
 where $`Q`$ is a permutation matrix (reordering columns so that pivot columns come first).
 
-**Recall** $`R\mathbf{x} = \mathbf{0}`$, i.e., $`(I \quad F)\mathbf{x} = \mathbf{0}`$ (for Ex 1):
+Recall $`R\mathbf{x} = \mathbf{0}`$, i.e., $`(I \quad F)\mathbf{x} = \mathbf{0}`$, from Ex 1:
 
 ```math
 \begin{pmatrix} 1 & 0 & 3 & 5 \\ 0 & 1 & 4 & 6 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
@@ -583,9 +587,10 @@ That is:
 
 **Elimination from $`A`$ to $`\text{rref}(A)`$: Reduced Row Echelon Form**
 
-Apply elimination to reduce $`A`$ to $`R_0`$. Then "$`I`$" in $`R_0`$ locates the matrix $`C`$ of independent columns in $`A`$. Removing any zero rows from $`R_0`$ produces the row matrix $`R`$ in $`A = CR`$.
+Apply elimination to reduce $`A`$ to $`R_0`$. Then the columns where the identity $`I`$ appears in $`R_0`$ locate the matrix $`C`$ of independent columns in $`A`$. Removing any zero rows from $`R_0`$ produces the row matrix $`R`$ in $`A = CR`$.
 
 In Chapter 2, $`A`$ was square and invertible:
+
 - $`A\mathbf{x} = \mathbf{b}`$ $`\xrightarrow{a) \text{ elimination}}`$ $`U\mathbf{x} = \mathbf{c}`$ $`\xrightarrow{b) \text{ back substitution}}`$ $`\mathbf{x} = U^{-1}\mathbf{c}`$
 
 For any matrix $`A`$ of rank $`r`$:
@@ -594,7 +599,7 @@ For any matrix $`A`$ of rank $`r`$:
 A = CR = C(I \quad F)
 ```
 
-Elimination continues until we reach an $`I_{r \times r}`$ identity matrix.
+Elimination continues until we reach an $`I_{r \times r}`$ identity matrix. If the pivot columns do not come first, a column permutation $`Q`$ is attached: $`A = C(I \quad F)Q`$ (Ex 2).
 
 ---
 
@@ -610,7 +615,7 @@ $`\text{rank}(A) = 2`$, $`n = 4`$, $`n - r = 2`$.
 
 $`A = (W \quad H)`$ where $`W = \begin{pmatrix} 1 & 2 \\ 3 & 7 \end{pmatrix}`$ (independent columns) and $`H = \begin{pmatrix} 11 & 17 \\ 37 & 57 \end{pmatrix}`$ (dependent columns).
 
-$`R = (I \quad F)`$. The elimination inverted $`W`$. This is the same as multiplying $`W^{-1}`$ to $`A`$:
+$`R = (I \quad F)`$. Elimination turned $`W`$ into $`I`$, which is the same as multiplying $`A`$ on the left by $`W^{-1}`$:
 
 ```math
 W^{-1}A = W^{-1}(W \quad H) = (I \quad W^{-1}H) = (I \quad F) = R
@@ -618,7 +623,7 @@ W^{-1}A = W^{-1}(W \quad H) = (I \quad W^{-1}H) = (I \quad F) = R
 
 $`W^{-1}H = F \implies H = WF`$.
 
-Note that $`W`$ consists of independent columns. $`F`$ tells how to combine the independent columns of $`A`$.
+Note that $`W`$ consists of independent columns. $`F`$ tells how to combine the independent columns of $`A`$ to produce the dependent columns.
 
 ```math
 H = \begin{pmatrix} 11 & 17 \\ 37 & 57 \end{pmatrix} = WF = \begin{pmatrix} 1 & 2 \\ 3 & 7 \end{pmatrix}\begin{pmatrix} 3 & 5 \\ 4 & 6 \end{pmatrix}
@@ -646,7 +651,7 @@ After column permutation $`PAQ`$:
 
 $`PAQ = \begin{pmatrix} 1 & 3 & 7 & 35 \\ 2 & 9 & 14 & 97 \\ 2 & 6 & 14 & 70 \end{pmatrix}`$ with $`W = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}`$, $`H = \begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix}`$
 
-$`W^{-1}H = F \implies H = WF`$:
+$`W`$ is $`3 \times 2`$ and has no inverse, but the same relation $`H = WF`$ holds between the independent and dependent columns:
 
 ```math
 \begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}
@@ -660,9 +665,9 @@ $`W^{-1}H = F \implies H = WF`$:
 
 **The Matrix Factorization $`A = CR`$ and $`N(A)`$:**
 
-Apply elimination to reduce $`A`$ to $`R_0`$. Then "$`I`$" in $`R_0`$ locates the matrix $`C`$ of independent columns in $`A`$. Removing any zero rows from $`R_0`$ produces the row matrix $`R`$ in $`A = CR`$.
+Apply elimination to reduce $`A`$ to $`R_0`$. Then the columns where the identity $`I`$ appears in $`R_0`$ locate the matrix $`C`$ of independent columns in $`A`$. Removing any zero rows from $`R_0`$ produces the row matrix $`R`$ in $`A = CR`$.
 
-Let's find two special solutions $`\mathbf{s}_1, \mathbf{s}_2`$ for Ex 2:
+Let us find the two special solutions $`\mathbf{s}_1, \mathbf{s}_2`$ for Ex 2:
 
 ```math
 R = \begin{pmatrix} 1 & 7 & 0 & 8 \\ 0 & 0 & 1 & 9 \end{pmatrix}
@@ -698,13 +703,13 @@ Take $`s_2 = 0, s_4 = 1`$: $`\Rightarrow s_1 = -8, s_3 = -9`$. $`\therefore \mat
 
 3. When $`R_0 \mathbf{x} = \mathbf{d}`$ is solvable, one particular solution $`\mathbf{x}_p`$ has **all free variables equal to zero**.
 
-4. $`A`$ has **full column rank** $`r = n`$ when its nullspace $`N(A) = \lbrace\text{zero vector}\rbrace`$. No free variables.
+4. $`A`$ has **full column rank** $`r = n`$ when its nullspace is $`N(A) = \lbrace\text{zero vector}\rbrace`$. Then there are no free variables.
 
 5. $`A`$ has **full row rank** $`r = m`$ when its column space $`C(A)`$ is $`\mathbb{R}^m`$: $`A\mathbf{x} = \mathbf{b}`$ is always solvable.
 
 ### 4.2 Worked Example: Finding Particular Solutions
 
-In the previous section, we found solutions to $`A\mathbf{x} = \mathbf{0}`$. In this section, we find solutions to $`A\mathbf{x} = \mathbf{b}`$.
+In Section 3, we found solutions to $`A\mathbf{x} = \mathbf{0}`$. In this section, we find solutions to $`A\mathbf{x} = \mathbf{b}`$.
 
 Row operations on the left side must act on the right side. Use the **augmented matrix** $`(A | \mathbf{b})`$.
 
@@ -718,7 +723,7 @@ After elimination ($`R_3 - R_1 - R_2`$):
 \begin{pmatrix} 1 & 3 & 0 & 2 \\ 0 & 0 & 1 & 4 \\ 0 & 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} 1 \\ 6 \\ 0 \end{pmatrix} \quad \Rightarrow \quad (R_0 | \mathbf{d})
 ```
 
-The last equation is $`0 = 0`$. Let's consider a general $`\mathbf{b}`$:
+The last equation is $`0 = 0`$. Now consider a general $`\mathbf{b}`$:
 
 ```math
 (A | \mathbf{b}) = \begin{pmatrix} 1 & 3 & 0 & 2 & | & b_1 \\ 0 & 0 & 1 & 4 & | & b_2 \\ 1 & 3 & 1 & 6 & | & b_3 \end{pmatrix} \xrightarrow{R_3 - R_1 - R_2} \begin{pmatrix} 1 & 3 & 0 & 2 & | & b_1 \\ 0 & 0 & 1 & 4 & | & b_2 \\ 0 & 0 & 0 & 0 & | & b_3 - b_1 - b_2 \end{pmatrix} = (R_0 | \mathbf{d})
@@ -752,11 +757,11 @@ $`x_1 + 2 \cdot 2 = 1 \Rightarrow x_1 = -3`$, $`x_3 + 4 \cdot 2 = 6 \Rightarrow 
 
 $`\therefore \mathbf{x} = \begin{pmatrix} -3 \\ 0 \\ -2 \\ 2 \end{pmatrix}`$
 
-We can find infinite number of solutions due to the free variables.
+We can find infinitely many solutions due to the free variables.
 
 ### 4.3 The Complete Solution Decomposition
 
-The solutions can be decomposed into the **particular solution** and the **special solutions** in the nullspace.
+The solutions can be decomposed into the **particular solution** plus a combination of the **special solutions** in the nullspace.
 
 ```math
 R_0 \mathbf{x} = \begin{pmatrix} 1 & 3 & 0 & 2 \\ 0 & 0 & 1 & 4 \\ 0 & 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
@@ -844,14 +849,14 @@ $`\text{rank}(A) = 2`$, $`n = 2`$, $`n - r = 0`$. No free variables. $`N(A) = \l
 
 If $`b_3 + b_2 + b_1 \neq 0`$, then there is no solution to $`A\mathbf{x} = \mathbf{b}`$.
 
-**For full rank $`r = n`$:**
+**For full column rank $`r = n`$:**
 
 ```math
 R_0 = \begin{pmatrix} I_{n \times n} \\ O_{(m-n) \times n} \end{pmatrix}
 ```
 
 1. The matrix $`A`$ has $`n`$ independent columns.
-2. The null space of $`A`$ is $`\mathbb{Z} = \lbrace\mathbf{0}\rbrace`$.
+2. The nullspace of $`A`$ is $`\mathbb{Z} = \lbrace\mathbf{0}\rbrace`$.
 3. If $`A\mathbf{x} = \mathbf{b}`$ has a solution, it has only **one** solution.
 
 ```math
@@ -876,7 +881,7 @@ x + y + z = 3, \quad x + 2y - z = 4
 (A | \mathbf{b}) = \begin{pmatrix} 1 & 1 & 1 & | & 3 \\ 1 & 2 & -1 & | & 4 \end{pmatrix} \xrightarrow{R_2 - R_1} \begin{pmatrix} 1 & 1 & 1 & | & 3 \\ 0 & 1 & -2 & | & 1 \end{pmatrix} \xrightarrow{R_1 - R_2} \begin{pmatrix} 1 & 0 & 3 & | & 2 \\ 0 & 1 & -2 & | & 1 \end{pmatrix} = (R | \mathbf{d})
 ```
 
-$`\text{rank}(A) = 2`$, $`n = 3`$, $`n - r = 1`$. 1 free variable, 1 special solution.
+$`\text{rank}(A) = 2`$, $`n = 3`$, $`n - r = 1`$. There is 1 free variable, so there is 1 special solution.
 
 **i) $`\mathbf{x}_p`$:**
 
@@ -906,11 +911,11 @@ $`\therefore \mathbf{x}_n = \begin{pmatrix} -3 \\ 2 \\ 1 \end{pmatrix}`$
 \mathbf{x} = \mathbf{x}_p + \mathbf{x}_n = \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix} + \alpha \begin{pmatrix} -3 \\ 2 \\ 1 \end{pmatrix}
 ```
 
-This is a **line** through $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$ direction (for $`A\mathbf{x}_n = \mathbf{0}`$) shifted by $`\mathbf{x}_p`$ (for $`A\mathbf{x} = \mathbf{b}`$).
+This is a **line**: the line through the origin $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$ in the direction of $`\mathbf{x}_n`$ (solutions of $`A\mathbf{x}_n = \mathbf{0}`$), shifted by $`\mathbf{x}_p`$ (solutions of $`A\mathbf{x} = \mathbf{b}`$).
 
 **Every matrix $`A`$ with full row rank ($`r = m`$) has the following properties:**
 1. All rows have pivots, and $`R_0`$ has no zero rows. $`R_0 = R`$.
-2. $`A\mathbf{x} = \mathbf{b}`$ has a solution for $`\forall \mathbf{b}`$.
+2. $`A\mathbf{x} = \mathbf{b}`$ has a solution for every $`\mathbf{b}`$.
 3. The column space of $`A`$ is the whole space $`\mathbb{R}^m`$.
 
 $`A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}`$ where $`R = (I_{m \times m} \quad F_{m \times (n-m)})`$.
@@ -930,6 +935,626 @@ Four possibilities for linear equations depend on the rank $`r`$:
 | $`r < m`$ and $`r = n`$ | Tall, thin | $`\begin{pmatrix} I \\ 0 \end{pmatrix}`$ | 0 or 1 solution |
 | $`r < m`$ and $`r < n`$ | Not full rank | $`\begin{pmatrix} I & F \\ 0 & 0 \end{pmatrix}`$ | 0 or $`\infty`$ solutions |
 
+*Table 2. Four possibilities for linear equations by rank*
+
 ---
 
 <br>
+
+## 5. Independence, Basis, and Dimension (3.4)
+
+### 5.1 Independent Vectors
+
+**(1) Independent vectors:** The only zero combination
+
+```math
+c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n = \mathbf{0}
+```
+
+has all $`c_1 = c_2 = \cdots = c_n = 0`$.
+
+Conversely, if a zero combination has at least one nonzero scalar, say $`c_1 \neq 0`$, then we can write:
+
+```math
+\mathbf{v}_1 = -\frac{c_2}{c_1}\mathbf{v}_2 - \frac{c_3}{c_1}\mathbf{v}_3 - \cdots - \frac{c_n}{c_1}\mathbf{v}_n
+```
+
+Then $`\mathbf{v}_1`$ is a linear combination of the other vectors, and the vectors are dependent. Hence independence means that no vector is a linear combination of the others.
+
+**(2) The vectors $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$ span the space $`\mathbb{S}`$ if $`\mathbb{S}`$ = all combinations of $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$.**
+
+e.g., $`\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$ $`\implies`$ $`\begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}`$. $`\hat{i}, \hat{j}`$ span the space $`\mathbb{R}^2`$.
+
+**(3)** The vectors $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$ are a **basis** for $`\mathbb{S}`$ if they are **linearly independent** and they **span** $`\mathbb{S}`$.
+
+Every vector in the space is a **unique** combination of the basis vectors.
+
+e.g., $`\mathbb{R}^2 \ni \begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}`$
+
+**(4)** The **dimension** of a vector space $`\mathbb{S}`$ is the number $`n`$ of vectors in every basis for $`\mathbb{S}`$.
+
+Consider $`A \in \mathbb{R}^{m \times n}`$. There are $`n`$ columns, of which $`r`$ are independent, meaning the remaining $`n - r`$ columns are dependent. The dimension of $`C(A)`$ is $`r`$, which is the rank of $`A`$.
+
+Four essential ideas in this section are:
+1. Independent Vectors
+2. Spanning a Space
+3. Basis for a Space
+4. Dimension of a Space
+
+### 5.2 Linear Independence via the Nullspace
+
+> **Definition:** The columns of $`A`$ are **linearly independent** when the only solution to $`A\mathbf{x} = \mathbf{0}`$ is $`\mathbf{x} = \mathbf{0}`$.
+
+```math
+\begin{pmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n = \mathbf{0}
+```
+
+This holds only when $`x_1 = x_2 = \cdots = x_n = 0`$.
+
+**Geometric interpretation:**
+
+e.g., $`\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3 \in \mathbb{R}^3`$ are not in the same plane through the origin $`\implies`$ those vectors are independent. No combination of $`\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3`$ that equals $`\mathbf{0}`$ exists (except the trivial one).
+
+e.g., $`\mathbf{w}_1, \mathbf{w}_2, \mathbf{w}_3`$ are in the same plane through the origin in $`\mathbb{R}^3`$. They are dependent. For instance, $`\mathbf{w}_3 = \mathbf{w}_1 + \mathbf{w}_2`$ $`\iff`$ $`1 \cdot \mathbf{w}_1 + 1 \cdot \mathbf{w}_2 - 1 \cdot \mathbf{w}_3 = \mathbf{0}`$. The combination gives $`\mathbf{0}`$, but there are nonzero coefficients, meaning they are dependent.
+
+**Quick checks for dependence:**
+
+- Q. Are $`\begin{pmatrix} 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ 10^{-5} \end{pmatrix}`$ dependent? **No.**
+- Q. Are $`\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \begin{pmatrix} -1 \\ -1 \end{pmatrix}`$ dependent? **Yes.**
+- Q. Are $`\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$ dependent? **Yes.**
+- Q. In $`\mathbb{R}^2`$, any three vectors are dependent. **True.**
+
+**Ex 1.** Let $`A = \begin{pmatrix} 1 & 0 & 3 \\ 2 & 1 & 5 \\ 1 & 0 & 3 \end{pmatrix}`$. Does $`A`$ have dependent columns?
+
+Check the nullspace of $`A`$, $`N(A)`$.
+
+```math
+A\mathbf{x} = \begin{pmatrix} 1 & 0 & 3 \\ 2 & 1 & 5 \\ 1 & 0 & 3 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+```
+
+$`\xrightarrow{R_2 - 2R_1, \; R_3 - R_1}`$ $`\begin{pmatrix} 1 & 0 & 3 \\ 0 & 1 & -1 \\ 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$, $`\text{rank}(A) = 2 < 3`$.
+
+Take $`x_3 = 1`$: $`x_1 + 3 = 0 \Rightarrow x_1 = -3`$, $`x_2 - 1 = 0 \Rightarrow x_2 = 1`$.
+
+The nonzero coefficients result in the zero vector:
+
+```math
+-3\begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} + 1\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + 1\begin{pmatrix} 3 \\ 5 \\ 3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+```
+
+If the columns of $`A`$ are independent, then $`\text{rank}(A) = r = n`$ and the nullspace of $`A`$ has only the zero vector: $`N(A) = \lbrace\mathbf{0}\rbrace`$.
+
+**Any set of $`n`$ vectors in $`\mathbb{R}^m`$ must be linearly dependent if $`n > m`$.**
+
+e.g., Suppose you have 7 columns with 5 components ($`5 \times 7`$ matrix). 7 column vectors are from $`\mathbb{R}^5`$. There cannot be more than 5 pivots in 5 rows. $`A\mathbf{x} = \mathbf{0}`$ has at least $`2 \;(= 7 - 5)`$ free variables. That is, it has nonzero solutions.
+
+> **Note:** The columns might be dependent or independent if $`n \leq m`$. Elimination will reveal the $`r`$ pivots.
+
+### 5.3 Vectors that Span a Subspace
+
+Let $`A`$ be a matrix. $`C(A)`$ is the column space, which consists of all combinations of the columns, that is, all vectors $`A\mathbf{x}`$:
+
+```math
+\begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 \mathbf{v}_1 + x_2 \mathbf{v}_2 + \cdots + x_n \mathbf{v}_n
+```
+
+**e.g.,** $`A = \begin{pmatrix} 1 & 4 \\ 2 & 7 \\ 3 & 5 \end{pmatrix}`$, $`A^T = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 7 & 5 \end{pmatrix}`$
+
+$`C(A)`$ is the plane in $`\mathbb{R}^3`$. $`C(A^T)`$, row space of $`A`$, is $`\mathbb{R}^2`$.
+
+For $`A \in \mathbb{R}^{m \times n}`$: the row vectors are in $`\mathbb{R}^n`$, the column vectors are in $`\mathbb{R}^m`$.
+
+### 5.4 Basis for a Vector Space
+
+> **Definition:** A **basis** for a vector space is a sequence of vectors with the following two properties.
+>
+> i) The basis vectors are **linearly independent**.
+>
+> ii) They **span** the space.
+
+**e.g.,** $`\begin{pmatrix} x \\ y \end{pmatrix} = x\begin{pmatrix} 1 \\ 0 \end{pmatrix} + y\begin{pmatrix} 0 \\ 1 \end{pmatrix}`$ where $`\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$.
+
+i) $`\hat{i}`$ and $`\hat{j}`$ are LI.
+ii) $`\hat{i}, \hat{j}`$ span $`\mathbb{R}^2`$.
+
+The combination $`\mathbf{x} = x\hat{i} + y\hat{j}`$ is unique because $`\hat{i}, \hat{j}`$ are LI.
+
+**There is one and only one way to write $`\mathbf{v}`$ as a combination of the basis vectors.**
+
+**Proof.** Suppose $`\mathbf{v} = a_1 \mathbf{v}_1 + \cdots + a_n \mathbf{v}_n`$ and $`\mathbf{v} = b_1 \mathbf{v}_1 + \cdots + b_n \mathbf{v}_n`$.
+
+By subtraction, we have the zero vector:
+
+```math
+\mathbf{0} = (a_1 - b_1)\mathbf{v}_1 + \cdots + (a_n - b_n)\mathbf{v}_n
+```
+
+From the LI of $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$: $`a_1 - b_1 = 0`$, $`a_2 - b_2 = 0`$, $`\ldots`$, $`a_n - b_n = 0`$.
+
+Hence $`a_i = b_i`$ for $`i = 1, 2, \ldots, n`$. $`\square`$
+
+---
+
+**Ex 3.** The columns of $`I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}`$ produce the **standard basis** for $`\mathbb{R}^2`$.
+
+Let $`\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$.
+
+i) $`\hat{i}, \hat{j}`$ are LI.
+ii) $`\hat{i}, \hat{j}`$ span $`\mathbb{R}^2`$.
+
+$`\therefore \hat{i}, \hat{j}`$ are basis vectors in $`\mathbb{R}^2`$.
+
+---
+
+**Ex 4.** The columns of every invertible $`n`$ by $`n`$ matrix give a basis for $`\mathbb{R}^n`$.
+
+**Invertible matrix example:**
+
+```math
+A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix} \xrightarrow{R_2 - R_1, \; R_3 - R_1} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \xrightarrow{R_3 - R_2} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = R
+```
+
+The 3 column vectors are LI and $`C(A) = \mathbb{R}^3`$. There are 3 nonzero pivots, so $`\text{rank}(A) = 3`$ and $`N(A) = \lbrace\mathbf{0}\rbrace`$.
+
+**A basis is not unique.**
+
+The vectors $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$ are a basis for $`\mathbb{R}^n`$ when they are the columns of an $`n`$ by $`n`$ invertible matrix. $`\mathbb{R}^n`$ has infinitely many different bases.
+
+---
+
+**Singular matrix example:**
+
+```math
+B = \begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 2 \\ 1 & 1 & 2 \end{pmatrix} \xrightarrow{R_2 - R_1, \; R_3 - R_1} \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 1 & 1 \end{pmatrix} \xrightarrow{R_3 - R_2} \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{pmatrix} = R_0
+```
+
+$`C(B) \neq \mathbb{R}^3`$ and $`\text{rank}(B) = 2 < 3`$.
+
+When columns are dependent, we only keep the **pivot columns**.
+
+For example, keep the 1st and 2nd columns of $`B`$.
+
+- Every set of independent vectors can be **extended** to a basis. (e.g., 1st, 2nd columns in $`B`$ span a plane in $`\mathbb{R}^3`$.)
+- Every spanning set of vectors can be **reduced** to a basis.
+
+---
+
+**Ex 5.** $`A = \begin{pmatrix} 2 & 4 \\ 3 & 6 \end{pmatrix}`$
+
+$`\xrightarrow{R_2 - \frac{3}{2}R_1}`$ $`\begin{pmatrix} 2 & 4 \\ 0 & 0 \end{pmatrix}`$ $`\xrightarrow{R_1 / 2}`$ $`\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix} = R_0`$
+
+$`\text{rank}(A) = 1 < 2`$. There is one pivot column and one pivot row.
+
+---
+
+**Ex 6.** $`R_0 = \begin{pmatrix} 1 & 2 & 0 & 3 \\ 0 & 0 & 1 & 4 \\ 0 & 0 & 0 & 0 \end{pmatrix}`$
+
+1st, 3rd columns are pivot columns. $`\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}`$ are basis vectors for $`C(R_0)`$.
+
+$`C(R_0)`$ is the $`xy`$ plane in $`\mathbb{R}^3`$.
+
+Also, 2nd and 3rd column vectors are a basis of $`C(R_0)`$.
+
+---
+
+**All bases for a vector space contain the same number of vectors.** The number of vectors in any and every basis is the **dimension** of the space.
+
+### 5.5 Dimension of a Vector Space
+
+**Dimension of a Vector Space:**
+
+If $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_m`$ and $`\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n`$ are both bases for the same vector space, then $`m = n`$.
+
+**Proof.** Let $`n > m`$. Since $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_m`$ are a basis, each $`\mathbf{w}_i`$ for $`i = 1, 2, \ldots, n`$ must be a combination of the $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_m`$:
+
+```math
+\mathbf{w}_1 = a_{11}\mathbf{v}_1 + a_{21}\mathbf{v}_2 + \cdots + a_{m1}\mathbf{v}_m
+```
+```math
+\mathbf{w}_2 = a_{12}\mathbf{v}_1 + a_{22}\mathbf{v}_2 + \cdots + a_{m2}\mathbf{v}_m
+```
+```math
+\vdots
+```
+```math
+\mathbf{w}_n = a_{1n}\mathbf{v}_1 + a_{2n}\mathbf{v}_2 + \cdots + a_{mn}\mathbf{v}_m
+```
+
+This leads to:
+
+```math
+W = (\mathbf{w}_1 \quad \mathbf{w}_2 \quad \cdots \quad \mathbf{w}_n) = (\mathbf{v}_1 \quad \mathbf{v}_2 \quad \cdots \quad \mathbf{v}_m) \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & & & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix} = VA
+```
+
+$`A`$ is $`m`$ by $`n`$ matrix (short and wide). Because $`n > m`$, $`A\mathbf{x} = \mathbf{0}`$ has nonzero solutions.
+
+From $`A\mathbf{x} = \mathbf{0}`$: $`VA\mathbf{x} = V\mathbf{0} = \mathbf{0}`$.
+
+That is $`W\mathbf{x} = \mathbf{0}`$, i.e., $`x_1\mathbf{w}_1 + x_2\mathbf{w}_2 + \cdots + x_n\mathbf{w}_n = \mathbf{0}`$.
+
+Since $`\mathbf{x}`$ is a nonzero vector, $`\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n`$ are not LI. $`\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n`$ cannot be a basis. This contradicts the assumption that $`\mathbf{w}_i`$ for $`i = 1, 2, \ldots, n`$ is a basis. If $`m > n`$, exchanging the roles of the two bases gives the same contradiction, so $`m = n`$. $`\square`$
+
+---
+
+> **Definition:** The **dimension** of a space is the number of vectors in every basis.
+
+**e.g.,** The line through the origin and $`\mathbf{u} = \begin{pmatrix} 1 \\ 5 \\ 2 \end{pmatrix}`$ has 1 dimension.
+
+Perpendicular to that line is the plane: $`\mathbf{u} \cdot \mathbf{x} = 0 \iff x + 5y + 2z = 0`$.
+
+The plane is the nullspace of the matrix $`A = \begin{pmatrix} 1 & 5 & 2 \end{pmatrix}`$:
+
+$`(1 \quad 5 \quad 2)\begin{pmatrix} x \\ y \\ z \end{pmatrix} = 0`$
+
+$`n = 3`$, $`\text{rank}(A) = r = 1`$, $`n - r = 2`$ free variables.
+
+The $`n - r`$ special solutions give a basis for the nullspace, so its dimension is $`n - r`$.
+
+To find the special solutions:
+- Take $`y = 1, z = 0 \implies x = -5`$
+- Take $`y = 0, z = 1 \implies x = -2`$
+
+$`\begin{pmatrix} -5 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} -2 \\ 0 \\ 1 \end{pmatrix}`$ are a basis (2 dimensions).
+
+**Summary of dimensions:**
+- The row space has dimension $`r`$.
+- The column space has dimension $`r`$.
+- The nullspace has dimension $`n - r`$.
+- $`N(A^T)`$ has dimension $`m - r`$.
+
+### 5.6 Bases for Matrix Spaces and Function Spaces
+
+**Bases for Matrix Spaces and Function Spaces**
+
+The terms independence, basis, and dimension are not limited to column vectors.
+
+**Matrix Spaces:**
+
+The vector space $`\mathbb{M}`$ contains all $`2 \times 2`$ matrices. Its dimension is 4.
+
+e.g., $`A_1, A_2, A_3, A_4 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}`$
+
+i) They are LI: $`x_1 A_1 + x_2 A_2 + x_3 A_3 + x_4 A_4 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}`$ iff $`x_1 = x_2 = x_3 = x_4 = 0`$.
+
+ii) They span $`\mathbb{M}`$: $`\begin{pmatrix} a & b \\ c & d \end{pmatrix} = aA_1 + bA_2 + cA_3 + dA_4`$. The linear combinations of $`A_1, A_2, A_3, A_4`$ can produce any matrix in $`\mathbb{M}`$.
+
+**Subspaces of matrix spaces:**
+
+- $`A_1, A_2, A_4 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}`$ are a basis for the subspace $`\mathcal{U}`$ of upper triangular matrices: $`\mathcal{U} \ni \begin{pmatrix} a & b \\ 0 & d \end{pmatrix} = a\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + b\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} + d\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}`$
+
+- $`A_1, A_4`$ are a basis for the subspace $`\mathbb{D}`$ of diagonal matrices: $`\mathbb{D} \ni \begin{pmatrix} a & 0 \\ 0 & d \end{pmatrix} = a\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + d\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}`$
+
+- $`A_1, A_4, A_2 + A_3`$ are a basis for the subspace $`\mathbb{S}`$ of symmetric matrices: $`\mathbb{S} \ni \begin{pmatrix} a & b \\ b & d \end{pmatrix} = a\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + b\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} + d\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}`$
+
+**Dimensions of matrix subspaces (for $`n \times n`$ matrices):**
+
+| Space | Dimension |
+|:------|:----------|
+| Whole $`n \times n`$ matrix space | $`n^2`$ |
+| Diagonal matrices | $`n`$ |
+| Upper triangular matrices | $`\frac{1}{2}n^2 + \frac{1}{2}n`$ |
+| Symmetric matrices | $`\frac{1}{2}n^2 + \frac{1}{2}n`$ |
+
+*Table 3. Dimensions of the space of square matrices and its subspaces*
+
+For upper triangular matrices: Total number of entries fixed at zero $`= \sum_{i=1}^{n}(i-1) = \sum_{i=1}^{n} i - n = \frac{n(n+1)}{2} - n`$. Total number of entries not fixed at zero $`= n^2 - \frac{n(n+1)}{2} + n = \frac{n^2}{2} + \frac{n}{2}`$.
+
+The number of free entries (dimension) for upper triangular and symmetric matrices is the same: $`\frac{1}{2}n^2 + \frac{1}{2}n`$.
+
+---
+
+**Function Spaces:**
+
+```math
+\frac{d^2y}{dx^2} = 0, \quad \frac{d^2y}{dx^2} = -y, \quad \frac{d^2y}{dx^2} = y
+```
+
+These involve the 2nd derivative. In calculus, we find the solution $`y(x)`$:
+
+| ODE | Solution | Basis | Dimension |
+|:----|:---------|:------|:----------|
+| $`y'' = 0`$ | $`y = cx + d`$ | $`\lbrace1, x\rbrace`$ | 2 |
+| $`y'' = -y`$ | $`y = c\sin x + d\cos x`$ | $`\lbrace\sin x, \cos x\rbrace`$ | 2 |
+| $`y'' = y`$ | $`y = ce^x + de^{-x}`$ | $`\lbrace e^x, e^{-x}\rbrace`$ | 2 |
+
+*Table 4. Solutions, bases, and dimensions of second-order ODEs*
+
+Each basis lies in the **nullspace** of the corresponding differential operator. The basis $`\lbrace1, x\rbrace`$ for $`y'' = 0`$ spans the nullspace of the 2nd derivative $`d^2/dx^2`$, and the bases for $`y'' = -y`$ and $`y'' = y`$ span the nullspaces of $`d^2/dx^2 + 1`$ and $`d^2/dx^2 - 1`$.
+
+$`y'' = 2`$ has the particular solution $`y_p = x^2`$: $`\frac{dy_p}{dx} = 2x`$, $`\frac{d^2 y_p}{dx^2} = 2`$.
+
+Therefore, the general (complete) solution becomes:
+
+```math
+y(x) = y_p(x) + y_n(x) = x^2 + cx + d
+```
+
+---
+
+<br>
+
+## 6. Dimensions of the Four Subspaces (3.5)
+
+### 6.1 Dimension Summary
+
+1. The column space $`C(A)`$ and the row space $`C(A^T)`$ both have dimension $`r`$ (= rank of $`A`$).
+2. The nullspace of $`A`$, $`N(A)`$, has dimension $`n - r`$.
+3. The left nullspace of $`A`$, $`N(A^T)`$, has dimension $`m - r`$.
+4. Elimination from $`A`$ to $`R_0`$ **changes** $`C(A)`$ and $`N(A^T)`$, but their dimensions do not change.
+
+### 6.2 Orthogonality of the Subspaces
+
+We connect **rank** and **dimension** as follows:
+- **Rank** of a matrix counts independent columns.
+- **Dimension** of a subspace is the number of vectors in a basis.
+
+The rank of $`A \in \mathbb{R}^{m \times n}`$ reveals the dimension of all four fundamental subspaces:
+
+1. **Row space**, $`C(A^T)`$, is a subspace of $`\mathbb{R}^n`$, dimension $`r`$. (Each row vector $`\in \mathbb{R}^n`$.)
+2. **Column space**, $`C(A)`$, is a subspace of $`\mathbb{R}^m`$, dimension $`r`$. (Each column vector $`\in \mathbb{R}^m`$.)
+3. **Nullspace**, $`N(A)`$, is a subspace of $`\mathbb{R}^n`$, dimension $`n - r`$. ($`A\mathbf{x} = \mathbf{0}`$, $`\mathbf{x} \in \mathbb{R}^n`$.)
+4. **Left nullspace**, $`N(A^T)`$, is a subspace of $`\mathbb{R}^m`$, dimension $`m - r`$. ($`A^T\mathbf{y} = \mathbf{0}`$, $`\mathbf{y} \in \mathbb{R}^m`$.)
+
+**Orthogonal pairs:**
+
+```math
+C(A) \subset \mathbb{R}^m, \quad C(A^T) \subset \mathbb{R}^n
+```
+```math
+N(A^T) \subset \mathbb{R}^m, \quad N(A) \subset \mathbb{R}^n
+```
+
+- $`C(A)`$ and $`C(A^T)`$ have $`r`$ dimensions.
+- Column space of $`A`$ and row space of $`A`$ have the same dimension $`r`$.
+- $`N(A)`$ has dimension $`n - r`$.
+- $`N(A^T)`$ has dimension $`m - r`$.
+
+**$`N(A)`$ is perpendicular to $`C(A^T)`$ (row space of $`A`$):**
+
+e.g., $`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}`$
+
+The row vectors $`\lbrace(1, 2), (3, 4)\rbrace`$ span the row space of $`A`$. The solutions to $`\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$ are in the nullspace of $`A`$, $`N(A)`$.
+
+$`N(A) \ni \mathbf{x}`$ is perpendicular to any vector in the row space of $`A`$ in the sense of inner product.
+
+That is, take $`\mathbf{y} \in C(A^T)`$, $`\mathbf{x} \in N(A)`$: $`\mathbf{y} \cdot \mathbf{x} = 0`$.
+
+**$`N(A^T)`$ is perpendicular to $`C(A)`$ (column space of $`A`$):**
+
+e.g., $`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}`$
+
+The column vectors $`\lbrace\begin{pmatrix} 1 \\ 3 \end{pmatrix}, \begin{pmatrix} 2 \\ 4 \end{pmatrix}\rbrace`$ span the column space of $`A`$.
+
+$`N(A^T) \ni \mathbf{y}`$ implies that $`A^T\mathbf{y} = \mathbf{0}`$:
+
+$`\begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix}\begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$
+
+$`\Rightarrow C(A) \ni \mathbf{x} \perp \mathbf{y} \in N(A^T)`$
+
+i.e., $`\alpha\begin{pmatrix} 1 \\ 3 \end{pmatrix} + \beta\begin{pmatrix} 2 \\ 4 \end{pmatrix} \perp \mathbf{y}`$
+
+> **Note:** The matrix $`A`$ in this example is invertible, so $`N(A)`$ and $`N(A^T)`$ are both $`\lbrace\mathbf{0}\rbrace`$, and the orthogonality above holds trivially for the zero vector. Section 6.3 gives an example ($`R_0`$) with nullspaces larger than $`\lbrace\mathbf{0}\rbrace`$.
+
+### 6.3 The Four Subspaces for R_0
+
+**Suppose $`R_0 = \text{rref}(A)`$.** The four dimensions are the same for $`R_0`$ and $`A`$.
+
+**Example:** Consider a $`3 \times 5`$ matrix $`R_0`$:
+
+```math
+R_0 = \begin{pmatrix} 1 & 3 & 5 & 0 & 7 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{pmatrix}
+```
+
+Pivot rows: 1 and 2. Pivot columns: 1 and 4. $`\text{rank}(R_0) = r = 2`$.
+
+**Row space:** Spanned by basis vectors $`\lbrace(1, 3, 5, 0, 7), \;(0, 0, 0, 1, 2)\rbrace`$. $`\dim C(R_0^T) = 2 = r`$.
+
+**Column space:** The 1st and 4th column vectors form $`\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\rbrace`$, a basis for $`C(R_0)`$. $`\dim C(R_0) = 2 = r`$.
+
+**Nullspace:** $`R_0 \mathbf{x} = \mathbf{0}`$:
+
+```math
+\begin{pmatrix} x_1 + 3x_2 + 5x_3 + 7x_5 \\ x_4 + 2x_5 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+```
+
+$`n - r = 5 - 2 = 3`$, 3 free variables.
+
+i) Take $`x_2 = 1, x_3 = 0, x_5 = 0`$: $`x_1 + 3 = 0 \Rightarrow x_1 = -3`$, $`x_4 = 0`$. $`\mathbf{x} = \begin{pmatrix} -3 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}`$
+
+ii) Take $`x_2 = 0, x_3 = 1, x_5 = 0`$: $`x_1 + 5 = 0 \Rightarrow x_1 = -5`$, $`x_4 = 0`$. $`\mathbf{x} = \begin{pmatrix} -5 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}`$
+
+iii) Take $`x_2 = 0, x_3 = 0, x_5 = 1`$: $`x_1 + 7 = 0 \Rightarrow x_1 = -7`$, $`x_4 + 2 = 0 \Rightarrow x_4 = -2`$. $`\mathbf{x} = \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}`$
+
+The 3 special solutions form a basis $`\left\lbrace\begin{pmatrix} -3 \\ 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -5 \\ 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} -7 \\ 0 \\ 0 \\ -2 \\ 1 \end{pmatrix}\right\rbrace`$ for $`N(R_0)`$.
+
+$`\dim N(R_0) = 3 = 5 - 2 = n - r`$.
+
+**Left nullspace:** $`R_0^T \mathbf{y} = \mathbf{0}`$:
+
+```math
+\begin{pmatrix} 1 & 0 & 0 \\ 3 & 0 & 0 \\ 5 & 0 & 0 \\ 0 & 1 & 0 \\ 7 & 2 & 0 \end{pmatrix} \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} \iff \begin{pmatrix} y_1 \\ 3y_1 \\ 5y_1 \\ y_2 \\ 7y_1 + 2y_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}
+```
+
+$`m - r = 3 - 2 = 1`$, 1 free variable.
+
+Take $`y_3 = 1`$: $`\Rightarrow y_1 = y_2 = 0`$. $`\therefore \mathbf{y} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}`$
+
+$`\left\lbrace\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\rbrace`$ forms a basis for $`N(R_0^T)`$.
+
+$`\dim N(R_0^T) = 1 = m - r = 3 - 2`$.
+
+$`R_0^T \mathbf{y} = \mathbf{0} \iff \mathbf{y}^T R_0 = \mathbf{0}`$. $`\mathbf{y}^T`$ is a row vector multiplying $`R_0`$ from the left, which is where the name left nullspace comes from.
+
+**Orthogonality summary:**
+
+```math
+C(A) \subset \mathbb{R}^m \perp N(A^T) \subset \mathbb{R}^m
+```
+```math
+C(A^T) \subset \mathbb{R}^n \perp N(A) \subset \mathbb{R}^n
+```
+
+In $`\mathbb{R}^n`$: the row space and the nullspace have $`r`$ and $`n - r`$ dimensions.
+
+In $`\mathbb{R}^m`$: the column space and the left nullspace have $`r`$ and $`m - r`$ dimensions.
+
+### 6.4 Relationship Between A and R_0
+
+**The four subspace dimensions for $`A`$ are the same as for $`R_0`$.**
+
+```math
+A = \begin{pmatrix} 1 & 3 & 5 & 0 & 7 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 3 & 5 & 1 & 9 \end{pmatrix} \longrightarrow R_0 = \begin{pmatrix} 1 & 3 & 5 & 0 & 7 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{pmatrix}
+```
+
+$`A`$ has the same row space as $`R_0`$, but its column space differs from that of $`R_0`$.
+
+A basis for $`C(A)`$: $`\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\rbrace`$ (pivot columns of $`A`$, **not** $`R_0`$)
+
+A basis for $`C(R_0)`$: $`\left\lbrace\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}\right\rbrace`$
+
+(Different planes in $`\mathbb{R}^3`$, but same dimension.)
+
+**Key relationships:**
+
+1. $`A`$ has the **same row space** as $`R_0`$, $`R`$: $`C(A^T) = C(R_0^T) = C(R^T)`$, dimension $`r`$.
+
+2. The column space of $`A`$ has dimension $`r`$: $`\dim C(A) = \dim C(A^T)`$. $`C(A) \neq C(R_0)`$, but $`\dim C(A) = \dim C(R_0) = r`$.
+
+3. $`A`$ has the **same nullspace** as $`R_0`$: $`A\mathbf{x} = \mathbf{0} \iff R_0 \mathbf{x} = \mathbf{0}`$. **Elimination does not change the solutions.** The special solutions form a basis. $`n - r`$ free variables $`\implies`$ $`\dim N(A) = n - r`$.
+
+```math
+\dim C(A) + \dim N(A) = r + (n - r) = n
+```
+
+4. The left nullspace of $`A`$, $`N(A^T)`$: $`\dim C(A^T) + \dim N(A^T) = r + (m - r) = m`$.
+
+### 6.5 The Fundamental Theorem of Linear Algebra
+
+```math
+\boxed{\textbf{Fundamental Theorem of Linear Algebra}}
+```
+
+> **Key Point:** For an $`m \times n`$ matrix $`A`$ of rank $`r`$, the following hold.
+>
+> i) $`\dim C(A) = \dim C(A^T) = r`$
+>
+> ii) $`\dim N(A) = n - r`$, $`\quad \dim N(A^T) = m - r`$
+
+**The Four Subspaces for $`A`$:**
+
+```math
+C(A^T) \subset \mathbb{R}^n \quad \perp \quad N(A) \subset \mathbb{R}^n
+```
+```math
+C(A) \subset \mathbb{R}^m \quad \perp \quad N(A^T) \subset \mathbb{R}^m
+```
+
+In $`\mathbb{R}^n`$: $`C(A^T)`$ (dim $`r`$) and $`N(A)`$ (dim $`n - r`$) are orthogonal complements.
+
+In $`\mathbb{R}^m`$: $`C(A)`$ (dim $`r`$) and $`N(A^T)`$ (dim $`m - r`$) are orthogonal complements.
+
+```mermaid
+flowchart LR
+    subgraph RN["R^n"]
+        ROW["Row space C(A^T)<br/>dim r"]
+        NUL["Nullspace N(A)<br/>dim n - r"]
+    end
+    subgraph RM["R^m"]
+        COL["Column space C(A)<br/>dim r"]
+        LEFT["Left nullspace N(A^T)<br/>dim m - r"]
+        ZERO(("0"))
+    end
+    ROW ---|"orthogonal complements"| NUL
+    COL ---|"orthogonal complements"| LEFT
+    ROW -->|"A"| COL
+    NUL -->|"A"| ZERO
+```
+
+*Figure 1. The four fundamental subspaces and their orthogonality*
+
+---
+
+<br>
+
+## Summary
+
+| Concept | Key Summary |
+|:-----|:-----|
+| Vector Space | A vector space is a set closed under addition and scalar multiplication that satisfies 8 axioms. |
+| Field | A field is a set, such as $`\mathbb{R}`$ or $`\mathbb{C}`$, where $`+, -, \times`$ and $`\div`$ by nonzero elements are defined. |
+| Subspace | A subspace is a subset of a vector space that is itself a vector space, so it must contain $`\mathbf{0}`$. |
+| Column Space $`C(A)`$ | The column space contains all linear combinations of the columns of $`A`$, and $`A\mathbf{x} = \mathbf{b}`$ is solvable iff $`\mathbf{b} \in C(A)`$. |
+| Row Space $`C(A^T)`$ | The row space is the column space of $`A^T`$ and is spanned by the rows of $`A`$. |
+| Nullspace $`N(A)`$ | The nullspace contains all solutions to $`A\mathbf{x} = \mathbf{0}`$ and is a subspace of $`\mathbb{R}^n`$. |
+| Left Nullspace $`N(A^T)`$ | The left nullspace contains all $`\mathbf{y}`$ with $`A^T\mathbf{y} = \mathbf{0}`$ and is a subspace of $`\mathbb{R}^m`$. |
+| RREF $`R_0 = \text{rref}(A)`$ | The reduced row echelon form contains $`I`$ in the pivot columns and $`F`$ in the free columns. |
+| $`A = CR`$ | $`C`$ holds the independent columns of $`A`$, and $`R`$ is the reduced row echelon form without zero rows, equal to $`(I \; F)`$ when the pivot columns come first. |
+| Special Solutions | The special solutions are the columns of $`\begin{pmatrix} -F \\ I \end{pmatrix}`$ and form a basis for $`N(A)`$. |
+| Complete Solution | The complete solution is $`\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n`$, a particular solution plus a nullspace vector. |
+| Particular Solution $`\mathbf{x}_p`$ | A particular solution is found by setting all free variables to 0 and solving $`R_0\mathbf{x} = \mathbf{d}`$. |
+| Full Column Rank ($`r = n`$) | With full column rank, $`N(A) = \lbrace\mathbf{0}\rbrace`$, $`A\mathbf{x} = \mathbf{b}`$ has at most 1 solution, and $`R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}`$. |
+| Full Row Rank ($`r = m`$) | With full row rank, $`A\mathbf{x} = \mathbf{b}`$ is always solvable, $`C(A) = \mathbb{R}^m`$, and $`R = (I \; F)`$. |
+| Linear Independence | Vectors are independent when $`c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0}`$ holds only for all $`c_i = 0`$. |
+| Spanning | Vectors span $`\mathbb{S}`$ if $`\mathbb{S}`$ consists of all combinations of those vectors. |
+| Basis | A basis is a set of linearly independent vectors that span the space, and it represents every vector of the space uniquely. |
+| Dimension | The dimension is the number of vectors in any basis and is the same for all bases. |
+| $`\dim C(A) = \dim C(A^T) = r`$ | The column space and the row space share the same dimension, the rank. |
+| $`\dim N(A) = n - r`$ | The nullspace dimension equals the number of free variables. |
+| $`\dim N(A^T) = m - r`$ | The left nullspace has dimension $`m - r`$. |
+| $`r + (n - r) = n`$ | The row space and the nullspace together fill $`\mathbb{R}^n`$, and their dimensions add to $`n`$. |
+| $`r + (m - r) = m`$ | The column space and the left nullspace together fill $`\mathbb{R}^m`$, and their dimensions add to $`m`$. |
+| Orthogonality | $`N(A) \perp C(A^T)`$ holds in $`\mathbb{R}^n`$, and $`N(A^T) \perp C(A)`$ holds in $`\mathbb{R}^m`$. |
+| Matrix Space dim | The space of $`n \times n`$ matrices has dimension $`n^2`$, diagonal matrices have dimension $`n`$, and upper triangular and symmetric matrices each have dimension $`\frac{n^2+n}{2}`$. |
+| Function Space | The solutions to $`y'' = 0, -y, y`$ form 2-dimensional spaces with bases $`\lbrace1,x\rbrace`$, $`\lbrace\sin x, \cos x\rbrace`$, and $`\lbrace e^x, e^{-x}\rbrace`$. |
+| Fundamental Theorem | The theorem states $`\dim C(A) = \dim C(A^T) = r`$, $`\dim N(A) = n-r`$, and $`\dim N(A^T) = m-r`$. |
+
+---
+
+<br>
+
+## Self-Check Questions
+
+1. **Subspace test:** Decide whether each set in $`\mathbb{R}^3`$ is a subspace and explain why. (a) All $`(x, y, z)`$ with $`x + 2y - z = 0`$ (b) All $`(x, y, z)`$ with $`x + 2y - z = 1`$ (c) All $`(x, y, z)`$ with $`x \geq 0`$
+
+   <details>
+   <summary>Answer</summary>
+
+   (a) is a subspace. It is the nullspace of the matrix $`(1 \quad 2 \quad -1)`$, so it is closed under addition and scalar multiplication; it is a plane through the origin. (b) is not a subspace. Since $`0 + 2 \cdot 0 - 0 = 0 \neq 1`$, the vector $`\mathbf{0}`$ is not in the set. (c) is not a subspace. $`(1, 0, 0)`$ is in the set, but multiplying by $`c = -1`$ gives $`(-1, 0, 0)`$, which is not, so the set is not closed under scalar multiplication.
+
+   </details>
+
+2. **Special solutions and the nullspace:** For $`A = \begin{pmatrix} 1 & 2 & 0 & 1 \\ 2 & 4 & 1 & 4 \end{pmatrix}`$, find the reduced row echelon form $`R`$, the rank, and the special solutions, and give the dimension of $`N(A)`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`R_2 - 2R_1`$ gives $`R = \begin{pmatrix} 1 & 2 & 0 & 1 \\ 0 & 0 & 1 & 2 \end{pmatrix}`$. The pivot columns are the 1st and 3rd, so $`r = 2`$, and the free variables are $`x_2, x_4`$. Setting $`x_2 = 1, x_4 = 0`$ gives $`x_1 = -2, x_3 = 0`$, so $`\mathbf{s}_1 = (-2, 1, 0, 0)`$. Setting $`x_2 = 0, x_4 = 1`$ gives $`x_1 = -1, x_3 = -2`$, so $`\mathbf{s}_2 = (-1, 0, -2, 1)`$. The two special solutions are a basis for $`N(A)`$, so $`\dim N(A) = n - r = 4 - 2 = 2`$.
+
+   </details>
+
+3. **Complete solution:** For the $`A`$ of Question 2 and $`\mathbf{b} = (3, 8)`$, find the complete solution to $`A\mathbf{x} = \mathbf{b}`$. Also explain why $`A\mathbf{x} = \mathbf{b}`$ is solvable for every $`\mathbf{b}`$ with this $`A`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`R_2 - 2R_1`$ on the augmented matrix gives $`\begin{pmatrix} 1 & 2 & 0 & 1 & | & 3 \\ 0 & 0 & 1 & 2 & | & 2 \end{pmatrix}`$. Setting the free variables $`x_2, x_4`$ to 0 gives $`x_1 = 3, x_3 = 2`$, so the particular solution is $`\mathbf{x}_p = (3, 0, 2, 0)`$, and indeed $`A\mathbf{x}_p = (3, 6 + 2) = (3, 8)`$. The complete solution is $`\mathbf{x} = (3, 0, 2, 0) + x_2(-2, 1, 0, 0) + x_4(-1, 0, -2, 1)`$. $`A`$ has full row rank $`r = m = 2`$, so $`R`$ has no zero rows and $`C(A) = \mathbb{R}^2`$, which makes the system solvable for every $`\mathbf{b}`$.
+
+   </details>
+
+4. **Dimensions of the four subspaces:** For a $`5 \times 8`$ matrix $`A`$ of rank 3, find the dimensions of the four fundamental subspaces and state which space each one lies in.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`m = 5, n = 8, r = 3`$. The column space $`C(A)`$ is a 3-dimensional subspace of $`\mathbb{R}^5`$, and the row space $`C(A^T)`$ is a 3-dimensional subspace of $`\mathbb{R}^8`$. The nullspace $`N(A)`$ is an $`8 - 3 = 5`$-dimensional subspace of $`\mathbb{R}^8`$, and the left nullspace $`N(A^T)`$ is a $`5 - 3 = 2`$-dimensional subspace of $`\mathbb{R}^5`$. The dimensions add up: $`3 + 5 = 8`$ in $`\mathbb{R}^8`$ and $`3 + 2 = 5`$ in $`\mathbb{R}^5`$.
+
+   </details>
+
+5. **Basis test:** Decide whether $`(1, 2, 3)`$, $`(2, 5, 7)`$, $`(1, 3, 4)`$ form a basis for $`\mathbb{R}^3`$, and find the dimension of the space they span.
+
+   <details>
+   <summary>Answer</summary>
+
+   They do not form a basis. Since $`(1, 2, 3) - (2, 5, 7) + (1, 3, 4) = (0, 0, 0)`$, there is a zero combination with nonzero coefficients, so the three vectors are dependent. $`(1, 2, 3)`$ and $`(2, 5, 7)`$ are not multiples of each other, so they are independent, and the third vector is their combination; hence the three vectors span a 2-dimensional plane.
+
+   </details>

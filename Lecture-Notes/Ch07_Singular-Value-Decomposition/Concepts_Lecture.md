@@ -1,15 +1,16 @@
-# Chapter 7 Lecture — Singular Value Decomposition
+# Chapter 7 — Singular Value Decomposition
 
-> **Last Updated:** 2026-06-19
->
-> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 7
+[Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Prerequisites**: [Linear Algebra] Eigenvalues, orthogonality (Ch 1-6).
+> **Last Updated:** 2026-10-18
 >
-> **Learning Objectives**:
+> Introduction to Linear Algebra, Strang, Ch 7
+
+> **Learning Objectives:**
 > 1. Derive and compute the Singular Value Decomposition (SVD)
 > 2. Interpret SVD geometrically in terms of the four fundamental subspaces
 > 3. Apply SVD to low-rank approximation and data analysis
+> 4. Express the spectral, Frobenius, and nuclear norms in terms of singular values
 
 ---
 
@@ -40,6 +41,7 @@
   - [3.5 PCA Example (P 7.3.1)](#35-pca-example-p-731)
   - [3.6 Perpendicular Least Squares](#36-perpendicular-least-squares)
 - [Summary](#summary)
+- [Self-Check Questions](#self-check-questions)
 
 ---
 
@@ -57,8 +59,8 @@ The SVD involves finding **two sets of orthonormal vectors**:
 \lbrace\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r, \dots, \underset{\sim}{v}_n\rbrace
 ```
 
-- $`\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r`$ form a **basis for $`C(A^T)`$** (row space)
-- $`\underset{\sim}{v}_{r+1}, \dots, \underset{\sim}{v}_n`$ form a **basis for $`N(A)`$** (null space)
+- $`\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r`$ form a **basis for $`C(A^T)`$** (row space).
+- $`\underset{\sim}{v}_{r+1}, \dots, \underset{\sim}{v}_n`$ form a **basis for $`N(A)`$** (null space).
 
 **Output vectors** (for the codomain, $`\mathbb{R}^m`$):
 
@@ -66,8 +68,8 @@ The SVD involves finding **two sets of orthonormal vectors**:
 \lbrace\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r, \dots, \underset{\sim}{u}_m\rbrace
 ```
 
-- $`\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r`$ form a **basis for $`C(A)`$** (column space)
-- $`\underset{\sim}{u}_{r+1}, \dots, \underset{\sim}{u}_m`$ form a **basis for $`N(A^T)`$** (left null space)
+- $`\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r`$ form a **basis for $`C(A)`$** (column space).
+- $`\underset{\sim}{u}_{r+1}, \dots, \underset{\sim}{u}_m`$ form a **basis for $`N(A^T)`$** (left null space).
 
 ### 1.2 The Four Fundamental Subspaces in SVD
 
@@ -85,6 +87,23 @@ A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i
 ```
 
 The matrix $`A`$ maps each right singular vector $`\underset{\sim}{v}_i`$ in the row space to a scaled left singular vector $`\sigma_i \underset{\sim}{u}_i`$ in the column space. The null space vectors are mapped to zero.
+
+```mermaid
+flowchart LR
+    subgraph IN["Input space ℝⁿ"]
+        ROW["Row space C(Aᵀ)<br>dimension r<br>basis v₁, ..., vᵣ"]
+        NUL["Null space N(A)<br>dimension n - r<br>basis vᵣ₊₁, ..., vₙ"]
+    end
+    subgraph OUT["Output space ℝᵐ"]
+        COL["Column space C(A)<br>dimension r<br>basis u₁, ..., uᵣ"]
+        LNU["Left null space N(Aᵀ)<br>dimension m - r<br>basis uᵣ₊₁, ..., uₘ"]
+        ZERO["Zero vector 0"]
+    end
+    ROW -- "A vᵢ = σᵢ uᵢ" --> COL
+    NUL -- "A v = 0" --> ZERO
+```
+
+*Figure 1. The four fundamental subspaces in the SVD and the mapping by A*
 
 Writing this out for each basis vector:
 
@@ -122,7 +141,7 @@ The dimensions are:
 \underset{m \times n}{A} \underset{n \times r}{V} = \underset{m \times r}{U} \underset{r \times r}{\Sigma}
 ```
 
-**Recall** the eigendecomposition: for a matrix with eigenvalues $`\lambda_1, \lambda_2, \dots, \lambda_n`$ and eigenvectors $`\underset{\sim}{x}_1, \underset{\sim}{x}_2, \dots, \underset{\sim}{x}_n`$:
+**Recall** the eigendecomposition from Chapter 6: for a matrix with eigenvalues $`\lambda_1, \lambda_2, \dots, \lambda_n`$ and eigenvectors $`\underset{\sim}{x}_1, \underset{\sim}{x}_2, \dots, \underset{\sim}{x}_n`$:
 
 ```math
 A(\underset{\sim}{x}_1 \; \underset{\sim}{x}_2 \; \cdots \; \underset{\sim}{x}_n) = (\lambda_1 \underset{\sim}{x}_1 \; \lambda_2 \underset{\sim}{x}_2 \; \cdots \; \lambda_n \underset{\sim}{x}_n) = (\underset{\sim}{x}_1 \; \underset{\sim}{x}_2 \; \cdots \; \underset{\sim}{x}_n) \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots \\ & & & \lambda_n \end{pmatrix}
@@ -164,7 +183,7 @@ AVV^T = U\Sigma V^T
 \boxed{A = U\Sigma V^T}
 ```
 
-**Every matrix $`A`$ is diagonalized by two sets of orthonormal vectors.**
+> **Key Point:** Every matrix $`A`$ is diagonalized by two sets of orthonormal vectors.
 
 This can also be written as a sum of rank-1 matrices:
 
@@ -178,7 +197,7 @@ A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\s
 
 Then $`\text{rank}(A) = 2 = \text{rank}(A^T)`$.
 
-**Step 1:** Take orthonormal vectors in $`C(A^T)`$:
+**Step 1:** Take two orthogonal vectors in $`C(A^T)`$. They are the eigenvectors of $`A^T A`$ found in Section 1.9, and they are normalized in Step 4:
 
 ```math
 \underset{\sim}{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \underset{\sim}{v}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
@@ -208,7 +227,7 @@ A\underset{\sim}{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatr
 A\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 9 & -1 \\ 3 & 3 \end{pmatrix}
 ```
 
-**Step 4:** Scale $`\underset{\sim}{v}_1, \underset{\sim}{v}_2`$ by dividing each by $`\sqrt{2}`$:
+**Step 4:** Normalize $`\underset{\sim}{v}_1, \underset{\sim}{v}_2`$ by dividing each by $`\sqrt{2}`$:
 
 ```math
 A \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 9 & -1 \\ 3 & 3 \end{pmatrix}
@@ -276,15 +295,26 @@ Normalizing the singular values:
 
 The geometric interpretation of $`A = U\Sigma V^T`$ acting on a vector:
 
-1. **Rotate by $`V^T`$** — first rotation by angle $`-\phi`$ (aligns input to standard basis)
-2. **Stretch by $`\Sigma`$** — scale along each axis by the singular values
-3. **Rotate by $`U`$** — second rotation by angle $`+\theta`$ (rotates to output orientation)
+1. **Rotate by $`V^T`$:** the first rotation, by angle $`-\phi`$, aligns the input with the standard basis.
+2. **Stretch by $`\Sigma`$:** each axis is scaled by its singular value.
+3. **Rotate by $`U`$:** the second rotation, by angle $`+\theta`$, turns the result to the output orientation.
 
 **Geometric picture:**
 
-- A unit circle in the input space is first rotated by $`V^T`$ to align with the coordinate axes.
+- A unit circle in the input space is first rotated by $`V^T`$, so that the directions of $`\underset{\sim}{v}_1, \underset{\sim}{v}_2`$ align with the coordinate axes.
 - Then $`\Sigma`$ stretches it into an ellipse (semi-axes of lengths $`\sigma_1`$ and $`\sigma_2`$).
 - Finally, $`U`$ rotates the ellipse to its final orientation.
+
+```mermaid
+flowchart LR
+    S0["Unit circle"] -->|"Vᵀ: rotate by -φ"| S1["Unit circle with v₁, v₂ on the coordinate axes"]
+    S1 -->|"Σ: stretch by σ₁, σ₂ along the axes"| S2["Ellipse with semi-axes of lengths σ₁, σ₂"]
+    S2 -->|"U: rotate by +θ"| S3["Ellipse with semi-axes along u₁, u₂"]
+```
+
+*Figure 2. Three steps by which the SVD maps the unit circle to an ellipse*
+
+> **Caution:** In general $`U`$ and $`V^T`$ are orthogonal matrices, so each may be a rotation or may include a reflection (when its determinant is $`-1`$). In this example both are rotations with determinant $`1`$.
 
 In terms of rotation matrices:
 
@@ -348,7 +378,7 @@ Note that:
 V_r^T V_r = I_r \quad \text{and} \quad U_r^T U_r = I_r
 ```
 
-**But:**
+**But** if $`r < n`$ and $`r < m`$, the following holds, because $`V_r V_r^T`$ and $`U_r U_r^T`$ are the projection matrices onto $`C(A^T)`$ and $`C(A)`$, respectively:
 
 ```math
 V_r V_r^T \neq I \quad \text{and} \quad U_r U_r^T \neq I
@@ -364,7 +394,7 @@ A = U_r \Sigma_r V_r^T = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + 
 
 **How do we find $`U`$, $`V`$ (singular vectors)?**
 
-Given $`A = U\Sigma V^T`$ (where $`U`$ is the **left** singular vectors and $`V`$ is the **right** singular vectors):
+Suppose $`A = U\Sigma V^T`$ is given. The columns of $`U`$ are the **left singular vectors**, and the columns of $`V`$ are the **right singular vectors**:
 
 **Computing $`A^T A`$:**
 
@@ -396,8 +426,8 @@ AA^T = Q\Lambda Q^T = U\Sigma^2 U^T
 
 Therefore $`\sigma_1^2, \sigma_2^2, \dots, \sigma_r^2`$ are **nonzero eigenvalues of both $`A^T A`$ and $`AA^T`$**.
 
-- **Choose $`V`$ from $`A^T A`$** (eigenvectors of $`A^T A`$)
-- **Choose $`U`$ from $`AA^T`$** (eigenvectors of $`AA^T`$)
+- **Choose $`V`$ from $`A^T A`$.** The columns of $`V`$ are eigenvectors of $`A^T A`$.
+- **Choose $`U`$ from $`AA^T`$.** The columns of $`U`$ are eigenvectors of $`AA^T`$.
 
 **Steps of the proof:**
 
@@ -421,13 +451,13 @@ A\underset{\sim}{v}_k = \sigma_k \underset{\sim}{u}_k
 \therefore \underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k \quad \forall k = 1, 2, \dots, r
 ```
 
-**iii)** Sanity check — verify $`\underset{\sim}{u}_k`$ is an eigenvector of $`AA^T`$:
+**iii)** Sanity check: verify that $`\underset{\sim}{u}_k`$ is an eigenvector of $`AA^T`$:
 
 ```math
 AA^T \underset{\sim}{u}_k = AA^T \cdot \frac{1}{\sigma_k} A\underset{\sim}{v}_k = \frac{1}{\sigma_k} AA^T A \underset{\sim}{v}_k = \frac{1}{\sigma_k} A \sigma_k^2 \underset{\sim}{v}_k = \sigma_k A\underset{\sim}{v}_k = \sigma_k^2 \underset{\sim}{u}_k \quad \square
 ```
 
-**iv)** Check if $`\underset{\sim}{u}_k`$ is orthonormal:
+**iv)** Check that the $`\underset{\sim}{u}_k`$ are orthonormal:
 
 ```math
 \underset{\sim}{u}_j^T \underset{\sim}{u}_k = \left(\frac{1}{\sigma_j} A\underset{\sim}{v}_j\right)^T \left(\frac{1}{\sigma_k} A\underset{\sim}{v}_k\right) = \frac{1}{\sigma_j \sigma_k} \underset{\sim}{v}_j^T A^T A \underset{\sim}{v}_k = \frac{\sigma_k}{\sigma_j} \underset{\sim}{v}_j^T \underset{\sim}{v}_k = \begin{cases} 1 & j = k \\ 0 & j \neq k \end{cases}
@@ -435,9 +465,9 @@ AA^T \underset{\sim}{u}_k = AA^T \cdot \frac{1}{\sigma_k} A\underset{\sim}{v}_k 
 
 ### 1.9 Example: Computing SVD via the Proof Method
 
-**EX1.** Find $`U, \Sigma, V`$ for $`A = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}`$.
+**Example.** Find $`U, \Sigma, V`$ for $`A = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}`$.
 
-$`\text{rank}(A) = 2 \implies`$ two singular values $`\sigma_1, \sigma_2`$.
+Since $`\text{rank}(A) = 2`$, there are two singular values $`\sigma_1, \sigma_2`$.
 
 **i) Compute $`A^T A`$ and find eigenvalues:**
 
@@ -503,7 +533,7 @@ AB_{m \times m} \neq BA_{n \times n}
 
 **But $`AB`$ and $`BA`$ have the same nonzero eigenvalues.**
 
-**Proof:** Let $`\lambda`$ be an eigenvalue of $`AB`$, with $`\underset{\sim}{x}`$ the corresponding eigenvector:
+**Proof:** Let $`\lambda \neq 0`$ be an eigenvalue of $`AB`$, with $`\underset{\sim}{x}`$ the corresponding eigenvector:
 
 ```math
 AB\underset{\sim}{x} = \lambda\underset{\sim}{x}
@@ -517,9 +547,9 @@ B(AB\underset{\sim}{x}) = B(\lambda\underset{\sim}{x}) = \lambda(B\underset{\sim
 BA(B\underset{\sim}{x}) = \lambda(B\underset{\sim}{x})
 ```
 
-Therefore $`\lambda`$ is an eigenvalue of $`BA`$, and $`B\underset{\sim}{x}`$ is the corresponding eigenvector.
+Since $`\lambda \neq 0`$, $`A(B\underset{\sim}{x}) = \lambda\underset{\sim}{x} \neq \underset{\sim}{0}`$, so $`B\underset{\sim}{x} \neq \underset{\sim}{0}`$. Therefore $`\lambda`$ is an eigenvalue of $`BA`$, and $`B\underset{\sim}{x}`$ is the corresponding eigenvector.
 
-Both $`AB`$ and $`BA`$ have the same $`\lambda`$.
+Both $`AB`$ and $`BA`$ share the nonzero eigenvalue $`\lambda`$. When their sizes differ, the number of zero eigenvalues can differ. Setting $`B = A^T`$ shows that the result of Section 1.8, that $`A^T A`$ and $`AA^T`$ share the nonzero eigenvalues $`\sigma_i^2`$, is a special case of this property.
 
 ---
 
@@ -550,11 +580,11 @@ This is a **rank 1 matrix**.
 
 Storage reduction: Replace $`N^2`$ entries with $`2N`$ entries (one column vector + one row vector).
 
-> **Q.** Korean flag? (Much higher rank — more complex structure, harder to compress.)
+**Q.** What about the Korean flag? Its image has a much higher rank, so its structure is more complex and harder to compress.
 
 ### 2.3 SVD and Rank-1 Decomposition for Compression
 
-**Singular Values with Diagonals:**
+**Singular values on the diagonal:**
 
 ```math
 A = U\Sigma V^T
@@ -588,7 +618,7 @@ A = U\Sigma V^T
 \approx \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix} = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T
 ```
 
-> **Example:** Image compression using SVD — search "timbaumann SVD" for an interactive demonstration.
+> **Note:** **Example.** For an interactive demonstration of image compression using SVD, search "timbaumann SVD".
 
 ---
 
@@ -622,7 +652,7 @@ A \approx A_k
 
 - $`A_k`$ captures the **largest variance** in the data.
 - $`A_k`$ is the **closest rank-$`k`$ matrix** to $`A`$.
-- If $`B`$ has rank $`k`$, then:
+- For any matrix $`B`$ of rank at most $`k`$, the following holds (the Eckart-Young theorem). The norm can be any of the three norms in Section 3.3:
 
 ```math
 \|A - A_k\| \leq \|A - B\|
@@ -666,13 +696,13 @@ A \approx A_k
 
 **Example with SVD:**
 
-For $`A = U\Sigma V^T`$:
+For $`A = U\Sigma V^T`$, the following holds. In general a norm only satisfies $`\|AB\|_2 \leq \|A\|_2 \|B\|_2`$, but here equality holds because orthogonal matrices preserve length, as shown below:
 
 ```math
 \|A\|_2 = \|U\|_2 \|\Sigma\|_2 \|V^T\|_2
 ```
 
-Since $`U, V`$ are orthonormal, the magnitude of $`\underset{\sim}{x}`$ is **NOT changed**:
+Since $`U, V`$ are orthogonal matrices, multiplying by them does **NOT change** the magnitude of $`\underset{\sim}{x}`$:
 
 ```math
 \|U\|_2 = \max \frac{\|U\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = 1
@@ -690,7 +720,7 @@ Therefore:
 
 ### 3.4 Norm Properties and Inequalities
 
-**Norm of a Matrix — extending from vector norms:**
+**Extending vector norms to matrices:**
 
 Length of a vector $`\underset{\sim}{v}`$:
 
@@ -706,10 +736,10 @@ Extend the idea to a matrix:
 
 **Basic properties:**
 
-- $`\|\underset{\sim}{v}\| \geq 0`$ and $`\|c\underset{\sim}{v}\| = |c| \|\underset{\sim}{v}\|`$
-- $`\|A\|_F \geq 0`$ and $`\|cA\|_F = |c| \|A\|_F`$
+- $`\|\underset{\sim}{v}\| \geq 0`$ and $`\|c\underset{\sim}{v}\| = |c| \|\underset{\sim}{v}\|`$.
+- $`\|A\|_F \geq 0`$ and $`\|cA\|_F = |c| \|A\|_F`$.
 
-**Schwarz inequality:**
+**Schwarz inequality and the matrix inequality that follows from it:**
 
 ```math
 |\underset{\sim}{v}^T \underset{\sim}{w}| \leq \|\underset{\sim}{v}\| \|\underset{\sim}{w}\|
@@ -719,7 +749,7 @@ Extend the idea to a matrix:
 \|AB\|_F \leq \|A\|_F \|B\|_F
 ```
 
-**Triangular inequality:**
+**Triangle inequality:**
 
 ```math
 \|\underset{\sim}{v} + \underset{\sim}{w}\| \leq \|\underset{\sim}{v}\| + \|\underset{\sim}{w}\|
@@ -795,23 +825,34 @@ A = \begin{pmatrix} 2 & 1 & 0 & -1 & -2 \\ -1 & 1 & 0 & 1 & -1 \end{pmatrix}
 
 Plotting the 5 data points $`(2, -1)`$, $`(1, 1)`$, $`(0, 0)`$, $`(-1, 1)`$, $`(-2, -1)`$ in the $`xy`$-plane:
 
-**The $`x`$-axis is closer to the 5 points.**
+```text
+                y
+                ^
+y =  1       *  |  *
+y =  0  --+--+--*--+--+--> x
+y = -1    *     |     *
+         -2 -1  0  1  2
+```
+
+*Figure 3. The five centered data points and the x-axis, the closest line through the origin*
+
+**The $`x`$-axis is the line closest to the 5 points.** The sum of squared perpendicular distances from the points to the $`x`$-axis is $`1 + 1 + 0 + 1 + 1 = 4`$, while to the $`y`$-axis it is $`4 + 1 + 0 + 1 + 4 = 10`$.
 
 The first singular vector $`\begin{pmatrix} 1 \\ 0 \end{pmatrix}`$ represents the direction in the data that accounts for the **greatest variability**.
 
 ### 3.6 Perpendicular Least Squares
 
-Recall that the **least square solution** to $`A\underset{\sim}{x} = \underset{\sim}{b}`$ minimizes $`\|A\underset{\sim}{\hat{x}} - \underset{\sim}{b}\|^2`$, where the errors are defined by:
+Recall from Chapter 4 that the **least squares solution** $`\underset{\sim}{\hat{x}}`$ to $`A\underset{\sim}{x} = \underset{\sim}{b}`$ minimizes $`\|A\underset{\sim}{\hat{x}} - \underset{\sim}{b}\|^2`$, where the errors are defined by:
 
 ```math
 \underset{\sim}{e} = A\underset{\sim}{\hat{x}} - \underset{\sim}{b}
 ```
 
-An error is the **vertical distance** from each data point to the fitted line.
+In line fitting, each error is the **vertical distance** from a data point to the fitted line.
 
 In contrast, **perpendicular least squares** measures the **perpendicular distances** from data points to the line.
 
-The sum of squared **perpendicular distances** from the data points to the $`\underset{\sim}{u}_1`$ line is a **minimum**.
+The sum of squared **perpendicular distances** from the data points to the line in the direction of $`\underset{\sim}{u}_1`$ is a **minimum**. Here $`\underset{\sim}{u}_1`$ is the first left singular vector of the centered data matrix $`A`$.
 
 ---
 
@@ -819,27 +860,76 @@ The sum of squared **perpendicular distances** from the data points to the $`\un
 
 ## Summary
 
-| Concept | Key Idea |
-|:--------|:---------|
-| SVD Decomposition | $`A = U\Sigma V^T`$ where $`U, V`$ are orthonormal and $`\Sigma`$ is diagonal with singular values $`\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0`$ |
-| Two Sets of Vectors | Input vectors $`\lbrace\underset{\sim}{v}_i\rbrace`$: basis for $`C(A^T)`$ and $`N(A)`$; Output vectors $`\lbrace\underset{\sim}{u}_i\rbrace`$: basis for $`C(A)`$ and $`N(A^T)`$ |
-| SVD vs Eigendecomposition | Eigendecomposition $`S = Q\Lambda Q^T`$ works for symmetric matrices; SVD $`A = U\Sigma V^T`$ works for **all** matrices |
-| Fundamental Relationship | $`A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i`$ maps right singular vectors to scaled left singular vectors |
-| Geometry of SVD | $`A = U\Sigma V^T`$: rotate by $`V^T`$, stretch by $`\Sigma`$, rotate by $`U`$ — transforms unit circle to ellipse |
-| Full vs Reduced SVD | Full form: $`A_{m \times n} V_{n \times n} = U_{m \times m} \Sigma_{m \times n}`$; Reduced form keeps only $`r`$ vectors: $`A V_r = U_r \Sigma_r`$ |
-| Rank-1 Decomposition | $`A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T`$ (sum of rank-1 matrices) |
-| Finding Singular Vectors | $`V`$ from eigenvectors of $`A^T A`$; $`U`$ from eigenvectors of $`AA^T`$; $`\sigma_k = \sqrt{\lambda_k}`$; $`\underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k`$ |
-| $`A^T A`$ and $`AA^T`$ | $`A^T A = V\Sigma^2 V^T`$; $`AA^T = U\Sigma^2 U^T`$; both share nonzero eigenvalues $`\sigma_1^2, \dots, \sigma_r^2`$ |
-| AB and BA Eigenvalues | $`AB`$ and $`BA`$ have the same nonzero eigenvalues (different sizes but same $`\lambda`$'s) |
-| Image as Matrix | An image is a large matrix of grayscale values (e.g., 8-bit: 0--255) |
-| Image Compression | Discard small singular values $`\sigma_i`$ for compression with minimal quality loss; rank-1 images (e.g., flags) reduce $`N^2 \to 2N`$ storage |
-| PCA | Uses the largest $`\sigma`$'s to extract the most important information from data |
-| Low-Rank Approximation | $`A_k`$ (keeping top $`k`$ singular values) is the closest rank-$`k`$ matrix to $`A`$: $`\|A - A_k\| \leq \|A - B\|`$ for any rank-$`k`$ matrix $`B`$ |
-| Spectral Norm | $`\|A\|_2 = \sigma_1`$ (largest singular value) |
-| Frobenius Norm | $`\|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}`$ (root sum of squares of all entries) |
-| Nuclear Norm | $`\|A\|_N = \sigma_1 + \sigma_2 + \cdots + \sigma_r`$ (trace norm, sum of singular values) |
-| Sample Covariance | $`S = \frac{AA^T}{n-1}`$ where $`A`$ is the centered data matrix |
-| First Singular Vector | Represents the direction in the data accounting for the greatest variability |
-| Perpendicular Least Squares | PCA minimizes perpendicular distances (not vertical) from data points to the $`\underset{\sim}{u}_1`$ line |
+| Concept | Key Summary |
+|:-----|:-----|
+| SVD Decomposition | It is $`A = U\Sigma V^T`$, where $`U, V`$ have orthonormal columns and $`\Sigma`$ is diagonal with singular values $`\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0`$. |
+| Two Sets of Vectors | The input vectors $`\lbrace\underset{\sim}{v}_i\rbrace`$ form bases for $`C(A^T)`$ and $`N(A)`$, and the output vectors $`\lbrace\underset{\sim}{u}_i\rbrace`$ form bases for $`C(A)`$ and $`N(A^T)`$. |
+| SVD vs Eigendecomposition | The eigendecomposition $`S = Q\Lambda Q^T`$ works for symmetric matrices, while the SVD $`A = U\Sigma V^T`$ works for **all** matrices. |
+| Fundamental Relationship | $`A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i`$ maps right singular vectors to scaled left singular vectors. |
+| Geometry of SVD | $`A = U\Sigma V^T`$ rotates by $`V^T`$, stretches by $`\Sigma`$, and rotates by $`U`$, which transforms the unit circle into an ellipse. |
+| Full vs Reduced SVD | The full form is $`A_{m \times n} V_{n \times n} = U_{m \times m} \Sigma_{m \times n}`$, and the reduced form keeps only $`r`$ vectors, $`A V_r = U_r \Sigma_r`$. |
+| Rank-1 Decomposition | $`A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T`$ writes $`A`$ as a sum of rank-1 matrices. |
+| Finding Singular Vectors | $`V`$ comes from the eigenvectors of $`A^T A`$ and $`U`$ from the eigenvectors of $`AA^T`$, with $`\sigma_k = \sqrt{\lambda_k}`$ and $`\underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k`$. |
+| $`A^T A`$ and $`AA^T`$ | $`A^T A = V\Sigma^2 V^T`$ and $`AA^T = U\Sigma^2 U^T`$, and the two matrices share the nonzero eigenvalues $`\sigma_1^2, \dots, \sigma_r^2`$. |
+| AB and BA Eigenvalues | $`AB`$ and $`BA`$ have the same nonzero eigenvalues even when their sizes differ. |
+| Image as Matrix | An image is a large matrix of grayscale values, and the entries of an 8-bit image lie in 0-255. |
+| Image Compression | Discarding small singular values $`\sigma_i`$ compresses an image with minimal quality loss, and a rank-1 image such as a flag reduces storage from $`N^2`$ to $`2N`$. |
+| PCA | It uses the largest $`\sigma`$'s to extract the most important information from data. |
+| Low-Rank Approximation | $`A_k`$, which keeps the top $`k`$ singular values, is the closest rank-$`k`$ matrix to $`A`$, so $`\Vert A - A_k\Vert \leq \Vert A - B\Vert`$ for any matrix $`B`$ of rank at most $`k`$. |
+| Spectral Norm | It is $`\Vert A\Vert_2 = \sigma_1`$, the largest singular value. |
+| Frobenius Norm | It is $`\Vert A\Vert_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}`$, which equals the square root of the sum of squares of all entries. |
+| Nuclear Norm | It is $`\Vert A\Vert_N = \sigma_1 + \sigma_2 + \cdots + \sigma_r`$, the sum of the singular values, also called the trace norm. |
+| Sample Covariance | It is $`S = \frac{AA^T}{n-1}`$, where $`A`$ is the centered data matrix. |
+| First Singular Vector | It represents the direction in the data that accounts for the greatest variability. |
+| Perpendicular Least Squares | PCA minimizes the sum of squared perpendicular distances, not vertical distances, from the data points to the $`\underset{\sim}{u}_1`$ line. |
 
 ---
+
+<br>
+
+## Self-Check Questions
+
+1. **Singular values and eigenvalues:** Find the eigenvalues and singular values of $`A = \begin{pmatrix} 3 & 0 \\ 0 & -2 \end{pmatrix}`$, and write one SVD $`A = U\Sigma V^T`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   The eigenvalues are the diagonal entries $`3`$ and $`-2`$. The eigenvalues of $`A^T A = \begin{pmatrix} 9 & 0 \\ 0 & 4 \end{pmatrix}`$ are $`9, 4`$, so the singular values are $`\sigma_1 = 3`$ and $`\sigma_2 = 2`$. Singular values are never negative, so the minus sign moves into $`U`$ or $`V`$. For example, with $`U = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}`$, $`\Sigma = \begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}`$, and $`V = I`$, we get $`U\Sigma V^T = A`$.
+
+   </details>
+
+2. **Computing norms:** Find the spectral, Frobenius, and nuclear norms of a matrix $`A`$ with singular values $`\sigma_1 = 4`$ and $`\sigma_2 = 3`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`\|A\|_2 = \sigma_1 = 4`$, $`\|A\|_F = \sqrt{4^2 + 3^2} = 5`$, and $`\|A\|_N = 4 + 3 = 7`$.
+
+   </details>
+
+3. **Best low-rank approximation:** For a matrix $`A`$ with singular values $`5, 2, 1`$, write the best rank-1 approximation $`A_1`$ using the SVD, and find $`\|A - A_1\|_2`$ and $`\|A - A_1\|_F`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`A_1 = 5\underset{\sim}{u}_1\underset{\sim}{v}_1^T`$. The singular values of $`A - A_1 = 2\underset{\sim}{u}_2\underset{\sim}{v}_2^T + 1\underset{\sim}{u}_3\underset{\sim}{v}_3^T`$ are $`2, 1`$, so $`\|A - A_1\|_2 = 2`$ and $`\|A - A_1\|_F = \sqrt{2^2 + 1^2} = \sqrt{5}`$. By the Eckart-Young theorem, no matrix of rank at most 1 gives a smaller error.
+
+   </details>
+
+4. **Eigenvalues of AB and BA:** Let $`A`$ be $`2 \times 3`$ and $`B`$ be $`3 \times 2`$, and let the eigenvalues of $`AB`$ be $`2`$ and $`5`$. Find all eigenvalues of $`BA`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`AB`$ and $`BA`$ have the same nonzero eigenvalues, so $`BA`$ also has the eigenvalues $`2`$ and $`5`$. $`BA`$ is $`3 \times 3`$ but has rank at most 2, so its remaining eigenvalue is $`0`$. The eigenvalues of $`BA`$ are therefore $`2, 5, 0`$. As a check with the trace, $`\text{tr}(BA) = \text{tr}(AB) = 7 = 2 + 5 + 0`$.
+
+   </details>
+
+5. **Reduced SVD:** In the reduced SVD, explain why $`V_r^T V_r = I_r`$ always holds but $`V_r V_r^T = I`$ does not hold in general.
+
+   <details>
+   <summary>Answer</summary>
+
+   The $`r`$ columns of $`V_r`$ are orthonormal, so $`V_r^T V_r = I_r`$. In contrast, $`V_r V_r^T`$ is an $`n \times n`$ matrix that projects onto $`C(A^T)`$, and it sends the vectors of $`N(A)`$ to $`\underset{\sim}{0}`$. Therefore $`V_r V_r^T = I`$ holds only when $`r = n`$, that is, when $`N(A) = \lbrace\underset{\sim}{0}\rbrace`$.
+
+   </details>

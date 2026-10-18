@@ -1,15 +1,16 @@
-# Chapter 8 Lecture — Linear Transformations
+# Chapter 8 — Linear Transformations
 
-> **Last Updated:** 2026-06-19
->
-> Introduction to Linear Algebra, Strang (6th Ed.) - Ch 8
+[Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Prerequisites**: [Linear Algebra] Vector spaces, matrix operations, eigenvalues (Ch 1-7).
+> **Last Updated:** 2026-10-18
 >
-> **Learning Objectives**:
+> Introduction to Linear Algebra, Strang, Ch 8
+
+> **Learning Objectives:**
 > 1. Define linear transformations and verify linearity
 > 2. Construct matrix representations of linear transformations
 > 3. Analyze kernel and range of transformations
+> 4. Find good bases for a transformation using change of basis and the Jordan form
 
 ---
 
@@ -52,6 +53,7 @@
   - [3.10 Orthogonal Bases for Function Space](#310-orthogonal-bases-for-function-space)
   - [3.11 Constructing the Legendre Basis via Gram-Schmidt](#311-constructing-the-legendre-basis-via-gram-schmidt)
 - [Summary](#summary)
+- [Self-Check Questions](#self-check-questions)
 
 ---
 
@@ -79,9 +81,9 @@ T: \mathbf{u} \longrightarrow T(\mathbf{u})
 T(c\mathbf{u} + d\mathbf{w}) = c\,T(\mathbf{u}) + d\,T(\mathbf{w})
 ```
 
-**Note:** $`T(\mathbf{0}) = \mathbf{0}`$.
+A linear transformation always satisfies $`T(\mathbf{0}) = \mathbf{0}`$.
 
-So $`T(\mathbf{u}) = \mathbf{u} + \mathbf{u}_0`$ is **NOT** linear (because $`T(\mathbf{0}) = \mathbf{u}_0 \neq \mathbf{0}`$).
+So if $`\mathbf{u}_0 \neq \mathbf{0}`$, then $`T(\mathbf{u}) = \mathbf{u} + \mathbf{u}_0`$ is **NOT** linear (because $`T(\mathbf{0}) = \mathbf{u}_0 \neq \mathbf{0}`$).
 
 The input vector $`\mathbf{u}`$ and output $`T(\mathbf{u})`$ can be in $`\mathbb{R}^n`$ or matrix space or function space.
 
@@ -134,9 +136,9 @@ A transformation $`T`$ assigns an output $`T(\mathbf{u})`$ to each input vector 
 
 **(a)** $`T(\mathbf{u} + \mathbf{w}) = T(\mathbf{u}) + T(\mathbf{w})`$
 
-**(b)** $`T(c\mathbf{u}) = c\,T(\mathbf{u}) \quad \forall\, c \in \mathbb{C}`$
+**(b)** $`T(c\mathbf{u}) = c\,T(\mathbf{u})`$ for every scalar $`c`$ ($`c \in \mathbb{R}`$ for a real vector space, $`c \in \mathbb{C}`$ for a complex one)
 
-We say $`T`$ is **additive** and **homogeneous**.
+Then $`T`$ is said to be **additive** and **homogeneous**.
 
 ```math
 T(\mathbf{0}) = T(0\mathbf{u}) = 0\,T(\mathbf{u}) = \mathbf{0}
@@ -158,7 +160,7 @@ T(c_1\mathbf{x}_1 + c_2\mathbf{x}_2 + \cdots + c_n\mathbf{x}_n) = c_1\,T(\mathbf
 
 ### 1.3 Non-Linear Example: Shift Transformation and Affine Mappings
 
-**Example.** Define $`T`$ that takes a vector $`\mathbf{u} \in V`$ and adds $`\mathbf{u}_0 \in V`$:
+**Example.** Define $`T`$ that takes a vector $`\mathbf{u} \in V`$ and adds a fixed vector $`\mathbf{u}_0 \in V`$ ($`\mathbf{u}_0 \neq \mathbf{0}`$) as follows:
 
 ```math
 T: \mathbf{u} \longrightarrow \mathbf{u} + \mathbf{u}_0
@@ -185,18 +187,26 @@ Therefore $`T`$ is **NOT** linear.
 T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0
 ```
 
-is called **"affine"**.
+is called an **affine** transformation.
 
 In computer graphics, affine mapping is used:
-- Start with shape $`\mathbf{x}`$
-- Rotate: $`\mathbf{y} = R\mathbf{x}`$ (linear)
-- Translate: $`\mathbf{z} = \mathbf{y} + \begin{pmatrix} 0 \\ u_0 \end{pmatrix}`$ (shift)
+- Start with a shape $`\mathbf{x}`$.
+- Rotate: $`\mathbf{y} = R\mathbf{x}`$. This step is linear.
+- Translate: $`\mathbf{z} = \mathbf{y} + \begin{pmatrix} 0 \\ u_0 \end{pmatrix}`$. This step is a shift.
+
+```mermaid
+flowchart LR
+    X["Shape x"] -->|"rotation R (linear)"| Y["y = Rx"]
+    Y -->|"add (0, u₀) (shift)"| Z["z = Rx + (0, u₀)"]
+```
+
+*Figure 1. Affine mapping in computer graphics: rotation followed by translation*
 
 ---
 
 ### 1.4 Examples of Linear and Non-Linear Transformations
 
-**Example 1 (Linear — Dot product):**
+**Example 1 (linear): Dot product**
 
 ```math
 \mathbf{a} = \begin{pmatrix} 1 \\ 3 \\ 4 \end{pmatrix}, \quad \mathbf{u} = \begin{pmatrix} u_1 \\ u_2 \\ u_3 \end{pmatrix}
@@ -210,11 +220,11 @@ T(\mathbf{u}) = \mathbf{a} \cdot \mathbf{u} = \mathbf{a}^T\mathbf{u} = (\mathbf{
 
 ---
 
-**Example 2 (Non-Linear — Length/Norm):**
+**Example 2 (non-linear): Length (norm)**
 
 $`T(\mathbf{u}) = \|\mathbf{u}\|`$ is **NOT** linear.
 
-**Check (i) — Additivity:**
+**Check (i) additivity:**
 
 ```math
 T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})
@@ -224,7 +234,9 @@ T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})
 \|\mathbf{u} + \mathbf{w}\| \neq \|\mathbf{u}\| + \|\mathbf{w}\|
 ```
 
-**Check (ii) — Homogeneity:**
+Equality holds only when one vector is a nonnegative multiple of the other, so additivity fails in general. For example, if $`\mathbf{w} = -\mathbf{u} \neq \mathbf{0}`$, the left side is $`0`$ and the right side is $`2\|\mathbf{u}\|`$.
+
+**Check (ii) homogeneity:**
 
 ```math
 T(c\mathbf{u}) \stackrel{?}{=} c\,T(\mathbf{u})
@@ -238,11 +250,11 @@ T(-\mathbf{u}) \stackrel{?}{=} -T(\mathbf{u})
 \|-\mathbf{u}\| = \|\mathbf{u}\| \neq -\|\mathbf{u}\|
 ```
 
-Fails homogeneity (norm is always non-negative).
+Homogeneity also fails, because a norm is never negative.
 
 ---
 
-**Example 3 (Linear — Rotation):**
+**Example 3 (linear): Rotation**
 
 $`T`$ is the rotation matrix that rotates every vector by $`30°`$.
 
@@ -276,20 +288,22 @@ T(c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_n\mathbf{u}_n) = c_1\,T(\mathbf
 
 Suppose you know $`T(\mathbf{u})`$ for all vectors $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$ in a basis.
 
-Let $`\mathbf{y} = c_1\mathbf{u}_1 + \cdots + c_n\mathbf{u}_n`$.
+Write any vector in the space as $`\mathbf{y} = c_1\mathbf{u}_1 + \cdots + c_n\mathbf{u}_n`$.
 
-Then you know $`T(\mathbf{y})`$ for all $`\mathbf{y}`$ in the space.
+By linearity, $`T(\mathbf{y}) = c_1T(\mathbf{u}_1) + \cdots + c_nT(\mathbf{u}_n)`$, so you know $`T(\mathbf{y})`$ for all $`\mathbf{y}`$ in the space.
 
-> A linear transformation is completely determined by its action on a basis.
+> **Key Point:** A linear transformation is completely determined by its action on a basis.
 
 ---
 
 ### 1.6 Geometric Interpretation: Lines to Lines
 
-Linear transformations map:
-- **Lines to lines**
-- **Triangles to triangles**
-- **Equally spaced points go to equally spaced points**
+Linear transformations preserve the following:
+- They map **lines to lines**.
+- They map **triangles to triangles**.
+- They map **equally spaced points to equally spaced points**.
+
+> **Caution:** A linear transformation that is not invertible can collapse a line to a single point and a triangle to a segment or a point. The properties above hold as stated for invertible linear transformations.
 
 ---
 
@@ -327,7 +341,7 @@ Let $`u = a + bt + ct^2`$, then:
 T(u) = b + 2ct, \quad \text{a linear function.}
 ```
 
-**Dimensions:**
+**Dimensions:** their sum equals the dimension of the domain, the space of polynomials of degree at most 2.
 
 ```math
 \dim C(T) + \dim \mathcal{N}(T) = 2 + 1 = 3
@@ -335,7 +349,7 @@ T(u) = b + 2ct, \quad \text{a linear function.}
 
 **Matrix for the derivative $`T = \dfrac{d}{dt}`$:**
 
-View $`u = (1 \;\; t \;\; t^2) \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$.
+Write $`u = (1 \;\; t \;\; t^2) \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$.
 
 Let $`\mathbf{u}_1 = 1`$, $`\mathbf{u}_2 = t`$, $`\mathbf{u}_3 = t^2`$.
 
@@ -403,7 +417,7 @@ AA^+ = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & 0
 
 ### 1.9 Example 6: Projection onto z=1 Plane (Non-Linear)
 
-Project a vector $`\mathbf{u} \in \mathbb{R}^3`$ onto the horizontal plane $`z = 1`$:
+Consider the transformation that projects a vector $`\mathbf{u} \in \mathbb{R}^3`$ onto the horizontal plane $`z = 1`$:
 
 ```math
 T: \begin{pmatrix} x \\ y \\ z \end{pmatrix} \longrightarrow \begin{pmatrix} x \\ y \\ 1 \end{pmatrix}
@@ -425,7 +439,7 @@ Suppose $`A`$ is invertible:
 T(\mathbf{u} + \mathbf{w}) = A\mathbf{u} + A\mathbf{w} = T(\mathbf{u}) + T(\mathbf{w})
 ```
 
-The inverse transformation: $`T^{-1}(\mathbf{u}) = A^{-1}(\mathbf{u})`$
+The inverse transformation is $`T^{-1}(\mathbf{u}) = A^{-1}(\mathbf{u})`$:
 
 ```math
 T^{-1}(T(\mathbf{u})) = A^{-1}(A\mathbf{u}) = \mathbf{u}
@@ -435,9 +449,9 @@ If $`T(\mathbf{u}) = A\mathbf{u}`$, $`S(\mathbf{u}) = B\mathbf{u}`$, then $`T \c
 
 **Q:** Are all linear transformations from $`V = \mathbb{R}^n`$ to $`W = \mathbb{R}^m`$ produced by matrices? **Yes.**
 
-$`A\mathbf{u}`$ is the **column space**.
+The set of all $`A\mathbf{u}`$ is the **column space**.
 
-The **null space** of $`A`$ contains all the input for which $`A\mathbf{u} = \mathbf{0}`$.
+The **null space** of $`A`$ contains all the inputs for which $`A\mathbf{u} = \mathbf{0}`$.
 
 ```math
 \text{Range of } T = T(\mathbf{u}) \quad \longleftrightarrow \quad \text{column space } A\mathbf{u}
@@ -461,11 +475,11 @@ The **null space** of $`A`$ contains all the input for which $`A\mathbf{u} = \ma
 
 3. Write $`T(\mathbf{u}_j) = a_{1j}\,\mathbf{w}_1 + \cdots + a_{mj}\,\mathbf{w}_m = \displaystyle\sum_{i=1}^{m} a_{ij}\,\mathbf{w}_i`$ in the output basis of $`\mathbf{w}`$'s. Those $`a_{ij}`$ go into column $`j`$.
 
-4. The matrix $`T(\mathbf{x}) = A\mathbf{x}`$ is $`A`$, if the input and the output bases are the columns of $`I_{n \times n}`$ and $`I_{m \times m}`$.
+4. If the input and output bases are the columns of $`I_{n \times n}`$ and $`I_{m \times m}`$, the matrix for $`T(\mathbf{x}) = A\mathbf{x}`$ is $`A`$ itself.
 
 5. When the bases change to $`\mathbf{v}`$'s and $`\mathbf{w}`$'s, the matrix for the same $`T`$ changes from $`A`$ to $`W^{-1}AV`$.
 
-6. **Best bases:** $`V = W`$ = eigenvectors and $`V, W`$ = singular vectors: $`A \to \Lambda`$ and $`\Sigma`$.
+6. **Best bases:** choosing $`V = W`$ = eigenvectors turns $`A`$ into $`\Lambda`$ (when $`A`$ is diagonalizable), and choosing $`V, W`$ = singular vectors turns $`A`$ into $`\Sigma`$.
 
 ---
 
@@ -568,9 +582,9 @@ Combining:
 = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)\begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
 ```
 
-> **The $`j`$th column of $`A`$ is found by applying $`T`$ to the $`j`$th basis vector $`\mathbf{u}_j`$, which is a linear combination of output basis vectors.**
+> **Key Point:** The $`j`$th column of $`A`$ holds the coefficients of $`T(\mathbf{u}_j)`$, the result of applying $`T`$ to the $`j`$th basis vector $`\mathbf{u}_j`$, written as a linear combination of the output basis vectors.
 
-Suppose we know outputs $`T(\mathbf{u})`$ for the input basis vectors $`\mathbf{u}_1`$ to $`\mathbf{u}_n`$:
+When the output basis is the standard basis, suppose we know the outputs $`T(\mathbf{u})`$ for the input basis vectors $`\mathbf{u}_1`$ to $`\mathbf{u}_n`$:
 
 ```math
 T(\mathbf{u}_1),\; T(\mathbf{u}_2),\; \ldots,\; T(\mathbf{u}_n)
@@ -590,7 +604,7 @@ A\mathbf{c} = c_1\,T(\mathbf{u}_1) + c_2\,T(\mathbf{u}_2) + \cdots + c_n\,T(\mat
 
 **Example 2.** $`V = W = \mathbb{R}^2`$
 
-Suppose $`T(\mathbf{u}) = \mathbf{u}`$ (Identity transformation).
+Suppose $`T(\mathbf{u}) = \mathbf{u}`$ (the identity transformation).
 
 **Input basis** ($`V`$): Standard basis $`\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\mathbf{v}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$.
 
@@ -723,15 +737,15 @@ DD^+ = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmat
 D^+D = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & \frac{1}{2} & 0 \\ 0 & 0 & \frac{1}{3} \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}
 ```
 
-The derivative $`T`$ has a **kernel** (constant function): $`T(1) = 0`$.
+The **kernel** of the derivative $`T`$ consists of the constant functions: $`T(1) = 0`$.
 
-Its matrix $`D`$ has a **nullspace**.
+The **nullspace** of its matrix $`D`$ is spanned by $`(1, 0, 0, 0)^T`$, the coefficient vector of the constant function $`1`$. This is why $`D^+D \neq I`$.
 
 ---
 
 ### 2.8 Matrix Product AB Matches Transformation TS
 
-Consider $`TS`$:
+Define the composition $`TS`$ and the matrix product $`AB`$ as follows:
 
 ```math
 (TS)(\mathbf{u}) := T \circ S(\mathbf{u}) = T(S(\mathbf{u}))
@@ -755,15 +769,24 @@ U \xrightarrow{S} V \xrightarrow{T} W
 B: n \times p, \quad A: m \times n
 ```
 
-The linear transformation $`TS`$:
-- Start with any vector $`\mathbf{u}`$ in $`U`$
-- Goes to $`S(\mathbf{u})`$ in $`V`$
-- Then to $`T(S(\mathbf{u}))`$ in $`W`$
+The linear transformation $`TS`$ acts as follows:
+- It starts with any vector $`\mathbf{u}`$ in $`U`$.
+- It goes to $`S(\mathbf{u})`$ in $`V`$.
+- It then goes to $`T(S(\mathbf{u}))`$ in $`W`$.
 
-The matrix $`AB`$:
-- Starts with any $`\mathbf{x} \in \mathbb{R}^p`$
-- Goes to $`B\mathbf{x} \in \mathbb{R}^n`$
-- Then to $`AB\mathbf{x} \in \mathbb{R}^m`$
+The matrix $`AB`$ acts as follows:
+- It starts with any $`\mathbf{x} \in \mathbb{R}^p`$.
+- It goes to $`B\mathbf{x} \in \mathbb{R}^n`$.
+- It then goes to $`AB\mathbf{x} \in \mathbb{R}^m`$.
+
+```mermaid
+flowchart LR
+    U["U (dimension p)"] -->|"S, matrix B (n×p)"| V["V (dimension n)"]
+    V -->|"T, matrix A (m×n)"| W["W (dimension m)"]
+    U -.->|"TS, matrix AB (m×p)"| W
+```
+
+*Figure 2. Correspondence between the composition TS and the matrix product AB*
 
 The matrix $`AB`$ correctly represents $`TS`$:
 
@@ -784,7 +807,7 @@ $`T`$ also rotates by $`\theta`$.
 
 Then $`TS`$ rotates by $`2\theta`$.
 
-This transformation $`T^2`$ corresponds to the rotation matrix $`A^2`$ through $`2\theta`$:
+This transformation $`T^2`$ corresponds to the matrix $`A^2`$ of the rotation by $`2\theta`$:
 
 ```math
 T = S, \quad A = B, \quad T^2 = \text{rotation by } 2\theta
@@ -876,13 +899,13 @@ Similar matrices have the **same eigenvalues**.
 
 ### 3.3 Best Basis 1: Eigenvectors (Diagonalization)
 
-$`B_{\text{in}} = B_{\text{out}}`$ = eigenvector matrix $`X`$.
+$`B_{\text{in}} = B_{\text{out}}`$ = the eigenvector matrix $`X`$ from Chapter 6.
 
 ```math
 A = X\Lambda X^{-1} \quad \Longleftrightarrow \quad X^{-1}AX = \Lambda
 ```
 
-$`A`$ is a square matrix with $`n`$ independent eigenvectors. $`A`$ must be **diagonalizable**.
+To use this basis, $`A`$ must be a square matrix with $`n`$ independent eigenvectors, that is, **diagonalizable**.
 
 $`\Lambda`$ is obtained when $`B_{\text{in}} = B_{\text{out}} = X`$ (eigenvectors).
 
@@ -890,7 +913,7 @@ $`\Lambda`$ is obtained when $`B_{\text{in}} = B_{\text{out}} = X`$ (eigenvector
 
 ### 3.4 Best Basis 2: Singular Vectors (SVD)
 
-$`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$: singular vectors of $`A`$.
+$`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$: the singular vectors of $`A`$ from Chapter 7.
 
 ```math
 A = U\Sigma V^T
@@ -900,7 +923,7 @@ A = U\Sigma V^T
 U^{-1}AV = \Sigma \quad \text{(singular values)}
 ```
 
-$`U, V`$ are **orthonormal eigenvectors** of $`A^TA`$ and $`AA^T`$.
+The columns of $`V`$ and $`U`$ are **orthonormal eigenvectors** of $`A^TA`$ and $`AA^T`$, respectively.
 
 ---
 
@@ -912,14 +935,14 @@ $`B_{\text{in}} = B_{\text{out}}`$ = generalized eigenvectors of $`A`$.
 B^{-1}AB = \text{Jordan form } J
 ```
 
-$`A`$ is a square matrix, but it may only have "$`s`$ independent eigenvectors":
+$`A`$ is a square matrix, but it may have only $`s`$ independent eigenvectors:
 
-- If $`s = n`$: $`B = X`$ (eigenvectors), $`J = \Lambda`$
-- If $`s < n`$: there are "$`n - s`$" dependent columns $`\to`$ construct "$`n - s`$" additional **generalized eigenvectors**
+- If $`s = n`$, then $`B = X`$ (the eigenvector matrix) and $`J = \Lambda`$.
+- If $`s < n`$, a matrix filled with eigenvectors would have $`n - s`$ dependent columns, so we construct $`n - s`$ additional **generalized eigenvectors** instead.
 
 Properties of the Jordan form:
-- (i) There are $`s`$ square blocks along the diagonal of $`J`$
-- (ii) Each block has one eigenvalue $`\lambda`$, one eigenvector, and 1's above the diagonal
+- (i) There are $`s`$ square blocks along the diagonal of $`J`$.
+- (ii) Each block corresponds to one eigenvalue $`\lambda`$ and one eigenvector, and if its size is at least 2, it has 1's just above the diagonal.
 
 ---
 
@@ -941,12 +964,12 @@ This has **2** 1x1 blocks and **1** 2x2 block.
 
 $`B^{-1}AB = J`$ is **nearly diagonal**.
 
-**Jordan Form — General Statement:**
+**General statement of the Jordan form:**
 
-For every $`A`$, we want to choose $`B`$ such that $`B^{-1}AB`$ is nearly diagonal as possible.
+For every $`A`$, we want to choose $`B`$ such that $`B^{-1}AB`$ is as nearly diagonal as possible.
 
-- When $`A`$ is diagonalizable (i.e., $`n`$ independent eigenvectors), then $`B = X`$ (eigenvectors): $`X^{-1}AX = \Lambda`$.
-- When $`A`$ is not diagonalizable (i.e., $`s < n`$ independent eigenvectors):
+- When $`A`$ is diagonalizable (i.e., has $`n`$ independent eigenvectors), choose $`B = X`$ (the eigenvector matrix) to get $`X^{-1}AX = \Lambda`$.
+- When $`A`$ is not diagonalizable (i.e., has only $`s < n`$ independent eigenvectors), we get the Jordan form as follows:
 
 ```math
 B^{-1}AB = J
@@ -964,7 +987,7 @@ where each **Jordan block** $`J_i`$ is:
 J_i = \begin{pmatrix} \lambda_i & 1 & 0 & \cdots & 0 \\ 0 & \lambda_i & 1 & \cdots & 0 \\ \vdots & & \ddots & \ddots & \vdots \\ 0 & \cdots & 0 & \lambda_i & 1 \\ 0 & \cdots & 0 & 0 & \lambda_i \end{pmatrix}
 ```
 
-> **The best basis $`B`$ gives $`B^{-1}AB = J`$.**
+> **Key Point:** The best basis $`B`$ gives $`B^{-1}AB = J`$.
 
 ---
 
@@ -980,7 +1003,7 @@ A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}, \quad \lambda^2 - 2\lambda + 1
 (A - \lambda I)\mathbf{x} = \begin{pmatrix} 0 & 2 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 ```
 
-$`x_2 = 0`$, free variable $`x_1 \Rightarrow \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$
+$`x_2 = 0`$ and $`x_1`$ is a free variable, so $`\mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$.
 
 **(ii)** Can we find the generalized eigenvector?
 
@@ -998,7 +1021,7 @@ $`x_2 = 0`$, free variable $`x_1 \Rightarrow \mathbf{x}_1 = \begin{pmatrix} 1 \\
 2x_2 = 1 \quad \Rightarrow \quad x_2 = \frac{1}{2}
 ```
 
-Free variable $`x_1 \to x_1 = 0`$
+Choose the free variable $`x_1 = 0`$.
 
 ```math
 \therefore \mathbf{x}_2 = \begin{pmatrix} 0 \\ \frac{1}{2} \end{pmatrix} \perp \mathbf{x}_1
@@ -1030,7 +1053,7 @@ A = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}, \quad \la
 (A - 0 \cdot I)\mathbf{x} = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`x_3 = 0`$, $`x_2 + 2x_3 = 0 \Rightarrow x_2 = 0`$, free variable $`x_1`$
+$`x_3 = 0`$, then $`x_2 + 2x_3 = 0`$ gives $`x_2 = 0`$, and $`x_1`$ is a free variable.
 
 ```math
 \Rightarrow \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
@@ -1042,7 +1065,7 @@ $`x_3 = 0`$, $`x_2 + 2x_3 = 0 \Rightarrow x_2 = 0`$, free variable $`x_1`$
 \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`x_3 = 0`$, $`x_2 + 2x_3 = 1 \Rightarrow x_2 = 1`$, $`x_1`$ is free $`\to x_1 = 0`$
+$`x_3 = 0`$, then $`x_2 + 2x_3 = 1`$ gives $`x_2 = 1`$, and we choose the free variable $`x_1 = 0`$.
 
 ```math
 \Rightarrow \mathbf{x}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
@@ -1054,7 +1077,7 @@ $`x_3 = 0`$, $`x_2 + 2x_3 = 1 \Rightarrow x_2 = 1`$, $`x_1`$ is free $`\to x_1 =
 \begin{pmatrix} 0 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
 ```
 
-$`x_3 = 1`$, $`x_2 + 2x_3 = 0 \Rightarrow x_2 = -2`$, choose $`x_1 = 0`$
+$`x_3 = 1`$, then $`x_2 + 2x_3 = 0`$ gives $`x_2 = -2`$, and we choose $`x_1 = 0`$.
 
 ```math
 \Rightarrow \mathbf{x}_3 = \begin{pmatrix} 0 \\ -2 \\ 1 \end{pmatrix}
@@ -1092,13 +1115,13 @@ This is **1 Jordan block** (3x3) with eigenvalue $`\lambda = 0`$.
 
 ### 3.9 Basis for Function Space
 
-Consider the standard polynomial basis: $`1, x, x^2, x^3, \ldots`$
+Consider the standard polynomial basis $`1, x, x^2, x^3, \ldots`$.
 
 ```math
 x^{10} \approx \text{span}\lbrace1, x, x^2, \ldots, x^9\rbrace
 ```
 
-This is an **ill-conditioned basis**.
+On $`[0, 1]`$, $`x^{10}`$ is very closely approximated by combinations of lower powers, so this is an **ill-conditioned basis**.
 
 How can we check if a basis is good or not?
 
@@ -1178,13 +1201,13 @@ Compute inner products on $`[-1, 1]`$:
 (1, x^2) = \int_{-1}^{1} 1 \cdot x^2\,dx = 2\int_0^1 x^2\,dx = \frac{2}{3}
 ```
 
-$`x^2`$ has a nonzero component of $`1`$.
+$`x^2`$ has a nonzero component along $`1`$, so it is not orthogonal to $`1`$.
 
 ```math
 (x, x^2) = \int_{-1}^{1} x^3\,dx = 0 \quad \text{(orthogonal)}
 ```
 
-By **Gram-Schmidt process**, construct the orthogonal basis:
+By the **Gram-Schmidt process** from Chapter 4, construct the orthogonal basis:
 
 ```math
 b_1 = 1
@@ -1199,6 +1222,8 @@ b_3 = x^2 - \frac{1}{3} \quad \perp\; b_1,\; b_2
 \vdots
 ```
 
+$`b_3`$ is obtained by subtracting from $`x^2`$ its component along $`1`$: $`b_3 = x^2 - \frac{(1, x^2)}{(1, 1)} \cdot 1 = x^2 - \frac{2/3}{2} = x^2 - \frac{1}{3}`$. Since $`x^2`$ is already orthogonal to $`x`$, no component along $`x`$ needs to be subtracted.
+
 By using the **Gram-Schmidt process**, we can obtain the **Legendre basis**.
 
 ---
@@ -1207,33 +1232,82 @@ By using the **Gram-Schmidt process**, we can obtain the **Legendre basis**.
 
 ## Summary
 
-| Concept | Key Idea |
-|:--------|:---------|
-| Linear Transformation | $`T(c\mathbf{u} + d\mathbf{w}) = cT(\mathbf{u}) + dT(\mathbf{w})`$; must satisfy additivity and homogeneity |
-| $`T(\mathbf{0}) = \mathbf{0}`$ | Every linear transformation maps zero to zero |
-| Non-linear examples | Norm $`\|\mathbf{u}\|`$, shift $`\mathbf{u} + \mathbf{u}_0`$ are NOT linear |
-| Affine transformation | $`T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0`$ (linear + shift); used in computer graphics |
-| Dot product | $`T(\mathbf{u}) = \mathbf{a}^T\mathbf{u}`$ is linear |
-| Derivative | $`T(u) = du/dt`$ is a linear transformation on function space |
-| Integration | $`T^+(f) = \int_0^x f(t)\,dt`$ is also linear; its matrix $`A^+`$ satisfies $`AA^+ = I`$ |
-| Projection onto $`z=1`$ | NOT linear because $`T(\mathbf{0}) \neq \mathbf{0}`$ |
-| Range and Kernel | Range of $`T`$ = column space of $`A`$; Kernel of $`T`$ = nullspace of $`A`$ |
-| Determined by basis | A linear transformation is fully determined by its values on basis vectors |
-| Matrix of $`T`$ | Column $`j`$ = $`T(\mathbf{u}_j)`$ expressed in output basis; $`A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))`$ |
-| Standard matrix | Uses columns of $`I`$ as input/output bases: $`T(\mathbf{u}) = A\mathbf{u}`$ |
-| Change of basis | New matrix = $`B_{\text{out}}^{-1} A B_{\text{in}}`$; identity transformation gives $`B = W^{-1}V`$ |
-| Derivative matrix $`D`$ | For $`\lbrace1, x, x^2, x^3\rbrace \to \lbrace1, x, x^2\rbrace`$: $`D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}`$ |
-| Integral matrix $`D^+`$ | Pseudoinverse of $`D`$; $`DD^+ = I`$ but $`D^+D \neq I`$ (nullspace of $`D`$) |
-| Composition $`TS`$ | Matrix product $`AB`$ represents $`TS`$; $`(m \times n)(n \times p) = (m \times p)`$ |
-| Rotation composition | Rotation by $`\theta`$ twice $`= A^2 =`$ rotation by $`2\theta`$ |
-| Best basis: Eigenvectors | $`B = X`$ (eigenvectors) $`\Rightarrow`$ $`X^{-1}AX = \Lambda`$ (diagonal) |
-| Best basis: Singular vectors | $`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$ $`\Rightarrow`$ $`U^{-1}AV = \Sigma`$ |
-| Best basis: Generalized eigenvectors | $`B^{-1}AB = J`$ (Jordan form); used when $`A`$ has fewer than $`n`$ independent eigenvectors |
-| Jordan block $`J_i`$ | $`\lambda_i`$ on diagonal, 1's on superdiagonal; $`s`$ blocks for $`s`$ independent eigenvectors |
-| Jordan chains | $`\mathbf{x}_1`$: eigenvector; $`(A - \lambda I)\mathbf{x}_2 = \mathbf{x}_1`$; $`(A - \lambda I)\mathbf{x}_3 = \mathbf{x}_2`$; etc. |
-| Fourier matrix | Diagonalizes every circulant matrix |
-| Function space bases | Fourier ($`1, \sin x, \cos x, \ldots`$), Legendre ($`1, x, x^2 - 1/3, \ldots`$), Chebyshev ($`1, x, 2x^2-1, \ldots`$) |
-| Gram-Schmidt for functions | Inner product $`(f,g) = \int f\,g\,dx`$; produces Legendre polynomials from $`1, x, x^2, \ldots`$ |
-| Orthonormal basis | $`B^TB = I`$; best conditioned basis for computation |
+| Concept | Key Summary |
+|:-----|:-----|
+| Linear Transformation | It satisfies $`T(c\mathbf{u} + d\mathbf{w}) = cT(\mathbf{u}) + dT(\mathbf{w})`$, which requires both additivity and homogeneity. |
+| $`T(\mathbf{0}) = \mathbf{0}`$ | Every linear transformation maps zero to zero. |
+| Non-linear examples | The norm $`\Vert\mathbf{u}\Vert`$ and the shift $`\mathbf{u} + \mathbf{u}_0`$ ($`\mathbf{u}_0 \neq \mathbf{0}`$) are NOT linear. |
+| Affine transformation | $`T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0`$ is a linear transformation plus a shift, and it is used in computer graphics. |
+| Dot product | $`T(\mathbf{u}) = \mathbf{a}^T\mathbf{u}`$ is linear. |
+| Derivative | $`T(u) = du/dt`$ is a linear transformation on function space. |
+| Integration | $`T^+(f) = \int_0^x f(t)\,dt`$ is also linear, and its matrix $`A^+`$ satisfies $`AA^+ = I`$. |
+| Projection onto $`z=1`$ | It is NOT linear because $`T(\mathbf{0}) \neq \mathbf{0}`$. |
+| Range and Kernel | The range of $`T`$ is the column space of $`A`$, and the kernel of $`T`$ is the nullspace of $`A`$. |
+| Determined by basis | A linear transformation is fully determined by its values on basis vectors. |
+| Matrix of $`T`$ | Column $`j`$ holds the coefficients of $`T(\mathbf{u}_j)`$ in the output basis, and with the standard output basis $`A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))`$. |
+| Standard matrix | Using the columns of $`I`$ as the input and output bases gives $`T(\mathbf{u}) = A\mathbf{u}`$. |
+| Change of basis | The new matrix is $`B_{\text{out}}^{-1} A B_{\text{in}}`$, and the identity transformation gives $`B = W^{-1}V`$. |
+| Derivative matrix $`D`$ | For $`\lbrace1, x, x^2, x^3\rbrace \to \lbrace1, x, x^2\rbrace`$, the matrix is $`D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}`$. |
+| Integral matrix $`D^+`$ | It is the pseudoinverse of $`D`$, and $`DD^+ = I`$ but $`D^+D \neq I`$ because of the nullspace of $`D`$. |
+| Composition $`TS`$ | The matrix product $`AB`$ represents $`TS`$, with sizes $`(m \times n)(n \times p) = (m \times p)`$. |
+| Rotation composition | Rotating by $`\theta`$ twice gives $`A^2`$, the rotation by $`2\theta`$. |
+| Best basis: Eigenvectors | Choosing $`B = X`$ (eigenvectors) gives $`X^{-1}AX = \Lambda`$ (diagonal). |
+| Best basis: Singular vectors | Choosing $`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$ gives $`U^{-1}AV = \Sigma`$. |
+| Best basis: Generalized eigenvectors | They give $`B^{-1}AB = J`$ (Jordan form) and are used when $`A`$ has fewer than $`n`$ independent eigenvectors. |
+| Jordan block $`J_i`$ | It has $`\lambda_i`$ on the diagonal and 1's on the superdiagonal, and there are $`s`$ blocks for $`s`$ independent eigenvectors. |
+| Jordan chains | $`\mathbf{x}_1`$ is an eigenvector, and the chain continues with $`(A - \lambda I)\mathbf{x}_2 = \mathbf{x}_1`$, $`(A - \lambda I)\mathbf{x}_3 = \mathbf{x}_2`$, and so on. |
+| Fourier matrix | It diagonalizes every circulant matrix. |
+| Function space bases | Good bases for function space include Fourier ($`1, \sin x, \cos x, \ldots`$), Legendre ($`1, x, x^2 - 1/3, \ldots`$), and Chebyshev ($`1, x, 2x^2-1, \ldots`$). |
+| Gram-Schmidt for functions | With the inner product $`(f,g) = \int f\,g\,dx`$, it produces the Legendre polynomials from $`1, x, x^2, \ldots`$. |
+| Orthonormal basis | It satisfies $`B^TB = I`$ and is the best conditioned basis for computation. |
 
 ---
+
+<br>
+
+## Self-Check Questions
+
+1. **Testing linearity:** Decide whether $`T(x, y) = (x + y, 2x)`$ and $`S(x, y) = (x + 1, y)`$ are linear transformations from $`\mathbb{R}^2`$ to $`\mathbb{R}^2`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`T`$ can be written as $`T(\mathbf{u}) = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix}\mathbf{u}`$, so it is linear. $`S`$ is not linear because $`S(0, 0) = (1, 0) \neq \mathbf{0}`$. It is an affine transformation, the identity plus the shift $`(1, 0)`$.
+
+   </details>
+
+2. **Standard matrix:** Let $`T: \mathbb{R}^2 \to \mathbb{R}^3`$ satisfy $`T(1, 0) = (1, 0, 2)`$ and $`T(0, 1) = (3, 1, 0)`$. Find the standard matrix $`A`$ and $`T(2, 1)`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   The outputs become the columns of $`A`$, so $`A = \begin{pmatrix} 1 & 3 \\ 0 & 1 \\ 2 & 0 \end{pmatrix}`$. By linearity, $`T(2, 1) = 2T(1, 0) + T(0, 1) = (2, 0, 4) + (3, 1, 0) = (5, 1, 4)`$.
+
+   </details>
+
+3. **Matrix of the second derivative:** For the input basis $`1, x, x^2, x^3`$ and the output basis $`1, x`$, find the matrix of $`T(u) = \dfrac{d^2u}{dx^2}`$ and the dimension of its kernel.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`T(1) = 0`$, $`T(x) = 0`$, $`T(x^2) = 2`$, and $`T(x^3) = 6x`$, so the matrix is $`\begin{pmatrix} 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 6 \end{pmatrix}`$. The kernel is the space of polynomials of degree at most 1, spanned by $`1`$ and $`x`$, so its dimension is 2. Adding the column space dimension 2 gives the domain dimension 4.
+
+   </details>
+
+4. **Similarity and eigenvalues:** For an invertible $`B`$, explain why $`B^{-1}AB`$ and $`A`$ have the same eigenvalues.
+
+   <details>
+   <summary>Answer</summary>
+
+   $`\det(B^{-1}AB - \lambda I) = \det(B^{-1}(A - \lambda I)B) = \det(B^{-1})\det(A - \lambda I)\det(B) = \det(A - \lambda I)`$, so the two matrices have the same characteristic polynomial and therefore the same eigenvalues. $`B^{-1}AB`$ represents the same transformation in another basis, so changing the basis does not change the eigenvalues.
+
+   </details>
+
+5. **Jordan form:** Find the Jordan form $`J`$ of $`A = \begin{pmatrix} 1 & 1 \\ -1 & 3 \end{pmatrix}`$ and a matrix $`B`$ with $`B^{-1}AB = J`$.
+
+   <details>
+   <summary>Answer</summary>
+
+   The characteristic equation is $`(1 - \lambda)(3 - \lambda) + 1 = \lambda^2 - 4\lambda + 4 = (\lambda - 2)^2 = 0`$, so $`\lambda = 2`$ is a double root. $`A - 2I = \begin{pmatrix} -1 & 1 \\ -1 & 1 \end{pmatrix}`$ has rank 1, so there is only one independent eigenvector $`\mathbf{x}_1 = (1, 1)^T`$. Writing $`\mathbf{x}_2 = (a, b)^T`$, the equation $`(A - 2I)\mathbf{x}_2 = \mathbf{x}_1`$ gives $`-a + b = 1`$, so we can choose $`\mathbf{x}_2 = (0, 1)^T`$. With $`B = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}`$, we get $`B^{-1}AB = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix} = J`$.
+
+   </details>
