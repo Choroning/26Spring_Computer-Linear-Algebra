@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 7
 
@@ -38,7 +38,7 @@
   - [3.2 Low-Rank Approximation](#32-low-rank-approximation)
   - [3.3 Norm of a Matrix](#33-norm-of-a-matrix)
   - [3.4 Norm Properties and Inequalities](#34-norm-properties-and-inequalities)
-  - [3.5 PCA Example (P 7.3.1)](#35-pca-example-p-731)
+  - [3.5 PCA Example (Textbook Problem 7.3.1)](#35-pca-example-textbook-problem-731)
   - [3.6 Perpendicular Least Squares](#36-perpendicular-least-squares)
 - [Summary](#summary)
 - [Self-Check Questions](#self-check-questions)
@@ -56,20 +56,20 @@ The SVD involves finding **two sets of orthonormal vectors**:
 **Input vectors** (for the domain, $`\mathbb{R}^n`$):
 
 ```math
-\lbrace\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r, \dots, \underset{\sim}{v}_n\rbrace
+\lbrace\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_r, \dots, \mathbf{v}_n\rbrace
 ```
 
-- $`\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r`$ form a **basis for $`C(A^T)`$** (row space).
-- $`\underset{\sim}{v}_{r+1}, \dots, \underset{\sim}{v}_n`$ form a **basis for $`N(A)`$** (null space).
+- $`\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_r`$ form a **basis for $`C(A^T)`$** (row space).
+- $`\mathbf{v}_{r+1}, \dots, \mathbf{v}_n`$ form a **basis for $`N(A)`$** (nullspace).
 
 **Output vectors** (for the codomain, $`\mathbb{R}^m`$):
 
 ```math
-\lbrace\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r, \dots, \underset{\sim}{u}_m\rbrace
+\lbrace\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_r, \dots, \mathbf{u}_m\rbrace
 ```
 
-- $`\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r`$ form a **basis for $`C(A)`$** (column space).
-- $`\underset{\sim}{u}_{r+1}, \dots, \underset{\sim}{u}_m`$ form a **basis for $`N(A^T)`$** (left null space).
+- $`\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_r`$ form a **basis for $`C(A)`$** (column space).
+- $`\mathbf{u}_{r+1}, \dots, \mathbf{u}_m`$ form a **basis for $`N(A^T)`$** (left nullspace).
 
 ### 1.2 The Four Fundamental Subspaces in SVD
 
@@ -83,20 +83,20 @@ The dimensions of the four fundamental subspaces:
 The SVD maps the input space to the output space:
 
 ```math
-A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i
+A\mathbf{v}_i = \sigma_i \mathbf{u}_i
 ```
 
-The matrix $`A`$ maps each right singular vector $`\underset{\sim}{v}_i`$ in the row space to a scaled left singular vector $`\sigma_i \underset{\sim}{u}_i`$ in the column space. The null space vectors are mapped to zero.
+The matrix $`A`$ maps each right singular vector $`\mathbf{v}_i`$ in the row space to a scaled left singular vector $`\sigma_i \mathbf{u}_i`$ in the column space. The nullspace vectors are mapped to zero.
 
 ```mermaid
 flowchart LR
     subgraph IN["Input space ℝⁿ"]
         ROW["Row space C(Aᵀ)<br>dimension r<br>basis v₁, ..., vᵣ"]
-        NUL["Null space N(A)<br>dimension n - r<br>basis vᵣ₊₁, ..., vₙ"]
+        NUL["Nullspace N(A)<br>dimension n - r<br>basis vᵣ₊₁, ..., vₙ"]
     end
     subgraph OUT["Output space ℝᵐ"]
         COL["Column space C(A)<br>dimension r<br>basis u₁, ..., uᵣ"]
-        LNU["Left null space N(Aᵀ)<br>dimension m - r<br>basis uᵣ₊₁, ..., uₘ"]
+        LNU["Left nullspace N(Aᵀ)<br>dimension m - r<br>basis uᵣ₊₁, ..., uₘ"]
         ZERO["Zero vector 0"]
     end
     ROW -- "A vᵢ = σᵢ uᵢ" --> COL
@@ -105,20 +105,20 @@ flowchart LR
 
 *Figure 1. The four fundamental subspaces in the SVD and the mapping by A*
 
-Writing this out for each basis vector:
+Writing this out for the first two basis vectors:
 
 ```math
-\sigma_1 \underset{\sim}{u}_1 = A\underset{\sim}{v}_1
+\sigma_1 \mathbf{u}_1 = A\mathbf{v}_1
 ```
 
 ```math
-\sigma_2 \underset{\sim}{u}_2 = A\underset{\sim}{v}_2
+\sigma_2 \mathbf{u}_2 = A\mathbf{v}_2
 ```
 
 Combining into matrix form:
 
 ```math
-\begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix} \begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix} = A \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 \end{pmatrix}
+\begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix} \begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix} = A \begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 \end{pmatrix}
 ```
 
 ### 1.3 From Eigendecomposition to SVD
@@ -126,7 +126,7 @@ Combining into matrix form:
 Using only $`r`$ basis vectors:
 
 ```math
-\begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix} \begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix} = A \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r \end{pmatrix}
+\begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix} \begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix} = A \begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_r \end{pmatrix}
 ```
 
 ```math
@@ -141,10 +141,10 @@ The dimensions are:
 \underset{m \times n}{A} \underset{n \times r}{V} = \underset{m \times r}{U} \underset{r \times r}{\Sigma}
 ```
 
-**Recall** the eigendecomposition from Chapter 6: for a matrix with eigenvalues $`\lambda_1, \lambda_2, \dots, \lambda_n`$ and eigenvectors $`\underset{\sim}{x}_1, \underset{\sim}{x}_2, \dots, \underset{\sim}{x}_n`$:
+**Recall** the eigendecomposition from Chapter 6: for a matrix with eigenvalues $`\lambda_1, \lambda_2, \dots, \lambda_n`$ and eigenvectors $`\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_n`$:
 
 ```math
-A(\underset{\sim}{x}_1 \; \underset{\sim}{x}_2 \; \cdots \; \underset{\sim}{x}_n) = (\lambda_1 \underset{\sim}{x}_1 \; \lambda_2 \underset{\sim}{x}_2 \; \cdots \; \lambda_n \underset{\sim}{x}_n) = (\underset{\sim}{x}_1 \; \underset{\sim}{x}_2 \; \cdots \; \underset{\sim}{x}_n) \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots \\ & & & \lambda_n \end{pmatrix}
+A(\mathbf{x}_1 \; \mathbf{x}_2 \; \cdots \; \mathbf{x}_n) = (\lambda_1 \mathbf{x}_1 \; \lambda_2 \mathbf{x}_2 \; \cdots \; \lambda_n \mathbf{x}_n) = (\mathbf{x}_1 \; \mathbf{x}_2 \; \cdots \; \mathbf{x}_n) \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots \\ & & & \lambda_n \end{pmatrix}
 ```
 
 ```math
@@ -164,12 +164,12 @@ S = Q\Lambda Q^T
 **Goal:** We want to go beyond symmetric matrices to **all matrices**.
 
 ```math
-S\underset{\sim}{x} = \lambda\underset{\sim}{x} \quad \Longrightarrow \quad A\underset{\sim}{v} = \sigma\underset{\sim}{u}
+S\mathbf{x} = \lambda\mathbf{x} \quad \Longrightarrow \quad A\mathbf{v} = \sigma\mathbf{u}
 ```
 
 ### 1.4 The SVD Equation
 
-From $`AV = U\Sigma`$, since $`V`$ is orthogonal ($`VV^T = I`$):
+From $`AV = U\Sigma`$, when $`V`$ is square orthogonal ($`r = n`$), $`VV^T = I`$ gives the following. When $`r < n`$, the full size form in Section 1.7 gives the same result:
 
 ```math
 AV = U\Sigma
@@ -188,7 +188,7 @@ AVV^T = U\Sigma V^T
 This can also be written as a sum of rank-1 matrices:
 
 ```math
-A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T
+A = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T
 ```
 
 ### 1.5 Example: Computing SVD
@@ -200,25 +200,25 @@ Then $`\text{rank}(A) = 2 = \text{rank}(A^T)`$.
 **Step 1:** Take two orthogonal vectors in $`C(A^T)`$. They are the eigenvectors of $`A^T A`$ found in Section 1.9, and they are normalized in Step 4:
 
 ```math
-\underset{\sim}{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \underset{\sim}{v}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
+\mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
 ```
 
-Check: $`\underset{\sim}{v}_1 \cdot \underset{\sim}{v}_2 = 1 - 1 = 0 \implies \underset{\sim}{v}_1 \perp \underset{\sim}{v}_2`$.
+Check: $`\mathbf{v}_1 \cdot \mathbf{v}_2 = 1 - 1 = 0 \implies \mathbf{v}_1 \perp \mathbf{v}_2`$.
 
-**Step 2:** Compute $`A\underset{\sim}{v}_1`$ and $`A\underset{\sim}{v}_2`$:
+**Step 2:** Compute $`A\mathbf{v}_1`$ and $`A\mathbf{v}_2`$:
 
 ```math
-A\underset{\sim}{v}_1 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 9 \\ 3 \end{pmatrix} = 3\begin{pmatrix} 3 \\ 1 \end{pmatrix} = 3\sqrt{10} \cdot \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix} \quad \leftarrow \underset{\sim}{u}_1
+A\mathbf{v}_1 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 9 \\ 3 \end{pmatrix} = 3\begin{pmatrix} 3 \\ 1 \end{pmatrix} = 3\sqrt{10} \cdot \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix} \quad \leftarrow \mathbf{u}_1
 ```
 
 ```math
-A\underset{\sim}{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 3 \end{pmatrix} = \frac{\sqrt{10}}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix} \quad \leftarrow \underset{\sim}{u}_2
+A\mathbf{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 3 \end{pmatrix} = \sqrt{10} \cdot \frac{1}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix} \quad \leftarrow \mathbf{u}_2
 ```
 
 **Verify orthogonality:**
 
 ```math
-(A\underset{\sim}{v}_1) \cdot (A\underset{\sim}{v}_2) = 9 \cdot (-1) + 3 \cdot 3 = 0 \quad \checkmark
+(A\mathbf{v}_1) \cdot (A\mathbf{v}_2) = 9 \cdot (-1) + 3 \cdot 3 = 0 \quad \checkmark
 ```
 
 **Step 3:** Write in matrix form:
@@ -227,7 +227,7 @@ A\underset{\sim}{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatr
 A\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 9 & -1 \\ 3 & 3 \end{pmatrix}
 ```
 
-**Step 4:** Normalize $`\underset{\sim}{v}_1, \underset{\sim}{v}_2`$ by dividing each by $`\sqrt{2}`$:
+**Step 4:** Normalize $`\mathbf{v}_1, \mathbf{v}_2`$ by dividing each by $`\sqrt{2}`$:
 
 ```math
 A \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 9 & -1 \\ 3 & 3 \end{pmatrix}
@@ -236,7 +236,7 @@ A \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \frac{
 So the normalized vectors are:
 
 ```math
-\underset{\sim}{v}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \underset{\sim}{v}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix}
+\mathbf{v}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \mathbf{v}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix}
 ```
 
 This gives:
@@ -254,7 +254,7 @@ where $`\sigma_1 = 3\sqrt{5}`$, $`\sigma_2 = \sqrt{5}`$.
 **Verify $`VV^T = I`$:**
 
 ```math
-(\underset{\sim}{v}_1 \; \underset{\sim}{v}_2)\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix} = \underset{\sim}{v}_1\underset{\sim}{v}_1^T + \underset{\sim}{v}_2\underset{\sim}{v}_2^T
+(\mathbf{v}_1 \; \mathbf{v}_2)\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \end{pmatrix} = \mathbf{v}_1\mathbf{v}_1^T + \mathbf{v}_2\mathbf{v}_2^T
 ```
 
 ```math
@@ -272,11 +272,11 @@ where $`\sigma_1 = 3\sqrt{5}`$, $`\sigma_2 = \sqrt{5}`$.
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \end{pmatrix}
 ```
 
 ```math
-= \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T
+= \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T
 ```
 
 ### 1.6 The Geometry of SVD
@@ -301,7 +301,7 @@ The geometric interpretation of $`A = U\Sigma V^T`$ acting on a vector:
 
 **Geometric picture:**
 
-- A unit circle in the input space is first rotated by $`V^T`$, so that the directions of $`\underset{\sim}{v}_1, \underset{\sim}{v}_2`$ align with the coordinate axes.
+- A unit circle in the input space is first rotated by $`V^T`$, so that the directions of $`\mathbf{v}_1, \mathbf{v}_2`$ align with the coordinate axes.
 - Then $`\Sigma`$ stretches it into an ellipse (semi-axes of lengths $`\sigma_1`$ and $`\sigma_2`$).
 - Finally, $`U`$ rotates the ellipse to its final orientation.
 
@@ -327,11 +327,11 @@ A = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pma
 The full size form includes **basis vectors for the nullspaces** of $`A`$ and $`A^T`$.
 
 ```math
-V = \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r & \underset{\sim}{v}_{r+1} & \cdots & \underset{\sim}{v}_n \end{pmatrix}_{n \times n}
+V = \begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_r & \mathbf{v}_{r+1} & \cdots & \mathbf{v}_n \end{pmatrix}_{n \times n}
 ```
 
 ```math
-U = \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r & \underset{\sim}{u}_{r+1} & \cdots & \underset{\sim}{u}_m \end{pmatrix}_{m \times m}
+U = \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r & \mathbf{u}_{r+1} & \cdots & \mathbf{u}_m \end{pmatrix}_{m \times m}
 ```
 
 The full form equation:
@@ -342,20 +342,20 @@ The full form equation:
 
 Since $`V`$ is square orthogonal: $`V^T = V^{-1}`$. Similarly $`U^T = U^{-1}`$.
 
-The null space vectors are mapped to zero:
+The nullspace vectors are mapped to zero:
 
 ```math
-A\underset{\sim}{v}_{r+1} = \underset{\sim}{0}, \quad A\underset{\sim}{v}_{r+2} = \underset{\sim}{0}, \quad \dots, \quad A\underset{\sim}{v}_n = \underset{\sim}{0}
+A\mathbf{v}_{r+1} = \mathbf{0}, \quad A\mathbf{v}_{r+2} = \mathbf{0}, \quad \dots, \quad A\mathbf{v}_n = \mathbf{0}
 ```
 
 So $`AV`$ has the form:
 
 ```math
-AV = A\begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r & \underset{\sim}{v}_{r+1} & \cdots & \underset{\sim}{v}_n \end{pmatrix} = \begin{pmatrix} \sigma_1 \underset{\sim}{u}_1 & \sigma_2 \underset{\sim}{u}_2 & \cdots & \sigma_r \underset{\sim}{u}_r & \underset{\sim}{0} & \cdots & \underset{\sim}{0} \end{pmatrix}_{m \times n}
+AV = A\begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_r & \mathbf{v}_{r+1} & \cdots & \mathbf{v}_n \end{pmatrix} = \begin{pmatrix} \sigma_1 \mathbf{u}_1 & \sigma_2 \mathbf{u}_2 & \cdots & \sigma_r \mathbf{u}_r & \mathbf{0} & \cdots & \mathbf{0} \end{pmatrix}_{m \times n}
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r & \underset{\sim}{u}_{r+1} & \cdots & \underset{\sim}{u}_m \end{pmatrix}_{m \times m} \begin{pmatrix} \sigma_1 & & & 0 & \cdots & 0 \\ & \sigma_2 & & 0 & \cdots & 0 \\ & & \ddots & \vdots & & \vdots \\ & & & \sigma_r & 0 & \cdots & 0 \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\ \vdots & \vdots & & \vdots & \vdots & & \vdots \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \end{pmatrix}_{m \times n}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r & \mathbf{u}_{r+1} & \cdots & \mathbf{u}_m \end{pmatrix}_{m \times m} \begin{pmatrix} \sigma_1 & & & 0 & \cdots & 0 \\ & \sigma_2 & & 0 & \cdots & 0 \\ & & \ddots & \vdots & & \vdots \\ & & & \sigma_r & 0 & \cdots & 0 \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\ \vdots & \vdots & & \vdots & \vdots & & \vdots \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \end{pmatrix}_{m \times n}
 ```
 
 **Two cases for the shape of $`\Sigma`$:**
@@ -387,7 +387,7 @@ V_r V_r^T \neq I \quad \text{and} \quad U_r U_r^T \neq I
 The reduced SVD:
 
 ```math
-A = U_r \Sigma_r V_r^T = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T
+A = U_r \Sigma_r V_r^T = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T
 ```
 
 ### 1.8 Proof of the SVD
@@ -431,36 +431,36 @@ Therefore $`\sigma_1^2, \sigma_2^2, \dots, \sigma_r^2`$ are **nonzero eigenvalue
 
 **Steps of the proof:**
 
-**i)** Choose orthonormal eigenvectors $`\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r`$:
+**i)** Choose orthonormal eigenvectors $`\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_r`$:
 
 ```math
-A^T A \underset{\sim}{v}_k = \lambda_k \underset{\sim}{v}_k = \sigma_k^2 \underset{\sim}{v}_k
+A^T A \mathbf{v}_k = \lambda_k \mathbf{v}_k = \sigma_k^2 \mathbf{v}_k
 ```
 
 ```math
 \therefore \sigma_k = \sqrt{\lambda_k}
 ```
 
-**ii)** Right singular vector $`\underset{\sim}{v}_k`$ is connected to left singular vector $`\underset{\sim}{u}_k`$:
+**ii)** Right singular vector $`\mathbf{v}_k`$ is connected to left singular vector $`\mathbf{u}_k`$:
 
 ```math
-A\underset{\sim}{v}_k = \sigma_k \underset{\sim}{u}_k
+A\mathbf{v}_k = \sigma_k \mathbf{u}_k
 ```
 
 ```math
-\therefore \underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k \quad \forall k = 1, 2, \dots, r
+\therefore \mathbf{u}_k = \frac{1}{\sigma_k} A\mathbf{v}_k \quad \forall k = 1, 2, \dots, r
 ```
 
-**iii)** Sanity check: verify that $`\underset{\sim}{u}_k`$ is an eigenvector of $`AA^T`$:
+**iii)** Sanity check: verify that $`\mathbf{u}_k`$ is an eigenvector of $`AA^T`$:
 
 ```math
-AA^T \underset{\sim}{u}_k = AA^T \cdot \frac{1}{\sigma_k} A\underset{\sim}{v}_k = \frac{1}{\sigma_k} AA^T A \underset{\sim}{v}_k = \frac{1}{\sigma_k} A \sigma_k^2 \underset{\sim}{v}_k = \sigma_k A\underset{\sim}{v}_k = \sigma_k^2 \underset{\sim}{u}_k \quad \square
+AA^T \mathbf{u}_k = AA^T \cdot \frac{1}{\sigma_k} A\mathbf{v}_k = \frac{1}{\sigma_k} AA^T A \mathbf{v}_k = \frac{1}{\sigma_k} A \sigma_k^2 \mathbf{v}_k = \sigma_k A\mathbf{v}_k = \sigma_k^2 \mathbf{u}_k \quad \square
 ```
 
-**iv)** Check that the $`\underset{\sim}{u}_k`$ are orthonormal:
+**iv)** Check that the $`\mathbf{u}_k`$ are orthonormal:
 
 ```math
-\underset{\sim}{u}_j^T \underset{\sim}{u}_k = \left(\frac{1}{\sigma_j} A\underset{\sim}{v}_j\right)^T \left(\frac{1}{\sigma_k} A\underset{\sim}{v}_k\right) = \frac{1}{\sigma_j \sigma_k} \underset{\sim}{v}_j^T A^T A \underset{\sim}{v}_k = \frac{\sigma_k}{\sigma_j} \underset{\sim}{v}_j^T \underset{\sim}{v}_k = \begin{cases} 1 & j = k \\ 0 & j \neq k \end{cases}
+\mathbf{u}_j^T \mathbf{u}_k = \left(\frac{1}{\sigma_j} A\mathbf{v}_j\right)^T \left(\frac{1}{\sigma_k} A\mathbf{v}_k\right) = \frac{1}{\sigma_j \sigma_k} \mathbf{v}_j^T A^T A \mathbf{v}_k = \frac{\sigma_k}{\sigma_j} \mathbf{v}_j^T \mathbf{v}_k = \begin{cases} 1 & j = k \\ 0 & j \neq k \end{cases}
 ```
 
 ### 1.9 Example: Computing SVD via the Proof Method
@@ -494,13 +494,13 @@ Characteristic equation:
 For $`\lambda_1 = 45`$:
 
 ```math
-(A^T A - \lambda_1 I)\underset{\sim}{x}_1 = \begin{pmatrix} -20 & 20 \\ 20 & -20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \underset{\sim}{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+(A^T A - \lambda_1 I)\mathbf{x}_1 = \begin{pmatrix} -20 & 20 \\ 20 & -20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
 ```
 
 For $`\lambda_2 = 5`$:
 
 ```math
-(A^T A - \lambda_2 I)\underset{\sim}{x}_2 = \begin{pmatrix} 20 & 20 \\ 20 & 20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \underset{\sim}{x}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
+(A^T A - \lambda_2 I)\mathbf{x}_2 = \begin{pmatrix} 20 & 20 \\ 20 & 20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \mathbf{x}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
 ```
 
 Normalize to get $`V`$:
@@ -509,18 +509,18 @@ Normalize to get $`V`$:
 V = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}
 ```
 
-**ii) Compute $`U`$ from $`A\underset{\sim}{v}_k = \sigma_k \underset{\sim}{u}_k`$:**
+**ii) Compute $`U`$ from $`A\mathbf{v}_k = \sigma_k \mathbf{u}_k`$:**
 
 ```math
-\underset{\sim}{u}_1 = \frac{1}{\sigma_1} A\underset{\sim}{v}_1 = \frac{1}{3\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \frac{1}{3\sqrt{10}}\begin{pmatrix} 9 \\ 3 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix}
+\mathbf{u}_1 = \frac{1}{\sigma_1} A\mathbf{v}_1 = \frac{1}{3\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \frac{1}{3\sqrt{10}}\begin{pmatrix} 9 \\ 3 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix}
 ```
 
 ```math
-\underset{\sim}{u}_2 = \frac{1}{\sigma_2} A\underset{\sim}{v}_2 = \frac{1}{\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix}
+\mathbf{u}_2 = \frac{1}{\sigma_2} A\mathbf{v}_2 = \frac{1}{\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix}
 ```
 
 ```math
-U = \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 & -1 \\ 1 & 3 \end{pmatrix}
+U = \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 & -1 \\ 1 & 3 \end{pmatrix}
 ```
 
 ### 1.10 AB and BA: Equal Nonzero Eigenvalues
@@ -533,21 +533,21 @@ AB_{m \times m} \neq BA_{n \times n}
 
 **But $`AB`$ and $`BA`$ have the same nonzero eigenvalues.**
 
-**Proof:** Let $`\lambda \neq 0`$ be an eigenvalue of $`AB`$, with $`\underset{\sim}{x}`$ the corresponding eigenvector:
+**Proof:** Let $`\lambda \neq 0`$ be an eigenvalue of $`AB`$, with $`\mathbf{x}`$ the corresponding eigenvector:
 
 ```math
-AB\underset{\sim}{x} = \lambda\underset{\sim}{x}
+AB\mathbf{x} = \lambda\mathbf{x}
 ```
 
 ```math
-B(AB\underset{\sim}{x}) = B(\lambda\underset{\sim}{x}) = \lambda(B\underset{\sim}{x})
+B(AB\mathbf{x}) = B(\lambda\mathbf{x}) = \lambda(B\mathbf{x})
 ```
 
 ```math
-BA(B\underset{\sim}{x}) = \lambda(B\underset{\sim}{x})
+BA(B\mathbf{x}) = \lambda(B\mathbf{x})
 ```
 
-Since $`\lambda \neq 0`$, $`A(B\underset{\sim}{x}) = \lambda\underset{\sim}{x} \neq \underset{\sim}{0}`$, so $`B\underset{\sim}{x} \neq \underset{\sim}{0}`$. Therefore $`\lambda`$ is an eigenvalue of $`BA`$, and $`B\underset{\sim}{x}`$ is the corresponding eigenvector.
+Since $`\lambda \neq 0`$, $`A(B\mathbf{x}) = \lambda\mathbf{x} \neq \mathbf{0}`$, so $`B\mathbf{x} \neq \mathbf{0}`$. Therefore $`\lambda`$ is an eigenvalue of $`BA`$, and $`B\mathbf{x}`$ is the corresponding eigenvector.
 
 Both $`AB`$ and $`BA`$ share the nonzero eigenvalue $`\lambda`$. When their sizes differ, the number of zero eigenvalues can differ. Setting $`B = A^T`$ shows that the result of Section 1.8, that $`A^T A`$ and $`AA^T`$ share the nonzero eigenvalues $`\sigma_i^2`$, is a special case of this property.
 
@@ -591,15 +591,15 @@ A = U\Sigma V^T
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \\ \vdots \\ \underset{\sim}{v}_r^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \\ \vdots \\ \mathbf{v}_r^T \end{pmatrix}
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 \underset{\sim}{v}_1^T \\ \sigma_2 \underset{\sim}{v}_2^T \\ \vdots \\ \sigma_r \underset{\sim}{v}_r^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 \mathbf{v}_1^T \\ \sigma_2 \mathbf{v}_2^T \\ \vdots \\ \sigma_r \mathbf{v}_r^T \end{pmatrix}
 ```
 
 ```math
-= \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T
+= \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T
 ```
 
 This is a **sum of rank-1 matrices**.
@@ -611,11 +611,11 @@ A = U\Sigma V^T
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \\ \vdots \\ \underset{\sim}{v}_r^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \\ \vdots \\ \mathbf{v}_r^T \end{pmatrix}
 ```
 
 ```math
-\approx \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix} = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T
+\approx \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \end{pmatrix} = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T
 ```
 
 > **Note:** **Example.** For an interactive demonstration of image compression using SVD, search "timbaumann SVD".
@@ -632,14 +632,14 @@ A = U\Sigma V^T
 A = U\Sigma V^T
 ```
 
-**PCA** uses the **largest $`\sigma`$'s** connected to the first $`\underset{\sim}{u}`$'s and $`\underset{\sim}{v}`$'s to understand the information in a matrix of data.
+**PCA** uses the **largest $`\sigma`$'s** connected to the first $`\mathbf{u}`$'s and $`\mathbf{v}`$'s to understand the information in a matrix of data.
 
 ### 3.2 Low-Rank Approximation
 
 We extract the most important part $`A_k`$:
 
 ```math
-A_k = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_k \underset{\sim}{u}_k \underset{\sim}{v}_k^T
+A_k = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_k \mathbf{u}_k \mathbf{v}_k^T
 ```
 
 ```math
@@ -665,7 +665,7 @@ A \approx A_k
 **i) Spectral norm (2-norm):**
 
 ```math
-\|A\|_2 = \max_{\underset{\sim}{x}} \frac{\|A\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = \sigma_1
+\|A\|_2 = \max_{\mathbf{x}} \frac{\|A\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_1
 ```
 
 **ii) Frobenius norm:**
@@ -683,7 +683,7 @@ A \approx A_k
 **Example with the identity matrix** $`I \in \mathbb{R}^{n \times n}`$:
 
 ```math
-\|I\|_2 = \max \frac{\|I\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = \max \frac{\|\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = 1
+\|I\|_2 = \max \frac{\|I\mathbf{x}\|}{\|\mathbf{x}\|} = \max \frac{\|\mathbf{x}\|}{\|\mathbf{x}\|} = 1
 ```
 
 ```math
@@ -702,10 +702,10 @@ For $`A = U\Sigma V^T`$, the following holds. In general a norm only satisfies $
 \|A\|_2 = \|U\|_2 \|\Sigma\|_2 \|V^T\|_2
 ```
 
-Since $`U, V`$ are orthogonal matrices, multiplying by them does **NOT change** the magnitude of $`\underset{\sim}{x}`$:
+Since $`U, V`$ are orthogonal matrices, multiplying by them does **NOT change** the magnitude of $`\mathbf{x}`$:
 
 ```math
-\|U\|_2 = \max \frac{\|U\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = 1
+\|U\|_2 = \max \frac{\|U\mathbf{x}\|}{\|\mathbf{x}\|} = 1
 ```
 
 ```math
@@ -722,10 +722,10 @@ Therefore:
 
 **Extending vector norms to matrices:**
 
-Length of a vector $`\underset{\sim}{v}`$:
+Length of a vector $`\mathbf{v}`$:
 
 ```math
-\|\underset{\sim}{v}\|^2 = v_1^2 + v_2^2 + \cdots + v_n^2
+\|\mathbf{v}\|^2 = v_1^2 + v_2^2 + \cdots + v_n^2
 ```
 
 Extend the idea to a matrix:
@@ -736,13 +736,13 @@ Extend the idea to a matrix:
 
 **Basic properties:**
 
-- $`\|\underset{\sim}{v}\| \geq 0`$ and $`\|c\underset{\sim}{v}\| = |c| \|\underset{\sim}{v}\|`$.
+- $`\|\mathbf{v}\| \geq 0`$ and $`\|c\mathbf{v}\| = |c| \|\mathbf{v}\|`$.
 - $`\|A\|_F \geq 0`$ and $`\|cA\|_F = |c| \|A\|_F`$.
 
 **Schwarz inequality and the matrix inequality that follows from it:**
 
 ```math
-|\underset{\sim}{v}^T \underset{\sim}{w}| \leq \|\underset{\sim}{v}\| \|\underset{\sim}{w}\|
+|\mathbf{v}^T \mathbf{w}| \leq \|\mathbf{v}\| \|\mathbf{w}\|
 ```
 
 ```math
@@ -752,14 +752,14 @@ Extend the idea to a matrix:
 **Triangle inequality:**
 
 ```math
-\|\underset{\sim}{v} + \underset{\sim}{w}\| \leq \|\underset{\sim}{v}\| + \|\underset{\sim}{w}\|
+\|\mathbf{v} + \mathbf{w}\| \leq \|\mathbf{v}\| + \|\mathbf{w}\|
 ```
 
 ```math
 \|A + B\|_F \leq \|A\|_F + \|B\|_F
 ```
 
-### 3.5 PCA Example (P 7.3.1)
+### 3.5 PCA Example (Textbook Problem 7.3.1)
 
 $`A_0`$ holds **2 measurements** of **5 samples**:
 
@@ -787,12 +787,14 @@ A = A_0 - \begin{pmatrix} 3 \\ 0 \end{pmatrix}(1\;1\;1\;1\;1) = \begin{pmatrix} 
 S = \frac{AA^T}{n - 1}
 ```
 
+> **[Probability and Statistics]** The sample covariance matrix collects the sample variances and sample covariances from probability and statistics: its diagonal entries are the sample variances of the measurements, and its off-diagonal entries are the sample covariances between pairs of measurements. Dividing by $`n - 1`$ instead of $`n`$ gives an unbiased estimate of the population covariance from the sample, and PCA uses the eigenvectors of this matrix to find the directions of largest variance.
+
 ```math
 AA^T = \begin{pmatrix} 2 & 1 & 0 & -1 & -2 \\ -1 & 1 & 0 & 1 & -1 \end{pmatrix}\begin{pmatrix} 2 & -1 \\ 1 & 1 \\ 0 & 0 \\ -1 & 1 \\ -2 & -1 \end{pmatrix} = \begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix}
 ```
 
 ```math
-S = \frac{1}{4}AA^T = \frac{1}{4}\begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix} =: S
+S = \frac{1}{4}AA^T = \frac{1}{4}\begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} \frac{5}{2} & 0 \\ 0 & 1 \end{pmatrix}
 ```
 
 **iii) Find the eigenvalues of $`S`$.**
@@ -802,7 +804,7 @@ S = \frac{1}{4}AA^T = \frac{1}{4}\begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix} =
 ```
 
 ```math
-(S - \lambda I)\underset{\sim}{x}_1 = \begin{pmatrix} \frac{5}{2} - \lambda & 0 \\ 0 & 1 - \lambda \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+(S - \lambda I)\mathbf{x}_1 = \begin{pmatrix} \frac{5}{2} - \lambda & 0 \\ 0 & 1 - \lambda \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 ```
 
 For $`\lambda_1 = \frac{5}{2}`$:
@@ -812,7 +814,7 @@ For $`\lambda_1 = \frac{5}{2}`$:
 ```
 
 ```math
-\therefore \underset{\sim}{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+\therefore \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
 ```
 
 **iv) What line through the origin is closest to the 5 samples in columns of $`A`$?**
@@ -836,23 +838,23 @@ y = -1    *     |     *
 
 *Figure 3. The five centered data points and the x-axis, the closest line through the origin*
 
-**The $`x`$-axis is the line closest to the 5 points.** The sum of squared perpendicular distances from the points to the $`x`$-axis is $`1 + 1 + 0 + 1 + 1 = 4`$, while to the $`y`$-axis it is $`4 + 1 + 0 + 1 + 4 = 10`$.
+**The $`x`$-axis is the line closest to the 5 points.** Among the lines through the origin, the closest one is the line in the direction of the eigenvector $`\mathbf{x}_1 = (1, 0)`$ of the largest eigenvalue $`\lambda_1`$. For example, the sum of squared perpendicular distances from the points to the $`x`$-axis is $`1 + 1 + 0 + 1 + 1 = 4`$, while to the $`y`$-axis it is $`4 + 1 + 0 + 1 + 4 = 10`$.
 
-The first singular vector $`\begin{pmatrix} 1 \\ 0 \end{pmatrix}`$ represents the direction in the data that accounts for the **greatest variability**.
+Since the eigenvectors of $`S = AA^T/(n-1)`$ are the left singular vectors of $`A`$, this direction $`\begin{pmatrix} 1 \\ 0 \end{pmatrix}`$ is the first left singular vector $`\mathbf{u}_1`$ of $`A`$, and it represents the direction in the data that accounts for the **greatest variability**.
 
 ### 3.6 Perpendicular Least Squares
 
-Recall from Chapter 4 that the **least squares solution** $`\underset{\sim}{\hat{x}}`$ to $`A\underset{\sim}{x} = \underset{\sim}{b}`$ minimizes $`\|A\underset{\sim}{\hat{x}} - \underset{\sim}{b}\|^2`$, where the errors are defined by:
+Recall from Chapter 4 that the **least squares solution** $`\hat{\mathbf{x}}`$ to $`A\mathbf{x} = \mathbf{b}`$ minimizes $`\|A\hat{\mathbf{x}} - \mathbf{b}\|^2`$, where the errors are defined by:
 
 ```math
-\underset{\sim}{e} = A\underset{\sim}{\hat{x}} - \underset{\sim}{b}
+\mathbf{e} = A\hat{\mathbf{x}} - \mathbf{b}
 ```
 
 In line fitting, each error is the **vertical distance** from a data point to the fitted line.
 
 In contrast, **perpendicular least squares** measures the **perpendicular distances** from data points to the line.
 
-The sum of squared **perpendicular distances** from the data points to the line in the direction of $`\underset{\sim}{u}_1`$ is a **minimum**. Here $`\underset{\sim}{u}_1`$ is the first left singular vector of the centered data matrix $`A`$.
+Among the lines through the origin, the line in the direction of $`\mathbf{u}_1`$ gives the **minimum** sum of squared **perpendicular distances** from the data points. Here $`\mathbf{u}_1`$ is the first left singular vector of the centered data matrix $`A`$.
 
 ---
 
@@ -863,13 +865,13 @@ The sum of squared **perpendicular distances** from the data points to the line 
 | Concept | Key Summary |
 |:-----|:-----|
 | SVD Decomposition | It is $`A = U\Sigma V^T`$, where $`U, V`$ have orthonormal columns and $`\Sigma`$ is diagonal with singular values $`\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0`$. |
-| Two Sets of Vectors | The input vectors $`\lbrace\underset{\sim}{v}_i\rbrace`$ form bases for $`C(A^T)`$ and $`N(A)`$, and the output vectors $`\lbrace\underset{\sim}{u}_i\rbrace`$ form bases for $`C(A)`$ and $`N(A^T)`$. |
+| Two Sets of Vectors | The input vectors $`\lbrace\mathbf{v}_i\rbrace`$ form bases for $`C(A^T)`$ and $`N(A)`$, and the output vectors $`\lbrace\mathbf{u}_i\rbrace`$ form bases for $`C(A)`$ and $`N(A^T)`$. |
 | SVD vs Eigendecomposition | The eigendecomposition $`S = Q\Lambda Q^T`$ works for symmetric matrices, while the SVD $`A = U\Sigma V^T`$ works for **all** matrices. |
-| Fundamental Relationship | $`A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i`$ maps right singular vectors to scaled left singular vectors. |
+| Fundamental Relationship | $`A\mathbf{v}_i = \sigma_i \mathbf{u}_i`$ maps right singular vectors to scaled left singular vectors. |
 | Geometry of SVD | $`A = U\Sigma V^T`$ rotates by $`V^T`$, stretches by $`\Sigma`$, and rotates by $`U`$, which transforms the unit circle into an ellipse. |
 | Full vs Reduced SVD | The full form is $`A_{m \times n} V_{n \times n} = U_{m \times m} \Sigma_{m \times n}`$, and the reduced form keeps only $`r`$ vectors, $`A V_r = U_r \Sigma_r`$. |
-| Rank-1 Decomposition | $`A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T`$ writes $`A`$ as a sum of rank-1 matrices. |
-| Finding Singular Vectors | $`V`$ comes from the eigenvectors of $`A^T A`$ and $`U`$ from the eigenvectors of $`AA^T`$, with $`\sigma_k = \sqrt{\lambda_k}`$ and $`\underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k`$. |
+| Rank-1 Decomposition | $`A = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T`$ writes $`A`$ as a sum of rank-1 matrices. |
+| Finding Singular Vectors | $`V`$ comes from the eigenvectors of $`A^T A`$ and $`U`$ from the eigenvectors of $`AA^T`$, with $`\sigma_k = \sqrt{\lambda_k}`$ and $`\mathbf{u}_k = \frac{1}{\sigma_k} A\mathbf{v}_k`$. |
 | $`A^T A`$ and $`AA^T`$ | $`A^T A = V\Sigma^2 V^T`$ and $`AA^T = U\Sigma^2 U^T`$, and the two matrices share the nonzero eigenvalues $`\sigma_1^2, \dots, \sigma_r^2`$. |
 | AB and BA Eigenvalues | $`AB`$ and $`BA`$ have the same nonzero eigenvalues even when their sizes differ. |
 | Image as Matrix | An image is a large matrix of grayscale values, and the entries of an 8-bit image lie in 0-255. |
@@ -881,7 +883,7 @@ The sum of squared **perpendicular distances** from the data points to the line 
 | Nuclear Norm | It is $`\Vert A\Vert_N = \sigma_1 + \sigma_2 + \cdots + \sigma_r`$, the sum of the singular values, also called the trace norm. |
 | Sample Covariance | It is $`S = \frac{AA^T}{n-1}`$, where $`A`$ is the centered data matrix. |
 | First Singular Vector | It represents the direction in the data that accounts for the greatest variability. |
-| Perpendicular Least Squares | PCA minimizes the sum of squared perpendicular distances, not vertical distances, from the data points to the $`\underset{\sim}{u}_1`$ line. |
+| Perpendicular Least Squares | PCA minimizes the sum of squared perpendicular distances, not vertical distances, from the data points to the $`\mathbf{u}_1`$ line. |
 
 ---
 
@@ -912,7 +914,7 @@ The sum of squared **perpendicular distances** from the data points to the line 
    <details>
    <summary>Answer</summary>
 
-   $`A_1 = 5\underset{\sim}{u}_1\underset{\sim}{v}_1^T`$. The singular values of $`A - A_1 = 2\underset{\sim}{u}_2\underset{\sim}{v}_2^T + 1\underset{\sim}{u}_3\underset{\sim}{v}_3^T`$ are $`2, 1`$, so $`\|A - A_1\|_2 = 2`$ and $`\|A - A_1\|_F = \sqrt{2^2 + 1^2} = \sqrt{5}`$. By the Eckart-Young theorem, no matrix of rank at most 1 gives a smaller error.
+   $`A_1 = 5\mathbf{u}_1\mathbf{v}_1^T`$. The singular values of $`A - A_1 = 2\mathbf{u}_2\mathbf{v}_2^T + 1\mathbf{u}_3\mathbf{v}_3^T`$ are $`2, 1`$, so $`\|A - A_1\|_2 = 2`$ and $`\|A - A_1\|_F = \sqrt{2^2 + 1^2} = \sqrt{5}`$. By the Eckart-Young theorem, no matrix of rank at most 1 gives a smaller error.
 
    </details>
 
@@ -930,6 +932,6 @@ The sum of squared **perpendicular distances** from the data points to the line 
    <details>
    <summary>Answer</summary>
 
-   The $`r`$ columns of $`V_r`$ are orthonormal, so $`V_r^T V_r = I_r`$. In contrast, $`V_r V_r^T`$ is an $`n \times n`$ matrix that projects onto $`C(A^T)`$, and it sends the vectors of $`N(A)`$ to $`\underset{\sim}{0}`$. Therefore $`V_r V_r^T = I`$ holds only when $`r = n`$, that is, when $`N(A) = \lbrace\underset{\sim}{0}\rbrace`$.
+   The $`r`$ columns of $`V_r`$ are orthonormal, so $`V_r^T V_r = I_r`$. In contrast, $`V_r V_r^T`$ is an $`n \times n`$ matrix that projects onto $`C(A^T)`$, and it sends the vectors of $`N(A)`$ to $`\mathbf{0}`$. Therefore $`V_r V_r^T = I`$ holds only when $`r = n`$, that is, when $`N(A) = \lbrace\mathbf{0}\rbrace`$.
 
    </details>

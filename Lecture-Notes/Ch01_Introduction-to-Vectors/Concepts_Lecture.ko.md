@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -39,7 +39,7 @@
   - [4.1 내적의 정의](#41-내적의-정의)
   - [4.2 벡터의 길이](#42-벡터의-길이)
   - [4.3 단위벡터 (Unit Vectors)](#43-단위벡터-unit-vectors)
-  - [4.4 직교벡터 (Perpendicular Vectors)](#44-직교벡터-perpendicular-vectors)
+  - [4.4 직교 벡터 (Perpendicular Vectors)](#44-직교-벡터-perpendicular-vectors)
   - [4.5 두 벡터 사이의 각도](#45-두-벡터-사이의-각도)
   - [4.6 슈바르츠 부등식 (Schwarz Inequality)](#46-슈바르츠-부등식-schwarz-inequality)
   - [4.7 삼각 부등식 (Triangle Inequality)](#47-삼각-부등식-triangle-inequality)
@@ -84,7 +84,7 @@
 | 2 | 연립일차방정식 풀기 | $`Ax = b`$ | 2장 |
 | 3 | 연립일차방정식 풀기 | $`Ax = b`$ | 3장 |
 | 4 | 네 가지 기본 부분공간 | 열공간 (Column Space) | 3.1~3.2절 |
-| 5 | 네 가지 기본 부분공간 | 영공간 (Null Space) | 3.3~3.5절 |
+| 5 | 네 가지 기본 부분공간 | 영공간 (Nullspace) | 3.3~3.5절 |
 | 6 | 직교성 (Orthogonality) | 직교성 | 4.1~4.3절 |
 | 7 | 직교성 | 직교성 | 4.4~4.5절 |
 | 8 | **중간시험** | | |
@@ -138,7 +138,7 @@
 c\mathbf{v} + d\mathbf{w} = c\begin{pmatrix} 2 \\ 4 \end{pmatrix} + d\begin{pmatrix} 1 \\ 3 \end{pmatrix} \in \mathbb{R}^2
 ```
 
-> **핵심:** 두 벡터의 선형결합 $`c\mathbf{v} + d\mathbf{w}`$는 $`xy`$ 평면 전체를 채운다.
+> **핵심:** $`\mathbf{v}`$와 $`\mathbf{w}`$는 한 직선 위에 있지 않으므로, 두 벡터의 선형결합 $`c\mathbf{v} + d\mathbf{w}`$는 $`xy`$ 평면 전체를 채운다.
 
 ### 2.2 벡터의 길이
 
@@ -439,7 +439,7 @@ $`\hat{i}, \hat{j}, \hat{k}`$는 3차원 공간에서 $`x, y, z`$ 축 방향의 
 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
 ```
 
-> **용어 정의:** 대각 성분이 모두 1이고 나머지 성분이 모두 0인 정방행렬을 **항등행렬 (Identity Matrix)** $`I`$라 한다. 모든 벡터 $`\mathbf{v}`$에 대해 $`\mathbf{v} = I\mathbf{v}`$이다.
+> **용어 정의:** 대각 성분이 모두 1이고 나머지 성분이 모두 0인 정사각 행렬을 **항등 행렬 (Identity Matrix)** $`I`$라 한다. 모든 벡터 $`\mathbf{v}`$에 대해 $`\mathbf{v} = I\mathbf{v}`$이다.
 
 #### 평면인지 어떻게 아는가?
 
@@ -510,7 +510,7 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 \|\mathbf{u}\|^2 = \cos^2\theta + \sin^2\theta = 1
 ```
 
-### 4.4 직교벡터 (Perpendicular Vectors)
+### 4.4 직교 벡터 (Perpendicular Vectors)
 
 **(3)** $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$는 $`\mathbf{w} = \begin{pmatrix} 4 \\ -4 \\ 4 \end{pmatrix}`$에 수직이다:
 
@@ -596,7 +596,7 @@ $`\mathbf{w} = \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$는 $`x`$축과 $`-45°`$ 
 \mathbf{v} \cdot \mathbf{w} = \cos\theta
 ```
 
-$`\|\mathbf{v}\| = \|\mathbf{w}\| = 1`$이면 $`\mathbf{v}`$와 $`\mathbf{w}`$ 사이의 각도는 $`\cos\theta = \mathbf{v} \cdot \mathbf{w}`$이다.
+$`\|\mathbf{v}\| = \|\mathbf{w}\| = 1`$이면 $`\mathbf{v}`$와 $`\mathbf{w}`$ 사이의 각도 $`\theta`$는 $`\cos\theta = \mathbf{v} \cdot \mathbf{w}`$를 만족한다.
 
 ### 4.5 두 벡터 사이의 각도
 
@@ -795,16 +795,16 @@ A\mathbf{x} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}\begin{pmatri
 A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
 ```
 
-$`m = n`$이면 $`A`$를 **정방행렬 (Square Matrix)** 이라 한다.
+$`m = n`$이면 $`A`$를 **정사각 행렬 (Square Matrix)** 이라 한다.
 
-**정방행렬의 예시 ($`A \in \mathbb{R}^{3 \times 3}`$):**
+**정사각 행렬의 예시 ($`A \in \mathbb{R}^{3 \times 3}`$):**
 
 ```math
-\text{항등행렬 (Identity): } \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \qquad \text{대각행렬 (Diagonal): } \begin{pmatrix} 2 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 5 \end{pmatrix}
+\text{항등 행렬 (Identity): } \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \qquad \text{대각 행렬 (Diagonal): } \begin{pmatrix} 2 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 5 \end{pmatrix}
 ```
 
 ```math
-\text{삼각행렬 (Triangular): } \begin{pmatrix} 2 & 1 & -3 \\ 0 & 4 & 7 \\ 0 & 0 & 5 \end{pmatrix} \qquad \text{대칭행렬 (Symmetric): } \begin{pmatrix} 2 & 1 & -3 \\ 1 & 4 & 7 \\ -3 & 7 & 5 \end{pmatrix}
+\text{삼각 행렬 (Triangular): } \begin{pmatrix} 2 & 1 & -3 \\ 0 & 4 & 7 \\ 0 & 0 & 5 \end{pmatrix} \qquad \text{대칭 행렬 (Symmetric): } \begin{pmatrix} 2 & 1 & -3 \\ 1 & 4 & 7 \\ -3 & 7 & 5 \end{pmatrix}
 ```
 
 #### 열을 벡터로 해석하기
@@ -967,7 +967,7 @@ $`C(A)`$는 다음 중 하나이다:
 - $`A`$가 3개의 독립 열 (Independent Columns, I.C.)을 가지면 전체 공간 $`\mathbb{R}^3`$이다.
 - $`A`$가 2개의 I.C.를 가지면 $`\mathbb{R}^3`$의 평면이다.
 - $`A`$가 1개의 I.C.를 가지면 $`\mathbb{R}^3`$의 직선이다.
-- $`A`$가 영행렬이면 단일 점 $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$이다.
+- $`A`$가 영 행렬이면 단일 점 $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$이다.
 
 **더 많은 예시 ($`3 \times 3`$ 행렬):**
 
@@ -1229,7 +1229,7 @@ $`\therefore`$ 랭크는 $`r = 2`$이다.
 **관찰:**
 
 1. $`C`$는 $`A`$의 $`r`$개의 독립 열의 완전한 집합을 포함한다.
-2. 열을 재배열한 경우 $`R = (I \ F)`$는 항등행렬 $`I \in \mathbb{R}^{r \times r}`$을 포함한다.
+2. 열을 재배열한 경우 $`R = (I \ F)`$는 항등 행렬 $`I \in \mathbb{R}^{r \times r}`$을 포함한다.
 3. $`A`$의 종속 열은 $`C`$에 있는 독립 열들의 결합이다.
 4. 이때 $`A = CR = C(I \ F) = (C \ CF)`$이다.
 5. $`C`$는 $`A`$와 같은 열공간을 가진다. $`R`$은 $`A`$와 같은 행공간을 가진다.
@@ -1309,7 +1309,7 @@ A = \begin{pmatrix} 1 & 3 \\ 2 & 4 \\ 3 & 7 \end{pmatrix}\begin{pmatrix} 1 & 0 &
 
 > **핵심:** $`A = CR`$에서 $`R`$은 $`A`$의 **기약행사다리꼴 (Reduced Row Echelon Form)** 에서 영행을 제거한 행렬이다.
 
-**예시 (ex5):**
+**예시:**
 
 ```math
 A = \begin{pmatrix} | & | & | \\ \mathbf{a}_1 & \mathbf{a}_2 & 3\mathbf{a}_1 + 4\mathbf{a}_2 \\ | & | & | \end{pmatrix}_{m \times 3}
@@ -1346,7 +1346,7 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 > **참고:** 행렬 $`A = \begin{pmatrix} 1 & 3 & 4 \\ 2 & 4 & 2 \\ 3 & 7 & 6 \end{pmatrix}`$에 대해 $`\text{rank}(A) = 2`$이다. $`A`$는 $`3 \times 3`$ 행렬인데 랭크가 3보다 작으므로 다음이 성립한다.
 >
 > $`\Rightarrow`$ $`A`$는 역행렬이 없다.
-> $`\Rightarrow`$ $`A`$의 행렬식은 0이다.
+> $`\Rightarrow`$ $`A`$의 행렬식은 0이다(행렬식은 5장에서 다룬다).
 
 ---
 
@@ -1380,9 +1380,9 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 | $`A = CR`$ 분해 | $`C`$는 $`A`$의 독립 열로 이루어지고, $`R`$은 기약행사다리꼴에서 영행을 제거한 행렬이다. |
 | 랭크 1 행렬 | 모든 열이 한 직선 위에 있으며, $`A = \mathbf{c}\mathbf{r}^T`$로 쓸 수 있다. |
 | 행 랭크 = 열 랭크 | 모든 행렬에서 항상 성립한다. |
-| 항등행렬 (Identity Matrix) | $`\mathbf{v} = I\mathbf{v}`$이며, 표준 기저 벡터를 열로 가진다. |
+| 항등 행렬 (Identity Matrix) | $`\mathbf{v} = I\mathbf{v}`$이며, 표준 기저 벡터를 열로 가진다. |
 | 법선벡터에 의한 평면 | $`\mathbf{w} \cdot \mathbf{n} = 0`$은 원점을 지나고 $`\mathbf{n}`$에 수직인 평면을 정의한다. |
-| 가역성 (Invertibility) | 정방행렬 $`A`$에 대해 $`A`$가 가역 $`\Leftrightarrow`$ 열이 독립 $`\Leftrightarrow`$ $`A\mathbf{x} = \mathbf{b}`$의 해가 유일하다. |
+| 가역성 (Invertibility) | 정사각 행렬 $`A`$에 대해 $`A`$가 가역 $`\Leftrightarrow`$ 열이 독립 $`\Leftrightarrow`$ $`A\mathbf{x} = \mathbf{b}`$의 해가 유일하다. |
 | 소거법 실패 (Elimination Failure) | $`\mathbf{v} \parallel \mathbf{w}`$이면 해가 없거나 무한히 많다. |
 
 ---

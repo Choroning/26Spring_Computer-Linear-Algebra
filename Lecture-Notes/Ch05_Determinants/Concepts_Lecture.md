@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 5
 
@@ -575,7 +575,7 @@ E_{21} = \begin{pmatrix} 1 & 0 & 0 \\ -2 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}, \qu
 \det(U) = \det(E_{32}E_{21}A) = \det(E_{32})\det(E_{21}A) = \det(E_{32})\det(E_{21})\det(A) = \det(A)
 ```
 
-**Back-substitution to find $`U^{-1}`$:**
+**Back substitution to find $`U^{-1}`$:**
 
 Starting from $`(U|I)`$:
 
@@ -879,7 +879,7 @@ where $`A_\alpha`$ has row $`i`$ replaced by $`(\alpha_{i1}, \ldots, \alpha_{in}
 \det(A) = \det(A^T)
 ```
 
-**Proof.** Let $`R = \text{rref}(A)`$ be the **reduced row-echelon form** of $`A`$.
+**Proof.** Let $`R = \text{rref}(A)`$ be the **reduced row echelon form** of $`A`$.
 
 Then we can write $`A = E_p E_{p-1} \cdots E_2 E_1 R`$, where $`E_i`$ are elementary matrices.
 
@@ -1009,7 +1009,7 @@ AA^{-1} = A(\mathbf{x} \;\; \mathbf{y}) = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pm
 **i)** $`A\mathbf{x} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$
 
 ```math
-A\begin{pmatrix} x_1 & 0 \\ x_2 & 1 \end{pmatrix} = \bigl(\mathbf{b} \;\; A\begin{pmatrix}0\\1\end{pmatrix}\bigr) = \begin{pmatrix} 1 & b \\ 0 & d \end{pmatrix} = B_1
+A\begin{pmatrix} x_1 & 0 \\ x_2 & 1 \end{pmatrix} = \bigl(A\mathbf{x} \;\; A\begin{pmatrix}0\\1\end{pmatrix}\bigr) = \begin{pmatrix} 1 & b \\ 0 & d \end{pmatrix} = B_1
 ```
 
 ```math
@@ -1017,7 +1017,7 @@ x_1 = \frac{\det(B_1)}{\det(A)} = \frac{d}{ad - bc}
 ```
 
 ```math
-A\begin{pmatrix} 1 & x_1 \\ 0 & x_2 \end{pmatrix} = \bigl(A\begin{pmatrix}1\\0\end{pmatrix} \;\; \mathbf{b}\bigr) = \begin{pmatrix} a & 1 \\ c & 0 \end{pmatrix} = B_2
+A\begin{pmatrix} 1 & x_1 \\ 0 & x_2 \end{pmatrix} = \bigl(A\begin{pmatrix}1\\0\end{pmatrix} \;\; A\mathbf{x}\bigr) = \begin{pmatrix} a & 1 \\ c & 0 \end{pmatrix} = B_2
 ```
 
 ```math

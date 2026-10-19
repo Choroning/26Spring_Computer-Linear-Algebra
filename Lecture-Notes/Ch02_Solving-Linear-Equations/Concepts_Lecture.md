@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 2
 
@@ -135,7 +135,7 @@ This chapter aims to find the solution $`\mathbf{x}`$ **without** computing $`A^
 
 where $`U`$ is an **upper triangular matrix**.
 
-On the right side:
+In equations:
 
 ```math
 A\mathbf{x} = \mathbf{b} \implies U\mathbf{x} = \mathbf{c} \implies \mathbf{x} = U^{-1}\mathbf{c} = A^{-1}\mathbf{b}
@@ -240,7 +240,7 @@ $`\Rightarrow \exists! \; \mathbf{x}`$. Solution: $`x = -1, y = 1`$.
 \begin{pmatrix} 3 & 2 \\ -6 & -4 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}
 ```
 
-Augmented system:
+Augmented matrix:
 
 ```math
 \begin{pmatrix} 3 & 2 & | & 3 \\ -6 & -4 & | & 0 \end{pmatrix} \xrightarrow{R_2 + 2R_1} \begin{pmatrix} 3 & 2 & | & 3 \\ 0 & 0 & | & 6 \end{pmatrix} \implies \begin{pmatrix} 1 & 2/3 & | & 1 \\ 0 & 0 & | & 1 \end{pmatrix}
@@ -1394,7 +1394,7 @@ EPA = \begin{pmatrix} 1 & 2 & a \\ 0 & 1 & c - 3a \\ 0 & 0 & b - 2a \end{pmatrix
 
 **Daniel Drucker's method for tracking $`P`$:**
 
-Augment the matrix with a column tracking row indices:
+Append a column that records the row indices to the matrix:
 
 ```math
 \begin{pmatrix} 1 & 2 & a & | & 1 \\ 2 & 4 & b & | & 2 \\ 3 & 7 & c & | & 3 \end{pmatrix} \xrightarrow{\text{elimination}} \begin{pmatrix} 1 & 2 & a & | & 1 \\ 0 & 0 & b-2a & | & 2 \\ 0 & 1 & c-3a & | & 3 \end{pmatrix} \xrightarrow{\text{swap}} \begin{pmatrix} 1 & 2 & a & | & 1 \\ 0 & 1 & c-3a & | & 3 \\ 0 & 0 & b-2a & | & 2 \end{pmatrix}
@@ -1468,7 +1468,7 @@ Is the column space of $`A`$ equal to the column space of $`PA`$?
 C(A) \stackrel{?}{=} C(PA)
 ```
 
-**In general, no.** $`P`$ reorders the components of every column, so $`C(PA) = \{P\mathbf{v} : \mathbf{v} \in C(A)\}`$. For example, if $`A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}`$ and $`P`$ exchanges the two rows, $`C(A)`$ is the $`x`$-axis and $`C(PA)`$ is the $`y`$-axis. What $`P`$ does not change is the linear relationships among the columns: $`PA\mathbf{x} = \mathbf{0} \iff A\mathbf{x} = \mathbf{0}`$, so the null space and the rank stay the same. A column permutation $`Q`$ only reorders the columns, so $`C(AQ) = C(A)`$. If $`A`$ is invertible, $`C(A) = C(PA) = \mathbb{R}^3`$.
+**In general, no.** $`P`$ reorders the components of every column, so $`C(PA) = \lbrace P\mathbf{v} : \mathbf{v} \in C(A)\rbrace`$. For example, if $`A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}`$ and $`P`$ exchanges the two rows, $`C(A)`$ is the $`x`$-axis and $`C(PA)`$ is the $`y`$-axis. What $`P`$ does not change is the linear relationships among the columns: $`PA\mathbf{x} = \mathbf{0} \iff A\mathbf{x} = \mathbf{0}`$, so the nullspace and the rank stay the same. A column permutation $`Q`$ only reorders the columns, so $`C(AQ) = C(A)`$. If $`A`$ is invertible, $`C(A) = C(PA) = \mathbb{R}^3`$.
 
 **Q:** A matrix $`A`$ has 9 numbers. How many different ways can you arrange the 9 numbers in $`A`$? **A:** $`9!`$
 
@@ -1834,6 +1834,8 @@ The accuracy of $`\Delta y`$ increases by adding the derivative terms.
 y(x+h) = y(x) + h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2} + \cdots + \frac{h^n}{n!}\frac{d^{(n)}y}{dx^n} + \cdots
 ```
 
+> **[Calculus]** The Taylor series expands the value of a smooth function $`y`$ at $`x + h`$ in terms of its derivatives at $`x`$, which assumes the differentiation and series expansion taught in calculus. The finite differences in this chapter cut the Taylor series after a few terms to approximate derivatives by differences of function values, so the order of the dropped terms sets the accuracy (the order of the error).
+
 **Example:** $`e^x`$ (entire analytic function):
 
 ```math
@@ -2046,12 +2048,12 @@ K\mathbf{x} = \begin{pmatrix} 2x - y \\ -x + 2y \end{pmatrix}
 \mathbf{x}^T(K\mathbf{x}) = 2x^2 - 2xy + 2y^2 = x^2 + (x-y)^2 + y^2 > 0
 ```
 
-When $`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$, we say $`K`$ is **positive semi-definite**.
+When $`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$, we say $`K`$ is **positive semidefinite**.
 
 **Pivots:**
 - An invertible matrix has $`n`$ nonzero pivots (with row exchanges allowed).
 - A positive definite symmetric matrix has $`n`$ **positive** pivots.
-- A positive semi-definite symmetric matrix has $`n`$ **nonnegative** pivots when elimination needs no row exchanges.
+- A positive semidefinite symmetric matrix has $`n`$ **nonnegative** pivots when elimination needs no row exchanges.
 
 ---
 
@@ -2140,9 +2142,9 @@ B_3 = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}
 B_3 \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`\mathbf{x} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ is in the **null space** of $`B_3`$.
+$`\mathbf{x} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ is in the **nullspace** of $`B_3`$.
 
-$`\mathbf{x} = c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ vectors are in the null space of $`B_3`$.
+$`\mathbf{x} = c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ vectors are in the nullspace of $`B_3`$.
 
 $`\Rightarrow`$ $`B_3`$ **cannot be invertible.**
 
@@ -2152,7 +2154,7 @@ The three second difference matrices compare as follows by boundary condition.
 |:-----|:-----|:-----|:-----|:-----|
 | $`K`$ (fixed-fixed) | $`u(0) = 0`$, $`u(1) = 0`$ | $`(2, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 2)`$ | Symmetric, invertible, positive definite |
 | $`T`$ (free-fixed) | $`u'(0) = 0`$, $`u(1) = 0`$ | $`(1, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 2)`$ | Symmetric, invertible, $`T = LL^T`$ |
-| $`B`$ (free-free) | $`u'(0) = 0`$, $`u'(1) = 0`$ | $`(1, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 1)`$ | Symmetric, singular, constant vectors in the null space |
+| $`B`$ (free-free) | $`u'(0) = 0`$, $`u'(1) = 0`$ | $`(1, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 1)`$ | Symmetric, singular, constant vectors in the nullspace |
 
 *Table 2. Second difference matrices K, T, B by boundary condition*
 
@@ -2200,9 +2202,9 @@ The three second difference matrices compare as follows by boundary condition.
 | Second difference | $`\frac{d^2y}{dx^2} \approx \frac{y(x+h)-2y(x)+y(x-h)}{h^2}`$ has 2nd order accuracy. |
 | Matrix $`K`$ (fixed-fixed) | It is the tridiagonal $`(-1, 2, -1)`$ matrix, which is symmetric, banded, invertible, and positive definite. |
 | Matrix $`T`$ (free-fixed) | Its first row is $`(1, -1, 0, \ldots)`$, it factors as $`T = LL^T`$, and it is invertible. |
-| Matrix $`B`$ (free-free) | It is singular because $`B\mathbf{1} = \mathbf{0}`$, so the constant vector is in the null space. |
+| Matrix $`B`$ (free-free) | It is singular because $`B\mathbf{1} = \mathbf{0}`$, so the constant vector is in the nullspace. |
 | Positive definite | $`\mathbf{x}^T K\mathbf{x} > 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$, and all pivots are positive. |
-| Positive semi-definite | $`\mathbf{x}^T K\mathbf{x} \geq 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$, and all pivots are nonnegative when elimination needs no row exchanges. |
+| Positive semidefinite | $`\mathbf{x}^T K\mathbf{x} \geq 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$, and all pivots are nonnegative when elimination needs no row exchanges. |
 
 ---
 

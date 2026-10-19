@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 7
 
@@ -38,7 +38,7 @@
   - [3.2 저랭크 근사](#32-저랭크-근사)
   - [3.3 행렬의 노름](#33-행렬의-노름)
   - [3.4 노름의 성질과 부등식](#34-노름의-성질과-부등식)
-  - [3.5 PCA 예제 (P 7.3.1)](#35-pca-예제-p-731)
+  - [3.5 PCA 예제 (교재 연습 문제 7.3.1)](#35-pca-예제-교재-연습-문제-731)
   - [3.6 수직 최소제곱법](#36-수직-최소제곱법)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
@@ -56,20 +56,20 @@ SVD는 **두 집합의 정규직교 벡터**(orthonormal vectors)를 찾는 것�
 **입력 벡터** (정의역 $`\mathbb{R}^n`$에 대해):
 
 ```math
-\lbrace\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r, \dots, \underset{\sim}{v}_n\rbrace
+\lbrace\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_r, \dots, \mathbf{v}_n\rbrace
 ```
 
-- $`\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r`$은 **$`C(A^T)`$의 기저**(행 공간)를 형성한다.
-- $`\underset{\sim}{v}_{r+1}, \dots, \underset{\sim}{v}_n`$은 **$`N(A)`$의 기저**(영공간)를 형성한다.
+- $`\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_r`$은 **$`C(A^T)`$의 기저**(행공간)를 형성한다.
+- $`\mathbf{v}_{r+1}, \dots, \mathbf{v}_n`$은 **$`N(A)`$의 기저**(영공간)를 형성한다.
 
 **출력 벡터** (공역 $`\mathbb{R}^m`$에 대해):
 
 ```math
-\lbrace\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r, \dots, \underset{\sim}{u}_m\rbrace
+\lbrace\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_r, \dots, \mathbf{u}_m\rbrace
 ```
 
-- $`\underset{\sim}{u}_1, \underset{\sim}{u}_2, \dots, \underset{\sim}{u}_r`$은 **$`C(A)`$의 기저**(열 공간)를 형성한다.
-- $`\underset{\sim}{u}_{r+1}, \dots, \underset{\sim}{u}_m`$은 **$`N(A^T)`$의 기저**(좌영공간)를 형성한다.
+- $`\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_r`$은 **$`C(A)`$의 기저**(열공간)를 형성한다.
+- $`\mathbf{u}_{r+1}, \dots, \mathbf{u}_m`$은 **$`N(A^T)`$의 기저**(좌영공간)를 형성한다.
 
 ### 1.2 SVD에서의 네 가지 기본 부분공간
 
@@ -83,19 +83,19 @@ SVD는 **두 집합의 정규직교 벡터**(orthonormal vectors)를 찾는 것�
 SVD는 입력 공간을 출력 공간으로 사상한다:
 
 ```math
-A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i
+A\mathbf{v}_i = \sigma_i \mathbf{u}_i
 ```
 
-행렬 $`A`$는 행 공간의 각 우특이벡터(right singular vector) $`\underset{\sim}{v}_i`$를 열 공간의 스케일된 좌특이벡터(left singular vector) $`\sigma_i \underset{\sim}{u}_i`$로 사상한다. 영공간 벡터들은 영벡터로 사상된다.
+행렬 $`A`$는 행공간의 각 우특이벡터(right singular vector) $`\mathbf{v}_i`$를 열공간의 스케일된 좌특이벡터(left singular vector) $`\sigma_i \mathbf{u}_i`$로 사상한다. 영공간 벡터들은 영벡터로 사상된다.
 
 ```mermaid
 flowchart LR
     subgraph IN["입력 공간 ℝⁿ"]
-        ROW["행 공간 C(Aᵀ)<br>차원 r<br>기저 v₁, ..., vᵣ"]
+        ROW["행공간 C(Aᵀ)<br>차원 r<br>기저 v₁, ..., vᵣ"]
         NUL["영공간 N(A)<br>차원 n - r<br>기저 vᵣ₊₁, ..., vₙ"]
     end
     subgraph OUT["출력 공간 ℝᵐ"]
-        COL["열 공간 C(A)<br>차원 r<br>기저 u₁, ..., uᵣ"]
+        COL["열공간 C(A)<br>차원 r<br>기저 u₁, ..., uᵣ"]
         LNU["좌영공간 N(Aᵀ)<br>차원 m - r<br>기저 uᵣ₊₁, ..., uₘ"]
         ZERO["영벡터 0"]
     end
@@ -105,20 +105,20 @@ flowchart LR
 
 *그림 1. SVD의 네 가지 기본 부분공간과 A에 의한 사상*
 
-각 기저 벡터에 대해 풀어 쓰면:
+처음 두 기저 벡터에 대해 풀어 쓰면:
 
 ```math
-\sigma_1 \underset{\sim}{u}_1 = A\underset{\sim}{v}_1
+\sigma_1 \mathbf{u}_1 = A\mathbf{v}_1
 ```
 
 ```math
-\sigma_2 \underset{\sim}{u}_2 = A\underset{\sim}{v}_2
+\sigma_2 \mathbf{u}_2 = A\mathbf{v}_2
 ```
 
 행렬 형태로 결합하면:
 
 ```math
-\begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix} \begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix} = A \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 \end{pmatrix}
+\begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix} \begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix} = A \begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 \end{pmatrix}
 ```
 
 ### 1.3 고유값 분해에서 SVD로
@@ -126,7 +126,7 @@ flowchart LR
 $`r`$개의 기저 벡터만 사용하면:
 
 ```math
-\begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix} \begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix} = A \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r \end{pmatrix}
+\begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix} \begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix} = A \begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_r \end{pmatrix}
 ```
 
 ```math
@@ -141,10 +141,10 @@ U \Sigma = A V
 \underset{m \times n}{A} \underset{n \times r}{V} = \underset{m \times r}{U} \underset{r \times r}{\Sigma}
 ```
 
-**6장의 고유값 분해를 상기하면:** 고유값 $`\lambda_1, \lambda_2, \dots, \lambda_n`$과 고유벡터 $`\underset{\sim}{x}_1, \underset{\sim}{x}_2, \dots, \underset{\sim}{x}_n`$을 가진 행렬에 대해:
+**6장의 고유값 분해를 상기하면:** 고유값 $`\lambda_1, \lambda_2, \dots, \lambda_n`$과 고유벡터 $`\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_n`$을 가진 행렬에 대해:
 
 ```math
-A(\underset{\sim}{x}_1 \; \underset{\sim}{x}_2 \; \cdots \; \underset{\sim}{x}_n) = (\lambda_1 \underset{\sim}{x}_1 \; \lambda_2 \underset{\sim}{x}_2 \; \cdots \; \lambda_n \underset{\sim}{x}_n) = (\underset{\sim}{x}_1 \; \underset{\sim}{x}_2 \; \cdots \; \underset{\sim}{x}_n) \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots \\ & & & \lambda_n \end{pmatrix}
+A(\mathbf{x}_1 \; \mathbf{x}_2 \; \cdots \; \mathbf{x}_n) = (\lambda_1 \mathbf{x}_1 \; \lambda_2 \mathbf{x}_2 \; \cdots \; \lambda_n \mathbf{x}_n) = (\mathbf{x}_1 \; \mathbf{x}_2 \; \cdots \; \mathbf{x}_n) \begin{pmatrix} \lambda_1 & & \\ & \lambda_2 & \\ & & \ddots \\ & & & \lambda_n \end{pmatrix}
 ```
 
 ```math
@@ -164,12 +164,12 @@ S = Q\Lambda Q^T
 **목표:** 대칭 행렬을 넘어 **모든 행렬**로 확장하고자 한다.
 
 ```math
-S\underset{\sim}{x} = \lambda\underset{\sim}{x} \quad \Longrightarrow \quad A\underset{\sim}{v} = \sigma\underset{\sim}{u}
+S\mathbf{x} = \lambda\mathbf{x} \quad \Longrightarrow \quad A\mathbf{v} = \sigma\mathbf{u}
 ```
 
 ### 1.4 SVD 방정식
 
-$`AV = U\Sigma`$에서, $`V`$가 직교 행렬이므로 ($`VV^T = I`$):
+$`AV = U\Sigma`$에서 $`V`$가 정사각 직교 행렬이면($`r = n`$인 경우) $`VV^T = I`$이므로 다음을 얻는다. $`r < n`$이면 1.7절의 전체 크기 형태로 같은 결과를 얻는다:
 
 ```math
 AV = U\Sigma
@@ -188,7 +188,7 @@ AVV^T = U\Sigma V^T
 이를 랭크-1 행렬의 합으로 쓸 수도 있다:
 
 ```math
-A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T
+A = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T
 ```
 
 ### 1.5 예제: SVD 계산
@@ -200,25 +200,25 @@ $`\text{rank}(A) = 2 = \text{rank}(A^T)`$.
 **단계 1:** $`C(A^T)`$에서 서로 직교하는 두 벡터를 취한다. 이 벡터들은 1.9절에서 구하는 $`A^T A`$의 고유벡터이며, 정규화는 단계 4에서 한다:
 
 ```math
-\underset{\sim}{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \underset{\sim}{v}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
+\mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
 ```
 
-확인: $`\underset{\sim}{v}_1 \cdot \underset{\sim}{v}_2 = 1 - 1 = 0 \implies \underset{\sim}{v}_1 \perp \underset{\sim}{v}_2`$.
+확인: $`\mathbf{v}_1 \cdot \mathbf{v}_2 = 1 - 1 = 0 \implies \mathbf{v}_1 \perp \mathbf{v}_2`$.
 
-**단계 2:** $`A\underset{\sim}{v}_1`$과 $`A\underset{\sim}{v}_2`$를 계산한다:
+**단계 2:** $`A\mathbf{v}_1`$과 $`A\mathbf{v}_2`$를 계산한다:
 
 ```math
-A\underset{\sim}{v}_1 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 9 \\ 3 \end{pmatrix} = 3\begin{pmatrix} 3 \\ 1 \end{pmatrix} = 3\sqrt{10} \cdot \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix} \quad \leftarrow \underset{\sim}{u}_1
+A\mathbf{v}_1 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 9 \\ 3 \end{pmatrix} = 3\begin{pmatrix} 3 \\ 1 \end{pmatrix} = 3\sqrt{10} \cdot \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix} \quad \leftarrow \mathbf{u}_1
 ```
 
 ```math
-A\underset{\sim}{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 3 \end{pmatrix} = \frac{\sqrt{10}}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix} \quad \leftarrow \underset{\sim}{u}_2
+A\mathbf{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 3 \end{pmatrix} = \sqrt{10} \cdot \frac{1}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix} \quad \leftarrow \mathbf{u}_2
 ```
 
 **직교성 검증:**
 
 ```math
-(A\underset{\sim}{v}_1) \cdot (A\underset{\sim}{v}_2) = 9 \cdot (-1) + 3 \cdot 3 = 0 \quad \checkmark
+(A\mathbf{v}_1) \cdot (A\mathbf{v}_2) = 9 \cdot (-1) + 3 \cdot 3 = 0 \quad \checkmark
 ```
 
 **단계 3:** 행렬 형태로 쓴다:
@@ -227,7 +227,7 @@ A\underset{\sim}{v}_2 = \begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\begin{pmatr
 A\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 9 & -1 \\ 3 & 3 \end{pmatrix}
 ```
 
-**단계 4:** 각각을 $`\sqrt{2}`$로 나누어 $`\underset{\sim}{v}_1, \underset{\sim}{v}_2`$를 정규화한다:
+**단계 4:** 각각을 $`\sqrt{2}`$로 나누어 $`\mathbf{v}_1, \mathbf{v}_2`$를 정규화한다:
 
 ```math
 A \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 9 & -1 \\ 3 & 3 \end{pmatrix}
@@ -236,7 +236,7 @@ A \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \frac{
 정규화된 벡터는:
 
 ```math
-\underset{\sim}{v}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \underset{\sim}{v}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix}
+\mathbf{v}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad \mathbf{v}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix}
 ```
 
 이로부터:
@@ -254,7 +254,7 @@ AV = U\Sigma
 **$`VV^T = I`$ 검증:**
 
 ```math
-(\underset{\sim}{v}_1 \; \underset{\sim}{v}_2)\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix} = \underset{\sim}{v}_1\underset{\sim}{v}_1^T + \underset{\sim}{v}_2\underset{\sim}{v}_2^T
+(\mathbf{v}_1 \; \mathbf{v}_2)\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \end{pmatrix} = \mathbf{v}_1\mathbf{v}_1^T + \mathbf{v}_2\mathbf{v}_2^T
 ```
 
 ```math
@@ -272,11 +272,11 @@ AV = U\Sigma
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \end{pmatrix}
 ```
 
 ```math
-= \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T
+= \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T
 ```
 
 ### 1.6 SVD의 기하학적 의미
@@ -301,7 +301,7 @@ $`A = U\Sigma V^T`$가 벡터에 작용하는 기하학적 해석:
 
 **기하학적 그림:**
 
-- 입력 공간의 단위원은 먼저 $`V^T`$에 의해 회전하여, $`\underset{\sim}{v}_1, \underset{\sim}{v}_2`$ 방향이 좌표축에 정렬된다.
+- 입력 공간의 단위원은 먼저 $`V^T`$에 의해 회전하여, $`\mathbf{v}_1, \mathbf{v}_2`$ 방향이 좌표축에 정렬된다.
 - 그런 다음 $`\Sigma`$가 이를 타원으로 신축한다 (반축 길이 $`\sigma_1`$과 $`\sigma_2`$).
 - 마지막으로 $`U`$가 타원을 최종 방향으로 회전한다.
 
@@ -327,11 +327,11 @@ A = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pma
 전체 크기 형태는 $`A`$와 $`A^T`$의 **영공간(nullspace)에 대한 기저 벡터**를 포함한다.
 
 ```math
-V = \begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r & \underset{\sim}{v}_{r+1} & \cdots & \underset{\sim}{v}_n \end{pmatrix}_{n \times n}
+V = \begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_r & \mathbf{v}_{r+1} & \cdots & \mathbf{v}_n \end{pmatrix}_{n \times n}
 ```
 
 ```math
-U = \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r & \underset{\sim}{u}_{r+1} & \cdots & \underset{\sim}{u}_m \end{pmatrix}_{m \times m}
+U = \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r & \mathbf{u}_{r+1} & \cdots & \mathbf{u}_m \end{pmatrix}_{m \times m}
 ```
 
 전체 형태 방정식:
@@ -340,22 +340,22 @@ U = \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \unde
 \underset{m \times n}{A} \underset{n \times n}{V} = \underset{m \times m}{U} \underset{m \times n}{\Sigma}
 ```
 
-$`V`$는 정방 직교 행렬이므로: $`V^T = V^{-1}`$. 마찬가지로 $`U^T = U^{-1}`$.
+$`V`$는 정사각 직교 행렬이므로: $`V^T = V^{-1}`$. 마찬가지로 $`U^T = U^{-1}`$.
 
 영공간 벡터들은 영벡터로 사상된다:
 
 ```math
-A\underset{\sim}{v}_{r+1} = \underset{\sim}{0}, \quad A\underset{\sim}{v}_{r+2} = \underset{\sim}{0}, \quad \dots, \quad A\underset{\sim}{v}_n = \underset{\sim}{0}
+A\mathbf{v}_{r+1} = \mathbf{0}, \quad A\mathbf{v}_{r+2} = \mathbf{0}, \quad \dots, \quad A\mathbf{v}_n = \mathbf{0}
 ```
 
 따라서 $`AV`$의 형태는:
 
 ```math
-AV = A\begin{pmatrix} \underset{\sim}{v}_1 & \underset{\sim}{v}_2 & \cdots & \underset{\sim}{v}_r & \underset{\sim}{v}_{r+1} & \cdots & \underset{\sim}{v}_n \end{pmatrix} = \begin{pmatrix} \sigma_1 \underset{\sim}{u}_1 & \sigma_2 \underset{\sim}{u}_2 & \cdots & \sigma_r \underset{\sim}{u}_r & \underset{\sim}{0} & \cdots & \underset{\sim}{0} \end{pmatrix}_{m \times n}
+AV = A\begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_r & \mathbf{v}_{r+1} & \cdots & \mathbf{v}_n \end{pmatrix} = \begin{pmatrix} \sigma_1 \mathbf{u}_1 & \sigma_2 \mathbf{u}_2 & \cdots & \sigma_r \mathbf{u}_r & \mathbf{0} & \cdots & \mathbf{0} \end{pmatrix}_{m \times n}
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r & \underset{\sim}{u}_{r+1} & \cdots & \underset{\sim}{u}_m \end{pmatrix}_{m \times m} \begin{pmatrix} \sigma_1 & & & 0 & \cdots & 0 \\ & \sigma_2 & & 0 & \cdots & 0 \\ & & \ddots & \vdots & & \vdots \\ & & & \sigma_r & 0 & \cdots & 0 \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\ \vdots & \vdots & & \vdots & \vdots & & \vdots \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \end{pmatrix}_{m \times n}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r & \mathbf{u}_{r+1} & \cdots & \mathbf{u}_m \end{pmatrix}_{m \times m} \begin{pmatrix} \sigma_1 & & & 0 & \cdots & 0 \\ & \sigma_2 & & 0 & \cdots & 0 \\ & & \ddots & \vdots & & \vdots \\ & & & \sigma_r & 0 & \cdots & 0 \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\ \vdots & \vdots & & \vdots & \vdots & & \vdots \\ 0 & 0 & \cdots & 0 & 0 & \cdots & 0 \end{pmatrix}_{m \times n}
 ```
 
 **$`\Sigma`$의 모양에 대한 두 가지 경우:**
@@ -387,7 +387,7 @@ V_r V_r^T \neq I \quad \text{and} \quad U_r U_r^T \neq I
 축소 SVD:
 
 ```math
-A = U_r \Sigma_r V_r^T = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T
+A = U_r \Sigma_r V_r^T = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T
 ```
 
 ### 1.8 SVD의 증명
@@ -431,36 +431,36 @@ AA^T = Q\Lambda Q^T = U\Sigma^2 U^T
 
 **증명 단계:**
 
-**i)** 정규직교 고유벡터 $`\underset{\sim}{v}_1, \underset{\sim}{v}_2, \dots, \underset{\sim}{v}_r`$을 선택한다:
+**i)** 정규직교 고유벡터 $`\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_r`$을 선택한다:
 
 ```math
-A^T A \underset{\sim}{v}_k = \lambda_k \underset{\sim}{v}_k = \sigma_k^2 \underset{\sim}{v}_k
+A^T A \mathbf{v}_k = \lambda_k \mathbf{v}_k = \sigma_k^2 \mathbf{v}_k
 ```
 
 ```math
 \therefore \sigma_k = \sqrt{\lambda_k}
 ```
 
-**ii)** 우특이벡터 $`\underset{\sim}{v}_k`$는 좌특이벡터 $`\underset{\sim}{u}_k`$와 연결된다:
+**ii)** 우특이벡터 $`\mathbf{v}_k`$는 좌특이벡터 $`\mathbf{u}_k`$와 연결된다:
 
 ```math
-A\underset{\sim}{v}_k = \sigma_k \underset{\sim}{u}_k
+A\mathbf{v}_k = \sigma_k \mathbf{u}_k
 ```
 
 ```math
-\therefore \underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k \quad \forall k = 1, 2, \dots, r
+\therefore \mathbf{u}_k = \frac{1}{\sigma_k} A\mathbf{v}_k \quad \forall k = 1, 2, \dots, r
 ```
 
-**iii)** 건전성 검사로, $`\underset{\sim}{u}_k`$가 $`AA^T`$의 고유벡터인지 확인한다:
+**iii)** 건전성 검사로, $`\mathbf{u}_k`$가 $`AA^T`$의 고유벡터인지 확인한다:
 
 ```math
-AA^T \underset{\sim}{u}_k = AA^T \cdot \frac{1}{\sigma_k} A\underset{\sim}{v}_k = \frac{1}{\sigma_k} AA^T A \underset{\sim}{v}_k = \frac{1}{\sigma_k} A \sigma_k^2 \underset{\sim}{v}_k = \sigma_k A\underset{\sim}{v}_k = \sigma_k^2 \underset{\sim}{u}_k \quad \square
+AA^T \mathbf{u}_k = AA^T \cdot \frac{1}{\sigma_k} A\mathbf{v}_k = \frac{1}{\sigma_k} AA^T A \mathbf{v}_k = \frac{1}{\sigma_k} A \sigma_k^2 \mathbf{v}_k = \sigma_k A\mathbf{v}_k = \sigma_k^2 \mathbf{u}_k \quad \square
 ```
 
-**iv)** $`\underset{\sim}{u}_k`$들이 정규직교인지 확인한다:
+**iv)** $`\mathbf{u}_k`$들이 정규직교인지 확인한다:
 
 ```math
-\underset{\sim}{u}_j^T \underset{\sim}{u}_k = \left(\frac{1}{\sigma_j} A\underset{\sim}{v}_j\right)^T \left(\frac{1}{\sigma_k} A\underset{\sim}{v}_k\right) = \frac{1}{\sigma_j \sigma_k} \underset{\sim}{v}_j^T A^T A \underset{\sim}{v}_k = \frac{\sigma_k}{\sigma_j} \underset{\sim}{v}_j^T \underset{\sim}{v}_k = \begin{cases} 1 & j = k \\ 0 & j \neq k \end{cases}
+\mathbf{u}_j^T \mathbf{u}_k = \left(\frac{1}{\sigma_j} A\mathbf{v}_j\right)^T \left(\frac{1}{\sigma_k} A\mathbf{v}_k\right) = \frac{1}{\sigma_j \sigma_k} \mathbf{v}_j^T A^T A \mathbf{v}_k = \frac{\sigma_k}{\sigma_j} \mathbf{v}_j^T \mathbf{v}_k = \begin{cases} 1 & j = k \\ 0 & j \neq k \end{cases}
 ```
 
 ### 1.9 예제: 증명 방법을 이용한 SVD 계산
@@ -494,13 +494,13 @@ A^T A = \begin{pmatrix} 5 & 0 \\ 4 & 3 \end{pmatrix}\begin{pmatrix} 5 & 4 \\ 0 &
 $`\lambda_1 = 45`$일 때:
 
 ```math
-(A^T A - \lambda_1 I)\underset{\sim}{x}_1 = \begin{pmatrix} -20 & 20 \\ 20 & -20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \underset{\sim}{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+(A^T A - \lambda_1 I)\mathbf{x}_1 = \begin{pmatrix} -20 & 20 \\ 20 & -20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \mathbf{x}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
 ```
 
 $`\lambda_2 = 5`$일 때:
 
 ```math
-(A^T A - \lambda_2 I)\underset{\sim}{x}_2 = \begin{pmatrix} 20 & 20 \\ 20 & 20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \underset{\sim}{x}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
+(A^T A - \lambda_2 I)\mathbf{x}_2 = \begin{pmatrix} 20 & 20 \\ 20 & 20 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies \mathbf{x}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
 ```
 
 정규화하여 $`V`$를 얻는다:
@@ -509,18 +509,18 @@ $`\lambda_2 = 5`$일 때:
 V = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}
 ```
 
-**ii) $`A\underset{\sim}{v}_k = \sigma_k \underset{\sim}{u}_k`$로부터 $`U`$를 계산한다:**
+**ii) $`A\mathbf{v}_k = \sigma_k \mathbf{u}_k`$로부터 $`U`$를 계산한다:**
 
 ```math
-\underset{\sim}{u}_1 = \frac{1}{\sigma_1} A\underset{\sim}{v}_1 = \frac{1}{3\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \frac{1}{3\sqrt{10}}\begin{pmatrix} 9 \\ 3 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix}
+\mathbf{u}_1 = \frac{1}{\sigma_1} A\mathbf{v}_1 = \frac{1}{3\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \frac{1}{3\sqrt{10}}\begin{pmatrix} 9 \\ 3 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 \\ 1 \end{pmatrix}
 ```
 
 ```math
-\underset{\sim}{u}_2 = \frac{1}{\sigma_2} A\underset{\sim}{v}_2 = \frac{1}{\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix}
+\mathbf{u}_2 = \frac{1}{\sigma_2} A\mathbf{v}_2 = \frac{1}{\sqrt{5}}\begin{pmatrix} 5 & 4 \\ 0 & 3 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} -1 \\ 3 \end{pmatrix}
 ```
 
 ```math
-U = \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 & -1 \\ 1 & 3 \end{pmatrix}
+U = \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix} = \frac{1}{\sqrt{10}}\begin{pmatrix} 3 & -1 \\ 1 & 3 \end{pmatrix}
 ```
 
 ### 1.10 AB와 BA: 동일한 0이 아닌 고유값
@@ -533,21 +533,21 @@ AB_{m \times m} \neq BA_{n \times n}
 
 **그러나 $`AB`$와 $`BA`$는 동일한 0이 아닌 고유값을 가진다.**
 
-**증명:** $`\lambda \neq 0`$을 $`AB`$의 고유값, $`\underset{\sim}{x}`$를 대응하는 고유벡터라 하자:
+**증명:** $`\lambda \neq 0`$을 $`AB`$의 고유값, $`\mathbf{x}`$를 대응하는 고유벡터라 하자:
 
 ```math
-AB\underset{\sim}{x} = \lambda\underset{\sim}{x}
+AB\mathbf{x} = \lambda\mathbf{x}
 ```
 
 ```math
-B(AB\underset{\sim}{x}) = B(\lambda\underset{\sim}{x}) = \lambda(B\underset{\sim}{x})
+B(AB\mathbf{x}) = B(\lambda\mathbf{x}) = \lambda(B\mathbf{x})
 ```
 
 ```math
-BA(B\underset{\sim}{x}) = \lambda(B\underset{\sim}{x})
+BA(B\mathbf{x}) = \lambda(B\mathbf{x})
 ```
 
-$`\lambda \neq 0`$이므로 $`A(B\underset{\sim}{x}) = \lambda\underset{\sim}{x} \neq \underset{\sim}{0}`$이고, 따라서 $`B\underset{\sim}{x} \neq \underset{\sim}{0}`$이다. 그러므로 $`\lambda`$는 $`BA`$의 고유값이고, $`B\underset{\sim}{x}`$는 대응하는 고유벡터이다.
+$`\lambda \neq 0`$이므로 $`A(B\mathbf{x}) = \lambda\mathbf{x} \neq \mathbf{0}`$이고, 따라서 $`B\mathbf{x} \neq \mathbf{0}`$이다. 그러므로 $`\lambda`$는 $`BA`$의 고유값이고, $`B\mathbf{x}`$는 대응하는 고유벡터이다.
 
 $`AB`$와 $`BA`$는 0이 아닌 고유값 $`\lambda`$를 공유한다. 두 행렬의 크기가 다르면 고유값 0의 개수는 다를 수 있다. $`B = A^T`$로 두면 $`A^T A`$와 $`AA^T`$가 0이 아닌 고유값 $`\sigma_i^2`$을 공유한다는 1.8절의 결과가 이 성질의 특수한 경우임을 알 수 있다.
 
@@ -578,7 +578,7 @@ $`AB`$와 $`BA`$는 0이 아닌 고유값 $`\lambda`$를 공유한다. 두 행�
 
 이것은 **랭크 1 행렬**이다.
 
-저장 공간 절감: $`N^2`$개의 원소를 $`2N`$개의 원소로 대체 (하나의 열 벡터 + 하나의 행 벡터).
+저장 공간 절감: $`N^2`$개의 원소를 $`2N`$개의 원소로 대체 (하나의 열벡터 + 하나의 행벡터).
 
 **질문.** 한국 국기(태극기)는 어떠한가? 태극기 이미지는 랭크가 훨씬 높아서 구조가 더 복잡하고 압축이 어렵다.
 
@@ -591,15 +591,15 @@ A = U\Sigma V^T
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \\ \vdots \\ \underset{\sim}{v}_r^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \\ \vdots \\ \mathbf{v}_r^T \end{pmatrix}
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 \underset{\sim}{v}_1^T \\ \sigma_2 \underset{\sim}{v}_2^T \\ \vdots \\ \sigma_r \underset{\sim}{v}_r^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 \mathbf{v}_1^T \\ \sigma_2 \mathbf{v}_2^T \\ \vdots \\ \sigma_r \mathbf{v}_r^T \end{pmatrix}
 ```
 
 ```math
-= \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T
+= \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T
 ```
 
 이것은 **랭크-1 행렬의 합**이다.
@@ -611,11 +611,11 @@ A = U\Sigma V^T
 ```
 
 ```math
-= \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 & \cdots & \underset{\sim}{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \\ \vdots \\ \underset{\sim}{v}_r^T \end{pmatrix}
+= \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_r \end{pmatrix}\begin{pmatrix} \sigma_1 & & \\ & \sigma_2 & \\ & & \ddots \\ & & & \sigma_r \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \\ \vdots \\ \mathbf{v}_r^T \end{pmatrix}
 ```
 
 ```math
-\approx \begin{pmatrix} \underset{\sim}{u}_1 & \underset{\sim}{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \underset{\sim}{v}_1^T \\ \underset{\sim}{v}_2^T \end{pmatrix} = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T
+\approx \begin{pmatrix} \mathbf{u}_1 & \mathbf{u}_2 \end{pmatrix}\begin{pmatrix} \sigma_1 & \\ & \sigma_2 \end{pmatrix}\begin{pmatrix} \mathbf{v}_1^T \\ \mathbf{v}_2^T \end{pmatrix} = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T
 ```
 
 > **참고:** **예시.** SVD를 이용한 이미지 압축의 대화형 데모는 "timbaumann SVD"를 검색하면 볼 수 있다.
@@ -632,14 +632,14 @@ A = U\Sigma V^T
 A = U\Sigma V^T
 ```
 
-**PCA**는 데이터 행렬에서 정보를 이해하기 위해 처음 $`\underset{\sim}{u}`$와 $`\underset{\sim}{v}`$에 연결된 **가장 큰 $`\sigma`$** 를 사용한다.
+**PCA**는 데이터 행렬의 정보를 이해하기 위해 가장 큰 특이값 $`\sigma`$들과 그에 연결된 처음 몇 개의 $`\mathbf{u}`$, $`\mathbf{v}`$를 사용한다.
 
 ### 3.2 저랭크 근사
 
 가장 중요한 부분 $`A_k`$를 추출한다:
 
 ```math
-A_k = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_k \underset{\sim}{u}_k \underset{\sim}{v}_k^T
+A_k = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_k \mathbf{u}_k \mathbf{v}_k^T
 ```
 
 ```math
@@ -665,7 +665,7 @@ A \approx A_k
 **i) 스펙트럼 노름 (2-노름, spectral norm):**
 
 ```math
-\|A\|_2 = \max_{\underset{\sim}{x}} \frac{\|A\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = \sigma_1
+\|A\|_2 = \max_{\mathbf{x}} \frac{\|A\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_1
 ```
 
 **ii) 프로베니우스 노름 (Frobenius norm):**
@@ -683,7 +683,7 @@ A \approx A_k
 **항등 행렬 예제** $`I \in \mathbb{R}^{n \times n}`$:
 
 ```math
-\|I\|_2 = \max \frac{\|I\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = \max \frac{\|\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = 1
+\|I\|_2 = \max \frac{\|I\mathbf{x}\|}{\|\mathbf{x}\|} = \max \frac{\|\mathbf{x}\|}{\|\mathbf{x}\|} = 1
 ```
 
 ```math
@@ -702,10 +702,10 @@ $`A = U\Sigma V^T`$에 대해 다음이 성립한다. 노름은 일반적으로 
 \|A\|_2 = \|U\|_2 \|\Sigma\|_2 \|V^T\|_2
 ```
 
-$`U, V`$는 직교 행렬이므로 곱해도 $`\underset{\sim}{x}`$의 크기는 **변하지 않는다**:
+$`U, V`$는 직교 행렬이므로 곱해도 $`\mathbf{x}`$의 크기는 **변하지 않는다**:
 
 ```math
-\|U\|_2 = \max \frac{\|U\underset{\sim}{x}\|}{\|\underset{\sim}{x}\|} = 1
+\|U\|_2 = \max \frac{\|U\mathbf{x}\|}{\|\mathbf{x}\|} = 1
 ```
 
 ```math
@@ -722,10 +722,10 @@ $`U, V`$는 직교 행렬이므로 곱해도 $`\underset{\sim}{x}`$의 크기는
 
 **벡터 노름에서 행렬 노름으로의 확장:**
 
-벡터 $`\underset{\sim}{v}`$의 길이:
+벡터 $`\mathbf{v}`$의 길이:
 
 ```math
-\|\underset{\sim}{v}\|^2 = v_1^2 + v_2^2 + \cdots + v_n^2
+\|\mathbf{v}\|^2 = v_1^2 + v_2^2 + \cdots + v_n^2
 ```
 
 이 아이디어를 행렬로 확장:
@@ -736,13 +736,13 @@ $`U, V`$는 직교 행렬이므로 곱해도 $`\underset{\sim}{x}`$의 크기는
 
 **기본 성질:**
 
-- $`\|\underset{\sim}{v}\| \geq 0`$이고 $`\|c\underset{\sim}{v}\| = |c| \|\underset{\sim}{v}\|`$이다.
+- $`\|\mathbf{v}\| \geq 0`$이고 $`\|c\mathbf{v}\| = |c| \|\mathbf{v}\|`$이다.
 - $`\|A\|_F \geq 0`$이고 $`\|cA\|_F = |c| \|A\|_F`$이다.
 
 **슈바르츠 부등식 (Schwarz inequality)과 그로부터 얻는 행렬 부등식:**
 
 ```math
-|\underset{\sim}{v}^T \underset{\sim}{w}| \leq \|\underset{\sim}{v}\| \|\underset{\sim}{w}\|
+|\mathbf{v}^T \mathbf{w}| \leq \|\mathbf{v}\| \|\mathbf{w}\|
 ```
 
 ```math
@@ -752,14 +752,14 @@ $`U, V`$는 직교 행렬이므로 곱해도 $`\underset{\sim}{x}`$의 크기는
 **삼각 부등식 (Triangle inequality):**
 
 ```math
-\|\underset{\sim}{v} + \underset{\sim}{w}\| \leq \|\underset{\sim}{v}\| + \|\underset{\sim}{w}\|
+\|\mathbf{v} + \mathbf{w}\| \leq \|\mathbf{v}\| + \|\mathbf{w}\|
 ```
 
 ```math
 \|A + B\|_F \leq \|A\|_F + \|B\|_F
 ```
 
-### 3.5 PCA 예제 (P 7.3.1)
+### 3.5 PCA 예제 (교재 연습 문제 7.3.1)
 
 $`A_0`$는 **5개 샘플**에 대한 **2개 측정값**을 담고 있다:
 
@@ -787,12 +787,14 @@ A = A_0 - \begin{pmatrix} 3 \\ 0 \end{pmatrix}(1\;1\;1\;1\;1) = \begin{pmatrix} 
 S = \frac{AA^T}{n - 1}
 ```
 
+> **[확률및통계]** 표본 공분산 행렬은 확률및통계에서 배우는 표본 분산과 표본 공분산을 행렬로 모은 것으로, 대각 원소는 각 측정값의 표본 분산이고 비대각 원소는 두 측정값 사이의 표본 공분산이다. 분모를 $`n`$이 아니라 $`n - 1`$로 두면 표본으로부터 모집단의 공분산을 편향 없이 추정할 수 있으며, PCA는 이 행렬의 고유벡터로 분산이 가장 큰 방향을 찾는다.
+
 ```math
 AA^T = \begin{pmatrix} 2 & 1 & 0 & -1 & -2 \\ -1 & 1 & 0 & 1 & -1 \end{pmatrix}\begin{pmatrix} 2 & -1 \\ 1 & 1 \\ 0 & 0 \\ -1 & 1 \\ -2 & -1 \end{pmatrix} = \begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix}
 ```
 
 ```math
-S = \frac{1}{4}AA^T = \frac{1}{4}\begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix} =: S
+S = \frac{1}{4}AA^T = \frac{1}{4}\begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} \frac{5}{2} & 0 \\ 0 & 1 \end{pmatrix}
 ```
 
 **iii) $`S`$의 고유값을 구한다.**
@@ -802,7 +804,7 @@ S = \frac{1}{4}AA^T = \frac{1}{4}\begin{pmatrix} 10 & 0 \\ 0 & 4 \end{pmatrix} =
 ```
 
 ```math
-(S - \lambda I)\underset{\sim}{x}_1 = \begin{pmatrix} \frac{5}{2} - \lambda & 0 \\ 0 & 1 - \lambda \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+(S - \lambda I)\mathbf{x}_1 = \begin{pmatrix} \frac{5}{2} - \lambda & 0 \\ 0 & 1 - \lambda \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 ```
 
 $`\lambda_1 = \frac{5}{2}`$일 때:
@@ -812,7 +814,7 @@ $`\lambda_1 = \frac{5}{2}`$일 때:
 ```
 
 ```math
-\therefore \underset{\sim}{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+\therefore \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
 ```
 
 **iv) 원점을 지나면서 $`A`$의 열에 있는 5개 샘플에 가장 가까운 직선은 무엇인가?**
@@ -836,23 +838,23 @@ y = -1    *     |     *
 
 *그림 3. 중심화된 5개 데이터 점과 원점을 지나는 가장 가까운 직선인 x축*
 
-**$`x`$축이 5개 점에 가장 가까운 직선이다.** 각 점에서 $`x`$축까지의 수선 거리 제곱합은 $`1 + 1 + 0 + 1 + 1 = 4`$이고, $`y`$축까지의 제곱합은 $`4 + 1 + 0 + 1 + 4 = 10`$이다.
+**$`x`$축이 5개 점에 가장 가까운 직선이다.** 원점을 지나는 직선 가운데 가장 가까운 직선은 가장 큰 고유값 $`\lambda_1`$의 고유벡터 $`\mathbf{x}_1 = (1, 0)`$ 방향의 직선이기 때문이다. 예를 들어 각 점에서 $`x`$축까지의 수선 거리 제곱합은 $`1 + 1 + 0 + 1 + 1 = 4`$이고, $`y`$축까지의 제곱합은 $`4 + 1 + 0 + 1 + 4 = 10`$이다.
 
-첫 번째 특이벡터 $`\begin{pmatrix} 1 \\ 0 \end{pmatrix}`$은 데이터에서 **가장 큰 변동성**(variability)을 설명하는 방향을 나타낸다.
+$`S = AA^T/(n-1)`$의 고유벡터는 $`A`$의 좌특이벡터와 같으므로, 이 방향 $`\begin{pmatrix} 1 \\ 0 \end{pmatrix}`$은 $`A`$의 첫 번째 좌특이벡터 $`\mathbf{u}_1`$이며 데이터에서 **가장 큰 변동성**(variability)을 설명하는 방향을 나타낸다.
 
 ### 3.6 수직 최소제곱법
 
-4장에서 다룬 $`A\underset{\sim}{x} = \underset{\sim}{b}`$의 **최소제곱 해**(least squares solution) $`\underset{\sim}{\hat{x}}`$은 $`\|A\underset{\sim}{\hat{x}} - \underset{\sim}{b}\|^2`$을 최소화하며, 오차는 다음과 같이 정의된다:
+4장에서 다룬 $`A\mathbf{x} = \mathbf{b}`$의 **최소제곱 해**(least squares solution) $`\hat{\mathbf{x}}`$은 $`\|A\hat{\mathbf{x}} - \mathbf{b}\|^2`$을 최소화하며, 오차는 다음과 같이 정의된다:
 
 ```math
-\underset{\sim}{e} = A\underset{\sim}{\hat{x}} - \underset{\sim}{b}
+\mathbf{e} = A\hat{\mathbf{x}} - \mathbf{b}
 ```
 
 직선 적합에서 각 오차는 데이터 점에서 적합된 직선까지의 **세로 거리**(vertical distance)이다.
 
 이에 비해, **수직 최소제곱법**(perpendicular least squares)은 데이터 점에서 직선까지의 **수선 거리**(perpendicular distances)를 측정한다.
 
-데이터 점에서 $`\underset{\sim}{u}_1`$ 방향의 직선까지의 **수선 거리의 제곱합**이 **최소**가 된다. 여기서 $`\underset{\sim}{u}_1`$은 중심화된 데이터 행렬 $`A`$의 첫 번째 좌특이벡터이다.
+원점을 지나는 직선 가운데 $`\mathbf{u}_1`$ 방향의 직선이 데이터 점까지의 **수선 거리의 제곱합**을 **최소**로 만든다. 여기서 $`\mathbf{u}_1`$은 중심화된 데이터 행렬 $`A`$의 첫 번째 좌특이벡터이다.
 
 ---
 
@@ -863,13 +865,13 @@ y = -1    *     |     *
 | 개념 | 핵심 요약 |
 |:-----|:-----|
 | SVD 분해 | $`A = U\Sigma V^T`$이며, $`U, V`$는 열이 정규직교인 행렬이고 $`\Sigma`$는 특이값 $`\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0`$을 대각에 갖는 행렬이다. |
-| 두 집합의 벡터 | 입력 벡터 $`\lbrace\underset{\sim}{v}_i\rbrace`$는 $`C(A^T)`$와 $`N(A)`$의 기저를, 출력 벡터 $`\lbrace\underset{\sim}{u}_i\rbrace`$는 $`C(A)`$와 $`N(A^T)`$의 기저를 이룬다. |
+| 두 집합의 벡터 | 입력 벡터 $`\lbrace\mathbf{v}_i\rbrace`$는 $`C(A^T)`$와 $`N(A)`$의 기저를, 출력 벡터 $`\lbrace\mathbf{u}_i\rbrace`$는 $`C(A)`$와 $`N(A^T)`$의 기저를 이룬다. |
 | SVD와 고유값 분해 | 고유값 분해 $`S = Q\Lambda Q^T`$는 대칭 행렬에 적용되고, SVD $`A = U\Sigma V^T`$는 **모든** 행렬에 적용된다. |
-| 기본 관계식 | $`A\underset{\sim}{v}_i = \sigma_i \underset{\sim}{u}_i`$는 우특이벡터를 스케일된 좌특이벡터로 사상한다. |
+| 기본 관계식 | $`A\mathbf{v}_i = \sigma_i \mathbf{u}_i`$는 우특이벡터를 스케일된 좌특이벡터로 사상한다. |
 | SVD의 기하학 | $`A = U\Sigma V^T`$는 $`V^T`$로 회전하고 $`\Sigma`$로 신축한 뒤 $`U`$로 회전하여 단위원을 타원으로 바꾼다. |
 | 전체 SVD와 축소 SVD | 전체 형태는 $`A_{m \times n} V_{n \times n} = U_{m \times m} \Sigma_{m \times n}`$이고, 축소 형태는 $`r`$개 벡터만 남긴 $`A V_r = U_r \Sigma_r`$이다. |
-| 랭크-1 분해 | $`A = \sigma_1 \underset{\sim}{u}_1 \underset{\sim}{v}_1^T + \sigma_2 \underset{\sim}{u}_2 \underset{\sim}{v}_2^T + \cdots + \sigma_r \underset{\sim}{u}_r \underset{\sim}{v}_r^T`$는 $`A`$를 랭크-1 행렬의 합으로 나타낸다. |
-| 특이벡터 구하기 | $`V`$는 $`A^T A`$의 고유벡터에서, $`U`$는 $`AA^T`$의 고유벡터에서 얻으며, $`\sigma_k = \sqrt{\lambda_k}`$이고 $`\underset{\sim}{u}_k = \frac{1}{\sigma_k} A\underset{\sim}{v}_k`$이다. |
+| 랭크-1 분해 | $`A = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T`$는 $`A`$를 랭크-1 행렬의 합으로 나타낸다. |
+| 특이벡터 구하기 | $`V`$는 $`A^T A`$의 고유벡터에서, $`U`$는 $`AA^T`$의 고유벡터에서 얻으며, $`\sigma_k = \sqrt{\lambda_k}`$이고 $`\mathbf{u}_k = \frac{1}{\sigma_k} A\mathbf{v}_k`$이다. |
 | $`A^T A`$와 $`AA^T`$ | $`A^T A = V\Sigma^2 V^T`$, $`AA^T = U\Sigma^2 U^T`$이며, 두 행렬은 0이 아닌 고유값 $`\sigma_1^2, \dots, \sigma_r^2`$을 공유한다. |
 | AB와 BA의 고유값 | $`AB`$와 $`BA`$는 크기가 달라도 0이 아닌 고유값이 같다. |
 | 행렬로서의 이미지 | 이미지는 회색조 값의 큰 행렬이며, 8비트 이미지의 원소는 0~255 범위의 값이다. |
@@ -881,7 +883,7 @@ y = -1    *     |     *
 | 핵 노름 | $`\Vert A\Vert_N = \sigma_1 + \sigma_2 + \cdots + \sigma_r`$로, 특이값의 합이며 트레이스 노름이라고도 한다. |
 | 표본 공분산 | 중심화된 데이터 행렬 $`A`$에 대해 $`S = \frac{AA^T}{n-1}`$이다. |
 | 첫 번째 특이벡터 | 데이터에서 가장 큰 변동성을 설명하는 방향을 나타낸다. |
-| 수직 최소제곱법 | PCA는 데이터 점에서 $`\underset{\sim}{u}_1`$ 직선까지의 세로 거리가 아니라 수선 거리의 제곱합을 최소화한다. |
+| 수직 최소제곱법 | PCA는 데이터 점에서 $`\mathbf{u}_1`$ 직선까지의 세로 거리가 아니라 수선 거리의 제곱합을 최소화한다. |
 
 ---
 
@@ -912,7 +914,7 @@ y = -1    *     |     *
    <details>
    <summary>정답</summary>
 
-   $`A_1 = 5\underset{\sim}{u}_1\underset{\sim}{v}_1^T`$이다. $`A - A_1 = 2\underset{\sim}{u}_2\underset{\sim}{v}_2^T + 1\underset{\sim}{u}_3\underset{\sim}{v}_3^T`$의 특이값은 $`2, 1`$이므로 $`\|A - A_1\|_2 = 2`$, $`\|A - A_1\|_F = \sqrt{2^2 + 1^2} = \sqrt{5}`$이다. Eckart-Young 정리에 의해 랭크가 1 이하인 어떤 행렬도 이보다 작은 오차를 낼 수 없다.
+   $`A_1 = 5\mathbf{u}_1\mathbf{v}_1^T`$이다. $`A - A_1 = 2\mathbf{u}_2\mathbf{v}_2^T + 1\mathbf{u}_3\mathbf{v}_3^T`$의 특이값은 $`2, 1`$이므로 $`\|A - A_1\|_2 = 2`$, $`\|A - A_1\|_F = \sqrt{2^2 + 1^2} = \sqrt{5}`$이다. Eckart-Young 정리에 의해 랭크가 1 이하인 어떤 행렬도 이보다 작은 오차를 낼 수 없다.
 
    </details>
 
@@ -930,6 +932,6 @@ y = -1    *     |     *
    <details>
    <summary>정답</summary>
 
-   $`V_r`$의 열 $`r`$개는 정규직교이므로 $`V_r^T V_r = I_r`$이다. 반면 $`V_r V_r^T`$는 $`n \times n`$ 행렬로서 $`C(A^T)`$ 위로의 사영 행렬이며, $`N(A)`$의 벡터를 $`\underset{\sim}{0}`$으로 보낸다. 따라서 $`V_r V_r^T = I`$는 $`r = n`$, 즉 $`N(A) = \lbrace\underset{\sim}{0}\rbrace`$일 때만 성립한다.
+   $`V_r`$의 열 $`r`$개는 정규직교이므로 $`V_r^T V_r = I_r`$이다. 반면 $`V_r V_r^T`$는 $`n \times n`$ 행렬로서 $`C(A^T)`$ 위로의 사영 행렬이며, $`N(A)`$의 벡터를 $`\mathbf{0}`$으로 보낸다. 따라서 $`V_r V_r^T = I`$는 $`r = n`$, 즉 $`N(A) = \lbrace\mathbf{0}\rbrace`$일 때만 성립한다.
 
    </details>

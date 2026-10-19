@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -18,10 +18,64 @@
 ## Table of Contents
 
 - [1. Orthogonality of Vectors and Subspaces (4.1)](#1-orthogonality-of-vectors-and-subspaces-41)
+  - [1.1 Orthogonal Vectors](#11-orthogonal-vectors)
+  - [1.2 The Fundamental Subspaces are Orthogonal](#12-the-fundamental-subspaces-are-orthogonal)
+  - [1.3 Projection Preview](#13-projection-preview)
+  - [1.4 Orthogonal Subspaces](#14-orthogonal-subspaces)
+  - [1.5 Orthogonal Complements and Dimension](#15-orthogonal-complements-and-dimension)
+  - [1.6 The Big Picture of Four Subspaces](#16-the-big-picture-of-four-subspaces)
+  - [1.7 Minimum Norm Solution](#17-minimum-norm-solution)
+  - [1.8 Example: Invertible Submatrix](#18-example-invertible-submatrix)
+  - [1.9 Combining Bases from Subspaces](#19-combining-bases-from-subspaces)
+  - [1.10 Two Properties in R^n](#110-two-properties-in-rn)
+  - [1.11 Properties of an n x n Matrix A](#111-properties-of-an-n-x-n-matrix-a)
+  - [1.12 Example 3: Four Subspaces](#112-example-3-four-subspaces)
 - [2. Projections onto Lines and Subspaces (4.2)](#2-projections-onto-lines-and-subspaces-42)
+  - [2.1 Key Facts Summary](#21-key-facts-summary)
+  - [2.2 Projection onto a Line](#22-projection-onto-a-line)
+  - [2.3 Projection Matrix P (onto a Line)](#23-projection-matrix-p-onto-a-line)
+  - [2.4 Projection in R^3 Example](#24-projection-in-r3-example)
+  - [2.5 Projection onto a Subspace](#25-projection-onto-a-subspace)
+  - [2.6 Derivation for n = 2](#26-derivation-for-n--2)
+  - [2.7 Extension to n-dimensional Subspace](#27-extension-to-n-dimensional-subspace)
+  - [2.8 Example 2: Projection onto a Subspace](#28-example-2-projection-onto-a-subspace)
+  - [2.9 A^T A is Invertible iff A has LI Columns](#29-at-a-is-invertible-iff-a-has-li-columns)
+  - [2.10 Worked Example (4.2A)](#210-worked-example-42a)
 - [3. Least Squares Approximations (4.3)](#3-least-squares-approximations-43)
+  - [3.1 Key Facts Summary](#31-key-facts-summary)
+  - [3.2 Overdetermined Systems](#32-overdetermined-systems)
+  - [3.3 Example 1: Fitting a Line](#33-example-1-fitting-a-line)
+  - [3.4 Minimizing the Error: Calculus Approach](#34-minimizing-the-error-calculus-approach)
+  - [3.5 General Normal Equations for Line Fitting](#35-general-normal-equations-for-line-fitting)
+  - [3.6 Minimizing the Error: Three Approaches](#36-minimizing-the-error-three-approaches)
+  - [3.7 The Big Picture for Least Squares](#37-the-big-picture-for-least-squares)
+  - [3.8 Example 2: Another Line Fit](#38-example-2-another-line-fit)
+  - [3.9 Least Squares Solution When A Has Dependent Columns](#39-least-squares-solution-when-a-has-dependent-columns)
+  - [3.10 Fitting by a Parabola](#310-fitting-by-a-parabola)
+  - [3.11 Example 3: Parabola Fit](#311-example-3-parabola-fit)
 - [4. Orthogonal Bases and Gram-Schmidt (4.4)](#4-orthogonal-bases-and-gram-schmidt-44)
+  - [4.1 Key Facts Summary](#41-key-facts-summary)
+  - [4.2 Goal: Orthogonal Columns](#42-goal-orthogonal-columns)
+  - [4.3 Orthonormal Vectors and Matrices](#43-orthonormal-vectors-and-matrices)
+  - [4.4 Examples of Orthogonal Matrices](#44-examples-of-orthogonal-matrices)
+  - [4.5 Projections Using Orthonormal Bases](#45-projections-using-orthonormal-bases)
+  - [4.6 Example 4: Square Orthogonal Matrix](#46-example-4-square-orthogonal-matrix)
+  - [4.7 The Gram-Schmidt Process](#47-the-gram-schmidt-process)
+  - [4.8 Gram-Schmidt Example](#48-gram-schmidt-example)
+  - [4.9 Factorization A = QR](#49-factorization-a--qr)
+  - [4.10 Application: Least Squares via QR](#410-application-least-squares-via-qr)
 - [5. The Pseudoinverse of a Matrix (4.5)](#5-the-pseudoinverse-of-a-matrix-45)
+  - [5.1 Two-Sided and One-Sided Inverses](#51-two-sided-and-one-sided-inverses)
+  - [5.2 Three Cases with Identity-like Matrices](#52-three-cases-with-identity-like-matrices)
+  - [5.3 Left Inverse and Right Inverse](#53-left-inverse-and-right-inverse)
+  - [5.4 The Pseudoinverse A^+ of a General m x n Matrix A](#54-the-pseudoinverse-a-of-a-general-m-x-n-matrix-a)
+  - [5.5 Big Picture for A^+](#55-big-picture-for-a)
+  - [5.6 Example 1: Finding A^+](#56-example-1-finding-a)
+  - [5.7 Pseudoinverse of a Diagonal Matrix](#57-pseudoinverse-of-a-diagonal-matrix)
+  - [5.8 Pseudoinverse via Factorization](#58-pseudoinverse-via-factorization)
+  - [5.9 Important Action of A: Row Space to Column Space](#59-important-action-of-a-row-space-to-column-space)
+  - [5.10 Pseudoinverse A^+ = R^+C^+ of A = CR](#510-pseudoinverse-a--rc-of-a--cr)
+  - [5.11 Example: Pseudoinverse of a 5x4 Matrix](#511-example-pseudoinverse-of-a-5x4-matrix)
 - [Summary](#summary)
 - [Self-Check Questions](#self-check-questions)
 
@@ -183,9 +237,9 @@ Similarly, $`\mathbf{y}`$ in the nullspace of $`A^T`$ is orthogonal to $`A\mathb
 r + (n - r) = n \quad \text{and} \quad r + (m - r) = m
 ```
 
-These are **orthogonal complements**.
+The two pairs with these dimensions, the row space with the nullspace and the column space with the left nullspace, are **orthogonal complements**.
 
-**Example:**
+**Example 1:**
 
 ```math
 A = \begin{pmatrix} 1 & -2 & 1 \\ 1 & 0 & -1 \end{pmatrix}
@@ -268,7 +322,7 @@ Every $`\mathbf{x}`$ can be split into a row space component $`\mathbf{x}_r`$ an
 
 ### 1.6 The Big Picture of Four Subspaces
 
-Multiply $`A`$ to $`\mathbf{x}`$:
+Multiply $`\mathbf{x}`$ by $`A`$:
 
 ```math
 A\mathbf{x} = A(\mathbf{x}_r + \mathbf{x}_n) = A\mathbf{x}_r + A\mathbf{x}_n = \mathbf{b}
@@ -320,7 +374,7 @@ flowchart LR
 = \|\mathbf{x}_r\|^2 + \|\mathbf{x}_n\|^2
 ```
 
-(since the cross terms are zero because $`\mathbf{x}_r \perp \mathbf{x}_n`$).
+(The cross terms are zero because $`\mathbf{x}_r \perp \mathbf{x}_n`$.)
 
 Therefore the **minimum norm solution** to $`A\mathbf{x} = \mathbf{b}`$ is $`\mathbf{x} = \mathbf{x}_r`$ and $`\mathbf{x}_n = \mathbf{0}`$.
 
@@ -370,7 +424,7 @@ is the vector in $`\mathbb{R}^n`$ which has a one in the $`i`$th entry and zeros
 
 The dimension of $`\mathbb{R}^n`$ is $`n`$ because the number of basis vectors of $`\mathbb{R}^n`$ is $`n`$, e.g., $`\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace`$.
 
-### 1.10 Two Properties in $`\mathbb{R}^n`$
+### 1.10 Two Properties in R^n
 
 **i)** Suppose $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$ is LI. Then $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$ is a basis for $`\mathbb{R}^n`$.
 
@@ -392,7 +446,7 @@ Define $`A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_n) \in \mathb
 
 Finally suppose $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$ is not LI. Then its $`r < n`$ independent vectors (renumbered as $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace`$) would still span $`\mathbb{R}^n`$ and form a basis, which contradicts $`\dim \mathbb{R}^n = n`$. Therefore $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$ is LI. $`\square`$
 
-### 1.11 Properties of $`A \in \mathbb{R}^{n \times n}`$
+### 1.11 Properties of an n x n Matrix A
 
 **i)** If the $`n`$ columns of $`A`$ are LI, they span $`\mathbb{R}^n`$.
 
@@ -600,7 +654,7 @@ P^2 = \frac{1}{9}\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatri
 
 **Complementary projection:** When $`P`$ projects onto one subspace, $`I - P`$ projects onto the perpendicular subspace (orthogonal complement). $`I - P`$ projects onto the plane perpendicular to $`\mathbf{a}`$.
 
-### 2.4 Projection in $`\mathbb{R}^3`$ Example
+### 2.4 Projection in R^3 Example
 
 Consider $`\mathbf{b} = \begin{pmatrix} 2 \\ 3 \\ 4 \end{pmatrix} \in \mathbb{R}^3`$.
 
@@ -654,7 +708,7 @@ When $`n = 1`$: $`\alpha = \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}
 
 For $`n > 1`$: $`\hat{\boldsymbol{\alpha}} = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n \end{pmatrix}`$ is to be found.
 
-### 2.6 Derivation for $`n = 2`$
+### 2.6 Derivation for n = 2
 
 Let $`n = 2`$, $`A = (\mathbf{a}_1 \; \mathbf{a}_2)`$.
 
@@ -702,7 +756,7 @@ If $`A^T A`$ is invertible:
 P = A(A^T A)^{-1} A^T
 ```
 
-### 2.7 Extension to $`n`$-dimensional Subspace
+### 2.7 Extension to n-dimensional Subspace
 
 We can easily extend this to an $`n`$-dimensional subspace, where we have $`n`$ equations:
 
@@ -747,7 +801,7 @@ A^T\mathbf{b} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix}\begin{pmatr
 P = A(A^T A)^{-1} A^T = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{pmatrix}\frac{1}{6}\begin{pmatrix} 5 & -3 \\ -3 & 3 \end{pmatrix}\begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix} = \frac{1}{6}\begin{pmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{pmatrix}
 ```
 
-### 2.9 $`A^T A`$ is Invertible iff $`A`$ has LI Columns
+### 2.9 A^T A is Invertible iff A has LI Columns
 
 > **Caution:** $`(A^T A)^{-1} \neq A^{-1}(A^T)^{-1}`$ because $`A^{-1}`$ does not exist when $`A`$ is not square.
 
@@ -896,6 +950,8 @@ E = \|\mathbf{y} - \hat{\mathbf{y}}\|^2 = (y_1 - \hat{y}_1)^2 + (y_2 - \hat{y}_2
 ```
 
 where $`\hat{y} = ax + b`$.
+
+> **[Calculus]** At a point where a function of several variables has its minimum, the partial derivative with respect to each variable is zero. Setting the partial derivatives of the sum of squared errors $`E(a, b)`$ with respect to $`a`$ and $`b`$ to zero gives the two equations below, which are the normal equations of least squares.
 
 ```math
 \frac{\partial E}{\partial a} = -2\sum_{i=1}^{3}(y_i - \hat{y}_i)x_i = 0
@@ -1059,21 +1115,21 @@ So $`b = \alpha_1 = 7/3`$ and $`a = \alpha_2 = 3/4`$, and the best line is $`\ha
 
 > **Note:** $`\mathbf{a}_2 \perp \mathbf{a}_1`$ (orthogonal column vectors), which makes $`A^T A`$ diagonal.
 
-### 3.9 Dependent Columns in $`A`$: What is $`\hat{\boldsymbol{\alpha}}`$?
+### 3.9 Least Squares Solution When A Has Dependent Columns
 
 Which $`\hat{\boldsymbol{\alpha}}`$ is best if $`A`$ has dependent columns?
 
 ```math
-A\mathbf{x} = \mathbf{b}: \quad \begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 3 \\ 3 \end{pmatrix}, \quad \mathbf{b} \notin C(A)
+A\mathbf{x} = \mathbf{b}: \quad \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}, \quad \mathbf{b} \notin C(A)
 ```
 
-$`C(A)`$ is the line in the direction $`(1, 1, 1)`$, so the projection has the mean $`(1 + 3 + 3)/3 = 7/3`$ of the components of $`\mathbf{b}`$ in every component:
+$`C(A)`$ is the line in the direction $`(1, 1)`$, so the projection has the mean $`(1 + 3)/2 = 2`$ of the components of $`\mathbf{b}`$ in every component:
 
 ```math
-\mathbf{p} = \begin{pmatrix} 7/3 \\ 7/3 \\ 7/3 \end{pmatrix} \in C(A)
+\mathbf{p} = \begin{pmatrix} 2 \\ 2 \end{pmatrix} \in C(A)
 ```
 
-$`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$ has **many solutions**: $`\begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} 7/3 \\ 7/3 \\ 7/3 \end{pmatrix}`$.
+$`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$ has **many solutions**: $`\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \end{pmatrix}`$.
 
 The problem is that $`A`$ has a dependent column and $`\mathcal{N}(A) \ni \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$.
 
@@ -1419,7 +1475,7 @@ All vectors $`\mathbf{a}, \mathbf{b}, \mathbf{c}, \mathbf{r}_1, \mathbf{r}_2, \m
 \mathbf{q}_3 = \frac{1}{\sqrt{3}}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}
 ```
 
-### 4.9 Factorization $`A = QR`$
+### 4.9 Factorization A = QR
 
 ```math
 (\mathbf{a} \;\; \mathbf{b} \;\; \mathbf{c}) = (\mathbf{q}_1 \;\; \mathbf{q}_2 \;\; \mathbf{q}_3)\,R
@@ -1560,9 +1616,9 @@ $`\dim C(I_R) = 2`$, $`\dim \mathcal{N}(I_R^T) = 1`$, $`\dim C(I_R^T) = 2`$, $`\
 
 **Left inverse case:** $`A^+A = I`$ describes the matrices in least squares. $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b}`$ is the solution to $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$, where $`\mathbf{b}`$ may not be in $`C(A)`$ and $`\hat{\boldsymbol{\alpha}}`$ is in $`C(A^T)`$.
 
-**Right inverse case:** $`AA^+ = I`$. $`\mathbf{x}^+ = A^+\mathbf{b}`$ is the least length solution to $`A\mathbf{x} = \mathbf{b}`$ where $`\mathbf{b}`$ is in $`C(A)`$ and $`\mathbf{x}^+`$ is in $`C(A^T)`$.
+**Right inverse case:** $`AA^+ = I`$. $`\mathbf{x}^+ = A^+\mathbf{b}`$ is the minimum length solution to $`A\mathbf{x} = \mathbf{b}`$ where $`\mathbf{b}`$ is in $`C(A)`$ and $`\mathbf{x}^+`$ is in $`C(A^T)`$.
 
-### 5.4 The Pseudoinverse $`A^+`$ of a General Matrix $`A_{m \times n}`$
+### 5.4 The Pseudoinverse A^+ of a General m x n Matrix A
 
 **Step 1:** Every vector $`\mathbf{b} \in \mathbb{R}^m`$ has two perpendicular parts: $`\mathbf{p}`$ and $`\mathbf{z}`$, such that $`\mathbf{b} = \mathbf{p} + \mathbf{z}`$.
 
@@ -1572,7 +1628,7 @@ $`\dim C(I_R) = 2`$, $`\dim \mathcal{N}(I_R^T) = 1`$, $`\dim C(I_R^T) = 2`$, $`\
 
 **Step 4:** $`A^+\mathbf{b} = A^+(\mathbf{p} + \mathbf{z}) = A^+\mathbf{p} + A^+\mathbf{z} = \mathbf{x}^+`$.
 
-### 5.5 Big Picture for $`A^+`$
+### 5.5 Big Picture for A^+
 
 - $`A^+`$ shares the same four subspaces as $`A^T`$.
 - $`A^+`$ inverts $`A`$ when it can: from column space to row space.
@@ -1612,7 +1668,7 @@ flowchart LR
 
 *Figure 3. Mappings by the pseudoinverse A⁺*
 
-### 5.6 Example 1: Finding $`A^+`$
+### 5.6 Example 1: Finding A^+
 
 ```math
 A = \begin{pmatrix} 2 & 0 \\ 0 & 0 \end{pmatrix}, \quad \mathbf{b} = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix} = \begin{pmatrix} b_1 \\ 0 \end{pmatrix} + \begin{pmatrix} 0 \\ b_2 \end{pmatrix} = \mathbf{p} + \mathbf{z}
@@ -1676,7 +1732,7 @@ $`A^+A = 1`$. $`A^+ = (A^T A)^{-1}A^T = ((1\;1)\begin{pmatrix} 1 \\ 1 \end{pmatr
 
 $`AA^+ = 1`$. $`A^+ = A^T(AA^T)^{-1} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}((1\;1)\begin{pmatrix} 1 \\ 1 \end{pmatrix})^{-1} = \frac{1}{2}\begin{pmatrix} 1 \\ 1 \end{pmatrix}`$.
 
-### 5.9 Important Action of $`A`$: Row Space to Column Space
+### 5.9 Important Action of A: Row Space to Column Space
 
 ```math
 C(A^T) \xrightarrow{A} C(A)
@@ -1692,7 +1748,7 @@ C(A) \xrightarrow{A^+} C(A^T)
 
 **ii)** $`\forall\,\mathbf{b} \in C(A)`$, $`\exists!\,\mathbf{x}^+ \in C(A^T)`$ such that $`A^+\mathbf{b} = \mathbf{x}^+`$. That is, for each $`\mathbf{b} \in C(A)`$, the $`\mathbf{x}^+ \in C(A^T)`$ with $`A\mathbf{x}^+ = \mathbf{b}`$ is unique by i), and $`A^+`$ sends $`\mathbf{b}`$ to this $`\mathbf{x}^+`$.
 
-### 5.10 Pseudoinverse $`A^+ = R^+C^+`$ of $`A = CR`$
+### 5.10 Pseudoinverse A^+ = R^+C^+ of A = CR
 
 Given $`A = CR`$ where $`C`$ has $`r`$ independent columns (full column rank) and $`R`$ has $`r`$ independent rows (full row rank):
 
@@ -1709,7 +1765,7 @@ A^+ = R^+C^+ = R^T(RR^T)^{-1}(C^T C)^{-1}C^T
 
 (since $`C^T C R R^T = C^T(CR)R^T = C^T A R^T`$).
 
-### 5.11 Example: Pseudoinverse of a $`5 \times 4`$ Matrix
+### 5.11 Example: Pseudoinverse of a 5x4 Matrix
 
 ```math
 A = \begin{pmatrix} -1 & 1 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & -1 & 1 & 0 \\ -1 & 0 & 0 & 1 \\ 0 & -1 & 0 & 1 \end{pmatrix}_{5 \times 4}
@@ -1820,11 +1876,11 @@ $`R`$ has full row rank: $`\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace`$. $`C`$ 
 
    </details>
 
-5. **Dependent columns and the pseudoinverse:** For $`A = \begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}`$ and $`\mathbf{b} = (1, 3, 3)`$ from Section 3.9, use $`A = CR`$ to find $`A^+`$, and find $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b}`$ and $`A\hat{\boldsymbol{\alpha}}`$.
+5. **Dependent columns and the pseudoinverse:** For $`A = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}`$ and $`\mathbf{b} = (1, 3)`$ from Section 3.9, use $`A = CR`$ to find $`A^+`$, and find $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b}`$ and $`A\hat{\boldsymbol{\alpha}}`$.
 
    <details>
    <summary>Answer</summary>
 
-   Here $`C = (1, 1, 1)^T`$ and $`R = (1 \;\; 1)`$. Since $`C^+ = (C^T C)^{-1}C^T = \frac{1}{3}(1 \;\; 1 \;\; 1)`$ and $`R^+ = R^T(RR^T)^{-1} = \frac{1}{2}(1, 1)^T`$, $`A^+ = R^+C^+ = \frac{1}{6}\begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}`$. Then $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b} = \frac{1}{6}(7, 7) = (7/6, 7/6)`$ and $`A\hat{\boldsymbol{\alpha}} = (7/3, 7/3, 7/3) = \mathbf{p}`$. Because $`\hat{\boldsymbol{\alpha}}`$ lies in the row space $`\text{span}\lbrace(1, 1)\rbrace`$, it is the shortest among the solutions of $`\alpha_1 + \alpha_2 = 7/3`$.
+   Here $`C = (1, 1)^T`$ and $`R = (1 \;\; 1)`$. Since $`C^+ = (C^T C)^{-1}C^T = \frac{1}{2}(1 \;\; 1)`$ and $`R^+ = R^T(RR^T)^{-1} = \frac{1}{2}(1, 1)^T`$, $`A^+ = R^+C^+ = \frac{1}{4}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}`$. Then $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b} = \frac{1}{4}(4, 4) = (1, 1)`$ and $`A\hat{\boldsymbol{\alpha}} = (2, 2) = \mathbf{p}`$. Because $`\hat{\boldsymbol{\alpha}}`$ lies in the row space $`\text{span}\lbrace(1, 1)\rbrace`$, it is the shortest among the solutions of $`\alpha_1 + \alpha_2 = 2`$.
 
    </details>

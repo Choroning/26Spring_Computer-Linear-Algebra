@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 8
 
@@ -21,7 +21,7 @@
 - [1. 선형 변환의 개념 (8.1)](#1-선형-변환의-개념-81)
   - [1.1 정의와 선형성 조건](#11-정의와-선형성-조건)
   - [1.2 선형 변환의 형식적 정의](#12-선형-변환의-형식적-정의)
-  - [1.3 비선형 예제: 이동 변환과 아핀 사상](#13-비선형-예제-이동-변환과-아핀-사상)
+  - [1.3 비선형 예제: 이동 변환과 아핀 변환](#13-비선형-예제-이동-변환과-아핀-변환)
   - [1.4 선형 및 비선형 변환의 예제들](#14-선형-및-비선형-변환의-예제들)
   - [1.5 기저에 의해 결정되는 선형 변환](#15-기저에-의해-결정되는-선형-변환)
   - [1.6 기하학적 해석: 직선을 직선으로](#16-기하학적-해석-직선을-직선으로)
@@ -37,7 +37,7 @@
   - [2.5 기저 변환: 행렬 B](#25-기저-변환-행렬-b)
   - [2.6 예제 3: 다항식의 미분 행렬](#26-예제-3-다항식의-미분-행렬)
   - [2.7 예제 4: 적분 행렬 (미분의 유사역행렬)](#27-예제-4-적분-행렬-미분의-유사역행렬)
-  - [2.8 행렬곱 AB는 변환 TS에 대응](#28-행렬곱-ab는-변환-ts에-대응)
+  - [2.8 행렬 곱 AB는 변환 TS에 대응](#28-행렬-곱-ab는-변환-ts에-대응)
   - [2.9 예제 5: 회전의 합성](#29-예제-5-회전의-합성)
   - [2.10 예제 6: 역회전](#210-예제-6-역회전)
 - [3. 좋은 기저 찾기 (8.3)](#3-좋은-기저-찾기-83)
@@ -51,7 +51,7 @@
   - [3.8 예제: 3x3 Jordan 형식](#38-예제-3x3-jordan-형식)
   - [3.9 함수 공간의 기저](#39-함수-공간의-기저)
   - [3.10 함수 공간의 직교 기저](#310-함수-공간의-직교-기저)
-  - [3.11 Gram-Schmidt를 이용한 Legendre 기저 구성](#311-gram-schmidt를-이용한-legendre-기저-구성)
+  - [3.11 그람-슈미트 과정을 이용한 Legendre 기저 구성](#311-그람-슈미트-과정을-이용한-legendre-기저-구성)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
 
@@ -130,7 +130,7 @@ A\mathbf{y} = A(\mathbf{u} + \mathbf{w}) = A\mathbf{u} + A\mathbf{w}
 
 행렬 곱셈 $`T(\mathbf{u}) = A\mathbf{u}`$는 선형 변환을 제공한다.
 
-변환 $`T`$는 $`V`$에 속하는 각 입력 벡터 $`\mathbf{u}`$에 대해 출력 $`T(\mathbf{u})`$를 할당한다.
+변환 $`T`$는 벡터 공간 $`V`$에 속하는 각 입력 벡터 $`\mathbf{u}`$에 대해 출력 $`T(\mathbf{u})`$를 할당한다.
 
 **변환이 선형이 되려면 모든 $`\mathbf{u}`$와 $`\mathbf{w} \in V`$에 대해 다음 조건을 만족해야 한다:**
 
@@ -158,7 +158,7 @@ T(c_1\mathbf{x}_1 + c_2\mathbf{x}_2 + \cdots + c_n\mathbf{x}_n) = c_1\,T(\mathbf
 
 ---
 
-### 1.3 비선형 예제: 이동 변환과 아핀 사상
+### 1.3 비선형 예제: 이동 변환과 아핀 변환
 
 **예제.** 벡터 $`\mathbf{u} \in V`$를 받아 고정된 벡터 $`\mathbf{u}_0 \in V`$($`\mathbf{u}_0 \neq \mathbf{0}`$)를 더하는 $`T`$를 다음과 같이 정의한다:
 
@@ -187,9 +187,9 @@ T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})
 T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0
 ```
 
-이를 **아핀**(affine) 변환이라고 부른다.
+이를 **아핀 변환**(affine transformation)이라고 부른다.
 
-컴퓨터 그래픽스에서 아핀 사상(affine mapping)이 사용된다:
+컴퓨터 그래픽스에서는 아핀 변환이 사용된다:
 - 도형 $`\mathbf{x}`$에서 시작한다.
 - 회전: $`\mathbf{y} = R\mathbf{x}`$. 이 단계는 선형이다.
 - 이동: $`\mathbf{z} = \mathbf{y} + \begin{pmatrix} 0 \\ u_0 \end{pmatrix}`$. 이 단계는 이동 변환이다.
@@ -200,7 +200,9 @@ flowchart LR
     Y -->|"(0, u₀) 더하기 (이동)"| Z["z = Rx + (0, u₀)"]
 ```
 
-*그림 1. 컴퓨터 그래픽스의 아핀 사상: 회전 뒤 이동*
+*그림 1. 컴퓨터 그래픽스의 아핀 변환: 회전 뒤 이동*
+
+> **[컴퓨터그래픽스]** 컴퓨터그래픽스는 도형을 화면에 배치할 때 회전, 크기 조절, 이동 같은 좌표 변환을 차례로 적용한다. 이 가운데 이동은 원점을 고정하지 않으므로 선형 변환이 아니며, 회전과 이동을 함께 쓰는 배치는 이 절의 아핀 변환으로 다룬다.
 
 ---
 
@@ -250,13 +252,13 @@ T(-\mathbf{u}) \stackrel{?}{=} -T(\mathbf{u})
 \|-\mathbf{u}\| = \|\mathbf{u}\| \neq -\|\mathbf{u}\|
 ```
 
-노름은 항상 음이 아니므로 동차성도 성립하지 않는다.
+노름은 항상 음이 아니므로 $`\mathbf{u} \neq \mathbf{0}`$이고 $`c < 0`$이면 동차성도 성립하지 않는다.
 
 ---
 
 **예제 3 (선형): 회전**
 
-$`T`$는 모든 벡터를 $`30°`$만큼 회전시키는 회전 행렬이다.
+$`T`$는 모든 벡터를 $`30°`$만큼 회전시키는 변환이다.
 
 ```math
 T: \mathbf{u} \longrightarrow \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}\mathbf{u} \quad \text{( } \theta = 30° \text{)}
@@ -286,7 +288,7 @@ T(c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_n\mathbf{u}_n) = c_1\,T(\mathbf
 
 ### 1.5 기저에 의해 결정되는 선형 변환
 
-기저(basis)에 속하는 모든 벡터 $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$에 대해 $`T(\mathbf{u})`$를 안다고 하자.
+기저(basis)에 속하는 모든 벡터 $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$에 대해 $`T(\mathbf{u}_1), \ldots, T(\mathbf{u}_n)`$을 안다고 하자.
 
 공간의 임의의 벡터를 $`\mathbf{y} = c_1\mathbf{u}_1 + \cdots + c_n\mathbf{u}_n`$으로 쓴다.
 
@@ -319,6 +321,8 @@ T(cu + dw) = \frac{d}{dt}(cu + dw) = c\frac{du}{dt} + d\frac{dw}{dt} = c\,T(u) +
 
 여기서 $`c, d \in \mathbb{R}`$이다.
 
+> **[미적분학]** 미분의 선형성은 미적분학에서 배우는 합의 법칙 $`(u + w)' = u' + w'`$과 상수배 법칙 $`(cu)' = cu'`$을 합친 것이다. 이 절은 두 법칙을 선형 변환의 두 조건으로 읽어, 미분과 적분을 함수 공간 위의 선형 변환과 그 행렬로 다룬다.
+
 **$`T`$의 영공간 (nullspace):**
 
 ```math
@@ -328,7 +332,7 @@ T(u) = \frac{d}{dt}u = 0
 이는 $`u`$가 상수 $`c`$일 때만 성립한다.
 
 ```math
-dc \in \mathcal{N}(T), \quad d \in \mathbb{R}
+c \in \mathcal{N}(T) \quad \text{(모든 상수 } c \in \mathbb{R}\text{)}
 ```
 
 영공간은 함수 공간에서의 **직선**이다.
@@ -370,10 +374,10 @@ T: \begin{pmatrix} a \\ b \\ c \end{pmatrix} \longrightarrow \begin{pmatrix} b \
 ```
 
 ```math
-a + bx + cx^2 \longrightarrow b + 2cx
+a + bt + ct^2 \longrightarrow b + 2ct
 ```
 
-선형 변환 $`\dfrac{dy}{dx}`$는 $`A\mathbf{u}`$에 대응된다:
+선형 변환 $`\dfrac{d}{dt}`$는 $`A\mathbf{u}`$에 대응된다:
 
 ```math
 \begin{pmatrix} b \\ 2c \end{pmatrix} = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} a \\ b \\ c \end{pmatrix}
@@ -388,7 +392,7 @@ a + bx + cx^2 \longrightarrow b + 2cx
 적분 $`T^+`$도 선형이다:
 
 ```math
-\int_0^x (D + Ex)\,dx = Dx + \frac{1}{2}Ex^2
+\int_0^x (D + Et)\,dt = Dx + \frac{1}{2}Ex^2
 ```
 
 ```math
@@ -447,14 +451,14 @@ T^{-1}(T(\mathbf{u})) = A^{-1}(A\mathbf{u}) = \mathbf{u}
 
 $`T(\mathbf{u}) = A\mathbf{u}`$, $`S(\mathbf{u}) = B\mathbf{u}`$이면, $`T \circ S(\mathbf{u})`$는 $`AB\mathbf{u}`$에 대응된다.
 
-**질문:** $`V = \mathbb{R}^n`$에서 $`W = \mathbb{R}^m`$으로의 모든 선형 변환은 행렬에 의해 생성되는가? **그렇다.**
+**질문.** $`V = \mathbb{R}^n`$에서 $`W = \mathbb{R}^m`$으로의 모든 선형 변환은 행렬에 의해 생성되는가? **그렇다.**
 
 모든 $`A\mathbf{u}`$의 집합이 **열공간**(column space)이다.
 
-$`A`$의 **영공간**(null space)은 $`A\mathbf{u} = \mathbf{0}`$이 되는 모든 입력을 포함한다.
+$`A`$의 **영공간**(nullspace)은 $`A\mathbf{u} = \mathbf{0}`$이 되는 모든 입력을 포함한다.
 
 ```math
-T\text{의 치역 (Range)} = T(\mathbf{u}) \quad \longleftrightarrow \quad \text{열공간 (column space) } A\mathbf{u}
+T\text{의 치역 (Range)} = \text{모든 } T(\mathbf{u})\text{의 집합} \quad \longleftrightarrow \quad \text{열공간 (column space)} = \text{모든 } A\mathbf{u}\text{의 집합}
 ```
 
 ```math
@@ -575,14 +579,14 @@ T(\mathbf{u}_n) = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)
 이를 결합하면:
 
 ```math
-\begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & \cdots & T(\mathbf{u}_n) \end{pmatrix} = A
+\begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & \cdots & T(\mathbf{u}_n) \end{pmatrix}
 ```
 
 ```math
-= (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)\begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
+= (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)\begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix} = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)A
 ```
 
-> **핵심:** $`A`$의 $`j`$번째 열은 $`j`$번째 기저 벡터 $`\mathbf{u}_j`$에 $`T`$를 적용한 결과 $`T(\mathbf{u}_j)`$를 출력 기저 벡터의 선형 결합으로 썼을 때의 계수이다.
+> **핵심:** $`A`$의 $`j`$번째 열은 $`j`$번째 기저 벡터 $`\mathbf{u}_j`$에 $`T`$를 적용한 결과 $`T(\mathbf{u}_j)`$를 출력 기저 벡터의 선형결합으로 썼을 때의 계수이다.
 
 출력 기저가 표준 기저일 때, 입력 기저 벡터 $`\mathbf{u}_1`$부터 $`\mathbf{u}_n`$에 대한 출력 $`T(\mathbf{u})`$를 안다고 하면 다음과 같다:
 
@@ -648,7 +652,7 @@ B = W^{-1}V
 = \begin{pmatrix} \cos(-\theta) & -\sin(-\theta) \\ \sin(-\theta) & \cos(-\theta) \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\mathbf{c}
 ```
 
-$`V = I`$일 때, $`W`$에서의 계수 $`\mathbf{d}`$는:
+$`V = I`$이면 $`\mathbf{c} = \mathbf{u} = (x, y)^T`$이므로, $`W`$에서의 계수 $`\mathbf{d}`$는:
 
 ```math
 \mathbf{d} = W^{-1}\begin{pmatrix} x \\ y \end{pmatrix}
@@ -680,7 +684,7 @@ T(\mathbf{u}_4) = T(x^3) = 3x^2 = 3\mathbf{w}_3
 ```
 
 ```math
-A = \begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & T(\mathbf{u}_3) & T(\mathbf{u}_4) \end{pmatrix}
+\begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & T(\mathbf{u}_3) & T(\mathbf{u}_4) \end{pmatrix}
 ```
 
 ```math
@@ -705,7 +709,7 @@ $`\mathbf{d} = D\mathbf{c}`$는 $`T(u)`$ 결합의 계수를 생성한다.
 
 ### 2.7 예제 4: 적분 행렬 (미분의 유사역행렬)
 
-$`d_1 + d_2 x + d_3 x^2`$의 적분:
+$`d_1 + d_2 x + d_3 x^2`$의 적분($`0`$부터 $`x`$까지):
 
 ```math
 (1 \;\; x \;\; x^2)\begin{pmatrix} d_1 \\ d_2 \\ d_3 \end{pmatrix}
@@ -743,9 +747,9 @@ D^+D = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & \frac{1}{2} & 0 \\ 0 & 0 & 
 
 ---
 
-### 2.8 행렬곱 AB는 변환 TS에 대응
+### 2.8 행렬 곱 AB는 변환 TS에 대응
 
-합성 $`TS`$와 행렬곱 $`AB`$를 다음과 같이 정의한다:
+합성 $`TS`$와 행렬 곱 $`AB`$를 다음과 같이 정의한다:
 
 ```math
 (TS)(\mathbf{u}) := T \circ S(\mathbf{u}) = T(S(\mathbf{u}))
@@ -786,7 +790,7 @@ flowchart LR
     U -.->|"TS, 행렬 AB (m×p)"| W
 ```
 
-*그림 2. 변환의 합성 TS와 행렬곱 AB의 대응*
+*그림 2. 변환의 합성 TS와 행렬 곱 AB의 대응*
 
 행렬 $`AB`$는 $`TS`$를 올바르게 표현한다:
 
@@ -1185,7 +1189,7 @@ $`x`$의 거듭제곱 $`1, x, x^2, \ldots`$으로부터 어떻게 Legendre 기�
 
 ---
 
-### 3.11 Gram-Schmidt를 이용한 Legendre 기저 구성
+### 3.11 그람-슈미트 과정을 이용한 Legendre 기저 구성
 
 $`[-1, 1]`$에서의 내적을 계산하면:
 
@@ -1207,7 +1211,7 @@ $`x^2`$은 $`1`$ 방향으로 영이 아닌 성분을 가지므로 $`1`$과 직�
 (x, x^2) = \int_{-1}^{1} x^3\,dx = 0 \quad \text{(직교)}
 ```
 
-4장의 **Gram-Schmidt 과정**으로 직교 기저를 구성하면:
+4장의 **그람-슈미트 과정**으로 직교 기저를 구성하면:
 
 ```math
 b_1 = 1
@@ -1224,7 +1228,7 @@ b_3 = x^2 - \frac{1}{3} \quad \perp\; b_1,\; b_2
 
 $`b_3`$은 $`x^2`$에서 $`1`$ 방향 성분을 빼서 얻는다: $`b_3 = x^2 - \frac{(1, x^2)}{(1, 1)} \cdot 1 = x^2 - \frac{2/3}{2} = x^2 - \frac{1}{3}`$. $`x^2`$은 $`x`$와 이미 직교하므로 $`x`$ 방향 성분은 빼지 않아도 된다.
 
-**Gram-Schmidt 과정**을 사용하여 **Legendre 기저**를 얻을 수 있다.
+**그람-슈미트 과정**을 사용하여 **Legendre 기저**를 얻을 수 있다.
 
 ---
 
@@ -1249,7 +1253,7 @@ $`b_3`$은 $`x^2`$에서 $`1`$ 방향 성분을 빼서 얻는다: $`b_3 = x^2 - 
 | 기저 변환 (Change of basis) | 새 행렬은 $`B_{\text{out}}^{-1} A B_{\text{in}}`$이며, 항등 변환에서는 $`B = W^{-1}V`$이다. |
 | 미분 행렬 $`D`$ | $`\lbrace1, x, x^2, x^3\rbrace \to \lbrace1, x, x^2\rbrace`$에 대해 $`D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}`$이다. |
 | 적분 행렬 $`D^+`$ | $`D`$의 유사역행렬이며, $`DD^+ = I`$이지만 $`D`$의 영공간 때문에 $`D^+D \neq I`$이다. |
-| 합성 $`TS`$ | 행렬곱 $`AB`$가 $`TS`$를 표현하며, 크기는 $`(m \times n)(n \times p) = (m \times p)`$이다. |
+| 합성 $`TS`$ | 행렬 곱 $`AB`$가 $`TS`$를 표현하며, 크기는 $`(m \times n)(n \times p) = (m \times p)`$이다. |
 | 회전 합성 | $`\theta`$만큼 두 번 회전하는 $`A^2`$은 $`2\theta`$만큼의 회전이다. |
 | 최적 기저: 고유벡터 | $`B = X`$(고유벡터)로 택하면 $`X^{-1}AX = \Lambda`$(대각)이다. |
 | 최적 기저: 특이벡터 | $`B_{\text{in}} = V`$, $`B_{\text{out}} = U`$로 택하면 $`U^{-1}AV = \Sigma`$이다. |
@@ -1258,7 +1262,7 @@ $`b_3`$은 $`x^2`$에서 $`1`$ 방향 성분을 빼서 얻는다: $`b_3 = x^2 - 
 | Jordan 연쇄 (chains) | $`\mathbf{x}_1`$은 고유벡터이고, $`(A - \lambda I)\mathbf{x}_2 = \mathbf{x}_1`$, $`(A - \lambda I)\mathbf{x}_3 = \mathbf{x}_2`$와 같이 이어진다. |
 | Fourier 행렬 | 모든 순환 행렬(circulant matrix)을 대각화한다. |
 | 함수 공간 기저 | 함수 공간의 좋은 기저로 Fourier($`1, \sin x, \cos x, \ldots`$), Legendre($`1, x, x^2 - 1/3, \ldots`$), Chebyshev($`1, x, 2x^2-1, \ldots`$) 기저가 있다. |
-| 함수의 Gram-Schmidt | 내적 $`(f,g) = \int f\,g\,dx`$를 사용하여 $`1, x, x^2, \ldots`$로부터 Legendre 다항식을 만든다. |
+| 함수의 그람-슈미트 과정 | 내적 $`(f,g) = \int f\,g\,dx`$를 사용하여 $`1, x, x^2, \ldots`$로부터 Legendre 다항식을 만든다. |
 | 정규직교 기저 (Orthonormal) | $`B^TB = I`$이며, 계산에 가장 좋은 조건수의 기저이다. |
 
 ---

@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 3
 
@@ -657,15 +657,7 @@ $`W`$ is $`3 \times 2`$ and has no inverse, but the same relation $`H = WF`$ hol
 \begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}
 ```
 
-**Recall Ex 2:** The identity matrix appears in the 1st and 3rd columns of $`R_0`$, meaning that the 1st and 3rd columns of $`A`$ are independent. The 2nd and 4th columns of $`A`$ are linear combinations of the independent columns:
-
-```math
-\begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}
-```
-
-**The Matrix Factorization $`A = CR`$ and $`N(A)`$:**
-
-Apply elimination to reduce $`A`$ to $`R_0`$. Then the columns where the identity $`I`$ appears in $`R_0`$ locate the matrix $`C`$ of independent columns in $`A`$. Removing any zero rows from $`R_0`$ produces the row matrix $`R`$ in $`A = CR`$.
+**Recall Ex 2:** The identity matrix appears in the 1st and 3rd columns of $`R_0`$, meaning that the 1st and 3rd columns of $`A`$ are independent. The 2nd and 4th columns of $`A`$ are linear combinations of the independent columns, and the coefficients of these combinations are the $`F`$ in the equation above.
 
 Let us find the two special solutions $`\mathbf{s}_1, \mathbf{s}_2`$ for Ex 2:
 
@@ -692,7 +684,7 @@ Take $`s_2 = 0, s_4 = 1`$: $`\Rightarrow s_1 = -8, s_3 = -9`$. $`\therefore \mat
 1. **Complete Solution to $`A\mathbf{x} = \mathbf{b}`$:**
 
 ```math
-\mathbf{x} = \text{one particular solution } \mathbf{x}_p + \text{any } \mathbf{x}_n \text{ in the null space}
+\mathbf{x} = \text{one particular solution } \mathbf{x}_p + \text{any } \mathbf{x}_n \text{ in the nullspace}
 ```
 
 2. **Elimination** on $`A\mathbf{x} = \mathbf{b}`$ leads to $`R_0 \mathbf{x} = \mathbf{d}`$. Solvable when zero rows of $`R_0`$ have zeros in $`\mathbf{d}`$.
@@ -911,7 +903,7 @@ $`\therefore \mathbf{x}_n = \begin{pmatrix} -3 \\ 2 \\ 1 \end{pmatrix}`$
 \mathbf{x} = \mathbf{x}_p + \mathbf{x}_n = \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix} + \alpha \begin{pmatrix} -3 \\ 2 \\ 1 \end{pmatrix}
 ```
 
-This is a **line**: the line through the origin $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$ in the direction of $`\mathbf{x}_n`$ (solutions of $`A\mathbf{x}_n = \mathbf{0}`$), shifted by $`\mathbf{x}_p`$ (solutions of $`A\mathbf{x} = \mathbf{b}`$).
+This is a **line** (the solutions of $`A\mathbf{x} = \mathbf{b}`$): the line through the origin $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$ in the direction of $`\mathbf{x}_n`$ (the solutions of $`A\mathbf{x}_n = \mathbf{0}`$), shifted by $`\mathbf{x}_p`$.
 
 **Every matrix $`A`$ with full row rank ($`r = m`$) has the following properties:**
 1. All rows have pivots, and $`R_0`$ has no zero rows. $`R_0 = R`$.
@@ -1258,6 +1250,8 @@ These involve the 2nd derivative. In calculus, we find the solution $`y(x)`$:
 | $`y'' = y`$ | $`y = ce^x + de^{-x}`$ | $`\lbrace e^x, e^{-x}\rbrace`$ | 2 |
 
 *Table 4. Solutions, bases, and dimensions of second-order ODEs*
+
+> **[Calculus]** $`y''`$ is the second derivative of the function $`y`$, and differentiation is a linear operation that satisfies $`(cf + dg)' = cf' + dg'`$. Because of this linearity, a linear combination of two solutions of each of $`y'' = 0`$, $`y'' = -y`$, and $`y'' = y`$ is again a solution, so each solution set is a subspace of the function space.
 
 Each basis lies in the **nullspace** of the corresponding differential operator. The basis $`\lbrace1, x\rbrace`$ for $`y'' = 0`$ spans the nullspace of the 2nd derivative $`d^2/dx^2`$, and the bases for $`y'' = -y`$ and $`y'' = y`$ span the nullspaces of $`d^2/dx^2 + 1`$ and $`d^2/dx^2 - 1`$.
 
