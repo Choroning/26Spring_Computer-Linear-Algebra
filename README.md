@@ -22,15 +22,13 @@ This repository archives bilingual lecture notes and coursework for the Computer
 <br><a name="about-this-repository"></a>
 ## 📝 About This Repository
 
-This repository contains the bilingual lecture notes of a university-level Computer Linear Algebra course that follows Gilbert Strang's *Introduction to Linear Algebra* and covers vectors, linear equations, vector spaces, orthogonality, determinants, eigenvalues, SVD, and linear transformations.
-
-- `Lecture-Notes/` holds lecture notes on the concepts of every lecture topic. The lecture deck numbers (N1-N8) match the textbook chapters, so the units are also numbered by textbook chapter (`Ch##`), covering Chapters 1-8.
-- Every lecture note comes as an English file (`.md`) and a Korean file (`.ko.md`) with the same structure.
-- The solutions to the weekly homework assignments are not uploaded, so there is no `Coursework/` folder.
+- `Lecture-Notes/` holds lecture notes that follow the textbook's chapter numbers (`Ch01`-`Ch08`).
+- Every lecture note comes as an English (`.md`) and Korean (`.ko.md`) pair.
+- Homework solutions are not included.
 
 > **🤖 AI Agent Usage**
 > This course encourages the use of AI agents.
-> [Claude Code](https://claude.ai/download) and [Gemini CLI](https://github.com/google-gemini/gemini-cli) were used as coding assistants throughout the course, and Claude Code was also used to organize and translate the lecture notes and to restructure the repository.
+> [Claude Code](https://claude.ai/download) and [Gemini CLI](https://github.com/google-gemini/gemini-cli) were used as coding assistants throughout the course.
 
 <br><a name="course-information"></a>
 ## 📚 Course Information
@@ -44,14 +42,14 @@ This repository contains the bilingual lecture notes of a university-level Compu
 
 ### Course Overview
 
-An English-taught course on the fundamental concepts of linear algebra, including vector spaces, linear transformations, matrices, systems of linear equations, and eigenvalues. Following Gilbert Strang's textbook, it covers vectors and matrices, solving linear equations, vector spaces and subspaces, orthogonality, determinants, eigenvalues and eigenvectors, the singular value decomposition (SVD), and linear transformations in turn, and aims to develop the ability to bridge abstract theory with computational techniques such as matrix factorizations and eigenvalue decomposition to solve problems in science, engineering, and data analysis. The instructor, schedule and class format, assessment, course policies, weekly plan and progress, and references are in the [course information document](Course-Information.md).
+A course taught in English on the basic concepts of linear algebra, such as vector spaces, linear transformations, matrices, systems of linear equations, and eigenvalues, following Gilbert Strang's textbook. The instructor, schedule, assessment, course policies, and progress are in the [course information document](Course-Information.md).
 
 <br><a name="prerequisites"></a>
 ## ✅ Prerequisites
 
-- An understanding of Discrete Mathematics is required.
-- A Python interpreter must be installed.
-- Familiarity with scientific computing libraries is expected.
+- Understanding of Discrete Mathematics
+- Python interpreter installed
+- Familiarity with scientific computing libraries
 
 - **💻 Development Environment**
 
