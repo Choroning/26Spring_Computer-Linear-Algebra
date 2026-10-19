@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 5
 
@@ -36,7 +36,7 @@
   - [2.12 스칼라 곱과 행렬식](#212-스칼라-곱과-행렬식)
 - [3. 행렬식의 계산과 활용](#3-행렬식의-계산과-활용)
   - [3.1 유용한 성질들](#31-유용한-성질들)
-  - [3.2 삼각행렬과 대각행렬의 행렬식](#32-삼각행렬과-대각행렬의-행렬식)
+  - [3.2 삼각 행렬과 대각 행렬의 행렬식](#32-삼각-행렬과-대각-행렬의-행렬식)
   - [3.3 det(A^T) = det(A)](#33-detat--deta)
   - [3.4 소거 행렬과 행렬식](#34-소거-행렬과-행렬식)
   - [3.5 스케일링 행렬](#35-스케일링-행렬)
@@ -75,10 +75,10 @@
 
 ### 1.2 핵심 개념
 
-$`A`$를 정사각행렬이라 하자.
+$`A`$를 정사각 행렬이라 하자.
 
 - $`\det(A) = 0`$이면 $`A`$는 **역행렬이 존재하지 않는다** (not invertible). 역도 성립한다.
-  - $`\Longleftrightarrow`$ $`A`$는 **특이행렬** (singular)이다.
+  - $`\Longleftrightarrow`$ $`A`$는 **특이 행렬** (singular)이다.
   - $`\Longleftrightarrow`$ $`A`$는 **종속인 열** (dependent columns)을 가진다.
 
 ### 1.3 유용한 공식 (미리보기)
@@ -107,7 +107,7 @@ A^{-1} = \frac{1}{\det(A)}\,C^T, \qquad (A^{-1})_{ij} = \frac{C_{ji}}{\det(A)} \
 
 ### 2.1 행렬식의 정의
 
-**행렬식** (determinant)은 정사각행렬에 대응하는 스칼라 값으로, $`\det(A)`$ 또는 $`|A|`$로 표기한다.
+**행렬식** (determinant)은 정사각 행렬에 대응하는 스칼라 값으로, $`\det(A)`$ 또는 $`|A|`$로 표기한다.
 
 ### 2.2 2x2 행렬식
 
@@ -133,7 +133,7 @@ A^{-1} = \frac{1}{\det(A)}\,C^T, \qquad (A^{-1})_{ij} = \frac{C_{ji}}{\det(A)} \
 
 **관찰:** 두 행을 교환하면 행렬식의 부호가 바뀐다 (두 열을 교환하는 경우에도 마찬가지).
 
-**특이행렬의 경우:**
+**특이 행렬의 경우:**
 
 ```math
 \det\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} = 0
@@ -147,10 +147,10 @@ $`b \neq 0`$이면 $`ax + by = e`$와 $`2ax + 2by = f`$의 기울기는 모두 $
 
 $`\det A = 0`$은 $`A`$의 열들이 **선형독립이 아님** (not linearly independent)을 뜻한다. 즉 $`N(A) \neq \lbrace\mathbf{0}\rbrace`$이다.
 
-**특이행렬 예제:**
+**특이 행렬 예제:**
 
 ```math
-\text{특이행렬 } \begin{pmatrix} a & 2a \\ c & 2c \end{pmatrix} \text{의 행렬식} = 0
+\text{특이 행렬 } \begin{pmatrix} a & 2a \\ c & 2c \end{pmatrix} \text{의 행렬식} = 0
 ```
 
 ### 2.3 행 교환은 부호를 바꾼다
@@ -472,14 +472,14 @@ A = \begin{pmatrix} a & b & c \\ p & q & r \\ x & y & z \end{pmatrix}, \quad \de
 #### 행렬식이 알려주는 것
 
 1. 가역 행렬은 $`\det(A) \neq 0`$이다.
-2. 특이행렬은 $`\det(A) = 0`$이다.
+2. 특이 행렬은 $`\det(A) = 0`$이다.
 3. $`\lambda`$를 고유값 (eigenvalue), $`\mathbf{x}`$를 고유벡터 (eigenvector)라 하면 $`A\mathbf{x} = \lambda \mathbf{x}`$이므로 다음이 성립한다:
 
 ```math
 \Rightarrow (A - \lambda I)\mathbf{x} = \mathbf{0}
 ```
 
-$`\mathbf{x}`$가 영벡터가 아니므로, $`A - \lambda I`$는 특이행렬이고:
+$`\mathbf{x}`$가 영벡터가 아니므로, $`A - \lambda I`$는 특이 행렬이고:
 
 ```math
 \det(A - \lambda I) = 0
@@ -487,15 +487,15 @@ $`\mathbf{x}`$가 영벡터가 아니므로, $`A - \lambda I`$는 특이행렬�
 
 이것이 $`\lambda`$에 대한 방정식이 된다.
 
-### 3.2 삼각행렬과 대각행렬의 행렬식
+### 3.2 삼각 행렬과 대각 행렬의 행렬식
 
-**상삼각행렬 (upper triangular):**
+**상삼각 행렬 (upper triangular):**
 
 ```math
 \det\begin{pmatrix} a & b & c \\ 0 & q & r \\ 0 & 0 & z \end{pmatrix} = aqz
 ```
 
-**대각행렬 (diagonal):**
+**대각 행렬 (diagonal):**
 
 ```math
 \det\begin{pmatrix} a & & \\ & q & \\ & & z \end{pmatrix} = aqz
@@ -575,7 +575,7 @@ E_{21} = \begin{pmatrix} 1 & 0 & 0 \\ -2 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}, \qu
 \det(U) = \det(E_{32}E_{21}A) = \det(E_{32})\det(E_{21}A) = \det(E_{32})\det(E_{21})\det(A) = \det(A)
 ```
 
-**$`U^{-1}`$를 구하기 위한 역대입:**
+**$`U^{-1}`$를 구하기 위한 후진 대입:**
 
 $`(U|I)`$에서 시작:
 
@@ -675,7 +675,7 @@ S = \begin{pmatrix} a & & \\ & b & \\ & & c \end{pmatrix} \Rightarrow \det(S) = 
 
 $`A`$가 역행렬 $`A^{-1}`$을 가질 때, $`A`$는 **기본 행렬** (elementary matrix)들의 곱으로 분해된다 (소거 행렬, 순열 행렬, 스케일링 행렬).
 
-> **용어 정의:** **기본 행렬**이란 단위 행렬에 하나의 기본 행 연산을 수행하여 얻은 정사각행렬이다. 소거 행렬, 순열 행렬, 스케일링 행렬 등이 이에 해당한다.
+> **용어 정의:** **기본 행렬**이란 항등 행렬에 하나의 기본 행 연산을 수행하여 얻은 정사각 행렬이다. 소거 행렬, 순열 행렬, 스케일링 행렬 등이 이에 해당한다.
 
 ### 3.7 곱의 법칙: det(AB) = det(A) det(B)
 
@@ -879,7 +879,7 @@ A = \begin{pmatrix} a & b \\ c_1 + c_2 & d_1 + d_2 \end{pmatrix}
 \det(A) = \det(A^T)
 ```
 
-**증명.** $`R = \text{rref}(A)`$를 $`A`$의 **기약 행사다리꼴** (reduced row-echelon form)이라 하자.
+**증명.** $`R = \text{rref}(A)`$를 $`A`$의 **기약행사다리꼴** (reduced row-echelon form)이라 하자.
 
 그러면 $`A = E_p E_{p-1} \cdots E_2 E_1 R`$로 쓸 수 있다(여기서 $`E_i`$는 기본 행렬이다).
 
@@ -1009,7 +1009,7 @@ AA^{-1} = A(\mathbf{x} \;\; \mathbf{y}) = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pm
 **i)** $`A\mathbf{x} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$
 
 ```math
-A\begin{pmatrix} x_1 & 0 \\ x_2 & 1 \end{pmatrix} = \bigl(\mathbf{b} \;\; A\begin{pmatrix}0\\1\end{pmatrix}\bigr) = \begin{pmatrix} 1 & b \\ 0 & d \end{pmatrix} = B_1
+A\begin{pmatrix} x_1 & 0 \\ x_2 & 1 \end{pmatrix} = \bigl(A\mathbf{x} \;\; A\begin{pmatrix}0\\1\end{pmatrix}\bigr) = \begin{pmatrix} 1 & b \\ 0 & d \end{pmatrix} = B_1
 ```
 
 ```math
@@ -1017,7 +1017,7 @@ x_1 = \frac{\det(B_1)}{\det(A)} = \frac{d}{ad - bc}
 ```
 
 ```math
-A\begin{pmatrix} 1 & x_1 \\ 0 & x_2 \end{pmatrix} = \bigl(A\begin{pmatrix}1\\0\end{pmatrix} \;\; \mathbf{b}\bigr) = \begin{pmatrix} a & 1 \\ c & 0 \end{pmatrix} = B_2
+A\begin{pmatrix} 1 & x_1 \\ 0 & x_2 \end{pmatrix} = \bigl(A\begin{pmatrix}1\\0\end{pmatrix} \;\; A\mathbf{x}\bigr) = \begin{pmatrix} a & 1 \\ c & 0 \end{pmatrix} = B_2
 ```
 
 ```math
@@ -1203,7 +1203,7 @@ $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$, $`\mathbf{e}_2 = \
 
 ### 4.8 예제: 단위 정육면체와 축 정렬 상자
 
-**단위 정육면체:** 변이 표준 기저벡터 방향을 따른다.
+**단위 정육면체:** 변이 표준 기저 벡터 방향을 따른다.
 
 ```math
 \text{부피} = \det\begin{pmatrix} 1 & & \\ & 1 & \\ & & 1 \end{pmatrix} = 1
@@ -1223,11 +1223,11 @@ $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$, $`\mathbf{e}_2 = \
 
 | 개념 | 핵심 요약 |
 |:--------|:---------|
-| 행렬식 정의 | 행렬식은 정사각행렬에 대응하는 스칼라 값이며, $`\det(A)`$ 또는 $`\vert A \vert`$로 표기한다. |
+| 행렬식 정의 | 행렬식은 정사각 행렬에 대응하는 스칼라 값이며, $`\det(A)`$ 또는 $`\vert A \vert`$로 표기한다. |
 | $`2 \times 2`$ 행렬식 | $`\det\begin{pmatrix}a&b\\c&d\end{pmatrix} = ad - bc`$이다. |
 | $`3 \times 3`$ 행렬식 | $`3! = 6`$개의 순열에서 나온 6개의 항으로 이루어지며, $`a(qz-ry) - b(pz-rx) + c(py-qx)`$와 같다. |
 | 행/열 교환 | 두 행이나 두 열을 교환하면 행렬식의 부호가 바뀐다($`\det \to -\det`$). |
-| 특이행렬 | $`\det(A) = 0`$인 것은 $`A`$가 가역이 아닌 것과 동치이며, 열이 종속인 것과도 동치이다. |
+| 특이 행렬 | $`\det(A) = 0`$인 것은 $`A`$가 가역이 아닌 것과 동치이며, 열이 종속인 것과도 동치이다. |
 | 여인수 $`C_{ij}`$ | 행 $`i`$와 열 $`j`$를 제거한 행렬의 행렬식에 $`(-1)^{i+j}`$를 곱한 값이다. |
 | 여인수 전개 | 임의의 행 $`i`$를 따라 $`\det A = \sum_j A_{ij}C_{ij}`$로 전개한다. |
 | 여인수를 이용한 역행렬 | $`A^{-1} = \frac{1}{\det(A)}C^T`$이며, $`C^T = \text{adj}(A)`$는 수반 행렬이다. |
@@ -1236,7 +1236,7 @@ $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$, $`\mathbf{e}_2 = \
 | 곱의 법칙 | $`\det(AB) = \det(A)\det(B)`$이므로 곱의 행렬식은 각 행렬식의 곱이다. |
 | 소거 행렬 | $`\det(E) = 1`$이므로 $`\det(EA) = \det(A)`$이다. |
 | 직교 행렬 | 직교 행렬 $`Q`$의 행렬식은 $`\pm 1`$이다. |
-| 삼각/대각 행렬 | 삼각행렬과 대각행렬의 행렬식은 대각 원소들의 곱이다. |
+| 삼각/대각 행렬 | 삼각 행렬과 대각 행렬의 행렬식은 대각 원소들의 곱이다. |
 | 피벗 공식 | $`PA = LU`$를 이용하면 $`\det(A) = \pm(\text{피벗들의 곱})`$이다. |
 | 역행렬의 행렬식 | 가역 행렬 $`A`$에 대해 $`\det(A^{-1}) = 1/\det(A)`$이다. |
 | $`\det(A+B)`$ | 일반적으로 $`\det(A+B)`$는 $`\det(A) + \det(B)`$와 같지 않다. |
@@ -1295,6 +1295,6 @@ $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$, $`\mathbf{e}_2 = \
    <details>
    <summary>정답</summary>
 
-   평행사변형의 넓이는 $`|3 \cdot 2 - 1 \cdot 1| = 5`$이고, 삼각형의 넓이는 그 절반인 $`5/2`$이다. 상자의 부피는 세 변을 행으로 놓은 행렬 $`\begin{pmatrix} 1 & 0 & 0 \\ 1 & 2 & 0 \\ 1 & 1 & 3 \end{pmatrix}`$의 행렬식의 절댓값이며, 이 행렬은 하삼각행렬이므로 $`1 \cdot 2 \cdot 3 = 6`$이다.
+   평행사변형의 넓이는 $`|3 \cdot 2 - 1 \cdot 1| = 5`$이고, 삼각형의 넓이는 그 절반인 $`5/2`$이다. 상자의 부피는 세 변을 행으로 놓은 행렬 $`\begin{pmatrix} 1 & 0 & 0 \\ 1 & 2 & 0 \\ 1 & 1 & 3 \end{pmatrix}`$의 행렬식의 절댓값이며, 이 행렬은 하삼각 행렬이므로 $`1 \cdot 2 \cdot 3 = 6`$이다.
 
    </details>

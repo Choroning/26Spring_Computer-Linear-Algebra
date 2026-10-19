@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 3
 
@@ -50,7 +50,7 @@
   - [4.7 선형 방정식의 네 가지 경우](#47-선형-방정식의-네-가지-경우)
 - [5. 독립, 기저, 차원 (3.4)](#5-독립-기저-차원-34)
   - [5.1 독립 벡터](#51-독립-벡터)
-  - [5.2 영공간을 통한 선형 독립](#52-영공간을-통한-선형-독립)
+  - [5.2 영공간을 통한 선형독립](#52-영공간을-통한-선형독립)
   - [5.3 부분공간을 생성하는 벡터](#53-부분공간을-생성하는-벡터)
   - [5.4 벡터 공간의 기저](#54-벡터-공간의-기저)
   - [5.5 벡터 공간의 차원](#55-벡터-공간의-차원)
@@ -95,7 +95,7 @@
 
 ### 2.1 벡터 공간의 요건
 
-1. **요건:** 모든 선형 결합 $`c\mathbf{u} + d\mathbf{w}`$가 벡터 공간 안에 머물러야 한다.
+1. **요건:** 모든 선형결합 $`c\mathbf{u} + d\mathbf{w}`$가 벡터 공간 안에 머물러야 한다.
 2. $`A`$의 **행공간 (Row Space)** 은 $`A`$의 행들이 생성한다. $`A`$의 열들은 열공간 $`C(A)`$를 생성한다.
 3. **행렬 (Matrix)** $`M_1`$부터 $`M_n`$까지와 **함수 (Function)** $`f_1`$부터 $`f_n`$까지가 **행렬 공간 (Matrix Space)** 과 **함수 공간 (Function Space)** 을 생성한다.
 
@@ -114,7 +114,7 @@
 
 > **참고:** $`x_1, x_2, \ldots, x_n \in \mathbb{C}`$ (복소수)이면, 공간은 $`\mathbb{C}^n`$이 된다.
 
-> **참고:** $`c, d \in \mathbb{R}`$이고 $`\mathbf{u}, \mathbf{w} \in \mathbb{R}^n`$이면, $`c\mathbf{u} + d\mathbf{w} \in \mathbb{R}^n`$이다. 선형 결합은 벡터 공간 $`\mathbb{R}^n`$ 안에 머문다.
+> **참고:** $`c, d \in \mathbb{R}`$이고 $`\mathbf{u}, \mathbf{w} \in \mathbb{R}^n`$이면, $`c\mathbf{u} + d\mathbf{w} \in \mathbb{R}^n`$이다. 선형결합은 벡터 공간 $`\mathbb{R}^n`$ 안에 머문다.
 
 ### 2.3 벡터 공간의 정의
 
@@ -255,7 +255,7 @@ $`\mathbf{a}, \mathbf{b} \in \mathbb{X}`$라 하자. $`\mathbf{a} + \mathbf{b}`$
   - i) $`\mathbf{0} + \mathbf{0} = \mathbf{0} \in \mathbb{Z}`$
   - ii) $`c\mathbf{0} = \mathbf{0} \in \mathbb{Z}`$
 
-$`\mathbb{Z}`$는 **가역 행렬의 영공간 (Nullspace)** 이다. $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 영벡터 $`\mathbf{x} = \mathbf{0}`$이면, $`A`$의 열들은 선형 독립 (LI)이고 $`A`$의 영공간은 $`\mathbb{Z}`$이다.
+$`\mathbb{Z}`$는 **가역 행렬의 영공간 (Nullspace)** 이다. $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 영벡터 $`\mathbf{x} = \mathbf{0}`$이면, $`A`$의 열들은 선형독립 (LI)이고 $`A`$의 영공간은 $`\mathbb{Z}`$이다.
 
 ### 2.8 일반화된 벡터 공간
 
@@ -319,7 +319,7 @@ $`\mathbb{R}^3`$에서 원점 $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$을 �
 
 즉 이 벡터 집합은 덧셈 $`\mathbf{u} + \mathbf{w}`$와 곱셈 $`c\mathbf{u}`$에 대해 **닫혀 (Closed)** 있다.
 
-조건 i)과 ii)는 다음을 의미한다: **모든 선형 결합이 부분공간 안에 머문다.**
+조건 i)과 ii)는 다음을 의미한다: **모든 선형결합이 부분공간 안에 머문다.**
 
 > **참고:** 모든 부분공간은 영벡터를 포함한다. ii)에서 $`c = 0`$으로 놓으면 $`0\mathbf{u} = \mathbf{0}`$이 부분공간에 속한다.
 
@@ -402,9 +402,9 @@ A\mathbf{x} = \mathbf{b}
 = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n
 ```
 
-**$`A`$의 열공간**은 $`A`$의 열들의 모든 선형 결합으로 이루어진 벡터 공간이다.
+**$`A`$의 열공간**은 $`A`$의 열들의 모든 선형결합으로 이루어진 벡터 공간이다.
 
-$`A\mathbf{x} = \mathbf{b}`$를 푸는 것은 $`\mathbf{b}`$를 열들의 선형 결합으로 표현하는 것이다. 우변 벡터 $`\mathbf{b}`$는 $`A`$의 열공간에 속해야 한다.
+$`A\mathbf{x} = \mathbf{b}`$를 푸는 것은 $`\mathbf{b}`$를 열들의 선형결합으로 표현하는 것이다. 우변 벡터 $`\mathbf{b}`$는 $`A`$의 열공간에 속해야 한다.
 
 > **핵심:** 방정식 $`A\mathbf{x} = \mathbf{b}`$는 $`\mathbf{b}`$가 $`A`$의 열공간에 속할 때, 그리고 그때에만 풀린다.
 
@@ -513,7 +513,7 @@ R\mathbf{s}_1 = \mathbf{0}, \quad R\mathbf{s}_2 = \mathbf{0}
 \Rightarrow R(c_1 \mathbf{s}_1 + c_2 \mathbf{s}_2) = \mathbf{0}
 ```
 
-$`\mathbf{s}_1`$과 $`\mathbf{s}_2`$의 선형 결합은 $`R`$의 영공간에 속한다. **특별해 $`\mathbf{s}_1`$과 $`\mathbf{s}_2`$는 영공간의 기저이다.** 자유 변수 자리의 성분이 각각 $`(1, 0)`$과 $`(0, 1)`$이므로 둘은 독립이고, 영공간의 모든 해는 자유 변수 값 $`x_3, x_4`$로 정해지므로 $`x_3\mathbf{s}_1 + x_4\mathbf{s}_2`$로 쓸 수 있다.
+$`\mathbf{s}_1`$과 $`\mathbf{s}_2`$의 선형결합은 $`R`$의 영공간에 속한다. **특별해 $`\mathbf{s}_1`$과 $`\mathbf{s}_2`$는 영공간의 기저이다.** 자유 변수 자리의 성분이 각각 $`(1, 0)`$과 $`(0, 1)`$이므로 둘은 독립이고, 영공간의 모든 해는 자유 변수 값 $`x_3, x_4`$로 정해지므로 $`x_3\mathbf{s}_1 + x_4\mathbf{s}_2`$로 쓸 수 있다.
 
 ---
 
@@ -587,7 +587,7 @@ I\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + F\begin{pmatrix} 0 \\ 1 \end{pmatrix
 
 **$`A`$에서 $`\text{rref}(A)`$로의 소거: 기약행사다리꼴**
 
-소거를 적용하여 $`A`$를 $`R_0`$로 축소한다. 그러면 $`R_0`$에서 단위 행렬 $`I`$가 놓인 열의 위치가 $`A`$의 독립 열들의 행렬 $`C`$를 알려 준다. $`R_0`$에서 영행을 제거하면 $`A = CR`$에서의 행 행렬 $`R`$이 된다.
+소거를 적용하여 $`A`$를 $`R_0`$로 축소한다. 그러면 $`R_0`$에서 항등 행렬 $`I`$가 놓인 열의 위치가 $`A`$의 독립 열들의 행렬 $`C`$를 알려 준다. $`R_0`$에서 영행을 제거하면 $`A = CR`$에서의 행 행렬 $`R`$이 된다.
 
 2장에서 $`A`$는 정사각이고 가역이었다:
 
@@ -599,7 +599,7 @@ I\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + F\begin{pmatrix} 0 \\ 1 \end{pmatrix
 A = CR = C(I \quad F)
 ```
 
-소거는 $`I_{r \times r}`$ 단위 행렬에 도달할 때까지 계속된다. 피벗 열이 앞에 오지 않으면 열 순열 $`Q`$를 붙여 $`A = C(I \quad F)Q`$가 된다(예 2).
+소거는 $`I_{r \times r}`$ 항등 행렬에 도달할 때까지 계속된다. 피벗 열이 앞에 오지 않으면 열 순열 $`Q`$를 붙여 $`A = C(I \quad F)Q`$가 된다(예 2).
 
 ---
 
@@ -615,7 +615,7 @@ $`\text{rank}(A) = 2`$, $`n = 4`$, $`n - r = 2`$.
 
 $`A = (W \quad H)`$이고, $`W = \begin{pmatrix} 1 & 2 \\ 3 & 7 \end{pmatrix}`$ (독립 열), $`H = \begin{pmatrix} 11 & 17 \\ 37 & 57 \end{pmatrix}`$ (종속 열).
 
-$`R = (I \quad F)`$이다. 소거는 $`W`$를 단위 행렬로 바꾸었으며, 이는 $`A`$의 왼쪽에 $`W^{-1}`$을 곱하는 것과 같다.
+$`R = (I \quad F)`$이다. 소거는 $`W`$를 항등 행렬로 바꾸었으며, 이는 $`A`$의 왼쪽에 $`W^{-1}`$을 곱하는 것과 같다.
 
 ```math
 W^{-1}A = W^{-1}(W \quad H) = (I \quad W^{-1}H) = (I \quad F) = R
@@ -657,15 +657,7 @@ $`W`$는 $`3 \times 2`$ 행렬이므로 역행렬이 없지만, 독립 열과 �
 \begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}
 ```
 
-**예 2 상기:** 단위 행렬이 $`R_0`$의 1번째와 3번째 열에 나타나므로, $`A`$의 1번째와 3번째 열이 독립이다. $`A`$의 2번째와 4번째 열은 독립 열들의 선형 결합이다:
-
-```math
-\begin{pmatrix} 7 & 35 \\ 14 & 97 \\ 14 & 70 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 9 \\ 2 & 6 \end{pmatrix}\begin{pmatrix} 7 & 8 \\ 0 & 9 \end{pmatrix}
-```
-
-**행렬 분해 $`A = CR`$과 $`N(A)`$:**
-
-소거를 적용하여 $`A`$를 $`R_0`$로 축소한다. 그러면 $`R_0`$에서 단위 행렬 $`I`$가 놓인 열의 위치가 $`A`$의 독립 열들의 행렬 $`C`$를 알려 준다. $`R_0`$에서 영행을 제거하면 $`A = CR`$에서의 행 행렬 $`R`$이 된다.
+**예 2 상기:** 항등 행렬이 $`R_0`$의 1번째와 3번째 열에 나타나므로, $`A`$의 1번째와 3번째 열이 독립이다. $`A`$의 2번째와 4번째 열은 독립 열들의 선형결합이며, 그 결합 계수가 위 식의 $`F`$이다.
 
 예 2의 두 특별해 $`\mathbf{s}_1, \mathbf{s}_2`$를 구한다.
 
@@ -922,7 +914,7 @@ $`A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}`$이고, $`R = (I_{m \ti
 
 4. $`m < n`$이면, $`A\mathbf{x} = \mathbf{b}`$는 **부정 (Underdetermined)** 이다 (많은 해).
 
-행 완전 랭크 ($`r = m`$)일 때, $`m`$개의 행이 선형 독립이다. $`A^T`$의 열들이 LI이다. $`A^T`$의 영공간은 $`\mathbb{Z} = \lbrace\mathbf{0}\rbrace`$이다.
+행 완전 랭크 ($`r = m`$)일 때, $`m`$개의 행이 선형독립이다. $`A^T`$의 열들이 LI이다. $`A^T`$의 영공간은 $`\mathbb{Z} = \lbrace\mathbf{0}\rbrace`$이다.
 
 ### 4.7 선형 방정식의 네 가지 경우
 
@@ -959,13 +951,13 @@ c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n = \mathbf{0}
 \mathbf{v}_1 = -\frac{c_2}{c_1}\mathbf{v}_2 - \frac{c_3}{c_1}\mathbf{v}_3 - \cdots - \frac{c_n}{c_1}\mathbf{v}_n
 ```
 
-이때 $`\mathbf{v}_1`$은 다른 벡터들의 선형 결합이 되어 벡터들은 종속이다. 따라서 독립이라는 것은 어느 벡터도 나머지 벡터들의 선형 결합이 아니라는 뜻이다.
+이때 $`\mathbf{v}_1`$은 다른 벡터들의 선형결합이 되어 벡터들은 종속이다. 따라서 독립이라는 것은 어느 벡터도 나머지 벡터들의 선형결합이 아니라는 뜻이다.
 
 **(2) 벡터 $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$이 공간 $`\mathbb{S}`$를 생성한다 (Span): $`\mathbb{S}`$ = $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$의 모든 결합일 때.**
 
 예: $`\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$ $`\implies`$ $`\begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}`$. $`\hat{i}, \hat{j}`$가 공간 $`\mathbb{R}^2`$를 생성한다.
 
-**(3)** 벡터 $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$이 $`\mathbb{S}`$의 **기저 (Basis)** 가 되려면: **선형 독립 (Linearly Independent)** 이면서 $`\mathbb{S}`$를 **생성 (Span)** 해야 한다.
+**(3)** 벡터 $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$이 $`\mathbb{S}`$의 **기저 (Basis)** 가 되려면: **선형독립 (Linearly Independent)** 이면서 $`\mathbb{S}`$를 **생성 (Span)** 해야 한다.
 
 공간의 모든 벡터는 기저 벡터들의 **유일한** 결합이다.
 
@@ -981,9 +973,9 @@ $`A \in \mathbb{R}^{m \times n}`$을 고려한다. $`n`$개의 열 중 $`r`$개�
 3. 공간의 기저 (Basis for a Space)
 4. 공간의 차원 (Dimension of a Space)
 
-### 5.2 영공간을 통한 선형 독립
+### 5.2 영공간을 통한 선형독립
 
-> **용어 정의:** $`A`$의 열들이 **선형 독립 (Linearly Independent)** 이라는 것은 $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 $`\mathbf{x} = \mathbf{0}`$이라는 뜻이다.
+> **용어 정의:** $`A`$의 열들이 **선형독립 (Linearly Independent)** 이라는 것은 $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 $`\mathbf{x} = \mathbf{0}`$이라는 뜻이다.
 
 ```math
 \begin{pmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n = \mathbf{0}
@@ -1024,7 +1016,7 @@ $`x_3 = 1`$로 취하면: $`x_1 + 3 = 0 \Rightarrow x_1 = -3`$, $`x_2 - 1 = 0 \R
 
 $`A`$의 열들이 독립이면, $`\text{rank}(A) = r = n`$이고 $`A`$의 영공간은 영벡터만 포함한다: $`N(A) = \lbrace\mathbf{0}\rbrace`$.
 
-**$`\mathbb{R}^m`$에서 $`n > m`$이면 $`n`$개의 벡터는 반드시 선형 종속이다.**
+**$`\mathbb{R}^m`$에서 $`n > m`$이면 $`n`$개의 벡터는 반드시 선형종속이다.**
 
 예: 성분이 5개인 열 7개로 이루어진 $`5 \times 7`$ 행렬을 생각한다. 7개의 열벡터는 $`\mathbb{R}^5`$에 속한다. 5개의 행에 5개 초과의 피벗이 있을 수 없다. $`A\mathbf{x} = \mathbf{0}`$은 최소 $`2 \;(= 7 - 5)`$개의 자유 변수를 가진다. 즉, 0이 아닌 해를 가진다.
 
@@ -1048,7 +1040,7 @@ $`A \in \mathbb{R}^{m \times n}`$에 대해: 행벡터는 $`\mathbb{R}^n`$에, �
 
 > **용어 정의:** 벡터 공간의 **기저 (Basis)** 는 다음 두 성질을 가진 벡터 수열이다.
 >
-> i) 기저 벡터들이 **선형 독립**이다.
+> i) 기저 벡터들이 **선형독립**이다.
 >
 > ii) 기저 벡터들이 공간을 **생성** 한다.
 
@@ -1216,7 +1208,7 @@ $`\begin{pmatrix} -5 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} -2 \\ 0 \\ 1 \end{
 
 i) LI이다: $`x_1 A_1 + x_2 A_2 + x_3 A_3 + x_4 A_4 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}`$ $`\iff`$ $`x_1 = x_2 = x_3 = x_4 = 0`$.
 
-ii) $`\mathbb{M}`$을 생성한다: $`\begin{pmatrix} a & b \\ c & d \end{pmatrix} = aA_1 + bA_2 + cA_3 + dA_4`$. $`A_1, A_2, A_3, A_4`$의 선형 결합이 $`\mathbb{M}`$의 임의의 행렬을 만들 수 있다.
+ii) $`\mathbb{M}`$을 생성한다: $`\begin{pmatrix} a & b \\ c & d \end{pmatrix} = aA_1 + bA_2 + cA_3 + dA_4`$. $`A_1, A_2, A_3, A_4`$의 선형결합이 $`\mathbb{M}`$의 임의의 행렬을 만들 수 있다.
 
 **행렬 공간의 부분공간:**
 
@@ -1259,6 +1251,8 @@ ii) $`\mathbb{M}`$을 생성한다: $`\begin{pmatrix} a & b \\ c & d \end{pmatri
 
 *표 4. 2계 상미분방정식의 해, 기저, 차원*
 
+> **[미적분학]** $`y''`$는 함수 $`y`$를 두 번 미분한 2계 도함수이고, 미분은 $`(cf + dg)' = cf' + dg'`$를 만족하는 선형 연산이다. 이 선형성 때문에 $`y'' = 0`$, $`y'' = -y`$, $`y'' = y`$ 각각에서 두 해의 선형결합도 다시 해가 되므로, 해 집합은 함수 공간의 부분공간을 이룬다.
+
 각 기저는 해당 미분 연산자의 **영공간 (Nullspace)** 에 속한다. $`y'' = 0`$의 기저 $`\lbrace1, x\rbrace`$는 2계 도함수 $`d^2/dx^2`$의 영공간을 생성하고, $`y'' = -y`$와 $`y'' = y`$의 기저는 각각 $`d^2/dx^2 + 1`$과 $`d^2/dx^2 - 1`$의 영공간을 생성한다.
 
 $`y'' = 2`$는 특수해 $`y_p = x^2`$을 가진다: $`\frac{dy_p}{dx} = 2x`$, $`\frac{d^2 y_p}{dx^2} = 2`$.
@@ -1277,7 +1271,7 @@ y(x) = y_p(x) + y_n(x) = x^2 + cx + d
 
 ### 6.1 차원 요약
 
-1. 열공간 $`C(A)`$와 행공간 $`C(A^T)`$는 모두 차원 $`r`$ (= $`A`$의 계수)을 가진다.
+1. 열공간 $`C(A)`$와 행공간 $`C(A^T)`$는 모두 차원 $`r`$ (= $`A`$의 랭크)을 가진다.
 2. $`A`$의 영공간 $`N(A)`$는 차원 $`n - r`$을 가진다.
 3. $`A`$의 좌영공간 (Left Nullspace) $`N(A^T)`$는 차원 $`m - r`$을 가진다.
 4. $`A`$에서 $`R_0`$로의 소거는 $`C(A)`$와 $`N(A^T)`$를 **바꾸지만**, 차원은 변하지 않는다.
@@ -1483,7 +1477,7 @@ flowchart LR
 | 벡터 공간 (Vector Space) | 덧셈과 스칼라 곱에 닫혀 있고 8가지 공리를 만족하는 집합이다. |
 | 체 (Field) | $`+, -, \times`$와 0이 아닌 원소로 나누는 $`\div`$가 정의된 집합이며, $`\mathbb{R}`$과 $`\mathbb{C}`$가 그 예이다. |
 | 부분공간 (Subspace) | 그 자체가 벡터 공간인 벡터 공간의 부분집합이며, 반드시 $`\mathbf{0}`$을 포함한다. |
-| 열공간 $`C(A)`$ | $`A`$의 열들의 모든 선형 결합이며, $`A\mathbf{x} = \mathbf{b}`$는 $`\mathbf{b} \in C(A)`$일 때에만 풀린다. |
+| 열공간 $`C(A)`$ | $`A`$의 열들의 모든 선형결합이며, $`A\mathbf{x} = \mathbf{b}`$는 $`\mathbf{b} \in C(A)`$일 때에만 풀린다. |
 | 행공간 $`C(A^T)`$ | $`A^T`$의 열공간이며, $`A`$의 행들이 생성한다. |
 | 영공간 $`N(A)`$ | $`A\mathbf{x} = \mathbf{0}`$의 모든 해로 이루어진 $`\mathbb{R}^n`$의 부분공간이다. |
 | 좌영공간 $`N(A^T)`$ | $`A^T\mathbf{y} = \mathbf{0}`$을 만족하는 모든 $`\mathbf{y}`$로 이루어진 $`\mathbb{R}^m`$의 부분공간이다. |
@@ -1494,9 +1488,9 @@ flowchart LR
 | 특수해 $`\mathbf{x}_p`$ (Particular Solution) | 모든 자유 변수를 0으로 놓고 $`R_0\mathbf{x} = \mathbf{d}`$를 풀어 얻는다. |
 | 열 완전 랭크 ($`r = n`$) | $`N(A) = \lbrace\mathbf{0}\rbrace`$이고, $`A\mathbf{x} = \mathbf{b}`$의 해는 최대 1개이며, $`R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}`$이다. |
 | 행 완전 랭크 ($`r = m`$) | $`A\mathbf{x} = \mathbf{b}`$가 항상 풀리고, $`C(A) = \mathbb{R}^m`$이며, $`R = (I \; F)`$이다. |
-| 선형 독립 (Linear Independence) | $`c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0}`$이 모든 $`c_i = 0`$일 때만 성립한다. |
+| 선형독립 (Linear Independence) | $`c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0}`$이 모든 $`c_i = 0`$일 때만 성립한다. |
 | 생성 (Spanning) | 벡터들의 모든 결합이 $`\mathbb{S}`$와 같을 때 그 벡터들이 $`\mathbb{S}`$를 생성한다. |
-| 기저 (Basis) | 선형 독립이면서 공간을 생성하는 벡터들이며, 공간의 각 벡터를 유일하게 표현한다. |
+| 기저 (Basis) | 선형독립이면서 공간을 생성하는 벡터들이며, 공간의 각 벡터를 유일하게 표현한다. |
 | 차원 (Dimension) | 기저에 있는 벡터의 수이며, 어떤 기저를 택해도 같다. |
 | $`\dim C(A) = \dim C(A^T) = r`$ | 열공간과 행공간은 같은 차원, 즉 랭크를 가진다. |
 | $`\dim N(A) = n - r`$ | 영공간의 차원은 자유 변수의 수와 같다. |

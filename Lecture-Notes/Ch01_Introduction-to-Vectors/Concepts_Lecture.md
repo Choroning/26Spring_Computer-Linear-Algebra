@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -84,7 +84,7 @@
 | 2 | Solving Linear Equations | $`Ax = b`$ | Chapter 2 |
 | 3 | Solving Linear Equations | $`Ax = b`$ | Chapter 3 |
 | 4 | Four Fundamental Subspaces | Column space | Sections 3.1-3.2 |
-| 5 | Four Fundamental Subspaces | Null space | Sections 3.3-3.5 |
+| 5 | Four Fundamental Subspaces | Nullspace | Sections 3.3-3.5 |
 | 6 | Orthogonality | Orthogonality | Sections 4.1-4.3 |
 | 7 | Orthogonality | Orthogonality | Sections 4.4-4.5 |
 | 8 | **Midterm Exam** | | |
@@ -138,7 +138,7 @@
 c\mathbf{v} + d\mathbf{w} = c\begin{pmatrix} 2 \\ 4 \end{pmatrix} + d\begin{pmatrix} 1 \\ 3 \end{pmatrix} \in \mathbb{R}^2
 ```
 
-> **Key Point:** The linear combinations $`c\mathbf{v} + d\mathbf{w}`$ of the two vectors fill the whole $`xy`$ plane.
+> **Key Point:** Since $`\mathbf{v}`$ and $`\mathbf{w}`$ do not lie on one line, the linear combinations $`c\mathbf{v} + d\mathbf{w}`$ of the two vectors fill the whole $`xy`$ plane.
 
 ### 2.2 Length of a Vector
 
@@ -1309,7 +1309,7 @@ A = \begin{pmatrix} 1 & 3 \\ 2 & 4 \\ 3 & 7 \end{pmatrix}\begin{pmatrix} 1 & 0 &
 
 > **Key Point:** In $`A = CR`$, $`R`$ is the **reduced row echelon form** of $`A`$ with its zero rows removed.
 
-**Example (ex5):**
+**Example:**
 
 ```math
 A = \begin{pmatrix} | & | & | \\ \mathbf{a}_1 & \mathbf{a}_2 & 3\mathbf{a}_1 + 4\mathbf{a}_2 \\ | & | & | \end{pmatrix}_{m \times 3}
@@ -1346,7 +1346,7 @@ So $`AB`$ is the sum of $`n`$ rank one matrices. Each needs $`mp`$ multiplicatio
 > **Note:** For the matrix $`A = \begin{pmatrix} 1 & 3 & 4 \\ 2 & 4 & 2 \\ 3 & 7 & 6 \end{pmatrix}`$, $`\text{rank}(A) = 2`$. Since $`A`$ is a $`3 \times 3`$ matrix whose rank is less than 3, the following holds.
 >
 > $`\Rightarrow`$ $`A`$ has no inverse matrix.
-> $`\Rightarrow`$ The determinant of $`A`$ is zero.
+> $`\Rightarrow`$ The determinant of $`A`$ is zero (Chapter 5 covers determinants).
 
 ---
 

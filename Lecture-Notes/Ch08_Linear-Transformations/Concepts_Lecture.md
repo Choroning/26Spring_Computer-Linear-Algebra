@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 8
 
@@ -21,7 +21,7 @@
 - [1. Idea of a Linear Transformation (8.1)](#1-idea-of-a-linear-transformation-81)
   - [1.1 Definition and Linearity Condition](#11-definition-and-linearity-condition)
   - [1.2 Formal Definition of a Linear Transformation](#12-formal-definition-of-a-linear-transformation)
-  - [1.3 Non-Linear Example: Shift Transformation and Affine Mappings](#13-non-linear-example-shift-transformation-and-affine-mappings)
+  - [1.3 Non-Linear Example: Shift Transformation and Affine Transformations](#13-non-linear-example-shift-transformation-and-affine-transformations)
   - [1.4 Examples of Linear and Non-Linear Transformations](#14-examples-of-linear-and-non-linear-transformations)
   - [1.5 Linear Transformation Determined by Basis](#15-linear-transformation-determined-by-basis)
   - [1.6 Geometric Interpretation: Lines to Lines](#16-geometric-interpretation-lines-to-lines)
@@ -130,7 +130,7 @@ A\mathbf{y} = A(\mathbf{u} + \mathbf{w}) = A\mathbf{u} + A\mathbf{w}
 
 Matrix multiplication $`T(\mathbf{u}) = A\mathbf{u}`$ gives a linear transformation.
 
-A transformation $`T`$ assigns an output $`T(\mathbf{u})`$ to each input vector $`\mathbf{u}`$ in $`V`$.
+A transformation $`T`$ assigns an output $`T(\mathbf{u})`$ to each input vector $`\mathbf{u}`$ in a vector space $`V`$.
 
 **The transformation is linear if it meets these requirements for all $`\mathbf{u}`$ and $`\mathbf{w} \in V`$:**
 
@@ -158,7 +158,7 @@ T(c_1\mathbf{x}_1 + c_2\mathbf{x}_2 + \cdots + c_n\mathbf{x}_n) = c_1\,T(\mathbf
 
 ---
 
-### 1.3 Non-Linear Example: Shift Transformation and Affine Mappings
+### 1.3 Non-Linear Example: Shift Transformation and Affine Transformations
 
 **Example.** Define $`T`$ that takes a vector $`\mathbf{u} \in V`$ and adds a fixed vector $`\mathbf{u}_0 \in V`$ ($`\mathbf{u}_0 \neq \mathbf{0}`$) as follows:
 
@@ -187,9 +187,9 @@ Therefore $`T`$ is **NOT** linear.
 T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0
 ```
 
-is called an **affine** transformation.
+is called an **affine transformation**.
 
-In computer graphics, affine mapping is used:
+In computer graphics, affine transformations are used:
 - Start with a shape $`\mathbf{x}`$.
 - Rotate: $`\mathbf{y} = R\mathbf{x}`$. This step is linear.
 - Translate: $`\mathbf{z} = \mathbf{y} + \begin{pmatrix} 0 \\ u_0 \end{pmatrix}`$. This step is a shift.
@@ -200,7 +200,9 @@ flowchart LR
     Y -->|"add (0, u₀) (shift)"| Z["z = Rx + (0, u₀)"]
 ```
 
-*Figure 1. Affine mapping in computer graphics: rotation followed by translation*
+*Figure 1. Affine transformation in computer graphics: rotation followed by translation*
+
+> **[Computer Graphics]** Computer graphics places shapes on the screen by applying coordinate transformations such as rotation, scaling, and translation in sequence. Translation does not fix the origin, so it is not a linear transformation, and a placement that combines rotation and translation is handled as the affine transformation of this section.
 
 ---
 
@@ -250,13 +252,13 @@ T(-\mathbf{u}) \stackrel{?}{=} -T(\mathbf{u})
 \|-\mathbf{u}\| = \|\mathbf{u}\| \neq -\|\mathbf{u}\|
 ```
 
-Homogeneity also fails, because a norm is never negative.
+Homogeneity also fails for $`\mathbf{u} \neq \mathbf{0}`$ and $`c < 0`$, because a norm is never negative.
 
 ---
 
 **Example 3 (linear): Rotation**
 
-$`T`$ is the rotation matrix that rotates every vector by $`30°`$.
+$`T`$ is the transformation that rotates every vector by $`30°`$.
 
 ```math
 T: \mathbf{u} \longrightarrow \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}\mathbf{u} \quad \text{with } \theta = 30°
@@ -286,7 +288,7 @@ T(c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_n\mathbf{u}_n) = c_1\,T(\mathbf
 
 ### 1.5 Linear Transformation Determined by Basis
 
-Suppose you know $`T(\mathbf{u})`$ for all vectors $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$ in a basis.
+Suppose you know $`T(\mathbf{u}_1), \ldots, T(\mathbf{u}_n)`$ for all vectors $`\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n`$ in a basis.
 
 Write any vector in the space as $`\mathbf{y} = c_1\mathbf{u}_1 + \cdots + c_n\mathbf{u}_n`$.
 
@@ -319,6 +321,8 @@ T(cu + dw) = \frac{d}{dt}(cu + dw) = c\frac{du}{dt} + d\frac{dw}{dt} = c\,T(u) +
 
 where $`c, d \in \mathbb{R}`$.
 
+> **[Calculus]** The linearity of the derivative combines the sum rule $`(u + w)' = u' + w'`$ and the constant multiple rule $`(cu)' = cu'`$ from calculus. This section reads the two rules as the two conditions of a linear transformation and treats differentiation and integration as linear transformations on function space and their matrices.
+
 **Nullspace of $`T`$:**
 
 ```math
@@ -328,7 +332,7 @@ T(u) = \frac{d}{dt}u = 0
 This only happens when $`u`$ is a constant $`c`$.
 
 ```math
-dc \in \mathcal{N}(T), \quad d \in \mathbb{R}
+c \in \mathcal{N}(T) \quad \text{(every constant } c \in \mathbb{R}\text{)}
 ```
 
 The nullspace is a **line** in function space.
@@ -370,10 +374,10 @@ T: \begin{pmatrix} a \\ b \\ c \end{pmatrix} \longrightarrow \begin{pmatrix} b \
 ```
 
 ```math
-a + bx + cx^2 \longrightarrow b + 2cx
+a + bt + ct^2 \longrightarrow b + 2ct
 ```
 
-Linear transformation $`\dfrac{dy}{dx}`$ is connected to $`A\mathbf{u}`$:
+The linear transformation $`\dfrac{d}{dt}`$ is connected to $`A\mathbf{u}`$:
 
 ```math
 \begin{pmatrix} b \\ 2c \end{pmatrix} = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}\begin{pmatrix} a \\ b \\ c \end{pmatrix}
@@ -388,7 +392,7 @@ The matrix is $`A = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}`$.
 Integration $`T^+`$ is also linear:
 
 ```math
-\int_0^x (D + Ex)\,dx = Dx + \frac{1}{2}Ex^2
+\int_0^x (D + Et)\,dt = Dx + \frac{1}{2}Ex^2
 ```
 
 ```math
@@ -447,14 +451,14 @@ T^{-1}(T(\mathbf{u})) = A^{-1}(A\mathbf{u}) = \mathbf{u}
 
 If $`T(\mathbf{u}) = A\mathbf{u}`$, $`S(\mathbf{u}) = B\mathbf{u}`$, then $`T \circ S(\mathbf{u})`$ corresponds to $`AB\mathbf{u}`$.
 
-**Q:** Are all linear transformations from $`V = \mathbb{R}^n`$ to $`W = \mathbb{R}^m`$ produced by matrices? **Yes.**
+**Q.** Are all linear transformations from $`V = \mathbb{R}^n`$ to $`W = \mathbb{R}^m`$ produced by matrices? **Yes.**
 
 The set of all $`A\mathbf{u}`$ is the **column space**.
 
-The **null space** of $`A`$ contains all the inputs for which $`A\mathbf{u} = \mathbf{0}`$.
+The **nullspace** of $`A`$ contains all the inputs for which $`A\mathbf{u} = \mathbf{0}`$.
 
 ```math
-\text{Range of } T = T(\mathbf{u}) \quad \longleftrightarrow \quad \text{column space } A\mathbf{u}
+\text{Range of } T = \text{all } T(\mathbf{u}) \quad \longleftrightarrow \quad \text{column space} = \text{all } A\mathbf{u}
 ```
 
 ```math
@@ -575,11 +579,11 @@ T(\mathbf{u}_n) = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)
 Combining:
 
 ```math
-\begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & \cdots & T(\mathbf{u}_n) \end{pmatrix} = A
+\begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & \cdots & T(\mathbf{u}_n) \end{pmatrix}
 ```
 
 ```math
-= (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)\begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
+= (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)\begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix} = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \cdots \;\; \mathbf{w}_m)A
 ```
 
 > **Key Point:** The $`j`$th column of $`A`$ holds the coefficients of $`T(\mathbf{u}_j)`$, the result of applying $`T`$ to the $`j`$th basis vector $`\mathbf{u}_j`$, written as a linear combination of the output basis vectors.
@@ -648,7 +652,7 @@ B = W^{-1}V
 = \begin{pmatrix} \cos(-\theta) & -\sin(-\theta) \\ \sin(-\theta) & \cos(-\theta) \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\mathbf{c}
 ```
 
-When $`V = I`$, the coefficients $`\mathbf{d}`$ in $`W`$ become:
+When $`V = I`$, $`\mathbf{c} = \mathbf{u} = (x, y)^T`$, so the coefficients $`\mathbf{d}`$ in $`W`$ become:
 
 ```math
 \mathbf{d} = W^{-1}\begin{pmatrix} x \\ y \end{pmatrix}
@@ -680,7 +684,7 @@ T(\mathbf{u}_4) = T(x^3) = 3x^2 = 3\mathbf{w}_3
 ```
 
 ```math
-A = \begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & T(\mathbf{u}_3) & T(\mathbf{u}_4) \end{pmatrix}
+\begin{pmatrix} T(\mathbf{u}_1) & T(\mathbf{u}_2) & T(\mathbf{u}_3) & T(\mathbf{u}_4) \end{pmatrix}
 ```
 
 ```math
@@ -705,7 +709,7 @@ $`\mathbf{d} = D\mathbf{c}`$ produces the coefficients in the $`T(u)`$ combinati
 
 ### 2.7 Example 4: Integral Matrix (Pseudoinverse of Derivative)
 
-Integral of $`d_1 + d_2 x + d_3 x^2`$:
+Integral of $`d_1 + d_2 x + d_3 x^2`$ (from $`0`$ to $`x`$):
 
 ```math
 (1 \;\; x \;\; x^2)\begin{pmatrix} d_1 \\ d_2 \\ d_3 \end{pmatrix}

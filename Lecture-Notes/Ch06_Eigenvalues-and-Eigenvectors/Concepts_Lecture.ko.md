@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 6
 
@@ -49,7 +49,7 @@
   - [3.9 양정치 행렬과 최솟값 문제](#39-양정치-행렬과-최솟값-문제)
   - [3.10 양반정치 행렬](#310-양반정치-행렬)
   - [3.11 합동 행렬](#311-합동-행렬)
-  - [3.12 최적화와 머신 러닝](#312-최적화와-머신-러닝)
+  - [3.12 최적화와 기계학습](#312-최적화와-기계학습)
 - [4. 선형 미분방정식 풀기 (6.5)](#4-선형-미분방정식-풀기-65)
   - [4.1 핵심 사실](#41-핵심-사실)
   - [4.2 스칼라 상미분방정식 복습](#42-스칼라-상미분방정식-복습)
@@ -57,7 +57,7 @@
   - [4.4 일반적인 n x n 풀이 절차](#44-일반적인-n-x-n-풀이-절차)
   - [4.5 행렬의 지수 함수](#45-행렬의-지수-함수)
   - [4.6 이계 방정식](#46-이계-방정식)
-  - [4.7 2 x 2 행렬의 안정성](#47-2-x-2-행렬의-안정성)
+  - [4.7 2x2 행렬의 안정성](#47-2x2-행렬의-안정성)
   - [4.8 풀이 예제](#48-풀이-예제)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
@@ -70,7 +70,7 @@
 
 ### 1.1 고유값과 고유벡터의 정의
 
-$`A`$가 $`\mathbf{x}`$에 작용할 때, 방향을 바꾸지 않고 벡터 $`\mathbf{x}`$를 $`\lambda`$만큼 늘이거나 줄이기만 한다.
+$`A`$가 고유벡터 $`\mathbf{x}`$에 작용하면, $`\mathbf{x}`$가 놓인 직선을 벗어나지 않고 $`\mathbf{x}`$를 $`\lambda`$배로 늘이거나 줄이기만 한다($`\lambda < 0`$이면 방향이 반대가 된다).
 
 ```math
 A\mathbf{x} = \lambda \mathbf{x}
@@ -83,7 +83,7 @@ A\mathbf{x} = \lambda \mathbf{x}
 
 1. $`A\mathbf{x} = \lambda\mathbf{x}`$이면, $`\mathbf{x} \neq \mathbf{0}`$는 $`A`$의 고유벡터이고, 수 $`\lambda`$는 고유값이다.
 
-2. $`A^n \mathbf{x} = \lambda^n \mathbf{x}`$ (모든 $`n`$에 대해); $`(A + cI)\mathbf{x} = (\lambda + c)\mathbf{x}`$; 그리고 $`\lambda \neq 0`$이면 $`A^{-1}\mathbf{x} = \frac{1}{\lambda}\mathbf{x} = \lambda^{-1}\mathbf{x}`$.
+2. $`A^n \mathbf{x} = \lambda^n \mathbf{x}`$ (모든 양의 정수 $`n`$에 대해); $`(A + cI)\mathbf{x} = (\lambda + c)\mathbf{x}`$; 그리고 $`\lambda \neq 0`$이면 $`A^{-1}\mathbf{x} = \frac{1}{\lambda}\mathbf{x} = \lambda^{-1}\mathbf{x}`$.
 
 **증명** ($`A^{-1}`$에 대해):
 
@@ -183,7 +183,7 @@ $`\mathbf{x}`$가 영이 아닌 벡터이면, $`A - \lambda I`$는 **특이**(si
 \boxed{\det(A - \lambda I) = 0}
 ```
 
-이 특성 다항식($`\det(A - \lambda I) = 0`$)은 $`\lambda`$만을 포함하며, $`\lambda`$는 $`A - \lambda I`$의 주대각선을 따라 나타난다. 행렬식은 $`(-\lambda)^n`$을 포함한다.
+이 특성 방정식($`\det(A - \lambda I) = 0`$)은 $`\lambda`$만을 포함하며, $`\lambda`$는 $`A - \lambda I`$의 주대각선을 따라 나타난다. 행렬식은 $`(-\lambda)^n`$을 포함한다.
 
 - 이 방정식은 $`n`$개의 해 $`\lambda_1`$부터 $`\lambda_n`$을 갖는다.
 - $`A_{n \times n}`$은 $`n`$개의 고유값을 갖는다.
@@ -461,7 +461,7 @@ $`x_1 + 2x_2 = 0 \implies x_1 = -2x_2`$. $`x_2 = 1`$로 놓으면 $`x_1 = -2`$: 
 \begin{pmatrix} a & b \\ ka & kb \end{pmatrix}\begin{pmatrix} b \\ -a \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 ```
 
-**비고 3:** 이 예제는 서로 다른 두 고유값을 가지므로, 두 고유벡터가 $`\mathbb{R}^2`$를 생성한다. $`2 \times 2`$ 행렬이 고유값을 하나만(중복으로) 가지면 고유벡터가 $`\mathbb{R}^2`$를 생성하지 못할 수 있다. 예를 들어 $`3I`$는 고유값이 3 하나뿐이지만 모든 영이 아닌 벡터가 고유벡터이므로 고유벡터가 $`\mathbb{R}^2`$를 생성한다.
+**비고 3:** 이 예제는 서로 다른 두 고유값을 가지므로, 두 고유벡터가 $`\mathbb{R}^2`$를 생성한다. $`2 \times 2`$ 행렬이 고유값을 하나만(중복으로) 가지면 고유벡터가 $`\mathbb{R}^2`$를 생성하지 못할 수 있다. 예를 들어 $`3I`$는 고유값이 3 하나뿐이어도 모든 영이 아닌 벡터가 고유벡터이므로 고유벡터가 $`\mathbb{R}^2`$를 생성하지만, 다음 예는 생성하지 못하는 경우이다.
 
 예: $`A = \begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}`$, $`\det(A - \lambda I) = (3 - \lambda)^2 = 0`$이므로, $`\lambda = 3`$. 기하적 중복도(geometric multiplicity) = 1, 대수적 중복도(algebraic multiplicity) = 2. 행렬 $`A`$는 **결함**(defective)이 있으며 **대각화 불가능**하다.
 
@@ -689,13 +689,13 @@ $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_p`$가 선형독립이 되는 �
 선형결합에 $`A`$를 곱하면:
 
 ```math
-A\mathbf{x}_{p+1} = \lambda_{p+1}\mathbf{x}_{p+1} = c_1 A\mathbf{x}_1 + c_2 A\mathbf{x}_2 + \cdots + c_p A\mathbf{x}_p = c_1\lambda_1\mathbf{x}_1 + c_2\lambda_2\mathbf{x}_2 + \cdots + c_p\lambda_p\mathbf{x}_p \quad \text{--- (1)}
+A\mathbf{x}_{p+1} = \lambda_{p+1}\mathbf{x}_{p+1} = c_1 A\mathbf{x}_1 + c_2 A\mathbf{x}_2 + \cdots + c_p A\mathbf{x}_p = c_1\lambda_1\mathbf{x}_1 + c_2\lambda_2\mathbf{x}_2 + \cdots + c_p\lambda_p\mathbf{x}_p \qquad \text{(1)}
 ```
 
 선형결합에 $`\lambda_{p+1}`$을 곱하면:
 
 ```math
-\lambda_{p+1}\mathbf{x}_{p+1} = c_1\lambda_{p+1}\mathbf{x}_1 + c_2\lambda_{p+1}\mathbf{x}_2 + \cdots + c_p\lambda_{p+1}\mathbf{x}_p \quad \text{--- (2)}
+\lambda_{p+1}\mathbf{x}_{p+1} = c_1\lambda_{p+1}\mathbf{x}_1 + c_2\lambda_{p+1}\mathbf{x}_2 + \cdots + c_p\lambda_{p+1}\mathbf{x}_p \qquad \text{(2)}
 ```
 
 (1)에서 (2)를 빼면:
@@ -742,7 +742,7 @@ $`k \to \infty`$이면, $`(0.5)^k \to 0`$:
 A^{\infty} = X\Lambda^{\infty}X^{-1} = \begin{pmatrix} 0.6 & 1 \\ 0.4 & -1 \end{pmatrix}\begin{pmatrix} 1 & \\ & 0 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0.4 & -0.6 \end{pmatrix} = \begin{pmatrix} 0.6 & 0.6 \\ 0.4 & 0.4 \end{pmatrix}
 ```
 
-**Q.** $`A^k`$는 언제 영행렬로 수렴하는가?
+**Q.** $`A^k`$는 언제 영 행렬로 수렴하는가?
 
 **A.** 모든 $`|\lambda_i| < 1`$일 때.
 
@@ -901,7 +901,7 @@ S = Q\Lambda Q^{-1} = Q\Lambda Q^T
 
 예: $`I = I^T = \begin{pmatrix} 1 & & \\ & 1 & \\ & & \ddots \end{pmatrix}`$, $`\lambda = 1, 1, \ldots, 1`$. $`I\mathbf{x} = 1 \cdot \mathbf{x}`$이므로 모든 영이 아닌 벡터 $`\mathbf{x}`$가 고유벡터이다.
 
-직교하도록 선택할 수 있고, **단위 벡터**로 재조정(rescale)할 수 있다 $`\implies`$ **정규직교**(orthonormal).
+직교하도록 선택할 수 있고, **단위벡터**로 재조정(rescale)할 수 있다 $`\implies`$ **정규직교**(orthonormal).
 
 ### 3.2 스펙트럼 정리
 
@@ -1051,7 +1051,7 @@ $`\implies S\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n
 
 $`\implies \mathcal{N}(S) = \lbrace\mathbf{0}\rbrace`$
 
-$`\implies S`$는 full rank $`\iff \dim C(S) = n`$
+$`\implies S`$는 완전 랭크 $`\iff \dim C(S) = n`$
 
 $`\therefore S`$는 **가역**이다.
 
@@ -1081,17 +1081,17 @@ A^T A = (Q\sqrt{\Lambda}Q^T)(Q\sqrt{\Lambda}Q^T) = Q\sqrt{\Lambda}\underbrace{Q^
 
 **비고:** 에너지 $`= \mathbf{x}^T S\mathbf{x} = \mathbf{x}^T A^T A\mathbf{x} = (A\mathbf{x})^T A\mathbf{x} = \|A\mathbf{x}\|^2`$.
 
-$`\|A\mathbf{x}\| > 0`$ ($`A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$인 경우) $`\iff`$ $`A`$의 열이 독립이다(열 full rank).
+$`\|A\mathbf{x}\| > 0`$ ($`A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x} \in \mathbb{R}^n \setminus \lbrace\mathbf{0}\rbrace`$인 경우) $`\iff`$ $`A`$의 열이 독립이다(열 완전 랭크).
 
 ### 3.6 양정치 행렬 판별법
 
 **(1) 양의 고유값:** 양정치 행렬 $`S`$는 모든 양의 고유값을 갖는다.
 
-예: $`n \geq 2`$일 때 $`S = \mathbf{u}\mathbf{v}^T`$ (랭크 1 행렬)은 양정치가 아니다.
+예: $`n \geq 2`$일 때 랭크 1 행렬 $`A = \mathbf{u}\mathbf{v}^T`$는 양정치가 아니다.
 
 $`A = \begin{pmatrix} a \\ b \end{pmatrix}(1 \; k) = \begin{pmatrix} a & ka \\ b & kb \end{pmatrix}`$
 
-랭크 1 행렬 $`\to`$ 1개 선형독립 벡터 $`\to`$ $`(n-1)`$개 종속 벡터.
+랭크 1 행렬 $`\to`$ 1개 선형독립 벡터 $`\to`$ $`(n-1)`$개 종속벡터.
 
 $`A\mathbf{u} = \mathbf{u}\mathbf{v}^T\mathbf{u} = (\mathbf{v}^T\mathbf{u})\mathbf{u}`$이므로, $`\lambda = \mathbf{v}^T\mathbf{u} = (1, k)\begin{pmatrix} a \\ b \end{pmatrix} = a + kb`$.
 
@@ -1350,7 +1350,7 @@ $`\mathbf{x}^T S\mathbf{x} > 0`$이고, 모든 $`\mathbf{x} \in \mathbb{R}^n \se
 
 $`S^T = S`$가 $`P`$개의 양의 고유값, $`N`$개의 음의 고유값, $`Z`$개의 영 고유값을 가지면, $`A`$가 가역인 경우 $`A^T SA`$에 대해서도 동일하다.
 
-**반대칭 행렬의 고유값 성질 증명:**
+**반대칭 행렬의 고유값 성질 증명 (1.3절의 (6)):**
 
 실수 반대칭 행렬은 $`\bar{A} = A`$이므로 $`A = -\bar{A}^T`$이다. $`A\mathbf{x} = \lambda\mathbf{x}`$, $`\overline{A\mathbf{x}} = \bar{\lambda}\bar{\mathbf{x}}`$.
 
@@ -1366,9 +1366,11 @@ $`\bar{\mathbf{x}}^T\mathbf{x} = \|\mathbf{x}\|^2 > 0`$이므로, $`\lambda = r 
 
 $`\lambda`$의 실수 부분은 **영**이다. 반대칭 행렬은 영 또는 **순허수** 고유값을 갖는다.
 
-### 3.12 최적화와 머신 러닝
+### 3.12 최적화와 기계학습
 
 $`f(x)`$를 최소화하기 위한 **경사 하강법**(gradient descent).
+
+> **[기계학습]** 기계학습에서는 모델의 매개변수를 손실 함수(loss function)가 최소가 되도록 학습시키며, 경사 하강법은 그 대표적인 방법이다. 학습률 $`\eta`$는 한 번의 갱신에서 기울기의 반대 방향으로 얼마나 이동할지를 정하는 값이고, 손실 함수의 헤시안이 모든 점에서 양정치이면 함수가 순볼록이어서 국소 최솟값이 곧 유일한 전역 최솟값이 된다.
 
 i) $`f(x) = x^2 + 4x + 4 \implies f'(x) = 2x + 4`$
 
@@ -1558,6 +1560,8 @@ v) $`\therefore \mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda
 
 $`\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots + x^n + \cdots = \sum_{i=0}^{\infty}x^i`$ (등비급수, $`|x| < 1`$)
 
+> **[미적분학]** 미적분학에서 다루는 테일러 급수(매클로린 급수)는 $`e^x = \sum_{i=0}^{\infty} x^i/i!`$처럼 함수를 거듭제곱의 무한합으로 나타내며, 이 급수는 모든 실수 $`x`$에서 수렴한다. 행렬 지수 함수 $`e^{At}`$는 이 급수의 $`x`$ 자리에 행렬 $`At`$를 넣어 정의하므로, 아래에서 $`\frac{d}{dt}e^{At}`$를 구할 때도 급수를 항별로 미분하는 미적분학의 방법을 그대로 쓴다.
+
 **행렬 지수 함수(matrix exponential):**
 
 ```math
@@ -1652,7 +1656,7 @@ $`n = j + k`$, $`k = n - j`$로 놓으면:
 = \sum_{n=0}^{\infty}\frac{A^n}{n!}\sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^j t^{n-j} = \sum_{n=0}^{\infty}\frac{A^n}{n!}(s+t)^n = \sum_{n=0}^{\infty}\frac{(A(s+t))^n}{n!} = e^{A(s+t)} \quad \square
 ```
 
-이항 정리(binomial theorem)를 사용: $`(s + t)^n = \sum_{j=0}^{n}\binom{n}{j}s^{n-j}t^j = \sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^{n-j}t^j`$.
+이항 정리(binomial theorem)를 사용: $`(s + t)^n = \sum_{j=0}^{n}\binom{n}{j}s^j t^{n-j} = \sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^j t^{n-j}`$.
 
 $`e^{A(s+t)} = e^{As} \cdot e^{At}`$에서, $`s = -t`$로 놓으면:
 
@@ -1721,7 +1725,7 @@ $`y = e^{\lambda t}`$로 놓으면: $`y' = \lambda e^{\lambda t} = \lambda y`$, 
 ```
 
 ```math
-\iff \lambda^2 + \frac{b}{m}\lambda + \frac{k}{m} = 0 \quad \text{---(*)}
+\iff \lambda^2 + \frac{b}{m}\lambda + \frac{k}{m} = 0 \qquad \text{(*)}
 ```
 
 $`\lambda_1 + \lambda_2 = -\frac{b}{m}`$, $`\lambda_1\lambda_2 = \frac{k}{m}`$
@@ -1731,7 +1735,7 @@ $`\lambda = \frac{1}{2}\left(-\frac{b}{m} \pm \sqrt{\frac{b^2}{m^2} - \frac{4k}{
 $`y_1 = e^{\lambda_1 t}`$, $`y_2 = e^{\lambda_2 t}`$로 놓으면, 완전한 해는:
 
 ```math
-y(t) = c_1 y_1 + c_2 y_2 \quad \text{(} \lambda_1 \neq \lambda_2 \text{인 경우)} \quad \text{---(**)}
+y(t) = c_1 y_1 + c_2 y_2 \quad \text{(} \lambda_1 \neq \lambda_2 \text{인 경우)} \qquad \text{(**)}
 ```
 
 **이계 ODE를 일계 ODE로 변환:**
@@ -1778,7 +1782,7 @@ $`m = 1, b = 0, k = 1`$일 때: $`y'' + y = 0 \iff y'' = -y`$
 
 $`|A - \lambda I| = \begin{vmatrix} -\lambda & -1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + 1 = 0`$이므로, $`\lambda = \pm i`$이고 해는 **진동**(oscillation)한다.
 
-### 4.7 2 x 2 행렬의 안정성
+### 4.7 2x2 행렬의 안정성
 
 $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$의 해에 대해 근본적인 질문이 있다:
 
@@ -1923,7 +1927,7 @@ e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \
 | $`A^T A`$의 에너지 판정 | $`\mathbf{x}^T A^T A\mathbf{x} = \Vert A\mathbf{x}\Vert^2 \geq 0`$이다. |
 | 양정치 $`\implies`$ 가역 | 양정치 행렬은 $`\det(S) > 0`$이고 $`S^{-1}`$도 양정치이다. |
 | 양정치 $`\implies S = A^T A`$ | 양정치 행렬은 열이 독립인 $`A`$에 대해 $`S = A^T A`$로 쓸 수 있다. |
-| 합동 행렬 | 가역 행렬 $`A`$에 대해 $`A^T SA`$는 양, 음, 영 고유값의 개수인 정치성(definiteness) 유형을 보존한다. |
+| 합동 행렬 | 가역 행렬 $`A`$에 대해 $`A^T SA`$는 양, 음, 영 고유값의 개수, 곧 정치성(definiteness) 유형을 보존한다. |
 | 타원 방정식 | 양정치 $`S`$에 대해 $`\mathbf{x}^T S\mathbf{x} = 1`$은 타원이며, 축은 고유벡터 방향이고 반축의 길이는 $`1/\sqrt{\lambda}`$이다. |
 | 헤시안과 볼록성 | 헤시안 $`H`$가 모든 점에서 양정치이면 $`f`$는 순볼록이다. |
 | 경사 하강법 | $`\mathbf{x}_{k+1} = \mathbf{x}_k - \eta\nabla f(\mathbf{x}_k)`$를 반복하여 최솟값 점에 접근한다. |
@@ -1956,7 +1960,7 @@ e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \
    <details>
    <summary>정답</summary>
 
-   두 행렬 모두 삼각 행렬이므로 고유값은 대각 원소 2, 2이고 AM = 2이다. $`B - 2I = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}`$의 영공간은 $`x_2 = 0`$인 벡터 $`(c, 0)`$뿐이므로 GM = 1이고, GM < AM이므로 $`B`$는 대각화할 수 없다. $`C - 2I`$는 영행렬이므로 영공간이 $`\mathbb{R}^2`$ 전체이고 GM = 2이다. GM = AM이므로 $`C`$는 대각화 가능하며, 이미 대각 행렬이다. 고유값이 같아도 선형독립 고유벡터의 수는 다를 수 있다.
+   두 행렬 모두 삼각 행렬이므로 고유값은 대각 원소 2, 2이고 AM = 2이다. $`B - 2I = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}`$의 영공간은 $`x_2 = 0`$인 벡터 $`(c, 0)`$뿐이므로 GM = 1이고, GM < AM이므로 $`B`$는 대각화할 수 없다. $`C - 2I`$는 영 행렬이므로 영공간이 $`\mathbb{R}^2`$ 전체이고 GM = 2이다. GM = AM이므로 $`C`$는 대각화 가능하며, 이미 대각 행렬이다. 고유값이 같아도 선형독립 고유벡터의 수는 다를 수 있다.
 
    </details>
 

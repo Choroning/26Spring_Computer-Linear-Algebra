@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 2
 
@@ -10,7 +10,7 @@
 > 1. 가우스 소거법을 적용하여 연립방정식을 풀 수 있다
 > 2. 소거법을 행렬 분해($`A = LU`$)로 표현할 수 있다
 > 3. 연립방정식의 해가 없는 경우, 유일한 경우, 무한히 많은 경우를 판별할 수 있다
-> 4. 치환 행렬과 전치의 성질을 이용하여 $`PA = LU`$와 $`LDL^T`$ 분해를 구할 수 있다
+> 4. 순열 행렬과 전치의 성질을 이용하여 $`PA = LU`$와 $`LDL^T`$ 분해를 구할 수 있다
 > 5. 유한 차분으로 도함수를 근사하고 이차 차분 행렬 $`K`$, $`T`$, $`B`$의 성질을 설명할 수 있다
 
 ---
@@ -31,7 +31,7 @@
   - [2.8 종속 열과 독립 열](#28-종속-열과-독립-열)
   - [2.9 행 관점과 열 관점](#29-행-관점과-열-관점)
 - [3. 소거 행렬과 역행렬 (2.2)](#3-소거-행렬과-역행렬-22)
-  - [3.1 소거와 치환의 예제](#31-소거와-치환의-예제)
+  - [3.1 소거와 순열의 예제](#31-소거와-순열의-예제)
   - [3.2 소거 행렬과 A = LU](#32-소거-행렬과-a--lu)
   - [3.3 역행렬에 관한 사실들](#33-역행렬에-관한-사실들)
   - [3.4 곱 AB의 역행렬](#34-곱-ab의-역행렬)
@@ -45,12 +45,12 @@
   - [4.5 위대한 분해 A = LU](#45-위대한-분해-a--lu)
   - [4.6 A = LU의 두 번째 증명](#46-a--lu의-두-번째-증명)
   - [4.7 행 교환 없는 소거](#47-행-교환-없는-소거)
-- [5. 치환과 전치 (2.4)](#5-치환과-전치-24)
-  - [5.1 치환 행렬](#51-치환-행렬)
-  - [5.2 치환 행렬의 성질](#52-치환-행렬의-성질)
+- [5. 순열과 전치 (2.4)](#5-순열과-전치-24)
+  - [5.1 순열 행렬](#51-순열-행렬)
+  - [5.2 순열 행렬의 성질](#52-순열-행렬의-성질)
   - [5.3 PA = LU 분해](#53-pa--lu-분해)
   - [5.4 부분 피벗팅](#54-부분-피벗팅)
-  - [5.5 PAQ: 행과 열 치환](#55-paq-행과-열-치환)
+  - [5.5 PAQ: 행과 열 순열](#55-paq-행과-열-순열)
   - [5.6 A의 전치](#56-a의-전치)
   - [5.7 내적과 전치](#57-내적과-전치)
   - [5.8 대칭 행렬](#58-대칭-행렬)
@@ -82,7 +82,7 @@ A\mathbf{x} = \mathbf{b}
 1. **2.1** 소거법과 후진 대입 (Elimination and Back Substitution)
 2. **2.2** 소거 행렬과 역행렬 (Elimination Matrices and Inverse Matrix)
 3. **2.3** 행렬 연산과 $`A = LU`$ (Matrix Computations and $`A = LU`$)
-4. **2.4** 치환과 전치 (Permutations and Transposes)
+4. **2.4** 순열과 전치 (Permutations and Transposes)
 5. **2.5** 도함수와 유한 차분 행렬 (Derivatives and Finite Difference Matrices)
 
 **정사각 행렬** $`A \in \mathbb{R}^{n \times n}`$에 집중한다.
@@ -135,7 +135,7 @@ A\mathbf{x} = \mathbf{b} \implies A^{-1}A\mathbf{x} = A^{-1}\mathbf{b} \implies 
 
 여기서 $`U`$는 **상삼각 행렬** (upper triangular matrix)이다.
 
-오른쪽에서:
+식으로 정리하면:
 
 ```math
 A\mathbf{x} = \mathbf{b} \implies U\mathbf{x} = \mathbf{c} \implies \mathbf{x} = U^{-1}\mathbf{c} = A^{-1}\mathbf{b}
@@ -193,11 +193,11 @@ $`A\mathbf{x} = \mathbf{b}`$를 생각한다. 여기서 $`A \in \mathbb{R}^{n \t
 - $`\mathbf{b}`$가 $`A`$의 열공간에 속한다.
 - $`n > \text{rank}(A) = \text{rank}(A|\mathbf{b})`$
 
-세 경우는 $`A`$의 랭크와 확대 행렬 $`(A|\mathbf{b})`$의 랭크를 비교하여 구분할 수 있다.
+세 경우는 $`A`$의 랭크와 첨가 행렬 $`(A|\mathbf{b})`$의 랭크를 비교하여 구분할 수 있다.
 
 ```mermaid
 flowchart TD
-    S["Ax = b에 소거를 적용한다"] --> Q1{"rank(A)와 확대 행렬의 rank가 같은가?"}
+    S["Ax = b에 소거를 적용한다"] --> Q1{"rank(A)와 첨가 행렬의 rank가 같은가?"}
     Q1 -->|아니오| N["해 없음"]
     Q1 -->|예| Q2{"rank(A) = n인가?"}
     Q2 -->|예| U["유일한 해"]
@@ -220,7 +220,7 @@ x + 2y = 1, \quad 3x + y = -2
 \begin{pmatrix} 1 & 2 \\ 3 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 1 \\ -2 \end{pmatrix}
 ```
 
-확대 행렬(augmented matrix):
+첨가 행렬(augmented matrix):
 
 ```math
 \begin{pmatrix} 1 & 2 & | & 1 \\ 3 & 1 & | & -2 \end{pmatrix} \xrightarrow{R_2 - 3R_1} \begin{pmatrix} 1 & 2 & | & 1 \\ 0 & -5 & | & -5 \end{pmatrix} \implies \begin{pmatrix} 1 & 2 & | & 1 \\ 0 & 1 & | & 1 \end{pmatrix} \xrightarrow{R_1 - 2R_2} \begin{pmatrix} 1 & 0 & | & -1 \\ 0 & 1 & | & 1 \end{pmatrix}
@@ -240,7 +240,7 @@ $`\Rightarrow \exists! \; \mathbf{x}`$. 해: $`x = -1, y = 1`$.
 \begin{pmatrix} 3 & 2 \\ -6 & -4 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}
 ```
 
-확대 연립방정식:
+첨가 행렬:
 
 ```math
 \begin{pmatrix} 3 & 2 & | & 3 \\ -6 & -4 & | & 0 \end{pmatrix} \xrightarrow{R_2 + 2R_1} \begin{pmatrix} 3 & 2 & | & 3 \\ 0 & 0 & | & 6 \end{pmatrix} \implies \begin{pmatrix} 1 & 2/3 & | & 1 \\ 0 & 0 & | & 1 \end{pmatrix}
@@ -356,7 +356,7 @@ $`A\mathbf{x} = \mathbf{b}`$에 소거법을 적용하면 $`U\mathbf{x} = \mathb
 A = \begin{pmatrix} 2 & 3 & 4 \\ 4 & 11 & 14 \\ 2 & 8 & 17 \end{pmatrix}, \quad \mathbf{b} = \begin{pmatrix} 19 \\ 55 \\ 50 \end{pmatrix}
 ```
 
-**1단계:** 확대 행렬 $`(A|\mathbf{b})`$를 만들고 $`R_2 - 2R_1`$을 적용한다:
+**1단계:** 첨가 행렬 $`(A|\mathbf{b})`$를 만들고 $`R_2 - 2R_1`$을 적용한다:
 
 ```math
 \begin{pmatrix} 2 & 3 & 4 & | & 19 \\ 4 & 11 & 14 & | & 55 \\ 2 & 8 & 17 & | & 50 \end{pmatrix} \xrightarrow{R_2 - 2R_1} \begin{pmatrix} 2 & 3 & 4 & | & 19 \\ 0 & 5 & 6 & | & 17 \\ 2 & 8 & 17 & | & 50 \end{pmatrix}
@@ -412,7 +412,7 @@ E_{32} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}
 \begin{pmatrix} 2 & 3 & 4 \\ 4 & 6 & 14 \\ 2 & 8 & 17 \end{pmatrix} \rightarrow \begin{pmatrix} 2 & 3 & 4 \\ 0 & 0 & 6 \\ 0 & 5 & 13 \end{pmatrix}
 ```
 
-치환 행렬 $`P`$를 사용하여 **2행과 3행을 교환**:
+순열 행렬 $`P`$를 사용하여 **2행과 3행을 교환**:
 
 ```math
 \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 2 & 3 & 4 \\ 0 & 0 & 6 \\ 0 & 5 & 13 \end{pmatrix} = \begin{pmatrix} 2 & 3 & 4 \\ 0 & 5 & 13 \\ 0 & 0 & 6 \end{pmatrix}
@@ -499,9 +499,9 @@ $`\Leftrightarrow`$ $`\mathbf{b}`$는 $`A`$의 **열공간** (column space)에 �
 
 ## 3. 소거 행렬과 역행렬 (2.2)
 
-### 3.1 소거와 치환의 예제
+### 3.1 소거와 순열의 예제
 
-**예제 1 (치환 불필요):**
+**예제 1 (순열 불필요):**
 
 ```math
 A = \begin{pmatrix} 2 & 4 & -2 \\ 4 & 9 & -3 \\ -2 & -3 & 7 \end{pmatrix}
@@ -541,7 +541,7 @@ E_{32}: R_3' - R_2' \implies E_{32} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 
 (A|\mathbf{b}) \xrightarrow{E} (U|\mathbf{c})
 ```
 
-**예제 2 (치환 필요):**
+**예제 2 (순열 필요):**
 
 ```math
 A = \begin{pmatrix} 1 & 1 & 1 \\ 2 & 2 & 3 \\ 0 & 4 & 5 \end{pmatrix}
@@ -919,7 +919,7 @@ $`AA^{-1} = I \in \mathbb{R}^{n \times n}`$에서 시작한다.
 I = \begin{pmatrix} | & | & & | \\ \hat{e}_1 & \hat{e}_2 & \cdots & \hat{e}_n \\ | & | & & | \end{pmatrix}
 ```
 
-여기서 $`\hat{e}_1, \hat{e}_2, \ldots, \hat{e}_n`$은 **표준 기저 벡터** (단위 벡터)이다.
+여기서 $`\hat{e}_1, \hat{e}_2, \ldots, \hat{e}_n`$은 **표준 기저 벡터** (단위벡터)이다.
 
 $`AA^{-1} = I`$를 다음과 같이 본다:
 
@@ -1201,11 +1201,11 @@ $`3 \times 3`$ 행렬 $`A`$에 대해:
 
 <br>
 
-## 5. 치환과 전치 (2.4)
+## 5. 순열과 전치 (2.4)
 
-### 5.1 치환 행렬
+### 5.1 순열 행렬
 
-**치환 행렬** (permutation matrix) $`P`$는 $`I \in \mathbb{R}^{n \times n}`$과 같은 행을 다른 순서로 가진다.
+**순열 행렬** (permutation matrix) $`P`$는 $`I \in \mathbb{R}^{n \times n}`$과 같은 행을 다른 순서로 가진다.
 
 $`n!`$가지 서로 다른 순서가 있다.
 
@@ -1252,9 +1252,9 @@ A\mathbf{x} \cdot \mathbf{y} = \mathbf{x} \cdot A^T\mathbf{y}
 
 ---
 
-### 5.2 치환 행렬의 성질
+### 5.2 순열 행렬의 성질
 
-치환 행렬은 모든 행에 정확히 하나의 1을, 모든 열에 정확히 하나의 1을 가진다.
+순열 행렬은 모든 행에 정확히 하나의 1을, 모든 열에 정확히 하나의 1을 가진다.
 
 $`P`$를 벡터 $`\mathbf{x}`$에 곱하면, 성분의 순서가 바뀐다:
 
@@ -1276,7 +1276,7 @@ PPP\mathbf{x} = P^3\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} 
 
 $`P^3`$은 $`x_1`$을 원래 위치로 되돌린다. $`P^3 = I`$.
 
-**$`4 \times 4`$ 치환 행렬의 예:**
+**$`4 \times 4`$ 순열 행렬의 예:**
 
 **(a)** $`P`$는 $`\mathbf{x}`$의 순서를 뒤집는다:
 
@@ -1310,7 +1310,7 @@ $`PPPP\mathbf{x} = P^4\mathbf{x} = I\mathbf{x} \implies P^4 = I`$
 
 $`P^2 = I`$
 
-이것은 짝수 인덱스와 홀수 인덱스 항목을 분리하는 $`8 \times 8`$ 치환 행렬을 사용하여 $`\mathbf{x} \in \mathbb{R}^8`$ 벡터로 확장된다.
+이것은 짝수 인덱스와 홀수 인덱스 항목을 분리하는 $`8 \times 8`$ 순열 행렬을 사용하여 $`\mathbf{x} \in \mathbb{R}^8`$ 벡터로 확장된다.
 
 **$`P^T P = I`$의 증명:**
 
@@ -1330,15 +1330,15 @@ $`\mathbf{h}_i`$가 서로 다른 표준 기저 벡터 (canonical unit vector)�
 = \begin{pmatrix} 1 & & \\ & 1 & \\ & & 1 \end{pmatrix} = I
 ```
 
-**치환 행렬의 성질:**
+**순열 행렬의 성질:**
 
-1. 치환 행렬 $`P`$는 각 행에 정확히 하나의 1을, 각 열에 정확히 하나의 1을 가진다.
+1. 순열 행렬 $`P`$는 각 행에 정확히 하나의 1을, 각 열에 정확히 하나의 1을 가진다.
 
 2. $`P`$의 열들은 **직교** (orthogonal)한다. (열 사이의 내적이 모두 0이다.)
 
-3. 치환의 곱 $`P_1 P_2`$는 치환이다. $`P`$의 역행렬도 마찬가지이다.
+3. 순열의 곱 $`P_1 P_2`$는 순열이다. $`P`$의 역행렬도 마찬가지이다.
 
-4. $`A`$가 가역이면, 행을 미리 정렬하는 치환 $`P`$가 존재하여, $`PA`$에 대한 소거가 피벗 위치에서 0을 만나지 않는다:
+4. $`A`$가 가역이면, 행을 미리 정렬하는 순열 $`P`$가 존재하여, $`PA`$에 대한 소거가 피벗 위치에서 0을 만나지 않는다:
 
 ```math
 PA = LU
@@ -1394,7 +1394,7 @@ EPA = \begin{pmatrix} 1 & 2 & a \\ 0 & 1 & c - 3a \\ 0 & 0 & b - 2a \end{pmatrix
 
 **Daniel Drucker의 $`P`$ 추적 방법:**
 
-행 인덱스를 추적하는 열로 행렬을 확대한다:
+행 인덱스를 기록하는 열을 행렬에 덧붙인다:
 
 ```math
 \begin{pmatrix} 1 & 2 & a & | & 1 \\ 2 & 4 & b & | & 2 \\ 3 & 7 & c & | & 3 \end{pmatrix} \xrightarrow{\text{소거}} \begin{pmatrix} 1 & 2 & a & | & 1 \\ 0 & 0 & b-2a & | & 2 \\ 0 & 1 & c-3a & | & 3 \end{pmatrix} \xrightarrow{\text{교환}} \begin{pmatrix} 1 & 2 & a & | & 1 \\ 0 & 1 & c-3a & | & 3 \\ 0 & 0 & b-2a & | & 2 \end{pmatrix}
@@ -1444,9 +1444,9 @@ P_{321} = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}
 
 ---
 
-### 5.5 PAQ: 행과 열 치환
+### 5.5 PAQ: 행과 열 순열
 
-$`PAQ`$는 행 치환 $`P`$와 열 치환 $`Q`$를 가진다.
+$`PAQ`$는 행 순열 $`P`$와 열 순열 $`Q`$를 가진다.
 
 $`A \in \mathbb{R}^{3 \times 3}`$에서 시작한다. $`P \in \mathbb{R}^{3 \times 3}`$로 행을 재정렬한다.
 
@@ -1460,7 +1460,7 @@ P = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}, \quad PA 
 (PA)Q = \begin{pmatrix} a_{23} & a_{22} & a_{21} \\ a_{33} & a_{32} & a_{31} \\ a_{13} & a_{12} & a_{11} \end{pmatrix}
 ```
 
-열 치환 $`Q`$는 열을 재정렬한다.
+열 순열 $`Q`$는 열을 재정렬한다.
 
 $`A`$의 열공간은 $`PA`$의 열공간과 같은가?
 
@@ -1468,7 +1468,7 @@ $`A`$의 열공간은 $`PA`$의 열공간과 같은가?
 C(A) \stackrel{?}{=} C(PA)
 ```
 
-**일반적으로는 같지 않다.** $`P`$는 각 열의 성분 순서를 바꾸므로 $`C(PA) = \{P\mathbf{v} : \mathbf{v} \in C(A)\}`$이다. 예를 들어 $`A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}`$에 두 행을 바꾸는 $`P`$를 곱하면 $`C(A)`$는 $`x`$축이고 $`C(PA)`$는 $`y`$축이다. $`P`$가 바꾸지 않는 것은 열 사이의 선형 관계이다. $`PA\mathbf{x} = \mathbf{0} \iff A\mathbf{x} = \mathbf{0}`$이므로 영공간과 랭크가 같다. 반면 열 치환 $`Q`$는 열의 순서만 바꾸므로 $`C(AQ) = C(A)`$이다. $`A`$가 가역이면 $`C(A) = C(PA) = \mathbb{R}^3`$이다.
+**일반적으로는 같지 않다.** $`P`$는 각 열의 성분 순서를 바꾸므로 $`C(PA) = \lbrace P\mathbf{v} : \mathbf{v} \in C(A)\rbrace`$이다. 예를 들어 $`A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}`$에 두 행을 바꾸는 $`P`$를 곱하면 $`C(A)`$는 $`x`$축이고 $`C(PA)`$는 $`y`$축이다. $`P`$가 바꾸지 않는 것은 열 사이의 선형 관계이다. $`PA\mathbf{x} = \mathbf{0} \iff A\mathbf{x} = \mathbf{0}`$이므로 영공간과 랭크가 같다. 반면 열 순열 $`Q`$는 열의 순서만 바꾸므로 $`C(AQ) = C(A)`$이다. $`A`$가 가역이면 $`C(A) = C(PA) = \mathbb{R}^3`$이다.
 
 **Q:** 행렬 $`A`$는 9개의 수를 가진다. $`A`$의 9개의 수를 몇 가지 다른 방법으로 배열할 수 있는가? **A:** $`9!`$
 
@@ -1581,7 +1581,7 @@ A^T = \begin{pmatrix} 1 & 6 \\ 0 & 1 \end{pmatrix} \implies (A^T)^{-1} = \begin{
 
 **내적의 의미.**
 
-$`\mathbf{x}`$와 $`\mathbf{y}`$의 점곱(dot product) (내적, inner product)은 수 $`x_i y_i`$의 합이다:
+$`\mathbf{x}`$와 $`\mathbf{y}`$의 **내적** (dot product, inner product)은 수 $`x_i y_i`$의 합이다:
 
 ```math
 \mathbf{x} \cdot \mathbf{y} = \sum x_i y_i
@@ -1834,6 +1834,8 @@ $`\Delta y`$의 정확도는 도함수 항을 추가함으로써 증가한다.
 y(x+h) = y(x) + h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2} + \cdots + \frac{h^n}{n!}\frac{d^{(n)}y}{dx^n} + \cdots
 ```
 
+> **[미적분학]** 테일러 급수는 매끄러운 함수 $`y`$의 $`x + h`$에서의 값을 $`x`$에서의 도함수들로 전개한 식으로, 미적분학에서 배우는 미분과 급수 전개를 전제로 한다. 이 장의 유한 차분은 테일러 급수를 몇 항에서 끊어 도함수를 함숫값의 차로 근사하므로, 끊어 낸 항의 차수가 근사의 정확도(오차의 차수)를 정한다.
+
 **예제:** $`e^x`$ (전해석 함수, entire analytic function):
 
 ```math
@@ -2030,7 +2032,7 @@ K_4 = \begin{pmatrix} 2 & -1 & 0 & 0 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ 0 
 
 **4. $`K`$는 가역이다.** 소거로 확인할 수 있다. 결과 상삼각 행렬 $`U`$에 0 피벗이 없으면, $`K`$는 가역이다.
 
-**5. 대칭 행렬 $`K_n`$은 양의 정부호 (positive definite)이다:**
+**5. 대칭 행렬 $`K_n`$은 양정치 (positive definite)이다:**
 
 ```math
 \mathbf{x}^T K \mathbf{x} > 0 \quad \forall \; \mathbf{x} \neq \mathbf{0}
@@ -2046,12 +2048,12 @@ K\mathbf{x} = \begin{pmatrix} 2x - y \\ -x + 2y \end{pmatrix}
 \mathbf{x}^T(K\mathbf{x}) = 2x^2 - 2xy + 2y^2 = x^2 + (x-y)^2 + y^2 > 0
 ```
 
-$`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$일 때, $`K`$는 **양의 준정부호** (positive semi-definite)라 한다.
+$`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$일 때, $`K`$는 **양반정치** (positive semidefinite)라 한다.
 
 **피벗:**
 - 가역 행렬은 (행 교환을 허용하면) $`n`$개의 영이 아닌 피벗을 가진다.
-- 양의 정부호 대칭 행렬은 $`n`$개의 **양의** 피벗을 가진다.
-- 양의 준정부호 대칭 행렬은 행 교환 없이 소거할 수 있을 때 $`n`$개의 **음이 아닌** 피벗을 가진다.
+- 양정치 대칭 행렬은 $`n`$개의 **양의** 피벗을 가진다.
+- 양반정치 대칭 행렬은 행 교환 없이 소거할 수 있을 때 $`n`$개의 **음이 아닌** 피벗을 가진다.
 
 ---
 
@@ -2140,7 +2142,7 @@ B_3 = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}
 B_3 \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`\mathbf{x} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$은 $`B_3`$의 **영공간** (null space)에 속한다.
+$`\mathbf{x} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$은 $`B_3`$의 **영공간** (nullspace)에 속한다.
 
 $`\mathbf{x} = c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ 벡터들은 $`B_3`$의 영공간에 속한다.
 
@@ -2150,7 +2152,7 @@ $`\Rightarrow`$ $`B_3`$은 **가역이 될 수 없다.**
 
 | 행렬 | 경계 조건 | 첫 행 | 마지막 행 | 성질 |
 |:-----|:-----|:-----|:-----|:-----|
-| $`K`$ (고정-고정) | $`u(0) = 0`$, $`u(1) = 0`$ | $`(2, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 2)`$ | 대칭, 가역, 양의 정부호 |
+| $`K`$ (고정-고정) | $`u(0) = 0`$, $`u(1) = 0`$ | $`(2, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 2)`$ | 대칭, 가역, 양정치 |
 | $`T`$ (자유-고정) | $`u'(0) = 0`$, $`u(1) = 0`$ | $`(1, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 2)`$ | 대칭, 가역, $`T = LL^T`$ |
 | $`B`$ (자유-자유) | $`u'(0) = 0`$, $`u'(1) = 0`$ | $`(1, -1, 0, \ldots, 0)`$ | $`(0, \ldots, 0, -1, 1)`$ | 대칭, 특이, 상수 벡터가 영공간에 속함 |
 
@@ -2168,11 +2170,11 @@ $`\Rightarrow`$ $`B_3`$은 **가역이 될 수 없다.**
 | 소거법 (Elimination) | 행 $`j`$의 $`l_{ij}`$배를 행 $`i`$에서 빼서 피벗 아래에 0을 만든다. |
 | 후진 대입 (Back substitution) | $`U\mathbf{x} = \mathbf{c}`$를 마지막 행부터 위로 올라가며 푼다. |
 | 세 가지 경우 | 연립방정식은 유일한 해($`\text{rank} = n`$), 해 없음, 무한히 많은 해 중 하나에 해당한다. |
-| 확대 행렬 (Augmented matrix) | $`(A \mid \mathbf{b})`$는 소거하는 동안 양변을 함께 추적한다. |
+| 첨가 행렬 (Augmented matrix) | $`(A \mid \mathbf{b})`$는 소거하는 동안 양변을 함께 추적한다. |
 | 동차 연립방정식 (Homogeneous system) | $`A\mathbf{x} = \mathbf{0}`$은 $`\text{rank}(A) < n`$일 때 비자명 해를 가진다. |
 | 피벗 (Pivots) | $`U`$의 대각 원소이며, 가역이려면 모두 영이 아니어야 한다. |
 | 행 교환 (Row exchange) | 피벗 위치에 0이 나타나면 행을 교환한다. |
-| 소거 행렬 $`E_{ij}`$ (Elimination matrix) | 단위 행렬의 $`(i,j)`$ 위치에 $`-l_{ij}`$를 넣은 행렬이다. |
+| 소거 행렬 $`E_{ij}`$ (Elimination matrix) | 항등 행렬의 $`(i,j)`$ 위치에 $`-l_{ij}`$를 넣은 행렬이다. |
 | $`EA = U`$ | 모든 소거 행렬의 곱이 $`A`$를 상삼각 행렬 $`U`$로 변환한다. |
 | $`A = LU`$ | $`L = E^{-1}`$은 승수 $`l_{ij}`$가 제자리에 놓인 하삼각 행렬이다. |
 | 역행렬 $`A^{-1}`$ (Inverse) | $`A`$가 $`n`$개의 독립인 열을 가질 때($`\text{rank}(A) = n`$)에만 존재한다. |
@@ -2183,10 +2185,10 @@ $`\Rightarrow`$ $`B_3`$은 **가역이 될 수 없다.**
 | 소거의 비용 | $`A \to U`$에는 약 $`\frac{1}{3}n^3`$번, $`\mathbf{b} \to \mathbf{c} \to \mathbf{x}`$에는 약 $`n^2`$번의 곱셈이 든다. |
 | $`A = LU`$의 두 번째 증명 | 열 곱하기 행으로 $`A = \sum \mathbf{l}_k \mathbf{u}_k`$를 얻는다. |
 | 행 교환 없는 $`A = LU`$ | 모든 좌상단 $`k \times k`$ 부분행렬이 가역이어야 한다. |
-| 치환 행렬 $`P`$ (Permutation matrix) | $`I`$의 행을 다른 순서로 배열한 행렬이며, $`P^{-1} = P^T`$이고 $`n!`$개가 가능하다. |
+| 순열 행렬 $`P`$ (Permutation matrix) | $`I`$의 행을 다른 순서로 배열한 행렬이며, $`P^{-1} = P^T`$이고 $`n!`$개가 가능하다. |
 | $`PA = LU`$ | 행 교환을 $`P`$에 기록한 일반적인 분해이다. |
 | 부분 피벗팅 (Partial pivoting) | 절댓값이 가장 큰 원소가 피벗이 되도록 행을 교환하여 반올림 오차를 줄인다. |
-| $`PAQ`$ | 행 치환 $`P`$와 열 치환 $`Q`$를 함께 적용하며, $`C(AQ) = C(A)`$이고 $`\text{rank}(PAQ) = \text{rank}(A)`$이다. |
+| $`PAQ`$ | 행 순열 $`P`$와 열 순열 $`Q`$를 함께 적용하며, $`C(AQ) = C(A)`$이고 $`\text{rank}(PAQ) = \text{rank}(A)`$이다. |
 | 전치 $`A^T`$ (Transpose) | $`(A^T)_{ij} = A_{ji}`$이며, $`A^T`$의 열은 $`A`$의 행이다. |
 | 전치 규칙 | $`(A+B)^T = A^T + B^T`$, $`(AB)^T = B^T A^T`$, $`(A^{-1})^T = (A^T)^{-1}`$이 성립한다. |
 | 내적 (Inner product) | $`\mathbf{x} \cdot \mathbf{y} = \mathbf{x}^T\mathbf{y}`$이며, $`(A\mathbf{x}) \cdot \mathbf{y} = \mathbf{x} \cdot (A^T\mathbf{y})`$가 성립한다. |
@@ -2198,11 +2200,11 @@ $`\Rightarrow`$ $`B_3`$은 **가역이 될 수 없다.**
 | 전진 차분 (Forward difference) | $`\frac{dy}{dx} \approx \frac{y(x+h)-y(x)}{h}`$이며, 1차 정확도 $`O(h)`$를 가진다. |
 | 중심 차분 (Centered difference) | $`\frac{dy}{dx} \approx \frac{y(x+h)-y(x-h)}{2h}`$이며, 2차 정확도 $`O(h^2)`$를 가진다. |
 | 이차 차분 (Second difference) | $`\frac{d^2y}{dx^2} \approx \frac{y(x+h)-2y(x)+y(x-h)}{h^2}`$이며, 2차 정확도를 가진다. |
-| 행렬 $`K`$ (고정-고정) | 삼중대각 $`(-1, 2, -1)`$ 행렬이며, 대칭이고 띠행렬이며 가역이고 양의 정부호이다. |
+| 행렬 $`K`$ (고정-고정) | 삼중대각 $`(-1, 2, -1)`$ 행렬이며, 대칭이고 띠행렬이며 가역이고 양정치이다. |
 | 행렬 $`T`$ (자유-고정) | 첫 행이 $`(1, -1, 0, \ldots)`$이고, $`T = LL^T`$로 분해되며 가역이다. |
 | 행렬 $`B`$ (자유-자유) | 특이 행렬이며, $`B\mathbf{1} = \mathbf{0}`$이므로 상수 벡터가 영공간에 속한다. |
-| 양의 정부호 (Positive definite) | 모든 $`\mathbf{x} \neq \mathbf{0}`$에 대해 $`\mathbf{x}^T K\mathbf{x} > 0`$이며, 모든 피벗이 양수이다. |
-| 양의 준정부호 (Positive semi-definite) | 모든 $`\mathbf{x} \neq \mathbf{0}`$에 대해 $`\mathbf{x}^T K\mathbf{x} \geq 0`$이며, 행 교환 없이 소거할 수 있으면 모든 피벗이 0 이상이다. |
+| 양정치 (Positive definite) | 모든 $`\mathbf{x} \neq \mathbf{0}`$에 대해 $`\mathbf{x}^T K\mathbf{x} > 0`$이며, 모든 피벗이 양수이다. |
+| 양반정치 (Positive semidefinite) | 모든 $`\mathbf{x} \neq \mathbf{0}`$에 대해 $`\mathbf{x}^T K\mathbf{x} \geq 0`$이며, 행 교환 없이 소거할 수 있으면 모든 피벗이 0 이상이다. |
 
 ---
 
@@ -2246,11 +2248,11 @@ $`\Rightarrow`$ $`B_3`$은 **가역이 될 수 없다.**
 
    </details>
 
-5. **이차 차분 행렬:** $`K_3 = \begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{pmatrix}`$의 피벗을 소거로 구하고, 그 결과로 $`K_3`$이 가역이며 양의 정부호임을 설명하라. 또 $`B_3`$이 가역이 아닌 이유를 쓰라.
+5. **이차 차분 행렬:** $`K_3 = \begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{pmatrix}`$의 피벗을 소거로 구하고, 그 결과로 $`K_3`$이 가역이며 양정치임을 설명하라. 또 $`B_3`$이 가역이 아닌 이유를 쓰라.
 
    <details>
    <summary>정답</summary>
 
-   $`R_2 + \frac{1}{2}R_1`$을 적용하면 2행이 $`(0, \frac{3}{2}, -1)`$이 되고, $`R_3 + \frac{2}{3}R_2`$를 적용하면 3행이 $`(0, 0, \frac{4}{3})`$이 된다. 피벗 $`2, \frac{3}{2}, \frac{4}{3}`$이 모두 영이 아니므로 $`K_3`$은 가역이다. 또 대칭 행렬 $`K_3`$의 피벗이 모두 양수이므로 $`K_3`$은 양의 정부호이다. 반면 $`B_3`$은 $`B_3(1, 1, 1)^T = \mathbf{0}`$처럼 영이 아닌 벡터를 영벡터로 보내므로 역행렬을 가질 수 없다.
+   $`R_2 + \frac{1}{2}R_1`$을 적용하면 2행이 $`(0, \frac{3}{2}, -1)`$이 되고, $`R_3 + \frac{2}{3}R_2`$를 적용하면 3행이 $`(0, 0, \frac{4}{3})`$이 된다. 피벗 $`2, \frac{3}{2}, \frac{4}{3}`$이 모두 영이 아니므로 $`K_3`$은 가역이다. 또 대칭 행렬 $`K_3`$의 피벗이 모두 양수이므로 $`K_3`$은 양정치이다. 반면 $`B_3`$은 $`B_3(1, 1, 1)^T = \mathbf{0}`$처럼 영이 아닌 벡터를 영벡터로 보내므로 역행렬을 가질 수 없다.
 
    </details>

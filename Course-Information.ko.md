@@ -2,7 +2,7 @@
 
 [레포지토리 안내](README.ko.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 
 ## 목차
 
@@ -78,7 +78,7 @@
 | 7 | Orthogonality | - | - | 복습 |
 | 8 | 중간고사 | 중간고사 | - | - |
 | 9 | Determinants | N4-1, N4-2 | Ch. 4 | 직교성, 사영 |
-| 10 | Eigenvalues and eigenvectors | N4-3, N4-4, N4-5 | Ch. 4 | 최소제곱, 직교 기저, 의사역행렬 |
+| 10 | Eigenvalues and eigenvectors | N4-3, N4-4, N4-5 | Ch. 4 | 최소제곱, 직교 기저, 유사역행렬 |
 | 11 | Eigenvalues and eigenvectors | N5-1, N5-2, N5-3 | Ch. 5 | 행렬식 |
 | 12 | Singular Value Decomposition | N6-1, N6-2 | Ch. 6 | 고유값, 대각화 |
 | 13 | Linear Transformation | N6-3, N6-5 | Ch. 6 | 대칭 양정치 행렬, 선형 미분방정식 |

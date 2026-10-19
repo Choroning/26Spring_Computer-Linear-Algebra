@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 
 ## Table of Contents
 
@@ -81,7 +81,7 @@
 | 10 | Eigenvalues and eigenvectors | N4-3, N4-4, N4-5 | Ch. 4 | Least Squares, Orthogonal Basis, Pseudoinverse |
 | 11 | Eigenvalues and eigenvectors | N5-1, N5-2, N5-3 | Ch. 5 | Determinants |
 | 12 | Singular Value Decomposition | N6-1, N6-2 | Ch. 6 | Eigenvalues, Diagonalization |
-| 13 | Linear Transformation | N6-3, N6-5 | Ch. 6 | Symmetric Positive Definite Matrices, Linear DE |
+| 13 | Linear Transformation | N6-3, N6-5 | Ch. 6 | Symmetric Positive Definite Matrices, Linear Differential Equations |
 | 14 | Linear Transformation | N7-1, N7-2, N7-3 | Ch. 7 | SVD, Image Processing, PCA |
 | 15 | Linear Algebra in Optimization | N8-1, N8-2, N8-3 | Ch. 8 | Linear Transformations |
 | 16 | Final Exam | Final | - | - |

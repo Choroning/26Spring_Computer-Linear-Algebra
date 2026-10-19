@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-18
+> **최종 수정일:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -18,10 +18,64 @@
 ## 목차
 
 - [1. 벡터와 부분공간의 직교성 (4.1)](#1-벡터와-부분공간의-직교성-41)
+  - [1.1 직교 벡터](#11-직교-벡터)
+  - [1.2 기본 부분공간은 직교한다](#12-기본-부분공간은-직교한다)
+  - [1.3 사영 미리보기](#13-사영-미리보기)
+  - [1.4 직교 부분공간](#14-직교-부분공간)
+  - [1.5 직교 여공간과 차원](#15-직교-여공간과-차원)
+  - [1.6 네 부분공간의 큰 그림](#16-네-부분공간의-큰-그림)
+  - [1.7 최소 노름 해](#17-최소-노름-해)
+  - [1.8 예제: 가역 부분행렬](#18-예제-가역-부분행렬)
+  - [1.9 부분공간의 기저 결합](#19-부분공간의-기저-결합)
+  - [1.10 R^n에서의 두 성질](#110-rn에서의-두-성질)
+  - [1.11 n x n 행렬 A의 성질](#111-n-x-n-행렬-a의-성질)
+  - [1.12 예제 3: 네 부분공간](#112-예제-3-네-부분공간)
 - [2. 직선과 부분공간으로의 사영 (4.2)](#2-직선과-부분공간으로의-사영-42)
+  - [2.1 핵심 사실 요약](#21-핵심-사실-요약)
+  - [2.2 직선으로의 사영](#22-직선으로의-사영)
+  - [2.3 사영 행렬 P (직선으로의 사영)](#23-사영-행렬-p-직선으로의-사영)
+  - [2.4 R^3에서의 사영 예제](#24-r3에서의-사영-예제)
+  - [2.5 부분공간으로의 사영](#25-부분공간으로의-사영)
+  - [2.6 n = 2에서의 유도](#26-n--2에서의-유도)
+  - [2.7 n차원 부분공간으로의 확장](#27-n차원-부분공간으로의-확장)
+  - [2.8 예제 2: 부분공간으로의 사영](#28-예제-2-부분공간으로의-사영)
+  - [2.9 A^T A는 A가 LI 열을 가질 때만 가역](#29-at-a는-a가-li-열을-가질-때만-가역)
+  - [2.10 풀이 예제 (4.2A)](#210-풀이-예제-42a)
 - [3. 최소제곱 근사 (4.3)](#3-최소제곱-근사-43)
+  - [3.1 핵심 사실 요약](#31-핵심-사실-요약)
+  - [3.2 과잉결정 시스템](#32-과잉결정-시스템)
+  - [3.3 예제 1: 직선 적합](#33-예제-1-직선-적합)
+  - [3.4 오차 최소화: 미적분 접근](#34-오차-최소화-미적분-접근)
+  - [3.5 직선 적합의 일반 정규방정식](#35-직선-적합의-일반-정규방정식)
+  - [3.6 오차 최소화: 세 가지 접근](#36-오차-최소화-세-가지-접근)
+  - [3.7 최소제곱의 큰 그림](#37-최소제곱의-큰-그림)
+  - [3.8 예제 2: 또 다른 직선 적합](#38-예제-2-또-다른-직선-적합)
+  - [3.9 A에 종속 열이 있을 때의 최소제곱 해](#39-a에-종속-열이-있을-때의-최소제곱-해)
+  - [3.10 포물선 적합](#310-포물선-적합)
+  - [3.11 예제 3: 포물선 적합](#311-예제-3-포물선-적합)
 - [4. 직교 기저와 그람-슈미트 (4.4)](#4-직교-기저와-그람-슈미트-44)
+  - [4.1 핵심 사실 요약](#41-핵심-사실-요약)
+  - [4.2 목표: 직교 열](#42-목표-직교-열)
+  - [4.3 정규직교 벡터와 행렬](#43-정규직교-벡터와-행렬)
+  - [4.4 직교 행렬의 예](#44-직교-행렬의-예)
+  - [4.5 정규직교 기저를 이용한 사영](#45-정규직교-기저를-이용한-사영)
+  - [4.6 예제 4: 정사각 직교 행렬](#46-예제-4-정사각-직교-행렬)
+  - [4.7 그람-슈미트 과정](#47-그람-슈미트-과정)
+  - [4.8 그람-슈미트 예제](#48-그람-슈미트-예제)
+  - [4.9 분해 A = QR](#49-분해-a--qr)
+  - [4.10 응용: QR을 통한 최소제곱](#410-응용-qr을-통한-최소제곱)
 - [5. 행렬의 유사역행렬 (4.5)](#5-행렬의-유사역행렬-45)
+  - [5.1 양측 역행렬과 편측 역행렬](#51-양측-역행렬과-편측-역행렬)
+  - [5.2 항등-유사 행렬의 세 경우](#52-항등-유사-행렬의-세-경우)
+  - [5.3 좌역행렬과 우역행렬](#53-좌역행렬과-우역행렬)
+  - [5.4 일반 m x n 행렬 A의 유사역행렬 A^+](#54-일반-m-x-n-행렬-a의-유사역행렬-a)
+  - [5.5 A^+의 큰 그림](#55-a의-큰-그림)
+  - [5.6 예제 1: A^+ 구하기](#56-예제-1-a-구하기)
+  - [5.7 대각 행렬의 유사역행렬](#57-대각-행렬의-유사역행렬)
+  - [5.8 분해를 통한 유사역행렬](#58-분해를-통한-유사역행렬)
+  - [5.9 A의 중요한 작용: 행공간에서 열공간으로](#59-a의-중요한-작용-행공간에서-열공간으로)
+  - [5.10 A = CR의 유사역행렬 A^+ = R^+C^+](#510-a--cr의-유사역행렬-a--rc)
+  - [5.11 예제: 5x4 행렬의 유사역행렬](#511-예제-5x4-행렬의-유사역행렬)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
 
@@ -31,7 +85,7 @@
 
 ## 1. 벡터와 부분공간의 직교성 (4.1)
 
-### 1.1 직교 벡터 (Orthogonal Vectors)
+### 1.1 직교 벡터
 
 직교 벡터는 다음을 만족한다:
 
@@ -81,9 +135,9 @@ $`\theta = 90°`$일 때, $`\mathbf{v}^T \mathbf{w} = 0`$이다.
 \|\mathbf{v}\|^2 + \|\mathbf{w}\|^2 = \|\mathbf{v} + \mathbf{w}\|^2
 ```
 
-### 1.2 기본 부분공간은 직교한다 (The Fundamental Subspaces are Orthogonal)
+### 1.2 기본 부분공간은 직교한다
 
-**(1)** $`A`$의 영공간(nullspace) $`\mathcal{N}(A)`$는 행 공간(row space) $`C(A^T)`$에 직교하는 모든 벡터를 포함한다.
+**(1)** $`A`$의 영공간(nullspace) $`\mathcal{N}(A)`$는 행공간(row space) $`C(A^T)`$에 직교하는 모든 벡터를 포함한다.
 
 ```math
 A\mathbf{x} = \mathbf{0}
@@ -95,7 +149,7 @@ A\mathbf{x} = \mathbf{0}
 
 $`\mathbf{x}`$는 $`A`$의 각 행에 직교한다. 모든 행은 $`\mathbf{x}`$와의 내적이 0이다.
 
-**(2)** $`A^T`$의 영공간 $`\mathcal{N}(A^T)`$는 열 공간(column space) $`C(A)`$에 직교하는 모든 벡터를 포함한다.
+**(2)** $`A^T`$의 영공간 $`\mathcal{N}(A^T)`$는 열공간(column space) $`C(A)`$에 직교하는 모든 벡터를 포함한다.
 
 ```math
 A^T \mathbf{y} = \mathbf{0} \quad \Longleftrightarrow \quad \mathbf{y}^T A = \mathbf{0}
@@ -111,9 +165,9 @@ $`\Rightarrow \mathbf{y}^T (c_1 \mathbf{a}_1 + c_2 \mathbf{a}_2 + \cdots + c_n \
 
 $`\mathbf{y}`$는 $`A`$의 각 열에 직교한다.
 
-### 1.3 사영 미리보기 (Projection Preview)
+### 1.3 사영 미리보기
 
-$`\mathbf{b}`$가 $`A`$의 열 공간 밖에 있을 때, 열 공간 안에서 가장 가까운 점 $`\mathbf{p}`$를 찾는다.
+$`\mathbf{b}`$가 $`A`$의 열공간 밖에 있을 때, 열공간 안에서 가장 가까운 점 $`\mathbf{p}`$를 찾는다.
 
 ```math
 A\mathbf{x} \neq \mathbf{b}
@@ -135,7 +189,7 @@ A^T A \hat{\mathbf{x}} = A^T \mathbf{b}
 
 이것이 **최소제곱**(least squares)이다. $`A^T A = I`$이면 문제가 쉬워진다. 그러한 행렬 $`A`$를 구성하는 방법은 4절(직교 기저와 그람-슈미트)에서 다룬다.
 
-### 1.4 직교 부분공간 (Orthogonal Subspaces)
+### 1.4 직교 부분공간
 
 **정의:** 부분공간 $`V`$와 $`W`$가 다음을 만족할 때 **직교**한다:
 
@@ -145,11 +199,11 @@ A^T A \hat{\mathbf{x}} = A^T \mathbf{b}
 
 예를 들어 원점을 지나는 직선(1차원 부분공간)과, 원점을 지나며 그 직선에 수직인 평면(2차원 부분공간)을 생각한다. 직선 위의 모든 벡터는 평면 위의 모든 벡터에 수직이다.
 
-**(3)** $`A`$의 행 공간은 $`A`$의 영공간에 직교한다. $`A`$의 열 공간은 $`A^T`$의 영공간(= $`A`$의 좌영공간)에 직교한다.
+**(3)** $`A`$의 행공간은 $`A`$의 영공간에 직교한다. $`A`$의 열공간은 $`A^T`$의 영공간(= $`A`$의 좌영공간)에 직교한다.
 
 **$`C(A^T) \perp \mathcal{N}(A)`$ 증명:**
 
-$`A`$의 영공간에 있는 $`\mathbf{x}`$는 $`A`$의 행 공간에 있는 $`A^T\mathbf{y}`$에 직교한다:
+$`A`$의 영공간에 있는 $`\mathbf{x}`$는 $`A`$의 행공간에 있는 $`A^T\mathbf{y}`$에 직교한다:
 
 ```math
 \mathbf{x} \cdot (A^T \mathbf{y}) = (A^T \mathbf{y}) \cdot \mathbf{x} = (A^T \mathbf{y})^T \mathbf{x} = \mathbf{y}^T A \mathbf{x} = \mathbf{y}^T (A\mathbf{x}) = \mathbf{y}^T \mathbf{0} = 0
@@ -169,13 +223,13 @@ $`A`$의 영공간에 있는 $`\mathbf{x}`$는 $`A`$의 행 공간에 있는 $`A
 
 **$`C(A) \perp \mathcal{N}(A^T)`$ 증명:**
 
-마찬가지로, $`A^T`$의 영공간에 있는 $`\mathbf{y}`$는 $`A`$의 열 공간에 있는 $`A\mathbf{x}`$에 직교한다:
+마찬가지로, $`A^T`$의 영공간에 있는 $`\mathbf{y}`$는 $`A`$의 열공간에 있는 $`A\mathbf{x}`$에 직교한다:
 
 ```math
 \mathbf{y} \cdot (A\mathbf{x}) = (A\mathbf{x}) \cdot \mathbf{y} = (A\mathbf{x})^T \mathbf{y} = \mathbf{x}^T A^T \mathbf{y} = \mathbf{x}^T (A^T \mathbf{y}) = \mathbf{x}^T \mathbf{0} = 0
 ```
 
-### 1.5 직교 여공간과 차원 (Orthogonal Complements and Dimension)
+### 1.5 직교 여공간과 차원
 
 **(4)** 차원의 합:
 
@@ -183,9 +237,9 @@ $`A`$의 영공간에 있는 $`\mathbf{x}`$는 $`A`$의 행 공간에 있는 $`A
 r + (n - r) = n \quad \text{그리고} \quad r + (m - r) = m
 ```
 
-이것들이 **직교 여공간**(orthogonal complements)이다.
+이 차원 관계를 이루는 두 쌍, 곧 행공간과 영공간, 열공간과 좌영공간이 **직교 여공간**(orthogonal complements)이다.
 
-**예제:**
+**예제 1:**
 
 ```math
 A = \begin{pmatrix} 1 & -2 & 1 \\ 1 & 0 & -1 \end{pmatrix}
@@ -243,20 +297,20 @@ $`\text{rank}(A^T) = \text{rank}(R_0) = 2`$, $`m - r = 2 - 2 = 0`$ (자유 변�
 
 | 쌍 | 차원 | 공간 |
 |:-----|:-----------|:------|
-| 행 공간과 영공간 | $`r + (n-r) = n`$ | $`\mathbb{R}^n`$ |
-| 열 공간과 좌영공간 | $`r + (m-r) = m`$ | $`\mathbb{R}^m`$ |
+| 행공간과 영공간 | $`r + (n-r) = n`$ | $`\mathbb{R}^n`$ |
+| 열공간과 좌영공간 | $`r + (m-r) = m`$ | $`\mathbb{R}^m`$ |
 
 *표 1. 기본 부분공간의 직교 여공간 쌍과 차원*
 
 ```math
-\mathcal{N}(A) \text{는 } \mathbb{R}^n\text{에서 행 공간 } C(A^T)\text{의 직교 여공간이다}
+\mathcal{N}(A) \text{는 } \mathbb{R}^n\text{에서 행공간 } C(A^T)\text{의 직교 여공간이다}
 ```
 
 ```math
-\mathcal{N}(A^T) \text{는 } \mathbb{R}^m\text{에서 열 공간 } C(A)\text{의 직교 여공간이다}
+\mathcal{N}(A^T) \text{는 } \mathbb{R}^m\text{에서 열공간 } C(A)\text{의 직교 여공간이다}
 ```
 
-모든 $`\mathbf{x}`$는 행 공간 성분 $`\mathbf{x}_r`$과 영공간 성분 $`\mathbf{x}_n`$으로 분리할 수 있다:
+모든 $`\mathbf{x}`$는 행공간 성분 $`\mathbf{x}_r`$과 영공간 성분 $`\mathbf{x}_n`$으로 분리할 수 있다:
 
 ```math
 \mathbb{R}^n \ni \mathbf{x} = \mathbf{x}_r + \mathbf{x}_n
@@ -266,7 +320,7 @@ $`\text{rank}(A^T) = \text{rank}(R_0) = 2`$, $`m - r = 2 - 2 = 0`$ (자유 변�
 \mathbb{R}^m \ni \mathbf{y} = \mathbf{y}_{\text{col}} + \mathbf{y}_{\text{left null}}
 ```
 
-### 1.6 네 부분공간의 큰 그림 (The Big Picture of Four Subspaces)
+### 1.6 네 부분공간의 큰 그림
 
 $`A`$를 $`\mathbf{x}`$에 곱하면:
 
@@ -276,7 +330,7 @@ A\mathbf{x} = A(\mathbf{x}_r + \mathbf{x}_n) = A\mathbf{x}_r + A\mathbf{x}_n = \
 
 여기서 $`A\mathbf{x}_n = \mathbf{0}`$이므로 $`A\mathbf{x} = A\mathbf{x}_r`$이다.
 
-- 행 공간 성분은 $`A\mathbf{x}_r = \mathbf{b}`$로 보내지며, $`\mathbf{b}`$는 $`A`$의 열 공간에 있다.
+- 행공간 성분은 $`A\mathbf{x}_r = \mathbf{b}`$로 보내지며, $`\mathbf{b}`$는 $`A`$의 열공간에 있다.
 - 영공간 성분은 $`A\mathbf{x}_n = \mathbf{0}`$으로 보내진다.
 
 $`A\mathbf{x} = \mathbf{b}`$의 완전해(complete solution)는:
@@ -285,18 +339,18 @@ $`A\mathbf{x} = \mathbf{b}`$의 완전해(complete solution)는:
 \mathbf{x} = \mathbf{x}_r + \mathbf{x}_n
 ```
 
-여기서 $`\mathbf{x}_r`$은 **유일한** 행 공간 성분이다.
+여기서 $`\mathbf{x}_r`$은 **유일한** 행공간 성분이다.
 
 ```mermaid
 flowchart LR
     subgraph Rn["ℝⁿ"]
         direction TB
-        row["행 공간 C(Aᵀ)<br>차원 r<br>xᵣ"]
+        row["행공간 C(Aᵀ)<br>차원 r<br>xᵣ"]
         nul["영공간 N(A)<br>차원 n - r<br>xₙ"]
     end
     subgraph Rm["ℝᵐ"]
         direction TB
-        col["열 공간 C(A)<br>차원 r<br>b = Axᵣ"]
+        col["열공간 C(A)<br>차원 r<br>b = Axᵣ"]
         lnul["좌영공간 N(Aᵀ)<br>차원 m - r"]
         zero(("0"))
     end
@@ -306,7 +360,7 @@ flowchart LR
 
 *그림 1. 네 기본 부분공간과 A에 의한 사상*
 
-### 1.7 최소 노름 해 (Minimum Norm Solution)
+### 1.7 최소 노름 해
 
 ```math
 \|\mathbf{x}\|^2 = \mathbf{x} \cdot \mathbf{x} = (\mathbf{x}_r + \mathbf{x}_n) \cdot (\mathbf{x}_r + \mathbf{x}_n)
@@ -324,11 +378,11 @@ flowchart LR
 
 따라서 $`A\mathbf{x} = \mathbf{b}`$의 **최소 노름 해**는 $`\mathbf{x} = \mathbf{x}_r`$이고 $`\mathbf{x}_n = \mathbf{0}`$이다.
 
-**유일성:** 모든 벡터 $`\mathbf{b} \in C(A)`$는 행 공간의 정확히 **하나의** 벡터 $`\mathbf{x}_r`$에서 온다.
+**유일성:** 모든 벡터 $`\mathbf{b} \in C(A)`$는 행공간의 정확히 **하나의** 벡터 $`\mathbf{x}_r`$에서 온다.
 
 **증명:** $`A\mathbf{x}_r = A\mathbf{x}_r' = \mathbf{b}`$라 하자. 그러면 $`A\mathbf{x}_r - A\mathbf{x}_r' = A(\mathbf{x}_r - \mathbf{x}_r') = \mathbf{0}`$이므로 $`\mathbf{x}_r - \mathbf{x}_r' \in \mathcal{N}(A)`$이다. $`\mathbf{x}_r`$과 $`\mathbf{x}_r'`$ 모두 $`C(A^T)`$에서 오므로 $`\mathbf{x}_r - \mathbf{x}_r' \in C(A^T)`$이다. $`C(A^T)`$와 $`\mathcal{N}(A)`$는 직교하므로 두 공간에 모두 속하는 벡터 $`\mathbf{v}`$는 자기 자신과 직교하여 $`\mathbf{v}^T\mathbf{v} = \|\mathbf{v}\|^2 = 0`$, 곧 $`\mathbf{v} = \mathbf{0}`$이다. 두 공간의 공통 원소는 $`\mathbf{0}`$뿐이므로 $`\mathbf{x}_r - \mathbf{x}_r' = \mathbf{0}`$, 즉 $`\mathbf{x}_r = \mathbf{x}_r'`$이다. $`\square`$
 
-### 1.8 예제: 가역 부분행렬 (Invertible Submatrix)
+### 1.8 예제: 가역 부분행렬
 
 **예제 2:** 랭크 $`r`$인 모든 행렬은 $`r \times r`$ 가역 부분행렬을 갖는다.
 
@@ -356,7 +410,7 @@ $`R_1 - 3R_2`$:
 
 $`A`$는 행 1, 2와 피벗 열 1, 3이 만나는 곳에 $`2 \times 2`$ 가역 부분행렬 $`\begin{pmatrix} 1 & 3 \\ 1 & 4 \end{pmatrix}`$를 포함한다(행렬식 $`4 - 3 = 1 \neq 0`$).
 
-### 1.9 부분공간의 기저 결합 (Combining Bases from Subspaces)
+### 1.9 부분공간의 기저 결합
 
 **기저**(basis)는 공간을 생성하는 선형독립 벡터들을 포함한다.
 
@@ -370,7 +424,7 @@ $`\mathbb{R}^n`$의 **표준 기저**(standard basis)는 $`\lbrace\mathbf{e}_1, 
 
 $`\mathbb{R}^n`$의 차원은 $`n`$이다. $`\mathbb{R}^n`$의 기저 벡터 수가 $`n`$개이기 때문이며, 표준 기저 $`\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace`$이 그 예이다.
 
-### 1.10 $`\mathbb{R}^n`$에서의 두 성질 (Two Properties in $`\mathbb{R}^n`$)
+### 1.10 R^n에서의 두 성질
 
 **i)** $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$이 선형독립(LI)이라고 가정하자. 그러면 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$은 $`\mathbb{R}^n`$의 기저이다.
 
@@ -388,11 +442,11 @@ $`\mathbb{R}^n`$의 차원은 $`n`$이다. $`\mathbb{R}^n`$의 기저 벡터 수
 
 $`A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_n) \in \mathbb{R}^{n \times n}`$으로 둔다. 목표는 임의의 $`\mathbf{v} \in \mathbb{R}^n`$에 대해 $`A\mathbf{x} = \mathbf{v}`$를 만족하는 유일한 $`\mathbf{x}`$를 찾는 것이다. 정사각 행렬 $`A`$의 열이 LI이므로 $`A`$는 완전 랭크이고 역행렬이 존재한다: $`A^{-1}A\mathbf{x} = A^{-1}\mathbf{v}`$, 따라서 $`\mathbf{x} = A^{-1}\mathbf{v}`$이다. 그러므로 $`\mathbf{v} = A\mathbf{x}`$는 $`\mathbf{u}_i`$의 선형결합이다.
 
-**ii)** $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\rbrace`$이 $`\mathbb{R}^n`$을 생성하므로 임의의 $`\mathbf{v} \in \mathbb{R}^n`$은 $`\mathbf{v} = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_m\mathbf{u}_m`$으로 쓸 수 있다. $`A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_m)`$이라 하면 이는 $`n \times m`$ 행렬이다. $`A`$의 기약 행 사다리꼴은 $`r \leq m`$개의 독립 열 벡터를 보여 주며, 이 열들(번호를 다시 매겨 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace`$이라 한다)은 나머지 열을 모두 표현하므로 여전히 $`\mathbb{R}^n`$을 생성한다. $`m < n`$이라고 가정하면 $`r \leq m < n`$이고 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace`$이 $`\mathbb{R}^n`$의 기저가 되는데, 이는 $`\dim \mathbb{R}^n = n`$에 모순이다. 따라서 $`m \geq n`$이다.
+**ii)** $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\rbrace`$이 $`\mathbb{R}^n`$을 생성하므로 임의의 $`\mathbf{v} \in \mathbb{R}^n`$은 $`\mathbf{v} = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_m\mathbf{u}_m`$으로 쓸 수 있다. $`A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_m)`$이라 하면 이는 $`n \times m`$ 행렬이다. $`A`$의 기약행사다리꼴은 $`r \leq m`$개의 독립 열벡터를 보여 주며, 이 열들(번호를 다시 매겨 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace`$이라 한다)은 나머지 열을 모두 표현하므로 여전히 $`\mathbb{R}^n`$을 생성한다. $`m < n`$이라고 가정하면 $`r \leq m < n`$이고 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace`$이 $`\mathbb{R}^n`$의 기저가 되는데, 이는 $`\dim \mathbb{R}^n = n`$에 모순이다. 따라서 $`m \geq n`$이다.
 
 마지막으로 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$이 LI가 아니라고 가정하자. 그러면 그중 독립인 $`r < n`$개의 벡터(번호를 다시 매겨 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_r\rbrace`$)가 여전히 $`\mathbb{R}^n`$을 생성하여 기저가 되는데, 이는 $`\dim \mathbb{R}^n = n`$에 모순이다. 따라서 $`\lbrace\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\rbrace`$은 LI이다. $`\square`$
 
-### 1.11 $`A \in \mathbb{R}^{n \times n}`$의 성질 (Properties of $`A \in \mathbb{R}^{n \times n}`$)
+### 1.11 n x n 행렬 A의 성질
 
 **i)** $`A`$의 $`n`$개 열이 LI이면, $`\mathbb{R}^n`$을 생성한다.
 
@@ -406,7 +460,7 @@ $`A = (\mathbf{u}_1 \; \mathbf{u}_2 \; \cdots \; \mathbf{u}_n) \in \mathbb{R}^{n
 
 **증명:** $`AB = I`$이면 $`B(AB) = BI = B`$이다. 결합법칙에 의해 $`(BA)B = B(AB) = B = IB`$이고, 분배법칙에 의해 $`(BA - I)B = 0`$이다. $`B`$는 완전 랭크 정사각 행렬이므로 가역이며, 양변의 오른쪽에 $`B^{-1}`$을 곱하면 $`BA - I = 0`$, 곧 $`BA = I`$이다.
 
-### 1.12 예제 3: 네 부분공간 (Four Subspaces)
+### 1.12 예제 3: 네 부분공간
 
 ```math
 A = \begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}
@@ -474,7 +528,7 @@ $`\mathbf{x}_p`$를 $`\mathbf{x}_r`$과 $`\mathbf{x}_n`$으로 더 분해할 수
 
 ## 2. 직선과 부분공간으로의 사영 (4.2)
 
-### 2.1 핵심 사실 요약 (Key Facts Summary)
+### 2.1 핵심 사실 요약
 
 **(1)** $`\mathbf{a}`$를 지나는 직선 위로의 $`\mathbf{b}`$의 사영(projection)은 $`\mathbf{b}`$에 가장 가까운 점이다:
 
@@ -492,7 +546,7 @@ $`\mathbf{x}_p`$를 $`\mathbf{x}_r`$과 $`\mathbf{x}_n`$으로 더 분해할 수
 
 **(4)** $`A`$가 독립인 열을 가질 때 $`A^T A`$는 가역(invertible)이고 대칭이다: $`\mathcal{N}(A^T A) = \mathcal{N}(A)`$.
 
-**(5)** 열 공간 $`C(A)`$로의 $`\mathbf{b}`$의 사영:
+**(5)** 열공간 $`C(A)`$로의 $`\mathbf{b}`$의 사영:
 
 ```math
 \mathbf{p} = A(A^T A)^{-1} A^T \mathbf{b}
@@ -506,7 +560,7 @@ P = A(A^T A)^{-1} A^T
 
 $`\mathbf{p} = P\mathbf{b}`$이고 $`P^2 = P = P^T`$이다.
 
-### 2.2 직선으로의 사영 (Projection onto a Line)
+### 2.2 직선으로의 사영
 
 직선이 $`\mathbf{a}`$ 방향으로 원점을 지난다. $`\mathbf{b}`$를 직선 위로 사영한다. $`\mathbf{b}`$에서 $`\mathbf{p}`$까지의 직선은 벡터 $`\mathbf{a}`$에 수직이다:
 
@@ -562,7 +616,7 @@ $`\mathbf{b}`$는 두 부분으로 분리된다: $`\mathbf{b} = \mathbf{p} + \ma
 \|\mathbf{p}\| = \|\mathbf{b}\|\cos\theta, \quad \|\mathbf{e}\| = \|\mathbf{b}\|\sin\theta
 ```
 
-### 2.3 사영 행렬 P (직선으로의 사영) (Projection Matrix P onto a Line)
+### 2.3 사영 행렬 P (직선으로의 사영)
 
 ```math
 \mathbf{p} = \alpha\mathbf{a} = \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}\,\mathbf{a} = \mathbf{a}\frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}} = \left(\frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}}\right)\mathbf{b}
@@ -600,7 +654,7 @@ P^2 = \frac{1}{9}\begin{pmatrix} 1 & 2 & 2 \\ 2 & 4 & 4 \\ 2 & 4 & 4 \end{pmatri
 
 **여사영 (complementary projection):** $`P`$가 한 부분공간으로 사영하면, $`I - P`$는 수직 부분공간(직교 여공간)으로 사영한다. $`I - P`$는 $`\mathbf{a}`$에 수직인 평면으로 사영한다.
 
-### 2.4 $`\mathbb{R}^3`$에서의 사영 예제 (Projection in $`\mathbb{R}^3`$ Example)
+### 2.4 R^3에서의 사영 예제
 
 $`\mathbf{b} = \begin{pmatrix} 2 \\ 3 \\ 4 \end{pmatrix} \in \mathbb{R}^3`$을 생각한다.
 
@@ -613,7 +667,7 @@ P_1 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}, \quad P
 
 **관찰 사항:**
 - $`P_1 + P_2 = I_{3 \times 3}`$이다.
-- $`P_1 P_2 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}`$, 곧 영행렬이다.
+- $`P_1 P_2 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}`$, 곧 영 행렬이다.
 - $`P_1`$과 $`P_2`$가 사영하는 $`z`$축과 $`xy`$평면은 서로 직교하는 부분공간이다.
 - 직선과 평면은 $`\dim(\text{직선}) + \dim(\text{평면}) = 1 + 2 = 3`$이므로 직교 여공간이다.
 - 모든 벡터 $`\mathbf{b}`$는 두 부분공간에서의 부분의 합이다:
@@ -622,11 +676,11 @@ P_1 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}, \quad P
 \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} x \\ y \\ 0 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \\ z \end{pmatrix} = \mathbf{p}_2 + \mathbf{p}_1
 ```
 
-### 2.5 부분공간으로의 사영 (Projection onto a Subspace)
+### 2.5 부분공간으로의 사영
 
 $`\mathbb{R}^m`$의 모든 부분공간은 자체의 $`m \times m`$ 사영 행렬 $`P`$를 갖는다. 사영 행렬 $`P`$는 해당 부분을 만든다: $`\mathbf{p} = P\mathbf{b}`$.
 
-부분공간은 기저 벡터를 열로 갖는 행렬의 열 공간으로 나타낼 수 있다. 예를 들어:
+부분공간은 기저 벡터를 열로 갖는 행렬의 열공간으로 나타낼 수 있다. 예를 들어:
 
 ```math
 A_1 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}, \quad A_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad A_3 = \begin{pmatrix} 2 & 3 \\ 2 & 3 \\ 0 & 0 \end{pmatrix}
@@ -654,7 +708,7 @@ $`n = 1`$일 때: $`\alpha = \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a
 
 $`n > 1`$일 때: $`\hat{\boldsymbol{\alpha}} = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n \end{pmatrix}`$를 구해야 한다.
 
-### 2.6 $`n = 2`$에서의 유도 (Derivation for $`n = 2`$)
+### 2.6 n = 2에서의 유도
 
 $`n = 2`$, $`A = (\mathbf{a}_1 \; \mathbf{a}_2)`$로 하자.
 
@@ -702,7 +756,7 @@ $`A^T A`$가 가역이면:
 P = A(A^T A)^{-1} A^T
 ```
 
-### 2.7 $`n`$차원 부분공간으로의 확장 (Extension to $`n`$-dimensional Subspace)
+### 2.7 n차원 부분공간으로의 확장
 
 $`n`$차원 부분공간으로 쉽게 확장할 수 있으며, $`n`$개의 방정식을 갖는다:
 
@@ -719,7 +773,7 @@ A^T(\mathbf{b} - A\hat{\boldsymbol{\alpha}}) = \mathbf{0}
 - $`A`$의 좌영공간(left nullspace)이 오차 벡터를 포함한다.
 - $`\mathbf{b}`$는 사영 $`\mathbf{p}`$와 오차 $`\mathbf{e}`$로 분리된다.
 
-### 2.8 예제 2: 부분공간으로의 사영 (Projection onto a Subspace)
+### 2.8 예제 2: 부분공간으로의 사영
 
 ```math
 A = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{pmatrix}, \quad \mathbf{b} = \begin{pmatrix} 6 \\ 0 \\ 0 \end{pmatrix}
@@ -747,7 +801,7 @@ A^T\mathbf{b} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix}\begin{pmatr
 P = A(A^T A)^{-1} A^T = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{pmatrix}\frac{1}{6}\begin{pmatrix} 5 & -3 \\ -3 & 3 \end{pmatrix}\begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix} = \frac{1}{6}\begin{pmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{pmatrix}
 ```
 
-### 2.9 $`A^T A`$는 $`A`$가 LI 열을 가질 때만 가역 ($`A^T A`$ is Invertible iff $`A`$ has LI Columns)
+### 2.9 A^T A는 A가 LI 열을 가질 때만 가역
 
 > **주의:** $`(A^T A)^{-1} \neq A^{-1}(A^T)^{-1}`$이다. $`A`$가 정사각이 아니면 $`A^{-1}`$이 존재하지 않기 때문이다.
 
@@ -793,7 +847,7 @@ A^T A = \begin{pmatrix} 1 & 1 & 0 \\ 2 & 2 & 0 \end{pmatrix}\begin{pmatrix} 1 & 
 
 $`\det(A^T A) = 2 \cdot 8 - 4 \cdot 4 = 0`$. $`A^T A`$는 가역이 **아니며**, $`A^T A`$는 특이(singular)행렬이다.
 
-### 2.10 풀이 예제 (4.2A) (Worked Example)
+### 2.10 풀이 예제 (4.2A)
 
 **문제:** 벡터 $`\mathbf{b} = (3, 4, 4)`$를 $`\mathbf{a} = (2, 2, 1)`$을 지나는 직선 위로, 그 다음 $`\mathbf{a}^* = (1, 0, 0)`$도 포함하는 평면 위로 사영하라. 첫 번째 오차 벡터 $`\mathbf{b} - \mathbf{p}`$가 $`\mathbf{a}`$에 수직인지, 두 번째 오차 벡터 $`\mathbf{e}^* = \mathbf{b} - \mathbf{p}^*`$가 $`\mathbf{a}`$와 $`\mathbf{a}^*`$에도 수직인지 확인하라. $`\mathbf{a}`$와 $`\mathbf{a}^*`$의 평면으로의 $`3 \times 3`$ 사영 행렬 $`P`$를 구하라. 평면으로의 사영이 $`\mathbf{p} = 0`$인 벡터를 찾아라. $`P^2 = P = P^T`$에 주목하라.
 
@@ -807,7 +861,7 @@ $`\det(A^T A) = 2 \cdot 8 - 4 \cdot 4 = 0`$. $`A^T A`$는 가역이 **아니며*
 
 오차 벡터 $`\mathbf{e} = \mathbf{b} - \mathbf{p} = (-1, 0, 2)`$는 $`\mathbf{a} = (2, 2, 1)`$에 수직이다. 확인: $`\mathbf{e}^T\mathbf{a} = -2 + 0 + 2 = 0`$. 따라서 $`\mathbf{p}`$가 맞다.
 
-**평면으로의 사영:** $`\mathbf{a} = (2, 2, 1)`$과 $`\mathbf{a}^* = (1, 0, 0)`$의 평면은 $`A = [\mathbf{a} \;\; \mathbf{a}^*]`$의 열 공간이다:
+**평면으로의 사영:** $`\mathbf{a} = (2, 2, 1)`$과 $`\mathbf{a}^* = (1, 0, 0)`$의 평면은 $`A = [\mathbf{a} \;\; \mathbf{a}^*]`$의 열공간이다:
 
 ```math
 A = \begin{pmatrix} 2 & 1 \\ 2 & 0 \\ 1 & 0 \end{pmatrix}, \quad A^T A = \begin{pmatrix} 9 & 2 \\ 2 & 1 \end{pmatrix}, \quad (A^T A)^{-1} = \frac{1}{5}\begin{pmatrix} 1 & -2 \\ -2 & 9 \end{pmatrix}
@@ -837,9 +891,9 @@ $`A^T\mathbf{e}^* = \mathbf{0}`$이므로, $`A(A^T A)^{-1}A^T\mathbf{e}^* = \mat
 
 ## 3. 최소제곱 근사 (4.3)
 
-### 3.1 핵심 사실 요약 (Key Facts Summary)
+### 3.1 핵심 사실 요약
 
-**(1)** $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$를 풀면 $`\mathbf{b}`$의 $`A`$의 열 공간으로의 사영 $`\mathbf{p} = A\hat{\boldsymbol{\alpha}}`$를 얻는다.
+**(1)** $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$를 풀면 $`\mathbf{b}`$의 $`A`$의 열공간으로의 사영 $`\mathbf{p} = A\hat{\boldsymbol{\alpha}}`$를 얻는다.
 
 **(2)** $`A\mathbf{x} = \mathbf{b}`$에 해가 없을 때, $`\hat{\boldsymbol{\alpha}}`$는 **최소제곱 해**(least squares solution)이다: $`\|A\hat{\boldsymbol{\alpha}} - \mathbf{b}\|^2 = \text{최솟값}`$.
 
@@ -849,7 +903,7 @@ $`A^T\mathbf{e}^* = \mathbf{0}`$이므로, $`A(A^T A)^{-1}A^T\mathbf{e}^* = \mat
 
 **(5)** 이 경우 $`A^T A`$는 $`2 \times 2`$ 행렬 $`\begin{pmatrix} m & \sum t_i \\ \sum t_i & \sum t_i^2 \end{pmatrix}`$이고 $`A^T\mathbf{b}`$는 $`\begin{pmatrix} \sum b_i \\ \sum t_i b_i \end{pmatrix}`$이다.
 
-### 3.2 과잉결정 시스템 (Overdetermined Systems)
+### 3.2 과잉결정 시스템
 
 $`A\mathbf{x} = \mathbf{b}`$에 해가 없는 경우가 자주 발생한다. 행렬 $`A`$는 열보다 행이 더 많다 ($`m > n`$). 방정식 수가 미지수 수보다 많다. $`n`$개의 열은 $`m`$차원 공간의 작은 부분만 생성한다.
 
@@ -861,7 +915,7 @@ $`\hat{\boldsymbol{\alpha}}`$는 다음을 최소화하므로 **최소제곱 해
 E = \|A\hat{\boldsymbol{\alpha}} - \mathbf{b}\|^2
 ```
 
-### 3.3 예제 1: 직선 적합 (Fitting a Line)
+### 3.3 예제 1: 직선 적합
 
 점 $`\begin{pmatrix} 0 \\ 6 \end{pmatrix}`$, $`\begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\begin{pmatrix} 2 \\ 0 \end{pmatrix}`$에 가장 가까운 직선을 찾아라.
 
@@ -889,13 +943,15 @@ y_3 = ax_3 + b \Rightarrow 0 = a \cdot 2 + b
 
 대신 $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$를 풀어 근사 해 $`\hat{\boldsymbol{\alpha}}`$를 찾는다($`\hat{\boldsymbol{\alpha}}`$는 1.3절의 $`\hat{\mathbf{x}}`$와 같은 대상이다). 실제로 $`\hat{\boldsymbol{\alpha}}`$는 $`E`$를 최소화한다.
 
-### 3.4 오차 최소화: 미적분 접근 (Minimizing the Error: Calculus Approach)
+### 3.4 오차 최소화: 미적분 접근
 
 ```math
 E = \|\mathbf{y} - \hat{\mathbf{y}}\|^2 = (y_1 - \hat{y}_1)^2 + (y_2 - \hat{y}_2)^2 + (y_3 - \hat{y}_3)^2 = \sum_{i=1}^{3}(y_i - \hat{y}_i)^2
 ```
 
 여기서 $`\hat{y} = ax + b`$.
+
+> **[미적분학]** 여러 변수의 함수가 최솟값을 갖는 점에서는 각 변수에 대한 편미분이 모두 0이다. 오차 제곱합 $`E(a, b)`$를 $`a`$와 $`b`$로 각각 편미분해 0으로 놓은 아래의 두 식이 곧 최소제곱의 정규방정식이 된다.
 
 ```math
 \frac{\partial E}{\partial a} = -2\sum_{i=1}^{3}(y_i - \hat{y}_i)x_i = 0
@@ -929,7 +985,7 @@ $`\sum(y_i - \hat{y}_i) = 0`$으로부터: $`\sum y_i = a\sum x_i + b\sum 1`$
 
 따라서 최적 직선은 $`\hat{y} = -3x + 5`$이다.
 
-### 3.5 직선 적합의 일반 정규방정식 (General Normal Equations for Line Fitting)
+### 3.5 직선 적합의 일반 정규방정식
 
 ```math
 A^T A = \begin{pmatrix} \sum x_i^2 & \sum x_i \\ \sum x_i & \sum 1 \end{pmatrix}, \quad A^T\mathbf{b} = \begin{pmatrix} \sum x_i y_i \\ \sum y_i \end{pmatrix}
@@ -941,7 +997,7 @@ A^T A = \begin{pmatrix} \sum x_i^2 & \sum x_i \\ \sum x_i & \sum 1 \end{pmatrix}
 \begin{pmatrix} \sum x_i^2 & \sum x_i \\ \sum x_i & \sum 1 \end{pmatrix}\begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} \sum x_i y_i \\ \sum y_i \end{pmatrix}
 ```
 
-### 3.6 오차 최소화: 세 가지 접근 (Minimizing the Error: Three Approaches)
+### 3.6 오차 최소화: 세 가지 접근
 
 **오차 $`\mathbf{e} = \mathbf{b} - A\hat{\boldsymbol{\alpha}}`$를 어떻게 가능한 한 작게 만들 수 있는가?**
 
@@ -997,11 +1053,11 @@ E = \|A\mathbf{x} - \mathbf{b}\|^2 = (A\mathbf{x} - \mathbf{b})^T(A\mathbf{x} - 
 
 $`E = \|A\mathbf{x} - \mathbf{b}\|^2`$의 편미분은 $`A^T A\mathbf{x} = A^T\mathbf{b}`$일 때 0이다.
 
-### 3.7 최소제곱의 큰 그림 (The Big Picture for Least Squares)
+### 3.7 최소제곱의 큰 그림
 
 $`\mathbf{b}`$를 $`\mathbf{p}`$와 $`\mathbf{e}`$로 분리하면 다음이 성립한다:
 
-- $`\hat{\boldsymbol{\alpha}}`$는 행 공간 $`C(A^T)`$에 있고, $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 풀 수 있다.
+- $`\hat{\boldsymbol{\alpha}}`$는 행공간 $`C(A^T)`$에 있고, $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 풀 수 있다.
 - $`\mathbf{p} = P\mathbf{b}`$는 $`C(A)`$에서 $`\mathbf{b}`$에 가장 가까운 점이다.
 - $`\mathbf{e}`$는 $`\mathcal{N}(A^T)`$에 있는 최소 오차이다.
 - $`\mathbf{b} \notin C(A)`$이면 $`A\mathbf{x} = \mathbf{b}`$는 풀 수 없다.
@@ -1009,11 +1065,11 @@ $`\mathbf{b}`$를 $`\mathbf{p}`$와 $`\mathbf{e}`$로 분리하면 다음이 성
 ```mermaid
 flowchart LR
     subgraph Rn["ℝⁿ"]
-        row["행 공간 C(Aᵀ)<br>α̂"]
+        row["행공간 C(Aᵀ)<br>α̂"]
     end
     subgraph Rm["ℝᵐ"]
         bv["b = p + e"]
-        col["열 공간 C(A)<br>p = Pb = Aα̂"]
+        col["열공간 C(A)<br>p = Pb = Aα̂"]
         lnul["좌영공간 N(Aᵀ)<br>e = b - p"]
     end
     row -- "A" --> col
@@ -1023,7 +1079,7 @@ flowchart LR
 
 *그림 2. 최소제곱에서 b의 사영과 오차로의 분해*
 
-### 3.8 예제 2: 또 다른 직선 적합 (Another Line Fit)
+### 3.8 예제 2: 또 다른 직선 적합
 
 점 $`(-2, 1)`$, $`(0, 2)`$, $`(2, 4)`$가 주어졌다. 최소제곱 오차를 최소화하는 직선을 찾아라.
 
@@ -1057,29 +1113,29 @@ A^T\mathbf{b} = \begin{pmatrix} 1 & 1 & 1 \\ -2 & 0 & 2 \end{pmatrix}\begin{pmat
 
 따라서 $`b = \alpha_1 = 7/3`$, $`a = \alpha_2 = 3/4`$이고 최적 직선은 $`\hat{y} = \frac{3}{4}x + \frac{7}{3}`$이다.
 
-> **참고:** $`\mathbf{a}_2 \perp \mathbf{a}_1`$(직교 열 벡터)이므로 $`A^T A`$가 대각 행렬이 된다.
+> **참고:** $`\mathbf{a}_2 \perp \mathbf{a}_1`$(직교 열벡터)이므로 $`A^T A`$가 대각 행렬이 된다.
 
-### 3.9 $`A`$에 종속 열이 있을 때: $`\hat{\boldsymbol{\alpha}}`$는? (Dependent Columns in $`A`$: What is $`\hat{\boldsymbol{\alpha}}`$?)
+### 3.9 A에 종속 열이 있을 때의 최소제곱 해
 
 $`A`$에 종속 열이 있으면 어떤 $`\hat{\boldsymbol{\alpha}}`$가 최적인가?
 
 ```math
-A\mathbf{x} = \mathbf{b}: \quad \begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 3 \\ 3 \end{pmatrix}, \quad \mathbf{b} \notin C(A)
+A\mathbf{x} = \mathbf{b}: \quad \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}, \quad \mathbf{b} \notin C(A)
 ```
 
-$`C(A)`$는 $`(1, 1, 1)`$ 방향의 직선이므로, 사영은 $`\mathbf{b}`$의 성분 평균 $`(1 + 3 + 3)/3 = 7/3`$을 모든 성분으로 갖는다:
+$`C(A)`$는 $`(1, 1)`$ 방향의 직선이므로, 사영은 $`\mathbf{b}`$의 성분 평균 $`(1 + 3)/2 = 2`$를 모든 성분으로 갖는다:
 
 ```math
-\mathbf{p} = \begin{pmatrix} 7/3 \\ 7/3 \\ 7/3 \end{pmatrix} \in C(A)
+\mathbf{p} = \begin{pmatrix} 2 \\ 2 \end{pmatrix} \in C(A)
 ```
 
-$`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 **많은 해**를 갖는다: $`\begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} 7/3 \\ 7/3 \\ 7/3 \end{pmatrix}`$.
+$`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 **많은 해**를 갖는다: $`\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \end{pmatrix}`$.
 
 문제는 $`A`$가 종속 열을 가지고 $`\mathcal{N}(A) \ni \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$이라는 것이다.
 
 최적 해를 어떻게 찾을 수 있는가? 이 문제는 5절에서 다루는 $`A`$의 **유사역행렬**(pseudoinverse)로 해결한다.
 
-### 3.10 포물선 적합 (Fitting by a Parabola)
+### 3.10 포물선 적합
 
 높이 $`b_1, b_2, \ldots, b_m`$을 시간 $`t_1, t_2, \ldots, t_m`$에서 포물선으로 적합하려 한다:
 
@@ -1099,7 +1155,7 @@ b_1 = \alpha_1 + \alpha_2 t_1 + \alpha_3 t_1^2, \quad b_2 = \alpha_1 + \alpha_2 
 
 최소제곱을 사용하여 $`\hat{\boldsymbol{\alpha}}`$를 찾을 수 있다: $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$.
 
-### 3.11 예제 3: 포물선 적합 (Parabola Fit)
+### 3.11 예제 3: 포물선 적합
 
 $`\hat{b}(t) = \alpha_1 + \alpha_2 t + \alpha_3 t^2`$. $`t = 0, 1, 2`$에서 세 높이 $`b_1, b_2, b_3`$이 측정되었으며, $`b_1 = 6`$, $`b_2 = 0`$, $`b_3 = 0`$이다.
 
@@ -1135,12 +1191,12 @@ $`m = 3`$이므로 포물선이 세 점을 정확히 지나고 오차는 $`\math
 
 ## 4. 직교 기저와 그람-슈미트 (4.4)
 
-### 4.1 핵심 사실 요약 (Key Facts Summary)
+### 4.1 핵심 사실 요약
 
 **(1)** 열 $`\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n`$이 **정규직교**(orthonormal)일 조건:
 
 ```math
-\mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & i \neq j\text{일 때 (직교 벡터)} \\ 1 & i = j\text{일 때 (단위 벡터: } \|\mathbf{q}_i\| = 1) \end{cases}
+\mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & i \neq j\text{일 때 (직교 벡터)} \\ 1 & i = j\text{일 때 (단위벡터: } \|\mathbf{q}_i\| = 1) \end{cases}
 ```
 
 이때 $`Q^T Q = I_{n \times n}`$.
@@ -1159,7 +1215,7 @@ $`m = 3`$이므로 포물선이 세 점을 정확히 지나고 오차는 $`\math
 
 **(6)** 각 $`\mathbf{a}_i`$는 $`\mathbf{q}_1`$에서 $`\mathbf{q}_n`$까지의 결합이 된다. 그러면 $`A = QR`$이며, $`Q`$는 정규직교 열을 갖고 $`R`$은 상삼각 행렬이다.
 
-### 4.2 목표: 직교 열 (Goal: Orthogonal Columns)
+### 4.2 목표: 직교 열
 
 **i)** $`A`$의 열이 서로 직교하면, 곧 모든 $`i \neq j`$에 대해 $`\mathbf{a}_i^T\mathbf{a}_j = 0`$이면 계산이 쉬워진다.
 
@@ -1179,7 +1235,7 @@ A^T A = \begin{pmatrix} \mathbf{a}_1^T\mathbf{a}_1 & 0 & \cdots & 0 \\ 0 & \math
 
 **ii)** 그람-슈미트 과정을 통해 정규직교 벡터 $`\mathbf{q}_i`$를 구성한다.
 
-### 4.3 정규직교 벡터와 행렬 (Orthonormal Vectors and Matrices)
+### 4.3 정규직교 벡터와 행렬
 
 **정의:** $`n`$개의 벡터가 **정규직교**일 조건:
 
@@ -1207,7 +1263,7 @@ QQ^T = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ -1 & 1 \\ 0 & 0 \end{pmatrix}\begin{p
 
 $`Q`$가 정사각일 때, $`Q^T Q = I \Longrightarrow Q^T = Q^{-1}`$ (역행렬의 정의에 의해).
 
-### 4.4 직교 행렬의 예 (Examples of Orthogonal Matrices)
+### 4.4 직교 행렬의 예
 
 **예제 1: 회전 (Rotation).** $`Q`$는 평면의 모든 벡터를 각도 $`\theta`$만큼 회전시킨다.
 
@@ -1231,7 +1287,7 @@ Q^{-1} = \begin{pmatrix} \cos(-\theta) & -\sin(-\theta) \\ \sin(-\theta) & \cos(
 \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} y \\ z \\ x \end{pmatrix}, \quad \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} y \\ x \end{pmatrix}
 ```
 
-모든 열은 단위 벡터이다. 또한 직교이다. 순열 행렬의 역은 전치이다: $`Q^{-1} = Q^T`$. **모든 순열 행렬은 직교 행렬이다.**
+모든 열은 단위벡터이다. 또한 직교이다. 순열 행렬의 역은 전치이다: $`Q^{-1} = Q^T`$. **모든 순열 행렬은 직교 행렬이다.**
 
 **예제 3: 반사 (Reflection).**
 
@@ -1279,7 +1335,7 @@ Q^T Q = (I - 2\mathbf{n}\mathbf{n}^T)^T(I - 2\mathbf{n}\mathbf{n}^T) = (I - 2\ma
 
 $`Q`$가 정규직교 열을 가지면($`Q^T Q = I`$) 길이가 변하지 않는다. 같은 방법으로 $`(Q\mathbf{x})^T(Q\mathbf{y}) = \mathbf{x}^T Q^T Q\mathbf{y} = \mathbf{x}^T\mathbf{y}`$이므로 내적이 보존되고, 따라서 각도도 보존된다.
 
-### 4.5 정규직교 기저를 이용한 사영 (Projections Using Orthonormal Bases)
+### 4.5 정규직교 기저를 이용한 사영
 
 $`A`$ 대신 정규직교 열을 가진 $`Q`$를 쓴다.
 
@@ -1311,7 +1367,7 @@ $`A = Q`$이고 $`A^T A = Q^T Q = I`$이면:
 
 $`QQ^T = I`$는 **푸리에 급수**(Fourier series)의 기초이다. 푸리에 급수는 $`\mathbf{b}`$를 서로 수직인 조각으로 분해한 뒤 기저 벡터의 선형결합으로 $`\mathbf{b}`$를 다시 합친다.
 
-### 4.6 예제 4: 정사각 직교 행렬 (Square Orthogonal Matrix)
+### 4.6 예제 4: 정사각 직교 행렬
 
 ```math
 Q = \frac{1}{3}\begin{pmatrix} -1 & 2 & 2 \\ 2 & -1 & 2 \\ 2 & 2 & -1 \end{pmatrix}, \quad Q^T = Q
@@ -1337,7 +1393,7 @@ $`\mathbf{q}_1^T\mathbf{b} = \mathbf{q}_2^T\mathbf{b} = 2/3`$, $`\mathbf{q}_3^T\
 = \frac{1}{9}\begin{pmatrix} -1 \\ 2 \\ 2 \end{pmatrix} \cdot 2 + \frac{1}{9}\begin{pmatrix} 2 \\ -1 \\ 2 \end{pmatrix} \cdot 2 + \frac{1}{9}\begin{pmatrix} 2 \\ 2 \\ -1 \end{pmatrix} \cdot (-1) = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
 ```
 
-### 4.7 그람-슈미트 과정 (The Gram-Schmidt Process)
+### 4.7 그람-슈미트 과정
 
 벡터 $`\mathbf{a}, \mathbf{b}, \mathbf{c}`$가 주어지면, 세 직교 벡터 $`\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3`$를 만들고, 이로부터 세 정규직교 벡터를 생성한다:
 
@@ -1383,7 +1439,7 @@ $`\mathbf{b}`$를 $`\mathbf{q}_1`$에 대해 $`\mathbf{b}_\parallel`$과 $`\math
 
 모든 벡터 $`\mathbf{a}, \mathbf{b}, \mathbf{c}, \mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3, \mathbf{q}_1, \mathbf{q}_2, \mathbf{q}_3`$는 하나의 부분공간 ($`\mathbb{R}^3`$)에 있다.
 
-### 4.8 그람-슈미트 예제 (Gram-Schmidt Example)
+### 4.8 그람-슈미트 예제
 
 ```math
 \mathbf{a} = \begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix}, \quad \mathbf{b} = \begin{pmatrix} 2 \\ 0 \\ -2 \end{pmatrix}, \quad \mathbf{c} = \begin{pmatrix} 3 \\ -3 \\ 3 \end{pmatrix}
@@ -1419,7 +1475,7 @@ $`\mathbf{b}`$를 $`\mathbf{q}_1`$에 대해 $`\mathbf{b}_\parallel`$과 $`\math
 \mathbf{q}_3 = \frac{1}{\sqrt{3}}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}
 ```
 
-### 4.9 분해 $`A = QR`$ (Factorization $`A = QR`$)
+### 4.9 분해 A = QR
 
 ```math
 (\mathbf{a} \;\; \mathbf{b} \;\; \mathbf{c}) = (\mathbf{q}_1 \;\; \mathbf{q}_2 \;\; \mathbf{q}_3)\,R
@@ -1471,7 +1527,7 @@ $`\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3`$의 **길이**는 $`R`$의 대각선
 
 독립 열을 가진 임의의 $`m \times n`$ 행렬 $`A`$는 $`A = QR`$로 분해할 수 있다. $`Q \in \mathbb{R}^{m \times n}`$은 정규직교 열을 갖고, $`R \in \mathbb{R}^{n \times n}`$은 양의 대각선을 가진 상삼각 행렬이다.
 
-### 4.10 응용: QR을 통한 최소제곱 (Application: Least Squares via QR)
+### 4.10 응용: QR을 통한 최소제곱
 
 ```math
 A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}
@@ -1501,7 +1557,7 @@ $`R`$이 상삼각 행렬이므로 $`R\hat{\boldsymbol{\alpha}} = Q^T\mathbf{b}`
 
 ## 5. 행렬의 유사역행렬 (4.5)
 
-### 5.1 양측 역행렬과 편측 역행렬 (Two-Sided and One-Sided Inverses)
+### 5.1 양측 역행렬과 편측 역행렬
 
 **(1)** **양측 역행렬 (two-sided inverse):**
 
@@ -1521,7 +1577,7 @@ AA^+ = I \quad (A^+ \text{는 } A\text{의 우역행렬})
 
 모든 행렬 $`A`$는 유사역행렬(pseudoinverse) $`A^+`$를 갖는다.
 
-### 5.2 항등-유사 행렬의 세 경우 (Three Cases with Identity-like Matrices)
+### 5.2 항등-유사 행렬의 세 경우
 
 **(1)** $`I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}_{2 \times 2}`$, $`m = n = 2`$, $`\text{rank}(I) = 2 = r`$.
 
@@ -1545,7 +1601,7 @@ $`I_L`$은 $`I_R`$의 좌역행렬이고, $`I_R`$은 $`I_L`$의 우역행렬이�
 
 $`\dim C(I_R) = 2`$, $`\dim \mathcal{N}(I_R^T) = 1`$, $`\dim C(I_R^T) = 2`$, $`\dim \mathcal{N}(I_R) = 0`$.
 
-### 5.3 좌역행렬과 우역행렬 (Left Inverse and Right Inverse)
+### 5.3 좌역행렬과 우역행렬
 
 | | $`A^+A = I_{n \times n}`$ (좌역행렬) | $`AA^+ = I_{m \times m}`$ (우역행렬) |
 |:---|:---|:---|
@@ -1562,7 +1618,7 @@ $`\dim C(I_R) = 2`$, $`\dim \mathcal{N}(I_R^T) = 1`$, $`\dim C(I_R^T) = 2`$, $`\
 
 **우역행렬의 경우:** $`AA^+ = I`$. $`\mathbf{x}^+ = A^+\mathbf{b}`$는 $`A\mathbf{x} = \mathbf{b}`$의 최소 길이 해이며, $`\mathbf{b}`$는 $`C(A)`$에 있고 $`\mathbf{x}^+`$는 $`C(A^T)`$에 있다.
 
-### 5.4 일반 행렬 $`A_{m \times n}`$의 유사역행렬 $`A^+`$ (The Pseudoinverse $`A^+`$ of a General Matrix)
+### 5.4 일반 m x n 행렬 A의 유사역행렬 A^+
 
 **단계 1:** 모든 벡터 $`\mathbf{b} \in \mathbb{R}^m`$은 두 수직 부분 $`\mathbf{p}`$와 $`\mathbf{z}`$를 가지며, $`\mathbf{b} = \mathbf{p} + \mathbf{z}`$이다.
 
@@ -1572,23 +1628,23 @@ $`\dim C(I_R) = 2`$, $`\dim \mathcal{N}(I_R^T) = 1`$, $`\dim C(I_R^T) = 2`$, $`\
 
 **단계 4:** $`A^+\mathbf{b} = A^+(\mathbf{p} + \mathbf{z}) = A^+\mathbf{p} + A^+\mathbf{z} = \mathbf{x}^+`$.
 
-### 5.5 $`A^+`$의 큰 그림 (Big Picture for $`A^+`$)
+### 5.5 A^+의 큰 그림
 
 - $`A^+`$는 $`A^T`$와 동일한 네 부분공간을 공유한다.
-- $`A^+`$는 가능할 때 $`A`$를 역전한다: 열 공간에서 행 공간으로.
+- $`A^+`$는 가능할 때 $`A`$를 역전한다: 열공간에서 행공간으로.
 
 ```math
 C(A^T) \xrightarrow{A} C(A) \xrightarrow{A^+} C(A^T)
 ```
 
 - $`A^+A`$는 $`\mathbf{x}^+ \in C(A^T)`$를 같은 $`\mathbf{x}^+`$로 되돌린다.
-- $`A^+A`$는 $`A`$의 행 공간 $`C(A^T)`$로의 $`n \times n`$ 사영 행렬 $`P_{\text{row}}`$이다.
+- $`A^+A`$는 $`A`$의 행공간 $`C(A^T)`$로의 $`n \times n`$ 사영 행렬 $`P_{\text{row}}`$이다.
 
 ```math
 P_{\text{row}} = A^+A = (A^+A)^2 = (A^+A)^T
 ```
 
-- $`AA^+`$는 $`A`$의 열 공간 $`C(A)`$로의 $`m \times m`$ 사영 행렬 $`P_{\text{col}}`$이다.
+- $`AA^+`$는 $`A`$의 열공간 $`C(A)`$로의 $`m \times m`$ 사영 행렬 $`P_{\text{col}}`$이다.
 
 ```math
 P_{\text{col}} = AA^+ = (AA^+)^2 = (AA^+)^T
@@ -1597,12 +1653,12 @@ P_{\text{col}} = AA^+ = (AA^+)^2 = (AA^+)^T
 ```mermaid
 flowchart LR
     subgraph Rn["ℝⁿ"]
-        row["행 공간 C(Aᵀ)<br>x⁺"]
+        row["행공간 C(Aᵀ)<br>x⁺"]
         nul["영공간 N(A)"]
         zero(("0"))
     end
     subgraph Rm["ℝᵐ"]
-        col["열 공간 C(A)<br>p = Ax⁺"]
+        col["열공간 C(A)<br>p = Ax⁺"]
         lnul["좌영공간 N(Aᵀ)<br>z"]
     end
     row -- "A" --> col
@@ -1612,7 +1668,7 @@ flowchart LR
 
 *그림 3. 유사역행렬 A⁺에 의한 사상*
 
-### 5.6 예제 1: $`A^+`$ 구하기 (Finding $`A^+`$)
+### 5.6 예제 1: A^+ 구하기
 
 ```math
 A = \begin{pmatrix} 2 & 0 \\ 0 & 0 \end{pmatrix}, \quad \mathbf{b} = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix} = \begin{pmatrix} b_1 \\ 0 \end{pmatrix} + \begin{pmatrix} 0 \\ b_2 \end{pmatrix} = \mathbf{p} + \mathbf{z}
@@ -1650,7 +1706,7 @@ AA^+ = \begin{pmatrix} 2 & 0 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} 1/2 & 0 \\ 0 
 A^+A = \begin{pmatrix} 1/2 & 0 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} 2 & 0 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = P_{\text{row}}
 ```
 
-### 5.7 대각 행렬의 유사역행렬 (Pseudoinverse of a Diagonal Matrix)
+### 5.7 대각 행렬의 유사역행렬
 
 ```math
 D = \begin{pmatrix} 2 & & \\ & 3 & \\ & & 0 \end{pmatrix}, \quad D^+ = \begin{pmatrix} 1/2 & & \\ & 1/3 & \\ & & 0 \end{pmatrix}
@@ -1658,7 +1714,7 @@ D = \begin{pmatrix} 2 & & \\ & 3 & \\ & & 0 \end{pmatrix}, \quad D^+ = \begin{pm
 
 0이 아닌 대각 성분은 역수로 바꾸고, 0은 0으로 둔다.
 
-### 5.8 분해를 통한 유사역행렬 (Pseudoinverse via Factorization)
+### 5.8 분해를 통한 유사역행렬
 
 $`U, V`$를 직교 행렬이라 하자. $`A = UDV^T`$이면 $`V^{-T} = V`$, $`U^{-1} = U^T`$이고 다음이 성립한다:
 
@@ -1676,7 +1732,7 @@ $`A^+A = 1`$. $`A^+ = (A^T A)^{-1}A^T = ((1\;1)\begin{pmatrix} 1 \\ 1 \end{pmatr
 
 $`AA^+ = 1`$. $`A^+ = A^T(AA^T)^{-1} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}((1\;1)\begin{pmatrix} 1 \\ 1 \end{pmatrix})^{-1} = \frac{1}{2}\begin{pmatrix} 1 \\ 1 \end{pmatrix}`$.
 
-### 5.9 $`A`$의 중요한 작용: 행 공간에서 열 공간으로 (Important Action of $`A`$: Row Space to Column Space)
+### 5.9 A의 중요한 작용: 행공간에서 열공간으로
 
 ```math
 C(A^T) \xrightarrow{A} C(A)
@@ -1692,7 +1748,7 @@ C(A) \xrightarrow{A^+} C(A^T)
 
 **ii)** $`\forall\,\mathbf{b} \in C(A)`$, $`\exists!\,\mathbf{x}^+ \in C(A^T)`$: $`A^+\mathbf{b} = \mathbf{x}^+`$. 즉 $`\mathbf{b} \in C(A)`$마다 $`A\mathbf{x}^+ = \mathbf{b}`$를 만족하는 $`\mathbf{x}^+ \in C(A^T)`$가 i)에 의해 유일하게 정해지고, $`A^+`$는 $`\mathbf{b}`$를 이 $`\mathbf{x}^+`$로 보낸다.
 
-### 5.10 $`A = CR`$의 유사역행렬 $`A^+ = R^+C^+`$ (Pseudoinverse $`A^+ = R^+C^+`$ of $`A = CR`$)
+### 5.10 A = CR의 유사역행렬 A^+ = R^+C^+
 
 $`A = CR`$이 주어지고, $`C`$는 $`r`$개의 독립 열(열 완전 랭크), $`R`$는 $`r`$개의 독립 행(행 완전 랭크)을 가지면:
 
@@ -1709,7 +1765,7 @@ A^+ = R^+C^+ = R^T(RR^T)^{-1}(C^T C)^{-1}C^T
 
 ($`C^T C R R^T = C^T(CR)R^T = C^T A R^T`$이므로.)
 
-### 5.11 예제: $`5 \times 4`$ 행렬의 유사역행렬 (Pseudoinverse of a $`5 \times 4`$ Matrix)
+### 5.11 예제: 5x4 행렬의 유사역행렬
 
 ```math
 A = \begin{pmatrix} -1 & 1 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & -1 & 1 & 0 \\ -1 & 0 & 0 & 1 \\ 0 & -1 & 0 & 1 \end{pmatrix}_{5 \times 4}
@@ -1775,7 +1831,7 @@ $`R`$은 행 완전 랭크: $`\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace`$. $`C
 | 유사역행렬 $`A^+`$ (pseudoinverse) | $`A^+`$는 $`C(A)`$에서 $`C(A^T)`$로 $`A`$를 역전하며, $`\mathbf{z} \in \mathcal{N}(A^T)`$이면 $`A^+\mathbf{z} = \mathbf{0}`$이다. |
 | 좌역행렬 ($`r = n < m`$) | $`A^+ = (A^T A)^{-1}A^T`$이고 $`A^+A = I`$이며, $`A^+\mathbf{b}`$는 최소제곱 해이다. |
 | 우역행렬 ($`r = m < n`$) | $`A^+ = A^T(AA^T)^{-1}`$이고 $`AA^+ = I`$이며, $`A^+\mathbf{b}`$는 최소 길이 해이다. |
-| $`A^+A`$와 $`AA^+`$ | $`A^+A = P_{\text{row}}`$는 행 공간으로의 사영이고, $`AA^+ = P_{\text{col}}`$은 열 공간으로의 사영이다. |
+| $`A^+A`$와 $`AA^+`$ | $`A^+A = P_{\text{row}}`$는 행공간으로의 사영이고, $`AA^+ = P_{\text{col}}`$은 열공간으로의 사영이다. |
 | $`A = CR`$을 통한 유사역행렬 | $`A^+ = R^+C^+ = R^T(C^T AR^T)^{-1}C^T`$이다. |
 
 ---
@@ -1798,7 +1854,7 @@ $`R`$은 행 완전 랭크: $`\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace`$. $`C
    <details>
    <summary>정답</summary>
 
-   $`m = 3`$, $`n = 5`$, $`r = 2`$이다. 행 공간 $`C(A^T)`$와 열 공간 $`C(A)`$의 차원은 2이고, 영공간 $`\mathcal{N}(A)`$의 차원은 $`n - r = 3`$, 좌영공간 $`\mathcal{N}(A^T)`$의 차원은 $`m - r = 1`$이다. $`C(A^T)`$와 $`\mathcal{N}(A)`$는 $`\mathbb{R}^5`$에서 직교 여공간이고($`2 + 3 = 5`$), $`C(A)`$와 $`\mathcal{N}(A^T)`$는 $`\mathbb{R}^3`$에서 직교 여공간이다($`2 + 1 = 3`$).
+   $`m = 3`$, $`n = 5`$, $`r = 2`$이다. 행공간 $`C(A^T)`$와 열공간 $`C(A)`$의 차원은 2이고, 영공간 $`\mathcal{N}(A)`$의 차원은 $`n - r = 3`$, 좌영공간 $`\mathcal{N}(A^T)`$의 차원은 $`m - r = 1`$이다. $`C(A^T)`$와 $`\mathcal{N}(A)`$는 $`\mathbb{R}^5`$에서 직교 여공간이고($`2 + 3 = 5`$), $`C(A)`$와 $`\mathcal{N}(A^T)`$는 $`\mathbb{R}^3`$에서 직교 여공간이다($`2 + 1 = 3`$).
 
    </details>
 
@@ -1820,11 +1876,11 @@ $`R`$은 행 완전 랭크: $`\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace`$. $`C
 
    </details>
 
-5. **종속 열과 유사역행렬:** 3.9절의 $`A = \begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}`$와 $`\mathbf{b} = (1, 3, 3)`$에 대해 $`A = CR`$을 이용하여 $`A^+`$를 구하고, $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b}`$와 $`A\hat{\boldsymbol{\alpha}}`$를 구하라.
+5. **종속 열과 유사역행렬:** 3.9절의 $`A = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}`$와 $`\mathbf{b} = (1, 3)`$에 대해 $`A = CR`$을 이용하여 $`A^+`$를 구하고, $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b}`$와 $`A\hat{\boldsymbol{\alpha}}`$를 구하라.
 
    <details>
    <summary>정답</summary>
 
-   $`C = (1, 1, 1)^T`$, $`R = (1 \;\; 1)`$이다. $`C^+ = (C^T C)^{-1}C^T = \frac{1}{3}(1 \;\; 1 \;\; 1)`$, $`R^+ = R^T(RR^T)^{-1} = \frac{1}{2}(1, 1)^T`$이므로 $`A^+ = R^+C^+ = \frac{1}{6}\begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}`$이다. $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b} = \frac{1}{6}(7, 7) = (7/6, 7/6)`$이고 $`A\hat{\boldsymbol{\alpha}} = (7/3, 7/3, 7/3) = \mathbf{p}`$이다. $`\hat{\boldsymbol{\alpha}}`$는 행 공간 $`\text{span}\lbrace(1, 1)\rbrace`$에 있으므로 $`\alpha_1 + \alpha_2 = 7/3`$을 만족하는 해 가운데 길이가 가장 짧다.
+   $`C = (1, 1)^T`$, $`R = (1 \;\; 1)`$이다. $`C^+ = (C^T C)^{-1}C^T = \frac{1}{2}(1 \;\; 1)`$, $`R^+ = R^T(RR^T)^{-1} = \frac{1}{2}(1, 1)^T`$이므로 $`A^+ = R^+C^+ = \frac{1}{4}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}`$이다. $`\hat{\boldsymbol{\alpha}} = A^+\mathbf{b} = \frac{1}{4}(4, 4) = (1, 1)`$이고 $`A\hat{\boldsymbol{\alpha}} = (2, 2) = \mathbf{p}`$이다. $`\hat{\boldsymbol{\alpha}}`$는 행공간 $`\text{span}\lbrace(1, 1)\rbrace`$에 있으므로 $`\alpha_1 + \alpha_2 = 2`$를 만족하는 해 가운데 길이가 가장 짧다.
 
    </details>

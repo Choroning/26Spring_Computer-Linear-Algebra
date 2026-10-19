@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-18
+> **Last Updated:** 2026-10-19
 >
 > Introduction to Linear Algebra, Strang, Ch 6
 
@@ -57,7 +57,7 @@
   - [4.4 General n x n Solution Procedure](#44-general-n-x-n-solution-procedure)
   - [4.5 Exponential of a Matrix](#45-exponential-of-a-matrix)
   - [4.6 Second Order Equations](#46-second-order-equations)
-  - [4.7 Stability of 2 by 2 Matrices](#47-stability-of-2-by-2-matrices)
+  - [4.7 Stability of 2x2 Matrices](#47-stability-of-2x2-matrices)
   - [4.8 Worked Examples](#48-worked-examples)
 - [Summary](#summary)
 - [Self-Check Questions](#self-check-questions)
@@ -70,7 +70,7 @@
 
 ### 1.1 Definition of Eigenvalues and Eigenvectors
 
-When $`A`$ acts on $`\mathbf{x}`$, it only stretches or compresses the vector $`\mathbf{x}`$ by $`\lambda`$, without changing its direction.
+When $`A`$ acts on an eigenvector $`\mathbf{x}`$, it only stretches or compresses $`\mathbf{x}`$ by the factor $`\lambda`$ without leaving the line through $`\mathbf{x}`$ (if $`\lambda < 0`$, the direction is reversed).
 
 ```math
 A\mathbf{x} = \lambda \mathbf{x}
@@ -83,7 +83,7 @@ A\mathbf{x} = \lambda \mathbf{x}
 
 1. If $`A\mathbf{x} = \lambda\mathbf{x}`$, then $`\mathbf{x} \neq \mathbf{0}`$ is an eigenvector of $`A`$, and the number $`\lambda`$ is the eigenvalue.
 
-2. $`A^n \mathbf{x} = \lambda^n \mathbf{x}`$ for every $`n`$; $`(A + cI)\mathbf{x} = (\lambda + c)\mathbf{x}`$; and $`A^{-1}\mathbf{x} = \frac{1}{\lambda}\mathbf{x} = \lambda^{-1}\mathbf{x}`$ if $`\lambda \neq 0`$.
+2. $`A^n \mathbf{x} = \lambda^n \mathbf{x}`$ for every positive integer $`n`$; $`(A + cI)\mathbf{x} = (\lambda + c)\mathbf{x}`$; and $`A^{-1}\mathbf{x} = \frac{1}{\lambda}\mathbf{x} = \lambda^{-1}\mathbf{x}`$ if $`\lambda \neq 0`$.
 
 **Proof** (for $`A^{-1}`$):
 
@@ -183,7 +183,7 @@ If $`\mathbf{x}`$ is a nonzero vector, then $`A - \lambda I`$ is **singular**.
 \boxed{\det(A - \lambda I) = 0}
 ```
 
-This characteristic polynomial ($`\det(A - \lambda I) = 0`$) involves only $`\lambda`$, which appears all along the main diagonal of $`A - \lambda I`$. The determinant includes $`(-\lambda)^n`$.
+This characteristic equation ($`\det(A - \lambda I) = 0`$) involves only $`\lambda`$, which appears all along the main diagonal of $`A - \lambda I`$. The determinant includes $`(-\lambda)^n`$.
 
 - The equation has $`n`$ solutions $`\lambda_1`$ to $`\lambda_n`$.
 - $`A_{n \times n}`$ has $`n`$ eigenvalues.
@@ -461,7 +461,7 @@ The eigenvector is any multiple of $`(b, -a)`$:
 \begin{pmatrix} a & b \\ ka & kb \end{pmatrix}\begin{pmatrix} b \\ -a \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 ```
 
-**Remark 3:** This example has two distinct eigenvalues, so its two eigenvectors span $`\mathbb{R}^2`$. If a $`2 \times 2`$ matrix has only one (repeated) eigenvalue, its eigenvectors may fail to span $`\mathbb{R}^2`$. For instance, $`3I`$ has the single eigenvalue 3, but every nonzero vector is an eigenvector, so its eigenvectors do span $`\mathbb{R}^2`$.
+**Remark 3:** This example has two distinct eigenvalues, so its two eigenvectors span $`\mathbb{R}^2`$. If a $`2 \times 2`$ matrix has only one (repeated) eigenvalue, its eigenvectors may fail to span $`\mathbb{R}^2`$. For instance, $`3I`$ has the single eigenvalue 3, yet every nonzero vector is an eigenvector, so its eigenvectors do span $`\mathbb{R}^2`$; the next example is a case where they fail to span.
 
 e.g., $`A = \begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}`$, $`\det(A - \lambda I) = (3 - \lambda)^2 = 0`$, so $`\lambda = 3`$. Geometric multiplicity = 1, algebraic multiplicity = 2. The matrix $`A`$ is **defective** and is **not diagonalizable**.
 
@@ -689,13 +689,13 @@ That is, there exist constants, **not all zero**, such that:
 Multiply $`A`$ to the linear combination:
 
 ```math
-A\mathbf{x}_{p+1} = \lambda_{p+1}\mathbf{x}_{p+1} = c_1 A\mathbf{x}_1 + c_2 A\mathbf{x}_2 + \cdots + c_p A\mathbf{x}_p = c_1\lambda_1\mathbf{x}_1 + c_2\lambda_2\mathbf{x}_2 + \cdots + c_p\lambda_p\mathbf{x}_p \quad \text{--- (1)}
+A\mathbf{x}_{p+1} = \lambda_{p+1}\mathbf{x}_{p+1} = c_1 A\mathbf{x}_1 + c_2 A\mathbf{x}_2 + \cdots + c_p A\mathbf{x}_p = c_1\lambda_1\mathbf{x}_1 + c_2\lambda_2\mathbf{x}_2 + \cdots + c_p\lambda_p\mathbf{x}_p \qquad \text{(1)}
 ```
 
 Multiply $`\lambda_{p+1}`$ to the linear combination:
 
 ```math
-\lambda_{p+1}\mathbf{x}_{p+1} = c_1\lambda_{p+1}\mathbf{x}_1 + c_2\lambda_{p+1}\mathbf{x}_2 + \cdots + c_p\lambda_{p+1}\mathbf{x}_p \quad \text{--- (2)}
+\lambda_{p+1}\mathbf{x}_{p+1} = c_1\lambda_{p+1}\mathbf{x}_1 + c_2\lambda_{p+1}\mathbf{x}_2 + \cdots + c_p\lambda_{p+1}\mathbf{x}_p \qquad \text{(2)}
 ```
 
 Subtract (2) from (1):
@@ -1087,7 +1087,7 @@ $`\|A\mathbf{x}\| > 0`$ if $`A\mathbf{x} \neq \mathbf{0} \; \forall \; \mathbf{x
 
 **(1) Positive eigenvalues:** A positive definite matrix $`S`$ has all positive eigenvalues.
 
-e.g., for $`n \geq 2`$, the rank 1 matrix $`S = \mathbf{u}\mathbf{v}^T`$ is not positive definite.
+e.g., for $`n \geq 2`$, the rank 1 matrix $`A = \mathbf{u}\mathbf{v}^T`$ is not positive definite.
 
 $`A = \begin{pmatrix} a \\ b \end{pmatrix}(1 \; k) = \begin{pmatrix} a & ka \\ b & kb \end{pmatrix}`$
 
@@ -1350,7 +1350,7 @@ For invertible $`A`$, the matrix $`A^T SA`$ is called **congruent** to $`S`$.
 
 If $`S^T = S`$ has $`P`$ positive eigenvalues, $`N`$ negative eigenvalues, and $`Z`$ zero eigenvalues, then the same is true for $`A^T SA`$ provided $`A`$ is invertible.
 
-**Proof of skew-symmetric eigenvalue property:**
+**Proof of the skew-symmetric eigenvalue property (property (6) in Section 1.3):**
 
 A real skew-symmetric matrix has $`\bar{A} = A`$, so $`A = -\bar{A}^T`$. $`A\mathbf{x} = \lambda\mathbf{x}`$, $`\overline{A\mathbf{x}} = \bar{\lambda}\bar{\mathbf{x}}`$.
 
@@ -1369,6 +1369,8 @@ The real part of $`\lambda`$ is **zero**. A skew-symmetric matrix has zero or **
 ### 3.12 Optimization and Machine Learning
 
 **Gradient descent** to minimize $`f(x)`$.
+
+> **[Machine Learning]** In machine learning, model parameters are trained so that a loss function is minimized, and gradient descent is a representative method for this. The learning rate $`\eta`$ sets how far one update moves against the gradient, and if the Hessian of the loss function is positive definite at every point, the function is strictly convex, so a local minimum is the unique global minimum.
 
 i) $`f(x) = x^2 + 4x + 4 \implies f'(x) = 2x + 4`$
 
@@ -1558,6 +1560,8 @@ Recall: $`e^x = 1 + x + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \cdots + \frac{x^n}{n!
 
 $`\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots + x^n + \cdots = \sum_{i=0}^{\infty}x^i`$ (geometric series, $`|x| < 1`$)
 
+> **[Calculus]** The Taylor (Maclaurin) series from calculus writes a function as an infinite sum of powers, such as $`e^x = \sum_{i=0}^{\infty} x^i/i!`$, and this series converges for every real $`x`$. The matrix exponential $`e^{At}`$ is defined by putting the matrix $`At`$ in place of $`x`$ in this series, so computing $`\frac{d}{dt}e^{At}`$ below also uses the calculus method of differentiating a series term by term.
+
 **Matrix exponential:**
 
 ```math
@@ -1652,7 +1656,7 @@ Let $`n = j + k`$, $`k = n - j`$:
 = \sum_{n=0}^{\infty}\frac{A^n}{n!}\sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^j t^{n-j} = \sum_{n=0}^{\infty}\frac{A^n}{n!}(s+t)^n = \sum_{n=0}^{\infty}\frac{(A(s+t))^n}{n!} = e^{A(s+t)} \quad \square
 ```
 
-Using the binomial theorem: $`(s + t)^n = \sum_{j=0}^{n}\binom{n}{j}s^{n-j}t^j = \sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^{n-j}t^j`$.
+Using the binomial theorem: $`(s + t)^n = \sum_{j=0}^{n}\binom{n}{j}s^j t^{n-j} = \sum_{j=0}^{n}\frac{n!}{j!(n-j)!}s^j t^{n-j}`$.
 
 From $`e^{A(s+t)} = e^{As} \cdot e^{At}`$, take $`s = -t`$:
 
@@ -1721,7 +1725,7 @@ The spring equation becomes: $`m\lambda^2 y + b\lambda y + ky = (m\lambda^2 + b\
 ```
 
 ```math
-\iff \lambda^2 + \frac{b}{m}\lambda + \frac{k}{m} = 0 \quad \text{---(*)}
+\iff \lambda^2 + \frac{b}{m}\lambda + \frac{k}{m} = 0 \qquad \text{(*)}
 ```
 
 $`\lambda_1 + \lambda_2 = -\frac{b}{m}`$, $`\lambda_1\lambda_2 = \frac{k}{m}`$
@@ -1731,7 +1735,7 @@ $`\lambda = \frac{1}{2}\left(-\frac{b}{m} \pm \sqrt{\frac{b^2}{m^2} - \frac{4k}{
 Let $`y_1 = e^{\lambda_1 t}`$, $`y_2 = e^{\lambda_2 t}`$. Complete solution becomes:
 
 ```math
-y(t) = c_1 y_1 + c_2 y_2 \quad \text{if } \lambda_1 \neq \lambda_2 \quad \text{---(**)}
+y(t) = c_1 y_1 + c_2 y_2 \quad \text{if } \lambda_1 \neq \lambda_2 \qquad \text{(**)}
 ```
 
 **Convert 2nd order ODE to 1st order ODEs:**
@@ -1778,7 +1782,7 @@ When $`m = 1, b = 0, k = 1`$: $`y'' + y = 0 \iff y'' = -y`$
 
 $`|A - \lambda I| = \begin{vmatrix} -\lambda & -1 \\ 1 & -\lambda \end{vmatrix} = \lambda^2 + 1 = 0`$, so $`\lambda = \pm i`$ and the solution shows **oscillation**.
 
-### 4.7 Stability of 2 by 2 Matrices
+### 4.7 Stability of 2x2 Matrices
 
 For the solution to $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$, there is a fundamental question:
 
