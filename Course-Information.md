@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-10-26
 
 ## Table of Contents
 
@@ -69,22 +69,22 @@
 
 | Week | Planned Topic | Lecture Decks Covered | Chapter | Topic Covered |
 |:---:|:---|:---|:---|:---|
-| 1 | Introduction to Vectors | Introduction, N1 | Ch. 1 | Introduction, Vectors and Matrices |
-| 2 | Solving Linear Equations | - | Ch. 1 | Vectors and Matrices (continued) |
-| 3 | Solving Linear Equations | N2 | Ch. 2 | Solving Linear Equations |
-| 4 | Four Fundamental Subspaces | - | Ch. 2 | Solving Linear Equations (continued) |
-| 5 | Four Fundamental Subspaces | N3 (A) | Ch. 3 | Vector Spaces and Subspaces |
-| 6 | Orthogonality | N3 (B) | Ch. 3 | Vector Spaces and Subspaces (continued) |
-| 7 | Orthogonality | - | - | Review |
-| 8 | Midterm exam | Midterm | - | - |
-| 9 | Determinants | N4-1, N4-2 | Ch. 4 | Orthogonality, Projections |
-| 10 | Eigenvalues and eigenvectors | N4-3, N4-4, N4-5 | Ch. 4 | Least Squares, Orthogonal Basis, Pseudoinverse |
-| 11 | Eigenvalues and eigenvectors | N5-1, N5-2, N5-3 | Ch. 5 | Determinants |
-| 12 | Singular Value Decomposition | N6-1, N6-2 | Ch. 6 | Eigenvalues, Diagonalization |
-| 13 | Linear Transformation | N6-3, N6-5 | Ch. 6 | Symmetric Positive Definite Matrices, Linear Differential Equations |
-| 14 | Linear Transformation | N7-1, N7-2, N7-3 | Ch. 7 | SVD, Image Processing, PCA |
-| 15 | Linear Algebra in Optimization | N8-1, N8-2, N8-3 | Ch. 8 | Linear Transformations |
-| 16 | Final Exam | Final | - | - |
+| W01 | Introduction to Vectors | Introduction, N1 | Ch. 1 | Introduction, Vectors and Matrices |
+| W02 | Solving Linear Equations | - | Ch. 1 | Vectors and Matrices (continued) |
+| W03 | Solving Linear Equations | N2 | Ch. 2 | Solving Linear Equations |
+| W04 | Four Fundamental Subspaces | - | Ch. 2 | Solving Linear Equations (continued) |
+| W05 | Four Fundamental Subspaces | N3 (A) | Ch. 3 | Vector Spaces and Subspaces |
+| W06 | Orthogonality | N3 (B) | Ch. 3 | Vector Spaces and Subspaces (continued) |
+| W07 | Orthogonality | - | - | Review |
+| W08 | Midterm exam | Midterm | - | - |
+| W09 | Determinants | N4-1, N4-2 | Ch. 4 | Orthogonality, Projections |
+| W10 | Eigenvalues and eigenvectors | N4-3, N4-4, N4-5 | Ch. 4 | Least Squares, Orthogonal Basis, Pseudoinverse |
+| W11 | Eigenvalues and eigenvectors | N5-1, N5-2, N5-3 | Ch. 5 | Determinants |
+| W12 | Singular Value Decomposition | N6-1, N6-2 | Ch. 6 | Eigenvalues, Diagonalization |
+| W13 | Linear Transformation | N6-3, N6-5 | Ch. 6 | Symmetric Positive Definite Matrices, Linear Differential Equations |
+| W14 | Linear Transformation | N7-1, N7-2, N7-3 | Ch. 7 | SVD, Image Processing, PCA |
+| W15 | Linear Algebra in Optimization | N8-1, N8-2, N8-3 | Ch. 8 | Linear Transformations |
+| W16 | Final Exam | Final | - | - |
 
 - The planned topics follow the weekly course plan of the syllabus. Linear Algebra in Optimization (Chapter 9), planned for week 15, is not among the decks covered.
 - The deck numbers N1-N8 match the textbook chapters, and the second number in names such as `N4-1` is the section number within that chapter.
