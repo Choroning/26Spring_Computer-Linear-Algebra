@@ -3,7 +3,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Choroning/26Spring_Computer-Linear-Algebra)
 ![Languages](https://img.shields.io/github/languages/top/Choroning/26Spring_Computer-Linear-Algebra)
 
-This repository archives bilingual lecture notes and coursework for the Computer Linear Algebra course.
+This repository archives bilingual lecture notes for the Computer Linear Algebra course.
 
 *Author: Cheolwon Park (Korea University Sejong, CSE) - Year 3 (Junior) as of 2026*
 <br><br>
