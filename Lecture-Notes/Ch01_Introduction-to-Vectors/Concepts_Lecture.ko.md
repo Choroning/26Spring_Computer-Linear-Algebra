@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-19
+> **최종 수정일:** 2026-10-27
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -19,46 +19,45 @@
 
 ## 목차
 
-- [1. 강의 개요](#1-강의-개요)
-- [2. 벡터와 행렬 (워밍업)](#2-벡터와-행렬-워밍업)
-  - [2.1 핵심 아이디어](#21-핵심-아이디어)
-  - [2.2 벡터의 길이](#22-벡터의-길이)
-  - [2.3 내적 (Dot Product)](#23-내적-dot-product)
-  - [2.4 열벡터로 구성된 행렬](#24-열벡터로-구성된-행렬)
-  - [2.5 행렬-벡터 곱은 선형결합](#25-행렬-벡터-곱은-선형결합)
-  - [2.6 종속벡터 (Dependent Vectors)](#26-종속벡터-dependent-vectors)
-  - [2.7 행렬 곱셈 미리보기](#27-행렬-곱셈-미리보기)
-- [3. 벡터와 선형결합 (1.1)](#3-벡터와-선형결합-11)
-  - [3.1 R^2에서의 선형결합](#31-r2에서의-선형결합)
-  - [3.2 두 가지 핵심 질문](#32-두-가지-핵심-질문)
-  - [3.3 고차원으로의 확장](#33-고차원으로의-확장)
-  - [3.4 두 방정식 풀기](#34-두-방정식-풀기)
-  - [3.5 소거법이 실패할 수 있는가?](#35-소거법이-실패할-수-있는가)
-  - [3.6 3차원에서의 벡터](#36-3차원에서의-벡터)
-- [4. 내적으로부터의 길이와 각도 (1.2)](#4-내적으로부터의-길이와-각도-12)
-  - [4.1 내적의 정의](#41-내적의-정의)
-  - [4.2 벡터의 길이](#42-벡터의-길이)
-  - [4.3 단위벡터 (Unit Vectors)](#43-단위벡터-unit-vectors)
-  - [4.4 직교 벡터 (Perpendicular Vectors)](#44-직교-벡터-perpendicular-vectors)
-  - [4.5 두 벡터 사이의 각도](#45-두-벡터-사이의-각도)
-  - [4.6 슈바르츠 부등식 (Schwarz Inequality)](#46-슈바르츠-부등식-schwarz-inequality)
-  - [4.7 삼각 부등식 (Triangle Inequality)](#47-삼각-부등식-triangle-inequality)
-  - [4.8 3차원에서의 평면](#48-3차원에서의-평면)
-- [5. 행렬과 열공간 (1.3)](#5-행렬과-열공간-13)
-  - [5.1 행렬-벡터 곱셈](#51-행렬-벡터-곱셈)
-  - [5.2 열공간 (Column Space)](#52-열공간-column-space)
-  - [5.3 독립, 종속, 그리고 열공간](#53-독립-종속-그리고-열공간)
-  - [5.4 생성 (Span)](#54-생성-span)
-  - [5.5 랭크와 기저 (Rank and Basis)](#55-랭크와-기저-rank-and-basis)
-  - [5.6 랭크 1인 행렬](#56-랭크-1인-행렬)
-- [6. 행렬 곱셈 AB와 CR (1.4)](#6-행렬-곱셈-ab와-cr-14)
-  - [6.1 행렬 곱셈의 규칙](#61-행렬-곱셈의-규칙)
-  - [6.2 AB의 열 해석](#62-ab의-열-해석)
-  - [6.3 계산 비용](#63-계산-비용)
-  - [6.4 행렬 곱셈의 성질](#64-행렬-곱셈의-성질)
-  - [6.5 랭크 1 행렬과 A = CR](#65-랭크-1-행렬과-a--cr)
-  - [6.6 C와 R 구하기](#66-c와-r-구하기)
-  - [6.7 A의 열 곱하기 B의 행 (외적, Outer Product)](#67-a의-열-곱하기-b의-행-외적-outer-product)
+- [1. 벡터와 행렬 (워밍업)](#1-벡터와-행렬-워밍업)
+  - [1.1 핵심 아이디어](#11-핵심-아이디어)
+  - [1.2 벡터의 길이](#12-벡터의-길이)
+  - [1.3 내적 (Dot Product)](#13-내적-dot-product)
+  - [1.4 열벡터로 구성된 행렬](#14-열벡터로-구성된-행렬)
+  - [1.5 행렬-벡터 곱은 선형결합](#15-행렬-벡터-곱은-선형결합)
+  - [1.6 종속벡터 (Dependent Vectors)](#16-종속벡터-dependent-vectors)
+  - [1.7 행렬 곱셈 미리보기](#17-행렬-곱셈-미리보기)
+- [2. 벡터와 선형결합 (1.1)](#2-벡터와-선형결합-11)
+  - [2.1 R^2에서의 선형결합](#21-r2에서의-선형결합)
+  - [2.2 두 가지 핵심 질문](#22-두-가지-핵심-질문)
+  - [2.3 고차원으로의 확장](#23-고차원으로의-확장)
+  - [2.4 두 방정식 풀기](#24-두-방정식-풀기)
+  - [2.5 소거법이 실패할 수 있는가?](#25-소거법이-실패할-수-있는가)
+  - [2.6 3차원에서의 벡터](#26-3차원에서의-벡터)
+- [3. 내적으로부터의 길이와 각도 (1.2)](#3-내적으로부터의-길이와-각도-12)
+  - [3.1 내적의 정의](#31-내적의-정의)
+  - [3.2 벡터의 길이](#32-벡터의-길이)
+  - [3.3 단위벡터 (Unit Vectors)](#33-단위벡터-unit-vectors)
+  - [3.4 직교 벡터 (Perpendicular Vectors)](#34-직교-벡터-perpendicular-vectors)
+  - [3.5 두 벡터 사이의 각도](#35-두-벡터-사이의-각도)
+  - [3.6 슈바르츠 부등식 (Schwarz Inequality)](#36-슈바르츠-부등식-schwarz-inequality)
+  - [3.7 삼각 부등식 (Triangle Inequality)](#37-삼각-부등식-triangle-inequality)
+  - [3.8 3차원에서의 평면](#38-3차원에서의-평면)
+- [4. 행렬과 열공간 (1.3)](#4-행렬과-열공간-13)
+  - [4.1 행렬-벡터 곱셈](#41-행렬-벡터-곱셈)
+  - [4.2 열공간 (Column Space)](#42-열공간-column-space)
+  - [4.3 독립, 종속, 그리고 열공간](#43-독립-종속-그리고-열공간)
+  - [4.4 생성 (Span)](#44-생성-span)
+  - [4.5 랭크와 기저 (Rank and Basis)](#45-랭크와-기저-rank-and-basis)
+  - [4.6 랭크 1인 행렬](#46-랭크-1인-행렬)
+- [5. 행렬 곱셈 AB와 CR (1.4)](#5-행렬-곱셈-ab와-cr-14)
+  - [5.1 행렬 곱셈의 규칙](#51-행렬-곱셈의-규칙)
+  - [5.2 AB의 열 해석](#52-ab의-열-해석)
+  - [5.3 계산 비용](#53-계산-비용)
+  - [5.4 행렬 곱셈의 성질](#54-행렬-곱셈의-성질)
+  - [5.5 랭크 1 행렬과 A = CR](#55-랭크-1-행렬과-a--cr)
+  - [5.6 C와 R 구하기](#56-c와-r-구하기)
+  - [5.7 A의 열 곱하기 B의 행 (외적, Outer Product)](#57-a의-열-곱하기-b의-행-외적-outer-product)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
 
@@ -66,59 +65,15 @@
 
 <br>
 
-## 1. 강의 개요
+## 1. 벡터와 행렬 (워밍업)
 
-**과목:** DCSS321 전산선형대수학 (Computer Linear Algebra), 강신후
-
-**DCSS321에서 배우는 내용:**
-- 벡터 공간 (Vector Spaces)
-- 선형 변환 (Linear Transformations)
-- 연립일차방정식의 풀이 (Solving Systems of Linear Equations)
-- 고유값과 고유벡터 (Eigenvalues and Eigenvectors)
-
-**강의 계획 (전반부):**
-
-| 주차 | 강의 내용 | 핵심 개념 | 자료 |
-|:----:|:------------|:-------------|:----------|
-| 1 | 벡터 소개 | 벡터 | 1장 |
-| 2 | 연립일차방정식 풀기 | $`Ax = b`$ | 2장 |
-| 3 | 연립일차방정식 풀기 | $`Ax = b`$ | 3장 |
-| 4 | 네 가지 기본 부분공간 | 열공간 (Column Space) | 3.1~3.2절 |
-| 5 | 네 가지 기본 부분공간 | 영공간 (Nullspace) | 3.3~3.5절 |
-| 6 | 직교성 (Orthogonality) | 직교성 | 4.1~4.3절 |
-| 7 | 직교성 | 직교성 | 4.4~4.5절 |
-| 8 | **중간시험** | | |
-
-*표 1. 전반부(1~8주차) 강의 계획*
-
-**강의 계획 (후반부):**
-
-| 주차 | 강의 내용 | 핵심 개념 | 자료 |
-|:----:|:------------|:-------------|:----------|
-| 9 | 행렬식 (Determinants) | 행렬식 | 5장 |
-| 10 | 고유값과 고유벡터 | 고유분해 (Eigendecomposition) | 6.1~6.3절 |
-| 11 | 고유값과 고유벡터 | 고유분해 | 6.4~6.5절 |
-| 12 | 특이값 분해 (SVD) | SVD | 7장 |
-| 13 | 선형 변환 | 선형 사상 (Linear Map) | 8장 |
-| 14 | 선형 변환 | 선형 사상 | 8장 |
-| 15 | 최적화에서의 선형대수 | SGD | 9장 |
-| 16 | **기말시험** | | |
-
-*표 2. 후반부(9~16주차) 강의 계획*
-
----
-
-<br>
-
-## 2. 벡터와 행렬 (워밍업)
-
-**교재 1장의 구성 (이 정리본의 3~6절에 차례로 대응한다):**
+**교재 1장의 구성 (이 정리본의 2~5절에 차례로 대응한다):**
 - 1.1 벡터와 선형결합 (Linear Combination)
 - 1.2 내적으로부터의 길이와 각도 (Lengths and Angles from Dot Products)
 - 1.3 행렬과 열공간 (Matrices and their Column Spaces)
 - 1.4 행렬 곱셈 $`AB`$와 $`CR`$ (Matrix Multiplication)
 
-### 2.1 핵심 아이디어
+### 1.1 핵심 아이디어
 
 - 선형대수는 **벡터** $`\mathbf{v}`$와 **행렬** $`A`$에 관한 것이다.
 - 연산을 정의한다: $`+, -, \cdot`$ (덧셈, 뺄셈, 곱셈).
@@ -140,7 +95,7 @@ c\mathbf{v} + d\mathbf{w} = c\begin{pmatrix} 2 \\ 4 \end{pmatrix} + d\begin{pmat
 
 > **핵심:** $`\mathbf{v}`$와 $`\mathbf{w}`$는 한 직선 위에 있지 않으므로, 두 벡터의 선형결합 $`c\mathbf{v} + d\mathbf{w}`$는 $`xy`$ 평면 전체를 채운다.
 
-### 2.2 벡터의 길이
+### 1.2 벡터의 길이
 
 벡터 $`\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} \in \mathbb{R}^2`$의 길이:
 
@@ -150,7 +105,7 @@ c\mathbf{v} + d\mathbf{w} = c\begin{pmatrix} 2 \\ 4 \end{pmatrix} + d\begin{pmat
 
 **예시:** $`\mathbf{w} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}`$, $`\|\mathbf{w}\| = \sqrt{1^2 + 3^2} = \sqrt{10}`$
 
-### 2.3 내적 (Dot Product)
+### 1.3 내적 (Dot Product)
 
 $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 
@@ -164,7 +119,7 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 \begin{pmatrix} 2 \\ 4 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 3 \end{pmatrix} = (2)(1) + (4)(3) = 2 + 12 = 14
 ```
 
-### 2.4 열벡터로 구성된 행렬
+### 1.4 열벡터로 구성된 행렬
 
 행렬 $`A`$는 두 개의 열을 포함한다:
 
@@ -172,7 +127,7 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 A = \begin{pmatrix} \mathbf{v} & \mathbf{w} \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}
 ```
 
-### 2.5 행렬-벡터 곱은 선형결합
+### 1.5 행렬-벡터 곱은 선형결합
 
 행렬 $`A`$에 벡터 $`\begin{pmatrix} c \\ d \end{pmatrix}`$를 곱하면:
 
@@ -184,7 +139,7 @@ A \begin{pmatrix} c \\ d \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pma
 
 $`\mathbf{x} = \begin{pmatrix} c \\ d \end{pmatrix}`$로 놓으면, 모든 결합 $`A\mathbf{x}`$는 행렬 $`A`$의 **열공간 (Column Space)** 을 이룬다. 이 예에서 열공간은 $`xy`$ 평면 전체이다.
 
-### 2.6 종속벡터 (Dependent Vectors)
+### 1.6 종속벡터 (Dependent Vectors)
 
 $`\mathbf{z} = \mathbf{v} + \mathbf{w}`$라 하자.
 
@@ -196,7 +151,7 @@ B = \begin{pmatrix} \mathbf{v} & \mathbf{w} & \mathbf{z} \end{pmatrix} = \begin{
 - $`\mathbf{v}`$와 $`\mathbf{w}`$는 **독립 (Independent)** 벡터이다.
 - $`\mathbf{z}`$는 $`\mathbf{v}`$와 $`\mathbf{w}`$의 결합이므로 **종속 (Dependent)** 벡터이다.
 
-### 2.7 행렬 곱셈 미리보기
+### 1.7 행렬 곱셈 미리보기
 
 행렬 곱셈 $`AB`$는 **$`A`$ 곱하기 $`B`$의 각 열**로 해석할 수 있다.
 
@@ -204,9 +159,9 @@ B = \begin{pmatrix} \mathbf{v} & \mathbf{w} & \mathbf{z} \end{pmatrix} = \begin{
 
 <br>
 
-## 3. 벡터와 선형결합 (1.1)
+## 2. 벡터와 선형결합 (1.1)
 
-### 3.1 R^2에서의 선형결합
+### 2.1 R^2에서의 선형결합
 
 **(1)** $`2\mathbf{v} - 3\mathbf{w}`$는 벡터 $`\mathbf{v}`$와 $`\mathbf{w}`$의 선형결합 $`c\mathbf{v} + d\mathbf{w}`$이다.
 
@@ -230,7 +185,7 @@ $`\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}`$은 그 평면 위에 있지 **않�
 
 이로부터 $`\mathbf{v}`$와 $`\mathbf{w}`$의 **선형결합** $`c\mathbf{v} + d\mathbf{w}`$가 만들어진다.
 
-### 3.2 두 가지 핵심 질문
+### 2.2 두 가지 핵심 질문
 
 두 가지 질문이 생긴다:
 
@@ -245,7 +200,7 @@ $`\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}`$은 그 평면 위에 있지 **않�
 c\begin{pmatrix} 2 \\ 1 \end{pmatrix} + d\begin{pmatrix} 4 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}
 ```
 
-### 3.3 고차원으로의 확장
+### 2.3 고차원으로의 확장
 
 지금까지 $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^2`$이었다.
 
@@ -309,7 +264,7 @@ $`\mathbf{w}`$가 그 직선 위에 있지 않으면, 벡터 $`d\mathbf{w}`$는 
 - $`0\mathbf{v} + 0\mathbf{w}`$는 영벡터이다.
 - $`c\mathbf{v} + 0\mathbf{w}`$는 $`\mathbf{v}`$ 방향의 벡터 $`c\mathbf{v}`$이다.
 
-### 3.4 두 방정식 풀기
+### 2.4 두 방정식 풀기
 
 **다음 식을 푼다:**
 
@@ -385,7 +340,7 @@ cv_2 + dw_2 = b_2
 - $`\mathbf{v}`$와 $`\mathbf{w}`$는 **선형독립 (Linearly Independent)** 이다.
 - $`A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}`$는 **가역 (Invertible)** 이다.
 
-### 3.5 소거법이 실패할 수 있는가?
+### 2.5 소거법이 실패할 수 있는가?
 
 $`\mathbf{v} \| \mathbf{w}`$ (즉, $`v_1 w_2 = v_2 w_1`$이며, 성분이 0이 아니면 $`\frac{v_1}{v_2} = \frac{w_1}{w_2}`$)일 때 **실패한다**.
 
@@ -403,7 +358,7 @@ xv_2 + yw_2 = b_2
 - **해 없음**: $`\mathbf{v}`$와 $`\mathbf{w}`$의 모든 결합이 같은 직선 위에 놓인다. $`\mathbf{b}`$가 그 직선 위에 있지 않으면 해가 없다. $`\mathbf{v}`$와 $`\mathbf{w}`$의 어떤 결합도 $`\mathbf{b}`$와 같지 않다.
 - **무한히 많은 해**: $`\mathbf{b}`$가 그 직선 위에 있으면 무한히 많은 해가 존재한다.
 
-### 3.6 3차원에서의 벡터
+### 2.6 3차원에서의 벡터
 
 $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^3`$ (3차원 공간)이라 하자.
 
@@ -451,9 +406,9 @@ $`\hat{i}, \hat{j}, \hat{k}`$는 3차원 공간에서 $`x, y, z`$ 축 방향의 
 
 <br>
 
-## 4. 내적으로부터의 길이와 각도 (1.2)
+## 3. 내적으로부터의 길이와 각도 (1.2)
 
-### 4.1 내적의 정의
+### 3.1 내적의 정의
 
 **(1)** $`\mathbf{v} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}`$, $`\mathbf{w} = \begin{pmatrix} 4 \\ 6 \end{pmatrix}`$라 하자.
 
@@ -487,7 +442,7 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 
 **예시:** $`\mathbf{v} \in \mathbb{R}^3`$, $`\|\mathbf{v}\|^2 = v_1^2 + v_2^2 + v_3^2 = (v_1^2 + v_2^2) + v_3^2`$이며, $`(v_1^2 + v_2^2)`$는 $`xy`$ 평면 성분의 길이의 제곱이다.
 
-### 4.2 벡터의 길이
+### 3.2 벡터의 길이
 
 **(2)** $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$의 길이의 제곱:
 
@@ -499,7 +454,7 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 \therefore \|\mathbf{v}\| = \sqrt{14}
 ```
 
-### 4.3 단위벡터 (Unit Vectors)
+### 3.3 단위벡터 (Unit Vectors)
 
 - $`\mathbf{v}`$가 $`\|\mathbf{v}\| = 1`$일 때 **단위벡터 (Unit Vector)** 이다.
 - $`\mathbf{v} \neq \mathbf{0}`$이면, $`\frac{\mathbf{v}}{\|\mathbf{v}\|}`$는 단위벡터이다.
@@ -510,7 +465,7 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 \|\mathbf{u}\|^2 = \cos^2\theta + \sin^2\theta = 1
 ```
 
-### 4.4 직교 벡터 (Perpendicular Vectors)
+### 3.4 직교 벡터 (Perpendicular Vectors)
 
 **(3)** $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$는 $`\mathbf{w} = \begin{pmatrix} 4 \\ -4 \\ 4 \end{pmatrix}`$에 수직이다:
 
@@ -598,7 +553,7 @@ $`\mathbf{w} = \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$는 $`x`$축과 $`-45°`$ 
 
 $`\|\mathbf{v}\| = \|\mathbf{w}\| = 1`$이면 $`\mathbf{v}`$와 $`\mathbf{w}`$ 사이의 각도 $`\theta`$는 $`\cos\theta = \mathbf{v} \cdot \mathbf{w}`$를 만족한다.
 
-### 4.5 두 벡터 사이의 각도
+### 3.5 두 벡터 사이의 각도
 
 **(4)** $`\mathbf{v} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$과 $`\mathbf{w} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}`$ 사이의 각도 $`\theta = 45°`$:
 
@@ -640,7 +595,7 @@ $`p_i q_i`$는 가격 $`p_i`$로 $`q_i`$ 단위를 구매한 비용이다.
 | ii) | $`\theta = 90°`$ | $`\mathbf{v} \cdot \mathbf{w} = 0`$ |
 | iii) | $`\theta > 90°`$ | $`\mathbf{v} \cdot \mathbf{w} < 0`$ |
 
-*표 3. 내적의 부호와 두 벡터 사이 각도의 관계*
+*표 1. 내적의 부호와 두 벡터 사이 각도의 관계*
 
 $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\mathbf{w}`$에 대해 각도를 다음으로 측정할 수 있다:
 
@@ -648,7 +603,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 \frac{\mathbf{v}}{\|\mathbf{v}\|} \cdot \frac{\mathbf{w}}{\|\mathbf{w}\|} = \cos\theta
 ```
 
-### 4.6 슈바르츠 부등식 (Schwarz Inequality)
+### 3.6 슈바르츠 부등식 (Schwarz Inequality)
 
 ```math
 \mathbf{v} \cdot \mathbf{w} = \|\mathbf{v}\|\|\mathbf{w}\|\cos\theta
@@ -702,7 +657,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 - $`ab \geq 0`$이면: $`a^2 + b^2 - 2ab = (a - b)^2 \geq 0`$ $`\checkmark`$
 - $`ab < 0`$이면: $`a^2 + b^2 + 2ab = (a + b)^2 \geq 0`$ $`\checkmark`$
 
-### 4.7 삼각 부등식 (Triangle Inequality)
+### 3.7 삼각 부등식 (Triangle Inequality)
 
 **삼각 부등식은 슈바르츠 부등식으로부터 직접 도출된다.**
 
@@ -741,7 +696,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 \sqrt{18} < \sqrt{20} \quad \checkmark
 ```
 
-### 4.8 3차원에서의 평면
+### 3.8 3차원에서의 평면
 
 **3차원에서의 평면.** $`\mathbf{n}`$이 단위벡터 $`\mathbf{n} = \begin{pmatrix} n_1 \\ n_2 \\ n_3 \end{pmatrix}`$라 하자.
 
@@ -765,9 +720,9 @@ $`\mathbf{w} \cdot \mathbf{n} = 0`$을 만족하는 벡터 $`\mathbf{w}`$는 $`\
 
 <br>
 
-## 5. 행렬과 열공간 (1.3)
+## 4. 행렬과 열공간 (1.3)
 
-### 5.1 행렬-벡터 곱셈
+### 4.1 행렬-벡터 곱셈
 
 **(1)** $`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}`$는 3개의 행과 2개의 열을 가진 **$`3 \times 2`$ 행렬**이며, 랭크는 2이다.
 
@@ -848,7 +803,7 @@ A\mathbf{x} = \begin{pmatrix} | & | & & | \\ \mathbf{a}_1 & \mathbf{a}_2 & \cdot
 A\mathbf{x} = x_1\begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix} + x_2\begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix} + x_3\begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix} + x_4\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} x_2 - x_1 \\ x_3 - x_2 \\ x_4 - x_3 \end{pmatrix}
 ```
 
-### 5.2 열공간 (Column Space)
+### 4.2 열공간 (Column Space)
 
 $`A = (\mathbf{a}_1 \ \mathbf{a}_2)`$이고 $`\mathbf{a}_1`$과 $`\mathbf{a}_2`$가 선형독립일 때:
 
@@ -858,7 +813,7 @@ A\mathbf{x} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2
 
 는 **모든 결합의 평면** (생성, Span)을 보여준다.
 
-### 5.3 독립, 종속, 그리고 열공간
+### 4.3 독립, 종속, 그리고 열공간
 
 **예시 (ex1):**
 
@@ -928,7 +883,7 @@ v_4 = x_4, \quad v_3 = x_4 + x_3, \quad v_2 = x_4 + x_3 + x_2, \quad v_1 = x_4 +
 
 이는 **모든 $`\mathbf{v}`$가 열공간에 속한다**는 것을 의미한다. 즉 네 개의 방정식 $`A_4\mathbf{x} = \mathbf{v}`$는 모든 $`\mathbf{v}`$에 대해 풀린다.
 
-### 5.4 생성 (Span)
+### 4.4 생성 (Span)
 
 **생성 (Span)** 은 벡터 집합의 모든 선형결합을 기술한다.
 
@@ -953,7 +908,7 @@ $`A_5`$의 열공간은 $`\mathbb{R}^4`$ 내의 **3차원 부분공간**이다. 
 
 $`A_5\mathbf{x} = \mathbf{v}`$는 $`\mathbf{v} \in C(A_5)`$일 때만 풀 수 있다.
 
-### 5.5 랭크와 기저 (Rank and Basis)
+### 4.5 랭크와 기저 (Rank and Basis)
 
 $`A = \begin{pmatrix} | & | & & | \\ \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \\ | & | & & | \end{pmatrix} \in \mathbb{R}^{m \times n}`$이라 하자.
 
@@ -991,7 +946,7 @@ A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}: C(A) = x 
 - **Q4:** 임의의 $`A`$를 $`m \times r`$ 열 행렬 $`C`$ 곱하기 $`r \times n`$ 행렬 $`R`$로 쓸 수 있다: $`A = CR`$.
 - **Q5:** $`R`$의 $`r`$개의 행은 $`A`$의 **행공간 (Row space)** 의 기저이다. $`R`$의 행은 $`A`$에서 직접 오지 않는다.
 
-### 5.6 랭크 1인 행렬
+### 4.6 랭크 1인 행렬
 
 랭크 1 행렬에서는 **모든 열벡터가 같은 직선을 따라 놓인다**.
 
@@ -1029,9 +984,9 @@ $`a \neq 0`$이면 행 2 = $`\frac{b}{a}`$ 행 1, 행 3 = $`\frac{c}{a}`$ 행 1�
 
 <br>
 
-## 6. 행렬 곱셈 AB와 CR (1.4)
+## 5. 행렬 곱셈 AB와 CR (1.4)
 
-### 6.1 행렬 곱셈의 규칙
+### 5.1 행렬 곱셈의 규칙
 
 **(1)** $`AB`$를 곱하려면 $`A \in \mathbb{R}^{m \times n}`$, $`B \in \mathbb{R}^{n \times p}`$이어야 한다.
 
@@ -1055,7 +1010,7 @@ $`AB`$의 열 $`j`$는 $`A\mathbf{b}_j`$이다.
 
 **(5)** $`A`$의 $`r`$개의 독립 열을 $`C`$에 모으면 $`A = CR`$이며, 여기서 $`C \in \mathbb{R}^{m \times r}`$, $`R \in \mathbb{R}^{r \times n}`$이다.
 
-### 6.2 AB의 열 해석
+### 5.2 AB의 열 해석
 
 $`B = \begin{pmatrix} | & | & & | \\ \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_p \\ | & | & & | \end{pmatrix}`$라 하자.
 
@@ -1107,7 +1062,7 @@ A\mathbf{b}_2 = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} 6 \\
 \therefore AB = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix}
 ```
 
-### 6.3 계산 비용
+### 5.3 계산 비용
 
 $`A \in \mathbb{R}^{m \times n}`$, $`B \in \mathbb{R}^{n \times p}`$라 하자.
 
@@ -1123,7 +1078,7 @@ AB = \begin{pmatrix} | & | & & | \\ A\mathbf{b}_1 & A\mathbf{b}_2 & \cdots & A\m
 >
 > $`A, B \in \mathbb{R}^{n \times n}`$이면, $`AB`$의 비용은 $`n^3`$이다.
 
-### 6.4 행렬 곱셈의 성질
+### 5.4 행렬 곱셈의 성질
 
 **비교환성:**
 
@@ -1147,7 +1102,7 @@ AB \neq BA \quad \text{일반적으로.}
 A(B + C) = AB + AC
 ```
 
-### 6.5 랭크 1 행렬과 A = CR
+### 5.5 랭크 1 행렬과 A = CR
 
 **$`AB`$ 복습:**
 
@@ -1179,7 +1134,7 @@ A = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\begin{pmatrix} 1 & 2 & 10 & 100 \e
 
 여기서 $`C \in \mathbb{R}^{3 \times 1}`$이고 $`R \in \mathbb{R}^{1 \times 4}`$이다.
 
-### 6.6 C와 R 구하기
+### 5.6 C와 R 구하기
 
 **$`C`$는 $`A`$의 처음 $`r`$개의 독립 열을 포함한다.**
 
@@ -1323,7 +1278,7 @@ A = \begin{pmatrix} | & | & | \\ \mathbf{a}_1 & \mathbf{a}_2 & 3\mathbf{a}_1 + 4
 = \mathbf{a}_1(1 \ 0 \ 3) + \mathbf{a}_2(0 \ 1 \ 4) = (\mathbf{a}_1 \ \mathbf{a}_2 \ 3\mathbf{a}_1 + 4\mathbf{a}_2) = A
 ```
 
-### 6.7 A의 열 곱하기 B의 행 (외적, Outer Product)
+### 5.7 A의 열 곱하기 B의 행 (외적, Outer Product)
 
 ```math
 AB = \begin{pmatrix} | & | & & | \\ \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \\ | & | & & | \end{pmatrix}_{m \times n} \begin{pmatrix} - & \mathbf{b}_1^* & - \\ - & \mathbf{b}_2^* & - \\ & \vdots & \\ - & \mathbf{b}_n^* & - \end{pmatrix}_{n \times p}
@@ -1391,7 +1346,7 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 
 ## 점검 문제
 
-1. **선형결합의 계수:** $`c\begin{pmatrix} 2 \\ 1 \end{pmatrix} + d\begin{pmatrix} 4 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}`$를 만족하는 $`c`$와 $`d`$를 구하라(3.2절의 예시).
+1. **선형결합의 계수:** $`c\begin{pmatrix} 2 \\ 1 \end{pmatrix} + d\begin{pmatrix} 4 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}`$를 만족하는 $`c`$와 $`d`$를 구하라(2.2절의 예시).
 
    <details>
    <summary>정답</summary>

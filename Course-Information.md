@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-10-26
+> **Last Updated:** 2026-10-27
 
 ## Table of Contents
 
@@ -31,6 +31,7 @@
 - **Intended For:** Third-year students
 - **Class Format:** Each week consists of 2 hours of online classes and 1 hour of in-person class.
 - **Term Structure:** The semester runs for 16 weeks, with the midterm exam in week 8 and the final exam in week 16.
+- **Course Description:** Students learn vector spaces, linear transformations, solving systems of linear equations, and eigenvalues and eigenvectors.
 
 ---
 
@@ -87,6 +88,7 @@
 | W16 | Final Exam | Final | - | - |
 
 - The planned topics follow the weekly course plan of the syllabus. Linear Algebra in Optimization (Chapter 9), planned for week 15, is not among the decks covered.
+- The course plan in the Introduction deck sets the textbook range and key concept of each week as Chapter 1 (vectors) in week 1, Chapter 2 ($`Ax = b`$) in week 2, Chapter 3 ($`Ax = b`$) in week 3, Sections 3.1-3.2 (column space) in week 4, Sections 3.3-3.5 (nullspace) in week 5, Sections 4.1-4.3 (orthogonality) in week 6, Sections 4.4-4.5 (orthogonality) in week 7, Chapter 5 (determinants) in week 9, Sections 6.1-6.3 (eigendecomposition) in week 10, Sections 6.4-6.5 (eigendecomposition) in week 11, Chapter 7 (SVD) in week 12, Chapter 8 (linear maps) in weeks 13 and 14, and Chapter 9 (SGD) in week 15.
 - The deck numbers N1-N8 match the textbook chapters, and the second number in names such as `N4-1` is the section number within that chapter.
 - The decks of each chapter are organized in the lecture note of the `Ch##` unit with the same number, and the units are listed in the [`Lecture-Notes` index](Lecture-Notes/README.md).
 
