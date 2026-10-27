@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-10-27
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -506,7 +506,7 @@ Take $`x_2 = 0`$, $`x_1 = 10`$. So $`\mathbf{x}_p = \begin{pmatrix} 10 \\ 0 \end
 \mathbf{x} = \begin{pmatrix} 10 \\ 0 \end{pmatrix} + c\begin{pmatrix} -2 \\ 1 \end{pmatrix}
 ```
 
-When $`c = 1`$: $`\begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}\begin{pmatrix} 8 \\ 1 \end{pmatrix} = \begin{pmatrix} 10 \\ 30 \end{pmatrix}`$. Verified.
+When $`c = 1`$: $`\begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}\begin{pmatrix} 8 \\ 1 \end{pmatrix} = \begin{pmatrix} 10 \\ 30 \end{pmatrix}`$.
 
 > **Note:** $`\mathbf{x}_p`$ is **not** orthogonal to $`\mathbf{x}_n`$: $`(10 \quad 0)\begin{pmatrix} -2 \\ 1 \end{pmatrix} = -20 \neq 0`$.
 

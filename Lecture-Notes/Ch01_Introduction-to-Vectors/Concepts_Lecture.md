@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-10-27
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -19,46 +19,45 @@
 
 ## Table of Contents
 
-- [1. Course Overview](#1-course-overview)
-- [2. Vectors and Matrices (Warmup)](#2-vectors-and-matrices-warmup)
-  - [2.1 Key Ideas](#21-key-ideas)
-  - [2.2 Length of a Vector](#22-length-of-a-vector)
-  - [2.3 Dot Product](#23-dot-product)
-  - [2.4 Matrix from Column Vectors](#24-matrix-from-column-vectors)
-  - [2.5 Matrix-Vector Product as Linear Combination](#25-matrix-vector-product-as-linear-combination)
-  - [2.6 Dependent Vectors](#26-dependent-vectors)
-  - [2.7 Matrix Multiplication Preview](#27-matrix-multiplication-preview)
-- [3. Vectors and Linear Combinations (1.1)](#3-vectors-and-linear-combinations-11)
-  - [3.1 Linear Combinations in R^2](#31-linear-combinations-in-r2)
-  - [3.2 Two Key Questions](#32-two-key-questions)
-  - [3.3 Extending to Higher Dimensions](#33-extending-to-higher-dimensions)
-  - [3.4 Solving Two Equations](#34-solving-two-equations)
-  - [3.5 Can Elimination Fail?](#35-can-elimination-fail)
-  - [3.6 Vectors in Three Dimensions](#36-vectors-in-three-dimensions)
-- [4. Lengths and Angles from Dot Products (1.2)](#4-lengths-and-angles-from-dot-products-12)
-  - [4.1 Dot Product Definition](#41-dot-product-definition)
-  - [4.2 Length of a Vector](#42-length-of-a-vector)
-  - [4.3 Unit Vectors](#43-unit-vectors)
-  - [4.4 Perpendicular Vectors](#44-perpendicular-vectors)
-  - [4.5 The Angle Between Two Vectors](#45-the-angle-between-two-vectors)
-  - [4.6 Schwarz Inequality](#46-schwarz-inequality)
-  - [4.7 Triangle Inequality](#47-triangle-inequality)
-  - [4.8 Planes in 3D](#48-planes-in-3d)
-- [5. Matrices and Their Column Spaces (1.3)](#5-matrices-and-their-column-spaces-13)
-  - [5.1 Matrix-Vector Multiplication](#51-matrix-vector-multiplication)
-  - [5.2 Column Space](#52-column-space)
-  - [5.3 Independent, Dependent, and Column Space](#53-independent-dependent-and-column-space)
-  - [5.4 Span](#54-span)
-  - [5.5 Rank and Basis](#55-rank-and-basis)
-  - [5.6 Matrices of Rank One](#56-matrices-of-rank-one)
-- [6. Matrix Multiplication AB and CR (1.4)](#6-matrix-multiplication-ab-and-cr-14)
-  - [6.1 Rules for Matrix Multiplication](#61-rules-for-matrix-multiplication)
-  - [6.2 Column Interpretation of AB](#62-column-interpretation-of-ab)
-  - [6.3 Computational Cost](#63-computational-cost)
-  - [6.4 Properties of Matrix Multiplication](#64-properties-of-matrix-multiplication)
-  - [6.5 Rank One Matrices and A = CR](#65-rank-one-matrices-and-a--cr)
-  - [6.6 Finding C and R](#66-finding-c-and-r)
-  - [6.7 Columns of A times Rows of B (Outer Product)](#67-columns-of-a-times-rows-of-b-outer-product)
+- [1. Vectors and Matrices (Warmup)](#1-vectors-and-matrices-warmup)
+  - [1.1 Key Ideas](#11-key-ideas)
+  - [1.2 Length of a Vector](#12-length-of-a-vector)
+  - [1.3 Dot Product](#13-dot-product)
+  - [1.4 Matrix from Column Vectors](#14-matrix-from-column-vectors)
+  - [1.5 Matrix-Vector Product as Linear Combination](#15-matrix-vector-product-as-linear-combination)
+  - [1.6 Dependent Vectors](#16-dependent-vectors)
+  - [1.7 Matrix Multiplication Preview](#17-matrix-multiplication-preview)
+- [2. Vectors and Linear Combinations (1.1)](#2-vectors-and-linear-combinations-11)
+  - [2.1 Linear Combinations in R^2](#21-linear-combinations-in-r2)
+  - [2.2 Two Key Questions](#22-two-key-questions)
+  - [2.3 Extending to Higher Dimensions](#23-extending-to-higher-dimensions)
+  - [2.4 Solving Two Equations](#24-solving-two-equations)
+  - [2.5 Can Elimination Fail?](#25-can-elimination-fail)
+  - [2.6 Vectors in Three Dimensions](#26-vectors-in-three-dimensions)
+- [3. Lengths and Angles from Dot Products (1.2)](#3-lengths-and-angles-from-dot-products-12)
+  - [3.1 Dot Product Definition](#31-dot-product-definition)
+  - [3.2 Length of a Vector](#32-length-of-a-vector)
+  - [3.3 Unit Vectors](#33-unit-vectors)
+  - [3.4 Perpendicular Vectors](#34-perpendicular-vectors)
+  - [3.5 The Angle Between Two Vectors](#35-the-angle-between-two-vectors)
+  - [3.6 Schwarz Inequality](#36-schwarz-inequality)
+  - [3.7 Triangle Inequality](#37-triangle-inequality)
+  - [3.8 Planes in 3D](#38-planes-in-3d)
+- [4. Matrices and Their Column Spaces (1.3)](#4-matrices-and-their-column-spaces-13)
+  - [4.1 Matrix-Vector Multiplication](#41-matrix-vector-multiplication)
+  - [4.2 Column Space](#42-column-space)
+  - [4.3 Independent, Dependent, and Column Space](#43-independent-dependent-and-column-space)
+  - [4.4 Span](#44-span)
+  - [4.5 Rank and Basis](#45-rank-and-basis)
+  - [4.6 Matrices of Rank One](#46-matrices-of-rank-one)
+- [5. Matrix Multiplication AB and CR (1.4)](#5-matrix-multiplication-ab-and-cr-14)
+  - [5.1 Rules for Matrix Multiplication](#51-rules-for-matrix-multiplication)
+  - [5.2 Column Interpretation of AB](#52-column-interpretation-of-ab)
+  - [5.3 Computational Cost](#53-computational-cost)
+  - [5.4 Properties of Matrix Multiplication](#54-properties-of-matrix-multiplication)
+  - [5.5 Rank One Matrices and A = CR](#55-rank-one-matrices-and-a--cr)
+  - [5.6 Finding C and R](#56-finding-c-and-r)
+  - [5.7 Columns of A times Rows of B (Outer Product)](#57-columns-of-a-times-rows-of-b-outer-product)
 - [Summary](#summary)
 - [Self-Check Questions](#self-check-questions)
 
@@ -66,59 +65,15 @@
 
 <br>
 
-## 1. Course Overview
+## 1. Vectors and Matrices (Warmup)
 
-**Course:** DCSS321 Computer Linear Algebra, Shinhoo Kang
-
-**What students learn in DCSS321:**
-- Vector spaces
-- Linear transformations
-- Solving systems of linear equations
-- Eigenvalues and eigenvectors
-
-**Course Plan (First Half):**
-
-| Week | Topic | Key Concepts | Materials |
-|:----:|:------------|:-------------|:----------|
-| 1 | Introduction to Vectors | Vectors | Chapter 1 |
-| 2 | Solving Linear Equations | $`Ax = b`$ | Chapter 2 |
-| 3 | Solving Linear Equations | $`Ax = b`$ | Chapter 3 |
-| 4 | Four Fundamental Subspaces | Column space | Sections 3.1-3.2 |
-| 5 | Four Fundamental Subspaces | Nullspace | Sections 3.3-3.5 |
-| 6 | Orthogonality | Orthogonality | Sections 4.1-4.3 |
-| 7 | Orthogonality | Orthogonality | Sections 4.4-4.5 |
-| 8 | **Midterm Exam** | | |
-
-*Table 1. Course plan for the first half (Weeks 1-8)*
-
-**Course Plan (Second Half):**
-
-| Week | Topic | Key Concepts | Materials |
-|:----:|:------------|:-------------|:----------|
-| 9 | Determinants | Determinants | Chapter 5 |
-| 10 | Eigenvalues and Eigenvectors | Eigendecomposition | Sections 6.1-6.3 |
-| 11 | Eigenvalues and Eigenvectors | Eigendecomposition | Sections 6.4-6.5 |
-| 12 | Singular Value Decomposition | SVD | Chapter 7 |
-| 13 | Linear Transformation | Linear map | Chapter 8 |
-| 14 | Linear Transformation | Linear map | Chapter 8 |
-| 15 | Linear Algebra in Optimization | SGD | Chapter 9 |
-| 16 | **Final Exam** | | |
-
-*Table 2. Course plan for the second half (Weeks 9-16)*
-
----
-
-<br>
-
-## 2. Vectors and Matrices (Warmup)
-
-**Chapter 1 of the textbook (Sections 3-6 of these notes, in order):**
+**Chapter 1 of the textbook (Sections 2-5 of these notes, in order):**
 - 1.1 Vectors and Linear Combination
 - 1.2 Lengths and Angles from Dot Products
 - 1.3 Matrices and their Column Spaces
 - 1.4 Matrix Multiplication $`AB`$ and $`CR`$
 
-### 2.1 Key Ideas
+### 1.1 Key Ideas
 
 - Linear algebra is about **vectors** $`\mathbf{v}`$ and **matrices** $`A`$.
 - We define operations: $`+, -, \cdot`$ (addition, subtraction, multiplication).
@@ -140,7 +95,7 @@ c\mathbf{v} + d\mathbf{w} = c\begin{pmatrix} 2 \\ 4 \end{pmatrix} + d\begin{pmat
 
 > **Key Point:** Since $`\mathbf{v}`$ and $`\mathbf{w}`$ do not lie on one line, the linear combinations $`c\mathbf{v} + d\mathbf{w}`$ of the two vectors fill the whole $`xy`$ plane.
 
-### 2.2 Length of a Vector
+### 1.2 Length of a Vector
 
 The length of a vector $`\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} \in \mathbb{R}^2`$:
 
@@ -150,7 +105,7 @@ The length of a vector $`\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} \
 
 **Example:** $`\mathbf{w} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}`$, $`\|\mathbf{w}\| = \sqrt{1^2 + 3^2} = \sqrt{10}`$
 
-### 2.3 Dot Product
+### 1.3 Dot Product
 
 The dot product of $`\mathbf{v}`$ and $`\mathbf{w}`$ is:
 
@@ -164,7 +119,7 @@ The dot product of $`\mathbf{v}`$ and $`\mathbf{w}`$ is:
 \begin{pmatrix} 2 \\ 4 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 3 \end{pmatrix} = (2)(1) + (4)(3) = 2 + 12 = 14
 ```
 
-### 2.4 Matrix from Column Vectors
+### 1.4 Matrix from Column Vectors
 
 A matrix $`A`$ contains two columns:
 
@@ -172,7 +127,7 @@ A matrix $`A`$ contains two columns:
 A = \begin{pmatrix} \mathbf{v} & \mathbf{w} \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}
 ```
 
-### 2.5 Matrix-Vector Product as Linear Combination
+### 1.5 Matrix-Vector Product as Linear Combination
 
 Multiply the matrix $`A`$ by a vector $`\begin{pmatrix} c \\ d \end{pmatrix}`$:
 
@@ -184,7 +139,7 @@ This is a **linear combination of $`\mathbf{v}`$ and $`\mathbf{w}`$**.
 
 Let $`\mathbf{x} = \begin{pmatrix} c \\ d \end{pmatrix}`$. All combinations $`A\mathbf{x}`$ form the **column space** of the matrix $`A`$. In this example, the column space is the whole $`xy`$ plane.
 
-### 2.6 Dependent Vectors
+### 1.6 Dependent Vectors
 
 Let $`\mathbf{z} = \mathbf{v} + \mathbf{w}`$.
 
@@ -196,7 +151,7 @@ B = \begin{pmatrix} \mathbf{v} & \mathbf{w} & \mathbf{z} \end{pmatrix} = \begin{
 - $`\mathbf{v}`$ and $`\mathbf{w}`$ are **independent** vectors.
 - $`\mathbf{z}`$ is a **dependent** vector, since it is a combination of $`\mathbf{v}`$ and $`\mathbf{w}`$.
 
-### 2.7 Matrix Multiplication Preview
+### 1.7 Matrix Multiplication Preview
 
 A matrix multiplication $`AB`$ can be interpreted as **$`A`$ times each column of $`B`$**.
 
@@ -204,9 +159,9 @@ A matrix multiplication $`AB`$ can be interpreted as **$`A`$ times each column o
 
 <br>
 
-## 3. Vectors and Linear Combinations (1.1)
+## 2. Vectors and Linear Combinations (1.1)
 
-### 3.1 Linear Combinations in R^2
+### 2.1 Linear Combinations in R^2
 
 **(1)** $`2\mathbf{v} - 3\mathbf{w}`$ is a linear combination $`c\mathbf{v} + d\mathbf{w}`$ of the vectors $`\mathbf{v}`$ and $`\mathbf{w}`$.
 
@@ -230,7 +185,7 @@ Linear combinations of vectors $`\mathbf{v}`$ and $`\mathbf{w}`$ are built from 
 
 This leads to a **linear combination** $`c\mathbf{v} + d\mathbf{w}`$ of $`\mathbf{v}`$ and $`\mathbf{w}`$.
 
-### 3.2 Two Key Questions
+### 2.2 Two Key Questions
 
 It opens up two questions:
 
@@ -245,7 +200,7 @@ It opens up two questions:
 c\begin{pmatrix} 2 \\ 1 \end{pmatrix} + d\begin{pmatrix} 4 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}
 ```
 
-### 3.3 Extending to Higher Dimensions
+### 2.3 Extending to Higher Dimensions
 
 So far $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^2`$.
 
@@ -309,7 +264,7 @@ If $`\mathbf{w}`$ is not on that line, then the vectors $`d\mathbf{w}`$ fill a s
 - $`0\mathbf{v} + 0\mathbf{w}`$ is the zero vector.
 - $`c\mathbf{v} + 0\mathbf{w}`$ is the vector $`c\mathbf{v}`$ in the direction of $`\mathbf{v}`$.
 
-### 3.4 Solving Two Equations
+### 2.4 Solving Two Equations
 
 **Solve the following equation:**
 
@@ -385,7 +340,7 @@ The system $`xv_1 + yw_1 = b_1`$ and $`xv_2 + yw_2 = b_2`$ represents two lines.
 - $`\mathbf{v}`$ and $`\mathbf{w}`$ are **linearly independent**.
 - $`A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}`$ is **invertible**.
 
-### 3.5 Can Elimination Fail?
+### 2.5 Can Elimination Fail?
 
 **Yes**, when $`\mathbf{v} \| \mathbf{w}`$ (i.e., $`v_1 w_2 = v_2 w_1`$, which is $`\frac{v_1}{v_2} = \frac{w_1}{w_2}`$ when the components are nonzero).
 
@@ -403,7 +358,7 @@ Two possibilities:
 - **No solution**: All combinations of $`\mathbf{v}`$ and $`\mathbf{w}`$ lie on the same line. If $`\mathbf{b}`$ is not on the line, there is no solution. No combination of $`\mathbf{v}`$ and $`\mathbf{w}`$ equals $`\mathbf{b}`$.
 - **Infinitely many solutions**: If $`\mathbf{b}`$ is on the line, there are infinitely many solutions.
 
-### 3.6 Vectors in Three Dimensions
+### 2.6 Vectors in Three Dimensions
 
 Suppose $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^3`$ (three-dimensional space).
 
@@ -451,9 +406,9 @@ Then their linear combinations fill a **plane** inside 3D space (a flat surface)
 
 <br>
 
-## 4. Lengths and Angles from Dot Products (1.2)
+## 3. Lengths and Angles from Dot Products (1.2)
 
-### 4.1 Dot Product Definition
+### 3.1 Dot Product Definition
 
 **(1)** Let $`\mathbf{v} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}`$, $`\mathbf{w} = \begin{pmatrix} 4 \\ 6 \end{pmatrix}`$.
 
@@ -487,7 +442,7 @@ of a vector $`\mathbf{v}`$.
 
 **Example:** $`\mathbf{v} \in \mathbb{R}^3`$, $`\|\mathbf{v}\|^2 = v_1^2 + v_2^2 + v_3^2 = (v_1^2 + v_2^2) + v_3^2`$ where $`(v_1^2 + v_2^2)`$ is the squared length of the part in the $`xy`$ plane.
 
-### 4.2 Length of a Vector
+### 3.2 Length of a Vector
 
 **(2)** The length squared of $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$ is:
 
@@ -499,7 +454,7 @@ of a vector $`\mathbf{v}`$.
 \therefore \|\mathbf{v}\| = \sqrt{14}
 ```
 
-### 4.3 Unit Vectors
+### 3.3 Unit Vectors
 
 - $`\mathbf{v}`$ is a **unit vector** when $`\|\mathbf{v}\| = 1`$.
 - If $`\mathbf{v} \neq \mathbf{0}`$, then $`\frac{\mathbf{v}}{\|\mathbf{v}\|}`$ is a unit vector.
@@ -510,7 +465,7 @@ of a vector $`\mathbf{v}`$.
 \|\mathbf{u}\|^2 = \cos^2\theta + \sin^2\theta = 1
 ```
 
-### 4.4 Perpendicular Vectors
+### 3.4 Perpendicular Vectors
 
 **(3)** $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$ is perpendicular to $`\mathbf{w} = \begin{pmatrix} 4 \\ -4 \\ 4 \end{pmatrix}`$:
 
@@ -598,7 +553,7 @@ The weights times the distances $`v_1 w_1`$ and $`v_2 w_2`$ are balanced.
 
 The angle between $`\mathbf{v}`$ and $`\mathbf{w}`$ has $`\cos\theta = \mathbf{v} \cdot \mathbf{w}`$, if $`\|\mathbf{v}\| = \|\mathbf{w}\| = 1`$.
 
-### 4.5 The Angle Between Two Vectors
+### 3.5 The Angle Between Two Vectors
 
 **(4)** The angle $`\theta = 45°`$ between $`\mathbf{v} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$ and $`\mathbf{w} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}`$ has:
 
@@ -640,7 +595,7 @@ So, if $`0 \leq \beta - \alpha \leq \pi`$, the angle between the vectors is $`\t
 | ii) | $`\theta = 90°`$ | $`\mathbf{v} \cdot \mathbf{w} = 0`$ |
 | iii) | $`\theta > 90°`$ | $`\mathbf{v} \cdot \mathbf{w} < 0`$ |
 
-*Table 3. Sign of the dot product and the angle between two vectors*
+*Table 1. Sign of the dot product and the angle between two vectors*
 
 We know $`|\cos\theta| \leq 1`$. So, for nonzero $`\mathbf{v}`$ and $`\mathbf{w}`$, we can measure the angle by:
 
@@ -648,7 +603,7 @@ We know $`|\cos\theta| \leq 1`$. So, for nonzero $`\mathbf{v}`$ and $`\mathbf{w}
 \frac{\mathbf{v}}{\|\mathbf{v}\|} \cdot \frac{\mathbf{w}}{\|\mathbf{w}\|} = \cos\theta
 ```
 
-### 4.6 Schwarz Inequality
+### 3.6 Schwarz Inequality
 
 ```math
 \mathbf{v} \cdot \mathbf{w} = \|\mathbf{v}\|\|\mathbf{w}\|\cos\theta
@@ -702,7 +657,7 @@ The Schwarz inequality $`|\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mat
 - If $`ab \geq 0`$: $`a^2 + b^2 - 2ab = (a - b)^2 \geq 0`$ $`\checkmark`$
 - If $`ab < 0`$: $`a^2 + b^2 + 2ab = (a + b)^2 \geq 0`$ $`\checkmark`$
 
-### 4.7 Triangle Inequality
+### 3.7 Triangle Inequality
 
 **The triangle inequality comes directly from the Schwarz inequality.**
 
@@ -741,7 +696,7 @@ The Schwarz inequality $`|\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mat
 \sqrt{18} < \sqrt{20} \quad \checkmark
 ```
 
-### 4.8 Planes in 3D
+### 3.8 Planes in 3D
 
 **Plane in 3D.** Suppose $`\mathbf{n}`$ is a unit vector $`\mathbf{n} = \begin{pmatrix} n_1 \\ n_2 \\ n_3 \end{pmatrix}`$.
 
@@ -765,9 +720,9 @@ that is, $`z = 0`$, which represents the $`xy`$ plane.
 
 <br>
 
-## 5. Matrices and Their Column Spaces (1.3)
+## 4. Matrices and Their Column Spaces (1.3)
 
-### 5.1 Matrix-Vector Multiplication
+### 4.1 Matrix-Vector Multiplication
 
 **(1)** $`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}`$ is a **3 by 2 matrix** with 3 rows and 2 columns, and its rank is 2.
 
@@ -848,7 +803,7 @@ This is a **combination of the columns of $`A`$**.
 A\mathbf{x} = x_1\begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix} + x_2\begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix} + x_3\begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix} + x_4\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} x_2 - x_1 \\ x_3 - x_2 \\ x_4 - x_3 \end{pmatrix}
 ```
 
-### 5.2 Column Space
+### 4.2 Column Space
 
 When $`A = (\mathbf{a}_1 \ \mathbf{a}_2)`$ with linearly independent $`\mathbf{a}_1`$ and $`\mathbf{a}_2`$:
 
@@ -858,7 +813,7 @@ A\mathbf{x} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2
 
 shows **the plane of all combinations** (the span).
 
-### 5.3 Independent, Dependent, and Column Space
+### 4.3 Independent, Dependent, and Column Space
 
 **Example (ex1):**
 
@@ -928,7 +883,7 @@ So $`x_4 = v_4`$, $`x_3 = v_3 - v_4`$, $`x_2 = v_2 - v_3`$, and $`x_1 = v_1 - v_
 
 This implies that **every $`\mathbf{v}`$ is in the column space**. The four equations $`A_4\mathbf{x} = \mathbf{v}`$ are solved for every $`\mathbf{v}`$.
 
-### 5.4 Span
+### 4.4 Span
 
 The **span** describes all the linear combinations of a set of vectors.
 
@@ -953,7 +908,7 @@ The column space of $`A_5`$ is a **3D subspace** inside $`\mathbb{R}^4`$. The 4t
 
 We can only solve $`A_5\mathbf{x} = \mathbf{v}`$ when $`\mathbf{v} \in C(A_5)`$.
 
-### 5.5 Rank and Basis
+### 4.5 Rank and Basis
 
 Let $`A = \begin{pmatrix} | & | & & | \\ \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \\ | & | & & | \end{pmatrix} \in \mathbb{R}^{m \times n}`$.
 
@@ -991,7 +946,7 @@ A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}: C(A) = x 
 - **Q4:** Write any $`A`$ as an $`m \times r`$ column matrix $`C`$ times an $`r \times n`$ matrix $`R`$: $`A = CR`$.
 - **Q5:** The $`r`$ rows of $`R`$ are a basis for the **row space** of $`A`$. The rows of $`R`$ do not come directly from $`A`$.
 
-### 5.6 Matrices of Rank One
+### 4.6 Matrices of Rank One
 
 For a rank one matrix, **all column vectors lie along the same line**.
 
@@ -1029,9 +984,9 @@ If the column rank is 1, then the row rank is 1.
 
 <br>
 
-## 6. Matrix Multiplication AB and CR (1.4)
+## 5. Matrix Multiplication AB and CR (1.4)
 
-### 6.1 Rules for Matrix Multiplication
+### 5.1 Rules for Matrix Multiplication
 
 **(1)** To multiply $`AB`$, we need $`A \in \mathbb{R}^{m \times n}`$ and $`B \in \mathbb{R}^{n \times p}`$.
 
@@ -1055,7 +1010,7 @@ Column $`j`$ of $`AB`$ is $`A\mathbf{b}_j`$.
 
 **(5)** If the $`r`$ independent columns of $`A`$ are collected in $`C`$, then $`A = CR`$, where $`C \in \mathbb{R}^{m \times r}`$ and $`R \in \mathbb{R}^{r \times n}`$.
 
-### 6.2 Column Interpretation of AB
+### 5.2 Column Interpretation of AB
 
 Let $`B = \begin{pmatrix} | & | & & | \\ \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_p \\ | & | & & | \end{pmatrix}`$.
 
@@ -1107,7 +1062,7 @@ A\mathbf{b}_2 = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} 6 \\
 \therefore AB = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix}
 ```
 
-### 6.3 Computational Cost
+### 5.3 Computational Cost
 
 Let $`A \in \mathbb{R}^{m \times n}`$, $`B \in \mathbb{R}^{n \times p}`$.
 
@@ -1123,7 +1078,7 @@ AB = \begin{pmatrix} | & | & & | \\ A\mathbf{b}_1 & A\mathbf{b}_2 & \cdots & A\m
 >
 > If $`A, B \in \mathbb{R}^{n \times n}`$, then the cost of $`AB`$ is $`n^3`$.
 
-### 6.4 Properties of Matrix Multiplication
+### 5.4 Properties of Matrix Multiplication
 
 **Non-commutativity:**
 
@@ -1147,7 +1102,7 @@ For matrix multiplication, the associative law **is** true.
 A(B + C) = AB + AC
 ```
 
-### 6.5 Rank One Matrices and A = CR
+### 5.5 Rank One Matrices and A = CR
 
 **Review of $`AB`$:**
 
@@ -1179,7 +1134,7 @@ A = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\begin{pmatrix} 1 & 2 & 10 & 100 \e
 
 where $`C \in \mathbb{R}^{3 \times 1}`$ and $`R \in \mathbb{R}^{1 \times 4}`$.
 
-### 6.6 Finding C and R
+### 5.6 Finding C and R
 
 **$`C`$ contains the first $`r`$ independent columns of $`A`$.**
 
@@ -1323,7 +1278,7 @@ A = \begin{pmatrix} | & | & | \\ \mathbf{a}_1 & \mathbf{a}_2 & 3\mathbf{a}_1 + 4
 = \mathbf{a}_1(1 \ 0 \ 3) + \mathbf{a}_2(0 \ 1 \ 4) = (\mathbf{a}_1 \ \mathbf{a}_2 \ 3\mathbf{a}_1 + 4\mathbf{a}_2) = A
 ```
 
-### 6.7 Columns of A times Rows of B (Outer Product)
+### 5.7 Columns of A times Rows of B (Outer Product)
 
 ```math
 AB = \begin{pmatrix} | & | & & | \\ \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \\ | & | & & | \end{pmatrix}_{m \times n} \begin{pmatrix} - & \mathbf{b}_1^* & - \\ - & \mathbf{b}_2^* & - \\ & \vdots & \\ - & \mathbf{b}_n^* & - \end{pmatrix}_{n \times p}
@@ -1391,7 +1346,7 @@ So $`AB`$ is the sum of $`n`$ rank one matrices. Each needs $`mp`$ multiplicatio
 
 ## Self-Check Questions
 
-1. **Coefficients of a linear combination:** Find $`c`$ and $`d`$ such that $`c\begin{pmatrix} 2 \\ 1 \end{pmatrix} + d\begin{pmatrix} 4 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}`$ (the example in Section 3.2).
+1. **Coefficients of a linear combination:** Find $`c`$ and $`d`$ such that $`c\begin{pmatrix} 2 \\ 1 \end{pmatrix} + d\begin{pmatrix} 4 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}`$ (the example in Section 2.2).
 
    <details>
    <summary>Answer</summary>

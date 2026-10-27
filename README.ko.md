@@ -3,7 +3,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Choroning/26Spring_Computer-Linear-Algebra)
 ![Languages](https://img.shields.io/github/languages/top/Choroning/26Spring_Computer-Linear-Algebra)
 
-이 레포지토리는 전산선형대수학 과목의 이중 언어 강의 노트와 수업 결과물을 정리한 아카이브입니다.
+이 레포지토리는 전산선형대수학 과목의 이중 언어 강의 노트를 정리한 아카이브입니다.
 
 *작성자: 박철원 (고려대학교(세종), 컴퓨터소프트웨어학과) - 2026년 기준 3학년*
 <br><br>

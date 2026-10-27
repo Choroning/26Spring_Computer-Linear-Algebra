@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-19
+> **최종 수정일:** 2026-10-27
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -506,7 +506,7 @@ $`x_2 = 0`$으로 취하면, $`x_1 = 10`$. 따라서 $`\mathbf{x}_p = \begin{pma
 \mathbf{x} = \begin{pmatrix} 10 \\ 0 \end{pmatrix} + c\begin{pmatrix} -2 \\ 1 \end{pmatrix}
 ```
 
-$`c = 1`$일 때: $`\begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}\begin{pmatrix} 8 \\ 1 \end{pmatrix} = \begin{pmatrix} 10 \\ 30 \end{pmatrix}`$. 검증 완료.
+$`c = 1`$일 때: $`\begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}\begin{pmatrix} 8 \\ 1 \end{pmatrix} = \begin{pmatrix} 10 \\ 30 \end{pmatrix}`$.
 
 > **참고:** $`\mathbf{x}_p`$는 $`\mathbf{x}_n`$에 직교하지 **않는다**: $`(10 \quad 0)\begin{pmatrix} -2 \\ 1 \end{pmatrix} = -20 \neq 0`$.
 
