@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-19
+> **최종 수정일:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 3
 
@@ -86,6 +86,8 @@
 | $`A^T`$의 영공간 (좌영공간, Left Nullspace) | $`m - r`$ |
 
 *표 1. 네 기본 부분공간의 차원*
+
+> **참고:** **다른 교재의 표기.** 일부 교재는 $`C(A)`$, $`C(A^T)`$, $`N(A)`$를 각각 $`\mathrm{Col}\,A`$, $`\mathrm{Row}\,A`$, $`\mathrm{Nul}\,A`$로 쓴다. 나타내는 부분공간은 같다.
 
 ---
 
@@ -929,6 +931,8 @@ $`A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}`$이고, $`R = (I_{m \ti
 
 *표 2. 랭크에 따른 선형 방정식의 네 가지 경우*
 
+방정식이 미지수보다 적은 시스템($`m < n`$)을 **과소결정 시스템**(underdetermined system), 방정식이 미지수보다 많은 시스템($`m > n`$)을 **과잉결정 시스템**(overdetermined system)이라 한다. 과소결정 시스템은 $`r \leq m < n`$이므로 자유 변수가 반드시 있어서, 해가 있으면 무수히 많다. 과잉결정 시스템은 $`n`$개의 열이 $`\mathbb{R}^m`$을 생성할 수 없으므로 $`C(A)`$ 밖의 $`\mathbf{b}`$에 대해 해가 없으며, 이 경우는 4장 3.2절의 최소제곱으로 다룬다.
+
 ---
 
 <br>
@@ -1488,6 +1492,7 @@ flowchart LR
 | 특수해 $`\mathbf{x}_p`$ (Particular Solution) | 모든 자유 변수를 0으로 놓고 $`R_0\mathbf{x} = \mathbf{d}`$를 풀어 얻는다. |
 | 열 완전 랭크 ($`r = n`$) | $`N(A) = \lbrace\mathbf{0}\rbrace`$이고, $`A\mathbf{x} = \mathbf{b}`$의 해는 최대 1개이며, $`R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}`$이다. |
 | 행 완전 랭크 ($`r = m`$) | $`A\mathbf{x} = \mathbf{b}`$가 항상 풀리고, $`C(A) = \mathbb{R}^m`$이며, $`R = (I \; F)`$이다. |
+| 과소결정과 과잉결정 | $`m < n`$이면 해가 없거나 무수히 많고, $`m > n`$이면 $`C(A)`$ 밖의 $`\mathbf{b}`$에 대해 해가 없다. |
 | 선형독립 (Linear Independence) | $`c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0}`$이 모든 $`c_i = 0`$일 때만 성립한다. |
 | 생성 (Spanning) | 벡터들의 모든 결합이 $`\mathbb{S}`$와 같을 때 그 벡터들이 $`\mathbb{S}`$를 생성한다. |
 | 기저 (Basis) | 선형독립이면서 공간을 생성하는 벡터들이며, 공간의 각 벡터를 유일하게 표현한다. |
