@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 3
 
@@ -86,6 +86,8 @@ Chapter 3 covers five major topics:
 | Nullspace of $`A^T`$ (left nullspace) | $`m - r`$ |
 
 *Table 1. Dimensions of the four fundamental subspaces*
+
+> **Note:** **Notation in other textbooks.** Some textbooks write $`C(A)`$, $`C(A^T)`$, and $`N(A)`$ as $`\mathrm{Col}\,A`$, $`\mathrm{Row}\,A`$, and $`\mathrm{Nul}\,A`$, respectively. The subspaces are the same.
 
 ---
 
@@ -929,6 +931,8 @@ Four possibilities for linear equations depend on the rank $`r`$:
 
 *Table 2. Four possibilities for linear equations by rank*
 
+A system with fewer equations than unknowns ($`m < n`$) is an **underdetermined system**, and a system with more equations than unknowns ($`m > n`$) is an **overdetermined system**. An underdetermined system has $`r \leq m < n`$, so free variables always exist and any solution comes with infinitely many others. In an overdetermined system the $`n`$ columns cannot span $`\mathbb{R}^m`$, so there is no solution for $`\mathbf{b}`$ outside $`C(A)`$; Chapter 4, Section 3.2 treats this case by least squares.
+
 ---
 
 <br>
@@ -1488,6 +1492,7 @@ flowchart LR
 | Particular Solution $`\mathbf{x}_p`$ | A particular solution is found by setting all free variables to 0 and solving $`R_0\mathbf{x} = \mathbf{d}`$. |
 | Full Column Rank ($`r = n`$) | With full column rank, $`N(A) = \lbrace\mathbf{0}\rbrace`$, $`A\mathbf{x} = \mathbf{b}`$ has at most 1 solution, and $`R_0 = \begin{pmatrix} I \\ 0 \end{pmatrix}`$. |
 | Full Row Rank ($`r = m`$) | With full row rank, $`A\mathbf{x} = \mathbf{b}`$ is always solvable, $`C(A) = \mathbb{R}^m`$, and $`R = (I \; F)`$. |
+| Underdetermined and overdetermined | If $`m < n`$ there is no solution or there are infinitely many, and if $`m > n`$ there is no solution for $`\mathbf{b}`$ outside $`C(A)`$. |
 | Linear Independence | Vectors are independent when $`c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0}`$ holds only for all $`c_i = 0`$. |
 | Spanning | Vectors span $`\mathbb{S}`$ if $`\mathbb{S}`$ consists of all combinations of those vectors. |
 | Basis | A basis is a set of linearly independent vectors that span the space, and it represents every vector of the space uniquely. |

@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-27
+> **최종 수정일:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -1134,6 +1134,8 @@ $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 **많은 해**를 갖는다: $`\b
 문제는 $`A`$가 종속 열을 가지고 $`\mathcal{N}(A) \ni \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$이라는 것이다.
 
 최적 해를 어떻게 찾을 수 있는가? 이 문제는 5절에서 다루는 $`A`$의 **유사역행렬**(pseudoinverse)로 해결한다.
+
+> **참고:** **정규방정식의 해의 존재.** 정규방정식 $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$는 $`A`$의 열이 종속이어도 항상 해를 갖는다. $`\mathbf{b} = \mathbf{p} + \mathbf{e}`$($`\mathbf{p} \in C(A)`$, $`\mathbf{e} \in \mathcal{N}(A^T)`$)로 나누면 $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 반드시 풀리고, 양변에 $`A^T`$를 곱하면 $`A^T\mathbf{e} = \mathbf{0}`$이므로 $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{p} = A^T\mathbf{b}`$가 되기 때문이다. $`A^T A`$가 가역이 아니면(2.9절) 이러한 해가 무수히 많지만, 어느 해를 택해도 $`A\hat{\boldsymbol{\alpha}}`$는 같은 사영 $`\mathbf{p}`$이다. 실제 데이터 적합에서는 열보다 행이 훨씬 많고, 같은 양을 단위만 바꿔 두 번 기록한 경우처럼 열 사이에 정확한 선형 관계가 있지 않은 한 열이 독립이므로 보통 $`A^T A`$는 가역이다.
 
 ### 3.10 포물선 적합
 

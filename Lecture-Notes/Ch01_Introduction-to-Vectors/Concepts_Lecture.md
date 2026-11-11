@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-27
+> **Last Updated:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -58,8 +58,10 @@
   - [5.5 Rank One Matrices and A = CR](#55-rank-one-matrices-and-a--cr)
   - [5.6 Finding C and R](#56-finding-c-and-r)
   - [5.7 Columns of A times Rows of B (Outer Product)](#57-columns-of-a-times-rows-of-b-outer-product)
+  - [5.8 Rows of AB and the Four Views](#58-rows-of-ab-and-the-four-views)
 - [Summary](#summary)
 - [Self-Check Questions](#self-check-questions)
+- [References](#references)
 
 ---
 
@@ -442,6 +444,16 @@ of a vector $`\mathbf{v}`$.
 
 **Example:** $`\mathbf{v} \in \mathbb{R}^3`$, $`\|\mathbf{v}\|^2 = v_1^2 + v_2^2 + v_3^2 = (v_1^2 + v_2^2) + v_3^2`$ where $`(v_1^2 + v_2^2)`$ is the squared length of the part in the $`xy`$ plane.
 
+**Properties of the dot product:** For $`\mathbf{u}, \mathbf{v}, \mathbf{w} \in \mathbb{R}^n`$ and a scalar $`c`$, the following hold.
+
+```math
+\mathbf{v} \cdot \mathbf{w} = \mathbf{w} \cdot \mathbf{v}, \qquad (\mathbf{u} + \mathbf{v}) \cdot \mathbf{w} = \mathbf{u} \cdot \mathbf{w} + \mathbf{v} \cdot \mathbf{w}, \qquad (c\mathbf{v}) \cdot \mathbf{w} = c(\mathbf{v} \cdot \mathbf{w})
+```
+
+```math
+\mathbf{v} \cdot \mathbf{v} \geq 0, \qquad \mathbf{v} \cdot \mathbf{v} = 0 \iff \mathbf{v} = \mathbf{0}
+```
+
 ### 3.2 Length of a Vector
 
 **(2)** The length squared of $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$ is:
@@ -453,6 +465,16 @@ of a vector $`\mathbf{v}`$.
 ```math
 \therefore \|\mathbf{v}\| = \sqrt{14}
 ```
+
+**Length of a scalar multiple:** For every scalar $`c`$, the following holds.
+
+```math
+\|c\mathbf{v}\| = \sqrt{(c\mathbf{v}) \cdot (c\mathbf{v})} = \sqrt{c^2\,(\mathbf{v} \cdot \mathbf{v})} = |c|\,\|\mathbf{v}\|
+```
+
+> **Definition:** **Distance between vectors.** The distance between $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^n`$ is the length $`\|\mathbf{v} - \mathbf{w}\|`$ of their difference.
+
+**Example:** If $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$ and $`\mathbf{w} = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix}`$, then $`\mathbf{v} - \mathbf{w} = \begin{pmatrix} -1 \\ 2 \\ 0 \end{pmatrix}`$, so the distance between the two vectors is $`\sqrt{5}`$.
 
 ### 3.3 Unit Vectors
 
@@ -750,7 +772,11 @@ A\mathbf{x} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}\begin{pmatri
 A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
 ```
 
+$`a_{ij}`$ is the **entry** in row $`i`$ and column $`j`$.
+
 If $`m = n`$, $`A`$ is a **square matrix**.
+
+If $`m \neq n`$, $`A`$ is a **rectangular matrix**.
 
 **Examples of square matrices ($`A \in \mathbb{R}^{3 \times 3}`$):**
 
@@ -907,6 +933,14 @@ A_5 = \begin{pmatrix} 1 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 1 \\ 1 & 0 &
 The column space of $`A_5`$ is a **3D subspace** inside $`\mathbb{R}^4`$. The 4th column is in that subspace.
 
 We can only solve $`A_5\mathbf{x} = \mathbf{v}`$ when $`\mathbf{v} \in C(A_5)`$.
+
+**A dependent vector does not enlarge the span.** If $`\mathbf{a}_3 = c_1\mathbf{a}_1 + c_2\mathbf{a}_2`$, every combination of the three vectors can be rewritten as a combination of $`\mathbf{a}_1, \mathbf{a}_2`$ alone.
+
+```math
+d_1\mathbf{a}_1 + d_2\mathbf{a}_2 + d_3\mathbf{a}_3 = (d_1 + d_3 c_1)\mathbf{a}_1 + (d_2 + d_3 c_2)\mathbf{a}_2
+```
+
+The span of the three vectors therefore equals the span of $`\mathbf{a}_1, \mathbf{a}_2`$. Different choices of $`d_1, d_2, d_3`$ that give the same two coefficients on the right produce the same vector, so with a dependent vector present a vector in the column space has more than one representation as a combination. That is, when $`A\mathbf{x} = \mathbf{v}`$ has a solution and the columns of $`A`$ are dependent, it has infinitely many solutions.
 
 ### 4.5 Rank and Basis
 
@@ -1298,10 +1332,39 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 
 So $`AB`$ is the sum of $`n`$ rank one matrices. Each needs $`mp`$ multiplications, so the total is $`mnp`$ multiplications.
 
+> **[Deep Learning]** Sums of rank one matrices also describe many matrices computed from data. With $`B = A^T`$ the formula above becomes $`AA^T = \sum_k \mathbf{a}_k\mathbf{a}_k^T`$, which is the form of the sample covariance matrix $`S = AA^T/(n - 1)`$ in Chapter 7, Section 3.5. The Gram matrix used for style transfer in convolutional neural networks has the same form. If the feature maps of one layer form a matrix $`F`$ (rows for filters, columns for spatial positions), then $`G = FF^T = \sum_k \mathbf{f}_k\mathbf{f}_k^T`$, and this matrix captures the correlations between filters that represent the style of an image [1].
+
 > **Note:** For the matrix $`A = \begin{pmatrix} 1 & 3 & 4 \\ 2 & 4 & 2 \\ 3 & 7 & 6 \end{pmatrix}`$, $`\text{rank}(A) = 2`$. Since $`A`$ is a $`3 \times 3`$ matrix whose rank is less than 3, the following holds.
 >
 > $`\Rightarrow`$ $`A`$ has no inverse matrix.
 > $`\Rightarrow`$ The determinant of $`A`$ is zero (Chapter 5 covers determinants).
+
+### 5.8 Rows of AB and the Four Views
+
+Row $`i`$ of $`AB`$ is row $`i`$ of $`A`$ multiplied by $`B`$. With $`\mathbf{b}_k^*`$ denoting the $`k`$th row of $`B`$, the following holds.
+
+```math
+(\text{row } i \text{ of } AB) = a_{i1}\mathbf{b}_1^* + a_{i2}\mathbf{b}_2^* + \cdots + a_{in}\mathbf{b}_n^*
+```
+
+Each row of $`AB`$ is a **combination of the rows of $`B`$**. The coefficients are the entries of row $`i`$ of $`A`$.
+
+**Example:** For $`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}`$ and $`B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}`$ from Section 5.2, the following results.
+
+```math
+(\text{row } 1 \text{ of } AB) = 1\,(5 \quad 6) + 2\,(7 \quad 8) = (19 \quad 22)
+```
+
+```math
+(\text{row } 2 \text{ of } AB) = 3\,(5 \quad 6) + 4\,(7 \quad 8) = (43 \quad 50)
+```
+
+This agrees with the $`AB`$ computed by columns in Section 5.2. Matrix multiplication can be read in the following four ways.
+
+1. **Dot product view (Section 5.1):** $`(AB)_{ij}`$ is the dot product of row $`i`$ of $`A`$ and column $`j`$ of $`B`$.
+2. **Column view (Section 5.2):** Each column of $`AB`$ is a combination of the columns of $`A`$.
+3. **Row view (this section):** Each row of $`AB`$ is a combination of the rows of $`B`$.
+4. **Columns times rows (Section 5.7):** $`AB`$ is the sum of $`n`$ rank one matrices, each a column of $`A`$ times a row of $`B`$.
 
 ---
 
@@ -1314,12 +1377,15 @@ So $`AB`$ is the sum of $`n`$ rank one matrices. Each needs $`mp`$ multiplicatio
 | Linear Combination | $`c\mathbf{v} + d\mathbf{w}`$ is built from scalar multiplication and vector addition. |
 | Column Space $`C(A)`$ | It consists of all vectors $`A\mathbf{x}`$, that is, all combinations of the columns of $`A`$. |
 | Span | It is the set of all linear combinations of a set of vectors. |
+| Dependent vectors and the span | Adding a dependent vector does not enlarge the span, and representations as combinations are no longer unique. |
 | Independent Vectors | The columns of $`A`$ are independent when $`A\mathbf{x} = \mathbf{0}`$ holds only for $`\mathbf{x} = \mathbf{0}`$. |
 | Dependent Vector | It can be written as a combination of other vectors. |
 | Rank | It is the number of independent columns, which equals the number of independent rows. |
 | Basis | The first $`r`$ independent columns form a basis for $`C(A)`$. |
 | Dot Product | $`\mathbf{v} \cdot \mathbf{w} = \sum v_i w_i`$ gives length and angle information. |
+| Properties of the dot product | The dot product is commutative and linear in each argument, and $`\mathbf{v} \cdot \mathbf{v} \geq 0`$ with equality only when $`\mathbf{v} = \mathbf{0}`$. |
 | Length (Norm) | The length is $`\Vert\mathbf{v}\Vert = \sqrt{\mathbf{v} \cdot \mathbf{v}}`$. |
+| Distance between vectors | It is $`\Vert\mathbf{v} - \mathbf{w}\Vert`$. |
 | Unit Vector | A unit vector has $`\Vert\mathbf{v}\Vert = 1`$, and any nonzero vector is normalized as $`\mathbf{v}/\Vert\mathbf{v}\Vert`$. |
 | Perpendicularity | $`\mathbf{v} \perp \mathbf{w} \Leftrightarrow \mathbf{v} \cdot \mathbf{w} = 0`$. |
 | Angle Formula | For two nonzero vectors, $`\cos\theta = \frac{\mathbf{v} \cdot \mathbf{w}}{\Vert\mathbf{v}\Vert\Vert\mathbf{w}\Vert}`$. |
@@ -1328,6 +1394,7 @@ So $`AB`$ is the sum of $`n`$ rank one matrices. Each needs $`mp`$ multiplicatio
 | Pythagorean Theorem | If $`\mathbf{v} \perp \mathbf{w}`$, then $`\Vert\mathbf{v} + \mathbf{w}\Vert^2 = \Vert\mathbf{v}\Vert^2 + \Vert\mathbf{w}\Vert^2`$. |
 | Matrix Multiplication $`AB`$ | $`(AB)_{ij} = \text{row}_i(A) \cdot \text{col}_j(B)`$, and column $`j`$ of $`AB`$ is $`A\mathbf{b}_j`$. |
 | Outer Product | $`AB = \sum \mathbf{a}_k \mathbf{b}_k^*`$ is a sum of rank-1 matrices. |
+| Row view | Each row of $`AB`$ is a combination of the rows of $`B`$. |
 | Cost of $`AB`$ | It takes $`mnp`$ multiplications for $`A \in \mathbb{R}^{m \times n}`$ and $`B \in \mathbb{R}^{n \times p}`$. |
 | Non-commutativity | $`AB \neq BA`$ in general. |
 | Associativity | $`(AB)C = A(BC)`$. |
@@ -1390,3 +1457,11 @@ So $`AB`$ is the sum of $`n`$ rank one matrices. Each needs $`mp`$ multiplicatio
    All three columns are multiples of $`\begin{pmatrix} 2 \\ 1 \end{pmatrix}`$ (1, 2, and 3 times), so $`A = \begin{pmatrix} 2 \\ 1 \end{pmatrix}\begin{pmatrix} 1 & 2 & 3 \end{pmatrix}`$ and the rank is 1. The column space is the line through the origin in $`\mathbb{R}^2`$ along $`\begin{pmatrix} 2 \\ 1 \end{pmatrix}`$, and the row space is the line through the origin in $`\mathbb{R}^3`$ along $`(1, 2, 3)`$.
 
    </details>
+
+---
+
+<br>
+
+## References
+
+1. L. A. Gatys, A. S. Ecker, and M. Bethge, "Image style transfer using convolutional neural networks," in *Proc. IEEE Conf. Computer Vision and Pattern Recognition (CVPR)*, pp. 2414-2423, 2016.

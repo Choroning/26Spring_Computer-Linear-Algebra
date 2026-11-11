@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-19
+> **최종 수정일:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 6
 
@@ -746,6 +746,14 @@ A^{\infty} = X\Lambda^{\infty}X^{-1} = \begin{pmatrix} 0.6 & 1 \\ 0.4 & -1 \end{
 
 **A.** 모든 $`|\lambda_i| < 1`$일 때.
 
+> **참고:** **고유벡터 기저에서 본 곱셈.** $`A = X\Lambda X^{-1}`$이면 $`A\mathbf{v} = X(\Lambda(X^{-1}\mathbf{v}))`$이고, 이 곱은 다음 세 단계로 읽을 수 있다.
+>
+> 1. $`\mathbf{c} = X^{-1}\mathbf{v}`$는 $`\mathbf{v} = c_1\mathbf{x}_1 + \cdots + c_n\mathbf{x}_n`$을 만족하는 계수, 곧 고유벡터 기저에 대한 $`\mathbf{v}`$의 좌표이다.
+> 2. $`\Lambda\mathbf{c}`$는 각 좌표에 $`\lambda_i`$를 곱하는 성분별 스케일링이다.
+> 3. $`X(\Lambda\mathbf{c})`$는 그 결과를 원래 기저의 좌표로 되돌린다.
+>
+> 같은 방식으로 $`A^k\mathbf{v} = X(\Lambda^k(X^{-1}\mathbf{v}))`$이므로, 고유분해를 한 번 구해 두면 $`A`$를 $`k`$번 곱하지 않고 $`A^k\mathbf{v}`$를 계산할 수 있다. 위의 마르코프 행렬과 $`\mathbf{v} = (1, 0)`$에서는 $`\mathbf{c} = (1, 0.4)`$이므로 $`A^k\mathbf{v} = \mathbf{x}_1 + 0.4(0.5)^k\mathbf{x}_2`$이고, $`k \to \infty`$이면 $`\mathbf{x}_1 = (0.6, 0.4)`$로 수렴한다.
+
 ### 2.7 닮은 행렬
 
 $`\Lambda`$가 고정되어 있다고 하자. 고유벡터 행렬 $`X`$를 바꾸면, **같은 고유값** $`\Lambda`$를 갖는 서로 다른 행렬을 얻는다.
@@ -857,6 +865,8 @@ $`\lambda`$가 $`A`$의 고유값이라 하자.
 
 $`\lambda`$는 단순 고유값이거나, **중복** 고유값일 수 있다 (예: $`\lambda^2 = 0 \to \lambda = 0`$).
 
+> **용어 정의:** **고유공간 (Eigenspace).** 고유값 $`\lambda`$의 고유공간은 $`A - \lambda I`$의 영공간 $`\mathcal{N}(A - \lambda I)`$이다. 이 부분공간은 $`\lambda`$에 속하는 모든 고유벡터와 영벡터로 이루어지며, 그 안의 모든 벡터 $`\mathbf{x}`$는 $`A\mathbf{x} = \lambda\mathbf{x}`$를 만족한다.
+
 **중복도(Multiplicity):**
 
 1. **기하적 중복도 (GM):** $`\lambda`$에 대한 독립 벡터의 수 = $`\dim \mathcal{N}(A - \lambda I)`$.
@@ -871,6 +881,20 @@ AM = 2, GM = 1 (고유벡터 1개).
 $`A\mathbf{x} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$이므로, $`x_2 = 0`$: $`\mathbf{x} = \begin{pmatrix} c \\ 0 \end{pmatrix}`$.
 
 어떤 고유값에서 **GM < AM**이면, $`A`$는 **대각화 불가능**하다.
+
+모든 고유값에서 $`1 \leq \text{GM} \leq \text{AM}`$이고, 복소수 고유값까지 세면 AM의 합은 $`n`$이다. $`X`$와 $`\Lambda`$에 복소수를 허용할 때 다음이 성립한다.
+
+```math
+A\text{가 대각화 가능} \iff \text{모든 고유값에서 GM} = \text{AM}
+```
+
+> **참고:** **GM과 AM의 관계 증명.** $`\lambda`$의 고유공간의 기저 $`\mathbf{x}_1, \ldots, \mathbf{x}_g`$($`g = \text{GM}`$)를 $`\mathbb{C}^n`$의 기저로 확장해 열로 놓은 가역 행렬을 $`B`$라 하면 다음 꼴이 된다.
+> ```math
+> B^{-1}AB = \begin{pmatrix} \lambda I_g & C \\ 0 & D \end{pmatrix}
+> ```
+> $`\det(B^{-1}AB - tI) = \det(A - tI)`$이므로 $`\det(A - tI) = (\lambda - t)^g\det(D - tI)`$이다. 따라서 $`\lambda`$는 특성 다항식의 근으로 적어도 $`g`$번 나타나 $`g \leq \text{AM}`$이다. $`\lambda`$가 고유값이면 영이 아닌 고유벡터가 있으므로 $`g \geq 1`$이다.
+>
+> 각 고유공간의 기저를 모두 모으면 선형독립이다. 서로 다른 고유공간에서 고른 벡터들의 합이 $`\mathbf{0}`$이면 2.5절에 의해 각 벡터가 $`\mathbf{0}`$이고, 각 기저 안의 계수도 모두 0이 되기 때문이다. 따라서 독립 고유벡터의 최대 개수는 GM의 합이다. $`\text{GM} \leq \text{AM}`$이고 AM의 합이 $`n`$이므로, GM의 합이 $`n`$이 되는 것은 모든 고유값에서 GM = AM일 때뿐이다.
 
 ---
 
@@ -932,6 +956,26 @@ S = Q\Lambda Q^T
 대칭성 증명: $`S^T = (Q\Lambda Q^T)^T = Q\Lambda^T Q^T = Q\Lambda Q^T = S`$.
 
 $`S`$가 정규직교 고유벡터를 가지면, $`S`$는 대칭이다.
+
+직교 행렬 $`Q`$를 사용한 대각화 $`S = Q\Lambda Q^T`$를 **직교 대각화**(orthogonal diagonalization)라 한다. 위의 두 사실을 합치면 실수 정사각 행렬 $`S`$에 대해 다음이 성립한다.
+
+```math
+S\text{가 직교 대각화 가능} \iff S = S^T
+```
+
+$`Q\Lambda Q^T`$를 열 곱하기 행으로 전개하면(1장 5.7절) $`S`$는 고유값을 가중치로 하는 랭크 1 행렬의 합이 된다. 이를 **스펙트럼 분해**(spectral decomposition)라 한다.
+
+```math
+S = \lambda_1\mathbf{q}_1\mathbf{q}_1^T + \lambda_2\mathbf{q}_2\mathbf{q}_2^T + \cdots + \lambda_n\mathbf{q}_n\mathbf{q}_n^T
+```
+
+각 $`\mathbf{q}_i\mathbf{q}_i^T`$는 $`\mathbf{q}_i`$ 방향의 직선으로의 사영 행렬이다(4장 2.3절). 따라서 $`S\mathbf{x}`$는 $`\mathbf{x}`$를 서로 직교하는 $`n`$개의 직선에 사영한 뒤 각각에 $`\lambda_i`$를 곱해 더한 벡터이다.
+
+**예제:** $`S = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}`$의 고유값은 $`\lambda_1 = 3`$, $`\lambda_2 = 1`$이고, 정규직교 고유벡터는 $`\mathbf{q}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}`$, $`\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}`$이다.
+
+```math
+3\mathbf{q}_1\mathbf{q}_1^T + 1\,\mathbf{q}_2\mathbf{q}_2^T = \frac{3}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} + \frac{1}{2}\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}
+```
 
 ### 3.3 증명: 대칭 행렬은 정규직교 고유기저를 갖는다
 
@@ -1921,7 +1965,11 @@ e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \
 | 서로 다른 고유값 | 고유값이 모두 다르면 고유벡터가 선형독립이므로 대각화 가능하다. |
 | 닮은 행렬 | 가역 행렬 $`B`$에 대해 $`C = B^{-1}AB`$는 $`A`$와 같은 고유값을 갖는다. |
 | GM vs AM | 항상 GM $`\leq`$ AM이고, 어떤 고유값에서 GM $`<`$ AM이면 대각화할 수 없다. |
+| 고유공간 | 고유값 $`\lambda`$의 고유공간은 $`\mathcal{N}(A - \lambda I)`$이며, 그 차원이 GM이다. |
+| 대각화 판정 | $`X`$와 $`\Lambda`$에 복소수를 허용하면, 모든 고유값에서 GM = AM일 때 그리고 그때에만 대각화할 수 있다. |
 | 스펙트럼 정리 | 실수 대칭 행렬 $`S`$는 $`S = Q\Lambda Q^T`$로 분해된다. |
+| 직교 대각화 | 실수 정사각 행렬 $`S`$는 $`S = S^T`$일 때 그리고 그때에만 직교 대각화할 수 있다. |
+| 스펙트럼 분해 | $`S = \sum \lambda_i\mathbf{q}_i\mathbf{q}_i^T`$이며, 각 $`\mathbf{q}_i\mathbf{q}_i^T`$는 직선으로의 사영 행렬이다. |
 | 양정치 | 모든 $`\mathbf{x} \neq \mathbf{0}`$에 대해 $`\mathbf{x}^T S\mathbf{x} > 0`$이며, 이는 모든 $`\lambda_i > 0`$, 모든 피벗 $`> 0`$, 모든 왼쪽 상단 행렬식 $`> 0`$과 동치이다. |
 | 양반정치 | $`\mathbf{x}^T S\mathbf{x} \geq 0`$이며 $`\lambda = 0`$을 허용한다. |
 | $`A^T A`$의 에너지 판정 | $`\mathbf{x}^T A^T A\mathbf{x} = \Vert A\mathbf{x}\Vert^2 \geq 0`$이다. |
