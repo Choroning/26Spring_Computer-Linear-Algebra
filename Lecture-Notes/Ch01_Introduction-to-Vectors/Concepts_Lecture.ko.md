@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-27
+> **최종 수정일:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -58,8 +58,10 @@
   - [5.5 랭크 1 행렬과 A = CR](#55-랭크-1-행렬과-a--cr)
   - [5.6 C와 R 구하기](#56-c와-r-구하기)
   - [5.7 A의 열 곱하기 B의 행 (외적, Outer Product)](#57-a의-열-곱하기-b의-행-외적-outer-product)
+  - [5.8 AB의 행 해석과 네 가지 관점](#58-ab의-행-해석과-네-가지-관점)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
+- [참고 문헌](#참고-문헌)
 
 ---
 
@@ -442,6 +444,16 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 
 **예시:** $`\mathbf{v} \in \mathbb{R}^3`$, $`\|\mathbf{v}\|^2 = v_1^2 + v_2^2 + v_3^2 = (v_1^2 + v_2^2) + v_3^2`$이며, $`(v_1^2 + v_2^2)`$는 $`xy`$ 평면 성분의 길이의 제곱이다.
 
+**내적의 성질:** $`\mathbf{u}, \mathbf{v}, \mathbf{w} \in \mathbb{R}^n`$이고 $`c`$가 스칼라일 때 다음이 성립한다.
+
+```math
+\mathbf{v} \cdot \mathbf{w} = \mathbf{w} \cdot \mathbf{v}, \qquad (\mathbf{u} + \mathbf{v}) \cdot \mathbf{w} = \mathbf{u} \cdot \mathbf{w} + \mathbf{v} \cdot \mathbf{w}, \qquad (c\mathbf{v}) \cdot \mathbf{w} = c(\mathbf{v} \cdot \mathbf{w})
+```
+
+```math
+\mathbf{v} \cdot \mathbf{v} \geq 0, \qquad \mathbf{v} \cdot \mathbf{v} = 0 \iff \mathbf{v} = \mathbf{0}
+```
+
 ### 3.2 벡터의 길이
 
 **(2)** $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$의 길이의 제곱:
@@ -453,6 +465,16 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 ```math
 \therefore \|\mathbf{v}\| = \sqrt{14}
 ```
+
+**스칼라배의 길이:** 모든 스칼라 $`c`$에 대해 다음이 성립한다.
+
+```math
+\|c\mathbf{v}\| = \sqrt{(c\mathbf{v}) \cdot (c\mathbf{v})} = \sqrt{c^2\,(\mathbf{v} \cdot \mathbf{v})} = |c|\,\|\mathbf{v}\|
+```
+
+> **용어 정의:** **두 벡터 사이의 거리 (Distance between Vectors).** $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^n`$ 사이의 거리는 두 벡터의 차의 길이 $`\|\mathbf{v} - \mathbf{w}\|`$이다.
+
+**예시:** $`\mathbf{v} = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}`$, $`\mathbf{w} = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix}`$이면 $`\mathbf{v} - \mathbf{w} = \begin{pmatrix} -1 \\ 2 \\ 0 \end{pmatrix}`$이므로 두 벡터 사이의 거리는 $`\sqrt{5}`$이다.
 
 ### 3.3 단위벡터 (Unit Vectors)
 
@@ -750,7 +772,11 @@ A\mathbf{x} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}\begin{pmatri
 A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
 ```
 
+$`a_{ij}`$는 $`i`$행 $`j`$열에 놓인 **성분 (Entry)** 이다.
+
 $`m = n`$이면 $`A`$를 **정사각 행렬 (Square Matrix)** 이라 한다.
+
+$`m \neq n`$이면 $`A`$를 **직사각 행렬 (Rectangular Matrix)** 이라 한다.
 
 **정사각 행렬의 예시 ($`A \in \mathbb{R}^{3 \times 3}`$):**
 
@@ -907,6 +933,14 @@ A_5 = \begin{pmatrix} 1 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 1 \\ 1 & 0 &
 $`A_5`$의 열공간은 $`\mathbb{R}^4`$ 내의 **3차원 부분공간**이다. 4번째 열은 그 부분공간에 속한다.
 
 $`A_5\mathbf{x} = \mathbf{v}`$는 $`\mathbf{v} \in C(A_5)`$일 때만 풀 수 있다.
+
+**종속 벡터는 생성을 넓히지 않는다.** $`\mathbf{a}_3 = c_1\mathbf{a}_1 + c_2\mathbf{a}_2`$이면 세 벡터의 모든 결합은 $`\mathbf{a}_1, \mathbf{a}_2`$만의 결합으로 다시 쓸 수 있다.
+
+```math
+d_1\mathbf{a}_1 + d_2\mathbf{a}_2 + d_3\mathbf{a}_3 = (d_1 + d_3 c_1)\mathbf{a}_1 + (d_2 + d_3 c_2)\mathbf{a}_2
+```
+
+따라서 세 벡터의 생성과 $`\mathbf{a}_1, \mathbf{a}_2`$의 생성은 같다. 같은 식에서 $`d_1, d_2, d_3`$를 달리 골라도 우변의 두 계수가 같으면 같은 벡터가 나오므로, 종속 벡터가 있으면 열공간의 벡터를 결합으로 쓰는 방법은 유일하지 않다. 즉 $`A\mathbf{x} = \mathbf{v}`$에 해가 있을 때 $`A`$의 열이 종속이면 해는 무수히 많다.
 
 ### 4.5 랭크와 기저 (Rank and Basis)
 
@@ -1298,10 +1332,39 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 
 즉 $`AB`$는 $`n`$개의 랭크 1 행렬의 합이다. 각 행렬은 $`mp`$번의 곱셈이 필요하므로 총 $`mnp`$번의 곱셈이 필요하다.
 
+> **[딥러닝]** 랭크 1 행렬의 합은 데이터에서 계산하는 여러 행렬의 구조이기도 하다. $`B = A^T`$이면 위 식은 $`AA^T = \sum_k \mathbf{a}_k\mathbf{a}_k^T`$가 되며, 7장 3.5절의 표본 공분산 행렬 $`S = AA^T/(n - 1)`$이 이 꼴이다. 합성곱 신경망의 스타일 전이(style transfer)에 쓰는 그람 행렬(Gram matrix)도 같은 꼴이다. 한 계층의 특징 맵을 행렬 $`F`$(행은 필터, 열은 공간 위치)로 놓으면 $`G = FF^T = \sum_k \mathbf{f}_k\mathbf{f}_k^T`$이고, 이 행렬은 필터 사이의 상관을 담아 이미지의 스타일을 나타낸다 [1].
+
 > **참고:** 행렬 $`A = \begin{pmatrix} 1 & 3 & 4 \\ 2 & 4 & 2 \\ 3 & 7 & 6 \end{pmatrix}`$에 대해 $`\text{rank}(A) = 2`$이다. $`A`$는 $`3 \times 3`$ 행렬인데 랭크가 3보다 작으므로 다음이 성립한다.
 >
 > $`\Rightarrow`$ $`A`$는 역행렬이 없다.
 > $`\Rightarrow`$ $`A`$의 행렬식은 0이다(행렬식은 5장에서 다룬다).
+
+### 5.8 AB의 행 해석과 네 가지 관점
+
+$`AB`$의 행 $`i`$는 $`A`$의 행 $`i`$에 $`B`$를 곱한 것이다. $`\mathbf{b}_k^*`$를 $`B`$의 $`k`$번째 행이라 하면 다음이 성립한다.
+
+```math
+(AB\text{의 행 } i) = a_{i1}\mathbf{b}_1^* + a_{i2}\mathbf{b}_2^* + \cdots + a_{in}\mathbf{b}_n^*
+```
+
+$`AB`$의 각 행은 **$`B`$의 행들의 결합**이다. 결합 계수는 $`A`$의 행 $`i`$의 성분이다.
+
+**예시:** 5.2절의 $`A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}`$, $`B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}`$에 대해 다음을 얻는다.
+
+```math
+(AB\text{의 행 } 1) = 1\,(5 \quad 6) + 2\,(7 \quad 8) = (19 \quad 22)
+```
+
+```math
+(AB\text{의 행 } 2) = 3\,(5 \quad 6) + 4\,(7 \quad 8) = (43 \quad 50)
+```
+
+이 결과는 5.2절에서 열 관점으로 구한 $`AB`$와 같다. 행렬 곱셈을 읽는 방법은 다음 네 가지로 정리된다.
+
+1. **내적 관점 (5.1절):** $`(AB)_{ij}`$는 $`A`$의 행 $`i`$와 $`B`$의 열 $`j`$의 내적이다.
+2. **열 관점 (5.2절):** $`AB`$의 각 열은 $`A`$의 열들의 결합이다.
+3. **행 관점 (이 절):** $`AB`$의 각 행은 $`B`$의 행들의 결합이다.
+4. **열 곱하기 행 (5.7절):** $`AB`$는 $`A`$의 열과 $`B`$의 행을 곱한 랭크 1 행렬 $`n`$개의 합이다.
 
 ---
 
@@ -1314,12 +1377,15 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 | 선형결합 (Linear Combination) | 스칼라 곱셈과 벡터 덧셈으로 만든 $`c\mathbf{v} + d\mathbf{w}`$이다. |
 | 열공간 (Column Space) $`C(A)`$ | 모든 벡터 $`A\mathbf{x}`$, 즉 $`A`$의 열들의 모든 결합으로 이루어진다. |
 | 생성 (Span) | 벡터 집합의 모든 선형결합이다. |
+| 종속 벡터와 생성 | 종속 벡터를 더해도 생성은 넓어지지 않고, 결합의 표현이 유일하지 않게 된다. |
 | 독립벡터 (Independent Vectors) | $`A\mathbf{x} = \mathbf{0}`$이 $`\mathbf{x} = \mathbf{0}`$일 때만 성립하면 $`A`$의 열들은 독립이다. |
 | 종속벡터 (Dependent Vector) | 다른 벡터들의 결합으로 쓸 수 있는 벡터이다. |
 | 랭크 (Rank) | 독립 열의 수이며, 독립 행의 수와 같다. |
 | 기저 (Basis) | 처음 $`r`$개의 독립 열이 $`C(A)`$의 기저를 이룬다. |
 | 내적 (Dot Product) | $`\mathbf{v} \cdot \mathbf{w} = \sum v_i w_i`$이며, 길이와 각도 정보를 제공한다. |
+| 내적의 성질 | 내적은 교환법칙과 각 변수에 대한 선형성을 만족하고, $`\mathbf{v} \cdot \mathbf{v} \geq 0`$이며 등호는 $`\mathbf{v} = \mathbf{0}`$일 때만 성립한다. |
 | 길이 (노름, Norm) | $`\Vert\mathbf{v}\Vert = \sqrt{\mathbf{v} \cdot \mathbf{v}}`$이다. |
+| 두 벡터 사이의 거리 | $`\Vert\mathbf{v} - \mathbf{w}\Vert`$이다. |
 | 단위벡터 (Unit Vector) | $`\Vert\mathbf{v}\Vert = 1`$인 벡터이며, 영이 아닌 벡터는 $`\mathbf{v}/\Vert\mathbf{v}\Vert`$로 정규화한다. |
 | 직교성 (Perpendicularity) | $`\mathbf{v} \perp \mathbf{w} \Leftrightarrow \mathbf{v} \cdot \mathbf{w} = 0`$이다. |
 | 각도 공식 (Angle Formula) | 영이 아닌 두 벡터에 대해 $`\cos\theta = \frac{\mathbf{v} \cdot \mathbf{w}}{\Vert\mathbf{v}\Vert\Vert\mathbf{w}\Vert}`$이다. |
@@ -1328,6 +1394,7 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 | 피타고라스 정리 (Pythagorean Theorem) | $`\mathbf{v} \perp \mathbf{w}`$이면 $`\Vert\mathbf{v} + \mathbf{w}\Vert^2 = \Vert\mathbf{v}\Vert^2 + \Vert\mathbf{w}\Vert^2`$이다. |
 | 행렬 곱셈 $`AB`$ | $`(AB)_{ij} = \text{row}_i(A) \cdot \text{col}_j(B)`$이고, $`AB`$의 열 $`j`$는 $`A\mathbf{b}_j`$이다. |
 | 외적 (Outer Product) | $`AB = \sum \mathbf{a}_k \mathbf{b}_k^*`$이며, 랭크 1 행렬의 합이다. |
+| 행 관점 | $`AB`$의 각 행은 $`B`$의 행들의 결합이다. |
 | $`AB`$의 비용 | $`A \in \mathbb{R}^{m \times n}`$, $`B \in \mathbb{R}^{n \times p}`$이면 $`mnp`$번의 곱셈이 필요하다. |
 | 비교환성 (Non-commutativity) | 일반적으로 $`AB \neq BA`$이다. |
 | 결합법칙 (Associativity) | $`(AB)C = A(BC)`$이다. |
@@ -1390,3 +1457,11 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
    세 열이 모두 $`\begin{pmatrix} 2 \\ 1 \end{pmatrix}`$의 배수(1배, 2배, 3배)이므로 $`A = \begin{pmatrix} 2 \\ 1 \end{pmatrix}\begin{pmatrix} 1 & 2 & 3 \end{pmatrix}`$이고 랭크는 1이다. 열공간은 $`\begin{pmatrix} 2 \\ 1 \end{pmatrix}`$ 방향으로 원점을 지나는 $`\mathbb{R}^2`$의 직선이고, 행공간은 $`(1, 2, 3)`$ 방향으로 원점을 지나는 $`\mathbb{R}^3`$의 직선이다.
 
    </details>
+
+---
+
+<br>
+
+## 참고 문헌
+
+1. L. A. Gatys, A. S. Ecker, and M. Bethge, "Image style transfer using convolutional neural networks," in *Proc. IEEE Conf. Computer Vision and Pattern Recognition (CVPR)*, pp. 2414-2423, 2016.
