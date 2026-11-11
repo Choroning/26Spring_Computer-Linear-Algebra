@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 6
 
@@ -746,6 +746,14 @@ A^{\infty} = X\Lambda^{\infty}X^{-1} = \begin{pmatrix} 0.6 & 1 \\ 0.4 & -1 \end{
 
 **A.** All $`|\lambda_i| < 1`$.
 
+> **Note:** **Multiplication in the eigenvector basis.** If $`A = X\Lambda X^{-1}`$, then $`A\mathbf{v} = X(\Lambda(X^{-1}\mathbf{v}))`$, and this product can be read in the following three steps.
+>
+> 1. $`\mathbf{c} = X^{-1}\mathbf{v}`$ holds the coefficients in $`\mathbf{v} = c_1\mathbf{x}_1 + \cdots + c_n\mathbf{x}_n`$, that is, the coordinates of $`\mathbf{v}`$ in the eigenvector basis.
+> 2. $`\Lambda\mathbf{c}`$ scales each coordinate by $`\lambda_i`$, one component at a time.
+> 3. $`X(\Lambda\mathbf{c})`$ converts the result back to coordinates in the original basis.
+>
+> In the same way $`A^k\mathbf{v} = X(\Lambda^k(X^{-1}\mathbf{v}))`$, so once the eigendecomposition is known, $`A^k\mathbf{v}`$ can be computed without multiplying by $`A`$ a total of $`k`$ times. For the Markov matrix above and $`\mathbf{v} = (1, 0)`$, $`\mathbf{c} = (1, 0.4)`$, so $`A^k\mathbf{v} = \mathbf{x}_1 + 0.4(0.5)^k\mathbf{x}_2`$, which converges to $`\mathbf{x}_1 = (0.6, 0.4)`$ as $`k \to \infty`$.
+
 ### 2.7 Similar Matrices
 
 Suppose $`\Lambda`$ is fixed. As we change the eigenvector matrix $`X`$, we get different matrices with the **same eigenvalues** $`\Lambda`$.
@@ -857,6 +865,8 @@ Suppose $`\lambda`$ is an eigenvalue of $`A`$.
 
 $`\lambda`$ may be a simple eigenvalue, or a **multiple** eigenvalue (e.g., $`\lambda^2 = 0 \to \lambda = 0`$).
 
+> **Definition:** **Eigenspace.** The eigenspace of an eigenvalue $`\lambda`$ is the nullspace $`\mathcal{N}(A - \lambda I)`$ of $`A - \lambda I`$. This subspace consists of all eigenvectors belonging to $`\lambda`$ together with the zero vector, and every vector $`\mathbf{x}`$ in it satisfies $`A\mathbf{x} = \lambda\mathbf{x}`$.
+
 **Multiplicity:**
 
 1. **Geometric multiplicity (GM):** count the independent vectors for $`\lambda`$ = $`\dim \mathcal{N}(A - \lambda I)`$.
@@ -871,6 +881,20 @@ AM = 2, GM = 1 (1 eigenvector).
 $`A\mathbf{x} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}`$, so $`x_2 = 0`$: $`\mathbf{x} = \begin{pmatrix} c \\ 0 \end{pmatrix}`$.
 
 When **GM < AM** for some eigenvalue, $`A`$ is **not diagonalizable**.
+
+Every eigenvalue satisfies $`1 \leq \text{GM} \leq \text{AM}`$, and counting complex eigenvalues the AMs add up to $`n`$. Allowing complex entries in $`X`$ and $`\Lambda`$, the following holds.
+
+```math
+A \text{ is diagonalizable} \iff \text{GM} = \text{AM for every eigenvalue}
+```
+
+> **Note:** **Proof of the relation between GM and AM.** Extend a basis $`\mathbf{x}_1, \ldots, \mathbf{x}_g`$ ($`g = \text{GM}`$) of the eigenspace of $`\lambda`$ to a basis of $`\mathbb{C}^n`$, and let $`B`$ be the invertible matrix with these columns. Then the following form results.
+> ```math
+> B^{-1}AB = \begin{pmatrix} \lambda I_g & C \\ 0 & D \end{pmatrix}
+> ```
+> Since $`\det(B^{-1}AB - tI) = \det(A - tI)`$, we have $`\det(A - tI) = (\lambda - t)^g\det(D - tI)`$. So $`\lambda`$ appears at least $`g`$ times as a root of the characteristic polynomial, which gives $`g \leq \text{AM}`$. If $`\lambda`$ is an eigenvalue it has a nonzero eigenvector, so $`g \geq 1`$.
+>
+> The bases of all the eigenspaces together are linearly independent. If vectors chosen from different eigenspaces add up to $`\mathbf{0}`$, each vector is $`\mathbf{0}`$ by Section 2.5, and then the coefficients within each basis are all zero. The maximum number of independent eigenvectors is therefore the sum of the GMs. Since $`\text{GM} \leq \text{AM}`$ and the AMs add up to $`n`$, the GMs add up to $`n`$ only when GM = AM for every eigenvalue.
 
 ---
 
@@ -932,6 +956,26 @@ S = Q\Lambda Q^T
 Proof of symmetry: $`S^T = (Q\Lambda Q^T)^T = Q\Lambda^T Q^T = Q\Lambda Q^T = S`$.
 
 If $`S`$ has orthonormal eigenvectors, then $`S`$ is symmetric.
+
+Diagonalization $`S = Q\Lambda Q^T`$ with an orthogonal matrix $`Q`$ is called **orthogonal diagonalization**. Combining the two facts above gives the following for a real square matrix $`S`$.
+
+```math
+S \text{ is orthogonally diagonalizable} \iff S = S^T
+```
+
+Expanding $`Q\Lambda Q^T`$ as columns times rows (Chapter 1, Section 5.7) writes $`S`$ as a sum of rank one matrices weighted by the eigenvalues. This is the **spectral decomposition**.
+
+```math
+S = \lambda_1\mathbf{q}_1\mathbf{q}_1^T + \lambda_2\mathbf{q}_2\mathbf{q}_2^T + \cdots + \lambda_n\mathbf{q}_n\mathbf{q}_n^T
+```
+
+Each $`\mathbf{q}_i\mathbf{q}_i^T`$ is the projection matrix onto the line in the direction of $`\mathbf{q}_i`$ (Chapter 4, Section 2.3). So $`S\mathbf{x}`$ projects $`\mathbf{x}`$ onto $`n`$ mutually orthogonal lines, multiplies each projection by $`\lambda_i`$, and adds the results.
+
+**Example:** $`S = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}`$ has eigenvalues $`\lambda_1 = 3`$ and $`\lambda_2 = 1`$, with orthonormal eigenvectors $`\mathbf{q}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}`$ and $`\mathbf{q}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}`$.
+
+```math
+3\mathbf{q}_1\mathbf{q}_1^T + 1\,\mathbf{q}_2\mathbf{q}_2^T = \frac{3}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} + \frac{1}{2}\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}
+```
 
 ### 3.3 Proof: Symmetric Matrices Have Orthonormal Eigenbasis
 
@@ -1921,7 +1965,11 @@ e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \
 | Distinct eigenvalues | Distinct eigenvalues give LI eigenvectors, so the matrix is diagonalizable. |
 | Similar matrices | For invertible $`B`$, $`C = B^{-1}AB`$ has the same eigenvalues as $`A`$. |
 | GM vs AM | Always GM $`\leq`$ AM, and if GM $`<`$ AM for some eigenvalue, the matrix is not diagonalizable. |
+| Eigenspace | The eigenspace of $`\lambda`$ is $`\mathcal{N}(A - \lambda I)`$, and its dimension is the GM. |
+| Diagonalizability test | Allowing complex entries in $`X`$ and $`\Lambda`$, $`A`$ is diagonalizable if and only if GM = AM for every eigenvalue. |
 | Spectral theorem | A real symmetric matrix $`S`$ factors as $`S = Q\Lambda Q^T`$. |
+| Orthogonal diagonalization | A real square matrix $`S`$ is orthogonally diagonalizable if and only if $`S = S^T`$. |
+| Spectral decomposition | $`S = \sum \lambda_i\mathbf{q}_i\mathbf{q}_i^T`$, and each $`\mathbf{q}_i\mathbf{q}_i^T`$ is the projection matrix onto a line. |
 | Positive definite | It satisfies $`\mathbf{x}^T S\mathbf{x} > 0`$ for all $`\mathbf{x} \neq \mathbf{0}`$, which is equivalent to all $`\lambda_i > 0`$, all pivots $`> 0`$, and all upper-left determinants $`> 0`$. |
 | Positive semidefinite | It satisfies $`\mathbf{x}^T S\mathbf{x} \geq 0`$ and allows $`\lambda = 0`$. |
 | Energy test for $`A^T A`$ | The energy is $`\mathbf{x}^T A^T A\mathbf{x} = \Vert A\mathbf{x}\Vert^2 \geq 0`$. |
