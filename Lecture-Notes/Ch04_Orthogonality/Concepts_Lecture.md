@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-27
+> **Last Updated:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -1134,6 +1134,8 @@ $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$ has **many solutions**: $`\begin{pma
 The problem is that $`A`$ has a dependent column and $`\mathcal{N}(A) \ni \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$.
 
 How can we find the best solution? The **pseudoinverse** of $`A`$, covered in Section 5, answers this question.
+
+> **Note:** **Existence of solutions to the normal equations.** The normal equations $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$ always have a solution, even when the columns of $`A`$ are dependent. Split $`\mathbf{b} = \mathbf{p} + \mathbf{e}`$ with $`\mathbf{p} \in C(A)`$ and $`\mathbf{e} \in \mathcal{N}(A^T)`$. Then $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$ is solvable, and multiplying both sides by $`A^T`$ gives $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{p} = A^T\mathbf{b}`$ because $`A^T\mathbf{e} = \mathbf{0}`$. When $`A^T A`$ is not invertible (Section 2.9) there are infinitely many such solutions, but every one of them gives the same projection $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$. In practical data fitting there are far more rows than columns, and the columns are independent unless an exact linear relation holds among them, as when the same quantity is recorded twice in different units, so $`A^T A`$ is usually invertible.
 
 ### 3.10 Fitting by a Parabola
 
