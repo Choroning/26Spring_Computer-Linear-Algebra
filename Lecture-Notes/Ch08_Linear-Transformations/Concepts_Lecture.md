@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-11-11
 >
 > Introduction to Linear Algebra, Strang, Ch 8
 
@@ -11,6 +11,7 @@
 > 2. Construct matrix representations of linear transformations
 > 3. Analyze kernel and range of transformations
 > 4. Find good bases for a transformation using change of basis and the Jordan form
+> 5. Determine whether a linear transformation is one-to-one or onto
 
 ---
 
@@ -29,6 +30,7 @@
   - [1.8 Example 5: Integration is Also Linear](#18-example-5-integration-is-also-linear)
   - [1.9 Example 6: Projection onto z=1 Plane (Non-Linear)](#19-example-6-projection-onto-z1-plane-non-linear)
   - [1.10 Example 7: Invertible Matrix and Range/Kernel](#110-example-7-invertible-matrix-and-rangekernel)
+  - [1.11 One-to-One and Onto Transformations](#111-one-to-one-and-onto-transformations)
 - [2. The Matrix of a Linear Transformation (8.2)](#2-the-matrix-of-a-linear-transformation-82)
   - [2.1 Key Ideas Summary](#21-key-ideas-summary)
   - [2.2 Choice of Bases and the Standard Matrix](#22-choice-of-bases-and-the-standard-matrix)
@@ -203,6 +205,8 @@ flowchart LR
 *Figure 1. Affine transformation in computer graphics: rotation followed by translation*
 
 > **[Computer Graphics]** Computer graphics places shapes on the screen by applying coordinate transformations such as rotation, scaling, and translation in sequence. Translation does not fix the origin, so it is not a linear transformation, and a placement that combines rotation and translation is handled as the affine transformation of this section.
+
+> **[Deep Learning]** A fully connected layer of a neural network multiplies the input $`\mathbf{x}`$ by a weight matrix $`W`$ and adds a bias vector $`\mathbf{b}`$ to compute $`\mathbf{y} = W\mathbf{x} + \mathbf{b}`$. If $`\mathbf{b} \neq \mathbf{0}`$, this layer is not a linear transformation but an affine transformation in the sense of this section. A composition of affine transformations is again affine, so gaining expressive power from stacked layers requires nonlinear activation functions between them.
 
 ---
 
@@ -464,6 +468,41 @@ The **nullspace** of $`A`$ contains all the inputs for which $`A\mathbf{u} = \ma
 ```math
 \text{Kernel of } T = \text{all inputs for which } T(\mathbf{u}) = \mathbf{0} \quad \longleftrightarrow \quad \text{nullspace of } A
 ```
+
+---
+
+### 1.11 One-to-One and Onto Transformations
+
+For a transformation $`T: V \to W`$, $`V`$ is the **domain** and $`W`$ is the **codomain**. The output $`T(\mathbf{u})`$ assigned to an input $`\mathbf{u}`$ is the **image** of $`\mathbf{u}`$, and the set of all images is the range of Section 1.10. The range is a subset of the codomain but need not be all of it. Each input has exactly one image, while an output may be the image of no input or of several inputs.
+
+> **Definition:** **One-to-one transformation.** A transformation $`T: V \to W`$ in which each vector of $`W`$ is the image of at most one input. That is, $`T(\mathbf{u}) = T(\mathbf{w})`$ implies $`\mathbf{u} = \mathbf{w}`$.
+
+> **Definition:** **Onto transformation.** A transformation $`T: V \to W`$ in which each vector of $`W`$ is the image of at least one input. That is, the range is the whole codomain $`W`$.
+
+Whether a linear transformation is one-to-one can be decided from its kernel. By linearity, $`T(\mathbf{u}) = T(\mathbf{w})`$ is the same as $`T(\mathbf{u} - \mathbf{w}) = \mathbf{0}`$, so the following holds.
+
+```math
+T \text{ is one-to-one} \iff \text{the kernel of } T = \lbrace\mathbf{0}\rbrace
+```
+
+If $`T(\mathbf{u}) = A\mathbf{u}`$ and $`A`$ is an $`m \times n`$ matrix of rank $`r`$, both properties can be decided from the columns of $`A`$.
+
+- $`T`$ is one-to-one exactly when the columns of $`A`$ are linearly independent, that is, $`\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace`$ and $`r = n`$.
+- $`T`$ is onto exactly when the columns of $`A`$ span $`\mathbb{R}^m`$, that is, $`C(A) = \mathbb{R}^m`$ and $`r = m`$.
+
+Since $`r \leq \min(m, n)`$, $`T`$ cannot be one-to-one if $`n > m`$ and cannot be onto if $`n < m`$. If $`m = n`$, being one-to-one, being onto, and the invertibility of $`A`$ are all the same condition.
+
+**Example.** Decide the properties of the transformations given by the following two matrices.
+
+```math
+A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{pmatrix}, \qquad B = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}
+```
+
+$`A`$ is $`3 \times 2`$ with $`r = 2 = n`$, so it is one-to-one. Since $`r < m = 3`$ it is not onto, and indeed $`(0, 0, 1)`$ is not in $`C(A)`$ because $`x_1 = 0`$, $`x_2 = 0`$, and $`x_1 + x_2 = 1`$ cannot hold together.
+
+$`B`$ is $`2 \times 3`$ with $`r = 2 = m`$, so it is onto. Since $`r < n = 3`$ it is not one-to-one, and indeed $`B\mathbf{x} = \mathbf{0}`$ for $`\mathbf{x} = (1, 1, -1)`$.
+
+> **[Deep Learning]** A linear layer whose output dimension is smaller than its input dimension ($`n > m`$) cannot be one-to-one, so different inputs map to the same output and part of the information in the input is lost. Conversely, a linear layer whose output dimension is larger than its input dimension ($`n < m`$) cannot be onto, so the output space contains vectors that no input can produce.
 
 ---
 
@@ -1247,6 +1286,9 @@ By using the **Gram-Schmidt process**, we can obtain the **Legendre basis**.
 | Integration | $`T^+(f) = \int_0^x f(t)\,dt`$ is also linear, and its matrix $`A^+`$ satisfies $`AA^+ = I`$. |
 | Projection onto $`z=1`$ | It is NOT linear because $`T(\mathbf{0}) \neq \mathbf{0}`$. |
 | Range and Kernel | The range of $`T`$ is the column space of $`A`$, and the kernel of $`T`$ is the nullspace of $`A`$. |
+| Domain, codomain, image | The domain is the space of inputs, the codomain is the space of outputs, and the image of $`\mathbf{u}`$ is $`T(\mathbf{u})`$. |
+| One-to-one transformation | Each output is the image of at most one input; for a linear transformation this means the kernel is $`\lbrace\mathbf{0}\rbrace`$, and for $`T(\mathbf{u}) = A\mathbf{u}`$ it means $`r = n`$. |
+| Onto transformation | The range is the whole codomain; for $`T(\mathbf{u}) = A\mathbf{u}`$ this means $`r = m`$. |
 | Determined by basis | A linear transformation is fully determined by its values on basis vectors. |
 | Matrix of $`T`$ | Column $`j`$ holds the coefficients of $`T(\mathbf{u}_j)`$ in the output basis, and with the standard output basis $`A = (T(\mathbf{u}_1) \;\cdots\; T(\mathbf{u}_n))`$. |
 | Standard matrix | Using the columns of $`I`$ as the input and output bases gives $`T(\mathbf{u}) = A\mathbf{u}`$. |
