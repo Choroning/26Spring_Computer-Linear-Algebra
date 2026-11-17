@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-11
+> **Last Updated:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -32,7 +32,7 @@
   - [2.2 Two Key Questions](#22-two-key-questions)
   - [2.3 Extending to Higher Dimensions](#23-extending-to-higher-dimensions)
   - [2.4 Solving Two Equations](#24-solving-two-equations)
-  - [2.5 Can Elimination Fail?](#25-can-elimination-fail)
+  - [2.5 Cases Where Elimination Fails](#25-cases-where-elimination-fails)
   - [2.6 Vectors in Three Dimensions](#26-vectors-in-three-dimensions)
 - [3. Lengths and Angles from Dot Products (1.2)](#3-lengths-and-angles-from-dot-products-12)
   - [3.1 Dot Product Definition](#31-dot-product-definition)
@@ -334,7 +334,7 @@ cv_2 + dw_2 = b_2
 \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}\begin{pmatrix} c \\ d \end{pmatrix} = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}
 ```
 
-**What does this mean geometrically?**
+**Geometric meaning**
 
 The system $`xv_1 + yw_1 = b_1`$ and $`xv_2 + yw_2 = b_2`$ represents two lines. The solution $`(c, d)`$ is the intersection point:
 
@@ -342,7 +342,7 @@ The system $`xv_1 + yw_1 = b_1`$ and $`xv_2 + yw_2 = b_2`$ represents two lines.
 - $`\mathbf{v}`$ and $`\mathbf{w}`$ are **linearly independent**.
 - $`A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}`$ is **invertible**.
 
-### 2.5 Can Elimination Fail?
+### 2.5 Cases Where Elimination Fails
 
 **Yes**, when $`\mathbf{v} \| \mathbf{w}`$ (i.e., $`v_1 w_2 = v_2 w_1`$, which is $`\frac{v_1}{v_2} = \frac{w_1}{w_2}`$ when the components are nonzero).
 
@@ -398,7 +398,7 @@ $`\hat{i}, \hat{j}, \hat{k}`$ correspond to the unit vectors along $`x, y, z`$ a
 
 > **Definition:** The **identity matrix** $`I`$ is the square matrix with ones on the diagonal and zeros elsewhere. Every vector $`\mathbf{v}`$ satisfies $`\mathbf{v} = I\mathbf{v}`$.
 
-#### How Do We Know If It Is a Plane?
+#### Determining Whether It Is a Plane
 
 Suppose nonzero vectors $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^3`$ are **independent**, that is, $`\mathbf{w}`$ is not a multiple $`c\mathbf{v}`$ of $`\mathbf{v}`$.
 
@@ -1012,7 +1012,7 @@ If $`a \neq 0`$, row 2 = $`\frac{b}{a}`$ row 1 and row 3 = $`\frac{c}{a}`$ row 1
 
 If the column rank is 1, then the row rank is 1.
 
-> **Key Point:** **Does row rank equal column rank for every matrix?** Yes. For every matrix, the row rank equals the column rank.
+> **Key Point:** **Row rank and column rank.** For every matrix, the row rank equals the column rank.
 
 ---
 

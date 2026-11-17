@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-17
+> **최종 수정일:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 7
 
@@ -392,7 +392,7 @@ A = U_r \Sigma_r V_r^T = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \cdots + \sigma_
 
 ### 1.8 SVD의 증명
 
-**$`U`$, $`V`$ (특이벡터)를 어떻게 찾는가?**
+**$`U`$, $`V`$ (특이벡터)를 찾는 방법**
 
 $`A = U\Sigma V^T`$가 주어졌다고 하자. $`U`$의 열은 **좌특이벡터**(left singular vectors)이고, $`V`$의 열은 **우특이벡터**(right singular vectors)이다:
 
@@ -817,7 +817,7 @@ $`\lambda_1 = \frac{5}{2}`$일 때:
 \therefore \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
 ```
 
-**iv) 원점을 지나면서 $`A`$의 열에 있는 5개 샘플에 가장 가까운 직선은 무엇인가?**
+**iv) 원점을 지나면서 $`A`$의 열에 있는 5개 샘플에 가장 가까운 직선을 구한다.**
 
 중심화된 데이터 행렬:
 

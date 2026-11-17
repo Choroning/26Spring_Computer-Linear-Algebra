@@ -999,7 +999,7 @@ The normal equation $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$:
 
 ### 3.6 Minimizing the Error: Three Approaches
 
-**How do we make the error $`\mathbf{e} = \mathbf{b} - A\hat{\boldsymbol{\alpha}}`$ as small as possible?**
+**Ways to make the error $`\mathbf{e} = \mathbf{b} - A\hat{\boldsymbol{\alpha}}`$ as small as possible**
 
 **(1) Geometry:** We look for the closest point to $`\mathbf{b}`$. $`\|\mathbf{e}\|`$ becomes the minimum when $`\mathbf{e}`$ is perpendicular to every column $`\mathbf{a}_i`$ of $`A`$, i.e., $`\mathbf{e} \perp C(A)`$.
 

@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-11
+> **Last Updated:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 6
 
@@ -1476,7 +1476,7 @@ $`\therefore u(t) = u(0)e^{\lambda t} = u_0 e^{\lambda t}`$
 - $`\lambda = 0`$: **steady state** (constant)
 - $`\lambda < 0`$: **stable** (decaying)
 
-**What if $`\lambda \in \mathbb{C}`$?** e.g., $`\lambda = -1 + 2i`$
+**When $`\lambda \in \mathbb{C}`$.** e.g., $`\lambda = -1 + 2i`$
 
 $`e^{\lambda t} = e^{-t + 2it} = e^{-t}e^{2it}`$
 

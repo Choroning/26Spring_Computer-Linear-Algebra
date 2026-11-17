@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-17
+> **Last Updated:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 7
 
@@ -392,7 +392,7 @@ A = U_r \Sigma_r V_r^T = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \cdots + \sigma_
 
 ### 1.8 Proof of the SVD
 
-**How do we find $`U`$, $`V`$ (singular vectors)?**
+**Finding $`U`$, $`V`$ (singular vectors)**
 
 Suppose $`A = U\Sigma V^T`$ is given. The columns of $`U`$ are the **left singular vectors**, and the columns of $`V`$ are the **right singular vectors**:
 
@@ -817,7 +817,7 @@ For $`\lambda_1 = \frac{5}{2}`$:
 \therefore \mathbf{x}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
 ```
 
-**iv) What line through the origin is closest to the 5 samples in columns of $`A`$?**
+**iv) Find the line through the origin closest to the 5 samples in columns of $`A`$.**
 
 The centered data matrix:
 

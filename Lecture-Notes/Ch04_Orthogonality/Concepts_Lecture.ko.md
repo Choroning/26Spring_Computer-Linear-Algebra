@@ -999,7 +999,7 @@ A^T A = \begin{pmatrix} \sum x_i^2 & \sum x_i \\ \sum x_i & \sum 1 \end{pmatrix}
 
 ### 3.6 오차 최소화: 세 가지 접근
 
-**오차 $`\mathbf{e} = \mathbf{b} - A\hat{\boldsymbol{\alpha}}`$를 어떻게 가능한 한 작게 만들 수 있는가?**
+**오차 $`\mathbf{e} = \mathbf{b} - A\hat{\boldsymbol{\alpha}}`$를 가능한 한 작게 만드는 방법**
 
 **(1) 기하학적:** $`\mathbf{b}`$에 가장 가까운 점을 찾는다. $`\|\mathbf{e}\|`$는 $`\mathbf{e}`$가 $`A`$의 모든 열 $`\mathbf{a}_i`$에 수직일 때, 즉 $`\mathbf{e} \perp C(A)`$일 때 최솟값이 된다.
 

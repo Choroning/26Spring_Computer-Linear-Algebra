@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-11
+> **Last Updated:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 3
 
@@ -25,7 +25,7 @@
   - [2.3 Definition of a Vector Space](#23-definition-of-a-vector-space)
   - [2.4 The Eight Axioms](#24-the-eight-axioms)
   - [2.5 Consequences of the Axioms](#25-consequences-of-the-axioms)
-  - [2.6 Examples: Is It a Vector Space?](#26-examples-is-it-a-vector-space)
+  - [2.6 Examples: Identifying Vector Spaces](#26-examples-identifying-vector-spaces)
   - [2.7 Examples of Vector Spaces](#27-examples-of-vector-spaces)
   - [2.8 Generalized Vector Spaces](#28-generalized-vector-spaces)
   - [2.9 Subspaces of Vector Spaces](#29-subspaces-of-vector-spaces)
@@ -204,7 +204,7 @@ c\mathbf{0} = \mathbf{0}
 c\mathbf{v} = \mathbf{0} \implies c = 0 \text{ or } \mathbf{v} = \mathbf{0}
 ```
 
-### 2.6 Examples: Is It a Vector Space?
+### 2.6 Examples: Identifying Vector Spaces
 
 **Q.** Is the set of all positive vectors $`\mathbb{X}`$, where $`\mathbb{X} \ni \mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix}`$ with every $`v_i > 0`$, a vector space?
 
