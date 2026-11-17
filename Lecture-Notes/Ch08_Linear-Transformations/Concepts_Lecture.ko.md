@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-11
+> **최종 수정일:** 2026-11-17
 >
 > Introduction to Linear Algebra, Strang, Ch 8
 
@@ -199,7 +199,7 @@ T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0
 ```mermaid
 flowchart LR
     X["도형 x"] -->|"회전 R (선형)"| Y["y = Rx"]
-    Y -->|"(0, u₀) 더하기 (이동)"| Z["z = Rx + (0, u₀)"]
+    Y -->|"(0, u0) 더하기 (이동)"| Z["z = Rx + (0, u0)"]
 ```
 
 *그림 1. 컴퓨터 그래픽스의 아핀 변환: 회전 뒤 이동*

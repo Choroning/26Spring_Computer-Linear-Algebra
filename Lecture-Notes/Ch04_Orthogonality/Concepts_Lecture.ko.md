@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-11
+> **최종 수정일:** 2026-11-17
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -345,17 +345,17 @@ $`A\mathbf{x} = \mathbf{b}`$의 완전해(complete solution)는:
 flowchart LR
     subgraph Rn["ℝⁿ"]
         direction TB
-        row["행공간 C(Aᵀ)<br>차원 r<br>xᵣ"]
-        nul["영공간 N(A)<br>차원 n - r<br>xₙ"]
+        row["행공간 C(Aᵀ)<br>차원 r<br>x_r"]
+        nul["영공간 N(A)<br>차원 n - r<br>x_n"]
     end
     subgraph Rm["ℝᵐ"]
         direction TB
-        col["열공간 C(A)<br>차원 r<br>b = Axᵣ"]
+        col["열공간 C(A)<br>차원 r<br>b = Ax_r"]
         lnul["좌영공간 N(Aᵀ)<br>차원 m - r"]
         zero(("0"))
     end
-    row -- "Axᵣ = b" --> col
-    nul -- "Axₙ = 0" --> zero
+    row -- "Ax_r = b" --> col
+    nul -- "Ax_n = 0" --> zero
 ```
 
 *그림 1. 네 기본 부분공간과 A에 의한 사상*

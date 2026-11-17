@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-11
+> **Last Updated:** 2026-11-17
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -345,17 +345,17 @@ where $`\mathbf{x}_r`$ is the **unique** row space component.
 flowchart LR
     subgraph Rn["ℝⁿ"]
         direction TB
-        row["Row space C(Aᵀ)<br>dim r<br>xᵣ"]
-        nul["Nullspace N(A)<br>dim n - r<br>xₙ"]
+        row["Row space C(Aᵀ)<br>dim r<br>x_r"]
+        nul["Nullspace N(A)<br>dim n - r<br>x_n"]
     end
     subgraph Rm["ℝᵐ"]
         direction TB
-        col["Column space C(A)<br>dim r<br>b = Axᵣ"]
+        col["Column space C(A)<br>dim r<br>b = Ax_r"]
         lnul["Left nullspace N(Aᵀ)<br>dim m - r"]
         zero(("0"))
     end
-    row -- "Axᵣ = b" --> col
-    nul -- "Axₙ = 0" --> zero
+    row -- "Ax_r = b" --> col
+    nul -- "Ax_n = 0" --> zero
 ```
 
 *Figure 1. The four fundamental subspaces and the mapping by A*

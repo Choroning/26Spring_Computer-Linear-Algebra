@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-11
+> **Last Updated:** 2026-11-17
 >
 > Introduction to Linear Algebra, Strang, Ch 8
 
@@ -199,7 +199,7 @@ In computer graphics, affine transformations are used:
 ```mermaid
 flowchart LR
     X["Shape x"] -->|"rotation R (linear)"| Y["y = Rx"]
-    Y -->|"add (0, u₀) (shift)"| Z["z = Rx + (0, u₀)"]
+    Y -->|"add (0, u0) (shift)"| Z["z = Rx + (0, u0)"]
 ```
 
 *Figure 1. Affine transformation in computer graphics: rotation followed by translation*

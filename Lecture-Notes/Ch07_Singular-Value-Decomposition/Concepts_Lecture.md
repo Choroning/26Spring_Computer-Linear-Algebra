@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-11-17
 >
 > Introduction to Linear Algebra, Strang, Ch 7
 
@@ -91,15 +91,15 @@ The matrix $`A`$ maps each right singular vector $`\mathbf{v}_i`$ in the row spa
 ```mermaid
 flowchart LR
     subgraph IN["Input space ℝⁿ"]
-        ROW["Row space C(Aᵀ)<br>dimension r<br>basis v₁, ..., vᵣ"]
-        NUL["Nullspace N(A)<br>dimension n - r<br>basis vᵣ₊₁, ..., vₙ"]
+        ROW["Row space C(Aᵀ)<br>dimension r<br>basis v1, ..., v_r"]
+        NUL["Nullspace N(A)<br>dimension n - r<br>basis v_(r+1), ..., v_n"]
     end
     subgraph OUT["Output space ℝᵐ"]
-        COL["Column space C(A)<br>dimension r<br>basis u₁, ..., uᵣ"]
-        LNU["Left nullspace N(Aᵀ)<br>dimension m - r<br>basis uᵣ₊₁, ..., uₘ"]
+        COL["Column space C(A)<br>dimension r<br>basis u1, ..., u_r"]
+        LNU["Left nullspace N(Aᵀ)<br>dimension m - r<br>basis u_(r+1), ..., u_m"]
         ZERO["Zero vector 0"]
     end
-    ROW -- "A vᵢ = σᵢ uᵢ" --> COL
+    ROW -- "A v_i = σ_i u_i" --> COL
     NUL -- "A v = 0" --> ZERO
 ```
 
@@ -307,9 +307,9 @@ The geometric interpretation of $`A = U\Sigma V^T`$ acting on a vector:
 
 ```mermaid
 flowchart LR
-    S0["Unit circle"] -->|"Vᵀ: rotate by -φ"| S1["Unit circle with v₁, v₂ on the coordinate axes"]
-    S1 -->|"Σ: stretch by σ₁, σ₂ along the axes"| S2["Ellipse with semi-axes of lengths σ₁, σ₂"]
-    S2 -->|"U: rotate by +θ"| S3["Ellipse with semi-axes along u₁, u₂"]
+    S0["Unit circle"] -->|"Vᵀ: rotate by -φ"| S1["Unit circle with v1, v2 on the coordinate axes"]
+    S1 -->|"Σ: stretch by σ1, σ2 along the axes"| S2["Ellipse with semi-axes of lengths σ1, σ2"]
+    S2 -->|"U: rotate by +θ"| S3["Ellipse with semi-axes along u1, u2"]
 ```
 
 *Figure 2. Three steps by which the SVD maps the unit circle to an ellipse*

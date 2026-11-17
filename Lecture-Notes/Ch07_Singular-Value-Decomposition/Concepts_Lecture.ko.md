@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-19
+> **최종 수정일:** 2026-11-17
 >
 > Introduction to Linear Algebra, Strang, Ch 7
 
@@ -91,15 +91,15 @@ A\mathbf{v}_i = \sigma_i \mathbf{u}_i
 ```mermaid
 flowchart LR
     subgraph IN["입력 공간 ℝⁿ"]
-        ROW["행공간 C(Aᵀ)<br>차원 r<br>기저 v₁, ..., vᵣ"]
-        NUL["영공간 N(A)<br>차원 n - r<br>기저 vᵣ₊₁, ..., vₙ"]
+        ROW["행공간 C(Aᵀ)<br>차원 r<br>기저 v1, ..., v_r"]
+        NUL["영공간 N(A)<br>차원 n - r<br>기저 v_(r+1), ..., v_n"]
     end
     subgraph OUT["출력 공간 ℝᵐ"]
-        COL["열공간 C(A)<br>차원 r<br>기저 u₁, ..., uᵣ"]
-        LNU["좌영공간 N(Aᵀ)<br>차원 m - r<br>기저 uᵣ₊₁, ..., uₘ"]
+        COL["열공간 C(A)<br>차원 r<br>기저 u1, ..., u_r"]
+        LNU["좌영공간 N(Aᵀ)<br>차원 m - r<br>기저 u_(r+1), ..., u_m"]
         ZERO["영벡터 0"]
     end
-    ROW -- "A vᵢ = σᵢ uᵢ" --> COL
+    ROW -- "A v_i = σ_i u_i" --> COL
     NUL -- "A v = 0" --> ZERO
 ```
 
@@ -307,9 +307,9 @@ $`A = U\Sigma V^T`$가 벡터에 작용하는 기하학적 해석:
 
 ```mermaid
 flowchart LR
-    S0["단위원"] -->|"Vᵀ: 각도 -φ 회전"| S1["v₁, v₂가 좌표축에 놓인 단위원"]
-    S1 -->|"Σ: 축 방향으로 σ₁, σ₂배 신축"| S2["반축 길이가 σ₁, σ₂인 타원"]
-    S2 -->|"U: 각도 +θ 회전"| S3["반축이 u₁, u₂ 방향인 타원"]
+    S0["단위원"] -->|"Vᵀ: 각도 -φ 회전"| S1["v1, v2가 좌표축에 놓인 단위원"]
+    S1 -->|"Σ: 축 방향으로 σ1, σ2배 신축"| S2["반축 길이가 σ1, σ2인 타원"]
+    S2 -->|"U: 각도 +θ 회전"| S3["반축이 u1, u2 방향인 타원"]
 ```
 
 *그림 2. SVD가 단위원을 타원으로 바꾸는 세 단계*
