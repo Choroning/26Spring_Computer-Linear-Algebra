@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-10-27
+> **Last Updated:** 2026-11-18
 
 ## Table of Contents
 
@@ -68,29 +68,32 @@
 
 ## 5. Weekly Plan and Progress
 
-| Week | Planned Topic | Lecture Decks Covered | Chapter | Topic Covered |
-|:---:|:---|:---|:---|:---|
-| W01 | Introduction to Vectors | Introduction, N1 | Ch. 1 | Introduction, Vectors and Matrices |
-| W02 | Solving Linear Equations | - | Ch. 1 | Vectors and Matrices (continued) |
-| W03 | Solving Linear Equations | N2 | Ch. 2 | Solving Linear Equations |
-| W04 | Four Fundamental Subspaces | - | Ch. 2 | Solving Linear Equations (continued) |
-| W05 | Four Fundamental Subspaces | N3 (A) | Ch. 3 | Vector Spaces and Subspaces |
-| W06 | Orthogonality | N3 (B) | Ch. 3 | Vector Spaces and Subspaces (continued) |
-| W07 | Orthogonality | - | - | Review |
-| W08 | Midterm exam | Midterm | - | - |
-| W09 | Determinants | N4-1, N4-2 | Ch. 4 | Orthogonality, Projections |
-| W10 | Eigenvalues and eigenvectors | N4-3, N4-4, N4-5 | Ch. 4 | Least Squares, Orthogonal Basis, Pseudoinverse |
-| W11 | Eigenvalues and eigenvectors | N5-1, N5-2, N5-3 | Ch. 5 | Determinants |
-| W12 | Singular Value Decomposition | N6-1, N6-2 | Ch. 6 | Eigenvalues, Diagonalization |
-| W13 | Linear Transformation | N6-3, N6-5 | Ch. 6 | Symmetric Positive Definite Matrices, Linear Differential Equations |
-| W14 | Linear Transformation | N7-1, N7-2, N7-3 | Ch. 7 | SVD, Image Processing, PCA |
-| W15 | Linear Algebra in Optimization | N8-1, N8-2, N8-3 | Ch. 8 | Linear Transformations |
-| W16 | Final Exam | Final | - | - |
+| Week | Class Dates (Tue) | Planned Topic | Lecture Decks Covered |
+|:---:|:-----|:-----|:-----|
+| W01 | 3/3 | Introduction to Vectors | Introduction-321<br>N1_Vector-and-Matrix |
+| W02 | 3/10 | Solving Linear Equations | - |
+| W03 | 3/17 | Solving Linear Equations | N2_Solving-Linear-Eq |
+| W04 | 3/24 | Four Fundamental Subspaces | - |
+| W05 | 3/31 | Four Fundamental Subspaces | N3_Subspaces-A |
+| W06 | 4/7 | Orthogonality | N3_Subspaces-B |
+| W07 | 4/14 | Orthogonality | - |
+| W08 | 4/21 | Midterm exam | Midterm |
+| W09 | 4/28 | Determinants | N4-1_Orthogonality<br>N4-2_Projection-onto-Lines-and-Subspaces<br>N4-2_Worked-Ex1 |
+| W10 | 5/5 | Eigenvalues and eigenvectors | Public holiday (5/5 Children's Day)<br>N4-3_Least-Square-Approximation<br>N4-4_Orthogonal-Basis<br>N4-5_Pseudoinverse |
+| W11 | 5/12 | Eigenvalues and eigenvectors | N5-1_Determinant<br>N5-2_Computing-and-Using-Determinant<br>N5-3_Areas-and-Volumes-by-Determinant |
+| W12 | 5/19 | Singular Value Decomposition | N6-1_Introduction-to-Eigenvalues<br>N6-2_Diagonalizing-a-Matrix |
+| W13 | 5/26 | Linear Transformation | N6-3_Symmetric-Positive-Definite-Matrix<br>N6-5_Solving-Linear-Differential-Eq |
+| W14 | 6/2 | Linear Transformation | N7-1_SVD<br>N7-2_Image-Processing<br>N7-3_PCA |
+| W15 | 6/9 | Linear Algebra in Optimization | N8-1_Linear-Transform<br>N8-2_Matrix-of-Linear-Transformation<br>N8-3_The-Search-for-Good-Basis |
+| W16 | 6/16 | Final Exam | Final |
 
 - The planned topics follow the weekly course plan of the syllabus. Linear Algebra in Optimization (Chapter 9), planned for week 15, is not among the decks covered.
-- The course plan in the Introduction deck sets the textbook range and key concept of each week as Chapter 1 (vectors) in week 1, Chapter 2 ($`Ax = b`$) in week 2, Chapter 3 ($`Ax = b`$) in week 3, Sections 3.1-3.2 (column space) in week 4, Sections 3.3-3.5 (nullspace) in week 5, Sections 4.1-4.3 (orthogonality) in week 6, Sections 4.4-4.5 (orthogonality) in week 7, Chapter 5 (determinants) in week 9, Sections 6.1-6.3 (eigendecomposition) in week 10, Sections 6.4-6.5 (eigendecomposition) in week 11, Chapter 7 (SVD) in week 12, Chapter 8 (linear maps) in weeks 13 and 14, and Chapter 9 (SGD) in week 15.
-- The deck numbers N1-N8 match the textbook chapters, and the second number in names such as `N4-1` is the section number within that chapter.
+- The class dates are the Tuesdays on which the in-person classes were held. In week 10, 5/5 was Children's Day (a public holiday) and the university's foundation day, so there was no in-person class; the decks of that week were covered by the online lecture videos.
+- Weeks 2, 4, and 7 introduced no new deck and continued the deck of the previous week (`N1_Vector-and-Matrix`, `N2_Solving-Linear-Eq`, and `N3_Subspaces-B`).
+- The course plan in the `Introduction-321` deck sets the textbook range and key concept of each week as Chapter 1 (vectors) in week 1, Chapter 2 ($`Ax = b`$) in week 2, Chapter 3 ($`Ax = b`$) in week 3, Sections 3.1-3.2 (column space) in week 4, Sections 3.3-3.5 (nullspace) in week 5, Sections 4.1-4.3 (orthogonality) in week 6, Sections 4.4-4.5 (orthogonality) in week 7, Chapter 5 (determinants) in week 9, Sections 6.1-6.3 (eigendecomposition) in week 10, Sections 6.4-6.5 (eigendecomposition) in week 11, Chapter 7 (SVD) in week 12, Chapter 8 (linear maps) in weeks 13 and 14, and Chapter 9 (SGD) in week 15.
+- The numbers N1-N8 in the deck names match the textbook chapters, and the second number, as in `N4-1` of `N4-1_Orthogonality`, is the section number within that chapter.
 - The decks of each chapter are organized in the lecture note of the `Ch##` unit with the same number, and the units are listed in the [`Lecture-Notes` index](Lecture-Notes/README.md).
+- `Introduction-321` is a course introduction and administrative overview, and `Problems-1`-`Problems-8` collect the exercises of textbook Chapters 1-8, so no lecture notes were written for them.
 
 ---
 

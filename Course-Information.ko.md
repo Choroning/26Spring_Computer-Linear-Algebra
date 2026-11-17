@@ -2,7 +2,7 @@
 
 [레포지토리 안내](README.ko.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **최종 수정일:** 2026-10-27
+> **최종 수정일:** 2026-11-18
 
 ## 목차
 
@@ -68,29 +68,32 @@
 
 ## 5. 주차별 계획 및 진도
 
-| 주차 | 계획된 주제 | 진행한 강의자료 | 장 | 진행한 주제 |
-|:---:|:---|:---|:---|:---|
-| 1주차 | Introduction to Vectors | Introduction, N1 | Ch. 1 | 소개, 벡터와 행렬 |
-| 2주차 | Solving Linear Equations | - | Ch. 1 | 벡터와 행렬 (계속) |
-| 3주차 | Solving Linear Equations | N2 | Ch. 2 | 연립일차방정식 풀기 |
-| 4주차 | Four Fundamental Subspaces | - | Ch. 2 | 연립일차방정식 풀기 (계속) |
-| 5주차 | Four Fundamental Subspaces | N3 (A) | Ch. 3 | 벡터 공간과 부분공간 |
-| 6주차 | Orthogonality | N3 (B) | Ch. 3 | 벡터 공간과 부분공간 (계속) |
-| 7주차 | Orthogonality | - | - | 복습 |
-| 8주차 | 중간고사 | 중간고사 | - | - |
-| 9주차 | Determinants | N4-1, N4-2 | Ch. 4 | 직교성, 사영 |
-| 10주차 | Eigenvalues and eigenvectors | N4-3, N4-4, N4-5 | Ch. 4 | 최소제곱, 직교 기저, 유사역행렬 |
-| 11주차 | Eigenvalues and eigenvectors | N5-1, N5-2, N5-3 | Ch. 5 | 행렬식 |
-| 12주차 | Singular Value Decomposition | N6-1, N6-2 | Ch. 6 | 고유값, 대각화 |
-| 13주차 | Linear Transformation | N6-3, N6-5 | Ch. 6 | 대칭 양정치 행렬, 선형 미분방정식 |
-| 14주차 | Linear Transformation | N7-1, N7-2, N7-3 | Ch. 7 | SVD, 이미지 처리, PCA |
-| 15주차 | Linear Algebra in Optimization | N8-1, N8-2, N8-3 | Ch. 8 | 선형 변환 |
-| 16주차 | 기말고사 | 기말고사 | - | - |
+| 주차 | 수업일 (화) | 계획된 주제 | 진행한 강의자료 |
+|:---:|:-----|:-----|:-----|
+| 1주차 | 3/3 | Introduction to Vectors | Introduction-321<br>N1_Vector-and-Matrix |
+| 2주차 | 3/10 | Solving Linear Equations | - |
+| 3주차 | 3/17 | Solving Linear Equations | N2_Solving-Linear-Eq |
+| 4주차 | 3/24 | Four Fundamental Subspaces | - |
+| 5주차 | 3/31 | Four Fundamental Subspaces | N3_Subspaces-A |
+| 6주차 | 4/7 | Orthogonality | N3_Subspaces-B |
+| 7주차 | 4/14 | Orthogonality | - |
+| 8주차 | 4/21 | 중간고사 | 중간고사 |
+| 9주차 | 4/28 | Determinants | N4-1_Orthogonality<br>N4-2_Projection-onto-Lines-and-Subspaces<br>N4-2_Worked-Ex1 |
+| 10주차 | 5/5 | Eigenvalues and eigenvectors | 공휴일 (5/5 어린이날)<br>N4-3_Least-Square-Approximation<br>N4-4_Orthogonal-Basis<br>N4-5_Pseudoinverse |
+| 11주차 | 5/12 | Eigenvalues and eigenvectors | N5-1_Determinant<br>N5-2_Computing-and-Using-Determinant<br>N5-3_Areas-and-Volumes-by-Determinant |
+| 12주차 | 5/19 | Singular Value Decomposition | N6-1_Introduction-to-Eigenvalues<br>N6-2_Diagonalizing-a-Matrix |
+| 13주차 | 5/26 | Linear Transformation | N6-3_Symmetric-Positive-Definite-Matrix<br>N6-5_Solving-Linear-Differential-Eq |
+| 14주차 | 6/2 | Linear Transformation | N7-1_SVD<br>N7-2_Image-Processing<br>N7-3_PCA |
+| 15주차 | 6/9 | Linear Algebra in Optimization | N8-1_Linear-Transform<br>N8-2_Matrix-of-Linear-Transformation<br>N8-3_The-Search-for-Good-Basis |
+| 16주차 | 6/16 | 기말고사 | 기말고사 |
 
 - 계획된 주제는 강의계획서의 주별 계획(Course Plan)을 따른다. 15주차에 계획된 Linear Algebra in Optimization(9장)은 진행한 강의자료에 없다.
-- Introduction 강의자료의 강의 계획은 주차별 교재 범위와 핵심 개념을 1주차 1장(벡터), 2주차 2장($`Ax = b`$), 3주차 3장($`Ax = b`$), 4주차 3.1\~3.2절(열공간), 5주차 3.3\~3.5절(영공간), 6주차 4.1\~4.3절(직교성), 7주차 4.4\~4.5절(직교성), 9주차 5장(행렬식), 10주차 6.1\~6.3절(고유분해), 11주차 6.4\~6.5절(고유분해), 12주차 7장(SVD), 13주차와 14주차 8장(선형 사상), 15주차 9장(SGD)으로 두었다.
-- 강의자료 번호 N1~N8은 교재의 장 번호와 같고, `N4-1`처럼 이름에 붙은 둘째 번호는 그 장의 절 번호이다.
+- 수업일은 대면 수업을 진행한 화요일의 날짜이다. 10주차의 5/5는 어린이날(공휴일)이자 개교기념일이라 대면 수업이 없었고, 이 주차의 강의자료는 온라인 강의 영상으로 다뤘다.
+- 2주차, 4주차, 7주차에는 새 강의자료 없이 앞 주차의 강의자료(`N1_Vector-and-Matrix`, `N2_Solving-Linear-Eq`, `N3_Subspaces-B`)를 이어서 다뤘다.
+- `Introduction-321` 강의자료의 강의 계획은 주차별 교재 범위와 핵심 개념을 1주차 1장(벡터), 2주차 2장($`Ax = b`$), 3주차 3장($`Ax = b`$), 4주차 3.1\~3.2절(열공간), 5주차 3.3\~3.5절(영공간), 6주차 4.1\~4.3절(직교성), 7주차 4.4\~4.5절(직교성), 9주차 5장(행렬식), 10주차 6.1\~6.3절(고유분해), 11주차 6.4\~6.5절(고유분해), 12주차 7장(SVD), 13주차와 14주차 8장(선형 사상), 15주차 9장(SGD)으로 두었다.
+- 강의자료 이름의 번호 N1~N8은 교재의 장 번호와 같고, `N4-1_Orthogonality`의 `N4-1`처럼 붙은 둘째 번호는 그 장의 절 번호이다.
 - 각 장의 강의자료는 같은 번호의 `Ch##` 단원 강의 노트에 정리했으며, 단원 목록은 [`Lecture-Notes` 색인](Lecture-Notes/README.ko.md)에 있다.
+- `Introduction-321`은 과목 소개와 수업 운영 안내이고, `Problems-1`\~`Problems-8`은 교재 1\~8장의 연습 문제를 모은 자료이므로 강의 노트를 만들지 않았다.
 
 ---
 
