@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-19
+> **최종 수정일:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 2
 
@@ -637,11 +637,11 @@ EA = U \implies A = E^{-1}U = LU
 
 ### 3.3 역행렬에 관한 사실들
 
-**정의:** 행렬 $`A`$가 **가역** (invertible)이란 $`A`$를 역변환하는 행렬 $`A^{-1}`$이 존재하는 것이다:
-
-```math
-A^{-1}A = AA^{-1} = I
-```
+> **용어 정의:** 행렬 $`A`$가 **가역** (invertible)이란 $`A`$를 역변환하는 행렬 $`A^{-1}`$이 존재하는 것이다:
+>
+> ```math
+> A^{-1}A = AA^{-1} = I
+> ```
 
 $`A \in \mathbb{R}^{n \times n}`$라 하자. $`A`$가 $`n`$개의 독립인 열을 가지면, $`A`$는 가역이다. 이는 $`\text{rank}(A) = n`$을 의미한다.
 

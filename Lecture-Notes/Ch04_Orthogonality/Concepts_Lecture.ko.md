@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-17
+> **최종 수정일:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -191,11 +191,11 @@ A^T A \hat{\mathbf{x}} = A^T \mathbf{b}
 
 ### 1.4 직교 부분공간
 
-**정의:** 부분공간 $`V`$와 $`W`$가 다음을 만족할 때 **직교**한다:
-
-```math
-\mathbf{v}^T \mathbf{w} = 0 \quad \forall \, \mathbf{v} \in V, \, \mathbf{w} \in W
-```
+> **용어 정의:** 부분공간 $`V`$와 $`W`$가 다음을 만족할 때 두 부분공간은 **직교 (Orthogonal)** 한다고 한다:
+>
+> ```math
+> \mathbf{v}^T \mathbf{w} = 0 \quad \forall \, \mathbf{v} \in V, \, \mathbf{w} \in W
+> ```
 
 예를 들어 원점을 지나는 직선(1차원 부분공간)과, 원점을 지나며 그 직선에 수직인 평면(2차원 부분공간)을 생각한다. 직선 위의 모든 벡터는 평면 위의 모든 벡터에 수직이다.
 
@@ -1239,11 +1239,11 @@ A^T A = \begin{pmatrix} \mathbf{a}_1^T\mathbf{a}_1 & 0 & \cdots & 0 \\ 0 & \math
 
 ### 4.3 정규직교 벡터와 행렬
 
-**정의:** $`n`$개의 벡터가 **정규직교**일 조건:
-
-```math
-\mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & i \neq j\text{일 때} \\ 1 & i = j\text{일 때} \end{cases}
-```
+> **용어 정의:** $`n`$개의 벡터 $`\mathbf{q}_1, \ldots, \mathbf{q}_n`$이 다음을 만족하면 이 벡터들을 **정규직교 (Orthonormal)** 라고 한다:
+>
+> ```math
+> \mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & i \neq j\text{일 때} \\ 1 & i = j\text{일 때} \end{cases}
+> ```
 
 정규직교 열을 가진 행렬 $`Q`$는 $`Q^T Q = I`$를 만족한다. $`Q`$가 $`m \times n`$ 행렬이면 $`\mathbb{R}^m`$에 정규직교 벡터가 $`n`$개 있으므로 $`m \geq n`$이며, 보통 $`m > n`$인 경우를 다룬다.
 

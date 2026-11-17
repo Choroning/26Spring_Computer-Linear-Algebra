@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-10-19
+> **Last Updated:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 2
 
@@ -637,11 +637,11 @@ EA = U \implies A = E^{-1}U = LU
 
 ### 3.3 The Facts about Inverse Matrices
 
-**Definition:** The matrix $`A`$ is **invertible** if there exists a matrix $`A^{-1}`$ that inverts $`A`$:
-
-```math
-A^{-1}A = AA^{-1} = I
-```
+> **Definition:** The matrix $`A`$ is **invertible** if there exists a matrix $`A^{-1}`$ that inverts $`A`$:
+>
+> ```math
+> A^{-1}A = AA^{-1} = I
+> ```
 
 Let $`A \in \mathbb{R}^{n \times n}`$. If $`A`$ has $`n`$ independent columns, then $`A`$ is invertible. This means $`\text{rank}(A) = n`$.
 

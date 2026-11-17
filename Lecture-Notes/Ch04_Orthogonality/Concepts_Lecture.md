@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-17
+> **Last Updated:** 2026-11-18
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
@@ -191,11 +191,11 @@ This is **least squares**. When $`A^T A = I`$, the problem becomes easy. Constru
 
 ### 1.4 Orthogonal Subspaces
 
-**Definition:** Subspaces $`V`$ and $`W`$ are **orthogonal** when:
-
-```math
-\mathbf{v}^T \mathbf{w} = 0 \quad \forall \, \mathbf{v} \in V, \, \mathbf{w} \in W
-```
+> **Definition:** Subspaces $`V`$ and $`W`$ are **orthogonal** when:
+>
+> ```math
+> \mathbf{v}^T \mathbf{w} = 0 \quad \forall \, \mathbf{v} \in V, \, \mathbf{w} \in W
+> ```
 
 For example, consider a line through the origin (1-dimensional subspace) and a plane through the origin perpendicular to that line (2-dimensional subspace). Every vector on the line is perpendicular to every vector in the plane.
 
@@ -1239,11 +1239,11 @@ This is a **diagonal matrix**.
 
 ### 4.3 Orthonormal Vectors and Matrices
 
-**Definition:** The $`n`$ vectors are **orthonormal** if:
-
-```math
-\mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & \text{when } i \neq j \\ 1 & \text{when } i = j \end{cases}
-```
+> **Definition:** The $`n`$ vectors $`\mathbf{q}_1, \ldots, \mathbf{q}_n`$ are **orthonormal** if:
+>
+> ```math
+> \mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & \text{when } i \neq j \\ 1 & \text{when } i = j \end{cases}
+> ```
 
 A matrix $`Q`$ with orthonormal columns has $`Q^T Q = I`$. If $`Q`$ is $`m \times n`$, there are $`n`$ orthonormal vectors in $`\mathbb{R}^m`$, so $`m \geq n`$; typically $`m > n`$.
 
