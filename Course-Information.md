@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-11-18
+> **Last Updated:** 2026-11-24
 
 ## Table of Contents
 
@@ -47,7 +47,7 @@
 | Final Exam | 40% |
 
 - The midterm exam covers the topics taught up to the exam date, and the final exam focuses mainly on the material learned after the midterm.
-- The assignments are weekly homework assignments, each with one week to complete and submitted online. The syllabus announced twelve homework assignments, and the first lecture deck announced ten.
+- The assignments are weekly homework assignments. The syllabus announced twelve homework assignments, and the first lecture deck announced ten.
 - Grades are disclosed.
 
 ---
@@ -57,7 +57,6 @@
 ## 4. Course Policies
 
 - Students who have a conflict with an exam must notify the instructor immediately.
-- The submission deadline is strict, and all late assignments are graded zero. No exceptions to the homework policy are made without prior instructor approval, and medical exceptions require proper documentation.
 - Students are encouraged to discuss class topics among themselves, but each assignment must be completed independently. Any sharing of code or plagiarism is considered academic dishonesty and results in strict disciplinary action.
 - Regular attendance is expected. Except for unavoidable absences deemed necessary by the instructor, no grade is assigned to students absent for one third or more of the class days.
 - This course encourages the use of AI agents.
