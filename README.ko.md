@@ -64,11 +64,11 @@
 
 ```plaintext
 26Spring_Computer-Linear-Algebra
-├── Lecture-Notes               교재 장별 강의 노트
-├── Course-Information.ko.md    수업 운영 정보
+├── Lecture-Notes               Lecture notes by textbook chapter
+├── Course-Information.ko.md    Course operations
 ├── Course-Information.md
-├── LICENSE                     문서 라이선스 (CC BY-NC-SA 4.0)
-├── LICENSE-CODE                코드 라이선스 (PolyForm Noncommercial 1.0.0)
+├── LICENSE                     Documentation license (CC BY-NC-SA 4.0)
+├── LICENSE-CODE                Code license (PolyForm Noncommercial 1.0.0)
 ├── README.ko.md
 └── README.md
 ```
