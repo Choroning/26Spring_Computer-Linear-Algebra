@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-18
+> **최종 수정일:** 2026-11-27
 >
 > Introduction to Linear Algebra, Strang, Ch 3
 
@@ -75,7 +75,7 @@
 - **3.1** 벡터 공간과 부분공간 (Vector Spaces and Subspaces): 벡터 공간을 어떻게 정의하는지 다룬다. 핵심 연산은 $`\mathbf{u} + \mathbf{v}`$와 $`c\mathbf{u}`$이며, 벡터 $`\mathbf{u}`$와 스칼라 $`c`$가 만족해야 하는 8가지 규칙이 있다.
 - **3.2** $`A`$의 영공간 (Nullspace): $`A\mathbf{x} = \mathbf{0}`$ 풀기
 - **3.3** $`A\mathbf{x} = \mathbf{b}`$의 완전해 (Complete Solution)
-- **3.4** 독립 (Independence), **기저 (Basis)**, **차원 (Dimension)**: 공간을 설명하는 벡터 집합을 다룬다. $`A \in \mathbb{R}^{m \times n}`$이라 하자. $`A`$가 $`r`$개의 독립 열을 가지면 $`C(A)`$의 차원은 $`r`$이다. $`A\mathbf{x} = \mathbf{0}`$의 $`(n - r)`$개 특별해는 $`A`$의 영공간 $`N(A)`$의 기저가 된다.
+- **3.4** 독립(independence), **기저(basis)**, **차원(dimension)**: 공간을 설명하는 벡터 집합을 다룬다. $`A \in \mathbb{R}^{m \times n}`$이라 하자. $`A`$가 $`r`$개의 독립 열을 가지면 $`C(A)`$의 차원은 $`r`$이다. $`A\mathbf{x} = \mathbf{0}`$의 $`(n - r)`$개 특별해는 $`A`$의 영공간 $`N(A)`$의 기저가 된다.
 - **3.5** 네 부분공간의 차원 (Dimensions of the Four Subspaces):
 
 | 부분공간 | 차원 |
@@ -98,8 +98,8 @@
 ### 2.1 벡터 공간의 요건
 
 1. **요건:** 모든 선형결합 $`c\mathbf{u} + d\mathbf{w}`$가 벡터 공간 안에 머물러야 한다.
-2. $`A`$의 **행공간 (Row Space)** 은 $`A`$의 행들이 생성한다. $`A`$의 열들은 열공간 $`C(A)`$를 생성한다.
-3. **행렬 (Matrix)** $`M_1`$부터 $`M_n`$까지와 **함수 (Function)** $`f_1`$부터 $`f_n`$까지가 **행렬 공간 (Matrix Space)** 과 **함수 공간 (Function Space)** 을 생성한다.
+2. $`A`$의 **행공간(row space)** 은 $`A`$의 행들이 생성한다. $`A`$의 열들은 열공간 $`C(A)`$를 생성한다.
+3. **행렬(matrix)** $`M_1`$부터 $`M_n`$까지와 **함수(function)** $`f_1`$부터 $`f_n`$까지가 **행렬 공간(matrix space)** 과 **함수 공간(function space)** 을 생성한다.
 
 ### 2.2 공간 R^n
 
@@ -120,13 +120,13 @@
 
 ### 2.3 벡터 공간의 정의
 
-**벡터 공간 (Vector Space)** (= 선형 공간, Linear Space) $`V`$는 원소(벡터)들이 서로 더해지고 수와 곱해질 수 있는 집합이다.
+**벡터 공간(vector space)** (= 선형 공간, Linear Space) $`V`$는 원소(벡터)들이 서로 더해지고 수와 곱해질 수 있는 집합이다.
 
 $`\mathbf{u}, \mathbf{w} \in V`$ (벡터 공간)일 때:
 1. 벡터 덧셈 (Vector Addition): $`\mathbf{u} + \mathbf{w} \in V`$
 2. 스칼라 곱 (Scalar Multiplication): $`\alpha \mathbf{u} \in V \quad \forall \alpha \in \mathbb{F}`$
 
-**체 (Field)** 는 덧셈, 뺄셈, 곱셈과 0이 아닌 원소로 나누는 나눗셈이 정의되고 통상의 연산 법칙을 만족하는 집합이다.
+**체(field)** 는 덧셈, 뺄셈, 곱셈과 0이 아닌 원소로 나누는 나눗셈이 정의되고 통상의 연산 법칙을 만족하는 집합이다.
 
 체의 예: $`\mathbb{R}`$ (실수), $`\mathbb{C}`$ (복소수).
 
@@ -158,7 +158,7 @@ $`\mathbf{u}, \mathbf{v}, \mathbf{w} \in V`$이고 $`c, d \in \mathbb{F}`$일 �
 \forall \mathbf{v} \in V, \; \exists!\; -\mathbf{v} \in V \text{ s.t. } \mathbf{v} + (-\mathbf{v}) = \mathbf{0}
 ```
 
-여기서 $`-\mathbf{v}`$는 $`\mathbf{v}`$의 **덧셈 역원 (Additive Inverse)** 이다.
+여기서 $`-\mathbf{v}`$는 $`\mathbf{v}`$의 **덧셈 역원(additive inverse)** 이다.
 
 **(5) 스칼라 곱과 체 곱의 양립성 (Compatibility):**
 
@@ -246,7 +246,7 @@ $`\mathbf{a}, \mathbf{b} \in \mathbb{X}`$라 하자. $`\mathbf{a} + \mathbf{b}`$
 - $`\mathbf{a} + \mathbf{b} = (t_1 + t_2)\mathbf{d} \in \mathbb{X}`$이다.
 - $`c\mathbf{a} = ct_1\mathbf{d} \in \mathbb{X}`$이다.
 
-**원점을 지나는 직선은 벡터 공간이다.** $`\mathbb{R}^n`$에서 $`\mathbf{0}`$을 지나는 직선은 $`\mathbb{R}^n`$의 **부분공간 (Subspace)**, 즉 다른 벡터 공간 안의 벡터 공간이다.
+**원점을 지나는 직선은 벡터 공간이다.** $`\mathbb{R}^n`$에서 $`\mathbf{0}`$을 지나는 직선은 $`\mathbb{R}^n`$의 **부분공간(subspace)**, 즉 다른 벡터 공간 안의 벡터 공간이다.
 
 > **주의:** 위 식의 조건 $`\mathbf{p} \neq \mathbf{0}`$은 직선이 원점을 지나지 않는다는 뜻으로 읽어야 한다. $`\mathbf{p}`$가 $`\mathbf{d}`$의 실수배($`\mathbf{p} = s\mathbf{d}`$)이면 $`\mathbf{p} \neq \mathbf{0}`$이어도 $`t = -s`$에서 $`\mathbf{q} = \mathbf{0}`$이 되어 직선이 원점을 지난다. 이때는 $`\mathbf{p}`$를 $`\mathbf{0}`$으로 바꾸어 같은 직선을 나타낼 수 있으므로 이 직선도 벡터 공간이다.
 
@@ -257,7 +257,7 @@ $`\mathbf{a}, \mathbf{b} \in \mathbb{X}`$라 하자. $`\mathbf{a} + \mathbf{b}`$
   - i) $`\mathbf{0} + \mathbf{0} = \mathbf{0} \in \mathbb{Z}`$
   - ii) $`c\mathbf{0} = \mathbf{0} \in \mathbb{Z}`$
 
-$`\mathbb{Z}`$는 **가역 행렬의 영공간 (Nullspace)** 이다. $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 영벡터 $`\mathbf{x} = \mathbf{0}`$이면, $`A`$의 열들은 선형독립 (LI)이고 $`A`$의 영공간은 $`\mathbb{Z}`$이다.
+$`\mathbb{Z}`$는 **가역 행렬의 영공간(nullspace)** 이다. $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 영벡터 $`\mathbf{x} = \mathbf{0}`$이면, $`A`$의 열들은 선형독립 (LI)이고 $`A`$의 영공간은 $`\mathbb{Z}`$이다.
 
 ### 2.8 일반화된 벡터 공간
 
@@ -297,13 +297,13 @@ $`(f + g)(x) = f(x) + g(x) = e^x + 2e^x = 3e^x \in \mathcal{L}`$
 
 $`(cf)(x) = c(f(x)) = ce^x \in \mathcal{L}`$
 
-> **참고:** **집합 (Set)** 은 추가적인 구조 없이 원소들의 모임에 불과하다. **공간 (Space)** 은 추가적인 구조가 정의된 집합이다. 예: 벡터 공간은 벡터 덧셈과 스칼라 곱이 정의된 벡터들의 집합이다. 벡터 공간은 8가지 규칙을 만족해야 한다.
+> **참고:** **집합(set)** 은 추가적인 구조 없이 원소들의 모임에 불과하다. **공간(space)** 은 추가적인 구조가 정의된 집합이다. 예: 벡터 공간은 벡터 덧셈과 스칼라 곱이 정의된 벡터들의 집합이다. 벡터 공간은 8가지 규칙을 만족해야 한다.
 
 ### 2.9 벡터 공간의 부분공간
 
 벡터 공간 $`\mathbb{R}^n`$을 고려한다. 여기서 $`\mathbf{v} \in \mathbb{R}^n`$은 $`n`$개의 성분을 가진 열벡터이다.
 
-$`\mathbb{R}^n`$ 안에 중요한 벡터 공간들이 있다. 이들이 $`\mathbb{R}^n`$의 **부분공간 (Subspace)** 이다.
+$`\mathbb{R}^n`$ 안에 중요한 벡터 공간들이 있다. 이들이 $`\mathbb{R}^n`$의 **부분공간(subspace)** 이다.
 
 평면 $`\mathbb{R}^2`$는 벡터 공간이다. $`\mathbf{v}, \mathbf{w} \in \mathbb{R}^2`$이면, $`c\mathbf{v} + d\mathbf{w} \in \mathbb{R}^2`$이다.
 
@@ -311,7 +311,7 @@ $`\mathbb{R}^3`$에서 원점 $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$을 �
 
 ### 2.10 부분공간의 정의
 
-> **용어 정의:** 벡터 공간의 **부분공간 (Subspace)** 은 $`\mathbf{0}`$을 포함하고 다음 두 조건을 만족하는 벡터들의 집합이다.
+> **용어 정의:** 벡터 공간의 **부분공간(subspace)** 은 $`\mathbf{0}`$을 포함하고 다음 두 조건을 만족하는 벡터들의 집합이다.
 >
 > i) $`\mathbf{u} + \mathbf{w}`$가 부분공간에 속한다.
 >
@@ -319,7 +319,7 @@ $`\mathbb{R}^3`$에서 원점 $`\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}`$을 �
 >
 > 여기서 $`\mathbf{u}, \mathbf{w}`$는 부분공간의 임의의 벡터이고 $`c \in \mathbb{R}`$ (또는 $`\mathbb{F}`$)는 임의의 스칼라이다.
 
-즉 이 벡터 집합은 덧셈 $`\mathbf{u} + \mathbf{w}`$와 곱셈 $`c\mathbf{u}`$에 대해 **닫혀 (Closed)** 있다.
+즉 이 벡터 집합은 덧셈 $`\mathbf{u} + \mathbf{w}`$와 곱셈 $`c\mathbf{u}`$에 대해 **닫혀(closed)** 있다.
 
 조건 i)과 ii)는 다음을 의미한다: **모든 선형결합이 부분공간 안에 머문다.**
 
@@ -465,7 +465,7 @@ A = CR
 1. $`\mathbb{R}^n`$에서 영공간 $`N(A)`$는 $`A\mathbf{x} = \mathbf{0}`$의 모든 해 $`\mathbf{x}`$를 포함한다. 여기에는 $`\mathbf{x} = \mathbf{0}`$도 포함된다.
 2. $`A`$에서 $`R_0`$, $`R`$로의 소거는 영공간을 **바꾸지 않는다**.
 3. 기약행사다리꼴 (Reduced Row Echelon Form) $`R_0 = \text{rref}(A)`$는 $`r`$개의 열에 $`I`$를 갖고, $`n - r`$개의 열에 $`F`$를 갖는다.
-4. 열 $`j`$가 이전 열들에 종속이면, $`A\mathbf{x} = \mathbf{0}`$은 $`x_j = 1`$인 **특별해 (Special Solution)** 를 가진다.
+4. 열 $`j`$가 이전 열들에 종속이면, $`A\mathbf{x} = \mathbf{0}`$은 $`x_j = 1`$인 **특별해(special solution)** 를 가진다.
 5. $`A\mathbf{x} = \mathbf{0}`$의 $`n - r`$개의 특별해는 $`-F`$와 $`I`$를 포함한다.
 6. $`m < n`$인 모든 짧고 넓은 행렬은 영공간에 $`A\mathbf{x} = \mathbf{0}`$의 영이 아닌 해를 가진다.
 
@@ -697,15 +697,15 @@ $`s_2 = 0, s_4 = 1`$로 취하면: $`\Rightarrow s_1 = -8, s_3 = -9`$. $`\theref
 
 3. $`R_0 \mathbf{x} = \mathbf{d}`$가 풀릴 때, 하나의 특수해 $`\mathbf{x}_p`$는 **모든 자유 변수가 0**인 해이다.
 
-4. $`A`$가 **열 완전 랭크 (Full Column Rank)** $`r = n`$이면 영공간은 $`N(A) = \lbrace\text{영벡터}\rbrace`$이고, 자유 변수가 없다.
+4. $`A`$가 **열 완전 랭크(full column rank)** $`r = n`$이면 영공간은 $`N(A) = \lbrace\text{영벡터}\rbrace`$이고, 자유 변수가 없다.
 
-5. $`A`$가 **행 완전 랭크 (Full Row Rank)** $`r = m`$이면 열공간 $`C(A)`$가 $`\mathbb{R}^m`$이므로 $`A\mathbf{x} = \mathbf{b}`$는 항상 풀린다.
+5. $`A`$가 **행 완전 랭크(full row rank)** $`r = m`$이면 열공간 $`C(A)`$가 $`\mathbb{R}^m`$이므로 $`A\mathbf{x} = \mathbf{b}`$는 항상 풀린다.
 
 ### 4.2 풀이 예제: 특수해 구하기
 
 3절에서는 $`A\mathbf{x} = \mathbf{0}`$의 해를 구했다. 이 절에서는 $`A\mathbf{x} = \mathbf{b}`$의 해를 구한다.
 
-좌변의 행 연산은 우변에도 적용해야 한다. **첨가 행렬 (Augmented Matrix)** $`(A | \mathbf{b})`$를 사용한다.
+좌변의 행 연산은 우변에도 적용해야 한다. **첨가 행렬(augmented matrix)** $`(A | \mathbf{b})`$를 사용한다.
 
 ```math
 \begin{pmatrix} 1 & 3 & 0 & 2 \\ 0 & 0 & 1 & 4 \\ 1 & 3 & 1 & 6 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} 1 \\ 6 \\ 7 \end{pmatrix} \quad \Rightarrow \quad (A | \mathbf{b}) = \begin{pmatrix} 1 & 3 & 0 & 2 & | & 1 \\ 0 & 0 & 1 & 4 & | & 6 \\ 1 & 3 & 1 & 6 & | & 7 \end{pmatrix}
@@ -755,7 +755,7 @@ $`\therefore \mathbf{x} = \begin{pmatrix} -3 \\ 0 \\ -2 \\ 2 \end{pmatrix}`$
 
 ### 4.3 완전해 분해
 
-해는 **특수해 (Particular Solution)** 와 영공간의 **특별해들 (Special Solutions)** 의 결합으로 분해할 수 있다.
+해는 **특수해(particular solution)** 와 영공간의 **특별해들(special solutions)** 의 결합으로 분해할 수 있다.
 
 ```math
 R_0 \mathbf{x} = \begin{pmatrix} 1 & 3 & 0 & 2 \\ 0 & 0 & 1 & 4 \\ 0 & 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
@@ -863,7 +863,7 @@ R_0 \mathbf{x} = \begin{pmatrix} I_{n \times n} \\ O_{(m-n) \times n} \end{pmatr
 
 $`A \in \mathbb{R}^{m \times n}`$, $`m \leq n`$ (짧고 넓은 행렬).
 
-행렬이 **행 완전 랭크 (Full Row Rank)** 를 가진다는 것은 $`r = m`$이라는 뜻이다.
+행렬이 **행 완전 랭크(full row rank)** 를 가진다는 것은 $`r = m`$이라는 뜻이다.
 
 **예 2.** $`A\mathbf{x} = \mathbf{b}`$가 $`n = 3`$개의 미지수를 갖지만 $`m = 2`$개의 방정식만 있을 때:
 
@@ -914,7 +914,7 @@ $`\therefore \mathbf{x}_n = \begin{pmatrix} -3 \\ 2 \\ 1 \end{pmatrix}`$
 
 $`A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}`$이고, $`R = (I_{m \times m} \quad F_{m \times (n-m)})`$.
 
-4. $`m < n`$이면, $`A\mathbf{x} = \mathbf{b}`$는 **부정 (Underdetermined)** 이다 (많은 해).
+4. $`m < n`$이면, $`A\mathbf{x} = \mathbf{b}`$는 **부정(underdetermined)** 이다 (많은 해).
 
 행 완전 랭크 ($`r = m`$)일 때, $`m`$개의 행이 선형독립이다. $`A^T`$의 열들이 LI이다. $`A^T`$의 영공간은 $`\mathbb{Z} = \lbrace\mathbf{0}\rbrace`$이다.
 
@@ -931,7 +931,7 @@ $`A\mathbf{x} = \mathbf{b} \to R\mathbf{x} = \mathbf{d}`$이고, $`R = (I_{m \ti
 
 *표 2. 랭크에 따른 선형 방정식의 네 가지 경우*
 
-방정식이 미지수보다 적은 시스템($`m < n`$)을 **과소결정 시스템**(underdetermined system), 방정식이 미지수보다 많은 시스템($`m > n`$)을 **과잉결정 시스템**(overdetermined system)이라 한다. 과소결정 시스템은 $`r \leq m < n`$이므로 자유 변수가 반드시 있어서, 해가 있으면 무수히 많다. 과잉결정 시스템은 $`n`$개의 열이 $`\mathbb{R}^m`$을 생성할 수 없으므로 $`C(A)`$ 밖의 $`\mathbf{b}`$에 대해 해가 없으며, 이 경우는 4장 3.2절의 최소제곱으로 다룬다.
+방정식이 미지수보다 적은 시스템($`m < n`$)을 **과소결정 시스템(underdetermined system)**, 방정식이 미지수보다 많은 시스템($`m > n`$)을 **과잉결정 시스템(overdetermined system)** 이라 한다. 과소결정 시스템은 $`r \leq m < n`$이므로 자유 변수가 반드시 있어서, 해가 있으면 무수히 많다. 과잉결정 시스템은 $`n`$개의 열이 $`\mathbb{R}^m`$을 생성할 수 없으므로 $`C(A)`$ 밖의 $`\mathbf{b}`$에 대해 해가 없으며, 이 경우는 4장 3.2절의 최소제곱으로 다룬다.
 
 ---
 
@@ -961,13 +961,13 @@ c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n = \mathbf{0}
 
 예: $`\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$ $`\implies`$ $`\begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}`$. $`\hat{i}, \hat{j}`$가 공간 $`\mathbb{R}^2`$를 생성한다.
 
-**(3)** 벡터 $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$이 $`\mathbb{S}`$의 **기저 (Basis)** 가 되려면: **선형독립 (Linearly Independent)** 이면서 $`\mathbb{S}`$를 **생성 (Span)** 해야 한다.
+**(3)** 벡터 $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$이 $`\mathbb{S}`$의 **기저(basis)** 가 되려면: **선형독립(linearly independent)** 이면서 $`\mathbb{S}`$를 **생성(span)** 해야 한다.
 
 공간의 모든 벡터는 기저 벡터들의 **유일한** 결합이다.
 
 예: $`\mathbb{R}^2 \ni \begin{pmatrix} x \\ y \end{pmatrix} = x\hat{i} + y\hat{j}`$
 
-**(4)** 벡터 공간 $`\mathbb{S}`$의 **차원 (Dimension)** 은 $`\mathbb{S}`$의 모든 기저에 있는 벡터의 수 $`n`$이다.
+**(4)** 벡터 공간 $`\mathbb{S}`$의 **차원(dimension)** 은 $`\mathbb{S}`$의 모든 기저에 있는 벡터의 수 $`n`$이다.
 
 $`A \in \mathbb{R}^{m \times n}`$을 고려한다. $`n`$개의 열 중 $`r`$개가 독립이고, 나머지 $`n - r`$개의 열이 종속이다. $`C(A)`$의 차원은 $`r`$이며, 이는 $`A`$의 랭크 (Rank)이다.
 
@@ -979,7 +979,7 @@ $`A \in \mathbb{R}^{m \times n}`$을 고려한다. $`n`$개의 열 중 $`r`$개�
 
 ### 5.2 영공간을 통한 선형독립
 
-> **용어 정의:** $`A`$의 열들이 **선형독립 (Linearly Independent)** 이라는 것은 $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 $`\mathbf{x} = \mathbf{0}`$이라는 뜻이다.
+> **용어 정의:** $`A`$의 열들이 **선형독립(linearly independent)** 이라는 것은 $`A\mathbf{x} = \mathbf{0}`$의 유일한 해가 $`\mathbf{x} = \mathbf{0}`$이라는 뜻이다.
 
 ```math
 \begin{pmatrix} \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n = \mathbf{0}
@@ -1042,7 +1042,7 @@ $`A \in \mathbb{R}^{m \times n}`$에 대해: 행벡터는 $`\mathbb{R}^n`$에, �
 
 ### 5.4 벡터 공간의 기저
 
-> **용어 정의:** 벡터 공간의 **기저 (Basis)** 는 다음 두 성질을 가진 벡터 수열이다.
+> **용어 정의:** 벡터 공간의 **기저(basis)** 는 다음 두 성질을 가진 벡터 수열이다.
 >
 > i) 기저 벡터들이 **선형독립**이다.
 >
@@ -1071,7 +1071,7 @@ $`\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n`$의 LI에 의해: $`a_1 - b_
 
 ---
 
-**예 3.** $`I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}`$의 열들이 $`\mathbb{R}^2`$의 **표준 기저 (Standard Basis)** 를 이룬다.
+**예 3.** $`I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}`$의 열들이 $`\mathbb{R}^2`$의 **표준 기저(standard basis)** 를 이룬다.
 
 $`\hat{i} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}`$, $`\hat{j} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}`$라 하자.
 
@@ -1106,7 +1106,7 @@ B = \begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 2 \\ 1 & 1 & 2 \end{pmatrix} \xrightarr
 
 $`C(B) \neq \mathbb{R}^3`$이고 $`\text{rank}(B) = 2 < 3`$이다.
 
-열들이 종속이면, **피벗 열 (Pivot Column)** 만 취한다.
+열들이 종속이면, **피벗 열(pivot column)** 만 취한다.
 
 예를 들어 $`B`$에서는 1번째, 2번째 열을 취한다.
 
@@ -1133,7 +1133,7 @@ $`C(R_0)`$는 $`\mathbb{R}^3`$에서의 $`xy`$ 평면이다.
 
 ---
 
-**한 벡터 공간의 모든 기저는 같은 수의 벡터를 포함한다.** 어느 기저에서나 같은 이 벡터의 수가 그 공간의 **차원 (Dimension)** 이다.
+**한 벡터 공간의 모든 기저는 같은 수의 벡터를 포함한다.** 어느 기저에서나 같은 이 벡터의 수가 그 공간의 **차원(dimension)** 이다.
 
 ### 5.5 벡터 공간의 차원
 
@@ -1172,7 +1172,7 @@ $`\mathbf{x}`$가 0이 아닌 벡터이므로, $`\mathbf{w}_1, \mathbf{w}_2, \ld
 
 ---
 
-> **용어 정의:** 공간의 **차원 (Dimension)** 은 모든 기저에 있는 벡터의 수이다.
+> **용어 정의:** 공간의 **차원(dimension)** 은 모든 기저에 있는 벡터의 수이다.
 
 **예:** 원점과 $`\mathbf{u} = \begin{pmatrix} 1 \\ 5 \\ 2 \end{pmatrix}`$를 지나는 직선은 1차원이다.
 
@@ -1257,7 +1257,7 @@ ii) $`\mathbb{M}`$을 생성한다: $`\begin{pmatrix} a & b \\ c & d \end{pmatri
 
 > **[미적분학]** $`y''`$는 함수 $`y`$를 두 번 미분한 2계 도함수이고, 미분은 $`(cf + dg)' = cf' + dg'`$를 만족하는 선형 연산이다. 이 선형성 때문에 $`y'' = 0`$, $`y'' = -y`$, $`y'' = y`$ 각각에서 두 해의 선형결합도 다시 해가 되므로, 해 집합은 함수 공간의 부분공간을 이룬다.
 
-각 기저는 해당 미분 연산자의 **영공간 (Nullspace)** 에 속한다. $`y'' = 0`$의 기저 $`\lbrace1, x\rbrace`$는 2계 도함수 $`d^2/dx^2`$의 영공간을 생성하고, $`y'' = -y`$와 $`y'' = y`$의 기저는 각각 $`d^2/dx^2 + 1`$과 $`d^2/dx^2 - 1`$의 영공간을 생성한다.
+각 기저는 해당 미분 연산자의 **영공간(nullspace)** 에 속한다. $`y'' = 0`$의 기저 $`\lbrace1, x\rbrace`$는 2계 도함수 $`d^2/dx^2`$의 영공간을 생성하고, $`y'' = -y`$와 $`y'' = y`$의 기저는 각각 $`d^2/dx^2 + 1`$과 $`d^2/dx^2 - 1`$의 영공간을 생성한다.
 
 $`y'' = 2`$는 특수해 $`y_p = x^2`$을 가진다: $`\frac{dy_p}{dx} = 2x`$, $`\frac{d^2 y_p}{dx^2} = 2`$.
 
@@ -1282,16 +1282,16 @@ y(x) = y_p(x) + y_n(x) = x^2 + cx + d
 
 ### 6.2 부분공간의 직교성
 
-**랭크 (Rank)** 와 **차원 (Dimension)** 을 다음과 같이 연결한다.
+**랭크(rank)** 와 **차원(dimension)** 을 다음과 같이 연결한다.
 - **랭크**는 독립 열의 수를 센다.
 - **차원**은 기저에 있는 벡터의 수이다.
 
 $`A \in \mathbb{R}^{m \times n}`$의 랭크는 네 가지 기본 부분공간 모두의 차원을 알려준다:
 
-1. **행공간 (Row Space)**, $`C(A^T)`$는 $`\mathbb{R}^n`$의 부분공간, 차원 $`r`$. (각 행벡터 $`\in \mathbb{R}^n`$.)
-2. **열공간 (Column Space)**, $`C(A)`$는 $`\mathbb{R}^m`$의 부분공간, 차원 $`r`$. (각 열벡터 $`\in \mathbb{R}^m`$.)
-3. **영공간 (Nullspace)**, $`N(A)`$는 $`\mathbb{R}^n`$의 부분공간, 차원 $`n - r`$. ($`A\mathbf{x} = \mathbf{0}`$, $`\mathbf{x} \in \mathbb{R}^n`$.)
-4. **좌영공간 (Left Nullspace)**, $`N(A^T)`$는 $`\mathbb{R}^m`$의 부분공간, 차원 $`m - r`$. ($`A^T\mathbf{y} = \mathbf{0}`$, $`\mathbf{y} \in \mathbb{R}^m`$.)
+1. **행공간(row space)**, $`C(A^T)`$는 $`\mathbb{R}^n`$의 부분공간, 차원 $`r`$. (각 행벡터 $`\in \mathbb{R}^n`$.)
+2. **열공간(column space)**, $`C(A)`$는 $`\mathbb{R}^m`$의 부분공간, 차원 $`r`$. (각 열벡터 $`\in \mathbb{R}^m`$.)
+3. **영공간(nullspace)**, $`N(A)`$는 $`\mathbb{R}^n`$의 부분공간, 차원 $`n - r`$. ($`A\mathbf{x} = \mathbf{0}`$, $`\mathbf{x} \in \mathbb{R}^n`$.)
+4. **좌영공간(left nullspace)**, $`N(A^T)`$는 $`\mathbb{R}^m`$의 부분공간, 차원 $`m - r`$. ($`A^T\mathbf{y} = \mathbf{0}`$, $`\mathbf{y} \in \mathbb{R}^m`$.)
 
 **직교 쌍 (Orthogonal Pairs):**
 

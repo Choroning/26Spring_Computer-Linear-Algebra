@@ -2,14 +2,14 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-10-19
+> **최종 수정일:** 2026-11-26
 >
 > Introduction to Linear Algebra, Strang, Ch 5
 
 > **학습 목표:**
 > 1. 여인수 전개와 성질을 이용하여 행렬식을 계산할 수 있다
 > 2. 행렬식의 세 가지 핵심 성질을 적용할 수 있다
-> 3. 크래머 법칙을 사용하여 연립방정식을 풀 수 있다
+> 3. Cramer 법칙을 사용하여 연립방정식을 풀 수 있다
 
 ---
 
@@ -48,7 +48,7 @@
   - [3.11 det(A+B)는 det(A) + det(B)가 아니다](#311-detab는-deta--detb가-아니다)
   - [3.12 단일 행에 대한 선형성](#312-단일-행에-대한-선형성)
   - [3.13 det(A) = det(A^T)의 증명](#313-deta--detat의-증명)
-  - [3.14 크래머 법칙](#314-크래머-법칙)
+  - [3.14 Cramer 법칙](#314-cramer-법칙)
 - [4. 행렬식에 의한 넓이와 부피](#4-행렬식에-의한-넓이와-부피)
   - [4.1 2D에서의 평행사변형](#41-2d에서의-평행사변형)
   - [4.2 평행사변형의 넓이](#42-평행사변형의-넓이)
@@ -77,9 +77,9 @@
 
 $`A`$를 정사각 행렬이라 하자.
 
-- $`\det(A) = 0`$이면 $`A`$는 **역행렬이 존재하지 않는다** (not invertible). 역도 성립한다.
-  - $`\Longleftrightarrow`$ $`A`$는 **특이 행렬** (singular)이다.
-  - $`\Longleftrightarrow`$ $`A`$는 **종속인 열** (dependent columns)을 가진다.
+- $`\det(A) = 0`$이면 $`A`$는 **역행렬이 존재하지 않는다(not invertible)**. 역도 성립한다.
+  - $`\Longleftrightarrow`$ $`A`$는 **특이 행렬(singular)** 이다.
+  - $`\Longleftrightarrow`$ $`A`$는 **종속인 열(dependent columns)** 을 가진다.
 
 ### 1.3 유용한 공식 (미리보기)
 
@@ -107,7 +107,7 @@ A^{-1} = \frac{1}{\det(A)}\,C^T, \qquad (A^{-1})_{ij} = \frac{C_{ji}}{\det(A)} \
 
 ### 2.1 행렬식의 정의
 
-**행렬식** (determinant)은 정사각 행렬에 대응하는 스칼라 값으로, $`\det(A)`$ 또는 $`|A|`$로 표기한다.
+**행렬식(determinant)** 은 정사각 행렬에 대응하는 스칼라 값으로, $`\det(A)`$ 또는 $`|A|`$로 표기한다.
 
 ### 2.2 2x2 행렬식
 
@@ -145,7 +145,7 @@ A^{-1} = \frac{1}{\det(A)}\,C^T, \qquad (A^{-1})_{ij} = \frac{C_{ji}}{\det(A)} \
 
 $`b \neq 0`$이면 $`ax + by = e`$와 $`2ax + 2by = f`$의 기울기는 모두 $`-a/b`$로 같다($`b = 0`$이면 둘 다 수직선이다). 따라서 두 직선은 평행하거나($`f \neq 2e`$) 일치한다($`f = 2e`$).
 
-$`\det A = 0`$은 $`A`$의 열들이 **선형독립이 아님** (not linearly independent)을 뜻한다. 즉 $`N(A) \neq \lbrace\mathbf{0}\rbrace`$이다.
+$`\det A = 0`$은 $`A`$의 열들이 **선형독립이 아님(not linearly independent)** 을 뜻한다. 즉 $`N(A) \neq \lbrace\mathbf{0}\rbrace`$이다.
 
 **특이 행렬 예제:**
 
@@ -264,7 +264,7 @@ $`\det(A)`$는 $`2 \times 2`$ 행렬식을 이용하여 계산됨을 관찰할 �
 \det(A) = a \det\begin{pmatrix} q & r \\ y & z \end{pmatrix} + b\left(-\det\begin{pmatrix} p & r \\ x & z \end{pmatrix}\right) + c \det\begin{pmatrix} p & q \\ x & y \end{pmatrix}
 ```
 
-여기서 $`a, b, c`$는 **인수** (1행의 원소)이고, 부호를 붙인 $`2 \times 2`$ 행렬식은 $`a, b, c`$에 대한 **여인수** (cofactor)이다:
+여기서 $`a, b, c`$는 **인수** (1행의 원소)이고, 부호를 붙인 $`2 \times 2`$ 행렬식은 $`a, b, c`$에 대한 **여인수(cofactor)** 이다:
 
 | 원소 | 여인수 |
 |:------|:---------|
@@ -302,7 +302,7 @@ A_{11} = a \to C_{11} = d, \quad A_{12} = b \to C_{12} = -c
 A_{21} = c \to C_{21} = -b, \quad A_{22} = d \to C_{22} = a
 ```
 
-$`A`$의 **여인수 행렬** (cofactor matrix)은:
+$`A`$의 **여인수 행렬(cofactor matrix)** 은:
 
 ```math
 C = \begin{pmatrix} d & -c \\ -b & a \end{pmatrix}
@@ -335,7 +335,7 @@ A \cdot \frac{C^T}{\det(A)} = I
 (A^{-1})_{ij} = \frac{(C^T)_{ij}}{\det(A)} = \frac{C_{ji}}{\det(A)}
 ```
 
-- $`C^T = \text{adj}(A)`$는 $`A`$의 **수반 행렬** (adjugate matrix)이다.
+- $`C^T = \text{adj}(A)`$는 $`A`$의 **수반 행렬(adjugate matrix)** 이다.
 
 **일반 공식:**
 
@@ -465,9 +465,9 @@ A = \begin{pmatrix} a & b & c \\ p & q & r \\ x & y & z \end{pmatrix}, \quad \de
 
    예: $`E = \begin{pmatrix} 1 & & \\ a & 1 & \\ b & c & 1 \end{pmatrix}`$이면 $`|E| = 1`$이다.
 
-5. **크래머 법칙** (Cramer's Rule)은 행렬식의 비를 이용하여 $`\mathbf{x} = A^{-1}\mathbf{b}`$를 구하며, 느린 방법이다.
+5. **Cramer 법칙(Cramer's rule)** 은 행렬식의 비를 이용하여 $`\mathbf{x} = A^{-1}\mathbf{b}`$를 구하며, 느린 방법이다.
 6. $`\det(A) = \pm(\text{피벗들의 곱})`$이며, 피벗은 $`PA = LU`$의 $`U`$에서 얻는다.
-7. **큰 공식** (big formula)은 $`n!`$개의 순열에서 나온 $`n!`$개의 항을 가지며, $`n > 3`$이면 매우 느리다.
+7. **큰 공식(big formula)** 은 $`n!`$개의 순열에서 나온 $`n!`$개의 항을 가지며, $`n > 3`$이면 매우 느리다.
 
 #### 행렬식이 알려주는 것
 
@@ -673,7 +673,7 @@ S = \begin{pmatrix} a & & \\ & b & \\ & & c \end{pmatrix} \Rightarrow \det(S) = 
 
 ### 3.6 기본 행렬
 
-$`A`$가 역행렬 $`A^{-1}`$을 가질 때, $`A`$는 **기본 행렬** (elementary matrix)들의 곱으로 분해된다 (소거 행렬, 순열 행렬, 스케일링 행렬).
+$`A`$가 역행렬 $`A^{-1}`$을 가질 때, $`A`$는 **기본 행렬(elementary matrix)** 들의 곱으로 분해된다 (소거 행렬, 순열 행렬, 스케일링 행렬).
 
 > **용어 정의:** **기본 행렬**이란 항등 행렬에 하나의 기본 행 연산을 수행하여 얻은 정사각 행렬이다. 소거 행렬, 순열 행렬, 스케일링 행렬 등이 이에 해당한다.
 
@@ -879,7 +879,7 @@ A = \begin{pmatrix} a & b \\ c_1 + c_2 & d_1 + d_2 \end{pmatrix}
 \det(A) = \det(A^T)
 ```
 
-**증명.** $`R = \text{rref}(A)`$를 $`A`$의 **기약행사다리꼴** (reduced row-echelon form)이라 하자.
+**증명.** $`R = \text{rref}(A)`$를 $`A`$의 **기약행사다리꼴(reduced row-echelon form)** 이라 하자.
 
 그러면 $`A = E_p E_{p-1} \cdots E_2 E_1 R`$로 쓸 수 있다(여기서 $`E_i`$는 기본 행렬이다).
 
@@ -900,9 +900,9 @@ A = \begin{pmatrix} a & b \\ c_1 + c_2 & d_1 + d_2 \end{pmatrix}
 \det(A^T) = \det(R)\det(E_1) \cdots \det(E_p) = \det(A) \qquad \square
 ```
 
-### 3.14 크래머 법칙
+### 3.14 Cramer 법칙
 
-**$`A\mathbf{x} = \mathbf{b}`$를 풀기 위한 크래머 법칙 (Cramer's Rule):**
+**$`A\mathbf{x} = \mathbf{b}`$를 풀기 위한 Cramer 법칙:**
 
 $`A = (\mathbf{a}_1 \; \mathbf{a}_2 \; \mathbf{a}_3)`$으로, 열벡터가 $`\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3`$이라 하자.
 
@@ -956,7 +956,7 @@ AM_3 = A\begin{pmatrix} 1 & 0 & x_1 \\ 0 & 1 & x_2 \\ 0 & 0 & x_3 \end{pmatrix} 
 \therefore x_3 = \frac{\det(B_3)}{\det(A)}
 ```
 
-**일반 크래머 법칙:** $`\det(A) \neq 0`$이면, $`A\mathbf{x} = \mathbf{b}`$의 해는:
+**일반 Cramer 법칙:** $`\det(A) \neq 0`$이면, $`A\mathbf{x} = \mathbf{b}`$의 해는:
 
 ```math
 \boxed{x_j = \frac{\det(B_j)}{\det(A)}}
@@ -996,7 +996,7 @@ x_1 = \frac{-4}{-2} = 2, \quad x_2 = \frac{2}{-2} = -1
 \begin{pmatrix} 3 & 4 \\ 5 & 6 \end{pmatrix}\begin{pmatrix} 2 \\ -1 \end{pmatrix} = \begin{pmatrix} 6 - 4 \\ 10 - 6 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \end{pmatrix} \checkmark
 ```
 
-**예제 2: 크래머 법칙을 이용한 $`A^{-1}`$ 유도**
+**예제 2: Cramer 법칙을 이용한 $`A^{-1}`$ 유도**
 
 ```math
 A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \mathbb{R}^{2 \times 2}, \quad A^{-1} = (\mathbf{x} \;\; \mathbf{y})
@@ -1082,7 +1082,7 @@ x_2 = \frac{\det(B_2)}{\det(A)} = \frac{-c}{ad - bc}
 
 ### 4.5 외적 (Cross Product)
 
-3D에서 **외적** (cross product)은:
+3D에서 **외적(cross product)** 은:
 
 ```math
 \mathbf{a} \times \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \sin\theta \; \hat{n}
@@ -1242,7 +1242,7 @@ $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$, $`\mathbf{e}_2 = \
 | $`\det(A+B)`$ | 일반적으로 $`\det(A+B)`$는 $`\det(A) + \det(B)`$와 같지 않다. |
 | 행의 선형성 | 행렬식은 다른 행을 고정할 때 각 행에 대해 개별적으로 선형이다. |
 | 기본 행렬 | 가역 행렬 $`A`$는 소거, 순열, 스케일링 행렬의 곱으로 분해된다. |
-| 크래머 법칙 | $`\det(A) \neq 0`$이면 $`x_j = \det(B_j)/\det(A)`$이며, $`B_j`$는 $`A`$의 열 $`j`$를 $`\mathbf{b}`$로 바꾼 행렬이다. |
+| Cramer 법칙 | $`\det(A) \neq 0`$이면 $`x_j = \det(B_j)/\det(A)`$이며, $`B_j`$는 $`A`$의 열 $`j`$를 $`\mathbf{b}`$로 바꾼 행렬이다. |
 | 평행사변형 넓이 (2D) | 넓이는 $`\vert ad - bc \vert = \vert \det(\mathbf{e}_1\;\mathbf{e}_2) \vert`$이다. |
 | 삼각형 넓이 | 넓이는 $`\frac{1}{2}\Vert\mathbf{a} \times \mathbf{b}\Vert`$이다. |
 | 외적 (Cross product) | $`\mathbf{a} \times \mathbf{b} = \Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert\sin\theta\;\hat{n}`$이며, $`3 \times 3`$ 행렬식으로 계산한다. |
@@ -1272,7 +1272,7 @@ $`\mathbf{e}_1 = \begin{pmatrix} a \\ b \\ c \end{pmatrix}`$, $`\mathbf{e}_2 = \
 
    </details>
 
-3. **크래머 법칙:** 연립방정식 $`2x_1 + x_2 = 5`$, $`x_1 + 3x_2 = 5`$를 크래머 법칙으로 풀어라.
+3. **Cramer 법칙:** 연립방정식 $`2x_1 + x_2 = 5`$, $`x_1 + 3x_2 = 5`$를 Cramer 법칙으로 풀어라.
 
    <details>
    <summary>정답</summary>

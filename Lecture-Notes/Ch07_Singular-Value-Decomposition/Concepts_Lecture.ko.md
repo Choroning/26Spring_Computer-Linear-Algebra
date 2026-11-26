@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-18
+> **최종 수정일:** 2026-11-27
 >
 > Introduction to Linear Algebra, Strang, Ch 7
 
@@ -10,7 +10,7 @@
 > 1. 특이값 분해(SVD)를 유도하고 계산할 수 있다
 > 2. SVD를 네 가지 기본 부분공간 관점에서 기하학적으로 해석할 수 있다
 > 3. SVD를 저랭크 근사와 데이터 분석에 적용할 수 있다
-> 4. 스펙트럼 노름, 프로베니우스 노름, 핵 노름을 특이값으로 표현할 수 있다
+> 4. 스펙트럼 노름, Frobenius 노름, 핵 노름을 특이값으로 표현할 수 있다
 
 ---
 
@@ -668,7 +668,7 @@ A \approx A_k
 \|A\|_2 = \max_{\mathbf{x}} \frac{\|A\mathbf{x}\|}{\|\mathbf{x}\|} = \sigma_1
 ```
 
-**ii) 프로베니우스 노름 (Frobenius norm):**
+**ii) Frobenius 노름:**
 
 ```math
 \|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}
@@ -731,7 +731,7 @@ $`U, V`$는 직교 행렬이므로 곱해도 $`\mathbf{x}`$의 크기는 **변�
 이 아이디어를 행렬로 확장:
 
 ```math
-\|A\|_F^2 = a_{11}^2 + a_{12}^2 + \cdots + a_{1n}^2 + \cdots + a_{mn}^2 \quad \text{(프로베니우스 노름)}
+\|A\|_F^2 = a_{11}^2 + a_{12}^2 + \cdots + a_{1n}^2 + \cdots + a_{mn}^2 \quad \text{(Frobenius 노름)}
 ```
 
 **기본 성질:**
@@ -739,7 +739,7 @@ $`U, V`$는 직교 행렬이므로 곱해도 $`\mathbf{x}`$의 크기는 **변�
 - $`\|\mathbf{v}\| \geq 0`$이고 $`\|c\mathbf{v}\| = |c| \|\mathbf{v}\|`$이다.
 - $`\|A\|_F \geq 0`$이고 $`\|cA\|_F = |c| \|A\|_F`$이다.
 
-**슈바르츠 부등식 (Schwarz inequality)과 그로부터 얻는 행렬 부등식:**
+**Schwarz 부등식과 그로부터 얻는 행렬 부등식:**
 
 ```math
 |\mathbf{v}^T \mathbf{w}| \leq \|\mathbf{v}\| \|\mathbf{w}\|
@@ -879,7 +879,7 @@ $`S = AA^T/(n-1)`$의 고유벡터는 $`A`$의 좌특이벡터와 같으므로, 
 | PCA | 가장 큰 $`\sigma`$들을 사용하여 데이터에서 가장 중요한 정보를 추출한다. |
 | 저랭크 근사 | 상위 $`k`$개 특이값을 남긴 $`A_k`$는 $`A`$에 가장 가까운 랭크-$`k`$ 행렬이며, 랭크가 $`k`$ 이하인 임의의 $`B`$에 대해 $`\Vert A - A_k\Vert \leq \Vert A - B\Vert`$이다. |
 | 스펙트럼 노름 | $`\Vert A\Vert_2 = \sigma_1`$로, 가장 큰 특이값과 같다. |
-| 프로베니우스 노름 | $`\Vert A\Vert_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}`$이며, 모든 원소의 제곱합의 제곱근과 같다. |
+| Frobenius 노름 | $`\Vert A\Vert_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}`$이며, 모든 원소의 제곱합의 제곱근과 같다. |
 | 핵 노름 | $`\Vert A\Vert_N = \sigma_1 + \sigma_2 + \cdots + \sigma_r`$로, 특이값의 합이며 트레이스 노름이라고도 한다. |
 | 표본 공분산 | 중심화된 데이터 행렬 $`A`$에 대해 $`S = \frac{AA^T}{n-1}`$이다. |
 | 첫 번째 특이벡터 | 데이터에서 가장 큰 변동성을 설명하는 방향을 나타낸다. |
@@ -900,7 +900,7 @@ $`S = AA^T/(n-1)`$의 고유벡터는 $`A`$의 좌특이벡터와 같으므로, 
 
    </details>
 
-2. **노름 계산:** 특이값이 $`\sigma_1 = 4`$, $`\sigma_2 = 3`$인 행렬 $`A`$의 스펙트럼 노름, 프로베니우스 노름, 핵 노름을 구하라.
+2. **노름 계산:** 특이값이 $`\sigma_1 = 4`$, $`\sigma_2 = 3`$인 행렬 $`A`$의 스펙트럼 노름, Frobenius 노름, 핵 노름을 구하라.
 
    <details>
    <summary>정답</summary>

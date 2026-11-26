@@ -2,12 +2,12 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-18
+> **최종 수정일:** 2026-11-27
 >
 > Introduction to Linear Algebra, Strang, Ch 2
 
 > **학습 목표:**
-> 1. 가우스 소거법을 적용하여 연립방정식을 풀 수 있다
+> 1. Gauss 소거법을 적용하여 연립방정식을 풀 수 있다
 > 2. 소거법을 행렬 분해($`A = LU`$)로 표현할 수 있다
 > 3. 연립방정식의 해가 없는 경우, 유일한 경우, 무한히 많은 경우를 판별할 수 있다
 > 4. 순열 행렬과 전치의 성질을 이용하여 $`PA = LU`$와 $`LDL^T`$ 분해를 구할 수 있다
@@ -40,7 +40,7 @@
 - [4. 행렬 연산과 A = LU (2.3)](#4-행렬-연산과-a--lu-23)
   - [4.1 핵심 사실](#41-핵심-사실)
   - [4.2 역행렬의 명시적 계산](#42-역행렬의-명시적-계산)
-  - [4.3 가우스-조르단 소거법](#43-가우스-조르단-소거법)
+  - [4.3 Gauss-Jordan 소거법](#43-gauss-jordan-소거법)
   - [4.4 소거의 비용](#44-소거의-비용)
   - [4.5 위대한 분해 A = LU](#45-위대한-분해-a--lu)
   - [4.6 A = LU의 두 번째 증명](#46-a--lu의-두-번째-증명)
@@ -56,7 +56,7 @@
   - [5.8 대칭 행렬](#58-대칭-행렬)
   - [5.9 대칭 곱과 LDL^T](#59-대칭-곱과-ldlt)
 - [6. 도함수와 유한 차분 행렬 (2.5)](#6-도함수와-유한-차분-행렬-25)
-  - [6.1 테일러 급수와 근사](#61-테일러-급수와-근사)
+  - [6.1 Taylor 급수와 근사](#61-taylor-급수와-근사)
   - [6.2 차분으로부터의 도함수](#62-차분으로부터의-도함수)
   - [6.3 이차 차분 행렬 K, T, B](#63-이차-차분-행렬-k-t-b)
   - [6.4 K의 성질](#64-k의-성질)
@@ -124,8 +124,8 @@ A\mathbf{x} = \mathbf{b} \implies A^{-1}A\mathbf{x} = A^{-1}\mathbf{b} \implies 
 
 이 장의 목표는 $`A^{-1}`$을 명시적으로 계산하지 **않고** 해 $`\mathbf{x}`$를 구하는 것이다. 다음 두 가지 방법을 사용한다:
 
-1. **소거법** (Elimination)
-2. **후진 대입** (Back substitution)
+1. **소거법(elimination)**
+2. **후진 대입(back substitution)**
 
 **과정 개요:**
 
@@ -133,7 +133,7 @@ A\mathbf{x} = \mathbf{b} \implies A^{-1}A\mathbf{x} = A^{-1}\mathbf{b} \implies 
 \begin{pmatrix} A & | & \mathbf{b} \end{pmatrix} \xrightarrow{\text{elimination}} \begin{pmatrix} U & | & \mathbf{c} \end{pmatrix} \xrightarrow{\text{back substitution}} \mathbf{x}
 ```
 
-여기서 $`U`$는 **상삼각 행렬** (upper triangular matrix)이다.
+여기서 $`U`$는 **상삼각 행렬(upper triangular matrix)** 이다.
 
 식으로 정리하면:
 
@@ -272,13 +272,13 @@ $`\Rightarrow`$ **무한히 많은 해.** 방정식은 사실상 하나인데 �
 
 ### 2.4 동차 연립방정식
 
-$`\mathbf{b} = \mathbf{0}`$일 때, **동차 연립방정식** (homogeneous system)이 된다:
+$`\mathbf{b} = \mathbf{0}`$일 때, **동차 연립방정식(homogeneous system)** 이 된다:
 
 ```math
 A\mathbf{x} = \mathbf{0}
 ```
 
-$`\mathbf{x} = \mathbf{0}`$은 **자명한 해** (trivial solution)이다. 다른 해가 있는가?
+$`\mathbf{x} = \mathbf{0}`$은 **자명한 해(trivial solution)** 이다. 다른 해가 있는가?
 
 $`\text{rank}(A) < n`$일 때 **있다**. $`A\mathbf{x} = \mathbf{0}`$을 만족하는 영이 아닌 벡터 $`\mathbf{x}`$를 $`X`$ (영공간 벡터)로 표기한다.
 
@@ -316,7 +316,7 @@ X = \begin{pmatrix} 3 \\ -2 \end{pmatrix}
 \mathbf{x} + \alpha X = \begin{pmatrix} 3 \\ 0 \end{pmatrix} + \alpha \begin{pmatrix} 3 \\ -2 \end{pmatrix}
 ```
 
-이것은 $`A\mathbf{x} = \mathbf{b}`$에 대한 해의 **직선** (line)을 형성한다.
+이것은 $`A\mathbf{x} = \mathbf{b}`$에 대한 해의 **직선(line)** 을 형성한다.
 
 ---
 
@@ -341,7 +341,7 @@ $`A\mathbf{x} = \mathbf{b}`$에 소거법을 적용하면 $`U\mathbf{x} = \mathb
 ```
 
 **참고 사항:**
-- **피벗** (pivots) $`2, 5, 7`$로 나누어야 했다.
+- **피벗(pivots)** $`2, 5, 7`$로 나누어야 했다.
 - 피벗은 소거 후에 발견된다.
 - 0이 피벗이 되는 것은 허용하지 **않는다**. 필요하면 **행 교환**을 수행한다.
 - 독립인 열을 가진 모든 정사각 행렬 $`A`$는 **영이 아닌 피벗**을 가진 삼각 행렬로 축소될 수 있다.
@@ -442,7 +442,7 @@ A^* = \begin{pmatrix} 2 & 3 & 4 \\ 4 & 6 & 14 \\ 2 & 3 & 17 \end{pmatrix} \right
 - $`U`$의 행들은 독립이다.
 
 $`U`$의 **대각선에 0**이 있을 때:
-- $`U`$는 **특이** (singular) 행렬이다.
+- $`U`$는 **특이(singular)** 행렬이다.
 - $`U^{-1}`$이 존재하지 않는다.
 - $`A^{-1}`$이 존재하지 않는다.
 - $`A`$는 **특이** 행렬이다.
@@ -489,9 +489,9 @@ A = \begin{pmatrix} 1 & -2 \\ 1 & 1 \end{pmatrix}, \quad \mathbf{b} = \begin{pma
 x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 = \mathbf{b}
 ```
 
-$`\mathbf{b}`$는 $`\mathbf{a}_1`$과 $`\mathbf{a}_2`$의 **선형결합** (linear combination)이다.
+$`\mathbf{b}`$는 $`\mathbf{a}_1`$과 $`\mathbf{a}_2`$의 **선형결합(linear combination)** 이다.
 
-$`\Leftrightarrow`$ $`\mathbf{b}`$는 $`A`$의 **열공간** (column space)에 속한다.
+$`\Leftrightarrow`$ $`\mathbf{b}`$는 $`A`$의 **열공간(column space)** 에 속한다.
 
 ---
 
@@ -637,7 +637,7 @@ EA = U \implies A = E^{-1}U = LU
 
 ### 3.3 역행렬에 관한 사실들
 
-> **용어 정의:** 행렬 $`A`$가 **가역** (invertible)이란 $`A`$를 역변환하는 행렬 $`A^{-1}`$이 존재하는 것이다:
+> **용어 정의:** 행렬 $`A`$가 **가역(invertible)** 이란 $`A`$를 역변환하는 행렬 $`A^{-1}`$이 존재하는 것이다:
 >
 > ```math
 > A^{-1}A = AA^{-1} = I
@@ -687,7 +687,7 @@ $`A`$가 가역이면, $`A\mathbf{x} = \mathbf{0}`$은 $`\mathbf{x} = A^{-1}\mat
 
 **참고 5:** 정사각 행렬은 열들이 독립일 때에만 가역이다.
 
-**참고 6:** $`A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}`$는 $`ad - bc \neq 0`$ ($`A`$의 **행렬식** (determinant))일 때에만 가역이다.
+**참고 6:** $`A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}`$는 $`ad - bc \neq 0`$ ($`A`$의 **행렬식(determinant)**)일 때에만 가역이다.
 
 ```math
 A^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}
@@ -937,9 +937,9 @@ A\mathbf{x}_1 = \hat{e}_1, \quad A\mathbf{x}_2 = \hat{e}_2, \quad \ldots, \quad 
 
 ---
 
-### 4.3 가우스-조르단 소거법
+### 4.3 Gauss-Jordan 소거법
 
-$`n`$개의 방정식을 **가우스-조르단 소거법** (Gauss-Jordan elimination)을 사용하여 함께 푼다:
+$`n`$개의 방정식을 **Gauss-Jordan 소거법(Gauss-Jordan elimination)** 을 사용하여 함께 푼다:
 
 ```math
 (A \mid I) \implies (I \mid A^{-1})
@@ -1120,7 +1120,7 @@ A' = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ 0 & a'_{22} & a'_{23} \\ 0 & a'
 A = A' + \begin{pmatrix} - & 0 & - \\ - & l_{21}R_1 & - \\ - & l_{31}R_1 & - \end{pmatrix}
 ```
 
-뺀 부분은 **랭크 1 행렬** (rank 1 matrix)이다:
+뺀 부분은 **랭크 1 행렬(rank 1 matrix)** 이다:
 
 ```math
 \begin{pmatrix} 1 \\ l_{21} \\ l_{31} \end{pmatrix}\begin{pmatrix} a_{11} & a_{12} & a_{13} \end{pmatrix} = \mathbf{l}_1 \mathbf{u}_1 = \mathbf{l}_1 \otimes \mathbf{u}_1
@@ -1205,7 +1205,7 @@ $`3 \times 3`$ 행렬 $`A`$에 대해:
 
 ### 5.1 순열 행렬
 
-**순열 행렬** (permutation matrix) $`P`$는 $`I \in \mathbb{R}^{n \times n}`$과 같은 행을 다른 순서로 가진다.
+**순열 행렬(permutation matrix)** $`P`$는 $`I \in \mathbb{R}^{n \times n}`$과 같은 행을 다른 순서로 가진다.
 
 $`n!`$가지 서로 다른 순서가 있다.
 
@@ -1225,7 +1225,7 @@ P\mathbf{x} = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\
 P^T = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}
 ```
 
-$`P^{-1}`$은 가우스-조르단 방법 $`(A|I) \Rightarrow (I|A^{-1})`$으로 구한다:
+$`P^{-1}`$은 Gauss-Jordan 방법 $`(A|I) \Rightarrow (I|A^{-1})`$으로 구한다:
 
 ```math
 \begin{pmatrix} 0 & 0 & 1 & | & 1 & 0 & 0 \\ 1 & 0 & 0 & | & 0 & 1 & 0 \\ 0 & 1 & 0 & | & 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{행 교환}} \begin{pmatrix} 1 & 0 & 0 & | & 0 & 1 & 0 \\ 0 & 1 & 0 & | & 0 & 0 & 1 \\ 0 & 0 & 1 & | & 1 & 0 & 0 \end{pmatrix}
@@ -1334,7 +1334,7 @@ $`\mathbf{h}_i`$가 서로 다른 표준 기저 벡터 (canonical unit vector)�
 
 1. 순열 행렬 $`P`$는 각 행에 정확히 하나의 1을, 각 열에 정확히 하나의 1을 가진다.
 
-2. $`P`$의 열들은 **직교** (orthogonal)한다. (열 사이의 내적이 모두 0이다.)
+2. $`P`$의 열들은 **직교(orthogonal)** 한다. (열 사이의 내적이 모두 0이다.)
 
 3. 순열의 곱 $`P_1 P_2`$는 순열이다. $`P`$의 역행렬도 마찬가지이다.
 
@@ -1410,7 +1410,7 @@ P_{132} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}
 
 ### 5.4 부분 피벗팅
 
-**부분 피벗팅** (partial pivoting)은 반올림 오차를 줄이기 위한 방법이다.
+**부분 피벗팅(partial pivoting)** 은 반올림 오차를 줄이기 위한 방법이다.
 
 피벗 위치에 **절댓값이 가장 큰 수**가 오도록 행을 교환하면 계산이 더 안정적이다.
 
@@ -1478,7 +1478,7 @@ $`P, Q`$는 $`PAQ`$에 대해 $`6 \times 6 = 36`$가지로 수를 배열할 수 
 
 ### 5.6 A의 전치
 
-$`A`$의 **전치** (transpose)는 $`A^T`$로 표기한다. $`A^T`$의 열은 $`A`$의 행이다.
+$`A`$의 **전치(transpose)** 는 $`A^T`$로 표기한다. $`A^T`$의 열은 $`A`$의 행이다.
 
 ```math
 A^T = \begin{pmatrix} a_{11} & a_{21} & \cdots & a_{m1} \\ a_{12} & a_{22} & \cdots & a_{m2} \\ \vdots & \vdots & \ddots & \vdots \\ a_{1n} & a_{2n} & \cdots & a_{mn} \end{pmatrix}_{n \times m}
@@ -1581,7 +1581,7 @@ A^T = \begin{pmatrix} 1 & 6 \\ 0 & 1 \end{pmatrix} \implies (A^T)^{-1} = \begin{
 
 **내적의 의미.**
 
-$`\mathbf{x}`$와 $`\mathbf{y}`$의 **내적** (dot product, inner product)은 수 $`x_i y_i`$의 합이다:
+$`\mathbf{x}`$와 $`\mathbf{y}`$의 **내적(dot product, inner product)** 은 수 $`x_i y_i`$의 합이다:
 
 ```math
 \mathbf{x} \cdot \mathbf{y} = \sum x_i y_i
@@ -1597,7 +1597,7 @@ $`\mathbf{x}, \mathbf{y} \in \mathbb{R}^n`$라 하자:
 \mathbf{x}\mathbf{y}^T = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}(y_1, y_2, \ldots, y_n) = \mathbf{x} \otimes \mathbf{y} \quad (n \times 1)(1 \times n) = (n \times n)
 ```
 
-이것은 **외적** (outer product) (랭크 1 곱, 랭크 1 행렬)이다.
+이것은 **외적(outer product)** (랭크 1 곱, 랭크 1 행렬)이다.
 
 **내적의 예:**
 
@@ -1691,7 +1691,7 @@ $`f(\infty) = f(-\infty) = 0`$이라 가정하면:
 \boxed{\int_{-\infty}^{\infty} f'g \, dt = -\int_{-\infty}^{\infty} fg' \, dt}
 ```
 
-미분은 **반대칭** (anti-symmetric)이다: $`A^T = -A`$.
+미분은 **반대칭(anti-symmetric)** 이다: $`A^T = -A`$.
 
 대칭 행렬은 $`A^T = A`$를 가진다.
 
@@ -1699,7 +1699,7 @@ $`f(\infty) = f(-\infty) = 0`$이라 가정하면:
 
 ### 5.8 대칭 행렬
 
-**대칭 행렬** (symmetric matrix)은 $`S^T = S`$를 만족한다:
+**대칭 행렬(symmetric matrix)** 은 $`S^T = S`$를 만족한다:
 
 ```math
 \implies (S^T)_{ij} = S_{ij} = S_{ji}
@@ -1802,9 +1802,9 @@ $`S`$가 가역 $`\iff`$ $`A^T A`$가 가역 $`\iff`$ $`\text{rank}(A^T A) = n`$
 
 ## 6. 도함수와 유한 차분 행렬 (2.5)
 
-### 6.1 테일러 급수와 근사
+### 6.1 Taylor 급수와 근사
 
-행렬은 **도함수** (derivatives)를 모방한다. 도함수는 공간의 한 점 $`x`$에서 또는 시간의 한 순간 $`t`$에서 무슨 일이 일어나고 있는지 알려준다.
+행렬은 **도함수(derivatives)** 를 모방한다. 도함수는 공간의 한 점 $`x`$에서 또는 시간의 한 순간 $`t`$에서 무슨 일이 일어나고 있는지 알려준다.
 
 **예제:** $`y = x^2 + 2`$
 
@@ -1828,13 +1828,13 @@ $`y`$의 그래프는 위로 굽는다 (기울기가 증가한다).
 
 $`\Delta y`$의 정확도는 도함수 항을 추가함으로써 증가한다.
 
-**테일러 급수 (Taylor Series):**
+**Taylor 급수:**
 
 ```math
 y(x+h) = y(x) + h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2} + \cdots + \frac{h^n}{n!}\frac{d^{(n)}y}{dx^n} + \cdots
 ```
 
-> **[미적분학]** 테일러 급수는 매끄러운 함수 $`y`$의 $`x + h`$에서의 값을 $`x`$에서의 도함수들로 전개한 식으로, 미적분학에서 배우는 미분과 급수 전개를 전제로 한다. 이 장의 유한 차분은 테일러 급수를 몇 항에서 끊어 도함수를 함숫값의 차로 근사하므로, 끊어 낸 항의 차수가 근사의 정확도(오차의 차수)를 정한다.
+> **[미적분학]** Taylor 급수는 매끄러운 함수 $`y`$의 $`x + h`$에서의 값을 $`x`$에서의 도함수들로 전개한 식으로, 미적분학에서 배우는 미분과 급수 전개를 전제로 한다. 이 장의 유한 차분은 Taylor 급수를 몇 항에서 끊어 도함수를 함숫값의 차로 근사하므로, 끊어 낸 항의 차수가 근사의 정확도(오차의 차수)를 정한다.
 
 **예제:** $`e^x`$ (전해석 함수, entire analytic function):
 
@@ -1866,7 +1866,7 @@ y(x+h) \approx y(x) + h\frac{dy}{dx} + \frac{h^2}{2}\frac{d^2y}{dx^2}
 
 **Q:** $`y(x-h)`$를 알면, $`\frac{dy}{dx}`$, $`\frac{d^2y}{dx^2}`$를 추정할 수 있는가?
 
-**유한 차분법** (Finite difference method)을 사용하여 도함수를 근사할 수 있다.
+**유한 차분법(finite difference method)** 을 사용하여 도함수를 근사할 수 있다.
 
 **전진 차분 (Forward Difference):**
 
@@ -1924,7 +1924,7 @@ y(x+h) - y(x-h) = 2h\frac{dy}{dx} + O(h^3)
 
 **이차 차분 ($`\frac{d^2y}{dx^2}`$의 근사):**
 
-두 테일러 전개를 더하면:
+두 Taylor 전개를 더하면:
 
 ```math
 y(x+h) + y(x-h) = 2y(x) + h^2\frac{d^2y}{dx^2} + O(h^4)
@@ -1971,7 +1971,7 @@ x_0 = 0     x_1       x_2                x_N   x_{N+1} = 1
 
 *그림 2. 구간 [0, 1]을 간격 h로 나눈 균일 격자*
 
-방정식 $`-\frac{d^2u}{dx^2} = f(x)`$를 $`u(0) = u(1) = 0`$ (경계 조건)으로 **이산화** (discretize)한다.
+방정식 $`-\frac{d^2u}{dx^2} = f(x)`$를 $`u(0) = u(1) = 0`$ (경계 조건)으로 **이산화(discretize)** 한다.
 
 경계 조건에서: $`u_0 = u_{N+1} = 0`$.
 
@@ -2005,7 +2005,7 @@ x_0 = 0     x_1       x_2                x_N   x_{N+1} = 1
 \boxed{\frac{1}{h^2}K\mathbf{u} = \mathbf{f}}
 ```
 
-행렬 $`K`$는 **고정-고정 경계 조건** (fixed-fixed BC): $`u_0 = 0`$이고 $`u_{N+1} = 0`$에서 $`-\frac{d^2u}{dx^2}`$의 자연스러운 근사를 제공한다.
+행렬 $`K`$는 **고정-고정 경계 조건(fixed-fixed BC)**: $`u_0 = 0`$이고 $`u_{N+1} = 0`$에서 $`-\frac{d^2u}{dx^2}`$의 자연스러운 근사를 제공한다.
 
 ---
 
@@ -2021,14 +2021,14 @@ K_4 = \begin{pmatrix} 2 & -1 & 0 & 0 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ 0 
 
 **1. $`K`$는 대칭이다.** $`K^T = K`$.
 
-**2. $`K`$는 띠행렬이다.** $`K`$의 영이 아닌 원소는 모두 주 대각선 주위의 띠(band)에 놓인다. 좁은 띠를 가진 행렬은 **희소** (sparse)하다 (대부분 0). 이것은 **삼중대각 행렬** (tridiagonal matrix)이다.
+**2. $`K`$는 띠행렬이다.** $`K`$의 영이 아닌 원소는 모두 주 대각선 주위의 띠(band)에 놓인다. 좁은 띠를 가진 행렬은 **희소(sparse)** 하다 (대부분 0). 이것은 **삼중대각 행렬(tridiagonal matrix)** 이다.
 
 예시: $`N = 100`$:
 - 2의 개수: 100
 - $`-1`$의 개수: $`99 + 99 = 198`$
 - 영이 아닌 원소의 수 $`\approx 300`$. $`10000`$개 원소 중: $`\frac{300}{10000} = 3\%`$.
 
-**3. $`K`$는 상수 대각선을 가진다.** 이는 푸리에 변환, 필터, 합성곱 행렬, 토에플리츠 행렬 (Toeplitz matrix)과 관련된다. $`K`$는 $`(-1, 2, -1)`$ 패턴이 각 행에 나타나므로 **이동 불변** (shift-invariant)이다.
+**3. $`K`$는 상수 대각선을 가진다.** 이는 Fourier 변환, 필터, 합성곱 행렬, Toeplitz 행렬과 관련된다. $`K`$는 $`(-1, 2, -1)`$ 패턴이 각 행에 나타나므로 **이동 불변(shift-invariant)** 이다.
 
 **4. $`K`$는 가역이다.** 소거로 확인할 수 있다. 결과 상삼각 행렬 $`U`$에 0 피벗이 없으면, $`K`$는 가역이다.
 
@@ -2048,7 +2048,7 @@ K\mathbf{x} = \begin{pmatrix} 2x - y \\ -x + 2y \end{pmatrix}
 \mathbf{x}^T(K\mathbf{x}) = 2x^2 - 2xy + 2y^2 = x^2 + (x-y)^2 + y^2 > 0
 ```
 
-$`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$일 때, $`K`$는 **양반정치** (positive semidefinite)라 한다.
+$`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$일 때, $`K`$는 **양반정치(positive semidefinite)** 라 한다.
 
 **피벗:**
 - 가역 행렬은 (행 교환을 허용하면) $`n`$개의 영이 아닌 피벗을 가진다.
@@ -2063,7 +2063,7 @@ $`\mathbf{x}^T K \mathbf{x} \geq 0 \; \forall \; \mathbf{x} \neq \mathbf{0}`$일
 -\frac{d^2u}{dx^2} = f(x), \quad \text{여기서 } \frac{du}{dx} = 0 \text{ (} x = 0 \text{에서)}, \quad u(1) = 0
 ```
 
-$`x = 0`$에서의 노이만 경계 조건 (Neumann BC): $`\frac{u_1 - u_0}{h} = 0 \implies \frac{1}{h^2}(u_0 - u_1) = 0`$. 여기서 $`u_0`$은 **미지수**이다.
+$`x = 0`$에서의 Neumann 경계 조건 (Neumann BC): $`\frac{u_1 - u_0}{h} = 0 \implies \frac{1}{h^2}(u_0 - u_1) = 0`$. 여기서 $`u_0`$은 **미지수**이다.
 
 이것은 행렬 $`T`$를 준다:
 
@@ -2091,7 +2091,7 @@ T_4 = \begin{pmatrix} 1 & -1 & 0 & 0 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ 0 
 L = \begin{pmatrix} 1 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 \\ 0 & -1 & 1 & 0 \\ 0 & 0 & -1 & 1 \end{pmatrix}
 ```
 
-**$`L^{-1}`$의 계산.** 가우스-조르단 방법 $`(L|I) \Rightarrow (I|L^{-1})`$을 사용한다.
+**$`L^{-1}`$의 계산.** Gauss-Jordan 방법 $`(L|I) \Rightarrow (I|L^{-1})`$을 사용한다.
 
 ```math
 \begin{pmatrix} 1 & 0 & 0 & 0 & | & 1 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 & | & 0 & 1 & 0 & 0 \\ 0 & -1 & 1 & 0 & | & 0 & 0 & 1 & 0 \\ 0 & 0 & -1 & 1 & | & 0 & 0 & 0 & 1 \end{pmatrix} \implies \begin{pmatrix} 1 & 0 & 0 & 0 & | & 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & | & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 & | & 1 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & | & 1 & 1 & 1 & 1 \end{pmatrix}
@@ -2142,7 +2142,7 @@ B_3 = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}
 B_3 \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
 ```
 
-$`\mathbf{x} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$은 $`B_3`$의 **영공간** (nullspace)에 속한다.
+$`\mathbf{x} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$은 $`B_3`$의 **영공간(nullspace)** 에 속한다.
 
 $`\mathbf{x} = c\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}`$ 벡터들은 $`B_3`$의 영공간에 속한다.
 
@@ -2181,7 +2181,7 @@ $`\Rightarrow`$ $`B_3`$은 **가역이 될 수 없다.**
 | 역행렬의 유일성 | 좌역행렬은 우역행렬과 같으며, $`BA = I`$이고 $`AC = I`$이면 $`B = C`$이다. |
 | $`(AB)^{-1} = B^{-1}A^{-1}`$ | 곱의 역행렬은 각 역행렬을 역순으로 곱한 것이다. |
 | $`2 \times 2`$ 역행렬 | $`A^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}`$이며, $`\det(A) \neq 0`$이어야 존재한다. |
-| 가우스-조르단 (Gauss-Jordan) | $`(A \mid I) \Rightarrow (I \mid A^{-1})`$로 역행렬을 명시적으로 구한다. |
+| Gauss-Jordan | $`(A \mid I) \Rightarrow (I \mid A^{-1})`$로 역행렬을 명시적으로 구한다. |
 | 소거의 비용 | $`A \to U`$에는 약 $`\frac{1}{3}n^3`$번, $`\mathbf{b} \to \mathbf{c} \to \mathbf{x}`$에는 약 $`n^2`$번의 곱셈이 든다. |
 | $`A = LU`$의 두 번째 증명 | 열 곱하기 행으로 $`A = \sum \mathbf{l}_k \mathbf{u}_k`$를 얻는다. |
 | 행 교환 없는 $`A = LU`$ | 모든 좌상단 $`k \times k`$ 부분행렬이 가역이어야 한다. |

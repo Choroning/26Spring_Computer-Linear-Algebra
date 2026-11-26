@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-17
+> **최종 수정일:** 2026-11-26
 >
 > Introduction to Linear Algebra, Strang, Ch 8
 
@@ -53,7 +53,7 @@
   - [3.8 예제: 3x3 Jordan 형식](#38-예제-3x3-jordan-형식)
   - [3.9 함수 공간의 기저](#39-함수-공간의-기저)
   - [3.10 함수 공간의 직교 기저](#310-함수-공간의-직교-기저)
-  - [3.11 그람-슈미트 과정을 이용한 Legendre 기저 구성](#311-그람-슈미트-과정을-이용한-legendre-기저-구성)
+  - [3.11 Gram-Schmidt 과정을 이용한 Legendre 기저 구성](#311-gram-schmidt-과정을-이용한-legendre-기저-구성)
 - [요약](#요약)
 - [점검 문제](#점검-문제)
 
@@ -71,7 +71,7 @@
 - **8.2** 선형 변환의 행렬 (The Matrix of a Linear Transformation)
 - **8.3** 좋은 기저 찾기 (The Search for a Good Basis)
 
-**선형 변환**(linear transformation) $`T`$는 벡터 $`\mathbf{u}`$를 벡터 $`T(\mathbf{u})`$로 보낸다:
+**선형 변환(linear transformation)** $`T`$는 벡터 $`\mathbf{u}`$를 벡터 $`T(\mathbf{u})`$로 보낸다:
 
 ```math
 T: \mathbf{u} \longrightarrow T(\mathbf{u})
@@ -91,11 +91,11 @@ T(c\mathbf{u} + d\mathbf{w}) = c\,T(\mathbf{u}) + d\,T(\mathbf{w})
 
 $`A`$가 $`m \times n`$이면, $`T(\mathbf{u}) = A\mathbf{u}`$는 선형이며, 입력 공간 $`\mathbb{R}^n`$에서 출력 공간 $`\mathbb{R}^m`$으로의 변환이다.
 
-**미분**(derivative) $`T(f) = \dfrac{df}{dx}`$는 선형이다.
+**미분(derivative)** $`T(f) = \dfrac{df}{dx}`$는 선형이다.
 
-**적분**(integral) $`T^+(f) = \displaystyle\int_0^x f(t)\,dt`$은 그 유사역(pseudoinverse)이다.
+**적분(integral)** $`T^+(f) = \displaystyle\int_0^x f(t)\,dt`$은 그 유사역(pseudoinverse)이다.
 
-두 선형 변환의 **곱**(product) $`ST`$도 여전히 선형이다:
+두 선형 변환의 **곱(product)** $`ST`$도 여전히 선형이다:
 
 ```math
 (ST)(\mathbf{u}) = S(T(\mathbf{u}))
@@ -140,7 +140,7 @@ A\mathbf{y} = A(\mathbf{u} + \mathbf{w}) = A\mathbf{u} + A\mathbf{w}
 
 **(b)** 모든 스칼라 $`c`$에 대해 $`T(c\mathbf{u}) = c\,T(\mathbf{u})`$ (실수 벡터 공간이면 $`c \in \mathbb{R}`$, 복소 벡터 공간이면 $`c \in \mathbb{C}`$)
 
-이때 $`T`$는 **가산적**(additive)이고 **동차적**(homogeneous)이라고 한다.
+이때 $`T`$는 **가산적(additive)** 이고 **동차적(homogeneous)** 이라고 한다.
 
 ```math
 T(\mathbf{0}) = T(0\mathbf{u}) = 0\,T(\mathbf{u}) = \mathbf{0}
@@ -189,7 +189,7 @@ T(\mathbf{u} + \mathbf{w}) \stackrel{?}{=} T(\mathbf{u}) + T(\mathbf{w})
 T(\mathbf{u}) = A\mathbf{u} + \mathbf{u}_0
 ```
 
-이를 **아핀 변환**(affine transformation)이라고 부른다.
+이를 **아핀 변환(affine transformation)** 이라고 부른다.
 
 컴퓨터 그래픽스에서는 아핀 변환이 사용된다:
 - 도형 $`\mathbf{x}`$에서 시작한다.
@@ -457,9 +457,9 @@ $`T(\mathbf{u}) = A\mathbf{u}`$, $`S(\mathbf{u}) = B\mathbf{u}`$이면, $`T \cir
 
 **질문.** $`V = \mathbb{R}^n`$에서 $`W = \mathbb{R}^m`$으로의 모든 선형 변환은 행렬에 의해 생성되는가? **그렇다.**
 
-모든 $`A\mathbf{u}`$의 집합이 **열공간**(column space)이다.
+모든 $`A\mathbf{u}`$의 집합이 **열공간(column space)** 이다.
 
-$`A`$의 **영공간**(nullspace)은 $`A\mathbf{u} = \mathbf{0}`$이 되는 모든 입력을 포함한다.
+$`A`$의 **영공간(nullspace)** 은 $`A\mathbf{u} = \mathbf{0}`$이 되는 모든 입력을 포함한다.
 
 ```math
 T\text{의 치역 (Range)} = \text{모든 } T(\mathbf{u})\text{의 집합} \quad \longleftrightarrow \quad \text{열공간 (column space)} = \text{모든 } A\mathbf{u}\text{의 집합}
@@ -473,7 +473,7 @@ T\text{의 핵 (Kernel)} = T(\mathbf{u}) = \mathbf{0}\text{인 모든 입력} \q
 
 ### 1.11 단사 변환과 전사 변환
 
-변환 $`T: V \to W`$에서 $`V`$를 **정의역**(domain), $`W`$를 **공역**(codomain)이라 한다. 입력 $`\mathbf{u}`$에 대응하는 출력 $`T(\mathbf{u})`$를 $`\mathbf{u}`$의 **상**(image)이라 하며, 모든 상의 집합이 1.10절의 치역이다. 치역은 공역의 부분집합이지만 공역 전체와 같다는 보장은 없다. 한 입력의 상은 하나로 정해지지만, 한 출력을 상으로 갖는 입력은 없거나 여러 개일 수 있다.
+변환 $`T: V \to W`$에서 $`V`$를 **정의역(domain)**, $`W`$를 **공역(codomain)** 이라 한다. 입력 $`\mathbf{u}`$에 대응하는 출력 $`T(\mathbf{u})`$를 $`\mathbf{u}`$의 **상(image)** 이라 하며, 모든 상의 집합이 1.10절의 치역이다. 치역은 공역의 부분집합이지만 공역 전체와 같다는 보장은 없다. 한 입력의 상은 하나로 정해지지만, 한 출력을 상으로 갖는 입력은 없거나 여러 개일 수 있다.
 
 > **용어 정의:** **단사 변환 (One-to-One Transformation).** $`W`$의 각 벡터가 많아야 하나의 입력의 상인 변환 $`T: V \to W`$를 말한다. 즉 $`T(\mathbf{u}) = T(\mathbf{w})`$이면 $`\mathbf{u} = \mathbf{w}`$이다.
 
@@ -540,7 +540,7 @@ $`V`$와 $`W`$에서의 기저 선택이 $`A`$를 결정한다.
 
 $`\mathbb{R}^n`$과 $`\mathbb{R}^m`$의 표준 기저 벡터는 $`I`$의 열이다.
 
-이 선택은 **표준 행렬**(standard matrix)로 이어진다: $`T(\mathbf{u}) = A\mathbf{u}`$.
+이 선택은 **표준 행렬(standard matrix)** 로 이어진다: $`T(\mathbf{u}) = A\mathbf{u}`$.
 
 $`V`$와 $`W`$에 대해 다른 기저를 선택할 수 있다.
 $`\Rightarrow`$ 같은 변환 $`T`$가 다른 행렬로 표현된다.
@@ -730,7 +730,7 @@ T(\mathbf{u}_4) = T(x^3) = 3x^2 = 3\mathbf{w}_3
 = (\mathbf{w}_1 \;\; \mathbf{w}_2 \;\; \mathbf{w}_3)\begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}
 ```
 
-**미분 행렬**(derivative matrix)은:
+**미분 행렬(derivative matrix)** 은:
 
 ```math
 D = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}
@@ -764,7 +764,7 @@ $`d_1 + d_2 x + d_3 x^2`$의 적분($`0`$부터 $`x`$까지):
 = (1 \;\; x \;\; x^2 \;\; x^3)\begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & \frac{1}{2} & 0 \\ 0 & 0 & \frac{1}{3} \end{pmatrix}\begin{pmatrix} d_1 \\ d_2 \\ d_3 \end{pmatrix}
 ```
 
-**적분 행렬**(integral matrix)은:
+**적분 행렬(integral matrix)** 은:
 
 ```math
 D^+ = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & \frac{1}{2} & 0 \\ 0 & 0 & \frac{1}{3} \end{pmatrix}
@@ -780,9 +780,9 @@ DD^+ = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmat
 D^+D = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & \frac{1}{2} & 0 \\ 0 & 0 & \frac{1}{3} \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}
 ```
 
-미분 $`T`$의 **핵**(kernel)은 상수 함수로 이루어진다: $`T(1) = 0`$.
+미분 $`T`$의 **핵(kernel)** 은 상수 함수로 이루어진다: $`T(1) = 0`$.
 
-그 행렬 $`D`$의 **영공간**(nullspace)은 상수 함수 $`1`$의 계수 벡터 $`(1, 0, 0, 0)^T`$로 생성된다. 이 때문에 $`D^+D \neq I`$이다.
+그 행렬 $`D`$의 **영공간(nullspace)** 은 상수 함수 $`1`$의 계수 벡터 $`(1, 0, 0, 0)^T`$로 생성된다. 이 때문에 $`D^+D \neq I`$이다.
 
 ---
 
@@ -906,7 +906,7 @@ AB = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pm
 
 2. $`B_{\text{in}} = B_{\text{out}}`$ = $`A`$의 일반화 고유벡터(generalized eigenvectors)를 사용하면 **Jordan 형식** $`J = B^{-1}AB`$를 얻는다.
 
-3. **Fourier 행렬** $`F = B_{\text{in}} = B_{\text{out}}`$은 모든 **순환 행렬**(circulant matrix)을 대각화한다.
+3. **Fourier 행렬** $`F = B_{\text{in}} = B_{\text{out}}`$은 모든 **순환 행렬(circulant matrix)** 을 대각화한다.
 
 4. 사인, 코사인, $`e^{ikx}`$, **Legendre** 및 **Chebyshev**: 이들은 함수 공간에 대한 훌륭한 기저이다.
 
@@ -918,7 +918,7 @@ AB = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pm
 
 출력 기저 벡터는 $`B_{\text{out}} = (\mathbf{b}_1' \;\; \mathbf{b}_2' \;\; \cdots \;\; \mathbf{b}_m')`$을 형성한다.
 
-항상 $`B_{\text{in}}`$과 $`B_{\text{out}}`$은 **가역**(invertible)이다.
+항상 $`B_{\text{in}}`$과 $`B_{\text{out}}`$은 **가역(invertible)** 이다.
 
 새로운 행렬 표현은:
 
@@ -936,7 +936,7 @@ B_{\text{out}}^{-1} \; A \; B_{\text{in}}
 B^{-1}AB \quad \text{는 } A \text{와 닮음(similar)이다}
 ```
 
-닮음 행렬은 **같은 고유값**(eigenvalues)을 갖는다.
+닮음 행렬은 **같은 고유값(eigenvalues)** 을 갖는다.
 
 ---
 
@@ -948,7 +948,7 @@ $`B_{\text{in}} = B_{\text{out}}`$ = 6장의 고유벡터 행렬(eigenvector mat
 A = X\Lambda X^{-1} \quad \Longleftrightarrow \quad X^{-1}AX = \Lambda
 ```
 
-이 기저를 쓰려면 $`A`$는 $`n`$개의 독립 고유벡터를 갖는 정사각 행렬, 즉 **대각화 가능**(diagonalizable)한 행렬이어야 한다.
+이 기저를 쓰려면 $`A`$는 $`n`$개의 독립 고유벡터를 갖는 정사각 행렬, 즉 **대각화 가능(diagonalizable)** 한 행렬이어야 한다.
 
 $`\Lambda`$는 $`B_{\text{in}} = B_{\text{out}} = X`$ (고유벡터)일 때 얻어진다.
 
@@ -966,7 +966,7 @@ A = U\Sigma V^T
 U^{-1}AV = \Sigma \quad \text{(특이값, singular values)}
 ```
 
-$`V`$의 열은 $`A^TA`$의, $`U`$의 열은 $`AA^T`$의 **정규직교 고유벡터**(orthonormal eigenvectors)이다.
+$`V`$의 열은 $`A^TA`$의, $`U`$의 열은 $`AA^T`$의 **정규직교 고유벡터(orthonormal eigenvectors)** 이다.
 
 ---
 
@@ -1005,7 +1005,7 @@ J = \begin{pmatrix} \boxed{2} & & & \\ & \boxed{2} & & \\ & & \boxed{3} & 1 \\ &
 
 이것은 **2**개의 1x1 블록과 **1**개의 2x2 블록을 갖는다.
 
-$`B^{-1}AB = J`$는 **거의 대각**(nearly diagonal)이다.
+$`B^{-1}AB = J`$는 **거의 대각(nearly diagonal)** 이다.
 
 **Jordan 형식의 일반적 진술:**
 
@@ -1164,7 +1164,7 @@ B^{-1}AB = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{pmatrix}\beg
 x^{10} \approx \text{span}\lbrace1, x, x^2, \ldots, x^9\rbrace
 ```
 
-$`[0, 1]`$에서 $`x^{10}`$은 낮은 거듭제곱들의 결합으로 매우 가깝게 근사되므로, 이 기저는 **나쁜 조건수의 기저**(ill-conditioned basis)이다.
+$`[0, 1]`$에서 $`x^{10}`$은 낮은 거듭제곱들의 결합으로 매우 가깝게 근사되므로, 이 기저는 **나쁜 조건수의 기저(ill-conditioned basis)** 이다.
 
 기저가 좋은지 아닌지 어떻게 확인할 수 있는가?
 
@@ -1228,7 +1228,7 @@ $`x`$의 거듭제곱 $`1, x, x^2, \ldots`$으로부터 어떻게 Legendre 기�
 
 ---
 
-### 3.11 그람-슈미트 과정을 이용한 Legendre 기저 구성
+### 3.11 Gram-Schmidt 과정을 이용한 Legendre 기저 구성
 
 $`[-1, 1]`$에서의 내적을 계산하면:
 
@@ -1250,7 +1250,7 @@ $`x^2`$은 $`1`$ 방향으로 영이 아닌 성분을 가지므로 $`1`$과 직�
 (x, x^2) = \int_{-1}^{1} x^3\,dx = 0 \quad \text{(직교)}
 ```
 
-4장의 **그람-슈미트 과정**으로 직교 기저를 구성하면:
+4장의 **Gram-Schmidt 과정**으로 직교 기저를 구성하면:
 
 ```math
 b_1 = 1
@@ -1267,7 +1267,7 @@ b_3 = x^2 - \frac{1}{3} \quad \perp\; b_1,\; b_2
 
 $`b_3`$은 $`x^2`$에서 $`1`$ 방향 성분을 빼서 얻는다: $`b_3 = x^2 - \frac{(1, x^2)}{(1, 1)} \cdot 1 = x^2 - \frac{2/3}{2} = x^2 - \frac{1}{3}`$. $`x^2`$은 $`x`$와 이미 직교하므로 $`x`$ 방향 성분은 빼지 않아도 된다.
 
-**그람-슈미트 과정**을 사용하여 **Legendre 기저**를 얻을 수 있다.
+**Gram-Schmidt 과정**을 사용하여 **Legendre 기저**를 얻을 수 있다.
 
 ---
 
@@ -1304,7 +1304,7 @@ $`b_3`$은 $`x^2`$에서 $`1`$ 방향 성분을 빼서 얻는다: $`b_3 = x^2 - 
 | Jordan 연쇄 (chains) | $`\mathbf{x}_1`$은 고유벡터이고, $`(A - \lambda I)\mathbf{x}_2 = \mathbf{x}_1`$, $`(A - \lambda I)\mathbf{x}_3 = \mathbf{x}_2`$와 같이 이어진다. |
 | Fourier 행렬 | 모든 순환 행렬(circulant matrix)을 대각화한다. |
 | 함수 공간 기저 | 함수 공간의 좋은 기저로 Fourier($`1, \sin x, \cos x, \ldots`$), Legendre($`1, x, x^2 - 1/3, \ldots`$), Chebyshev($`1, x, 2x^2-1, \ldots`$) 기저가 있다. |
-| 함수의 그람-슈미트 과정 | 내적 $`(f,g) = \int f\,g\,dx`$를 사용하여 $`1, x, x^2, \ldots`$로부터 Legendre 다항식을 만든다. |
+| 함수의 Gram-Schmidt 과정 | 내적 $`(f,g) = \int f\,g\,dx`$를 사용하여 $`1, x, x^2, \ldots`$로부터 Legendre 다항식을 만든다. |
 | 정규직교 기저 (Orthonormal) | $`B^TB = I`$이며, 계산에 가장 좋은 조건수의 기저이다. |
 
 ---

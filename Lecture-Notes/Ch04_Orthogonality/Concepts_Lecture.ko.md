@@ -2,14 +2,14 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-18
+> **최종 수정일:** 2026-11-27
 >
 > Introduction to Linear Algebra, Strang, Ch 4
 
 > **학습 목표:**
 > 1. 벡터와 부분공간의 직교성을 정의할 수 있다
 > 2. 직선과 부분공간으로의 사영을 계산할 수 있다
-> 3. 그람-슈미트 과정을 적용하여 정규직교 기저와 QR 분해를 구할 수 있다
+> 3. Gram-Schmidt 과정을 적용하여 정규직교 기저와 QR 분해를 구할 수 있다
 > 4. 사영을 이용하여 최소제곱 문제를 풀 수 있다
 > 5. 좌역행렬, 우역행렬, 유사역행렬을 구할 수 있다
 
@@ -53,15 +53,15 @@
   - [3.9 A에 종속 열이 있을 때의 최소제곱 해](#39-a에-종속-열이-있을-때의-최소제곱-해)
   - [3.10 포물선 적합](#310-포물선-적합)
   - [3.11 예제 3: 포물선 적합](#311-예제-3-포물선-적합)
-- [4. 직교 기저와 그람-슈미트 (4.4)](#4-직교-기저와-그람-슈미트-44)
+- [4. 직교 기저와 Gram-Schmidt (4.4)](#4-직교-기저와-gram-schmidt-44)
   - [4.1 핵심 사실 요약](#41-핵심-사실-요약)
   - [4.2 목표: 직교 열](#42-목표-직교-열)
   - [4.3 정규직교 벡터와 행렬](#43-정규직교-벡터와-행렬)
   - [4.4 직교 행렬의 예](#44-직교-행렬의-예)
   - [4.5 정규직교 기저를 이용한 사영](#45-정규직교-기저를-이용한-사영)
   - [4.6 예제 4: 정사각 직교 행렬](#46-예제-4-정사각-직교-행렬)
-  - [4.7 그람-슈미트 과정](#47-그람-슈미트-과정)
-  - [4.8 그람-슈미트 예제](#48-그람-슈미트-예제)
+  - [4.7 Gram-Schmidt 과정](#47-gram-schmidt-과정)
+  - [4.8 Gram-Schmidt 예제](#48-gram-schmidt-예제)
   - [4.9 분해 A = QR](#49-분해-a--qr)
   - [4.10 응용: QR을 통한 최소제곱](#410-응용-qr을-통한-최소제곱)
 - [5. 행렬의 유사역행렬 (4.5)](#5-행렬의-유사역행렬-45)
@@ -93,7 +93,7 @@
 \mathbf{v}^T \mathbf{w} = 0
 ```
 
-그리고 벡터 형태의 **피타고라스 정리**(Pythagorean theorem):
+그리고 벡터 형태의 **피타고라스 정리(Pythagorean theorem)**:
 
 ```math
 \|\mathbf{v}\|^2 + \|\mathbf{w}\|^2 = \|\mathbf{v} + \mathbf{w}\|^2
@@ -187,11 +187,11 @@ A^T A \hat{\mathbf{x}} = A^T \mathbf{b}
 \min \|A\hat{\mathbf{x}} - \mathbf{b}\|^2
 ```
 
-이것이 **최소제곱**(least squares)이다. $`A^T A = I`$이면 문제가 쉬워진다. 그러한 행렬 $`A`$를 구성하는 방법은 4절(직교 기저와 그람-슈미트)에서 다룬다.
+이것이 **최소제곱(least squares)** 이다. $`A^T A = I`$이면 문제가 쉬워진다. 그러한 행렬 $`A`$를 구성하는 방법은 4절(직교 기저와 Gram-Schmidt)에서 다룬다.
 
 ### 1.4 직교 부분공간
 
-> **용어 정의:** 부분공간 $`V`$와 $`W`$가 다음을 만족할 때 두 부분공간은 **직교 (Orthogonal)** 한다고 한다:
+> **용어 정의:** 부분공간 $`V`$와 $`W`$가 다음을 만족할 때 두 부분공간은 **직교(orthogonal)** 한다고 한다:
 >
 > ```math
 > \mathbf{v}^T \mathbf{w} = 0 \quad \forall \, \mathbf{v} \in V, \, \mathbf{w} \in W
@@ -237,7 +237,7 @@ $`A`$의 영공간에 있는 $`\mathbf{x}`$는 $`A`$의 행공간에 있는 $`A^
 r + (n - r) = n \quad \text{그리고} \quad r + (m - r) = m
 ```
 
-이 차원 관계를 이루는 두 쌍, 곧 행공간과 영공간, 열공간과 좌영공간이 **직교 여공간**(orthogonal complements)이다.
+이 차원 관계를 이루는 두 쌍, 곧 행공간과 영공간, 열공간과 좌영공간이 **직교 여공간(orthogonal complements)** 이다.
 
 **예제 1:**
 
@@ -291,7 +291,7 @@ $`\text{rank}(A^T) = \text{rank}(R_0) = 2`$, $`m - r = 2 - 2 = 0`$ (자유 변�
 \dim V + \dim W \leq n
 ```
 
-차원의 합이 전체 공간의 차원과 같은 두 직교 부분공간은 특별한 이름을 갖는데, 이를 **직교 여공간**(orthogonal complements)이라 한다. $`V`$의 직교 여공간 $`V^\perp`$는 $`V`$에 직교하는 모든 벡터를 포함한다.
+차원의 합이 전체 공간의 차원과 같은 두 직교 부분공간은 특별한 이름을 갖는데, 이를 **직교 여공간(orthogonal complements)** 이라 한다. $`V`$의 직교 여공간 $`V^\perp`$는 $`V`$에 직교하는 모든 벡터를 포함한다.
 
 **직교 여공간 쌍:**
 
@@ -412,9 +412,9 @@ $`A`$는 행 1, 2와 피벗 열 1, 3이 만나는 곳에 $`2 \times 2`$ 가역 �
 
 ### 1.9 부분공간의 기저 결합
 
-**기저**(basis)는 공간을 생성하는 선형독립 벡터들을 포함한다.
+**기저(basis)** 는 공간을 생성하는 선형독립 벡터들을 포함한다.
 
-$`\mathbb{R}^n`$의 **표준 기저**(standard basis)는 $`\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace`$이며:
+$`\mathbb{R}^n`$의 **표준 기저(standard basis)** 는 $`\lbrace\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\rbrace`$이며:
 
 ```math
 \mathbb{R}^n \ni \mathbf{e}_i = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix} \leftarrow i\text{번째 행}
@@ -837,7 +837,7 @@ $`\mathcal{N}(A) = \lbrace\mathbf{0}\rbrace`$은 $`A`$의 열이 선형독립이
 
 **크기 고려:** $`A \in \mathbb{R}^{m \times n}`$, $`A^T \in \mathbb{R}^{n \times m}`$, $`A^T A \in \mathbb{R}^{n \times n}`$.
 
-$`A^T A`$는 $`(A^T A)^T = A^T A`$이므로 항상 **대칭**(symmetric)이다.
+$`A^T A`$는 $`(A^T A)^T = A^T A`$이므로 항상 **대칭(symmetric)** 이다.
 
 **반례:** $`A = \begin{pmatrix} 1 & 2 \\ 1 & 2 \\ 0 & 0 \end{pmatrix}`$는 종속인 열을 갖는다.
 
@@ -895,7 +895,7 @@ $`A^T\mathbf{e}^* = \mathbf{0}`$이므로, $`A(A^T A)^{-1}A^T\mathbf{e}^* = \mat
 
 **(1)** $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$를 풀면 $`\mathbf{b}`$의 $`A`$의 열공간으로의 사영 $`\mathbf{p} = A\hat{\boldsymbol{\alpha}}`$를 얻는다.
 
-**(2)** $`A\mathbf{x} = \mathbf{b}`$에 해가 없을 때, $`\hat{\boldsymbol{\alpha}}`$는 **최소제곱 해**(least squares solution)이다: $`\|A\hat{\boldsymbol{\alpha}} - \mathbf{b}\|^2 = \text{최솟값}`$.
+**(2)** $`A\mathbf{x} = \mathbf{b}`$에 해가 없을 때, $`\hat{\boldsymbol{\alpha}}`$는 **최소제곱 해(least squares solution)** 이다: $`\|A\hat{\boldsymbol{\alpha}} - \mathbf{b}\|^2 = \text{최솟값}`$.
 
 **(3)** $`E = \|A\hat{\boldsymbol{\alpha}} - \mathbf{b}\|^2`$의 편미분을 0으로 놓으면 ($`\frac{\partial E}{\partial \alpha_i} = 0`$) 역시 $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$를 만든다.
 
@@ -1133,7 +1133,7 @@ $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 **많은 해**를 갖는다: $`\b
 
 문제는 $`A`$가 종속 열을 가지고 $`\mathcal{N}(A) \ni \begin{pmatrix} 1 \\ -1 \end{pmatrix}`$이라는 것이다.
 
-최적 해를 어떻게 찾을 수 있는가? 이 문제는 5절에서 다루는 $`A`$의 **유사역행렬**(pseudoinverse)로 해결한다.
+최적 해를 어떻게 찾을 수 있는가? 이 문제는 5절에서 다루는 $`A`$의 **유사역행렬(pseudoinverse)** 로 해결한다.
 
 > **참고:** **정규방정식의 해의 존재.** 정규방정식 $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{b}`$는 $`A`$의 열이 종속이어도 항상 해를 갖는다. $`\mathbf{b} = \mathbf{p} + \mathbf{e}`$($`\mathbf{p} \in C(A)`$, $`\mathbf{e} \in \mathcal{N}(A^T)`$)로 나누면 $`A\hat{\boldsymbol{\alpha}} = \mathbf{p}`$는 반드시 풀리고, 양변에 $`A^T`$를 곱하면 $`A^T\mathbf{e} = \mathbf{0}`$이므로 $`A^T A\hat{\boldsymbol{\alpha}} = A^T\mathbf{p} = A^T\mathbf{b}`$가 되기 때문이다. $`A^T A`$가 가역이 아니면(2.9절) 이러한 해가 무수히 많지만, 어느 해를 택해도 $`A\hat{\boldsymbol{\alpha}}`$는 같은 사영 $`\mathbf{p}`$이다. 실제 데이터 적합에서는 열보다 행이 훨씬 많고, 같은 양을 단위만 바꿔 두 번 기록한 경우처럼 열 사이에 정확한 선형 관계가 있지 않은 한 열이 독립이므로 보통 $`A^T A`$는 가역이다.
 
@@ -1191,11 +1191,11 @@ $`m = 3`$이므로 포물선이 세 점을 정확히 지나고 오차는 $`\math
 
 <br>
 
-## 4. 직교 기저와 그람-슈미트 (4.4)
+## 4. 직교 기저와 Gram-Schmidt (4.4)
 
 ### 4.1 핵심 사실 요약
 
-**(1)** 열 $`\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n`$이 **정규직교**(orthonormal)일 조건:
+**(1)** 열 $`\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n`$이 **정규직교(orthonormal)** 일 조건:
 
 ```math
 \mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & i \neq j\text{일 때 (직교 벡터)} \\ 1 & i = j\text{일 때 (단위벡터: } \|\mathbf{q}_i\| = 1) \end{cases}
@@ -1203,7 +1203,7 @@ $`m = 3`$이므로 포물선이 세 점을 정확히 지나고 오차는 $`\math
 
 이때 $`Q^T Q = I_{n \times n}`$.
 
-**(2)** $`Q`$가 정사각이면, $`QQ^T = I`$이고 $`Q^T = Q^{-1}`$이다. 이때 $`Q`$는 **직교 행렬**(orthogonal matrix)이다.
+**(2)** $`Q`$가 정사각이면, $`QQ^T = I`$이고 $`Q^T = Q^{-1}`$이다. 이때 $`Q`$는 **직교 행렬(orthogonal matrix)** 이다.
 
 **(3)** $`Q\mathbf{x} = \mathbf{b}`$의 최소제곱 해는 $`\hat{\boldsymbol{\alpha}} = Q^T\mathbf{b}`$이다. $`d_i = \mathbf{q}_i^T\mathbf{b}`$라 하면 $`\mathbf{b}`$의 사영은 다음과 같다:
 
@@ -1211,7 +1211,7 @@ $`m = 3`$이므로 포물선이 세 점을 정확히 지나고 오차는 $`\math
 \mathbf{p} = QQ^T\mathbf{b} = P\mathbf{b} = \mathbf{q}_1 d_1 + \mathbf{q}_2 d_2 + \cdots + \mathbf{q}_n d_n
 ```
 
-**(4)** 그람-슈미트(Gram-Schmidt) 과정은 독립인 $`\mathbf{a}_i`$를 정규직교 $`\mathbf{q}_i`$로 변환한다. $`\mathbf{r}_1 = \mathbf{a}_1`$로 두고 $`\mathbf{q}_1 = \mathbf{r}_1/\|\mathbf{r}_1\|`$로 시작한다.
+**(4)** Gram-Schmidt 과정은 독립인 $`\mathbf{a}_i`$를 정규직교 $`\mathbf{q}_i`$로 변환한다. $`\mathbf{r}_1 = \mathbf{a}_1`$로 두고 $`\mathbf{q}_1 = \mathbf{r}_1/\|\mathbf{r}_1\|`$로 시작한다.
 
 **(5)** $`\mathbf{q}_i`$는 $`(\mathbf{a}_i - \text{사영 } \mathbf{p}_i) / \|\mathbf{a}_i - \mathbf{p}_i\|`$이며, 사영 $`\mathbf{p}_i = (\mathbf{a}_i^T\mathbf{q}_1)\mathbf{q}_1 + \cdots + (\mathbf{a}_i^T\mathbf{q}_{i-1})\mathbf{q}_{i-1}`$이다.
 
@@ -1235,11 +1235,11 @@ A^T A = \begin{pmatrix} \mathbf{a}_1^T\mathbf{a}_1 & 0 & \cdots & 0 \\ 0 & \math
 
 이는 **대각 행렬**이다.
 
-**ii)** 그람-슈미트 과정을 통해 정규직교 벡터 $`\mathbf{q}_i`$를 구성한다.
+**ii)** Gram-Schmidt 과정을 통해 정규직교 벡터 $`\mathbf{q}_i`$를 구성한다.
 
 ### 4.3 정규직교 벡터와 행렬
 
-> **용어 정의:** $`n`$개의 벡터 $`\mathbf{q}_1, \ldots, \mathbf{q}_n`$이 다음을 만족하면 이 벡터들을 **정규직교 (Orthonormal)** 라고 한다:
+> **용어 정의:** $`n`$개의 벡터 $`\mathbf{q}_1, \ldots, \mathbf{q}_n`$이 다음을 만족하면 이 벡터들을 **정규직교(orthonormal)** 라고 한다:
 >
 > ```math
 > \mathbf{q}_i^T\mathbf{q}_j = \begin{cases} 0 & i \neq j\text{일 때} \\ 1 & i = j\text{일 때} \end{cases}
@@ -1367,7 +1367,7 @@ $`A = Q`$이고 $`A^T A = Q^T Q = I`$이면:
 \mathbf{b} = \mathbf{q}_1(\mathbf{q}_1^T\mathbf{b}) + \mathbf{q}_2(\mathbf{q}_2^T\mathbf{b}) + \cdots + \mathbf{q}_n(\mathbf{q}_n^T\mathbf{b}) = QQ^T\mathbf{b}
 ```
 
-$`QQ^T = I`$는 **푸리에 급수**(Fourier series)의 기초이다. 푸리에 급수는 $`\mathbf{b}`$를 서로 수직인 조각으로 분해한 뒤 기저 벡터의 선형결합으로 $`\mathbf{b}`$를 다시 합친다.
+$`QQ^T = I`$는 **Fourier 급수(Fourier series)** 의 기초이다. Fourier 급수는 $`\mathbf{b}`$를 서로 수직인 조각으로 분해한 뒤 기저 벡터의 선형결합으로 $`\mathbf{b}`$를 다시 합친다.
 
 ### 4.6 예제 4: 정사각 직교 행렬
 
@@ -1395,7 +1395,7 @@ $`\mathbf{q}_1^T\mathbf{b} = \mathbf{q}_2^T\mathbf{b} = 2/3`$, $`\mathbf{q}_3^T\
 = \frac{1}{9}\begin{pmatrix} -1 \\ 2 \\ 2 \end{pmatrix} \cdot 2 + \frac{1}{9}\begin{pmatrix} 2 \\ -1 \\ 2 \end{pmatrix} \cdot 2 + \frac{1}{9}\begin{pmatrix} 2 \\ 2 \\ -1 \end{pmatrix} \cdot (-1) = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
 ```
 
-### 4.7 그람-슈미트 과정
+### 4.7 Gram-Schmidt 과정
 
 벡터 $`\mathbf{a}, \mathbf{b}, \mathbf{c}`$가 주어지면, 세 직교 벡터 $`\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3`$를 만들고, 이로부터 세 정규직교 벡터를 생성한다:
 
@@ -1441,7 +1441,7 @@ $`\mathbf{b}`$를 $`\mathbf{q}_1`$에 대해 $`\mathbf{b}_\parallel`$과 $`\math
 
 모든 벡터 $`\mathbf{a}, \mathbf{b}, \mathbf{c}, \mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3, \mathbf{q}_1, \mathbf{q}_2, \mathbf{q}_3`$는 하나의 부분공간 ($`\mathbb{R}^3`$)에 있다.
 
-### 4.8 그람-슈미트 예제
+### 4.8 Gram-Schmidt 예제
 
 ```math
 \mathbf{a} = \begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix}, \quad \mathbf{b} = \begin{pmatrix} 2 \\ 0 \\ -2 \end{pmatrix}, \quad \mathbf{c} = \begin{pmatrix} 3 \\ -3 \\ 3 \end{pmatrix}
@@ -1509,7 +1509,7 @@ A = QR
 
 $`Q^T A = Q^T Q R = IR = R`$.
 
-LI인 $`\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n`$으로부터 그람-슈미트가 정규직교 벡터 $`\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n`$을 만든다. 이들을 열로 하는 행렬 $`Q`$는 $`A = QR`$을 만족한다. $`R = Q^T A`$는 나중의 $`\mathbf{q}`$들이 이전의 $`\mathbf{a}`$들에 직교하므로 **상삼각 행렬**이다.
+LI인 $`\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n`$으로부터 Gram-Schmidt가 정규직교 벡터 $`\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n`$을 만든다. 이들을 열로 하는 행렬 $`Q`$는 $`A = QR`$을 만족한다. $`R = Q^T A`$는 나중의 $`\mathbf{q}`$들이 이전의 $`\mathbf{a}`$들에 직교하므로 **상삼각 행렬**이다.
 
 **예제로부터:**
 
@@ -1551,7 +1551,7 @@ R\hat{\boldsymbol{\alpha}} = Q^T\mathbf{b} \quad \text{(매우 빠르다)}
 \hat{\boldsymbol{\alpha}} = R^{-1}Q^T\mathbf{b}
 ```
 
-$`R`$이 상삼각 행렬이므로 $`R\hat{\boldsymbol{\alpha}} = Q^T\mathbf{b}`$는 후진 대입(back substitution)으로 빠르게 풀린다. 다만 $`Q`$와 $`R`$을 만드는 그람-슈미트 과정에 약 $`mn^2`$번의 곱셈이 들며, 이것이 주된 계산 비용이다.
+$`R`$이 상삼각 행렬이므로 $`R\hat{\boldsymbol{\alpha}} = Q^T\mathbf{b}`$는 후진 대입(back substitution)으로 빠르게 풀린다. 다만 $`Q`$와 $`R`$을 만드는 Gram-Schmidt 과정에 약 $`mn^2`$번의 곱셈이 들며, 이것이 주된 계산 비용이다.
 
 ---
 
@@ -1827,7 +1827,7 @@ $`R`$은 행 완전 랭크: $`\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace`$. $`C
 | 직교 행렬 (정사각 $`Q`$) | $`Q^T Q = QQ^T = I`$, 곧 $`Q^T = Q^{-1}`$이며, 길이와 각도를 보존한다. |
 | 직교 행렬의 예 | 회전, 순열, 반사($`Q = I - 2\mathbf{n}\mathbf{n}^T`$) 행렬은 직교 행렬이다. |
 | 정규직교 기저로의 사영 | $`\hat{\boldsymbol{\alpha}} = Q^T\mathbf{b}`$, $`\mathbf{p} = QQ^T\mathbf{b}`$이며, $`Q`$가 정사각이면 $`P = I`$이다. |
-| 그람-슈미트 과정 | $`\mathbf{r}_1 = \mathbf{a}`$, $`\mathbf{r}_2 = \mathbf{b} - (\mathbf{b} \cdot \mathbf{q}_1)\mathbf{q}_1`$, $`\mathbf{r}_3 = \mathbf{c} - (\mathbf{c} \cdot \mathbf{q}_1)\mathbf{q}_1 - (\mathbf{c} \cdot \mathbf{q}_2)\mathbf{q}_2`$로 직교 벡터를 만들고 각각 정규화한다. |
+| Gram-Schmidt 과정 | $`\mathbf{r}_1 = \mathbf{a}`$, $`\mathbf{r}_2 = \mathbf{b} - (\mathbf{b} \cdot \mathbf{q}_1)\mathbf{q}_1`$, $`\mathbf{r}_3 = \mathbf{c} - (\mathbf{c} \cdot \mathbf{q}_1)\mathbf{q}_1 - (\mathbf{c} \cdot \mathbf{q}_2)\mathbf{q}_2`$로 직교 벡터를 만들고 각각 정규화한다. |
 | QR 분해 (QR factorization) | $`A = QR`$에서 $`Q`$는 정규직교 열을 갖고, $`R`$은 대각선이 양수인 상삼각 행렬이다. |
 | QR을 통한 최소제곱 | $`R\hat{\boldsymbol{\alpha}} = Q^T\mathbf{b}`$는 $`R`$이 상삼각 행렬이므로 후진 대입으로 빠르게 풀린다. |
 | 유사역행렬 $`A^+`$ (pseudoinverse) | $`A^+`$는 $`C(A)`$에서 $`C(A^T)`$로 $`A`$를 역전하며, $`\mathbf{z} \in \mathcal{N}(A^T)`$이면 $`A^+\mathbf{z} = \mathbf{0}`$이다. |
@@ -1869,7 +1869,7 @@ $`R`$은 행 완전 랭크: $`\mathcal{N}(R^T) = \lbrace\mathbf{0}\rbrace`$. $`C
 
    </details>
 
-4. **그람-슈미트와 QR:** $`\mathbf{a}_1 = (1, 1, 0)`$, $`\mathbf{a}_2 = (1, 0, 1)`$에 그람-슈미트 과정을 적용하여 $`\mathbf{q}_1, \mathbf{q}_2`$를 구하고, $`A = (\mathbf{a}_1 \; \mathbf{a}_2) = QR`$의 $`R`$을 쓰라.
+4. **Gram-Schmidt와 QR:** $`\mathbf{a}_1 = (1, 1, 0)`$, $`\mathbf{a}_2 = (1, 0, 1)`$에 Gram-Schmidt 과정을 적용하여 $`\mathbf{q}_1, \mathbf{q}_2`$를 구하고, $`A = (\mathbf{a}_1 \; \mathbf{a}_2) = QR`$의 $`R`$을 쓰라.
 
    <details>
    <summary>정답</summary>

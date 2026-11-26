@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-18
+> **최종 수정일:** 2026-11-27
 >
 > Introduction to Linear Algebra, Strang, Ch 6
 
@@ -33,9 +33,9 @@
   - [2.3 풀이 예제: 대각화](#23-풀이-예제-대각화)
   - [2.4 대각화에 대한 비고](#24-대각화에-대한-비고)
   - [2.5 증명: 서로 다른 고유값의 고유벡터는 선형독립](#25-증명-서로-다른-고유값의-고유벡터는-선형독립)
-  - [2.6 A의 거듭제곱 (마르코프 행렬 예제)](#26-a의-거듭제곱-마르코프-행렬-예제)
+  - [2.6 A의 거듭제곱 (Markov 행렬 예제)](#26-a의-거듭제곱-markov-행렬-예제)
   - [2.7 닮은 행렬](#27-닮은-행렬)
-  - [2.8 행렬의 거듭제곱과 피보나치 수](#28-행렬의-거듭제곱과-피보나치-수)
+  - [2.8 행렬의 거듭제곱과 Fibonacci 수](#28-행렬의-거듭제곱과-fibonacci-수)
   - [2.9 대각화 불가능한 행렬과 중복도](#29-대각화-불가능한-행렬과-중복도)
 - [3. 대칭 양정치 행렬 (6.3)](#3-대칭-양정치-행렬-63)
   - [3.1 대칭 행렬의 핵심 성질](#31-대칭-행렬의-핵심-성질)
@@ -277,7 +277,7 @@ $`n`$개 고유값의 곱 $`\lambda_1 \lambda_2 \cdots \lambda_n`$은 $`A`$의 *
 
 ### 1.6 풀이 예제
 
-**예제 1:** 마르코프 행렬(Markov matrix)
+**예제 1:** Markov 행렬(Markov matrix)
 
 ```math
 A = \begin{pmatrix} 0.8 & 0.3 \\ 0.2 & 0.7 \end{pmatrix}
@@ -714,10 +714,10 @@ c_1 = c_2 = \cdots = c_p = 0
 
 따라서 $`\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n`$은 **선형독립**이다. $`\square`$
 
-### 2.6 A의 거듭제곱 (마르코프 행렬 예제)
+### 2.6 A의 거듭제곱 (Markov 행렬 예제)
 
 ```math
-A = \begin{pmatrix} 0.8 & 0.3 \\ 0.2 & 0.7 \end{pmatrix} \quad \text{(마르코프 행렬)}
+A = \begin{pmatrix} 0.8 & 0.3 \\ 0.2 & 0.7 \end{pmatrix} \quad \text{(Markov 행렬)}
 ```
 
 $`\lambda_1 = 1, \lambda_2 = 0.5 \implies \Lambda = \begin{pmatrix} 1 & \\ & 0.5 \end{pmatrix}`$
@@ -752,7 +752,7 @@ A^{\infty} = X\Lambda^{\infty}X^{-1} = \begin{pmatrix} 0.6 & 1 \\ 0.4 & -1 \end{
 > 2. $`\Lambda\mathbf{c}`$는 각 좌표에 $`\lambda_i`$를 곱하는 성분별 스케일링이다.
 > 3. $`X(\Lambda\mathbf{c})`$는 그 결과를 원래 기저의 좌표로 되돌린다.
 >
-> 같은 방식으로 $`A^k\mathbf{v} = X(\Lambda^k(X^{-1}\mathbf{v}))`$이므로, 고유분해를 한 번 구해 두면 $`A`$를 $`k`$번 곱하지 않고 $`A^k\mathbf{v}`$를 계산할 수 있다. 위의 마르코프 행렬과 $`\mathbf{v} = (1, 0)`$에서는 $`\mathbf{c} = (1, 0.4)`$이므로 $`A^k\mathbf{v} = \mathbf{x}_1 + 0.4(0.5)^k\mathbf{x}_2`$이고, $`k \to \infty`$이면 $`\mathbf{x}_1 = (0.6, 0.4)`$로 수렴한다.
+> 같은 방식으로 $`A^k\mathbf{v} = X(\Lambda^k(X^{-1}\mathbf{v}))`$이므로, 고유분해를 한 번 구해 두면 $`A`$를 $`k`$번 곱하지 않고 $`A^k\mathbf{v}`$를 계산할 수 있다. 위의 Markov 행렬과 $`\mathbf{v} = (1, 0)`$에서는 $`\mathbf{c} = (1, 0.4)`$이므로 $`A^k\mathbf{v} = \mathbf{x}_1 + 0.4(0.5)^k\mathbf{x}_2`$이고, $`k \to \infty`$이면 $`\mathbf{x}_1 = (0.6, 0.4)`$로 수렴한다.
 
 ### 2.7 닮은 행렬
 
@@ -784,9 +784,9 @@ $`\det(A_1 - \lambda I) = \lambda(1 - \lambda) = 0`$이므로, $`\lambda = 0, 1`
 
 $`\det(A_2 - \lambda I) = \lambda^2 - \lambda + \frac{1}{4} - \frac{1}{4} = \lambda(\lambda - 1) = 0`$이므로, $`\lambda = 0, 1`$.
 
-### 2.8 행렬의 거듭제곱과 피보나치 수
+### 2.8 행렬의 거듭제곱과 Fibonacci 수
 
-피보나치 수는 이전 두 수의 합이다:
+Fibonacci 수는 이전 두 수의 합이다:
 
 ```math
 0, 1, 1, 2, 3, 5, 8, 13, \ldots
@@ -1003,7 +1003,7 @@ $`\therefore \mathbf{v} \perp \mathbf{u}`$, 즉 두 고유벡터는 **직교**(o
 
 $`\mathbf{u}, \mathbf{v}`$를 $`\|\mathbf{u}\| = \|\mathbf{v}\| = 1`$로 재조정하면, $`\mathbf{u}, \mathbf{v}`$는 **정규직교** 고유벡터이다. $`\square`$
 
-> **참고:** 이 증명은 서로 다른 고유값에 속하는 고유벡터가 직교함을 보인다. 고유값이 중복되면 그 고유공간 안에서 그람-슈미트 과정으로 정규직교 기저를 고를 수 있다. 다만 대칭 행렬의 각 고유공간 차원이 대수적 중복도와 같아서 고유벡터가 모두 $`n`$개 존재한다는 사실은 별도의 논증(예: 슈어 분해)이 필요하다.
+> **참고:** 이 증명은 서로 다른 고유값에 속하는 고유벡터가 직교함을 보인다. 고유값이 중복되면 그 고유공간 안에서 Gram-Schmidt 과정으로 정규직교 기저를 고를 수 있다. 다만 대칭 행렬의 각 고유공간 차원이 대수적 중복도와 같아서 고유벡터가 모두 $`n`$개 존재한다는 사실은 별도의 논증(예: Schur 분해)이 필요하다.
 
 ### 3.4 양정치 행렬의 정의
 
@@ -1305,7 +1305,7 @@ $`E(x,y) = 0`$일 때 $`x = y = 0`$이다. 이는 **최솟값 문제**와 연결
 ```
 
 ```math
-J(\nabla E^T) = \begin{pmatrix} \frac{\partial^2 E}{\partial x^2} & \frac{\partial^2 E}{\partial y \partial x} \\ \frac{\partial^2 E}{\partial x \partial y} & \frac{\partial^2 E}{\partial y^2} \end{pmatrix} = H \quad \text{(헤시안 행렬, Hessian matrix)}
+J(\nabla E^T) = \begin{pmatrix} \frac{\partial^2 E}{\partial x^2} & \frac{\partial^2 E}{\partial y \partial x} \\ \frac{\partial^2 E}{\partial x \partial y} & \frac{\partial^2 E}{\partial y^2} \end{pmatrix} = H \quad \text{(Hessian 행렬)}
 ```
 
 $`H_{ij} = \frac{\partial^2 E}{\partial x_i \partial x_j}`$
@@ -1414,7 +1414,7 @@ $`\lambda`$의 실수 부분은 **영**이다. 반대칭 행렬은 영 또는 **
 
 $`f(x)`$를 최소화하기 위한 **경사 하강법**(gradient descent).
 
-> **[기계학습]** 기계학습에서는 모델의 매개변수를 손실 함수(loss function)가 최소가 되도록 학습시키며, 경사 하강법은 그 대표적인 방법이다. 학습률 $`\eta`$는 한 번의 갱신에서 기울기의 반대 방향으로 얼마나 이동할지를 정하는 값이고, 손실 함수의 헤시안이 모든 점에서 양정치이면 함수가 순볼록이어서 국소 최솟값이 곧 유일한 전역 최솟값이 된다.
+> **[기계학습]** 기계학습에서는 모델의 매개변수를 손실 함수(loss function)가 최소가 되도록 학습시키며, 경사 하강법은 그 대표적인 방법이다. 학습률 $`\eta`$는 한 번의 갱신에서 기울기의 반대 방향으로 얼마나 이동할지를 정하는 값이고, 손실 함수의 Hessian이 모든 점에서 양정치이면 함수가 순볼록이어서 국소 최솟값이 곧 유일한 전역 최솟값이 된다.
 
 i) $`f(x) = x^2 + 4x + 4 \implies f'(x) = 2x + 4`$
 
@@ -1604,7 +1604,7 @@ v) $`\therefore \mathbf{u}(t) = c_1 e^{\lambda_1 t}\mathbf{x}_1 + c_2 e^{\lambda
 
 $`\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots + x^n + \cdots = \sum_{i=0}^{\infty}x^i`$ (등비급수, $`|x| < 1`$)
 
-> **[미적분학]** 미적분학에서 다루는 테일러 급수(매클로린 급수)는 $`e^x = \sum_{i=0}^{\infty} x^i/i!`$처럼 함수를 거듭제곱의 무한합으로 나타내며, 이 급수는 모든 실수 $`x`$에서 수렴한다. 행렬 지수 함수 $`e^{At}`$는 이 급수의 $`x`$ 자리에 행렬 $`At`$를 넣어 정의하므로, 아래에서 $`\frac{d}{dt}e^{At}`$를 구할 때도 급수를 항별로 미분하는 미적분학의 방법을 그대로 쓴다.
+> **[미적분학]** 미적분학에서 다루는 Taylor 급수(Maclaurin 급수)는 $`e^x = \sum_{i=0}^{\infty} x^i/i!`$처럼 함수를 거듭제곱의 무한합으로 나타내며, 이 급수는 모든 실수 $`x`$에서 수렴한다. 행렬 지수 함수 $`e^{At}`$는 이 급수의 $`x`$ 자리에 행렬 $`At`$를 넣어 정의하므로, 아래에서 $`\frac{d}{dt}e^{At}`$를 구할 때도 급수를 항별로 미분하는 미적분학의 방법을 그대로 쓴다.
 
 **행렬 지수 함수(matrix exponential):**
 
@@ -1977,7 +1977,7 @@ e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \
 | 양정치 $`\implies S = A^T A`$ | 양정치 행렬은 열이 독립인 $`A`$에 대해 $`S = A^T A`$로 쓸 수 있다. |
 | 합동 행렬 | 가역 행렬 $`A`$에 대해 $`A^T SA`$는 양, 음, 영 고유값의 개수, 곧 정치성(definiteness) 유형을 보존한다. |
 | 타원 방정식 | 양정치 $`S`$에 대해 $`\mathbf{x}^T S\mathbf{x} = 1`$은 타원이며, 축은 고유벡터 방향이고 반축의 길이는 $`1/\sqrt{\lambda}`$이다. |
-| 헤시안과 볼록성 | 헤시안 $`H`$가 모든 점에서 양정치이면 $`f`$는 순볼록이다. |
+| Hessian과 볼록성 | Hessian $`H`$가 모든 점에서 양정치이면 $`f`$는 순볼록이다. |
 | 경사 하강법 | $`\mathbf{x}_{k+1} = \mathbf{x}_k - \eta\nabla f(\mathbf{x}_k)`$를 반복하여 최솟값 점에 접근한다. |
 | ODE 해 | $`\frac{d\mathbf{u}}{dt} = A\mathbf{u}`$의 해는 $`\mathbf{u}(t) = \sum c_i e^{\lambda_i t}\mathbf{x}_i`$이다. |
 | 행렬 지수 함수 | $`e^{At} = I + At + \frac{(At)^2}{2!} + \cdots`$이며, $`A`$가 대각화 가능하면 $`e^{At} = Xe^{\Lambda t}X^{-1}`$이다. |
@@ -2012,7 +2012,7 @@ e^{At} = e^t\left(I + \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}t\right) = \
 
    </details>
 
-3. **마르코프 행렬의 정상 상태:** $`A = \begin{pmatrix} 0.9 & 0.2 \\ 0.1 & 0.8 \end{pmatrix}`$의 고유값과 고유벡터를 구하고, $`\mathbf{u}_0 = (1, 0)`$일 때 $`A^k\mathbf{u}_0`$의 극한을 구하라.
+3. **Markov 행렬의 정상 상태:** $`A = \begin{pmatrix} 0.9 & 0.2 \\ 0.1 & 0.8 \end{pmatrix}`$의 고유값과 고유벡터를 구하고, $`\mathbf{u}_0 = (1, 0)`$일 때 $`A^k\mathbf{u}_0`$의 극한을 구하라.
 
    <details>
    <summary>정답</summary>

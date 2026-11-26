@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-18
+> **최종 수정일:** 2026-11-27
 >
 > Introduction to Linear Algebra, Strang, Ch 1
 
@@ -40,7 +40,7 @@
   - [3.3 단위벡터 (Unit Vectors)](#33-단위벡터-unit-vectors)
   - [3.4 직교 벡터 (Perpendicular Vectors)](#34-직교-벡터-perpendicular-vectors)
   - [3.5 두 벡터 사이의 각도](#35-두-벡터-사이의-각도)
-  - [3.6 슈바르츠 부등식 (Schwarz Inequality)](#36-슈바르츠-부등식-schwarz-inequality)
+  - [3.6 Schwarz 부등식](#36-schwarz-부등식)
   - [3.7 삼각 부등식 (Triangle Inequality)](#37-삼각-부등식-triangle-inequality)
   - [3.8 3차원에서의 평면](#38-3차원에서의-평면)
 - [4. 행렬과 열공간 (1.3)](#4-행렬과-열공간-13)
@@ -139,7 +139,7 @@ A \begin{pmatrix} c \\ d \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pma
 
 이것은 **$`\mathbf{v}`$와 $`\mathbf{w}`$의 선형결합**이다.
 
-$`\mathbf{x} = \begin{pmatrix} c \\ d \end{pmatrix}`$로 놓으면, 모든 결합 $`A\mathbf{x}`$는 행렬 $`A`$의 **열공간 (Column Space)** 을 이룬다. 이 예에서 열공간은 $`xy`$ 평면 전체이다.
+$`\mathbf{x} = \begin{pmatrix} c \\ d \end{pmatrix}`$로 놓으면, 모든 결합 $`A\mathbf{x}`$는 행렬 $`A`$의 **열공간(column space)** 을 이룬다. 이 예에서 열공간은 $`xy`$ 평면 전체이다.
 
 ### 1.6 종속벡터 (Dependent Vectors)
 
@@ -150,8 +150,8 @@ B = \begin{pmatrix} \mathbf{v} & \mathbf{w} & \mathbf{z} \end{pmatrix} = \begin{
 ```
 
 - $`B`$의 열공간은 여전히 $`xy`$ 평면이다.
-- $`\mathbf{v}`$와 $`\mathbf{w}`$는 **독립 (Independent)** 벡터이다.
-- $`\mathbf{z}`$는 $`\mathbf{v}`$와 $`\mathbf{w}`$의 결합이므로 **종속 (Dependent)** 벡터이다.
+- $`\mathbf{v}`$와 $`\mathbf{w}`$는 **독립(independent)** 벡터이다.
+- $`\mathbf{z}`$는 $`\mathbf{v}`$와 $`\mathbf{w}`$의 결합이므로 **종속(dependent)** 벡터이다.
 
 ### 1.7 행렬 곱셈 미리보기
 
@@ -339,8 +339,8 @@ cv_2 + dw_2 = b_2
 연립방정식 $`xv_1 + yw_1 = b_1`$과 $`xv_2 + yw_2 = b_2`$는 두 직선을 나타낸다. 해 $`(c, d)`$는 교점이다:
 
 - 두 일차방정식은 점 $`(c, d)`$에서 만난다.
-- $`\mathbf{v}`$와 $`\mathbf{w}`$는 **선형독립 (Linearly Independent)** 이다.
-- $`A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}`$는 **가역 (Invertible)** 이다.
+- $`\mathbf{v}`$와 $`\mathbf{w}`$는 **선형독립(linearly independent)** 이다.
+- $`A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}`$는 **가역(invertible)** 이다.
 
 ### 2.5 소거법이 실패하는 경우
 
@@ -396,7 +396,7 @@ $`\hat{i}, \hat{j}, \hat{k}`$는 3차원 공간에서 $`x, y, z`$ 축 방향의 
 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
 ```
 
-> **용어 정의:** 대각 성분이 모두 1이고 나머지 성분이 모두 0인 정사각 행렬을 **항등 행렬 (Identity Matrix)** $`I`$라 한다. 모든 벡터 $`\mathbf{v}`$에 대해 $`\mathbf{v} = I\mathbf{v}`$이다.
+> **용어 정의:** 대각 성분이 모두 1이고 나머지 성분이 모두 0인 정사각 행렬을 **항등 행렬(identity matrix)** $`I`$라 한다. 모든 벡터 $`\mathbf{v}`$에 대해 $`\mathbf{v} = I\mathbf{v}`$이다.
 
 #### 평면인지 판별하는 방법
 
@@ -478,7 +478,7 @@ $`\mathbf{v}`$와 $`\mathbf{w}`$의 내적:
 
 ### 3.3 단위벡터 (Unit Vectors)
 
-- $`\mathbf{v}`$가 $`\|\mathbf{v}\| = 1`$일 때 **단위벡터 (Unit Vector)** 이다.
+- $`\mathbf{v}`$가 $`\|\mathbf{v}\| = 1`$일 때 **단위벡터(unit vector)** 이다.
 - $`\mathbf{v} \neq \mathbf{0}`$이면, $`\frac{\mathbf{v}}{\|\mathbf{v}\|}`$는 단위벡터이다.
 
 **예시 (ex1):** $`\mathbf{u} = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}`$는 단위벡터이다.
@@ -625,7 +625,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 \frac{\mathbf{v}}{\|\mathbf{v}\|} \cdot \frac{\mathbf{w}}{\|\mathbf{w}\|} = \cos\theta
 ```
 
-### 3.6 슈바르츠 부등식 (Schwarz Inequality)
+### 3.6 Schwarz 부등식
 
 ```math
 \mathbf{v} \cdot \mathbf{w} = \|\mathbf{v}\|\|\mathbf{w}\|\cos\theta
@@ -635,7 +635,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 |\mathbf{v} \cdot \mathbf{w}| = \|\mathbf{v}\|\|\mathbf{w}\||\cos\theta| \leq \|\mathbf{v}\|\|\mathbf{w}\|
 ```
 
-> **핵심:** **슈바르츠 부등식 (Cauchy-Schwarz-Bunyakovsky).** 모든 벡터 $`\mathbf{v}, \mathbf{w}`$에 대해 다음이 성립한다.
+> **핵심:** **Schwarz 부등식 (Cauchy-Schwarz-Bunyakovsky).** 모든 벡터 $`\mathbf{v}, \mathbf{w}`$에 대해 다음이 성립한다.
 > ```math
 > |\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mathbf{w}\|
 > ```
@@ -654,7 +654,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 \cos\theta = \frac{\mathbf{v}}{\|\mathbf{v}\|} \cdot \frac{\mathbf{w}}{\|\mathbf{w}\|} = \frac{4}{5}
 ```
 
-슈바르츠 부등식 $`|\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mathbf{w}\|`$은 $`4 < 5`$로 성립한다. $`\checkmark`$
+Schwarz 부등식 $`|\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mathbf{w}\|`$은 $`4 < 5`$로 성립한다. $`\checkmark`$
 
 **예시 (ex8):** $`\mathbf{v} = \begin{pmatrix} a \\ b \end{pmatrix}`$, $`\mathbf{w} = \begin{pmatrix} b \\ a \end{pmatrix}`$
 
@@ -666,7 +666,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 \|\mathbf{v}\| = \|\mathbf{w}\| = \sqrt{a^2 + b^2}
 ```
 
-슈바르츠 부등식 $`|\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mathbf{w}\|`$:
+Schwarz 부등식 $`|\mathbf{v} \cdot \mathbf{w}| \leq \|\mathbf{v}\|\|\mathbf{w}\|`$:
 
 ```math
 |2ab| \leq a^2 + b^2
@@ -681,7 +681,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 
 ### 3.7 삼각 부등식 (Triangle Inequality)
 
-**삼각 부등식은 슈바르츠 부등식으로부터 직접 도출된다.**
+**삼각 부등식은 Schwarz 부등식으로부터 직접 도출된다.**
 
 ```math
 \|\mathbf{v} + \mathbf{w}\|^2 = (\mathbf{v} + \mathbf{w}) \cdot (\mathbf{v} + \mathbf{w}) = \mathbf{v} \cdot \mathbf{v} + 2\mathbf{v} \cdot \mathbf{w} + \mathbf{w} \cdot \mathbf{w}
@@ -692,7 +692,7 @@ $`|\cos\theta| \leq 1`$이다. 따라서 영이 아닌 $`\mathbf{v}`$와 $`\math
 ```
 
 ```math
-\leq \|\mathbf{v}\|^2 + 2\|\mathbf{v}\|\|\mathbf{w}\| + \|\mathbf{w}\|^2 \quad \text{(슈바르츠에 의해)}
+\leq \|\mathbf{v}\|^2 + 2\|\mathbf{v}\|\|\mathbf{w}\| + \|\mathbf{w}\|^2 \quad \text{(Schwarz에 의해)}
 ```
 
 ```math
@@ -772,11 +772,11 @@ A\mathbf{x} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}\begin{pmatri
 A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
 ```
 
-$`a_{ij}`$는 $`i`$행 $`j`$열에 놓인 **성분 (Entry)** 이다.
+$`a_{ij}`$는 $`i`$행 $`j`$열에 놓인 **성분(entry)** 이다.
 
-$`m = n`$이면 $`A`$를 **정사각 행렬 (Square Matrix)** 이라 한다.
+$`m = n`$이면 $`A`$를 **정사각 행렬(square matrix)** 이라 한다.
 
-$`m \neq n`$이면 $`A`$를 **직사각 행렬 (Rectangular Matrix)** 이라 한다.
+$`m \neq n`$이면 $`A`$를 **직사각 행렬(rectangular matrix)** 이라 한다.
 
 **정사각 행렬의 예시 ($`A \in \mathbb{R}^{3 \times 3}`$):**
 
@@ -911,7 +911,7 @@ v_4 = x_4, \quad v_3 = x_4 + x_3, \quad v_2 = x_4 + x_3 + x_2, \quad v_1 = x_4 +
 
 ### 4.4 생성 (Span)
 
-**생성 (Span)** 은 벡터 집합의 모든 선형결합을 기술한다.
+**생성(span)** 은 벡터 집합의 모든 선형결합을 기술한다.
 
 **$`A`$의 열들의 생성은 열공간이다.**
 
@@ -974,11 +974,11 @@ A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}: C(A) = x 
 
 **핵심 질문:**
 
-- **Q1:** $`A`$의 몇 개의 열이 독립인가? 그 수 $`r`$이 $`A`$의 **랭크 (Rank)** 이다.
-- **Q2:** 처음 $`r`$개의 독립 열은 무엇인가? 이것이 열공간의 **기저 (Basis)** 이다.
+- **Q1:** $`A`$의 몇 개의 열이 독립인가? 그 수 $`r`$이 $`A`$의 **랭크(rank)** 이다.
+- **Q2:** 처음 $`r`$개의 독립 열은 무엇인가? 이것이 열공간의 **기저(basis)** 이다.
 - **Q3:** 그 $`r`$개의 기저 벡터의 어떤 결합이 나머지 $`n - r`$개의 열을 만드는가?
 - **Q4:** 임의의 $`A`$를 $`m \times r`$ 열 행렬 $`C`$ 곱하기 $`r \times n`$ 행렬 $`R`$로 쓸 수 있다: $`A = CR`$.
-- **Q5:** $`R`$의 $`r`$개의 행은 $`A`$의 **행공간 (Row space)** 의 기저이다. $`R`$의 행은 $`A`$에서 직접 오지 않는다.
+- **Q5:** $`R`$의 $`r`$개의 행은 $`A`$의 **행공간(row space)** 의 기저이다. $`R`$의 행은 $`A`$에서 직접 오지 않는다.
 
 ### 4.6 랭크 1인 행렬
 
@@ -1251,7 +1251,7 @@ $`C \in \mathbb{R}^{2 \times 2}`$, $`R \in \mathbb{R}^{2 \times 4}`$. 랭크 $`r
 
 #### R 행렬을 구하는 방법
 
-**소거법 (Elimination)** 을 사용할 수 있다. 소거법은 2장에서, 소거로 $`R`$을 구하는 과정은 3장에서 자세히 다룬다.
+**소거법(elimination)** 을 사용할 수 있다. 소거법은 2장에서, 소거로 $`R`$을 구하는 과정은 3장에서 자세히 다룬다.
 
 **예시:**
 
@@ -1296,7 +1296,7 @@ A = \begin{pmatrix} 1 & 3 \\ 2 & 4 \\ 3 & 7 \end{pmatrix}\begin{pmatrix} 1 & 0 &
 - $`R`$의 $`r`$개의 행은 $`A`$의 행공간의 **기저**이다.
 - 따라서 열공간과 행공간은 모두 $`r`$차원이다.
 
-> **핵심:** $`A = CR`$에서 $`R`$은 $`A`$의 **기약행사다리꼴 (Reduced Row Echelon Form)** 에서 영행을 제거한 행렬이다.
+> **핵심:** $`A = CR`$에서 $`R`$은 $`A`$의 **기약행사다리꼴(reduced row echelon form)** 에서 영행을 제거한 행렬이다.
 
 **예시:**
 
@@ -1332,7 +1332,7 @@ AB = \sum_{k=1}^{n} \mathbf{a}_k\mathbf{b}_k^*
 
 즉 $`AB`$는 $`n`$개의 랭크 1 행렬의 합이다. 각 행렬은 $`mp`$번의 곱셈이 필요하므로 총 $`mnp`$번의 곱셈이 필요하다.
 
-> **[딥러닝]** 랭크 1 행렬의 합은 데이터에서 계산하는 여러 행렬의 구조이기도 하다. $`B = A^T`$이면 위 식은 $`AA^T = \sum_k \mathbf{a}_k\mathbf{a}_k^T`$가 되며, 7장 3.5절의 표본 공분산 행렬 $`S = AA^T/(n - 1)`$이 이 꼴이다. 합성곱 신경망의 스타일 전이(style transfer)에 쓰는 그람 행렬(Gram matrix)도 같은 꼴이다. 한 계층의 특징 맵을 행렬 $`F`$(행은 필터, 열은 공간 위치)로 놓으면 $`G = FF^T = \sum_k \mathbf{f}_k\mathbf{f}_k^T`$이고, 이 행렬은 필터 사이의 상관을 담아 이미지의 스타일을 나타낸다 [1].
+> **[딥러닝]** 랭크 1 행렬의 합은 데이터에서 계산하는 여러 행렬의 구조이기도 하다. $`B = A^T`$이면 위 식은 $`AA^T = \sum_k \mathbf{a}_k\mathbf{a}_k^T`$가 되며, 7장 3.5절의 표본 공분산 행렬 $`S = AA^T/(n - 1)`$이 이 꼴이다. 합성곱 신경망의 스타일 전이(style transfer)에 쓰는 Gram 행렬(Gram matrix)도 같은 꼴이다. 한 계층의 특징 맵을 행렬 $`F`$(행은 필터, 열은 공간 위치)로 놓으면 $`G = FF^T = \sum_k \mathbf{f}_k\mathbf{f}_k^T`$이고, 이 행렬은 필터 사이의 상관을 담아 이미지의 스타일을 나타낸다 [1].
 
 > **참고:** 행렬 $`A = \begin{pmatrix} 1 & 3 & 4 \\ 2 & 4 & 2 \\ 3 & 7 & 6 \end{pmatrix}`$에 대해 $`\text{rank}(A) = 2`$이다. $`A`$는 $`3 \times 3`$ 행렬인데 랭크가 3보다 작으므로 다음이 성립한다.
 >
@@ -1389,7 +1389,7 @@ $`AB`$의 각 행은 **$`B`$의 행들의 결합**이다. 결합 계수는 $`A`$
 | 단위벡터 (Unit Vector) | $`\Vert\mathbf{v}\Vert = 1`$인 벡터이며, 영이 아닌 벡터는 $`\mathbf{v}/\Vert\mathbf{v}\Vert`$로 정규화한다. |
 | 직교성 (Perpendicularity) | $`\mathbf{v} \perp \mathbf{w} \Leftrightarrow \mathbf{v} \cdot \mathbf{w} = 0`$이다. |
 | 각도 공식 (Angle Formula) | 영이 아닌 두 벡터에 대해 $`\cos\theta = \frac{\mathbf{v} \cdot \mathbf{w}}{\Vert\mathbf{v}\Vert\Vert\mathbf{w}\Vert}`$이다. |
-| 슈바르츠 부등식 (Schwarz Inequality) | $`\vert\mathbf{v} \cdot \mathbf{w}\vert \leq \Vert\mathbf{v}\Vert\Vert\mathbf{w}\Vert`$이다. |
+| Schwarz 부등식 | $`\vert\mathbf{v} \cdot \mathbf{w}\vert \leq \Vert\mathbf{v}\Vert\Vert\mathbf{w}\Vert`$이다. |
 | 삼각 부등식 (Triangle Inequality) | $`\Vert\mathbf{v} + \mathbf{w}\Vert \leq \Vert\mathbf{v}\Vert + \Vert\mathbf{w}\Vert`$이다. |
 | 피타고라스 정리 (Pythagorean Theorem) | $`\mathbf{v} \perp \mathbf{w}`$이면 $`\Vert\mathbf{v} + \mathbf{w}\Vert^2 = \Vert\mathbf{v}\Vert^2 + \Vert\mathbf{w}\Vert^2`$이다. |
 | 행렬 곱셈 $`AB`$ | $`(AB)_{ij} = \text{row}_i(A) \cdot \text{col}_j(B)`$이고, $`AB`$의 열 $`j`$는 $`A\mathbf{b}_j`$이다. |
@@ -1422,12 +1422,12 @@ $`AB`$의 각 행은 **$`B`$의 행들의 결합**이다. 결합 계수는 $`A`$
 
    </details>
 
-2. **길이, 각도, 부등식:** $`\mathbf{v} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}`$, $`\mathbf{w} = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}`$에 대해 $`\mathbf{v} \cdot \mathbf{w}`$, $`\|\mathbf{v}\|`$, $`\|\mathbf{w}\|`$, 두 벡터 사이의 각도 $`\theta`$를 구하고, 슈바르츠 부등식과 삼각 부등식이 성립함을 확인하라.
+2. **길이, 각도, 부등식:** $`\mathbf{v} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}`$, $`\mathbf{w} = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}`$에 대해 $`\mathbf{v} \cdot \mathbf{w}`$, $`\|\mathbf{v}\|`$, $`\|\mathbf{w}\|`$, 두 벡터 사이의 각도 $`\theta`$를 구하고, Schwarz 부등식과 삼각 부등식이 성립함을 확인하라.
 
    <details>
    <summary>정답</summary>
 
-   $`\mathbf{v} \cdot \mathbf{w} = 1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1`$이고 $`\|\mathbf{v}\| = \|\mathbf{w}\| = \sqrt{2}`$이다. $`\cos\theta = \frac{1}{\sqrt{2}\sqrt{2}} = \frac{1}{2}`$이므로 $`\theta = 60°`$이다. 슈바르츠 부등식은 $`|\mathbf{v} \cdot \mathbf{w}| = 1 \leq \|\mathbf{v}\|\|\mathbf{w}\| = 2`$로 성립한다. $`\mathbf{v} + \mathbf{w} = \begin{pmatrix} 2 \\ 1 \\ 1 \end{pmatrix}`$이므로 $`\|\mathbf{v} + \mathbf{w}\| = \sqrt{6} \approx 2.449`$이고, 이는 $`\|\mathbf{v}\| + \|\mathbf{w}\| = 2\sqrt{2} \approx 2.828`$보다 작으므로 삼각 부등식도 성립한다.
+   $`\mathbf{v} \cdot \mathbf{w} = 1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1`$이고 $`\|\mathbf{v}\| = \|\mathbf{w}\| = \sqrt{2}`$이다. $`\cos\theta = \frac{1}{\sqrt{2}\sqrt{2}} = \frac{1}{2}`$이므로 $`\theta = 60°`$이다. Schwarz 부등식은 $`|\mathbf{v} \cdot \mathbf{w}| = 1 \leq \|\mathbf{v}\|\|\mathbf{w}\| = 2`$로 성립한다. $`\mathbf{v} + \mathbf{w} = \begin{pmatrix} 2 \\ 1 \\ 1 \end{pmatrix}`$이므로 $`\|\mathbf{v} + \mathbf{w}\| = \sqrt{6} \approx 2.449`$이고, 이는 $`\|\mathbf{v}\| + \|\mathbf{w}\| = 2\sqrt{2} \approx 2.828`$보다 작으므로 삼각 부등식도 성립한다.
 
    </details>
 
